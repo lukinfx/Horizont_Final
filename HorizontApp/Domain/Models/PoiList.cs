@@ -15,7 +15,6 @@ namespace HorizontApp.Domain.Models
 {
     public class PoiList
     {
-        public PoiCategory Category;
         public List<Poi> List;
     }
 }

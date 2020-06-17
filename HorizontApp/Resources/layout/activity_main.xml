@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,57 +7,65 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-        <LinearLayout
-            android:orientation=    "horizontal"
-            android:layout_width=    "match_parent"
-            android:layout_height=    "wrap_content"> 
+    <LinearLayout
+        android:orientation=    "horizontal"
+        android:layout_width=    "match_parent"
+        android:layout_height=    "wrap_content">
 
-            <EditText
-                android:inputType="number"
-                android:layout_width="67.5dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/editText1"
-                android:layout_marginRight="0.0dp" 
+        <HorizontApp.Views.CompassView
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            android:id="@+id/compassView1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation=    "horizontal"
+        android:layout_width=    "match_parent"
+        android:layout_height=    "wrap_content">
+
+        <EditText
+            android:inputType="number"
+            android:layout_width="67.5dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText1"
+            android:layout_marginRight="0.0dp" 
                 />
 
-            <EditText
-                android:inputType="number"
-                android:layout_width="71.5dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/editText2"
+        <EditText
+            android:inputType="number"
+            android:layout_width="71.5dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText2"
                 />
 
-       </LinearLayout>
+    </LinearLayout>
 
-       <LinearLayout
-            android:orientation=    "horizontal"
-            android:layout_width=    "match_parent"
-            android:layout_height=    "wrap_content">
+    <LinearLayout
+        android:orientation=    "horizontal"
+        android:layout_width=    "match_parent"
+        android:layout_height=    "wrap_content">
 
         <Button
             android:text="Start/stop heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button1" />
-            <Button
-                android:text="get GPS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button2" />
-            <Button
-                android:text="Start compass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button3" />
-            <Button
-                android:text="Stop compass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button4" />
-        </LinearLayout> 
+        <Button
+            android:text="get GPS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2" />
+        <Button
+            android:text="Start compass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button3" />
+        <Button
+            android:text="Stop compass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button4" />
+    </LinearLayout>
 
-        <SkiaSharp.Views.Android.SKCanvasView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/SKCanvasView1" />
 </LinearLayout>

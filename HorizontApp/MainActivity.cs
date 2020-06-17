@@ -43,9 +43,6 @@ namespace HorizontApp
             headingEditText = FindViewById<EditText>(Resource.Id.editText1);
             GPSEditText = FindViewById<EditText>(Resource.Id.editText2);
 
-            canvasView = FindViewById<SKCanvasView>(Resource.Id.SKCanvasView1);
-            //canvasView.PaintSurface += OnCanvasViewPaintSurface;
-
             getHeadingButton = FindViewById<Button>(Resource.Id.button1);
             getHeadingButton.SetOnClickListener(this);
 
