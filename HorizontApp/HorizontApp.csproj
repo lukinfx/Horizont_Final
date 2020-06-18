@@ -64,6 +64,8 @@
     <Compile Include="Domain\Enums\PoiCategory.cs" />
     <Compile Include="Domain\Models\GpsLocation.cs" />
     <Compile Include="Domain\Models\PoiList.cs" />
+    <Compile Include="Domain\ViewModel\PoiViewItem.cs" />
+    <Compile Include="Domain\ViewModel\PoiViewItemList.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Domain\Models\Poi.cs" />
     <Compile Include="Providers\CompassProvider.cs" />

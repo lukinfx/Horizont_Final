@@ -14,10 +14,10 @@ using HorizontApp.Domain.Models;
 
 namespace HorizontApp.Utilities
 {
-    class CompassViewUtils
+    public class CompassViewUtils
     {
         //mozna bychom to tady mohli spojit do jedne funkce, nebo presunout GetBearing do CompassProvideru
-        public float GetBearing(GpsLocation myLocation, GpsLocation point)
+        public static float GetBearing(GpsLocation myLocation, GpsLocation point)
         {
             var myLoc = GpsUtils.Convert(myLocation);
             var poi = GpsUtils.Convert(myLocation);
@@ -25,7 +25,7 @@ namespace HorizontApp.Utilities
             return x;
         }
 
-        public float? GetLocationOnScreen(float heading, float bearing, float canvasWidth, float cameraViewAngle)
+        public static float? GetLocationOnScreen(float heading, float bearing, float canvasWidth, float cameraViewAngle)
         {
             float PointCanvasCoords;
             if (Math.Abs(bearing - heading) < cameraViewAngle / 2)
@@ -36,5 +36,13 @@ namespace HorizontApp.Utilities
             else return null;
         }
 
+        
+        public static float GetDistance(GpsLocation myLocation, GpsLocation point)
+        {
+            var myLoc = GpsUtils.Convert(myLocation);
+            var poi = GpsUtils.Convert(myLocation);
+            var x = myLoc.BearingTo(poi);
+            return x;
+        }
     } 
 }

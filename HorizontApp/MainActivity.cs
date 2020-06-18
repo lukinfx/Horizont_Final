@@ -13,6 +13,7 @@ using HorizontApp.Utilities;
 using HorizontApp.Domain.Enums;
 using System.Collections.Generic;
 using HorizontApp.Domain.Models;
+using HorizontApp.Domain.ViewModel;
 
 namespace HorizontApp
 {
@@ -32,6 +33,9 @@ namespace HorizontApp
 
         private GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
         private CompassProvider compassProvider = new CompassProvider();
+        PoiViewItemList poiViewItemList = new PoiViewItemList();
+        PoiList poiList = new PoiList();
+        GpsLocation myLocation = new GpsLocation();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -73,7 +77,7 @@ namespace HorizontApp
                 case Resource.Id.button1:
                     {
                         compassProvider.ToggleCompass(); 
-                        break;
+                        break;  
                     }
                 case Resource.Id.button2:
                     {
@@ -87,11 +91,17 @@ namespace HorizontApp
                     {
                         var file = GpxFileProvider.GetFile();
                         var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
-                        PoiList poiList = new PoiList { Category = PoiCategory.Peaks, List = listOfPoi };
+                        poiList.List = listOfPoi;
                         break;
                     }
                 case Resource.Id.button4:
                     {
+                        myLocation = GpsUtils.ConvertFromXamarin(await gpsLocationProvider.GetLocationAsync());
+                        foreach (var item in poiList.List)
+                        {
+                            poiViewItemList.List.Add(new PoiViewItem { Poi = item, Heading = CompassViewUtils.GetBearing(myLocation, item.GpsLocation) });
+                        }
+                        
                         break;
                     }
 

@@ -17,9 +17,9 @@ namespace HorizontApp.Utilities
 {
     public class GpsUtils
     {
-        public static Location Convert(GpsLocation loc)
+        public static Android.Locations.Location Convert(GpsLocation loc)
         {
-            Location converted = new Android.Locations.Location("");
+            Android.Locations.Location converted = new Android.Locations.Location("");
 
             converted.Altitude = loc.Altitude;
             converted.Longitude = loc.Longitude;
@@ -27,7 +27,7 @@ namespace HorizontApp.Utilities
             return converted;
         }
 
-        public static GpsLocation Convert(Location loc)
+        public static GpsLocation Convert(Android.Locations.Location loc)
         {
             GpsLocation converted = new GpsLocation();
 
@@ -35,6 +35,16 @@ namespace HorizontApp.Utilities
             converted.Longitude = loc.Longitude;
             converted.Latitude = loc.Latitude;
             return converted;
+        }
+
+        public static GpsLocation ConvertFromXamarin(Xamarin.Essentials.Location loc)
+        {
+            GpsLocation converted = new GpsLocation();
+
+            converted.Altitude = loc.Altitude.Value;
+            converted.Longitude = loc.Longitude;
+            converted.Latitude = loc.Latitude;
+            return converted; ;
         }
     }
 }

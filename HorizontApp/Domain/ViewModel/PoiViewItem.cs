@@ -17,5 +17,6 @@ namespace HorizontApp.Domain.ViewModel
     {
         public Poi Poi;
         public double Heading;
+        public double Distance;
     }
 }

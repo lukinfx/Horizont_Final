@@ -4,7 +4,7 @@ using Xamarin.Essentials;
 
 namespace HorizontApp.Providers
 {
-    class GpsLocationProvider
+    public class GpsLocationProvider
     {
         private GpsLocation currentLocation;
         public GpsLocation CurrentLocation { get { return currentLocation; } }
