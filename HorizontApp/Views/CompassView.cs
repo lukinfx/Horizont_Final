@@ -20,7 +20,7 @@ namespace HorizontApp.Views
     public class CompassView : View
     {
         private Android.Graphics.Paint paint;
-        private PoiViewItemList list;
+        private static PoiViewItemList list;
         private CompassProvider compassProvider = new CompassProvider();
         
 
@@ -30,9 +30,9 @@ namespace HorizontApp.Views
             Initialize();
         }
 
-        public void SetPoiViewItemList(PoiViewItemList list)
+        public static void SetPoiViewItemList(PoiViewItemList list2)
         {
-            this.list = list;
+            list = list2;
         }
 
         public CompassView(Context context, IAttributeSet attrs, int defStyle) :
@@ -52,13 +52,16 @@ namespace HorizontApp.Views
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
         {
-            foreach(var item in list.List)
+            if (list != null)
             {
-                var startX = CompassViewUtils.GetLocationOnScreen((float)compassProvider.Heading, (float)item.Heading, canvas.Width, 30/*TODO: camera veiw angle*/);
-                if (startX != null)
+                foreach (var item in list.List)
                 {
-                    canvas.DrawLine(startX.Value, 0, startX.Value, 100, paint);
-                }   
+                    var startX = CompassViewUtils.GetLocationOnScreen((float)compassProvider.Heading, (float)item.Heading, canvas.Width, 30/*TODO: camera veiw angle*/);
+                    if (startX != null)
+                    {
+                        canvas.DrawLine(startX.Value, 0, startX.Value, 100, paint);
+                    }
+                }
             }
         }
     }

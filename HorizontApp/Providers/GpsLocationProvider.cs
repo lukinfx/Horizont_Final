@@ -9,7 +9,12 @@ namespace HorizontApp.Providers
         private GpsLocation currentLocation;
         public GpsLocation CurrentLocation { get { return currentLocation; } }
 
-        public async System.Threading.Tasks.Task<Location> GetLocationAsync()
+        public GpsLocationProvider()
+        {
+            currentLocation = new GpsLocation();
+        }
+
+        public async System.Threading.Tasks.Task<GpsLocation> GetLocationAsync()
         {
             try
             {
@@ -21,7 +26,7 @@ namespace HorizontApp.Providers
                     currentLocation.Latitude = location.Latitude;
                     currentLocation.Longitude = location.Longitude;
                     currentLocation.Altitude = location.Altitude.Value;
-                    return location;
+                    return currentLocation;
                 }
                 return null;
             }

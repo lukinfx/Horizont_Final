@@ -14,6 +14,7 @@ using HorizontApp.Domain.Enums;
 using System.Collections.Generic;
 using HorizontApp.Domain.Models;
 using HorizontApp.Domain.ViewModel;
+using HorizontApp.Views;
 
 namespace HorizontApp
 {
@@ -33,7 +34,6 @@ namespace HorizontApp
 
         private GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
         private CompassProvider compassProvider = new CompassProvider();
-        PoiViewItemList poiViewItemList = new PoiViewItemList();
         PoiList poiList = new PoiList();
         GpsLocation myLocation = new GpsLocation();
 
@@ -81,8 +81,8 @@ namespace HorizontApp
                     }
                 case Resource.Id.button2:
                     {
-                        
-                        Xamarin.Essentials.Location location = await gpsLocationProvider.GetLocationAsync();
+
+                        GpsLocation location = await gpsLocationProvider.GetLocationAsync();
                         GPSEditText.Text = ($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                         
                         break;
@@ -96,12 +96,15 @@ namespace HorizontApp
                     }
                 case Resource.Id.button4:
                     {
-                        myLocation = GpsUtils.ConvertFromXamarin(await gpsLocationProvider.GetLocationAsync());
+
+                        PoiViewItemList poiViewItemList = new PoiViewItemList();
+                        myLocation = await gpsLocationProvider.GetLocationAsync();
                         foreach (var item in poiList.List)
                         {
                             poiViewItemList.List.Add(new PoiViewItem { Poi = item, Heading = CompassViewUtils.GetBearing(myLocation, item.GpsLocation) });
                         }
-                        
+                        CompassView.SetPoiViewItemList(poiViewItemList);
+
                         break;
                     }
 
