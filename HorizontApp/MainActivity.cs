@@ -16,14 +16,30 @@ using HorizontApp.Domain.Models;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Views;
 using Javax.Xml.Transform.Dom;
+using HorizontApp.Views.Camera;
+using Android.Views;
 
 namespace HorizontApp
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
-
-    public class MainActivity : AppCompatActivity, IOnClickListener
+    //[Activity(Theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
+    public class MainActivity : AppCompatActivity//, IOnClickListener
     {
-        EditText headingEditText;
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+            //ActionBar.Hide();
+            Window.RequestFeature(WindowFeatures.NoTitle);
+
+            SetContentView(Resource.Layout.activity_camera);
+
+            if (bundle == null)
+            {
+                FragmentManager.BeginTransaction().Replace(Resource.Id.container, Camera2BasicFragment.NewInstance()).Commit();
+            }
+        }
+
+        /*EditText headingEditText;
         EditText GPSEditText;
         Button getHeadingButton;
         Button getGPSButton;
@@ -38,10 +54,10 @@ namespace HorizontApp
         PoiList poiList = new PoiList();
         GpsLocation myLocation = new GpsLocation();
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            base.OnCreate(bundle);
+            Xamarin.Essentials.Platform.Init(this, bundle);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
@@ -64,6 +80,7 @@ namespace HorizontApp
             _timer.Elapsed += OnTimedEvent;
             _timer.Enabled = true;
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -115,6 +132,6 @@ namespace HorizontApp
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             headingEditText.Text = compassProvider.Heading.ToString();
-        }
+        }*/
     }
 }
