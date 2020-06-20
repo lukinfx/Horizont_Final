@@ -24,14 +24,14 @@ using Orientation = Android.Content.Res.Orientation;
 
 namespace HorizontApp.Views.Camera
 {
-    public class Camera2BasicFragment : Fragment, View.IOnClickListener//, FragmentCompat.IOnRequestPermissionsResultCallback
+    public class CameraFragment : Fragment, View.IOnClickListener//, FragmentCompat.IOnRequestPermissionsResultCallback
     {
         private static readonly SparseIntArray ORIENTATIONS = new SparseIntArray();
         public static readonly int REQUEST_CAMERA_PERMISSION = 1;
         private static readonly string FRAGMENT_DIALOG = "dialog";
 
         // Tag for the {@link Log}.
-        private static readonly string TAG = "Camera2BasicFragment";
+        private static readonly string TAG = "CameraFragment";
 
         // Camera state: Showing camera preview.
         public const int STATE_PREVIEW = 0;
@@ -55,7 +55,7 @@ namespace HorizontApp.Views.Camera
         private static readonly int MAX_PREVIEW_HEIGHT = 1080;
 
         // TextureView.ISurfaceTextureListener handles several lifecycle events on a TextureView
-        private Camera2BasicSurfaceTextureListener mSurfaceTextureListener;
+        private CameraSurfaceTextureListener mSurfaceTextureListener;
 
         // ID of the current {@link CameraDevice}.
         private string mCameraId;
@@ -185,16 +185,16 @@ namespace HorizontApp.Views.Camera
             }*/
         }
 
-        public static Camera2BasicFragment NewInstance()
+        public static CameraFragment NewInstance()
         {
-            return new Camera2BasicFragment();
+            return new CameraFragment();
         }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             mStateCallback = new CameraStateListener(this);
-            mSurfaceTextureListener = new Camera2BasicSurfaceTextureListener(this);
+            mSurfaceTextureListener = new CameraSurfaceTextureListener(this);
 
             // fill ORIENTATIONS list
             ORIENTATIONS.Append((int)SurfaceOrientation.Rotation0, 90);
@@ -405,7 +405,7 @@ namespace HorizontApp.Views.Camera
             }
         }
 
-        // Opens the camera specified by {@link Camera2BasicFragment#mCameraId}.
+        // Opens the camera specified by {@link CameraFragment#mCameraId}.
         public void OpenCamera(int width, int height)
         {
             if (ContextCompat.CheckSelfPermission(Activity, Manifest.Permission.Camera) != Permission.Granted)

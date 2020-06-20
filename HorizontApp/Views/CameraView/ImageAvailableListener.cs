@@ -7,7 +7,7 @@ namespace HorizontApp.Views.Camera
 {
     public class ImageAvailableListener : Java.Lang.Object, ImageReader.IOnImageAvailableListener
     {
-        public ImageAvailableListener(Camera2BasicFragment fragment, File file)
+        public ImageAvailableListener(CameraFragment fragment, File file)
         {
             if (fragment == null)
                 throw new System.ArgumentNullException("fragment");
@@ -19,10 +19,10 @@ namespace HorizontApp.Views.Camera
         }
 
         private readonly File file;
-        private readonly Camera2BasicFragment owner;
+        private readonly CameraFragment owner;
 
         //public File File { get; private set; }
-        //public Camera2BasicFragment Owner { get; private set; }
+        //public CameraFragment Owner { get; private set; }
 
         public void OnImageAvailable(ImageReader reader)
         {

@@ -5,9 +5,9 @@ namespace HorizontApp.Views.Camera
 {
     public class CameraStateListener : CameraDevice.StateCallback
     {
-        private readonly Camera2BasicFragment owner;
+        private readonly CameraFragment owner;
 
-        public CameraStateListener(Camera2BasicFragment owner)
+        public CameraStateListener(CameraFragment owner)
         {
             if (owner == null)
                 throw new System.ArgumentNullException("owner");

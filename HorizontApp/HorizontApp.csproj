@@ -76,17 +76,16 @@
     <Compile Include="Utilities\CompassViewUtils.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
     <Compile Include="Utilities\GpxFileParser.cs" />
-    <Compile Include="Views\CameraView.cs" />
-    <Compile Include="Views\Camera\AutoFitTextureView.cs" />
-    <Compile Include="Views\Camera\Camera2BasicFragment.cs" />
-    <Compile Include="Views\Camera\Camera2BasicSurfaceTextureListener.cs" />
-    <Compile Include="Views\Camera\CameraCaptureListener.cs" />
-    <Compile Include="Views\Camera\CameraCaptureSessionCallback.cs" />
-    <Compile Include="Views\Camera\CameraCaptureStillPictureSessionCallback.cs" />
-    <Compile Include="Views\Camera\CameraStateListener.cs" />
-    <Compile Include="Views\Camera\CompareSizesByArea.cs" />
-    <Compile Include="Views\Camera\ConfirmationDialog.cs" />
-    <Compile Include="Views\Camera\ImageAvailableListener.cs" />
+    <Compile Include="Views\CameraView\AutoFitTextureView.cs" />
+    <Compile Include="Views\CameraView\CameraFragment.cs" />
+    <Compile Include="Views\CameraView\CameraSurfaceTextureListener.cs" />
+    <Compile Include="Views\CameraView\CameraCaptureListener.cs" />
+    <Compile Include="Views\CameraView\CameraCaptureSessionCallback.cs" />
+    <Compile Include="Views\CameraView\CameraCaptureStillPictureSessionCallback.cs" />
+    <Compile Include="Views\CameraView\CameraStateListener.cs" />
+    <Compile Include="Views\CameraView\CompareSizesByArea.cs" />
+    <Compile Include="Views\CameraView\ConfirmationDialog.cs" />
+    <Compile Include="Views\CameraView\ImageAvailableListener.cs" />
     <Compile Include="Views\CompassView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment_camera2_basic.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_camera.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

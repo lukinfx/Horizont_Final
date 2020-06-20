@@ -6,9 +6,9 @@ namespace HorizontApp.Views.Camera
 {
     public class CameraCaptureListener : CameraCaptureSession.CaptureCallback
     {
-        private readonly Camera2BasicFragment owner;
+        private readonly CameraFragment owner;
 
-        public CameraCaptureListener(Camera2BasicFragment owner)
+        public CameraCaptureListener(CameraFragment owner)
         {
             if (owner == null)
                 throw new System.ArgumentNullException("owner");
@@ -29,12 +29,12 @@ namespace HorizontApp.Views.Camera
         {
             switch (owner.mState)
             {
-                case Camera2BasicFragment.STATE_WAITING_LOCK:
+                case CameraFragment.STATE_WAITING_LOCK:
                     {
                         Integer afState = (Integer)result.Get(CaptureResult.ControlAfState);
                         if (afState == null)
                         {
-                            owner.mState = Camera2BasicFragment.STATE_PICTURE_TAKEN; // avoids multiple picture callbacks
+                            owner.mState = CameraFragment.STATE_PICTURE_TAKEN; // avoids multiple picture callbacks
                             owner.CaptureStillPicture();
                         }
 
@@ -46,7 +46,7 @@ namespace HorizontApp.Views.Camera
                             if (aeState == null ||
                                     aeState.IntValue() == ((int)ControlAEState.Converged))
                             {
-                                owner.mState = Camera2BasicFragment.STATE_PICTURE_TAKEN;
+                                owner.mState = CameraFragment.STATE_PICTURE_TAKEN;
                                 owner.CaptureStillPicture();
                             }
                             else
@@ -56,7 +56,7 @@ namespace HorizontApp.Views.Camera
                         }
                         break;
                     }
-                case Camera2BasicFragment.STATE_WAITING_PRECAPTURE:
+                case CameraFragment.STATE_WAITING_PRECAPTURE:
                     {
                         // ControlAeState can be null on some devices
                         Integer aeState = (Integer)result.Get(CaptureResult.ControlAeState);
@@ -64,17 +64,17 @@ namespace HorizontApp.Views.Camera
                                 aeState.IntValue() == ((int)ControlAEState.Precapture) ||
                                 aeState.IntValue() == ((int)ControlAEState.FlashRequired))
                         {
-                            owner.mState = Camera2BasicFragment.STATE_WAITING_NON_PRECAPTURE;
+                            owner.mState = CameraFragment.STATE_WAITING_NON_PRECAPTURE;
                         }
                         break;
                     }
-                case Camera2BasicFragment.STATE_WAITING_NON_PRECAPTURE:
+                case CameraFragment.STATE_WAITING_NON_PRECAPTURE:
                     {
                         // ControlAeState can be null on some devices
                         Integer aeState = (Integer)result.Get(CaptureResult.ControlAeState);
                         if (aeState == null || aeState.IntValue() != ((int)ControlAEState.Precapture))
                         {
-                            owner.mState = Camera2BasicFragment.STATE_PICTURE_TAKEN;
+                            owner.mState = CameraFragment.STATE_PICTURE_TAKEN;
                             owner.CaptureStillPicture();
                         }
                         break;

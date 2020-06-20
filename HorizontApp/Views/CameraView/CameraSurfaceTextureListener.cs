@@ -2,11 +2,11 @@ using Android.Views;
 
 namespace HorizontApp.Views.Camera
 {
-    public class Camera2BasicSurfaceTextureListener : Java.Lang.Object, TextureView.ISurfaceTextureListener
+    public class CameraSurfaceTextureListener : Java.Lang.Object, TextureView.ISurfaceTextureListener
     {
-        private readonly Camera2BasicFragment owner;
+        private readonly CameraFragment owner;
 
-        public Camera2BasicSurfaceTextureListener(Camera2BasicFragment owner)
+        public CameraSurfaceTextureListener(CameraFragment owner)
         {
             if (owner == null)
                 throw new System.ArgumentNullException("owner");

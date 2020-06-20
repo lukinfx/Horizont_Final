@@ -15,7 +15,7 @@ namespace HorizontApp.Views.Camera
             public void OnClick(IDialogInterface dialog, int which)
             {
                 FragmentCompat.RequestPermissions(mParent,
-                                new string[] { Manifest.Permission.Camera }, Camera2BasicFragment.REQUEST_CAMERA_PERMISSION);
+                                new string[] { Manifest.Permission.Camera }, CameraFragment.REQUEST_CAMERA_PERMISSION);
             }
         }
 

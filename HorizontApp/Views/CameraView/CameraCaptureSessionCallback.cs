@@ -4,9 +4,9 @@ namespace HorizontApp.Views.Camera
 {
     public class CameraCaptureSessionCallback : CameraCaptureSession.StateCallback
     {
-        private readonly Camera2BasicFragment owner;
+        private readonly CameraFragment owner;
 
-        public CameraCaptureSessionCallback(Camera2BasicFragment owner)
+        public CameraCaptureSessionCallback(CameraFragment owner)
         {
             if (owner == null)
                 throw new System.ArgumentNullException("owner");

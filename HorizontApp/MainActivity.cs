@@ -23,23 +23,9 @@ namespace HorizontApp
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     //[Activity(Theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
-    public class MainActivity : AppCompatActivity//, IOnClickListener
+    public class MainActivity : AppCompatActivity, IOnClickListener
     {
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
-            //ActionBar.Hide();
-            Window.RequestFeature(WindowFeatures.NoTitle);
-
-            SetContentView(Resource.Layout.activity_camera);
-
-            if (bundle == null)
-            {
-                FragmentManager.BeginTransaction().Replace(Resource.Id.container, Camera2BasicFragment.NewInstance()).Commit();
-            }
-        }
-
-        /*EditText headingEditText;
+        EditText headingEditText;
         EditText GPSEditText;
         Button getHeadingButton;
         Button getGPSButton;
@@ -57,6 +43,8 @@ namespace HorizontApp
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            //Window.RequestFeature(WindowFeatures.NoTitle);
+
             Xamarin.Essentials.Platform.Init(this, bundle);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
@@ -79,6 +67,11 @@ namespace HorizontApp
             _timer.Interval = 100;
             _timer.Elapsed += OnTimedEvent;
             _timer.Enabled = true;
+
+            if (bundle == null)
+            {
+                FragmentManager.BeginTransaction().Replace(Resource.Id.container, CameraFragment.NewInstance()).Commit();
+            }
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -132,6 +125,6 @@ namespace HorizontApp
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             headingEditText.Text = compassProvider.Heading.ToString();
-        }*/
+        }
     }
 }

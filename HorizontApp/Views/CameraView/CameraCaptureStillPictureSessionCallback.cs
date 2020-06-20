@@ -7,9 +7,9 @@ namespace HorizontApp.Views.Camera
     {
         private static readonly string TAG = "CameraCaptureStillPictureSessionCallback";
 
-        private readonly Camera2BasicFragment owner;
+        private readonly CameraFragment owner;
 
-        public CameraCaptureStillPictureSessionCallback(Camera2BasicFragment owner)
+        public CameraCaptureStillPictureSessionCallback(CameraFragment owner)
         {
             if (owner == null)
                 throw new System.ArgumentNullException("owner");
