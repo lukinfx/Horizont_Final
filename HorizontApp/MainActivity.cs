@@ -16,11 +16,13 @@ using HorizontApp.Domain.Models;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Views;
 using Javax.Xml.Transform.Dom;
+using HorizontApp.Views.Camera;
+using Android.Views;
 
 namespace HorizontApp
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
-
+    //[Activity(Theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : AppCompatActivity, IOnClickListener
     {
         EditText headingEditText;
@@ -38,10 +40,12 @@ namespace HorizontApp
         PoiList poiList = new PoiList();
         GpsLocation myLocation = new GpsLocation();
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            base.OnCreate(bundle);
+            //Window.RequestFeature(WindowFeatures.NoTitle);
+
+            Xamarin.Essentials.Platform.Init(this, bundle);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
@@ -63,7 +67,13 @@ namespace HorizontApp
             _timer.Interval = 100;
             _timer.Elapsed += OnTimedEvent;
             _timer.Enabled = true;
+
+            if (bundle == null)
+            {
+                FragmentManager.BeginTransaction().Replace(Resource.Id.container, CameraFragment.NewInstance()).Commit();
+            }
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
