@@ -20,7 +20,7 @@ namespace HorizontApp.Utilities
         public static float GetBearing(GpsLocation myLocation, GpsLocation point)
         {
             var myLoc = GpsUtils.Convert(myLocation);
-            var poi = GpsUtils.Convert(myLocation);
+            var poi = GpsUtils.Convert(point);
             var x = myLoc.BearingTo(poi);
             return x;
         }

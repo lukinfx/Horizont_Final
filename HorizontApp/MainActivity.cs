@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using HorizontApp.Domain.Models;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Views;
+using Javax.Xml.Transform.Dom;
 
 namespace HorizontApp
 {
@@ -96,8 +97,8 @@ namespace HorizontApp
                     }
                 case Resource.Id.button4:
                     {
-
                         PoiViewItemList poiViewItemList = new PoiViewItemList();
+                        poiViewItemList.List = new List<PoiViewItem>();
                         myLocation = await gpsLocationProvider.GetLocationAsync();
                         foreach (var item in poiList.List)
                         {
