@@ -40,9 +40,8 @@ namespace HorizontApp
         Button getGPSButton;
         Button startCompassButton;
         Button stopCompassButton;
-        System.Timers.Timer _timer = new System.Timers.Timer();
-
-        SKCanvasView canvasView;
+        Timer compassTimer = new Timer();
+        Timer locationTimer = new Timer();
 
         private GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
         private CompassProvider compassProvider = new CompassProvider();
@@ -84,15 +83,27 @@ namespace HorizontApp
             stopCompassButton = FindViewById<Button>(Resource.Id.button4);
             stopCompassButton.SetOnClickListener(this);
 
-            _timer.Interval = 100;
-            _timer.Elapsed += OnTimedEvent;
-            _timer.Enabled = true;
-
+            InitializeCompassTimer();
+            InitializeLocationTimer();
+        
             if (bundle == null)
             {
                 FragmentManager.BeginTransaction().Replace(Resource.Id.container, CameraFragment.NewInstance()).Commit();
             }
+        }
 
+        private void InitializeCompassTimer()
+        {
+            compassTimer.Interval = 100;
+            compassTimer.Elapsed += OnCompassTimerElapsed;
+            compassTimer.Enabled = true;
+        }
+
+        private void InitializeLocationTimer()
+        {
+            locationTimer.Interval = 100;
+            locationTimer.Elapsed += OnLocationTimerElapsed;
+            locationTimer.Enabled = true;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -153,9 +164,15 @@ namespace HorizontApp
             }
         }
 
-        private void OnTimedEvent(object sender, ElapsedEventArgs e)
+        private void OnCompassTimerElapsed(object sender, ElapsedEventArgs e)
         {
             headingEditText.Text = compassProvider.Heading.ToString();
+        }
+
+        private void OnLocationTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            //TODO: recalculate PoiViewItemList
+            //CompassView.SetPoiViewItemList(poiViewItemList);
         }
     }
 }
