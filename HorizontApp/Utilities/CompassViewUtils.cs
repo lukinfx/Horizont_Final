@@ -25,6 +25,14 @@ namespace HorizontApp.Utilities
             return x;
         }
 
+        public static float GetDistance(GpsLocation myLocation, GpsLocation point)
+        {
+            var myLoc = GpsUtils.Convert(myLocation);
+            var poi = GpsUtils.Convert(point);
+            var x = myLoc.DistanceTo(poi);
+            return x;
+        }
+
         public static float? GetLocationOnScreen(float heading, float bearing, float canvasWidth, float cameraViewAngle)
         {
             float PointCanvasCoords;
@@ -36,13 +44,5 @@ namespace HorizontApp.Utilities
             else return null;
         }
 
-        
-        public static float GetDistance(GpsLocation myLocation, GpsLocation point)
-        {
-            var myLoc = GpsUtils.Convert(myLocation);
-            var poi = GpsUtils.Convert(myLocation);
-            var x = myLoc.BearingTo(poi);
-            return x;
-        }
     } 
 }

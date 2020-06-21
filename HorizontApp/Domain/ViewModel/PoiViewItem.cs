@@ -13,9 +13,8 @@ using HorizontApp.Domain.Models;
 
 namespace HorizontApp.Domain.ViewModel
 {
-    public class PoiViewItem
+    public class PoiViewItem : Poi
     {
-        public Poi Poi;
         public double Heading;
         public double Distance;
         
@@ -23,9 +22,12 @@ namespace HorizontApp.Domain.ViewModel
         {
             get
             {
-                return new GpsLocation() { Latitude = Poi.Latitude, Longitude = Poi.Longitude, Altitude = Poi.Altitude };
+                return new GpsLocation() { Latitude = this.Latitude, Longitude = this.Longitude, Altitude = this.Altitude };
             }
         }
 
+        public PoiViewItem(Poi poi) : base(poi)
+        {
+        }
     }
 }

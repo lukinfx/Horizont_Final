@@ -14,6 +14,6 @@ namespace HorizontApp.Domain.ViewModel
 {
     public class PoiViewItemList
     {
-        public List<PoiViewItem> List;
+        public List<PoiViewItem> List = new List<PoiViewItem>();
     }
 }

@@ -9,6 +9,7 @@ using static Android.Views.View;
 using SkiaSharp.Views.Android;
 using Android.Locations;
 using System.Timers;
+using System.Linq;
 using HorizontApp.Utilities;
 using HorizontApp.Domain.Enums;
 using System.Collections.Generic;
@@ -45,7 +46,6 @@ namespace HorizontApp
 
         private GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
         private CompassProvider compassProvider = new CompassProvider();
-        PoiList poiList = new PoiList();
         GpsLocation myLocation = new GpsLocation();
 
         public static PoiDatabase Database
@@ -92,6 +92,7 @@ namespace HorizontApp
             {
                 FragmentManager.BeginTransaction().Replace(Resource.Id.container, CameraFragment.NewInstance()).Commit();
             }
+
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -128,25 +129,19 @@ namespace HorizontApp
                             await Database.InsertItemAsync(item);
                         }
 
-                        poiList.List = listOfPoi;
-
                         break;
                     }
                 case Resource.Id.button4:
                     {
                         var poiList = await Database.GetItemsAsync();
-                        
-                        PoiViewItemList poiViewItemList = new PoiViewItemList();
-                        poiViewItemList.List = new List<PoiViewItem>();
                         myLocation = await gpsLocationProvider.GetLocationAsync();
-                        foreach (var item in poiList /*poiList.List*/)
-                        {
-                            var poiViewItem = new PoiViewItem
-                            {
-                                Poi = item
-                            };
-                            poiViewItem.Heading = CompassViewUtils.GetBearing(myLocation, poiViewItem.GpsLocation);
 
+                        PoiViewItemList poiViewItemList = new PoiViewItemList();
+                        foreach (var item in poiList)
+                        {
+                            var poiViewItem = new PoiViewItem(item);
+                            poiViewItem.Heading = CompassViewUtils.GetBearing(myLocation, poiViewItem.GpsLocation);
+                            poiViewItem.Distance = CompassViewUtils.GetDistance(myLocation, poiViewItem.GpsLocation);
                             poiViewItemList.List.Add(poiViewItem);
                         }
 
