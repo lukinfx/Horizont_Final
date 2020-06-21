@@ -18,13 +18,21 @@ using HorizontApp.Views;
 using Javax.Xml.Transform.Dom;
 using HorizontApp.Views.Camera;
 using Android.Views;
+using HorizontApp.DataAccess;
 
 namespace HorizontApp
 {
+    class x : Application
+    {
+
+    }
+
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     //[Activity(Theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : AppCompatActivity, IOnClickListener
     {
+        static PoiDatabase database;
+
         EditText headingEditText;
         EditText GPSEditText;
         Button getHeadingButton;
@@ -39,6 +47,18 @@ namespace HorizontApp
         private CompassProvider compassProvider = new CompassProvider();
         PoiList poiList = new PoiList();
         GpsLocation myLocation = new GpsLocation();
+
+        public static PoiDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new PoiDatabase();
+                }
+                return database;
+            }
+        }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -102,18 +122,34 @@ namespace HorizontApp
                     {
                         var file = GpxFileProvider.GetFile();
                         var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
+
+                        foreach (var item in listOfPoi)
+                        {
+                            await Database.InsertItemAsync(item);
+                        }
+
                         poiList.List = listOfPoi;
+
                         break;
                     }
                 case Resource.Id.button4:
                     {
+                        var poiList = await Database.GetItemsAsync();
+                        
                         PoiViewItemList poiViewItemList = new PoiViewItemList();
                         poiViewItemList.List = new List<PoiViewItem>();
                         myLocation = await gpsLocationProvider.GetLocationAsync();
-                        foreach (var item in poiList.List)
+                        foreach (var item in poiList /*poiList.List*/)
                         {
-                            poiViewItemList.List.Add(new PoiViewItem { Poi = item, Heading = CompassViewUtils.GetBearing(myLocation, item.GpsLocation) });
+                            var poiViewItem = new PoiViewItem
+                            {
+                                Poi = item
+                            };
+                            poiViewItem.Heading = CompassViewUtils.GetBearing(myLocation, poiViewItem.GpsLocation);
+
+                            poiViewItemList.List.Add(poiViewItem);
                         }
+
                         CompassView.SetPoiViewItemList(poiViewItemList);
 
                         break;

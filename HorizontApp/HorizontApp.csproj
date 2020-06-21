@@ -61,6 +61,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\PoiDatabase.cs" />
     <Compile Include="Domain\Enums\PoiCategory.cs" />
     <Compile Include="Domain\Models\GpsLocation.cs" />
     <Compile Include="Domain\Models\PoiList.cs" />
@@ -125,6 +126,9 @@
   <ItemGroup>
     <PackageReference Include="SkiaSharp.Views">
       <Version>1.68.3</Version>
+    </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.7.335</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
       <Version>4.3.4</Version>

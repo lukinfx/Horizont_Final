@@ -9,7 +9,7 @@ using Android.App;
 [assembly: AssemblyTitle("HorizontApp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("FrankLab")]
 [assembly: AssemblyProduct("HorizontApp")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]

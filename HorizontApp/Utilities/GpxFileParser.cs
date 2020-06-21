@@ -32,13 +32,9 @@ namespace HorizontApp.Utilities
 
                     listOfPoi.Add(new Poi
                     {
-                        Id = Guid.NewGuid(),
                         Name = name,
-                        GpsLocation = new GpsLocation 
-                        { 
-                            Longitude = Convert.ToDouble(lon), 
-                            Latitude = Convert.ToDouble(lat) 
-                        },
+                        Longitude = Convert.ToDouble(lon), 
+                        Latitude = Convert.ToDouble(lat),
                         Category = category,
                     });
                 }

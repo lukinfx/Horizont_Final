@@ -10,16 +10,23 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using HorizontApp.Domain.Enums;
+using SQLite;
 
 namespace HorizontApp.Domain.Models
 {
     public class Poi
     {
-        public Guid Id;
-        public PoiCategory Category;
-        public string Name;
+        [PrimaryKey, AutoIncrement]
+        public long Id { get; set; }
 
-        public GpsLocation GpsLocation;
-        public bool Favorite;
+        public PoiCategory Category { get; set; }
+        public string Name { get; set; }
+
+        //public GpsLocation GpsLocation { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Altitude { get; set; }
+
+        public bool Favorite { get; set; }
     }
 }

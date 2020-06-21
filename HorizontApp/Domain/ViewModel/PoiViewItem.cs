@@ -18,5 +18,14 @@ namespace HorizontApp.Domain.ViewModel
         public Poi Poi;
         public double Heading;
         public double Distance;
+        
+        public GpsLocation GpsLocation
+        {
+            get
+            {
+                return new GpsLocation() { Latitude = Poi.Latitude, Longitude = Poi.Longitude, Altitude = Poi.Altitude };
+            }
+        }
+
     }
 }
