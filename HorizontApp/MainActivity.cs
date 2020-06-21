@@ -9,6 +9,7 @@ using static Android.Views.View;
 using SkiaSharp.Views.Android;
 using Android.Locations;
 using System.Timers;
+using System.Linq;
 using HorizontApp.Utilities;
 using HorizontApp.Domain.Enums;
 using System.Collections.Generic;
@@ -18,13 +19,21 @@ using HorizontApp.Views;
 using Javax.Xml.Transform.Dom;
 using HorizontApp.Views.Camera;
 using Android.Views;
+using HorizontApp.DataAccess;
 
 namespace HorizontApp
 {
+    class x : Application
+    {
+
+    }
+
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     //[Activity(Theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : AppCompatActivity, IOnClickListener
     {
+        static PoiDatabase database;
+
         EditText headingEditText;
         EditText GPSEditText;
         Button getHeadingButton;
@@ -37,8 +46,19 @@ namespace HorizontApp
 
         private GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
         private CompassProvider compassProvider = new CompassProvider();
-        PoiList poiList = new PoiList();
         GpsLocation myLocation = new GpsLocation();
+
+        public static PoiDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new PoiDatabase();
+                }
+                return database;
+            }
+        }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -72,6 +92,7 @@ namespace HorizontApp
             {
                 FragmentManager.BeginTransaction().Replace(Resource.Id.container, CameraFragment.NewInstance()).Commit();
             }
+
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -102,18 +123,28 @@ namespace HorizontApp
                     {
                         var file = GpxFileProvider.GetFile();
                         var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
-                        poiList.List = listOfPoi;
+
+                        foreach (var item in listOfPoi)
+                        {
+                            await Database.InsertItemAsync(item);
+                        }
+
                         break;
                     }
                 case Resource.Id.button4:
                     {
-                        PoiViewItemList poiViewItemList = new PoiViewItemList();
-                        poiViewItemList.List = new List<PoiViewItem>();
+                        var poiList = await Database.GetItemsAsync();
                         myLocation = await gpsLocationProvider.GetLocationAsync();
-                        foreach (var item in poiList.List)
+
+                        PoiViewItemList poiViewItemList = new PoiViewItemList();
+                        foreach (var item in poiList)
                         {
-                            poiViewItemList.List.Add(new PoiViewItem { Poi = item, Heading = CompassViewUtils.GetBearing(myLocation, item.GpsLocation) });
+                            var poiViewItem = new PoiViewItem(item);
+                            poiViewItem.Heading = CompassViewUtils.GetBearing(myLocation, poiViewItem.GpsLocation);
+                            poiViewItem.Distance = CompassViewUtils.GetDistance(myLocation, poiViewItem.GpsLocation);
+                            poiViewItemList.List.Add(poiViewItem);
                         }
+
                         CompassView.SetPoiViewItemList(poiViewItemList);
 
                         break;
