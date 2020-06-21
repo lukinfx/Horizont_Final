@@ -29,6 +29,10 @@ namespace HorizontApp.Domain.Models
 
         public bool Favorite { get; set; }
 
+        public Poi()
+        {
+        }
+
         public Poi(Poi poi)
         {
             Id = poi.Id;
