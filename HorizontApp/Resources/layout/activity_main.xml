@@ -6,25 +6,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation=    "horizontal"
-        android:layout_width=    "match_parent"
-        android:layout_height=    "wrap_content">
+    <AbsoluteLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation=    "horizontal"
+            android:layout_width=    "match_parent"
+            android:layout_height=    "wrap_content">
 
-        <HorizontApp.Views.CompassView
-            android:layout_width="match_parent"
-            android:layout_height="30px"
-            android:background="#B0B0B0"
-            android:id="@+id/compassView1" />
+            <HorizontApp.Views.CompassView
+                android:layout_width="match_parent"
+                android:layout_height="52.5dp"
+                android:id="@+id/compassView1"
+                android:backgroundTint="@android:color/transparent"/>
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-        android:orientation=    "horizontal"
-        android:layout_width=    "match_parent"
-        android:layout_height=    "600px"
-        android:id="@+id/container">
-    </LinearLayout>
+        <LinearLayout
+            android:orientation=    "horizontal"
+            android:layout_width=    "match_parent"
+            android:layout_height=    "159.5dp"
+            android:layout_weight="1"
+            android:id="@+id/container">
+        </LinearLayout>
+    </AbsoluteLayout>
 
     <LinearLayout
         android:orientation=    "horizontal"

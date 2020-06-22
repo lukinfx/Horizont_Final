@@ -47,22 +47,27 @@ namespace HorizontApp.Views
             paint.SetARGB(255, 200, 255, 0);
             paint.SetStyle(Paint.Style.FillAndStroke);
             paint.StrokeWidth = 4;
-            compassProvider.ToggleCompass(); 
+            //compassProvider.ToggleCompass(); 
         }
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
+        {
+            canvas.DrawLine(100, 0, 200, 100, paint);
+        }
+
+        /*protected override void OnDraw(Android.Graphics.Canvas canvas)
         {
             if (list != null)
             {
                 foreach (var item in list.List)
                 {
-                    var startX = CompassViewUtils.GetLocationOnScreen((float)compassProvider.Heading, (float)item.Heading, canvas.Width, 30/*TODO: camera veiw angle*/);
+                    var startX = CompassViewUtils.GetLocationOnScreen((float)compassProvider.Heading, (float)item.Heading, canvas.Width, 30);
                     if (startX != null)
                     {
                         canvas.DrawLine(startX.Value, 0, startX.Value, 100, paint);
                     }
                 }
             }
-        }
+        }*/
     }
 }

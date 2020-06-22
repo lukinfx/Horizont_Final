@@ -90,6 +90,7 @@ namespace HorizontApp
             {
                 FragmentManager.BeginTransaction().Replace(Resource.Id.container, CameraFragment.NewInstance()).Commit();
             }
+            compassProvider.ToggleCompass();
         }
 
         private void InitializeCompassTimer()
@@ -119,12 +120,11 @@ namespace HorizontApp
             {
                 case Resource.Id.button1:
                     {
-                        compassProvider.ToggleCompass(); 
+                        
                         break;  
                     }
                 case Resource.Id.button2:
                     {
-
                         GpsLocation location = await gpsLocationProvider.GetLocationAsync();
                         GPSEditText.Text = ($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
                         
