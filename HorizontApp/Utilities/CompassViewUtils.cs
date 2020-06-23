@@ -38,7 +38,7 @@ namespace HorizontApp.Utilities
             float PointCanvasCoords;
             if (Math.Abs(bearing - heading) < cameraViewAngle / 2)
             {
-                PointCanvasCoords = ((heading - bearing) / (cameraViewAngle / 2)) * canvasWidth + canvasWidth / 2;
+                PointCanvasCoords = ((bearing - heading) / (cameraViewAngle / 2)) * canvasWidth/2 + canvasWidth / 2;
                 return PointCanvasCoords;
             }
             else return null;

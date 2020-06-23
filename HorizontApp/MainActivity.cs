@@ -20,6 +20,7 @@ using Javax.Xml.Transform.Dom;
 using HorizontApp.Views.Camera;
 using Android.Views;
 using HorizontApp.DataAccess;
+using Xamarin.Essentials;
 
 namespace HorizontApp
 {
@@ -40,6 +41,8 @@ namespace HorizontApp
         Button getGPSButton;
         Button startCompassButton;
         Button stopCompassButton;
+        CompassView compassView;
+
         Timer compassTimer = new Timer();
         Timer locationTimer = new Timer();
 
@@ -82,6 +85,8 @@ namespace HorizontApp
 
             stopCompassButton = FindViewById<Button>(Resource.Id.button4);
             stopCompassButton.SetOnClickListener(this);
+
+            compassView = FindViewById<CompassView>(Resource.Id.compassView1);
 
             InitializeCompassTimer();
             InitializeLocationTimer();
@@ -151,7 +156,7 @@ namespace HorizontApp
                         foreach (var item in poiList)
                         {
                             var poiViewItem = new PoiViewItem(item);
-                            poiViewItem.Heading = CompassViewUtils.GetBearing(myLocation, poiViewItem.GpsLocation);
+                            poiViewItem.Bearing = CompassViewUtils.GetBearing(myLocation, poiViewItem.GpsLocation);
                             poiViewItem.Distance = CompassViewUtils.GetDistance(myLocation, poiViewItem.GpsLocation);
                             poiViewItemList.List.Add(poiViewItem);
                         }
@@ -167,6 +172,8 @@ namespace HorizontApp
         private void OnCompassTimerElapsed(object sender, ElapsedEventArgs e)
         {
             headingEditText.Text = compassProvider.Heading.ToString();
+            compassView.Heading = compassProvider.Heading;
+            compassView.Invalidate();
         }
 
         private void OnLocationTimerElapsed(object sender, ElapsedEventArgs e)

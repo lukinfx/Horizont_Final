@@ -15,7 +15,7 @@ namespace HorizontApp.Domain.ViewModel
 {
     public class PoiViewItem : Poi
     {
-        public double Heading;
+        public double Bearing;
         public double Distance;
         
         public GpsLocation GpsLocation
