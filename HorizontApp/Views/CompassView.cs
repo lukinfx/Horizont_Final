@@ -79,7 +79,7 @@ namespace HorizontApp.Views
             
             if (list != null)
             {
-                foreach (var item in list.List)
+                foreach (var item in list)
                 {
                     var startX = CompassViewUtils.GetLocationOnScreen((float)Heading, (float)item.Bearing, canvas.Width, 60); //TODO:camera vierw angle
                     if (startX != null)

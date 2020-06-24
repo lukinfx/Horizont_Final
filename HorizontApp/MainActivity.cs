@@ -165,16 +165,12 @@ namespace HorizontApp
                             var poiViewItem = new PoiViewItem(item);
                             poiViewItem.Bearing = CompassViewUtils.GetBearing(myLocation, poiViewItem.GpsLocation);
                             poiViewItem.Distance = CompassViewUtils.GetDistance(myLocation, poiViewItem.GpsLocation);
-                            poiViewItemList.List.Add(poiViewItem);
+                            poiViewItemList.Add(poiViewItem);
                         }
 
-                        var poiViewItemListFiltered = new PoiViewItemList
-                        {
-                            List = new List<PoiViewItem>()
-                        };
-                        poiViewItemListFiltered.List.AddRange(poiViewItemList.List.Where(x => x.Distance < 20000));
+                        var poiViewItemListFiltered = new PoiViewItemList();
+                        poiViewItemListFiltered.AddRange(poiViewItemList.Where(x => x.Distance < 20000));
 
-                        //CompassView.SetPoiViewItemList(poiViewItemList);
                         compassView.SetPoiViewItemList(poiViewItemListFiltered);
                         
 

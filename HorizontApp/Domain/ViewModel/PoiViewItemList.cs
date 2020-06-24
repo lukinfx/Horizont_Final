@@ -12,8 +12,7 @@ using Android.Widget;
 
 namespace HorizontApp.Domain.ViewModel
 {
-    public class PoiViewItemList
+    public class PoiViewItemList : List<PoiViewItem>
     {
-        public List<PoiViewItem> List = new List<PoiViewItem>();
     }
 }
