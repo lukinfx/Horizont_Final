@@ -89,6 +89,7 @@
     <Compile Include="Views\CameraView\ConfirmationDialog.cs" />
     <Compile Include="Views\CameraView\ImageAvailableListener.cs" />
     <Compile Include="Views\CompassView.cs" />
+    <Compile Include="Views\ErrorDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

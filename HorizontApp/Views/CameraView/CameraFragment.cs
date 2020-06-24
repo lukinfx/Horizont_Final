@@ -270,8 +270,8 @@ namespace HorizontApp.Views.Camera
             if (grantResults.Length != 1 || grantResults[0] != (int)Permission.Granted)
             {
                 //###
-                /*ErrorDialog.NewInstance(GetString(Resource.String.request_permission))
-                        .Show(ChildFragmentManager, FRAGMENT_DIALOG);*/
+                ErrorDialog.NewInstance("Request Camera Permissions")
+                        .Show(ChildFragmentManager, FRAGMENT_DIALOG);
             }
         }
 
@@ -401,7 +401,7 @@ namespace HorizontApp.Views.Camera
                 //###
                 // Currently an NPE is thrown when the Camera2API is used but not supported on the
                 // device this code runs.
-                //ErrorDialog.NewInstance(GetString(Resource.String.camera_error)).Show(ChildFragmentManager, FRAGMENT_DIALOG);
+                ErrorDialog.NewInstance("Camera error").Show(ChildFragmentManager, FRAGMENT_DIALOG);
             }
         }
 
