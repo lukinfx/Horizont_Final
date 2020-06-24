@@ -20,6 +20,7 @@ namespace HorizontApp.Views
     public class CompassView : View
     {
         private Android.Graphics.Paint paint;
+        private Android.Graphics.Paint textpaint;
         private static PoiViewItemList list;
         public double Heading { get; set; }
         
@@ -47,6 +48,12 @@ namespace HorizontApp.Views
             paint.SetARGB(255, 200, 255, 0);
             paint.SetStyle(Paint.Style.FillAndStroke);
             paint.StrokeWidth = 4;
+            
+            textpaint = new Android.Graphics.Paint();
+            textpaint.SetARGB(255, 200, 255, 0);
+            textpaint.TextSize = 24;
+            Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
+            textpaint.SetTypeface(normal);
         }
 
         //protected override void OnDraw(Android.Graphics.Canvas canvas)
@@ -56,16 +63,34 @@ namespace HorizontApp.Views
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
         {
+            canvas.Rotate(90, 0, 0);
+            
+            for (var x = 0; x < 360; x += 10)
+            {
+                var startX = CompassViewUtils.GetLocationOnScreen((float)Heading, (float)x, canvas.Width, 60/*TODO:camera vierw angle*/);
+                if (startX != null)
+                {
+                    canvas.DrawLine(0, -startX.Value, 50, -startX.Value, paint);
+
+                    canvas.DrawText($"{x}", 10, -startX.Value-5, textpaint);
+                    //canvas.Restore();
+                }
+            }
+            
             if (list != null)
             {
                 foreach (var item in list.List)
                 {
-                    var startX = CompassViewUtils.GetLocationOnScreen((float)Heading, (float)item.Bearing, canvas.Width, 60/*TODO:camera vierw angle*/);
+                    var startX = CompassViewUtils.GetLocationOnScreen((float)Heading, (float)item.Bearing, canvas.Width, 60); //TODO:camera vierw angle
                     if (startX != null)
                     {
-                        canvas.DrawLine(startX.Value, 0, startX.Value, 100, paint);
+                        
+                        canvas.DrawLine(0, -startX.Value, 200, -startX.Value, paint);
+
+                        canvas.DrawText(item.Name, 10, -startX.Value-5, textpaint);
                     }
                 }
+
             }
         }
     }

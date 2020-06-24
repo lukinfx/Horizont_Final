@@ -29,7 +29,7 @@ namespace HorizontApp.Providers
         void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
         {
             var data = e.Reading;
-            heading = data.HeadingMagneticNorth;
+            heading = (90 + data.HeadingMagneticNorth) % 360;
             // Process Heading Magnetic North
         }
         public void ToggleCompass()

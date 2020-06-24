@@ -23,7 +23,7 @@
 
         <HorizontApp.Views.CompassView
             android:layout_width="match_parent"
-            android:layout_height="52.5dp"
+            android:layout_height="152.5dp"
             android:id="@+id/compassView1"
             android:background="#66e0e0e0"/>
 

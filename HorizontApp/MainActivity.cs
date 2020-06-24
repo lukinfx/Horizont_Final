@@ -161,7 +161,15 @@ namespace HorizontApp
                             poiViewItemList.List.Add(poiViewItem);
                         }
 
-                        CompassView.SetPoiViewItemList(poiViewItemList);
+                        var poiViewItemListFiltered = new PoiViewItemList
+                        {
+                            List = new List<PoiViewItem>()
+                        };
+                        poiViewItemListFiltered.List.AddRange(poiViewItemList.List.Where(x => x.Distance < 20));
+
+                        //CompassView.SetPoiViewItemList(poiViewItemList);
+                        CompassView.SetPoiViewItemList(poiViewItemListFiltered);
+                        
 
                         break;
                     }
