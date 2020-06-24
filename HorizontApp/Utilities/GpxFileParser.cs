@@ -8,11 +8,11 @@ namespace HorizontApp.Utilities
 {
     class GpxFileParser
     {
-        static public List<Poi> Parse(string xml, PoiCategory category)
+        static public IEnumerable<Poi> Parse(string xml, PoiCategory category)
         {
             try
             {
-                var listOfPoi = new List<Poi>();
+                var listOfPoi = new PoiList();
 
                 XmlDocument gpxDoc = new XmlDocument();
                 gpxDoc.LoadXml(xml);

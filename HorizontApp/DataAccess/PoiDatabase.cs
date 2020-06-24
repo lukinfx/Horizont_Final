@@ -65,34 +65,34 @@ namespace HorizontApp.DataAccess
             
         }
 
-        public Task<List<Poi>> GetItemsAsync()
+        public async Task<IEnumerable<Poi>> GetItemsAsync()
         {
-            return Database.Table<Poi>().ToListAsync();
+            return await Database.Table<Poi>().ToListAsync();
         }
 
-        public Task<List<Poi>> GetFavoriteItemsAsync()
+        public async Task<IEnumerable<Poi>> GetFavoriteItemsAsync()
         {
-            return Database.QueryAsync<Poi>("SELECT * FROM [Poi] WHERE [Favorite] = true");
+            return await Database.QueryAsync<Poi>("SELECT * FROM [Poi] WHERE [Favorite] = true");
         }
 
-        public Task<Poi> GetItemAsync(long id)
+        public async Task<Poi> GetItemAsync(long id)
         {
-            return Database.Table<Poi>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            return await Database.Table<Poi>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> InsertItemAsync(Poi item)
+        public async Task<int> InsertItemAsync(Poi item)
         {
-            return Database.InsertAsync(item);
+            return await Database.InsertAsync(item);
         }
 
-        public Task<int> UpdateItemAsync(Poi item)
+        public async Task<int> UpdateItemAsync(Poi item)
         {
-            return Database.UpdateAsync(item);
+            return await Database.UpdateAsync(item);
         }
 
-        public Task<int> DeleteItemAsync(Poi item)
+        public async Task<int> DeleteItemAsync(Poi item)
         {
-            return Database.DeleteAsync(item);
+            return await Database.DeleteAsync(item);
         }
     }
 }

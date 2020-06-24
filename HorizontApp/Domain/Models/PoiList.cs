@@ -13,8 +13,7 @@ using HorizontApp.Domain.Enums;
 
 namespace HorizontApp.Domain.Models
 {
-    public class PoiList
+    public class PoiList : List<Poi>
     {
-        public List<Poi> List;
     }
 }
