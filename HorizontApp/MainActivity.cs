@@ -175,7 +175,7 @@ namespace HorizontApp
                         poiViewItemListFiltered.List.AddRange(poiViewItemList.List.Where(x => x.Distance < 20000));
 
                         //CompassView.SetPoiViewItemList(poiViewItemList);
-                        CompassView.SetPoiViewItemList(poiViewItemListFiltered);
+                        compassView.SetPoiViewItemList(poiViewItemListFiltered);
                         
 
                         break;

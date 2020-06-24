@@ -21,7 +21,7 @@ namespace HorizontApp.Views
     {
         private Android.Graphics.Paint paint;
         private Android.Graphics.Paint textpaint;
-        private static PoiViewItemList list;
+        private PoiViewItemList list;
         public double Heading { get; set; }
         
 
@@ -31,9 +31,9 @@ namespace HorizontApp.Views
             Initialize();
         }
 
-        public static void SetPoiViewItemList(PoiViewItemList list2)
+        public void SetPoiViewItemList(PoiViewItemList list)
         {
-            list = list2;
+            this.list = list;
         }
 
         public CompassView(Context context, IAttributeSet attrs, int defStyle) :
