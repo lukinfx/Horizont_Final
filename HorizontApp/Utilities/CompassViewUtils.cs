@@ -36,9 +36,11 @@ namespace HorizontApp.Utilities
         public static float? GetLocationOnScreen(float heading, float bearing, float canvasWidth, float cameraViewAngle)
         {
             float PointCanvasCoords;
-            if (Math.Abs(bearing - heading) < cameraViewAngle / 2)
+            if (bearing < 0) bearing = 360 + bearing;
+            double diff = CompassUtils.GetDiff(bearing, heading);
+            if (Math.Abs(diff) < cameraViewAngle / 2)
             {
-                PointCanvasCoords = ((bearing - heading) / (cameraViewAngle / 2)) * canvasWidth/2 + canvasWidth / 2;
+                PointCanvasCoords = ((float)diff/ (cameraViewAngle / 2)) * canvasWidth/2 + canvasWidth / 2;
                 return PointCanvasCoords;
             }
             else return null;

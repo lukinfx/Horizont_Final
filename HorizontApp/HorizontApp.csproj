@@ -74,6 +74,7 @@
     <Compile Include="Providers\GpxFileProvider.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\CompassUtils.cs" />
     <Compile Include="Utilities\CompassViewUtils.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
     <Compile Include="Utilities\GpxFileParser.cs" />
