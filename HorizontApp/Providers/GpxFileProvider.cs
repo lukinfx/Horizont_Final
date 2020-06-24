@@ -15,10 +15,10 @@ namespace HorizontApp.Providers
 {
     public class GpxFileProvider
     {
-        public static string GetFile()
+        public static string GetFile(string url)
         {
             var client = new HttpClient();
-            var response = client.GetAsync("http://vrcholky.8u.cz/hory%20(3).gpx").Result;
+            var response = client.GetAsync(url).Result;
             var xml = response.Content.ReadAsStringAsync().Result;
             return xml;
         }

@@ -125,8 +125,15 @@ namespace HorizontApp
             {
                 case Resource.Id.button1:
                     {
-                        
-                        break;  
+                        var file = GpxFileProvider.GetFile("http://vrcholky.8u.cz/hory.gpx");
+                        var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
+
+                        foreach (var item in listOfPoi)
+                        {
+                            await Database.InsertItemAsync(item);
+                        }
+
+                        break;
                     }
                 case Resource.Id.button2:
                     {
@@ -137,7 +144,7 @@ namespace HorizontApp
                     }
                 case Resource.Id.button3:
                     {
-                        var file = GpxFileProvider.GetFile();
+                        var file = GpxFileProvider.GetFile("http://vrcholky.8u.cz/hory%20(3).gpx");
                         var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
 
                         foreach (var item in listOfPoi)
@@ -165,7 +172,7 @@ namespace HorizontApp
                         {
                             List = new List<PoiViewItem>()
                         };
-                        poiViewItemListFiltered.List.AddRange(poiViewItemList.List.Where(x => x.Distance < 20));
+                        poiViewItemListFiltered.List.AddRange(poiViewItemList.List.Where(x => x.Distance < 20000));
 
                         //CompassView.SetPoiViewItemList(poiViewItemList);
                         CompassView.SetPoiViewItemList(poiViewItemListFiltered);
