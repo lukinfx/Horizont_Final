@@ -4129,16 +4129,19 @@ namespace HorizontApp
 			public const int notification_template_part_time = 2131427390;
 			
 			// aapt resource value: 0x7F0B003F
-			public const int select_dialog_item_material = 2131427391;
+			public const int PoiListActivity = 2131427391;
 			
 			// aapt resource value: 0x7F0B0040
-			public const int select_dialog_multichoice_material = 2131427392;
+			public const int select_dialog_item_material = 2131427392;
 			
 			// aapt resource value: 0x7F0B0041
-			public const int select_dialog_singlechoice_material = 2131427393;
+			public const int select_dialog_multichoice_material = 2131427393;
 			
 			// aapt resource value: 0x7F0B0042
-			public const int support_simple_spinner_dropdown_item = 2131427394;
+			public const int select_dialog_singlechoice_material = 2131427394;
+			
+			// aapt resource value: 0x7F0B0043
+			public const int support_simple_spinner_dropdown_item = 2131427395;
 			
 			static Layout()
 			{
