@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorizontApp", "HorizontApp\HorizontApp.csproj", "{8A776183-7F40-44DB-9F8E-6382FDB562CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GpxAltitudeFixer", "GpxAltitudeFixer\GpxAltitudeFixer.csproj", "{58A3523D-F534-40B8-8BBB-73AB5910C76E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorizonLib", "HorizonLib\HorizonLib.csproj", "{52E0547C-AFEC-4042-9CBA-2A601B9BD62D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +21,14 @@ Global
 		{8A776183-7F40-44DB-9F8E-6382FDB562CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A776183-7F40-44DB-9F8E-6382FDB562CD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8A776183-7F40-44DB-9F8E-6382FDB562CD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{58A3523D-F534-40B8-8BBB-73AB5910C76E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58A3523D-F534-40B8-8BBB-73AB5910C76E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58A3523D-F534-40B8-8BBB-73AB5910C76E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58A3523D-F534-40B8-8BBB-73AB5910C76E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52E0547C-AFEC-4042-9CBA-2A601B9BD62D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E0547C-AFEC-4042-9CBA-2A601B9BD62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E0547C-AFEC-4042-9CBA-2A601B9BD62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E0547C-AFEC-4042-9CBA-2A601B9BD62D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
