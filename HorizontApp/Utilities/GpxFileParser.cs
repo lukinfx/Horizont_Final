@@ -24,7 +24,14 @@ namespace HorizontApp.Utilities
                     
                     var lat = xelement.Attributes.GetNamedItem("lat").Value;
                     var lon = xelement.Attributes.GetNamedItem("lon").Value;
-                    var name = xelement.InnerText;
+                    
+                    var nameElement = xelement.GetElementsByTagName("name");
+                    var name = nameElement.Count==1 ? nameElement.Item(0).InnerText : "Unnamed";
+
+                    var eleElement = xelement.GetElementsByTagName("ele");
+                    var ele = eleElement.Count==1 ? eleElement.Item(0).InnerText : "0";
+
+                    //var name = xelement.InnerText;
 
                     //TODO: Resolve problem with decimal separator
                     lat = lat.Replace(".", ",");
@@ -35,6 +42,7 @@ namespace HorizontApp.Utilities
                         Name = name,
                         Longitude = Convert.ToDouble(lon), 
                         Latitude = Convert.ToDouble(lat),
+                        Altitude = Convert.ToDouble(ele),
                         Category = category,
                     });
                 }
