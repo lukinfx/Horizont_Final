@@ -21,6 +21,7 @@ using HorizontApp.Views.Camera;
 using Android.Views;
 using HorizontApp.DataAccess;
 using Xamarin.Essentials;
+using AlertDialog = Android.App.AlertDialog;
 
 namespace HorizontApp
 {
@@ -119,6 +120,16 @@ namespace HorizontApp
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        public void PopupDialog(string title, string message)
+        {
+            using (var dialog = new AlertDialog.Builder(this))
+            {
+                dialog.SetTitle(title);
+                dialog.SetMessage(message);
+                dialog.Show();
+            }
+        }
+
         public async void OnClick(Android.Views.View v)
         {
             switch (v.Id)
@@ -128,11 +139,14 @@ namespace HorizontApp
                         var file = GpxFileProvider.GetFile("http://vrcholky.8u.cz/hory.gpx");
                         var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
 
+                        int count = 0;
                         foreach (var item in listOfPoi)
                         {
                             await Database.InsertItemAsync(item);
+                            count++;
                         }
 
+                        PopupDialog("Information", $"{count} items loaded to database.");
                         break;
                     }
                 case Resource.Id.button2:
