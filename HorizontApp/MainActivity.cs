@@ -22,6 +22,7 @@ using Android.Views;
 using HorizontApp.DataAccess;
 using Xamarin.Essentials;
 using AlertDialog = Android.App.AlertDialog;
+using System;
 
 namespace HorizontApp
 {
@@ -38,11 +39,14 @@ namespace HorizontApp
 
         EditText headingEditText;
         EditText GPSEditText;
+        EditText DistanceEditText;
         Button getHeadingButton;
         Button getGPSButton;
         Button startCompassButton;
         Button stopCompassButton;
         CompassView compassView;
+        SeekBar distanceSeekBar;
+        SeekBar heightSeekBar;
 
         Timer compassTimer = new Timer();
         Timer locationTimer = new Timer();
@@ -77,6 +81,16 @@ namespace HorizontApp
 
             getHeadingButton = FindViewById<Button>(Resource.Id.button1);
             getHeadingButton.SetOnClickListener(this);
+            
+            DistanceEditText = FindViewById<EditText>(Resource.Id.editText3);
+            DistanceEditText.SetOnClickListener(this);
+            
+            distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBar2);
+            distanceSeekBar.ProgressChanged += SeekBarProgressChanged;
+            //System.EventHandler
+
+            heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBar1);
+            heightSeekBar.ProgressChanged += SeekBarProgressChanged;
 
             getGPSButton = FindViewById<Button>(Resource.Id.button2);
             getGPSButton.SetOnClickListener(this);
@@ -98,6 +112,8 @@ namespace HorizontApp
             }
             compassProvider.ToggleCompass();
         }
+
+        
 
         private void InitializeCompassTimer()
         {
@@ -185,7 +201,7 @@ namespace HorizontApp
                         PopupDialog("Information", $"{poiViewItemList.Count} items loaded from database.");
 
                         var poiViewItemListFiltered = new PoiViewItemList();
-                        poiViewItemListFiltered.AddRange(poiViewItemList.Where(x => x.Distance < 15000));
+                        poiViewItemListFiltered.AddRange(poiViewItemList.Where(x => (x.Distance < distanceSeekBar.Progress * 1000) && (x.Altitude > heightSeekBar.Progress * 10)));
 
                         compassView.SetPoiViewItemList(poiViewItemListFiltered);
                         
@@ -207,6 +223,11 @@ namespace HorizontApp
         {
             //TODO: recalculate PoiViewItemList
             //CompassView.SetPoiViewItemList(poiViewItemList);
+        }
+
+        private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+        {
+            DistanceEditText.Text = "vyska nad " + heightSeekBar.Progress * 10 + ", do " + distanceSeekBar.Progress + " daleko";
         }
     }
 }

@@ -51,7 +51,7 @@ namespace HorizontApp.Views
             paint.StrokeWidth = 4;
 
             paintRect = new Android.Graphics.Paint();
-            paintRect.SetARGB(50, 0, 0, 0);
+            paintRect.SetARGB(125, 0, 0, 0);
             paintRect.SetStyle(Paint.Style.FillAndStroke);
             paintRect.StrokeWidth = 4;
 
