@@ -182,8 +182,10 @@ namespace HorizontApp
                             poiViewItemList.Add(poiViewItem);
                         }
 
+                        PopupDialog("Information", $"{poiViewItemList.Count} items loaded from database.");
+
                         var poiViewItemListFiltered = new PoiViewItemList();
-                        poiViewItemListFiltered.AddRange(poiViewItemList.Where(x => x.Distance < 20000));
+                        poiViewItemListFiltered.AddRange(poiViewItemList.Where(x => x.Distance < 15000));
 
                         compassView.SetPoiViewItemList(poiViewItemListFiltered);
                         

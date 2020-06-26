@@ -23,9 +23,8 @@
 
         <HorizontApp.Views.CompassView
             android:layout_width="match_parent"
-            android:layout_height="152.5dp"
-            android:id="@+id/compassView1"
-            android:background="#66e0e0e0"/>
+            android:layout_height="match_parent"
+            android:id="@+id/compassView1"/>
 
         <LinearLayout
             android:orientation=    "horizontal"

@@ -20,6 +20,7 @@ namespace HorizontApp.Views
     public class CompassView : View
     {
         private Android.Graphics.Paint paint;
+        private Android.Graphics.Paint paintRect;
         private Android.Graphics.Paint textpaint;
         private PoiViewItemList list;
         public double Heading { get; set; }
@@ -48,10 +49,15 @@ namespace HorizontApp.Views
             paint.SetARGB(255, 200, 255, 0);
             paint.SetStyle(Paint.Style.FillAndStroke);
             paint.StrokeWidth = 4;
-            
+
+            paintRect = new Android.Graphics.Paint();
+            paintRect.SetARGB(50, 0, 0, 0);
+            paintRect.SetStyle(Paint.Style.FillAndStroke);
+            paintRect.StrokeWidth = 4;
+
             textpaint = new Android.Graphics.Paint();
             textpaint.SetARGB(255, 200, 255, 0);
-            textpaint.TextSize = 24;
+            textpaint.TextSize = 36;
             Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
             textpaint.SetTypeface(normal);
         }
@@ -63,31 +69,24 @@ namespace HorizontApp.Views
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
         {
+            //TODO:camera view angle
+            canvas.DrawRect(0, 0, canvas.Width, canvas.Height / 3, paintRect);
+
             canvas.Rotate(90, 0, 0);
             
-            for (var x = 0; x < 360; x += 10)
-            {
-                var startX = CompassViewUtils.GetLocationOnScreen((float)Heading, (float)x, canvas.Width, 60/*TODO:camera vierw angle*/);
-                if (startX != null)
-                {
-                    canvas.DrawLine(0, -startX.Value, 50, -startX.Value, paint);
-
-                    canvas.DrawText($"{x}", 10, -startX.Value-5, textpaint);
-                    //canvas.Restore();
-                }
-            }
             
             if (list != null)
             {
                 foreach (var item in list)
                 {
-                    var startX = CompassViewUtils.GetLocationOnScreen((float)Heading, (float)item.Bearing, canvas.Width, 60); //TODO:camera vierw angle
+                    var startX = CompassViewUtils.GetLocationOnScreen((float)Heading, (float)item.Bearing, canvas.Width, 60);
                     if (startX != null)
                     {
                         
-                        canvas.DrawLine(0, -startX.Value, 200, -startX.Value, paint);
+                        canvas.DrawLine(0, -startX.Value, 300, -startX.Value, paint);
 
-                        canvas.DrawText(item.Name, 10, -startX.Value-5, textpaint);
+                        canvas.DrawText(item.Name, 10, -startX.Value-10, textpaint);
+                        canvas.DrawText($"{item.Altitude} m / {(item.Distance/1000):F2} km", 10, -startX.Value+35, textpaint);
                     }
                 }
 
