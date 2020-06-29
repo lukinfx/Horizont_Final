@@ -53,7 +53,7 @@ namespace HorizontApp
 
         private GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
         private CompassProvider compassProvider = new CompassProvider();
-        GpsLocation myLocation = new GpsLocation();
+        GpsLocation myLocation = null;
 
         public static PoiDatabase Database
         {
@@ -103,17 +103,20 @@ namespace HorizontApp
 
             compassView = FindViewById<CompassView>(Resource.Id.compassView1);
 
-            InitializeCompassTimer();
-            InitializeLocationTimer();
-        
             if (bundle == null)
             {
                 FragmentManager.BeginTransaction().Replace(Resource.Id.container, CameraFragment.NewInstance()).Commit();
             }
-            compassProvider.ToggleCompass();
+
+            compassProvider.Start();
+            gpsLocationProvider.Start();
+
+            //LoadAndDisplayData();
+
+            InitializeCompassTimer();
+            InitializeLocationTimer();
         }
 
-        
 
         private void InitializeCompassTimer()
         {
@@ -124,7 +127,7 @@ namespace HorizontApp
 
         private void InitializeLocationTimer()
         {
-            locationTimer.Interval = 100;
+            locationTimer.Interval = 3000;
             locationTimer.Elapsed += OnLocationTimerElapsed;
             locationTimer.Enabled = true;
         }
@@ -151,61 +154,20 @@ namespace HorizontApp
             switch (v.Id)
             {
                 case Resource.Id.button1:
-                    {
-                        var file = GpxFileProvider.GetFile("http://vrcholky.8u.cz/hory.gpx");
-                        var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
-
-                        int count = 0;
-                        foreach (var item in listOfPoi)
-                        {
-                            await Database.InsertItemAsync(item);
-                            count++;
-                        }
-
-                        PopupDialog("Information", $"{count} items loaded to database.");
-                        break;
-                    }
+                    LoadDataFromInternet("http://vrcholky.8u.cz/hory.gpx");
+                    break;
                 case Resource.Id.button2:
                     {
-                        GpsLocation location = await gpsLocationProvider.GetLocationAsync();
-                        GPSEditText.Text = ($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
-                        
                         break;
                     }
                 case Resource.Id.button3:
                     {
-                        var file = GpxFileProvider.GetFile("http://vrcholky.8u.cz/hory%20(3).gpx");
-                        var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
-
-                        foreach (var item in listOfPoi)
-                        {
-                            await Database.InsertItemAsync(item);
-                        }
-
+                        LoadDataFromInternet("http://vrcholky.8u.cz/hory%20(3).gpx");
                         break;
                     }
                 case Resource.Id.button4:
                     {
-                        var poiList = await Database.GetItemsAsync();
-                        myLocation = await gpsLocationProvider.GetLocationAsync();
-
-                        PoiViewItemList poiViewItemList = new PoiViewItemList();
-                        foreach (var item in poiList)
-                        {
-                            var poiViewItem = new PoiViewItem(item);
-                            poiViewItem.Bearing = CompassViewUtils.GetBearing(myLocation, poiViewItem.GpsLocation);
-                            poiViewItem.Distance = CompassViewUtils.GetDistance(myLocation, poiViewItem.GpsLocation);
-                            poiViewItemList.Add(poiViewItem);
-                        }
-
-                        PopupDialog("Information", $"{poiViewItemList.Count} items loaded from database.");
-
-                        var poiViewItemListFiltered = new PoiViewItemList();
-                        poiViewItemListFiltered.AddRange(poiViewItemList.Where(x => (x.Distance < distanceSeekBar.Progress * 1000) && (x.Altitude > heightSeekBar.Progress * 10)));
-
-                        compassView.SetPoiViewItemList(poiViewItemListFiltered);
-                        
-
+                        ReloadData();
                         break;
                     }
 
@@ -221,13 +183,103 @@ namespace HorizontApp
 
         private void OnLocationTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            //TODO: recalculate PoiViewItemList
-            //CompassView.SetPoiViewItemList(poiViewItemList);
+            LoadAndDisplayData();
+        }
+
+        private void LoadAndDisplayData()
+        {
+            try
+            {
+                var newLocation = gpsLocationProvider.GetLocation();
+
+                if (newLocation == null)
+                    return;
+
+                if (myLocation == null || GpsUtils.Distance(myLocation, newLocation) > 100)
+                {
+                    myLocation = newLocation;
+                    GPSEditText.Text = ($"Latitude: {myLocation.Latitude}, Longitude: {myLocation.Longitude}, Altitude: {myLocation.Altitude}");
+
+
+                    var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress);
+                    compassView.SetPoiViewItemList(points);
+                }
+            }
+            catch (Exception ex)
+            {
+                PopupDialog("Error", ex.Message);
+            }
+
         }
 
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
             DistanceEditText.Text = "vyska nad " + heightSeekBar.Progress * 10 + ", do " + distanceSeekBar.Progress + " daleko";
+        }
+
+        private async void LoadDataFromInternet(string filePath)
+        {
+            try
+            {
+                var file = GpxFileProvider.GetFile(filePath);
+                var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
+
+                int count = 0;
+                foreach (var item in listOfPoi)
+                {
+                    await Database.InsertItemAsync(item);
+                    count++;
+                }
+
+                PopupDialog("Information", $"{count} items loaded to database.");
+            }
+            catch(Exception ex)
+            {
+                PopupDialog("Error", $"Error when loading data. {ex.Message}");
+            }
+        }
+
+        private void ReloadData()
+        {
+            try
+            {
+                if (myLocation == null)
+                    return;
+
+                var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress);
+                compassView.SetPoiViewItemList(points);
+            }
+            catch (Exception ex)
+            {
+                PopupDialog("Error", $"Error when loading data. {ex.Message}");
+            }
+        }
+
+        private PoiViewItemList GetPointsToDisplay(GpsLocation location, double maxDistance, double minAltitude)
+        {
+            try
+            {
+                var poiList = Database.GetItems();
+
+                PoiViewItemList poiViewItemList = new PoiViewItemList();
+                foreach (var item in poiList)
+                {
+                    var poiViewItem = new PoiViewItem(item);
+                    poiViewItem.Bearing = CompassViewUtils.GetBearing(location, poiViewItem.GpsLocation);
+                    poiViewItem.Distance = CompassViewUtils.GetDistance(location, poiViewItem.GpsLocation);
+
+                    if ((poiViewItem.Distance < maxDistance * 1000) && (poiViewItem.Altitude > minAltitude * 10))
+                    {
+                        poiViewItemList.Add(poiViewItem);
+                    }
+                }
+
+                return poiViewItemList;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error when fetching data. {ex.Message}");
+            }
         }
     }
 }

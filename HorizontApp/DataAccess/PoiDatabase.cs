@@ -70,6 +70,13 @@ namespace HorizontApp.DataAccess
             return await Database.Table<Poi>().ToListAsync();
         }
 
+        public IEnumerable<Poi> GetItems()
+        {
+            var result = Database.Table<Poi>().ToListAsync();
+            result.Wait();
+            return result.Result;
+        }
+
         public async Task<IEnumerable<Poi>> GetFavoriteItemsAsync()
         {
             return await Database.QueryAsync<Poi>("SELECT * FROM [Poi] WHERE [Favorite] = true");

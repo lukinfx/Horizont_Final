@@ -41,7 +41,7 @@
 
             <EditText
                 android:inputType="number"
-                android:layout_width="71.5dp"
+                android:layout_width="171.5dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText2"
                     />
@@ -86,15 +86,17 @@
             android:layout_height=    "match_parent"
                 android:gravity="bottom">
                 <SeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:id="@+id/seekBar2"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/seekBar2"
+                    android:progress="10" />
                 <SeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:id="@+id/seekBar1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/seekBar1"
+                    android:progress="10" />
             <EditText
                 android:inputType="number"
                 android:textSize="10dp"

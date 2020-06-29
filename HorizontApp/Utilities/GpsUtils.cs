@@ -46,5 +46,10 @@ namespace HorizontApp.Utilities
             converted.Latitude = loc.Latitude;
             return converted; ;
         }
+
+        public static double Distance(GpsLocation loc1, GpsLocation loc2)
+        {
+            return Convert(loc1).DistanceTo(Convert(loc2));
+        }
     }
 }

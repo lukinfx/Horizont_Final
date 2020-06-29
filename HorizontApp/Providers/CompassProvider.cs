@@ -32,22 +32,38 @@ namespace HorizontApp.Providers
             heading = (90 + data.HeadingMagneticNorth) % 360;
             // Process Heading Magnetic North
         }
-        public void ToggleCompass()
+
+        public void Start()
         {
             try
             {
                 if (Compass.IsMonitoring)
-                    Compass.Stop();
-                else
-                    Compass.Start(speed);
+                    return;
+
+                Compass.Start(speed);
             }
-            catch (FeatureNotSupportedException fnsEx)
+            catch (FeatureNotSupportedException ex)
             {
-                // Feature not supported on device
+                throw new Exception($"Compass not supported. {ex.Message}");
             }
             catch (Exception ex)
             {
-                // Some other exception has occurred
+                throw new Exception($"Error when starting compass. {ex.Message}");
+            }
+        }
+
+        public void Stop()
+        {
+            try
+            {
+                if (!Compass.IsMonitoring)
+                    return;
+
+                Compass.Stop();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error when stopping compass. {ex.Message}");
             }
         }
     }
