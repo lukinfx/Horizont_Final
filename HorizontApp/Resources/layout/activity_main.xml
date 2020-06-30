@@ -54,7 +54,14 @@
             android:layout_width=    "match_parent"
             android:layout_height=    "match_parent"
             android:layout_gravity="bottom">
+            
+          <ImageButton
+                android:src="@android:drawable/ic_"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/imageButton1" />
 
+          
             <Button
                 android:text="Download all"
                 android:layout_width="wrap_content"

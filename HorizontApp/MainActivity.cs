@@ -158,14 +158,15 @@ namespace HorizontApp
                     }
                 case Resource.Id.button3:
                     {
-                        var file = GpxFileProvider.GetFile("http://vrcholky.8u.cz/hory%20(3).gpx");
+                        /*var file = GpxFileProvider.GetFile("http://vrcholky.8u.cz/hory%20(3).gpx");
                         var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
 
                         foreach (var item in listOfPoi)
                         {
                             await Database.InsertItemAsync(item);
                         }
-
+                        */
+                        StartActivity((typeof(ItemListActivity)));
                         break;
                     }
                 case Resource.Id.button4:
