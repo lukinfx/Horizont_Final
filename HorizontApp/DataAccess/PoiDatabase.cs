@@ -92,6 +92,11 @@ namespace HorizontApp.DataAccess
             return await Database.InsertAsync(item);
         }
 
+        public async Task<int> InsertAllAsync(IEnumerable<Poi> items)
+        {
+            return await Database.InsertAllAsync(items);
+        }
+
         public async Task<int> UpdateItemAsync(Poi item)
         {
             return await Database.UpdateAsync(item);

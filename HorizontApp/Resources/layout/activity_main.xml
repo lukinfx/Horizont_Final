@@ -55,19 +55,26 @@
             android:layout_width=    "match_parent"
             android:layout_height=    "match_parent"
             android:layout_gravity="bottom">
-
+            <ImageButton
+                android:src="@android:drawable/ic_menu_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:id="@+id/imageButton1" />
             <Button
                 android:text="Download all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:id="@+id/button1" />
+
             <Button
-                android:text="get GPS"
+                android:text="List poi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:id="@+id/button2" />
+            
             <Button
                 android:text="Download 6"
                 android:layout_width="wrap_content"

@@ -23,6 +23,8 @@ using HorizontApp.DataAccess;
 using Xamarin.Essentials;
 using AlertDialog = Android.App.AlertDialog;
 using System;
+using HorizontApp.Views.ListOfPoiView;
+using Android.Content;
 
 namespace HorizontApp
 {
@@ -35,8 +37,7 @@ namespace HorizontApp
     //[Activity(Theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : AppCompatActivity, IOnClickListener
     {
-        static PoiDatabase database;
-
+        
         EditText headingEditText;
         EditText GPSEditText;
         EditText DistanceEditText;
@@ -55,7 +56,8 @@ namespace HorizontApp
         private CompassProvider compassProvider = new CompassProvider();
         GpsLocation myLocation = null;
 
-        public static PoiDatabase Database
+        private PoiDatabase database;
+        public PoiDatabase Database
         {
             get
             {
@@ -111,10 +113,14 @@ namespace HorizontApp
             compassProvider.Start();
             gpsLocationProvider.Start();
 
+            //gpsLocationProvider.GetLocation();
+
             //LoadAndDisplayData();
 
             InitializeCompassTimer();
             InitializeLocationTimer();
+
+
         }
 
 
@@ -158,11 +164,19 @@ namespace HorizontApp
                     break;
                 case Resource.Id.button2:
                     {
+                        Intent i = new Intent(this, typeof(PoiListActivity));
+                        i.PutExtra("latitude", myLocation.Latitude);
+                        i.PutExtra("longitude", myLocation.Longitude);
+                        i.PutExtra("altitude", myLocation.Altitude);
+                        i.PutExtra("maxDistance", distanceSeekBar.Progress);
+                        i.PutExtra("minAltitude", heightSeekBar.Progress);
+                        
+                        StartActivity(i);
                         break;
                     }
                 case Resource.Id.button3:
                     {
-                        LoadDataFromInternet("http://vrcholky.8u.cz/hory%20(3).gpx");
+                        //myLocation = await gpsLocationProvider.GetLocationAsync();
                         break;
                     }
                 case Resource.Id.button4:
@@ -181,16 +195,16 @@ namespace HorizontApp
             compassView.Invalidate();
         }
 
-        private void OnLocationTimerElapsed(object sender, ElapsedEventArgs e)
+        private async void OnLocationTimerElapsed(object sender, ElapsedEventArgs e)
         {
             LoadAndDisplayData();
         }
 
-        private void LoadAndDisplayData()
+        private async void LoadAndDisplayData()
         {
             try
             {
-                var newLocation = gpsLocationProvider.GetLocation();
+                var newLocation = await gpsLocationProvider.GetLocationAsync();
 
                 if (newLocation == null)
                     return;
@@ -223,15 +237,9 @@ namespace HorizontApp
             {
                 var file = GpxFileProvider.GetFile(filePath);
                 var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
+                await Database.InsertAllAsync(listOfPoi);
 
-                int count = 0;
-                foreach (var item in listOfPoi)
-                {
-                    await Database.InsertItemAsync(item);
-                    count++;
-                }
-
-                PopupDialog("Information", $"{count} items loaded to database.");
+                PopupDialog("Information", $"{listOfPoi.Count()} items loaded to database.");
             }
             catch(Exception ex)
             {
@@ -261,19 +269,7 @@ namespace HorizontApp
             {
                 var poiList = Database.GetItems();
 
-                PoiViewItemList poiViewItemList = new PoiViewItemList();
-                foreach (var item in poiList)
-                {
-                    var poiViewItem = new PoiViewItem(item);
-                    poiViewItem.Bearing = CompassViewUtils.GetBearing(location, poiViewItem.GpsLocation);
-                    poiViewItem.Distance = CompassViewUtils.GetDistance(location, poiViewItem.GpsLocation);
-
-                    if ((poiViewItem.Distance < maxDistance * 1000) && (poiViewItem.Altitude > minAltitude * 10))
-                    {
-                        poiViewItemList.Add(poiViewItem);
-                    }
-                }
-
+                PoiViewItemList poiViewItemList = new PoiViewItemList(poiList, location, maxDistance, minAltitude);
                 return poiViewItemList;
             }
             catch (Exception ex)
