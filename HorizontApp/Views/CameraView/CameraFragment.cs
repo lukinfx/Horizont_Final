@@ -248,7 +248,7 @@ namespace HorizontApp.Views.Camera
             base.OnPause();
         }
 
-        private void RequestCameraPermission()
+        /*private void RequestCameraPermission()
         {
             //###
             if (FragmentCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera))
@@ -273,7 +273,7 @@ namespace HorizontApp.Views.Camera
                 ErrorDialog.NewInstance("Request Camera Permissions")
                         .Show(ChildFragmentManager, FRAGMENT_DIALOG);
             }
-        }
+        }*/
 
 
         // Sets up member variables related to camera.
@@ -408,11 +408,11 @@ namespace HorizontApp.Views.Camera
         // Opens the camera specified by {@link CameraFragment#mCameraId}.
         public void OpenCamera(int width, int height)
         {
-            if (ContextCompat.CheckSelfPermission(Activity, Manifest.Permission.Camera) != Permission.Granted)
+            /*if (ContextCompat.CheckSelfPermission(Activity, Manifest.Permission.Camera) != Permission.Granted)
             {
                 RequestCameraPermission();
                 return;
-            }
+            }*/
             SetUpCameraOutputs(width, height);
             ConfigureTransform(width, height);
             var activity = Activity;

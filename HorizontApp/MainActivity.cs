@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Android;
+using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Runtime;
@@ -25,6 +26,9 @@ using AlertDialog = Android.App.AlertDialog;
 using System;
 using HorizontApp.Views.ListOfPoiView;
 using Android.Content;
+using Android.Support.V13.App;
+using Android.Support.Design.Widget;
+using Android.Support.V4.Content;
 
 namespace HorizontApp
 {
@@ -37,7 +41,9 @@ namespace HorizontApp
     //[Activity(Theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : AppCompatActivity, IOnClickListener
     {
-        
+        private static readonly int REQUEST_LOCATION_PERMISSION = 0;
+        private static readonly int REQUEST_CAMERA_PERMISSION = 1;
+
         EditText headingEditText;
         EditText GPSEditText;
         EditText DistanceEditText;
@@ -48,6 +54,7 @@ namespace HorizontApp
         CompassView compassView;
         SeekBar distanceSeekBar;
         SeekBar heightSeekBar;
+        private View layout;
 
         Timer compassTimer = new Timer();
         Timer locationTimer = new Timer();
@@ -105,6 +112,15 @@ namespace HorizontApp
 
             compassView = FindViewById<CompassView>(Resource.Id.compassView1);
 
+            layout = FindViewById(Resource.Id.sample_main_layout);
+
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) != Permission.Granted ||
+                ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != Permission.Granted)
+            {
+                RequestGPSLocationPermissions();
+            }
+
+
             if (bundle == null)
             {
                 FragmentManager.BeginTransaction().Replace(Resource.Id.container, CameraFragment.NewInstance()).Commit();
@@ -113,14 +129,9 @@ namespace HorizontApp
             compassProvider.Start();
             gpsLocationProvider.Start();
 
-            //gpsLocationProvider.GetLocation();
-
-            //LoadAndDisplayData();
 
             InitializeCompassTimer();
             InitializeLocationTimer();
-
-
         }
 
 
@@ -275,6 +286,29 @@ namespace HorizontApp
             catch (Exception ex)
             {
                 throw new Exception($"Error when fetching data. {ex.Message}");
+            }
+        }
+
+        private void RequestGPSLocationPermissions()
+        {
+            //From: https://docs.microsoft.com/cs-cz/xamarin/android/app-fundamentals/permissions
+            //Sample app: https://github.com/xamarin/monodroid-samples/tree/master/android-m/RuntimePermissions
+
+            var requiredPermissions = new String[] { Manifest.Permission.AccessFineLocation, Manifest.Permission.Camera };
+
+            if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation) ||
+                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera))
+            {
+                Snackbar.Make(layout, "Location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
+                    .SetAction("OK", new Action<View>(delegate (View obj) 
+                        {
+                            ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION_PERMISSION);
+                        })
+                    ).Show();
+            }
+            else
+            {
+                ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION_PERMISSION);
             }
         }
     }
