@@ -82,6 +82,7 @@
     <Compile Include="Utilities\CompassViewUtils.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
     <Compile Include="Utilities\GpxFileParser.cs" />
+    <Compile Include="Utilities\ListViewAdapter.cs" />
     <Compile Include="Views\CameraView\AutoFitTextureView.cs" />
     <Compile Include="Views\CameraView\CameraFragment.cs" />
     <Compile Include="Views\CameraView\CameraSurfaceTextureListener.cs" />
@@ -127,7 +128,11 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ListItemLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SkiaSharp.Views">
       <Version>1.68.3</Version>

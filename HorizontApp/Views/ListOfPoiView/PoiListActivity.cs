@@ -12,6 +12,8 @@ using Android.Widget;
 using HorizontApp.DataAccess;
 using HorizontApp.Domain.Models;
 using HorizontApp.Domain.ViewModel;
+
+using HorizontApp.Utilities;
 using static Android.Views.View;
 
 namespace HorizontApp.Views.ListOfPoiView
@@ -62,7 +64,8 @@ namespace HorizontApp.Views.ListOfPoiView
 
             
             var listAdapter = new ArrayAdapter<PoiViewItem>(this, Android.Resource.Layout.SimpleListItem1, items);
-            listViewPoi.Adapter = listAdapter;
+            var adapter = new HorizontApp.Utilities.ListViewAdapter(this, items);
+            listViewPoi.Adapter = adapter;
             foreach (var item in  CompassView.list)
             {
                  items.Add(item);
