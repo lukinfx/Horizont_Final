@@ -18,11 +18,11 @@ namespace HorizontApp.Utilities
         {
             if (alfa > beta && Math.Abs(alfa - beta) > 180)
             {
-                return 360 - alfa + beta;
+                return alfa - beta - 360;
             }
             else if (alfa < beta && Math.Abs(alfa - beta) > 180)
             {
-                return beta - alfa - 360;
+                return 360 - beta + alfa;
             }
             else return alfa - beta;
         }
