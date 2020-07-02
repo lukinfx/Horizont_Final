@@ -239,7 +239,7 @@ namespace HorizontApp
 
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            DistanceEditText.Text = "vyska nad " + heightSeekBar.Progress * 10 + ", do " + distanceSeekBar.Progress + " daleko";
+            DistanceEditText.Text = "vyska nad " + heightSeekBar.Progress * 16 + "m, do " + distanceSeekBar.Progress + "km daleko";
         }
 
         private async void LoadDataFromInternet(string filePath)

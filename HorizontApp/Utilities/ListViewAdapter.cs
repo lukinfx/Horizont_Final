@@ -51,7 +51,7 @@ namespace HorizontApp.Utilities
 
 			PoiViewItem item = this[position];
 			view.FindViewById<TextView>(Resource.Id.Title).Text = item.Name;
-			view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Altitude);
+			view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Altitude) + "m | " + Convert.ToString(Math.Round(item.Distance/1000, 2)) + " km";
 
 			//using (var imageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail))
 			//{

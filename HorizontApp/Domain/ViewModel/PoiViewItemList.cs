@@ -26,7 +26,7 @@ namespace HorizontApp.Domain.ViewModel
         /// <param name="poiList">List of Pois</param>
         /// <param name="location">My current location</param>
         /// <param name="maxDistance">Max distance in kilometers</param>
-        /// <param name="minAltitude">Min altitude in meters</param>
+        /// <param name="minAltitude">Min altitude (progress 100 = 1600m)</param>
         public PoiViewItemList(IEnumerable<Poi> poiList, GpsLocation location, double maxDistance = 99999, double minAltitude = 0)
         {
             foreach (var item in poiList)
@@ -35,7 +35,7 @@ namespace HorizontApp.Domain.ViewModel
                 poiViewItem.Bearing = CompassViewUtils.GetBearing(location, poiViewItem.GpsLocation);
                 poiViewItem.Distance = CompassViewUtils.GetDistance(location, poiViewItem.GpsLocation);
 
-                if ((poiViewItem.Distance < maxDistance * 1000) && (poiViewItem.Altitude > minAltitude * 10))
+                if ((poiViewItem.Distance < maxDistance * 1000) && (poiViewItem.Altitude > minAltitude * 16))
                 {
                     Add(poiViewItem);
                 }
