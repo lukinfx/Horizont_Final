@@ -23,6 +23,7 @@ namespace HorizontApp.Views.ListOfPoiView
     {
         ListView listViewPoi;
         Button back;
+        private List<PoiViewItem> items;
 
         private PoiDatabase database;
         public PoiDatabase Database
@@ -60,18 +61,22 @@ namespace HorizontApp.Views.ListOfPoiView
 
             var poiList = Database.GetItems();
 
-            var items = new PoiViewItemList(poiList, location, maxDistance, minAltitude);
+            items = new PoiViewItemList(poiList, location, maxDistance, minAltitude);
 
             
             var listAdapter = new ArrayAdapter<PoiViewItem>(this, Android.Resource.Layout.SimpleListItem1, items);
             var adapter = new HorizontApp.Utilities.ListViewAdapter(this, items);
             listViewPoi.Adapter = adapter;
-            foreach (var item in  CompassView.list)
-            {
-                 items.Add(item);
-            }
+            listViewPoi.ItemClick += OnListItemClick;
         }
-        
+
+        void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            PoiViewItem item = items[e.Position];
+
+            item.Favorite = !item.Favorite;
+        }
+
         public void OnClick(View v)
         {
             Finish();
