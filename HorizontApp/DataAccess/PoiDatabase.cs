@@ -91,10 +91,12 @@ namespace HorizontApp.DataAccess
             GpsUtils.BoundingRect(loc, distance, out min, out max);
 
             //TODO: resolve problem with +-180 dg
-            var query = @$"SELECT * FROM [Poi] WHERE 
-            [Longitude] > {min.Longitude} and [Longitude] < {max.Longitude} 
-                and [Latitude] > {min.Latitude} and [Latitude] < {max.Latitude}";
-            query = query.Replace(',', '.');
+            var query = @$"SELECT * FROM [Poi] WHERE 1=1
+            and [Longitude] > {min.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture)} 
+            and [Longitude] < {max.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture)} 
+            and [Latitude] > {min.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture)} 
+            and [Latitude] < {max.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture)}";
+
             var task = Database.QueryAsync<Poi>(query);
             task.Wait();
             return task.Result;
