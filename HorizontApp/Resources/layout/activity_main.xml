@@ -7,116 +7,110 @@
     android:orientation="vertical"
     android:id="@+id/sample_main_layout">
 
-    <AbsoluteLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+    <com.jkb.slidemenu.SlideMenuLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:contentAlpha="0.5"
+        app:contentToggle="true"
+        app:parallax="false"
+        app:slideMode="left"
+        android:id="@+id/slideMenuLayoutMain">
+        
+    <include layout="@layout/content_menu_left"/>
         
 
 
-        <LinearLayout
-            android:orientation=    "horizontal"
-            android:layout_width=    "match_parent"
-            android:layout_height=    "match_parent"
-            android:layout_weight="1"
-            android:id="@+id/container">
-        </LinearLayout>
-
-        <HorizontApp.Views.CompassView
+        <AbsoluteLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/compassView1"/>
+            android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation=    "horizontal"
-            android:layout_width=    "match_parent"
-            android:layout_height=    "wrap_content">
+            <LinearLayout
+                android:orientation=    "horizontal"
+                android:layout_width=    "match_parent"
+                android:layout_height=    "match_parent"
+                android:layout_weight="1"
+                android:id="@+id/container">
+            </LinearLayout>
 
-            <EditText
-                android:inputType="number"
-                android:layout_width="67.5dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/editText1"
-                android:layout_marginRight="0.0dp" 
-                    />
+            <HorizontApp.Views.CompassView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/compassView1"/>
 
-            <EditText
-                android:inputType="number"
-                android:layout_width="171.5dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/editText2"
-                    />
-        </LinearLayout>
+            <LinearLayout
+                android:orientation=    "horizontal"
+                android:layout_width=    "match_parent"
+                android:layout_height=    "wrap_content">
+
+                <EditText
+                    android:inputType="number"
+                    android:layout_width="67.5dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText1"
+                    android:layout_marginRight="0.0dp" 
+                        />
+
+                <EditText
+                    android:inputType="number"
+                    android:layout_width="171.5dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText2"
+                        />
+            </LinearLayout>
 
         
 
 
-        <LinearLayout
-            android:orientation=    "horizontal"
-            android:layout_width=    "match_parent"
-            android:layout_height=    "match_parent"
-            android:layout_gravity="bottom">
-            <ImageButton
-                android:src="@android:drawable/ic_menu_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:id="@+id/imageButton1" />
-            <Button
-                android:text="Download all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:id="@+id/button1" />
-            <Button
-                android:text="List poi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:id="@+id/button2" />
-            
-            <Button
-                android:text="Download 6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:id="@+id/button3"/>
-            <Button
-                android:text="Load data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:id="@+id/button4" />
             <LinearLayout
-            android:orientation=    "vertical"
-            android:layout_width=    "match_parent"
-            android:layout_height=    "match_parent"
-                android:gravity="bottom">
-                <SeekBar
+                android:orientation=    "horizontal"
+                android:layout_width=    "match_parent"
+                android:layout_height=    "match_parent"
+                android:layout_gravity="bottom">
+                <ImageButton
+                    android:src="@android:drawable/ic_menu_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/imageButton1" />
+                
+                
+                <Button
+                    android:text="Load data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/button4" />
+                <LinearLayout
+                android:orientation=    "vertical"
+                android:layout_width=    "match_parent"
+                android:layout_height=    "match_parent"
+                    android:gravity="bottom">
+                    <SeekBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:id="@+id/seekBar2"
+                        android:progress="10" />
+                    <SeekBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:id="@+id/seekBar1"
+                        android:progress="10" />
+                <EditText
+                    android:inputType="number"
+                    android:textSize="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:id="@+id/seekBar2"
-                    android:progress="10" />
-                <SeekBar
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:id="@+id/seekBar1"
-                    android:progress="10" />
-            <EditText
-                android:inputType="number"
-                android:textSize="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                    android:textColor="#ffffff"
-                    android:background="#50000000"
-                android:id="@+id/editText3"
-                    />
+                        android:textColor="#ffffff"
+                        android:background="#50000000"
+                    android:id="@+id/editText3"
+                        />
             
-        </LinearLayout>
+            </LinearLayout>
             
-        </LinearLayout>
-    </AbsoluteLayout>
+            </LinearLayout>
+        </AbsoluteLayout>
+    </com.jkb.slidemenu.SlideMenuLayout>
 </LinearLayout>

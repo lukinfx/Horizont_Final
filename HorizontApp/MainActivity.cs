@@ -49,12 +49,12 @@ namespace HorizontApp
         EditText DistanceEditText;
         Button getHeadingButton;
         Button getGPSButton;
-        Button startCompassButton;
         Button stopCompassButton;
         CompassView compassView;
         SeekBar distanceSeekBar;
         SeekBar heightSeekBar;
         private View layout;
+        ImageButton menu;
 
         Timer compassTimer = new Timer();
         Timer locationTimer = new Timer();
@@ -104,8 +104,8 @@ namespace HorizontApp
             getGPSButton = FindViewById<Button>(Resource.Id.button2);
             getGPSButton.SetOnClickListener(this);
 
-            startCompassButton = FindViewById<Button>(Resource.Id.button3);
-            startCompassButton.SetOnClickListener(this);
+            menu = FindViewById<ImageButton>(Resource.Id.imageButton1);
+            menu.SetOnClickListener(this);
 
             stopCompassButton = FindViewById<Button>(Resource.Id.button4);
             stopCompassButton.SetOnClickListener(this);
@@ -185,14 +185,13 @@ namespace HorizontApp
                         StartActivity(i);
                         break;
                     }
-                case Resource.Id.button3:
-                    {
-                        //myLocation = await gpsLocationProvider.GetLocationAsync();
-                        break;
-                    }
                 case Resource.Id.button4:
                     {
                         ReloadData();
+                        break;
+                    }
+                case Resource.Id.imageButton1:
+                    {
                         break;
                     }
 
