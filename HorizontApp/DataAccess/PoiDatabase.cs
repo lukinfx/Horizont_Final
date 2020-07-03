@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using HorizontApp.Domain.Models;
+using HorizontApp.Utilities;
 using SQLite;
 
 namespace HorizontApp.DataAccess
@@ -72,9 +73,32 @@ namespace HorizontApp.DataAccess
 
         public IEnumerable<Poi> GetItems()
         {
-            var result = Database.Table<Poi>().ToListAsync();
-            result.Wait();
-            return result.Result;
+            var task = Database.Table<Poi>().ToListAsync();
+            task.Wait();
+            return task.Result;
+        }
+
+        /// <summary>
+        /// Returns all point within a given distance (in kilometers)
+        /// </summary>
+        /// <param name="loc"></param>
+        /// <param name="distance"></param>
+        /// <returns></returns>
+        public IEnumerable<Poi> GetItems(GpsLocation loc, double distance)
+        {
+            GpsLocation min;
+            GpsLocation max;
+            GpsUtils.BoundingRect(loc, distance, out min, out max);
+
+            //TODO: resolve problem with +-180 dg
+            var task = Database.QueryAsync<Poi>(
+                @$"SELECT * FROM [Poi] WHERE 
+                [Longitude] > {min.Longitude} and [Longitude] < {max.Longitude} 
+                [Latitude] > {min.Latitude} and [Latitude] < {max.Latitude} 
+                ");
+
+            task.Wait();
+            return task.Result;
         }
 
         public async Task<IEnumerable<Poi>> GetFavoriteItemsAsync()
