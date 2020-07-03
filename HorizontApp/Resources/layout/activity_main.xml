@@ -17,7 +17,8 @@
         android:id="@+id/slideMenuLayoutMain">
         
     <include layout="@layout/content_menu_left"/>
-        
+      
+    </com.jkb.slidemenu.SlideMenuLayout>  
 
 
         <AbsoluteLayout
@@ -112,5 +113,4 @@
             
             </LinearLayout>
         </AbsoluteLayout>
-    </com.jkb.slidemenu.SlideMenuLayout>
 </LinearLayout>
