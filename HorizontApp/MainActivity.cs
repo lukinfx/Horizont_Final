@@ -277,7 +277,7 @@ namespace HorizontApp
         {
             try
             {
-                var poiList = Database.GetItems();
+                var poiList = Database.GetItems(location, maxDistance);
 
                 PoiViewItemList poiViewItemList = new PoiViewItemList(poiList, location, maxDistance, minAltitude);
                 return poiViewItemList;
