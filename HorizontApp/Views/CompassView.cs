@@ -24,7 +24,10 @@ namespace HorizontApp.Views
         private Android.Graphics.Paint textpaint;
         public static PoiViewItemList list;
         public double Heading { get; set; }
-        
+
+        public float ViewAngleHorizontal { private get; set; }
+        public float ViewAngleVertical { private get; set; }
+
 
         public CompassView(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -79,7 +82,7 @@ namespace HorizontApp.Views
             {
                 foreach (var item in list)
                 {
-                    var startX = CompassViewUtils.GetLocationOnScreen((float)Heading, (float)item.Bearing, canvas.Width, 60);
+                    var startX = CompassViewUtils.GetLocationOnScreen((float)Heading, (float)item.Bearing, canvas.Width, ViewAngleHorizontal);
                     if (startX != null)
                     {
                         
