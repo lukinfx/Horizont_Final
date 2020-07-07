@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
-namespace HorizontApp.Domain.Enums
+﻿namespace HorizontApp.Domain.Enums
 {
     public enum PoiCategory
     {
         Peaks,
+        Mountains,
+        Lakes,
         Castles,
+        Palaces,
+        Ruins,
         ViewTowers,
-        TransmissionTowers,
-        Lakes
+        Transmitters,
     }
 }

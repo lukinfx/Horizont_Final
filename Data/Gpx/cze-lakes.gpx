@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="ISO-8859-2"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" 
+creator="http://online.poi.cz">		<wpt lat="49.232378" lon="16.519072">
+			<name>Brnenska prehrada, reka Svratka</name>
+		</wpt>
+		<wpt lat="49.010694" lon="14.306900">
+			<name>Rybnik Dehtar, reka Dehtarsky potok</name>
+		</wpt>
+		<wpt lat="50.085297" lon="17.180686">
+			<name>Dlouhe Strane - dolni n.,reka Divoka Desna</name>
+		</wpt>
+		<wpt lat="50.077539" lon="17.161672">
+			<name>Dlouhe Strane - horni nadrz</name>
+		</wpt>
+		<wpt lat="49.423164" lon="18.314322">
+			<name>Vodni nadrz Horni Becva, reka Roznovska Becva</name>
+		</wpt>
+		<wpt lat="48.775928" lon="14.742806">
+			<name>Vodni nadrz Humenice, reka Stropnice</name>
+		</wpt>
+		<wpt lat="50.852375" lon="14.524456">
+			<name>Vodni nadrz Chribska, reka Chribska Kamenice</name>
+		</wpt>
+		<wpt lat="50.470581" lon="15.479511">
+			<name>Jahodnice, reka Ulibicky potok</name>
+		</wpt>
+		<wpt lat="48.991886" lon="15.980453">
+			<name>Jevisovice,reka Jevisovka</name>
+		</wpt>
+		<wpt lat="49.580447" lon="15.937958">
+			<name>Konventsky rybnik</name>
+		</wpt>
+		<wpt lat="49.121936" lon="17.729239">
+			<name>Ludkovice,reka Ludkovicky potok</name>
+		</wpt>
+		<wpt lat="50.589631" lon="14.633717">
+			<name>Machovo jezero,reka Robecsky potok</name>
+		</wpt>
+		<wpt lat="48.889240" lon="14.351797">
+			<name>Prehrada Divci kamen, reka Kremzsky potok</name>
+		</wpt>
+		<wpt lat="49.965264" lon="17.032833">
+			<name>Prehrada Krasne, Hrabesicky potok</name>
+		</wpt>
+		<wpt lat="48.861967" lon="17.390819">
+			<name>prehrada Lucina,reka Mze</name>
+		</wpt>
+		<wpt lat="49.264131" lon="17.691378">
+			<name>prehradni nadrz Frystak,reka Frystacky potok</name>
+		</wpt>
+		<wpt lat="49.897799" lon="17.188421">
+			<name>Prehrada Tvrdkov, Tvrdkovsky potok</name>
+		</wpt>
+		<wpt lat="49.047828" lon="14.760839">
+			<name>rybnik Rozmberk,reka Luznice</name>
+		</wpt>
+		<wpt lat="48.977117" lon="14.953619">
+			<name>Stankovsky rybnik,reka Kostenicky potok</name>
+		</wpt>
+		<wpt lat="49.568089" lon="15.951033">
+			<name>Udolni nadrz Staviste, reka Staviste</name>
+		</wpt>
+		<wpt lat="49.115914" lon="17.193817">
+			<name>vod.n. Korycany,reka Kyjovka</name>
+		</wpt>
+		<wpt lat="49.647144" lon="18.377225">
+			<name>vod.n.Baska,reka Bastice</name>
+		</wpt>
+		<wpt lat="50.815703" lon="15.135661">
+			<name>Vodni nadrz Bedrichov, reka Cerna Nisa</name>
+		</wpt>
+		<wpt lat="49.495047" lon="16.699939">
+			<name>Vodni nadrz Boskovice, reka Bela</name>
+		</wpt>
+		<wpt lat="49.422753" lon="18.019642">
+			<name>Vodni nadrz Bystricka, reka Bystricka</name>
+		</wpt>
+		<wpt lat="49.717411" lon="13.359936">
+			<name>Vodni nadrz Ceske Udoli, reka Radbuza</name>
+		</wpt>
+		<wpt lat="49.124886" lon="16.122119">
+			<name>Vodni nadrz Dalesice, reka Jihlava</name>
+		</wpt>
+		<wpt lat="50.686972" lon="13.582503">
+			<name>Vodni nadrz Flaje, reka Flajsky potok</name>
+		</wpt>
+		<wpt lat="50.827167" lon="15.057489">
+			<name>vod.n.Fojtka,reka Fojtsky potok</name>
+		</wpt>
+		<wpt lat="49.738656" lon="15.914325">
+			<name>vod.n.Hamry,reka Chrudimka</name>
+		</wpt>
+		<wpt lat="49.181686" lon="14.446044">
+			<name>vod.n.Hnevkovice,reka Vltava</name>
+		</wpt>
+		<wpt lat="50.185181" lon="12.489575">
+			<name>Vodni nadrz Horka, reka Libocky potok</name>
+		</wpt>
+		<wpt lat="48.961439" lon="16.133878">
+			<name>Vodni nadrz Horni Dunajovice, reka Krepicka</name>
+		</wpt>
+		<wpt lat="49.791147" lon="13.173714">
+			<name>Vodni nadrz Hracholusky, reka Mze</name>
+		</wpt>
+		<wpt lat="49.392028" lon="15.490019">
+			<name>vod.n.Hubenov,reka Marsovsky potok</name>
+		</wpt>
+		<wpt lat="49.038183" lon="13.994008">
+			<name>vod.n.Husinec,reka Blanice</name>
+		</wpt>
+		<wpt lat="50.085042" lon="12.478994">
+			<name>vod.n.Jesenice, reka Odrava</name>
+		</wpt>
+		<wpt lat="50.509481" lon="13.409719">
+			<name>vod.n.Jirkov,reka Bilina</name>
+		</wpt>
+		<wpt lat="50.793483" lon="15.194381">
+			<name>vod.n.Josefuv Dul,reka Kamenice</name>
+		</wpt>
+		<wpt lat="50.377881" lon="13.254981">
+			<name>vod.n.Kadansky stupen,reka Ohre</name>
+		</wpt>
+		<wpt lat="49.633036" lon="14.246539">
+			<name>vod.n.Kamyk,reka Vltava</name>
+		</wpt>
+		<wpt lat="49.751550" lon="13.546736">
+			<name>vod.n.Klabava,reka Klabava</name>
+		</wpt>
+		<wpt lat="50.063753" lon="13.933208">
+			<name>vod.n.Klicava,reka Klicava</name>
+		</wpt>
+		<wpt lat="49.050300" lon="17.844919">
+			<name>Vodni nadrz Kolelac, reka Kolelacsky potok</name>
+		</wpt>
+		<wpt lat="49.863067" lon="15.775039">
+			<name>vod.n.Krizanovice,reka Chrudimka</name>
+		</wpt>
+		<wpt lat="49.823383" lon="17.662997">
+			<name>vod.n.Kruzberk,reka Moravice</name>
+		</wpt>
+		<wpt lat="50.712025" lon="15.585019">
+			<name>vod.n.Labska,reka Labe</name>
+		</wpt>
+		<wpt lat="49.019625" lon="15.243456">
+			<name>vod.n.Ladstejn,reka Pstruhovec</name>
+		</wpt>
+		<wpt lat="50.457808" lon="15.768400">
+			<name>vod.n.Les Kralovstvi,reka Labe</name>
+		</wpt>
+		<wpt lat="49.553269" lon="16.557331">
+			<name>vod.n.Letovice, reka Kretinka</name>
+		</wpt>
+		<wpt lat="48.633211" lon="14.237619">
+			<name>vod.n.Lipno I,reka Vltava</name>
+		</wpt>
+		<wpt lat="48.626742" lon="14.304792">
+			<name>vod.n.Lipno II,reka Vltava</name>
+		</wpt>
+		<wpt lat="49.120958" lon="17.774708">
+			<name>vod.n.Luhacovice,reka Luhacovicky potok</name>
+		</wpt>
+		<wpt lat="50.841494" lon="15.028378">
+			<name>vod.n.Mlynice,reka Albrechticky potok</name>
+		</wpt>
+		<wpt lat="49.102719" lon="16.180717">
+			<name>vod.n.Mohelno,reka Jihlava</name>
+		</wpt>
+		<wpt lat="49.583039" lon="18.533483">
+			<name>vod.n.Moravka,reka Moravka</name>
+		</wpt>
+		<wpt lat="49.749217" lon="16.656011">
+			<name>vod.n.Moravska Trebova,reka Trebuvka</name>
+		</wpt>
+		<wpt lat="49.394811" lon="16.010969">
+			<name>vod.n.Mostiste,reka Oslava</name>
+		</wpt>
+		<wpt lat="50.734039" lon="15.178958">
+			<name>vod.n.Mseno,reka Msensky potok</name>
+		</wpt>
+		<wpt lat="50.823961" lon="14.648000">
+			<name>Vodni nadrz Nadeje, reka Hamersky potok</name>
+		</wpt>
+		<wpt lat="50.366067" lon="13.418892">
+			<name>vod.n.Nechranice,reka Ohre</name>
+		</wpt>
+		<wpt lat="49.675458" lon="15.094944">
+			<name>vod.n.Nemcice,reka Sedlicky potok</name>
+		</wpt>
+		<wpt lat="49.151619" lon="15.545172">
+			<name>vod.n.Nova Rise,reka Olsansky potok</name>
+		</wpt>
+		<wpt lat="48.857258" lon="16.725867">
+			<name>vod.n.Nove Mlyny I,reka Dyje</name>
+		</wpt>
+		<wpt lat="48.896744" lon="16.643831">
+			<name>vod.n.Nove Mlyny II,reka Dyje</name>
+		</wpt>
+		<wpt lat="48.894781" lon="16.588972">
+			<name>vod.n.Nove Mlyny III,reka Dyje</name>
+		</wpt>
+		<wpt lat="49.260444" lon="13.147517">
+			<name>vod.n.Nyrsko,reka Uhlava</name>
+		</wpt>
+		<wpt lat="48.913100" lon="16.256986">
+			<name>vod.n.Oleksovice,reka Skalicka</name>
+		</wpt>
+		<wpt lat="49.666264" lon="18.317186">
+			<name>vod.n.Olesna,reka Olesna</name>
+		</wpt>
+		<wpt lat="49.307778" lon="16.930697">
+			<name>vod.n.Opatovice,reka Mala Hana</name>
+		</wpt>
+		<wpt lat="49.606467" lon="14.180353">
+			<name>vod.n.Orlik,reka Vltava</name>
+		</wpt>
+		<wpt lat="49.839853" lon="15.678733">
+			<name>vod.n.Padrty (Sec II),reka Chrudimka</name>
+		</wpt>
+		<wpt lat="49.829461" lon="15.569800">
+			<name>vod.n.Parizov,reka Doubrava</name>
+		</wpt>
+		<wpt lat="50.075067" lon="16.559622">
+			<name>vod.n.Pastviny,reka Divoka Orlice</name>
+		</wpt>
+		<wpt lat="49.588714" lon="15.932092">
+			<name>vod.n.Pilska,reka Sazava</name>
+		</wpt>
+		<wpt lat="49.470386" lon="17.037656">
+			<name>vod.n.Plumlov,reka Hloucela</name>
+		</wpt>
+		<wpt lat="49.964697" lon="12.814578">
+			<name>vod.n.Podhora,reka Tepla</name>
+		</wpt>
+		<wpt lat="49.881322" lon="15.810344">
+			<name>vod.n.Pracov,reka Chrudimka</name>
+		</wpt>
+		<wpt lat="50.489683" lon="13.132633">
+			<name>vod.n.Prisecnice,reka Prisecnicky potok</name>
+		</wpt>
+		<wpt lat="48.850233" lon="14.490878">
+			<name>vod.n.Rimov,reka Malse</name>
+		</wpt>
+		<wpt lat="50.361236" lon="16.062058">
+			<name>vod.n.Rozkos,reka Rozkossky potok</name>
+		</wpt>
+		<wpt lat="49.511025" lon="18.415506">
+			<name>vod.n.Sance,reka Ostravice</name>
+		</wpt>
+		<wpt lat="49.836431" lon="15.652750">
+			<name>vod.n.Sec,reka Chrudimka</name>
+		</wpt>
+		<wpt lat="49.514069" lon="15.269994">
+			<name>vod.n.Sedlice,reka Zelivka</name>
+		</wpt>
+		<wpt lat="50.079042" lon="12.353850">
+			<name>vod.n.Skalka,reka Ohre</name>
+		</wpt>
+		<wpt lat="49.823728" lon="14.434078">
+			<name>vod.n.Slapy,reka Vltava</name>
+		</wpt>
+		<wpt lat="49.890092" lon="17.582150">
+			<name>vod.n.Slezska Harta,reka Moravice</name>
+		</wpt>
+		<wpt lat="49.269431" lon="17.806075">
+			<name>vod.n.Slusovice,reka Drevnice</name>
+		</wpt>
+		<wpt lat="48.743050" lon="14.552422">
+			<name>vod.n.Sobenov,reka Cerna</name>
+		</wpt>
+		<wpt lat="50.789703" lon="15.319042">
+			<name>vod.n.Sous,reka Cerna Desna</name>
+		</wpt>
+		<wpt lat="50.175881" lon="12.877800">
+			<name>vod.n.Stanovice,reka Lomnicky potok</name>
+		</wpt>
+		<wpt lat="49.345425" lon="18.233447">
+			<name>vod.n.Stanovnice,reka Stanovnice</name>
+		</wpt>
+		<wpt lat="50.768661" lon="15.070664">
+			<name>Vodni nadrz Stary Harcov, reka Harcovsky potok</name>
+		</wpt>
+		<wpt lat="49.852956" lon="14.404161">
+			<name>vod.n.Stechovice,reka Vltava</name>
+		</wpt>
+		<wpt lat="49.724017" lon="15.088794">
+			<name>vod.n.Svihov,reka Zelivka</name>
+		</wpt>
+		<wpt lat="50.276556" lon="12.688011">
+			<name>vod.n.Tatrovice,reka Tatrovicky potok</name>
+		</wpt>
+		<wpt lat="49.776244" lon="18.515322">
+			<name>vod.n.Terlicko,reka Stonavka</name>
+		</wpt>
+		<wpt lat="48.895867" lon="16.141658">
+			<name>vod.n.Tesetice,reka Unanovka</name>
+		</wpt>
+		<wpt lat="49.617030" lon="18.186661">
+			<name>Vodni nadrz Vetrkovice, Sveceny potok</name>
+		</wpt>
+		<wpt lat="49.564381" lon="16.309361">
+			<name>vod.n.Vir I,reka Svratka</name>
+		</wpt>
+		<wpt lat="49.547806" lon="16.339031">
+			<name>Vodni nadrz Vir II, reka Svratka</name>
+		</wpt>
+		<wpt lat="49.937389" lon="14.376197">
+			<name>vod.n.Vrane,reka Vltava</name>
+		</wpt>
+		<wpt lat="48.906597" lon="15.818844">
+			<name>vod.n.Vranov,reka Dyje</name>
+		</wpt>
+		<wpt lat="49.528953" lon="15.243267">
+			<name>Vodni nadrz Vresnik, reka Zelivka</name>
+		</wpt>
+		<wpt lat="49.926839" lon="15.227236">
+			<name>vod.n.Vrchlice,reka Vrchlice</name>
+		</wpt>
+		<wpt lat="48.929089" lon="16.108919">
+			<name>Vodni nadrz Vyrovice, reka Jevisovka</name>
+		</wpt>
+		<wpt lat="49.793336" lon="13.877344">
+			<name>vod.n.Zaskalska,reka Cerveny potok</name>
+		</wpt>
+		<wpt lat="49.523317" lon="15.218008">
+			<name>vod.n.Zeliv,reka Trnava</name>
+		</wpt>
+		<wpt lat="49.732442" lon="18.446358">
+			<name>vod.n.Zermanice,reka Lucina</name>
+		</wpt>
+		<wpt lat="50.086467" lon="13.126794">
+			<name>vod.n.Zlutice,reka Strela</name>
+		</wpt>
+		<wpt lat="48.854061" lon="16.038914">
+			<name>vod.n.Znojmo,reka Dyje</name>
+		</wpt>
+		<wpt lat="49.414183" lon="14.662324">
+			<name>Vodni nadrz Jordan, Kosirsky potok</name>
+		</wpt>
+</gpx>

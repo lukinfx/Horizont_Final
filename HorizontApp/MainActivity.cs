@@ -29,6 +29,7 @@ using Android.Content;
 using Android.Support.V13.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
+using HorizontApp.Activities;
 
 namespace HorizontApp
 {
@@ -171,7 +172,8 @@ namespace HorizontApp
             switch (v.Id)
             {
                 case Resource.Id.button1:
-                    LoadDataFromInternet("http://vrcholky.8u.cz/hory.gpx");
+                    Intent downloadActivityIntent = new Intent(this, typeof(DownloadActivity));
+                    StartActivity(downloadActivityIntent);
                     break;
                 case Resource.Id.button2:
                     {
@@ -239,22 +241,6 @@ namespace HorizontApp
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
             DistanceEditText.Text = "vyska nad " + heightSeekBar.Progress * 16 + "m, do " + distanceSeekBar.Progress + "km daleko";
-        }
-
-        private async void LoadDataFromInternet(string filePath)
-        {
-            try
-            {
-                var file = GpxFileProvider.GetFile(filePath);
-                var listOfPoi = GpxFileParser.Parse(file, PoiCategory.Peaks);
-                await Database.InsertAllAsync(listOfPoi);
-
-                PopupDialog("Information", $"{listOfPoi.Count()} items loaded to database.");
-            }
-            catch(Exception ex)
-            {
-                PopupDialog("Error", $"Error when loading data. {ex.Message}");
-            }
         }
 
         private void ReloadData()

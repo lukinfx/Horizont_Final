@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="ISO-8859-2"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" 
+creator="http://online.poi.cz">		
+		<wpt lat="50.769409" lon="14.175315">
+			<name>Vysilac TV signalu Decin</name>
+			<desc>vykryvac TV signalu-jen pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Popovicky vrch</gpxx:StreetAddress>
+						<gpxx:City>Decin</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>405 02</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.935458" lon="15.077003">
+			<name>Frydlant</name>
+			<desc>399 m.n.m., pristupny pesky, CRo Sever</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch U rozhledny</gpxx:StreetAddress>
+						<gpxx:City>Frydlant</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>464 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.234742" lon="12.202383">
+			<name>As</name>
+			<desc>755 m.n.m, vrch Haj, dostupny autem a pesky, CRo Plzen</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>U rozhledny</gpxx:StreetAddress>
+						<gpxx:City>As</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>352 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.208357" lon="17.646424">
+			<name>Tlusta hora Zlin</name>
+			<desc>458 m.n.m., pristupny pesky, DVB-T Zlin 25, 33, 49</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Tlusta hora</gpxx:StreetAddress>
+						<gpxx:City>Zlin</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>760 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.138803" lon="18.056169">
+			<name>Valasske Klobouky-Plostiny</name>
+			<desc>705 m.n.m., pristupny pesky, DVB-T Valasske Klobouky 33, 49</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Plostiny</gpxx:StreetAddress>
+						<gpxx:City>Valasske Klobouky</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>766 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.652335" lon="15.741962">
+			<name>Cerna hora Janske Lazne</name>
+			<desc>1299 m.n.m., pristupny pesky a lanovkou, DVB-T Trutnov 40, 60, 61</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Cerna hora 261</gpxx:StreetAddress>
+						<gpxx:City>Janske Lazne</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>542 25</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.069349" lon="12.307891">
+			<name>Zelena hora u Chebu</name>
+			<desc>637 m.n.m., pristupny pesky, DVB-T Cheb 35, 36</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Zelena hora</gpxx:StreetAddress>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.822467" lon="15.737568">
+			<name>Krasne u Sece</name>
+			<desc>614 m.n.m., pristupny autem, DVB-T Hradec Kralove/Pardubice 32, 34 a 39</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>c.p. 19</gpxx:StreetAddress>
+						<gpxx:City>Krasne</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>538 25</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.472328" lon="12.777988">
+			<name>Domazlice 34 a 48 Vranov, Postrekov</name>
+			<desc>tez Vrani vrch, 684 m.n.m., pristupny pesky, DVB-T</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Modrinovec</gpxx:StreetAddress>
+						<gpxx:City>Vranov, Postrekov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.016404" lon="14.450836">
+			<name>Praha Novodvorska Praha 4</name>
+			<desc>305 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Novodvorska 14</gpxx:StreetAddress>
+						<gpxx:City>Praha 4</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>142 00</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.101682" lon="14.343461">
+			<name>Praha Vokovice</name>
+			<desc>322 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Luzna 716</gpxx:StreetAddress>
+						<gpxx:City>Praha</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>160 00</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.198746" lon="16.579615">
+			<name>Brno mesto</name>
+			<desc>305 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Barvicova 72</gpxx:StreetAddress>
+						<gpxx:City>Brno</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>602 00</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.222503" lon="16.674629">
+			<name>Hady Brno</name>
+			<desc>424 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Hady</gpxx:StreetAddress>
+						<gpxx:City>Brno</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.816744" lon="16.307722">
+			<name>Pohodli u Litomysle</name>
+			<desc>425 m.n.m., nepristupny</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Pohodli</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.642013" lon="17.367988">
+			<name>Radikov Olomouc - Losov</name>
+			<desc>432 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Na pevnustce</gpxx:StreetAddress>
+						<gpxx:City>Olomouc - Losov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>779 00</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="48.857527" lon="17.674902">
+			<name>Velka Javorina</name>
+			<desc>970 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch V. Javorina</gpxx:StreetAddress>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.062725" lon="14.886027">
+			<name>Liblice B  Cesky Brod - Liblice</name>
+			<desc>nejvyssi stavba v CR, 305 m.n.m., nepristupny, viditelny ze silnice I/12</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Cesky Brod - Liblice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.136408" lon="14.465289">
+			<name>Praha Ladvi Praha 8</name>
+			<desc>350 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Dablicky haj</gpxx:StreetAddress>
+						<gpxx:City>Praha 8</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>182 00</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.658300" lon="13.817798">
+			<name>Pribram Nepomuk, c.p. 37</name>
+			<desc>862 m.n.m., nepristupny</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Praha</gpxx:StreetAddress>
+						<gpxx:City>Nepomuk, c.p. 37</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+						<gpxx:PostalCode>262 42</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.380116" lon="14.641940">
+			<name>Radimovice Radimovice u Zelce</name>
+			<desc>512 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Radimovice u Zelce</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>390 02</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.546407" lon="18.448706">
+			<name>Lysa hora</name>
+			<desc>1323 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Lysa hora</gpxx:StreetAddress>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.536246" lon="15.004167">
+			<name>Straziste Salacova Lhota, Utechovice pod Straziste</name>
+			<desc>744 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Straziste</gpxx:StreetAddress>
+						<gpxx:City>Salacova Lhota, Utechovice pod Straziste</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.644467" lon="17.805302">
+			<name>Veselsky kopec Veseli (Odry)</name>
+			<desc>557 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>c.p. 6</gpxx:StreetAddress>
+						<gpxx:City>Veseli (Odry)</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>742 35</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.548716" lon="13.461807">
+			<name>Jedlova hora u Jirkova Pysna</name>
+			<desc>853 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Jedlova</gpxx:StreetAddress>
+						<gpxx:City>Pysna</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.371304" lon="14.520836">
+			<name>Chloumek u Melnika TV Melnik - Chloumek</name>
+			<desc>253 m.n.m., TV, pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Melnik - Chloumek</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.370488" lon="14.524704">
+			<name>Chloumek u Melnika R Melnik - Chloumek</name>
+			<desc>253 m.n.m., rozhlas, pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Melnik - Chloumek</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.015036" lon="17.055894">
+			<name>Babi lom u Kyjova Strazovice</name>
+			<desc>417 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>c.p. 217</gpxx:StreetAddress>
+						<gpxx:City>Strazovice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>696 38</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.572243" lon="16.044021">
+			<name>Harusuv kopec Radnovice, Jirikovice</name>
+			<desc>741 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Radnovice, Jirikovice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>592 31</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.072148" lon="13.846879">
+			<name>Marsky vrch u Vimperka Stitkov</name>
+			<desc>896 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Stitkov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>385 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.169974" lon="15.924947">
+			<name>Klucovska hora</name>
+			<desc>595 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Klucov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>675 52</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.101131" lon="16.350226">
+			<name>Liticky Chlum (Rychnov nad Kneznou) Rybna nad Zdobnici</name>
+			<desc>587 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>hreben k vrchu Chlum</gpxx:StreetAddress>
+						<gpxx:City>Rybna nad Zdobnici</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>517 55</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="48.869239" lon="16.650095">
+			<name>Devin Horni Vestonice, Pavlov</name>
+			<desc>549 m.n.m. pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Devin</gpxx:StreetAddress>
+						<gpxx:City>Horni Vestonice, Pavlov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.738771" lon="16.570618">
+			<name>Kamenna Horka Hrebec</name>
+			<desc>625 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Hrebec</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.382158" lon="13.395636">
+			<name>Barak u Klatov Habartice, Chuchle</name>
+			<desc>701 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Barak</gpxx:StreetAddress>
+						<gpxx:City>Habartice, Chuchle</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.123546" lon="17.514251">
+			<name>Topolna</name>
+			<desc>205 m.n.m., nepristupny</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>c.p. 431</gpxx:StreetAddress>
+						<gpxx:City>Topolna</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>687 11</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.861424" lon="18.212260">
+			<name>Ostrava-Hostalkovice</name>
+			<desc>290 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Aleje</gpxx:StreetAddress>
+						<gpxx:City>Ostrava-Hostalkovice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>725 28</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="48.867280" lon="14.281401">
+			<name>Klet</name>
+			<desc>1060 m.n.m., pristupny pesky a lanovkou</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Klet</gpxx:StreetAddress>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.396778" lon="12.967674">
+			<name>Klinovec Jachymov - Klinovec</name>
+			<desc>1244 m.n.m., pristupny autem a lanovkou</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>c.p. 1016</gpxx:StreetAddress>
+						<gpxx:City>Jachymov - Klinovec</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>362 62</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.221258" lon="15.339779">
+			<name>Javorice</name>
+			<desc>837 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Javorice</gpxx:StreetAddress>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.083306" lon="17.230557">
+			<name>Praded Karlova Studanka</name>
+			<desc>1491 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Praded</gpxx:StreetAddress>
+						<gpxx:City>Karlova Studanka</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>793 24</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.995653" lon="13.079885">
+			<name>Krasov Bezverov, Krasov</name>
+			<desc>711 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Bezverov, Krasov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>330 41</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.671660" lon="14.228821">
+			<name>Bukova hora Pribram (Usti nad Labem)</name>
+			<desc>665 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Pribram (Usti nad Labem)</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.370000" lon="16.816111">
+			<name>Kojal Krasensko</name>
+			<desc>600 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Krasensko</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>683 04</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.732737" lon="14.984838">
+			<name>Jested Liberec XIX - Horni Hanychov</name>
+			<desc>1012 m.n.m., pristupny pesky, autem a lanovkou</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>c.p. 153</gpxx:StreetAddress>
+						<gpxx:City>Liberec XIX - Horni Hanychov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>460 08</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.936415" lon="14.355809">
+			<name>Cukrak Jiloviste (Praha zapad)</name>
+			<desc>411 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Cukrak c.p. 90</gpxx:StreetAddress>
+						<gpxx:City>Jiloviste (Praha zapad)</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.238602" lon="12.823090">
+			<name>Karlovy Vary (St. Role) Karlovy Vary - Stara Role</name>
+			<desc>433 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Svobodova 20</gpxx:StreetAddress>
+						<gpxx:City>Karlovy Vary - Stara Role</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>360 17</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.073388" lon="15.710347">
+			<name>Domamil Domamil, Komarovice</name>
+			<desc>547 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Domamil, Komarovice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.358962" lon="14.068353">
+			<name>Kosejrin Predotice</name>
+			<desc>563 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Kosejrin</gpxx:StreetAddress>
+						<gpxx:City>Predotice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.388988" lon="14.937014">
+			<name>Chlum u Mlade Boleslavi  Chloumek</name>
+			<desc>364 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Chloumek</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.234717" lon="13.489938">
+			<name>Svatobor u Susice Odolenov</name>
+			<desc>845 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Odolenov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.802988" lon="13.341432">
+			<name>Krkavec u Plzne</name>
+			<desc>504 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>vrch Krkavec</gpxx:StreetAddress>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.384586" lon="17.123411">
+			<name>Dobrochov u Prostejova</name>
+			<desc>312 m.n.m., pristupny autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Dobrochov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>798 07</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.081175" lon="14.451019">
+			<name>Mahlerovy sady  Praha 3</name>
+			<desc>351 m.n.m., Zizkovska vez, pristup autem</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Mahlerovy sady 1</gpxx:StreetAddress>
+						<gpxx:City>Praha 3</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>130 00</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.602736" lon="14.671092">
+			<name>Mezivrata Oldrichovec, Podlesi</name>
+			<desc>713 m.n.m., pristupny pesky</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Oldrichovec, Podlesi</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.142494" lon="15.896486">
+			<name>Hodesovice</name>
+			<desc>340 m.n.m, nepristupny</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Hodesovice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+</gpx>
