@@ -1,0 +1,2800 @@
+<?xml version="1.0" encoding="ISO-8859-2"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" 
+creator="http://online.poi.cz">		<wpt lat="50.620317" lon="14.414518">
+			<name>Zric Ronov Blizevedly</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=266">
+				<text>http://www.hrady.cz/index.php?OID=266</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Blizevedly</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>471 04</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.808943" lon="13.605039">
+			<name>Zric Brezina</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=448">
+				<text>http://www.hrady.cz/index.php?OID=448</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Brezina</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>338 24</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.873067" lon="14.451769">
+			<name>Zric Chribsky hradek (Dolni Karlstejn) Dolni Chribska</name>
+			<desc>volne pristupno, nepatrne zbytky zdi</desc>
+			<link href="http://www.hrady.cz/index.php?OID=348">
+				<text>http://www.hrady.cz/index.php?OID=348</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Dolni Chribska</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>407 44</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.416283" lon="17.797871">
+			<name>Zric Novy Saumburk-Zubric Podhradni Lhota</name>
+			<desc>volne pristupno, terenni naznaky</desc>
+			<link href="http://www.hrady.cz/index.php?OID=1553">
+				<text>http://www.hrady.cz/index.php?OID=1553</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Podhradni Lhota</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>768 71</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.413017" lon="17.798345">
+			<name>Zric Saumburk Rajnochovice</name>
+			<desc>volne pristupno, nepatrne zbytky zdi</desc>
+			<link href="http://www.hrady.cz/index.php?OID=627">
+				<text>http://www.hrady.cz/index.php?OID=627</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Rajnochovice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>768 71</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.253105" lon="16.320920">
+			<name>Zric Novy hrad - Kleckov Skuhrov nad Belou-Nova Ves</name>
+			<desc>volne pristupno, nepatrne zbytky zdi</desc>
+			<link href="http://www.hrady.cz/index.php?OID=369">
+				<text>http://www.hrady.cz/index.php?OID=369</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Skuhrov nad Belou-Nova Ves</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>517 03</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.554248" lon="13.879638">
+			<name>Zric Sukoslav Kostomlaty pod Milesovkou</name>
+			<desc>volne pristupno</desc>
+			<link href="http://hradkostomlaty.sweb.cz/">
+				<text>http://hradkostomlaty.sweb.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Sukoslavska</gpxx:StreetAddress>
+						<gpxx:City>Kostomlaty pod Milesovkou</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>417 54</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420606796031</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.279267" lon="13.618337">
+			<name>Zric Rabi Rabi 53</name>
+			<desc>(IV) so-ne 10-16, (V-IX) ut-ne 10-16, (X) so-ne 10-16</desc>
+			<link href="http://www.hrad-rabi.eu/">
+				<text>http://www.hrad-rabi.eu/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Rabi 53</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>342 01</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420376596171</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.078054" lon="16.308812">
+			<name>Zric Potstejn</name>
+			<desc>(IV-X) ut-ne 9-12 13-17 (duben a rijen pouze so-ne)</desc>
+			<link href="http://www.hrad-potstejn.cz/">
+				<text>http://www.hrad-potstejn.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Potstejn</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>517 43</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420495546812</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.667711" lon="13.708578">
+			<name>Zric Drstka Skorice</name>
+			<desc>volne pristupno, nepatrne zbytky zdi</desc>
+			<link href="http://www.hrady.cz/index.php?OID=819">
+				<text>http://www.hrady.cz/index.php?OID=819</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Skorice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>338 43</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.433000" lon="16.045130">
+			<name>Zric Ryzmburk Zernov</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=371">
+				<text>http://www.hrady.cz/index.php?OID=371</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Ryzmburk</gpxx:StreetAddress>
+						<gpxx:City>Zernov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>552 03</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.367920" lon="13.186280">
+			<name>Zric Egerberk Klasterec nad Ohri</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=138">
+				<text>http://www.hrady.cz/index.php?OID=138</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Lestkov</gpxx:StreetAddress>
+						<gpxx:City>Klasterec nad Ohri</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>431 51</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.493740" lon="13.356030">
+			<name>Zric Hausberk Krasna Lipa</name>
+			<desc>volne pristupno, pouze terenni naznaky</desc>
+			<link href="http://www.hrady.cz/index.php?OID=252">
+				<text>http://www.hrady.cz/index.php?OID=252</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Krasna Lipa</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>430 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.552047" lon="13.443739">
+			<name>Zric Novy Zeberk Vysoka Pec-Pysna</name>
+			<desc>volne pristupno, pouze nepatrne zbytky zdi</desc>
+			<link href="http://www.hrady.cz/index.php?OID=444">
+				<text>http://www.hrady.cz/index.php?OID=444</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Vysoka Pec-Pysna</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>431 11</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.514710" lon="13.404740">
+			<name>Zric Najstejn Jirkov-Jindrisska</name>
+			<desc>volne pristupno, pouze nepatrne zbytky zdiva</desc>
+			<link href="http://www.hrady.cz/index.php?OID=413">
+				<text>http://www.hrady.cz/index.php?OID=413</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Jirkov-Jindrisska</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>431 11</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.786253" lon="14.970303">
+			<name>Zric Hamrstejn Liberec-Machnin</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=145">
+				<text>http://www.hrady.cz/index.php?OID=145</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Liberec-Machnin</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>460 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.546340" lon="13.482980">
+			<name>Zric Stary Zeberk Vysoka Pec</name>
+			<desc>volne pristupno, jen nepatrne zbytky zdi</desc>
+			<link href="http://www.hrady.cz/index.php?OID=1737">
+				<text>http://www.hrady.cz/index.php?OID=1737</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Vysoka Pec</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>431 59</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.605278" lon="14.206944">
+			<name>Zric Kalich Trebusin</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=396">
+				<text>http://www.hrady.cz/index.php?OID=396</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Trebusin</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>412 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.557756" lon="14.080794">
+			<name>Zric Kamyk</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=328">
+				<text>http://www.hrady.cz/index.php?OID=328</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Kamyk</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>412 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.611180" lon="14.186040">
+			<name>Zric Panna Repcice</name>
+			<desc>volne pristupno, pouze terenni naznaky</desc>
+			<link href="http://www.hrady.cz/index.php?OID=416">
+				<text>http://www.hrady.cz/index.php?OID=416</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Repcice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>412 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.590550" lon="14.243472">
+			<name>Zric Litys Nova Vesnicka</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=407">
+				<text>http://www.hrady.cz/index.php?OID=407</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Nova Vesnicka</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>412 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.612323" lon="14.283586">
+			<name>Zric Levin</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=406">
+				<text>http://www.hrady.cz/index.php?OID=406</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Levin</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>411 45</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.589750" lon="14.508250">
+			<name>Zric Chudy Hradek (Pusty zamek) Duba - Susice</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=277">
+				<text>http://www.hrady.cz/index.php?OID=277</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Duba - Susice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>470 02</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.579296" lon="14.383941">
+			<name>Zric Helfenburk Ustek</name>
+			<desc>pristupny, vez pouze o vikendech. tel.cislo je do info.cenra</desc>
+			<link href="http://www.mesto-ustek.com/helfenburk.php">
+				<text>http://www.mesto-ustek.com/helfenburk.php</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Ustek</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>411 45</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420416795368</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.606194" lon="14.394678">
+			<name>Zric Hridelik Blizevedly</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=350">
+				<text>http://www.hrady.cz/index.php?OID=350</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Blizevedly</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>471 04</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.621425" lon="14.475399">
+			<name>Zric Milcany (Vitkovec) Holany</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=322">
+				<text>http://www.hrady.cz/index.php?OID=322</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Holany</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>470 02</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.649977" lon="14.480689">
+			<name>Zric Kvitkov</name>
+			<desc>pristupno prilezitostne</desc>
+			<link href="http://www.hrady.cz/index.php?OID=195">
+				<text>http://www.hrady.cz/index.php?OID=195</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Kvitkov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>470 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.643065" lon="14.509288">
+			<name>Zric Frydlant Zahradky u Ceske Lipy</name>
+			<desc>volne pristupno, (nepatrne zbytky zdi)</desc>
+			<link href="http://www.turistika.cz/mista/zricenina-hradu-frydlant">
+				<text>http://www.turistika.cz/mista/zricenina-hradu-frydlant</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Zahradky u Ceske Lipy</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>470 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.856951" lon="14.582060">
+			<name>Zric Tolstejn Jiretin pod Jedlovou</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.luzicke-hory.cz/mista/index.php?pg=zmtolsc">
+				<text>http://www.luzicke-hory.cz/mista/index.php?pg=zmtolsc</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Jiretin pod Jedlovou</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>407 56</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.724544" lon="14.323114">
+			<name>Zric Ostry Frantiskov nad Ploucnici</name>
+			<desc>volne pristupno</desc>
+			<link href="http://zriceniny.eu/index.php?pg=detail">
+				<text>http://zriceniny.eu/index.php?pg=detail</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Frantiskov nad Ploucnici</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>407 23</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.657511" lon="14.123842">
+			<name>Zric Varta Velke Brezno</name>
+			<desc>volne pristupno, (nepatrne zbytky zdi)</desc>
+			<link href="http://www.hrady.cz/index.php?OID=436">
+				<text>http://www.hrady.cz/index.php?OID=436</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Velke Brezno</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>403 23</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.685223" lon="13.855476">
+			<name>Zric Krupka, Rosenberg</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=189">
+				<text>http://www.hrady.cz/index.php?OID=189</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Horska 12</gpxx:StreetAddress>
+						<gpxx:City>Krupka</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>417 41</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.695880" lon="13.889390">
+			<name>Zric Kysperk Uncin</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=197">
+				<text>http://www.hrady.cz/index.php?OID=197</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Uncin</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>417 42</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.638554" lon="13.860438">
+			<name>Zric Doubravka Teplice-Trnovany</name>
+			<desc>Hrad je volne pristupny v navstevnich hodinach. </desc>
+			<link href="http://www.hrad-doubravka.cz/radio">
+				<text>http://www.hrad-doubravka.cz/radio</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Doubravska 104</gpxx:StreetAddress>
+						<gpxx:City>Teplice-Trnovany</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>415 01</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420417537391</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.594482" lon="16.137747">
+			<name>Zric Strmen Teplice nad Metuji</name>
+			<desc>volne pristupno, (nepatrne zbytky zdi)</desc>
+			<link href="http://www.hrady.cz/index.php?OID=573">
+				<text>http://www.hrady.cz/index.php?OID=573</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Strmenske podhradi</gpxx:StreetAddress>
+						<gpxx:City>Teplice nad Metuji</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>549 57</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.498094" lon="13.960651">
+			<name>Zric Skalka Vlastislav 9</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=281">
+				<text>http://www.hrady.cz/index.php?OID=281</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Vlastislav 9</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>411 14</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.481022" lon="13.906986">
+			<name>Zric Blesno Trebivlice-Blesno</name>
+			<desc>volne pristupno, zanikly</desc>
+			<link href="http://www.hrady.cz/index.php?OID=803">
+				<text>http://www.hrady.cz/index.php?OID=803</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Trebivlice-Blesno</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>411 15</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.490045" lon="13.923446">
+			<name>Zric Oltarik Podsedice-Dekovka</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=233">
+				<text>http://www.hrady.cz/index.php?OID=233</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Podsedice-Dekovka</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>411 15</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.531485" lon="13.951210">
+			<name>Zric Ostry Trebenice-Kocourov</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=240">
+				<text>http://www.hrady.cz/index.php?OID=240</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Trebenice-Kocourov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>411 15</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.490197" lon="13.984662">
+			<name>Zric Kostalov Jenice</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=182">
+				<text>http://www.hrady.cz/index.php?OID=182</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Kostalov</gpxx:StreetAddress>
+						<gpxx:City>Jenice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>411 15</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.261454" lon="14.716315">
+			<name>Zric Sobeslav</name>
+			<link href="http://www.hrady.cz/index.php?OID=286">
+				<text>http://www.hrady.cz/index.php?OID=286</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Horni prikopy 76/23</gpxx:StreetAddress>
+						<gpxx:City>Sobeslav</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>392 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.611322" lon="17.681744">
+			<name>Zric Puchart Potstat</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/?OID=615">
+				<text>http://www.hrady.cz/?OID=615</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Kyzlirov</gpxx:StreetAddress>
+						<gpxx:City>Potstat</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>753 62</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.153447" lon="14.611012">
+			<name>Zric Jenstejn</name>
+			<desc>IV-X ct-ne 10-12 13-16:30</desc>
+			<link href="http://www.jenstejn.com/index.php?nid=6150">
+				<text>http://www.jenstejn.com/index.php?nid=6150</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>V Podhradi 52</gpxx:StreetAddress>
+						<gpxx:City>Jenstejn</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>250 73</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420607862177</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.862527" lon="18.096821">
+			<name>Zric Velka Polom-tvrz</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=1854">
+				<text>http://www.hrady.cz/index.php?OID=1854</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>9. kvetna</gpxx:StreetAddress>
+						<gpxx:City>Velka Polom</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>747 64</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.324220" lon="16.641696">
+			<name>Zric Novy Hrad u Adamova</name>
+			<desc>VII-VIII ut-ne 10-17</desc>
+			<link href="http://www.novyhradublanska.info/">
+				<text>http://www.novyhradublanska.info/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Olomucany 59</gpxx:StreetAddress>
+						<gpxx:City>Adamov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>679 04</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420516446221</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="48.775138" lon="14.510869">
+			<name>Zric Poresin</name>
+			<desc>Dostupne pouze pesky po cely rok</desc>
+			<link href="http://www.poresin.wbs.cz/">
+				<text>http://www.poresin.wbs.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Poresin</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>382 41</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="48.832242" lon="14.479229">
+			<name>Zric Velesin Sedlce</name>
+			<desc>volne pristupno</desc>
+			<link href="http://http://www.hradynamalsi.cz/velesin.htm">
+				<text>http://http://www.hradynamalsi.cz/velesin.htm</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Sedlce</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>374 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.357396" lon="16.236119">
+			<name>Zric Frymburk Novy Hradek</name>
+			<desc>prilezitostne pristupno</desc>
+			<link href="http://hrad-frymburk.webnode.cz/">
+				<text>http://hrad-frymburk.webnode.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Hradni 184</gpxx:StreetAddress>
+						<gpxx:City>Novy Hradek</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>549 22</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420725044901</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.620515" lon="18.227853">
+			<name>Zric Hukvaldy</name>
+			<desc>IV,X so-ne 9-16, V-VIII ut-ne 9-18, IX ut-ne 9-17</desc>
+			<link href="http://www.janackovyhukvaldy.cz/">
+				<text>http://www.janackovyhukvaldy.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Hukvaldy</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>739 46</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420604618144</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.592332" lon="18.116235">
+			<name>Zric Stramberk - Truba</name>
+			<link href="http://www.mesto-stramberk.cz/">
+				<text>http://www.mesto-stramberk.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Jaronkova</gpxx:StreetAddress>
+						<gpxx:City>Stramberk</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>742 66</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420774668045</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.582803" lon="17.963376">
+			<name>Zric Stary Jicin</name>
+			<link href="http://www.stary-jicin.cz/turista/hrad-stary-jicin/">
+				<text>http://www.stary-jicin.cz/turista/hrad-stary-jicin/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Stary Jicin</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>742 31</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.926742" lon="14.422678">
+			<name>Zric Brtnicky hradek Stare Krecany-Brtniky</name>
+			<desc>volne pristupno</desc>
+			<link href="http://www.hrady.cz/index.php?OID=744">
+				<text>http://www.hrady.cz/index.php?OID=744</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Stare Krecany-Brtniky</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>407 60</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.481277" lon="16.661507">
+			<name>Zric Boskovice</name>
+			<desc>IV,X so-ne 10-16, V,VI,IX ut-pa 10-16, so-ne 10-18, VII-VIII denne 9-18</desc>
+			<link href="http://www.hradboskovice.cz/">
+				<text>http://www.hradboskovice.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Podhradi</gpxx:StreetAddress>
+						<gpxx:City>Boskovice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>680 01</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420516452043</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="48.934214" lon="15.714971">
+			<name>Zric Cornstejn Bitov</name>
+			<desc>VI-IX denne 9-17</desc>
+			<link href="http://www.znojmuz.cz/">
+				<text>http://www.znojmuz.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Bitov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>671 10</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420515282211</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.882837" lon="14.730255">
+			<name>Zric Zlenice Javornik</name>
+			<link href="http://www.zlenice.cz/">
+				<text>http://www.zlenice.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Posazavska</gpxx:StreetAddress>
+						<gpxx:City>Javornik</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>257 22</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.019444" lon="14.471389">
+			<name>Zric Novy Hrad u Kunratic Praha 4-Kunratice</name>
+			<link href="http://cs.wikipedia.org/wiki/Nov%C3%BD_hrad_u_Kunratic">
+				<text>http://cs.wikipedia.org/wiki/Nov%C3%BD_hrad_u_Kunratic</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Kunraticky les</gpxx:StreetAddress>
+						<gpxx:City>Praha 4-Kunratice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>148 00</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.080033" lon="15.812867">
+			<name>Zric Kuneticka hora Stare Hradiste</name>
+			<desc>ut-ne 9.30-17.30 (duben,zari,rijen pouze so-ne)</desc>
+			<link href="http://www.hrad-kunetickahora.cz/">
+				<text>http://www.hrad-kunetickahora.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Kunetice</gpxx:StreetAddress>
+						<gpxx:City>Stare Hradiste</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>533 52</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420466415428</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.544830" lon="15.382866">
+			<name>Zric Orlik Humpolec</name>
+			<desc>IV,X so-ne 10-17, V,VI,IX ct-ne 10-17, VII-VIII ut-ne 9-18</desc>
+			<link href="http://www.castrum.cz/hrad-orlik/">
+				<text>http://www.castrum.cz/hrad-orlik/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Rozkos</gpxx:StreetAddress>
+						<gpxx:City>Humpolec</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>396 01</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420607461131</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.389933" lon="14.723235">
+			<name>Zric Kozi hradek Sezimovo Usti</name>
+			<desc>V-IX ut-ne 10-16:30</desc>
+			<link href="http://kozihradek.zde.cz/">
+				<text>http://kozihradek.zde.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Sezimovo Usti</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>391 02</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420381276707</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.331992" lon="13.228601">
+			<name>Zric Klenova Klenova 1</name>
+			<desc>IV,X ut-ne 10-12 12:30-16, V,VI,IX ut-ne 9-12 12:30-17, VII-VIII denne 9-12 12:30-18</desc>
+			<link href="http://www.gkk.cz/cz/hrad-a-zamek/info/">
+				<text>http://www.gkk.cz/cz/hrad-a-zamek/info/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Klenova 1</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>340 21</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420376392208</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.679820" lon="12.667016">
+			<name>Zric Primda</name>
+			<desc>volne pristupne</desc>
+			<link href="http://www.turistika.cz/mista/primda">
+				<text>http://www.turistika.cz/mista/primda</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Primda</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>348 06</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.434206" lon="14.014242">
+			<name>Zric Hazmburk Klapy</name>
+			<desc>VIII denne 10-18:30, IX ut-ne 10-18, X st-ne 10-16</desc>
+			<link href="http://www.hrad-hazmburk.cz/">
+				<text>http://www.hrad-hazmburk.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Klapy</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>411 16</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420606175052</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.886834" lon="13.881596">
+			<name>Zric Zebrak Tocnik</name>
+			<desc>IV-V,IX so-ne 10-13 14-16, VI so-ne 10-13 14-17, VII-VIII ut-ne 9-13 14-18</desc>
+			<link href="http://www.tocnik.com/?Zebrak">
+				<text>http://www.tocnik.com/?Zebrak</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Tocnik</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>267 51</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420311533202</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.017385" lon="13.639054">
+			<name>Zric Krakovec Petrovice</name>
+			<desc>III-IV,X so-ne 10-12 13-16, V,IX so-ne 9-12 13-17, VI-VIII ut-ne 9-12 13-18</desc>
+			<link href="http://www.hrad-krakovec.cz/">
+				<text>http://www.hrad-krakovec.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Krakovec 4</gpxx:StreetAddress>
+						<gpxx:City>Petrovice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>270 35</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420313549302</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.164127" lon="14.255447">
+			<name>Zric Okor</name>
+			<desc>IV-V,X-XII so-ne 10-16, VI-IX ut-ne 10-16</desc>
+			<link href="http://www.hrad-okor.cz/">
+				<text>http://www.hrad-okor.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Okor</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>252 64</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420233900675</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.326163" lon="12.733763">
+			<name>Zric Nejdek</name>
+			<desc>nepristupno</desc>
+			<link href="http://www.hrady.cz/?OID=219">
+				<text>http://www.hrady.cz/?OID=219</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Zizkova</gpxx:StreetAddress>
+						<gpxx:City>Nejdek</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>362 21</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.309868" lon="17.100579">
+			<name>Zric Zulova(kostel)</name>
+			<desc>pristupno prilezitostne</desc>
+			<link href="http://www.hrady.cz/?OID=339">
+				<text>http://www.hrady.cz/?OID=339</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Zulova</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>790 65</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.027169" lon="17.646114">
+			<name>Zric Uhersky Brod(zanikly hrad)</name>
+			<desc>zanikly hrad</desc>
+			<link href="http://www.hrady.cz/index.php?OID=852">
+				<text>http://www.hrady.cz/index.php?OID=852</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Hradni namesti</gpxx:StreetAddress>
+						<gpxx:City>Uhersky Brod</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>688 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.581867" lon="14.646476">
+			<name>Zric Myslin Doksy</name>
+			<desc>pristupno po vode</desc>
+			<link href="http://www.hrady.cz/index.php?OID=692">
+				<text>http://www.hrady.cz/index.php?OID=692</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Doksy</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>472 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.653905" lon="13.672657">
+			<name>Zric Homberk Visky</name>
+			<desc>volne pristupny</desc>
+			<link href="http://www.hrady.cz/index.php?OID=457">
+				<text>http://www.hrady.cz/index.php?OID=457</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Visky</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>338 43</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.832654" lon="14.701349">
+			<name>Zric Mrac Mrac 81</name>
+			<desc>Dnes je pristup pouze na nadvori.</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Mrac 81</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>257 21</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.445272" lon="13.256909">
+			<name>Zric Hasistejn Misto</name>
+			<desc>IV-X: denne 10-18</desc>
+			<link href="http://hasistejn.cz/">
+				<text>http://hasistejn.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Misto</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>431 58</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420474651275</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.043994" lon="15.364525">
+			<name>Zric Tynec nad Labem - tvrz</name>
+			<desc>pristupny na vlastni nebezpeci</desc>
+			<link href="http://turistickyatlas.cz/vse/misto/7171_tvrz-tynec-nad-labem.html">
+				<text>http://turistickyatlas.cz/vse/misto/7171_tvrz-tynec-nad-labem.html</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Na Hrade</gpxx:StreetAddress>
+						<gpxx:City>Tynec nad Labem</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>281 26</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.904671" lon="15.752981">
+			<name>Zric Rabstejn</name>
+			<desc>volne pristupny</desc>
+			<link href="http://www.turistik.cz/cz/kraje/pardubicky-kraj/okres-chrudim/rabstejnska-lhota/zricenina-rabstejn-u-rabstejna/">
+				<text>http://www.turistik.cz/cz/kraje/pardubicky-kraj/okres-chrudim/rabstejnska-lhota/zricenina-rabstejn-u-rabstejna/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Rabstejn</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>537 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.356359" lon="15.753676">
+			<name>Zric Velky Vrestov</name>
+			<desc>volne pristupny, (pouze kopec na kterem hrad staval)</desc>
+			<link href="http://www.hrady.cz/index.php?OID=579">
+				<text>http://www.hrady.cz/index.php?OID=579</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Velky Vrestov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>544 54</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.040604" lon="16.427500">
+			<name>Zric Zampach</name>
+			<desc>volne pristupne</desc>
+			<link href="http://zriceniny.eu/index.php?pg=detail">
+				<text>http://zriceniny.eu/index.php?pg=detail</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Zampach</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>564 01</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.613338" lon="13.497514">
+			<name>Zric Vlctejn</name>
+			<desc>volny pristup</desc>
+			<link href="http://hrady.dejiny.cz/vlctejn/">
+				<text>http://hrady.dejiny.cz/vlctejn/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Vlctejn</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>332 04</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="48.804521" lon="16.832331">
+			<name>Zric Lednice - Januv hrad</name>
+			<desc>IV,X so-ne 9-16:15, V-IX ut-ne 9-16:15</desc>
+			<link href="http://www.januv-hrad.cz/">
+				<text>http://www.januv-hrad.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Lednice</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>691 44</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420519355134</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.830616" lon="14.592832">
+			<name>Zric Tynec nad Sazavou</name>
+			<desc>hrad a muzeum</desc>
+			<link href="http://www.mestotynec.cz/muzeum/">
+				<text>http://www.mestotynec.cz/muzeum/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Nadvori Hodejovskeho 48</gpxx:StreetAddress>
+						<gpxx:City>Tynec nad Sazavou</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>257 41</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420775217230</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.867219" lon="14.955863">
+			<name>Zric Talmberk</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Talmberk</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>285 06</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.640157" lon="14.238153">
+			<name>Zric Vrskamyk (Hunec) Kamyk nad Vltavou</name>
+			<desc>volny pristup</desc>
+			<link href="http://www.obeckamyk.cz/index.php/zajimavosti/vrskamyk">
+				<text>http://www.obeckamyk.cz/index.php/zajimavosti/vrskamyk</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Kamyk nad Vltavou</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>262 63</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.024024" lon="15.230473">
+			<name>Zric Landstejn Stare Mesto pod Landstejnem-Landstejn</name>
+			<desc>(IV) so-ne 9-16, (V) ut-ne 9-16, (VI-VIII) ut-ne 9-17:15, (IX) ut-ne 9-16, (X) so-ne 9-16</desc>
+			<link href="http://www.hrad-landstejn.eu/">
+				<text>http://www.hrad-landstejn.eu/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Stare Mesto pod Landstejnem-Landstejn</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>378 81</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420384498580</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.912143" lon="14.450992">
+			<name>Zric Kyjovsky hradek (Horni Karlstejn) Krasna Lipa - Kyjov</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Krasna Lipa - Kyjov</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.925589" lon="14.439967">
+			<name>Zric Vlci hradek</name>
+		</wpt>
+		<wpt lat="50.868636" lon="14.351872">
+			<name>Zric hradu Saunstejn</name>
+			<desc>skalni hrad - pekna vyhlidka (Loupeznicky hrad)</desc>
+		</wpt>
+		<wpt lat="49.704177" lon="13.477269">
+			<name>Zric kostela sv. Vavrince Stary Plzenec</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Stary Plzenec</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>332 02</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.212940" lon="15.377370">
+			<name>Zric Sternberk (Stamberk) Lhotka</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Lhotka</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.311300" lon="16.966660">
+			<name>Zric Dedice u Vyskova Hamiltony u Vyskova</name>
+			<desc>prichozi cesta pred lavkou potoka</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Hamiltony u Vyskova</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="48.899364" lon="15.685903">
+			<name>Zric Frejstejn Podhradi nad Dyji</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Podhradi nad Dyji</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.811644" lon="14.633583">
+			<name>Zric Milstejn</name>
+		</wpt>
+		<wpt lat="50.805731" lon="14.616134">
+			<name>Zric Rousinovsky hradek</name>
+			<desc>Terenni pozustatky</desc>
+		</wpt>
+		<wpt lat="50.807364" lon="14.749553">
+			<name>Zric Stary Falkenburk</name>
+		</wpt>
+		<wpt lat="50.807539" lon="14.706100">
+			<name>Zric Zamecky vrch</name>
+		</wpt>
+		<wpt lat="50.813881" lon="14.796058">
+			<name>Zric Vetrov</name>
+		</wpt>
+		<wpt lat="50.804439" lon="14.457631">
+			<name>Zric Fredevald - Pusty zamek</name>
+		</wpt>
+		<wpt lat="50.674281" lon="14.842874">
+			<name>Zric Stohanek</name>
+		</wpt>
+		<wpt lat="49.592278" lon="16.244372">
+			<name>Zric Dalecin</name>
+		</wpt>
+		<wpt lat="49.833440" lon="15.653703">
+			<name>Zric Oheb</name>
+		</wpt>
+		<wpt lat="49.337008" lon="16.651344">
+			<name>Zric Certuv hradek</name>
+		</wpt>
+		<wpt lat="50.524590" lon="15.520385">
+			<name>Zric Levin</name>
+		</wpt>
+		<wpt lat="50.340489" lon="15.827103">
+			<name>Zric Rotemberk</name>
+		</wpt>
+		<wpt lat="50.334222" lon="15.823060">
+			<name>Zric Vrazba</name>
+		</wpt>
+		<wpt lat="50.361150" lon="15.804911">
+			<name>Zric Kozamberk</name>
+		</wpt>
+		<wpt lat="50.364178" lon="15.815079">
+			<name>Zric Zamecky Vrch</name>
+		</wpt>
+		<wpt lat="50.522189" lon="15.064539">
+			<name>Zric Hynsta</name>
+		</wpt>
+		<wpt lat="50.531375" lon="15.064803">
+			<name>Zric Stare Hrady</name>
+		</wpt>
+		<wpt lat="50.527983" lon="15.034103">
+			<name>Zric Klamorna</name>
+		</wpt>
+		<wpt lat="50.558617" lon="15.163575">
+			<name>Zric Kavciny</name>
+		</wpt>
+		<wpt lat="50.561944" lon="15.127222">
+			<name>Zric Chlum (Kozlov)</name>
+		</wpt>
+		<wpt lat="50.467218" lon="15.329153">
+			<name>Zric Brada</name>
+		</wpt>
+		<wpt lat="50.531594" lon="15.031888">
+			<name>Zric Drabske Svetnicky</name>
+		</wpt>
+		<wpt lat="50.197858" lon="16.339123">
+			<name>Zric Rychemberk Liberk</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Liberk</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.333749" lon="15.725758">
+			<name>Zric Rokstejn</name>
+		</wpt>
+		<wpt lat="50.854778" lon="14.405539">
+			<name>Zric skalniho hradu Falkenstejn Jetrichovice</name>
+			<desc>hure pristupny</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Jetrichovice</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.614047" lon="15.412642">
+			<name>Zric Lipnice nad Sazavou</name>
+		</wpt>
+		<wpt lat="49.584328" lon="14.467819">
+			<name>Zric Zverinec</name>
+		</wpt>
+		<wpt lat="49.339214" lon="14.500042">
+			<name>Zric Dobronice</name>
+		</wpt>
+		<wpt lat="49.393797" lon="14.560219">
+			<name>Zric Pribenice</name>
+		</wpt>
+		<wpt lat="49.806903" lon="12.867003">
+			<name>Zric Volfstejn</name>
+		</wpt>
+		<wpt lat="49.471294" lon="12.704608">
+			<name>Zric Stary Herstejn</name>
+		</wpt>
+		<wpt lat="50.602042" lon="15.908954">
+			<name>Zric Rechenburk Libec</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Libec</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.501470" lon="15.732038">
+			<name>Zric Bradlo</name>
+		</wpt>
+		<wpt lat="50.668635" lon="15.791174">
+			<name>Zric Aichelburg</name>
+		</wpt>
+		<wpt lat="49.111436" lon="14.460201">
+			<name>Zric Karluv Hradek</name>
+		</wpt>
+		<wpt lat="50.710629" lon="14.211855">
+			<name>Zric Vrabinec</name>
+		</wpt>
+		<wpt lat="50.221544" lon="12.575822">
+			<name>Zric Hartenberk Josefov - Hrebeny</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Josefov - Hrebeny</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.090593" lon="16.248271">
+			<name>Zric Templstejn Jamolice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Jamolice</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.305422" lon="16.038770">
+			<name>Zric Templstejn Dolni Hermanice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Dolni Hermanice</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.499119" lon="16.909986">
+			<name>zric Certuv Hradek</name>
+		</wpt>
+		<wpt lat="49.479310" lon="16.945664">
+			<name>zric Jezuv hrad</name>
+		</wpt>
+		<wpt lat="49.271923" lon="15.733869">
+			<name>zric Streliste</name>
+		</wpt>
+		<wpt lat="49.287154" lon="16.100708">
+			<name>zric Tasov</name>
+		</wpt>
+		<wpt lat="49.379012" lon="16.017616">
+			<name>zric Mostiste</name>
+		</wpt>
+		<wpt lat="48.976569" lon="17.269615">
+			<name>Zric Bzenec</name>
+		</wpt>
+		<wpt lat="50.016436" lon="14.804320">
+			<name>Zric Sember</name>
+		</wpt>
+		<wpt lat="49.875050" lon="14.751269">
+			<name>Zric Stara Duba</name>
+		</wpt>
+		<wpt lat="50.556634" lon="14.981422">
+			<name>Zric Zasadka Mohelnice nad Jizerou</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Mohelnice nad Jizerou</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.804928" lon="17.773385">
+			<name>Zric Vikstejn Podhradi(Vitkov)</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Podhradi(Vitkov)</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.468108" lon="14.915828">
+			<name>Zric ZVIRETICE</name>
+		</wpt>
+		<wpt lat="50.554485" lon="14.475785">
+			<name>Zric CAP Beskov</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Beskov</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.991750" lon="14.652000">
+			<name>Zric RICANY U PRAHY</name>
+		</wpt>
+		<wpt lat="50.556719" lon="14.580042">
+			<name>Zric VRCHOVANY</name>
+		</wpt>
+		<wpt lat="49.900247" lon="13.547671">
+			<name>Zric Libstejn Liblin</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Liblin</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.562289" lon="15.167239">
+			<name>Zric VALDSTEJN</name>
+		</wpt>
+		<wpt lat="50.510637" lon="15.026148">
+			<name>Zric Valecov Bosen - Valecov</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Bosen - Valecov</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.642075" lon="15.188669">
+			<name>Zric VRANOV, PANTHEON, SKALA</name>
+		</wpt>
+		<wpt lat="50.521826" lon="16.208706">
+			<name>Zric Vlcinec - Velke Petrovice</name>
+		</wpt>
+		<wpt lat="50.143080" lon="17.321762">
+			<name>Zric Pusty zamek - Rabenstejn Vrbno p. Pradedem - Zelezna</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Vrbno p. Pradedem - Zelezna</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.261065" lon="17.420196">
+			<name>Zric Leuchtenstejn Zlate Hory - Rozmital</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Zlate Hory - Rozmital</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.236989" lon="17.382148">
+			<name>Zric Edelstejn Zlate Hory - Dolni Udoli</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Zlate Hory - Dolni Udoli</gpxx:City>
+						<gpxx:Country></gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="48.990871" lon="15.990877">
+			<name>zric Jevisovice - hrad</name>
+		</wpt>
+		<wpt lat="49.551404" lon="13.099423">
+			<name>Zric LACEMBOK</name>
+		</wpt>
+		<wpt lat="50.583593" lon="15.828346">
+			<name>Zric Brecstejn</name>
+		</wpt>
+		<wpt lat="50.141537" lon="13.036421">
+			<name>Zric HARTENSTEJN</name>
+		</wpt>
+		<wpt lat="50.042164" lon="13.288822">
+			<name>Zric RABSTEJN N. STRE</name>
+		</wpt>
+		<wpt lat="50.386100" lon="13.107500">
+			<name>Zric Perstejn</name>
+		</wpt>
+		<wpt lat="50.372821" lon="13.146656">
+			<name>Zric Sumburk (Sumna)</name>
+		</wpt>
+		<wpt lat="48.936520" lon="16.054140">
+			<name>Zric LAPIKUS</name>
+		</wpt>
+		<wpt lat="49.549869" lon="14.826475">
+			<name>Zric Selmberk</name>
+		</wpt>
+		<wpt lat="50.240890" lon="13.711570">
+			<name>Zric PRAVDA</name>
+		</wpt>
+		<wpt lat="49.795094" lon="13.457608">
+			<name>Zric Vezka</name>
+		</wpt>
+		<wpt lat="49.654094" lon="15.619047">
+			<name>Zric Ronovec</name>
+		</wpt>
+		<wpt lat="49.544661" lon="16.336564">
+			<name>Zric Pysolec</name>
+		</wpt>
+		<wpt lat="49.605247" lon="15.630039">
+			<name>Zric Hadrburk</name>
+		</wpt>
+		<wpt lat="49.714772" lon="15.713600">
+			<name>Zric Sokolovec</name>
+		</wpt>
+		<wpt lat="49.530325" lon="16.326628">
+			<name>Zric ZUBSTEJN</name>
+		</wpt>
+		<wpt lat="49.538031" lon="16.304731">
+			<name>Zric AUERSPERK</name>
+		</wpt>
+		<wpt lat="49.879203" lon="15.586606">
+			<name>Zric Lichnice</name>
+		</wpt>
+		<wpt lat="49.198181" lon="15.178639">
+			<name>Zric Tumuv hrad</name>
+		</wpt>
+		<wpt lat="50.285924" lon="13.910084">
+			<name>Zric ZEROTIN</name>
+		</wpt>
+		<wpt lat="48.926512" lon="16.172447">
+			<name>Zric ZEROTICE</name>
+		</wpt>
+		<wpt lat="50.167989" lon="14.917275">
+			<name>Zric Mydlovary</name>
+		</wpt>
+		<wpt lat="50.137969" lon="14.851131">
+			<name>Zric BRISTVI</name>
+		</wpt>
+		<wpt lat="49.376767" lon="16.512383">
+			<name>Zric TRMACOV</name>
+		</wpt>
+		<wpt lat="49.371700" lon="16.720820">
+			<name>Zric Blansek</name>
+		</wpt>
+		<wpt lat="49.165540" lon="13.568160">
+			<name>Zric PUSTY HRADEK</name>
+		</wpt>
+		<wpt lat="50.697710" lon="14.098990">
+			<name>Zric BLANSKO</name>
+		</wpt>
+		<wpt lat="49.356381" lon="17.665061">
+			<name>Zric KRIDLO (BRUSNE)</name>
+		</wpt>
+		<wpt lat="49.366525" lon="17.734308">
+			<name>Zric OBRANY (Chvalcov)</name>
+		</wpt>
+		<wpt lat="49.191942" lon="15.716744">
+			<name>Zric STEMECHY</name>
+		</wpt>
+		<wpt lat="49.103542" lon="17.216011">
+			<name>Zric CIMBURK</name>
+		</wpt>
+		<wpt lat="49.664170" lon="13.553540">
+			<name>Zric LOPATA</name>
+		</wpt>
+		<wpt lat="49.974000" lon="13.788570">
+			<name>Zric TYROV</name>
+		</wpt>
+		<wpt lat="49.781033" lon="13.311925">
+			<name>Zric KYJOV</name>
+		</wpt>
+		<wpt lat="49.330956" lon="14.852533">
+			<name>Zric CHOUSTNIK</name>
+		</wpt>
+		<wpt lat="50.674190" lon="14.765840">
+			<name>Zric RALSKO</name>
+		</wpt>
+		<wpt lat="49.854880" lon="16.143850">
+			<name>Zric NOVE HRADY U SKUTCE</name>
+		</wpt>
+		<wpt lat="50.623733" lon="15.190756">
+			<name>Zric ZBIROHY</name>
+		</wpt>
+		<wpt lat="50.594339" lon="15.224203">
+			<name>Zric ROTSTEJN</name>
+		</wpt>
+		<wpt lat="50.205010" lon="14.360420">
+			<name>Zric LIBCICE NAD VLTAVOU</name>
+		</wpt>
+		<wpt lat="49.175210" lon="16.048050">
+			<name>Zric KOZLOV</name>
+		</wpt>
+		<wpt lat="49.171140" lon="16.051440">
+			<name>Zric HOLOUBEK</name>
+		</wpt>
+		<wpt lat="49.162660" lon="16.088530">
+			<name>Zric KOKSTEJN</name>
+		</wpt>
+		<wpt lat="49.138860" lon="16.098280">
+			<name>Zric CALONICE</name>
+		</wpt>
+		<wpt lat="49.097130" lon="16.153490">
+			<name>Zric RABSTEJN</name>
+		</wpt>
+		<wpt lat="49.165410" lon="16.167990">
+			<name>Zric LAMBERK</name>
+		</wpt>
+		<wpt lat="49.001940" lon="15.931970">
+			<name>Zric BUKOVINA</name>
+		</wpt>
+		<wpt lat="49.083010" lon="15.791090">
+			<name>Zric Kaple svateho Jakuba Vetsiho</name>
+		</wpt>
+		<wpt lat="49.281000" lon="16.080580">
+			<name>Zric DUB</name>
+		</wpt>
+		<wpt lat="49.270890" lon="15.344270">
+			<name>Zric JANSTEJN</name>
+		</wpt>
+		<wpt lat="50.416340" lon="15.317250">
+			<name>Zric VELIS</name>
+		</wpt>
+		<wpt lat="50.488980" lon="15.414720">
+			<name>Zric BRADLEC</name>
+		</wpt>
+		<wpt lat="49.175653" lon="16.421300">
+			<name>Zric BUCIN</name>
+		</wpt>
+		<wpt lat="49.068922" lon="16.471322">
+			<name>zric ROSA COELI</name>
+		</wpt>
+		<wpt lat="48.916825" lon="13.708194">
+			<name>Zric Kunzvart u obce Strazny</name>
+		</wpt>
+		<wpt lat="50.493444" lon="15.445603">
+			<name>zric KUMBURK</name>
+		</wpt>
+		<wpt lat="50.513997" lon="15.337969">
+			<name>zric KOZLOV</name>
+		</wpt>
+		<wpt lat="48.703211" lon="14.478669">
+			<name>Zric LOUZEK u Skoronic</name>
+		</wpt>
+		<wpt lat="49.303108" lon="17.740044">
+			<name>Zric LUKOV</name>
+		</wpt>
+		<wpt lat="49.091622" lon="18.020075">
+			<name>Zric BRUMOV</name>
+		</wpt>
+		<wpt lat="49.122669" lon="17.937436">
+			<name>Zric VLACHOVICE</name>
+		</wpt>
+		<wpt lat="49.587369" lon="18.160147">
+			<name>Zric KOPRIVNICE</name>
+		</wpt>
+		<wpt lat="49.780044" lon="13.190611">
+			<name>Zric BUBEN</name>
+		</wpt>
+		<wpt lat="50.736014" lon="14.580739">
+			<name>Zric SLOUP V CECHACH</name>
+		</wpt>
+		<wpt lat="49.538560" lon="13.366840">
+			<name>Zric Skala</name>
+		</wpt>
+		<wpt lat="49.775103" lon="13.893397">
+			<name>Zric VALDEK</name>
+		</wpt>
+		<wpt lat="49.947867" lon="17.150800">
+			<name>Zric RABSTEJN</name>
+		</wpt>
+		<wpt lat="49.806317" lon="17.308003">
+			<name>Zric WALDHAUSEN</name>
+		</wpt>
+		<wpt lat="49.681017" lon="13.464564">
+			<name>Zric RADYNE</name>
+		</wpt>
+		<wpt lat="50.478689" lon="14.082258">
+			<name>Zric WINDSOR</name>
+		</wpt>
+		<wpt lat="48.957070" lon="13.929250">
+			<name>Zric Hus</name>
+		</wpt>
+		<wpt lat="49.135936" lon="14.006594">
+			<name>Zric Helfenburk u Bavorova</name>
+		</wpt>
+		<wpt lat="49.499644" lon="14.629136">
+			<name>Zric BOROTIN U TABORA</name>
+		</wpt>
+		<wpt lat="50.436117" lon="14.888581">
+			<name>Zric Michalovice</name>
+		</wpt>
+		<wpt lat="50.477336" lon="15.275217">
+			<name>Zric PAREZ</name>
+		</wpt>
+		<wpt lat="50.516110" lon="15.230830">
+			<name>Zric TROSKY</name>
+		</wpt>
+		<wpt lat="49.517160" lon="17.627920">
+			<name>Zric HELFSTYN</name>
+		</wpt>
+		<wpt lat="50.373040" lon="14.874600">
+			<name>Zric PISKOVA LHOTA</name>
+		</wpt>
+		<wpt lat="50.725850" lon="14.567170">
+			<name>Zric PIHEL</name>
+		</wpt>
+		<wpt lat="49.743320" lon="14.052640">
+			<name>Zric PICIN</name>
+		</wpt>
+		<wpt lat="50.119650" lon="13.438990">
+			<name>Zric PETROHRAD</name>
+		</wpt>
+		<wpt lat="48.858050" lon="16.637170">
+			<name>Zric PERNA</name>
+		</wpt>
+		<wpt lat="48.825990" lon="14.685360">
+			<name>Zric PECIN U TRHOVYCH</name>
+		</wpt>
+		<wpt lat="50.161300" lon="16.399770">
+			<name>Zric PECIN U RYCHNOVA</name>
+		</wpt>
+		<wpt lat="48.746300" lon="14.229520">
+			<name>Zric PASOVARY</name>
+		</wpt>
+		<wpt lat="48.645270" lon="14.104470">
+			<name>Zric PASECNA</name>
+		</wpt>
+		<wpt lat="49.056840" lon="17.252730">
+			<name>Zric OSVETIMANY</name>
+		</wpt>
+		<wpt lat="49.797510" lon="12.900810">
+			<name>Zric OSTROVCE</name>
+		</wpt>
+		<wpt lat="50.162290" lon="14.676400">
+			<name>Zric OSTROV U BRANDYS</name>
+		</wpt>
+		<wpt lat="49.772380" lon="13.590530">
+			<name>Zric OSEK U ROKYCAN</name>
+		</wpt>
+		<wpt lat="50.631970" lon="15.174860">
+			<name>Zric ONDRIKOVICE</name>
+		</wpt>
+		<wpt lat="49.870230" lon="15.818100">
+			<name>Zric OCHOZ U NASAVRK</name>
+		</wpt>
+		<wpt lat="49.638660" lon="16.175370">
+			<name>Zric NOVY JIMRAMOV</name>
+		</wpt>
+		<wpt lat="49.960990" lon="13.161330">
+			<name>Zric NOVE MESTECKO U</name>
+		</wpt>
+		<wpt lat="49.553150" lon="14.011250">
+			<name>Zric NESTRASOVICE</name>
+		</wpt>
+		<wpt lat="50.207840" lon="13.293960">
+			<name>Zric NEPOMYSL - ZRIC.</name>
+		</wpt>
+		<wpt lat="49.414790" lon="13.064280">
+			<name>Zric NEMCICE U KDYNE</name>
+		</wpt>
+		<wpt lat="49.944900" lon="14.254860">
+			<name>Zric MORINKA</name>
+		</wpt>
+		<wpt lat="50.292540" lon="12.962920">
+			<name>Zric MORICOV</name>
+		</wpt>
+		<wpt lat="49.822980" lon="16.575110">
+			<name>Zric MLADEJOV NA MORA</name>
+		</wpt>
+		<wpt lat="49.711180" lon="17.007840">
+			<name>Zric MLADEC</name>
+		</wpt>
+		<wpt lat="49.430280" lon="16.213640">
+			<name>Zric MITROV</name>
+		</wpt>
+		<wpt lat="49.942650" lon="15.192420">
+			<name>Zric MISKOVICE</name>
+		</wpt>
+		<wpt lat="49.709190" lon="16.731810">
+			<name>Zric MESTECKO TRNAVKA</name>
+		</wpt>
+		<wpt lat="49.863380" lon="17.617450">
+			<name>Zric MEDLICE U BUD N</name>
+		</wpt>
+		<wpt lat="50.129050" lon="13.741430">
+			<name>Zric LUZNA U RAKOVNIK</name>
+		</wpt>
+		<wpt lat="50.040380" lon="16.920860">
+			<name>Zric LUZNA U HANUSOVI</name>
+		</wpt>
+		<wpt lat="49.885630" lon="16.033330">
+			<name>Zric LUZE ZRIC.KOSUMB</name>
+		</wpt>
+		<wpt lat="48.993490" lon="14.904510">
+			<name>Zric LUTOVA</name>
+		</wpt>
+		<wpt lat="48.838390" lon="15.907340">
+			<name>Zric LUKOV NAD DYJI</name>
+		</wpt>
+		<wpt lat="50.124840" lon="17.345000">
+			<name>Zric LUDVIKOV POD PRA</name>
+		</wpt>
+		<wpt lat="49.149360" lon="17.731550">
+			<name>Zric LUDKOVICE</name>
+		</wpt>
+		<wpt lat="49.875310" lon="14.741260">
+			<name>Zric LSTENI</name>
+		</wpt>
+		<wpt lat="49.628780" lon="14.863770">
+			<name>Zric LOUNOVICE POD BL</name>
+		</wpt>
+		<wpt lat="50.061390" lon="17.575060">
+			<name>Zric LOUCKY U ZATORU</name>
+		</wpt>
+		<wpt lat="49.699470" lon="13.351910">
+			<name>Zric LITICE U PLZNE</name>
+		</wpt>
+		<wpt lat="49.892630" lon="13.785050">
+			<name>Zric LISNA U ZBIROHA</name>
+		</wpt>
+		<wpt lat="49.469480" lon="14.645720">
+			<name>Zric LIDEROVICE</name>
+		</wpt>
+		<wpt lat="49.677840" lon="14.290990">
+			<name>Zric LICHOVY</name>
+		</wpt>
+		<wpt lat="50.215350" lon="13.715360">
+			<name>Zric LHOTA POD DZBANE</name>
+		</wpt>
+		<wpt lat="50.015130" lon="12.630740">
+			<name>Zric LAZNE KYNZVART</name>
+		</wpt>
+		<wpt lat="50.074700" lon="13.924860">
+			<name>Zric LANY - ZRIC.JIVN</name>
+		</wpt>
+		<wpt lat="49.994210" lon="16.453950">
+			<name>Zric LANSPERK</name>
+		</wpt>
+		<wpt lat="49.138800" lon="16.228290">
+			<name>Zric KUROSLEPY - ZRIC</name>
+		</wpt>
+		<wpt lat="49.945670" lon="13.891650">
+			<name>Zric KUBLOV</name>
+		</wpt>
+		<wpt lat="50.165270" lon="13.782960">
+			<name>Zric KRUSOVICE - ZRIC</name>
+		</wpt>
+		<wpt lat="50.244430" lon="13.816490">
+			<name>Zric KOZOJEDY</name>
+		</wpt>
+		<wpt lat="49.610950" lon="14.631440">
+			<name>Zric KOUTY U SMILKOVA</name>
+		</wpt>
+		<wpt lat="49.653180" lon="15.302980">
+			<name>Zric KOUTY U BOJISTE</name>
+		</wpt>
+		<wpt lat="50.572110" lon="15.382410">
+			<name>Zric KOSTALOV</name>
+		</wpt>
+		<wpt lat="48.988640" lon="17.782860">
+			<name>Zric KOMNA</name>
+		</wpt>
+		<wpt lat="50.018780" lon="15.220980">
+			<name>Zric KOLIN</name>
+		</wpt>
+		<wpt lat="50.052510" lon="16.251260">
+			<name>Zric KOLDIN</name>
+		</wpt>
+		<wpt lat="49.466520" lon="13.279810">
+			<name>Zric KOKSIN</name>
+		</wpt>
+		<wpt lat="49.794540" lon="12.735360">
+			<name>Zric KOCOV - ZRIC. KO</name>
+		</wpt>
+		<wpt lat="49.868810" lon="18.278630">
+			<name>Zric KOBLOV</name>
+		</wpt>
+		<wpt lat="48.845770" lon="16.640940">
+			<name>Zric KLENTNICE</name>
+		</wpt>
+		<wpt lat="49.748950" lon="13.542910">
+			<name>Zric KLABAVA</name>
+		</wpt>
+		<wpt lat="49.139680" lon="16.238810">
+			<name>Zric KETKOVICE - ZRIC</name>
+		</wpt>
+		<wpt lat="49.463750" lon="13.080250">
+			<name>Zric KANICE U DOMAZLI</name>
+		</wpt>
+		<wpt lat="49.235290" lon="16.678130">
+			<name>Zric KANICE</name>
+		</wpt>
+		<wpt lat="48.901670" lon="14.421730">
+			<name>Zric KAMENNY UJEZD</name>
+		</wpt>
+		<wpt lat="50.606330" lon="15.070720">
+			<name>Zric KAMENI</name>
+		</wpt>
+		<wpt lat="49.703180" lon="17.360820">
+			<name>Zric JIVOVA</name>
+		</wpt>
+		<wpt lat="50.954720" lon="15.262830">
+			<name>Zric JINDRICHOVICE PO</name>
+		</wpt>
+		<wpt lat="50.036120" lon="13.987480">
+			<name>Zric JINCOV U NIZBORA</name>
+		</wpt>
+		<wpt lat="49.621120" lon="15.241130">
+			<name>Zric JEZOV NAD ZELIVK</name>
+		</wpt>
+		<wpt lat="50.612450" lon="14.580140">
+			<name>Zric JESTREBI U CESKE</name>
+		</wpt>
+		<wpt lat="50.397230" lon="17.011900">
+			<name>Zric JAVORNIK-VES</name>
+		</wpt>
+		<wpt lat="50.364590" lon="16.982020">
+			<name>Zric JAVORNIK-MESTO</name>
+		</wpt>
+		<wpt lat="48.930600" lon="14.180400">
+			<name>Zric JARONIN-KUKLOV</name>
+		</wpt>
+		<wpt lat="50.369630" lon="12.911050">
+			<name>Zric JACHYMOV - ZRIC.</name>
+		</wpt>
+		<wpt lat="49.828580" lon="13.213310">
+			<name>Zric HUNCICE - ZRIC.F</name>
+		</wpt>
+		<wpt lat="49.671810" lon="17.429110">
+			<name>Zric HRUBA VODA - ZRI</name>
+		</wpt>
+		<wpt lat="50.205010" lon="17.325660">
+			<name>Zric HORNI UDOLI - ZR</name>
+		</wpt>
+		<wpt lat="48.920770" lon="13.711080">
+			<name>Zric HORNI SVETLE HOR</name>
+		</wpt>
+		<wpt lat="49.163800" lon="17.799650">
+			<name>Zric HORNI LHOTA U LU</name>
+		</wpt>
+		<wpt lat="50.792180" lon="14.435950">
+			<name>Zric HORNI KAMENICE</name>
+		</wpt>
+		<wpt lat="49.218210" lon="16.720480">
+			<name>Zric HORAKOV</name>
+		</wpt>
+		<wpt lat="49.401980" lon="16.777370">
+			<name>Zric HOLSTEJN</name>
+		</wpt>
+		<wpt lat="49.948200" lon="13.655270">
+			<name>Zric HLINCE</name>
+		</wpt>
+		<wpt lat="50.166260" lon="17.333500">
+			<name>Zric HERMANOVICE - ZR</name>
+		</wpt>
+		<wpt lat="50.693060" lon="14.854480">
+			<name>Zric HAMR POD RALSKEM</name>
+		</wpt>
+		<wpt lat="48.948100" lon="14.321600">
+			<name>Zric HABRI U LIPI</name>
+		</wpt>
+		<wpt lat="49.747510" lon="16.737280">
+			<name>Zric GRUNA</name>
+		</wpt>
+		<wpt lat="50.648820" lon="15.168640">
+			<name>Zric FRYDSTEJN</name>
+		</wpt>
+		<wpt lat="49.143600" lon="15.093530">
+			<name>Zric DVORECEK - ZRIC.</name>
+		</wpt>
+		<wpt lat="49.453950" lon="14.787700">
+			<name>Zric DUB U RATIBORSKY</name>
+		</wpt>
+		<wpt lat="50.683600" lon="15.321470">
+			<name>Zric DRZKOV</name>
+		</wpt>
+		<wpt lat="49.226000" lon="13.608350">
+			<name>Zric DRAZOVICE U SUSI</name>
+		</wpt>
+		<wpt lat="50.307940" lon="14.845240">
+			<name>Zric DRAZICE</name>
+		</wpt>
+		<wpt lat="49.731460" lon="13.963120">
+			<name>Zric DRAHLIN</name>
+		</wpt>
+		<wpt lat="49.443580" lon="16.647910">
+			<name>Zric DOUBRAVICE NAD S</name>
+		</wpt>
+		<wpt lat="49.895850" lon="17.782780">
+			<name>Zric DOLNI ZIVOTICE</name>
+		</wpt>
+		<wpt lat="50.641030" lon="15.539440">
+			<name>Zric DOLNI STEPANICE</name>
+		</wpt>
+		<wpt lat="49.357520" lon="16.363320">
+			<name>Zric DOLNI LOUCKY</name>
+		</wpt>
+		<wpt lat="49.468260" lon="16.128160">
+			<name>Zric DOLNI BOBROVA</name>
+		</wpt>
+		<wpt lat="49.899200" lon="13.271740">
+			<name>Zric DOLNI BELA</name>
+		</wpt>
+		<wpt lat="50.616240" lon="16.097170">
+			<name>Zric DOLNI ADRSPACH</name>
+		</wpt>
+		<wpt lat="49.653400" lon="17.336380">
+			<name>Zric DOLANY U OLOMOUC</name>
+		</wpt>
+		<wpt lat="50.321720" lon="16.277420">
+			<name>Zric DOBRANY V ORLICK</name>
+		</wpt>
+		<wpt lat="48.875610" lon="16.662020">
+			<name>Zric DIVCI HRAD</name>
+		</wpt>
+		<wpt lat="50.512390" lon="14.498960">
+			<name>Zric DESTNA U DUBE</name>
+		</wpt>
+		<wpt lat="48.746080" lon="14.554710">
+			<name>Zric DEKANSKE SKALINY</name>
+		</wpt>
+		<wpt lat="50.069200" lon="17.728460">
+			<name>Zric CVILIN</name>
+		</wpt>
+		<wpt lat="50.233630" lon="14.341210">
+			<name>Zric CHVATERUBY</name>
+		</wpt>
+		<wpt lat="49.865160" lon="14.793820">
+			<name>Zric CHOCERADY</name>
+		</wpt>
+		<wpt lat="50.451990" lon="16.050750">
+			<name>Zric CERVENA HORA</name>
+		</wpt>
+		<wpt lat="49.127040" lon="15.452190">
+			<name>Zric CERNIC</name>
+		</wpt>
+		<wpt lat="50.295170" lon="17.152990">
+			<name>Zric CERNA VODA</name>
+		</wpt>
+		<wpt lat="49.277460" lon="13.471320">
+			<name>Zric CERMNA</name>
+		</wpt>
+		<wpt lat="49.783710" lon="13.273780">
+			<name>Zric CEMINY - ZRIC.KO</name>
+		</wpt>
+		<wpt lat="49.069450" lon="16.345610">
+			<name>Zric BUDKOVICE</name>
+		</wpt>
+		<wpt lat="49.818450" lon="17.607290">
+			<name>Zric BUDISOV NAD BUDI</name>
+		</wpt>
+		<wpt lat="49.293700" lon="13.584640">
+			<name>Zric BUDETICE</name>
+		</wpt>
+		<wpt lat="49.895480" lon="16.972300">
+			<name>Zric BRNICKO U ZABREH</name>
+		</wpt>
+		<wpt lat="49.667710" lon="16.905560">
+			<name>Zric BREZINA ZRIC. BR</name>
+		</wpt>
+		<wpt lat="50.000710" lon="16.292330">
+			<name>Zric BRANDYS NAD ORLI</name>
+		</wpt>
+		<wpt lat="50.501230" lon="16.340580">
+			<name>Zric BOZANOV</name>
+		</wpt>
+		<wpt lat="49.746160" lon="16.579490">
+			<name>Zric BORSOV U MORAVSK</name>
+		</wpt>
+		<wpt lat="50.062160" lon="13.135310">
+			<name>Zric BOREK U STEDRE</name>
+		</wpt>
+		<wpt lat="49.949170" lon="13.588750">
+			<name>Zric BOHY - ZRIC.KRAS</name>
+		</wpt>
+		<wpt lat="50.236420" lon="17.710650">
+			<name>Zric BOHUSOV</name>
+		</wpt>
+		<wpt lat="50.152160" lon="13.040610">
+			<name>Zric BOCHOV</name>
+		</wpt>
+		<wpt lat="49.953890" lon="16.933940">
+			<name>Zric BLUDOV</name>
+		</wpt>
+		<wpt lat="50.797580" lon="14.891760">
+			<name>Zric BILY KOSTEL NAD</name>
+		</wpt>
+		<wpt lat="49.282560" lon="16.663670">
+			<name>Zric BILOVICE NAD SVI</name>
+		</wpt>
+		<wpt lat="50.132180" lon="13.486980">
+			<name>Zric BILENEC</name>
+		</wpt>
+		<wpt lat="49.868360" lon="17.599700">
+			<name>Zric BILCICE - ZRIC.S</name>
+		</wpt>
+		<wpt lat="49.381510" lon="17.654520">
+			<name>Zric BILAVSKO</name>
+		</wpt>
+		<wpt lat="49.851490" lon="13.017770">
+			<name>Zric BEZEMIN - ZRIC.G</name>
+		</wpt>
+		<wpt lat="49.307220" lon="13.335610">
+			<name>Zric BESINY</name>
+		</wpt>
+		<wpt lat="49.999360" lon="13.559730">
+			<name>Zric ANGERBACH U KOZL</name>
+		</wpt>
+		<wpt lat="50.206580" lon="12.963570">
+			<name>Zric ANDELSKA HORA</name>
+		</wpt>
+		<wpt lat="49.241220" lon="14.357350">
+			<name>Zric ALBRECHTICE NAD</name>
+		</wpt>
+		<wpt lat="49.028700" lon="15.139600">
+			<name>Zric ALBER</name>
+		</wpt>
+		<wpt lat="49.615070" lon="14.325340">
+			<name>Zric PLESISTE</name>
+		</wpt>
+		<wpt lat="49.511670" lon="12.804580">
+			<name>Zric POBEZOVICE U DOM</name>
+		</wpt>
+		<wpt lat="49.573270" lon="17.626530">
+			<name>Zric PODHORI NA MORAV</name>
+		</wpt>
+		<wpt lat="49.151540" lon="17.764490">
+			<name>Zric PODHRADI U LUHAC</name>
+		</wpt>
+		<wpt lat="49.869180" lon="13.180430">
+			<name>Zric PODMOKLY U UNESO</name>
+		</wpt>
+		<wpt lat="49.406930" lon="13.031240">
+			<name>Zric PODZAMCI - ZRIC.</name>
+		</wpt>
+		<wpt lat="49.168300" lon="17.548300">
+			<name>Zric POHORELICE U NAP</name>
+		</wpt>
+		<wpt lat="49.886080" lon="13.018600">
+			<name>Zric POLOUCANY - ZRIC</name>
+		</wpt>
+		<wpt lat="49.224840" lon="16.812660">
+			<name>Zric POZORICE</name>
+		</wpt>
+		<wpt lat="49.768540" lon="14.623030">
+			<name>Zric PRIBYSICE</name>
+		</wpt>
+		<wpt lat="49.604360" lon="15.329870">
+			<name>Zric PROSEC U HUMPOLC</name>
+		</wpt>
+		<wpt lat="49.367060" lon="17.600020">
+			<name>Zric PRUSINOVICE</name>
+		</wpt>
+		<wpt lat="49.434660" lon="13.148170">
+			<name>Zric PUSPERK</name>
+		</wpt>
+		<wpt lat="49.724760" lon="14.429220">
+			<name>Zric RADIC - ZRIC.HRA</name>
+		</wpt>
+		<wpt lat="49.744830" lon="14.405910">
+			<name>Zric RADIC - ZRIC.OST</name>
+		</wpt>
+		<wpt lat="49.885380" lon="17.208220">
+			<name>Zric RESOV</name>
+		</wpt>
+		<wpt lat="49.377190" lon="16.258920">
+			<name>Zric ROJETIN</name>
+		</wpt>
+		<wpt lat="49.568960" lon="15.783280">
+			<name>Zric RONOV NAD SAZAVO</name>
+		</wpt>
+		<wpt lat="49.538380" lon="13.254200">
+			<name>Zric ROUPOV</name>
+		</wpt>
+		<wpt lat="49.902650" lon="16.583300">
+			<name>Zric RUDOLTICE U LANS</name>
+		</wpt>
+		<wpt lat="49.605650" lon="16.565400">
+			<name>Zric RUMBERK</name>
+		</wpt>
+		<wpt lat="49.328700" lon="16.896140">
+			<name>Zric RYCHTAROV</name>
+		</wpt>
+		<wpt lat="49.908610" lon="17.263390">
+			<name>Zric RYMAROV</name>
+		</wpt>
+		<wpt lat="49.837160" lon="15.653950">
+			<name>Zric SEC - ZRIC.VILDS</name>
+		</wpt>
+		<wpt lat="49.958160" lon="15.510480">
+			<name>Zric SEMTES U BILEHO</name>
+		</wpt>
+		<wpt lat="49.426650" lon="14.448790">
+			<name>Zric SEPEKOV</name>
+		</wpt>
+		<wpt lat="49.889260" lon="15.212280">
+			<name>Zric SION JANA ROHACE</name>
+		</wpt>
+		<wpt lat="50.233890" lon="13.504630">
+			<name>Zric SIREM</name>
+		</wpt>
+		<wpt lat="50.569900" lon="16.140860">
+			<name>Zric SKALY U TEPLIC N</name>
+		</wpt>
+		<wpt lat="49.389530" lon="16.309850">
+			<name>Zric SKRYJE</name>
+		</wpt>
+		<wpt lat="49.830020" lon="18.299940">
+			<name>Zric SLEZSKA OSTRAVA</name>
+		</wpt>
+		<wpt lat="49.720990" lon="14.259680">
+			<name>Zric SLOVANSKA LHOTA</name>
+		</wpt>
+		<wpt lat="49.654080" lon="14.387550">
+			<name>Zric SOLOPYSKY</name>
+		</wpt>
+		<wpt lat="50.283820" lon="15.101490">
+			<name>Zric SOVENICE</name>
+		</wpt>
+		<wpt lat="49.277050" lon="13.139900">
+			<name>Zric STARA LHOTA</name>
+		</wpt>
+		<wpt lat="50.161300" lon="12.352640">
+			<name>Zric STARY RYBNIK</name>
+		</wpt>
+		<wpt lat="49.929620" lon="15.745270">
+			<name>Zric STOLANY</name>
+		</wpt>
+		<wpt lat="49.132600" lon="17.229170">
+			<name>Zric STRILKY</name>
+		</wpt>
+		<wpt lat="49.442980" lon="16.236060">
+			<name>Zric STRITEZ U BUKOVA</name>
+		</wpt>
+		<wpt lat="49.924340" lon="14.555190">
+			<name>Zric SULICE</name>
+		</wpt>
+		<wpt lat="48.931730" lon="15.909460">
+			<name>Zric SUMNA</name>
+		</wpt>
+		<wpt lat="49.088000" lon="17.215140">
+			<name>Zric SVATY KLIMENT</name>
+		</wpt>
+		<wpt lat="49.829690" lon="13.055920">
+			<name>Zric SVINOMAZY</name>
+		</wpt>
+		<wpt lat="50.725740" lon="14.595440">
+			<name>Zric SVOJKOV</name>
+		</wpt>
+		<wpt lat="49.964380" lon="15.602390">
+			<name>Zric SVOJSICE U CHOLT</name>
+		</wpt>
+		<wpt lat="49.802640" lon="12.608120">
+			<name>Zric TACHOV</name>
+		</wpt>
+		<wpt lat="49.824240" lon="13.689480">
+			<name>Zric TESKOV</name>
+		</wpt>
+		<wpt lat="49.948700" lon="14.107160">
+			<name>Zric TETIN U BEROUNA</name>
+		</wpt>
+		<wpt lat="48.639460" lon="14.524700">
+			<name>Zric TICHA</name>
+		</wpt>
+		<wpt lat="49.812180" lon="12.863490">
+			<name>Zric TREBEL</name>
+		</wpt>
+		<wpt lat="48.892550" lon="14.605530">
+			<name>Zric TROCNOV - MIKSUV</name>
+		</wpt>
+		<wpt lat="49.970670" lon="13.408490">
+			<name>Zric TROJANY U MLADOT</name>
+		</wpt>
+		<wpt lat="50.024980" lon="12.559530">
+			<name>Zric UBOCI U DOLNIHO</name>
+		</wpt>
+		<wpt lat="49.367600" lon="16.322170">
+			<name>Zric UJEZD U TISNOVA</name>
+		</wpt>
+		<wpt lat="50.036840" lon="17.710790">
+			<name>Zric UVALNO - ZRIC.VA</name>
+		</wpt>
+		<wpt lat="49.475860" lon="13.940510">
+			<name>Zric UZENICKY - ZRIC.</name>
+		</wpt>
+		<wpt lat="49.264560" lon="13.398440">
+			<name>Zric VELHARTICE</name>
+		</wpt>
+		<wpt lat="49.316380" lon="13.686400">
+			<name>Zric VELKE HYDCICE</name>
+		</wpt>
+		<wpt lat="50.642660" lon="15.893880">
+			<name>Zric VERNIROVICE</name>
+		</wpt>
+		<wpt lat="49.397130" lon="16.272970">
+			<name>Zric VICKOV</name>
+		</wpt>
+		<wpt lat="49.048630" lon="14.064790">
+			<name>Zric VITEJOVICE</name>
+		</wpt>
+		<wpt lat="50.485550" lon="16.049930">
+			<name>Zric VIZMBURK</name>
+		</wpt>
+		<wpt lat="49.567010" lon="13.779420">
+			<name>Zric VOLTUS</name>
+		</wpt>
+		<wpt lat="50.133980" lon="17.572020">
+			<name>Zric VRACLAVEK</name>
+		</wpt>
+		<wpt lat="49.716610" lon="16.810890">
+			<name>Zric VRANOVA</name>
+		</wpt>
+		<wpt lat="50.095060" lon="17.420790">
+			<name>Zric VRBNO POD PRADED</name>
+		</wpt>
+		<wpt lat="49.544300" lon="14.564950">
+			<name>Zric VRCHOTICE</name>
+		</wpt>
+		<wpt lat="49.843830" lon="13.221810">
+			<name>Zric VSERUBY U PLZNE</name>
+		</wpt>
+		<wpt lat="50.341420" lon="16.160380">
+			<name>Zric VYROV</name>
+		</wpt>
+		<wpt lat="50.119050" lon="14.775510">
+			<name>Zric VYSEHOROVICE</name>
+		</wpt>
+		<wpt lat="49.914130" lon="12.776410">
+			<name>Zric VYSKOV U CHODOVE</name>
+		</wpt>
+		<wpt lat="50.364870" lon="16.993280">
+			<name>Zric ZALESI U JAVORNI</name>
+		</wpt>
+		<wpt lat="49.648080" lon="16.784470">
+			<name>Zric ZALESI U JEVICKA</name>
+		</wpt>
+		<wpt lat="49.339490" lon="13.486460">
+			<name>Zric ZAVLEKOV</name>
+		</wpt>
+		<wpt lat="50.168080" lon="14.455410">
+			<name>Zric ZDIBY</name>
+		</wpt>
+		<wpt lat="50.630110" lon="16.129520">
+			<name>Zric ZDONOV</name>
+		</wpt>
+		<wpt lat="49.479080" lon="13.511580">
+			<name>Zric ZINKOVY - ZRIC.P</name>
+		</wpt>
+		<wpt lat="50.091300" lon="13.164500">
+			<name>Zric ZLUTICE</name>
+		</wpt>
+		<wpt lat="49.869880" lon="15.856760">
+			<name>Zric ZUMBERK</name>
+		</wpt>
+</gpx>

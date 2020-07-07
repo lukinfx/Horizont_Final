@@ -1,0 +1,58 @@
+[
+	{
+		"Id":"4d5f2e7b-6a31-4e68-ac92-87009976e602",
+		"Description": "All mountains in the Czech Republic",
+		"Url": "http://krvaveoleje.cz/horizont/cze-mountains.gpx",
+		"Country":"CZE",
+		"Category": "Mountains"
+	},
+	{
+		"Id":"5818de17-160e-4382-a839-1a54b4f08f2d",
+		"Description": "All lakes in the Czech Republic",
+		"Url": "http://krvaveoleje.cz/horizont/cze-lakes.gpx",
+		"Country":"CZE",
+		"Category": "Lakes"
+	},
+	{
+		"Id":"9693f0af-02b9-4966-bb40-02dc82908086",
+		"Description": "All castles in the Czech Republic",
+		"Url": "http://krvaveoleje.cz/horizont/cze-castles.gpx",
+		"Country":"CZE",
+		"Category": "Castles"
+	},
+	{
+		"Id":"548a4c51-f378-49a9-aa80-6c23cc75fe4c",
+		"Description": "All palaces in the Czech Republic",
+		"Url": "http://krvaveoleje.cz/horizont/cze-palaces.gpx",
+		"Country":"CZE",
+		"Category": "Palaces"
+	},
+	{
+		"Id":"eb5f0135-2d83-4a13-9de6-2ac90ef6c26c",
+		"Description": "All ruins in the Czech Republic",
+		"Url": "http://krvaveoleje.cz/horizont/cze-ruins.gpx",
+		"Country":"CZE",
+		"Category": "Ruins"
+	},
+	{
+		"Id":"83ab43d1-92a5-4234-a678-f20d074a526c",
+		"Description": "All transmitters in the Czech Republic",
+		"Url": "http://krvaveoleje.cz/horizont/cze-transmitters.gpx",
+		"Country":"CZE",
+		"Category": "Transmitters"
+	},
+	{
+		"Id":"27aef72b-b4f9-421c-b9a5-cc37c6a0e16a",
+		"Description": "All view towers in the Czech Republic",
+		"Url": "http://krvaveoleje.cz/horizont/cze-viewtowers.gpx",
+		"Country":"CZE",
+		"Category": "ViewTowers"
+	},
+	{
+		"Id":"6ab6e13c-cd42-4702-ad53-c74d5c21b28d",
+		"Description": "All mountains in Slovakia",
+		"Url": "http://krvaveoleje.cz/horizont/svk-mountains.gpx",
+		"Country":"SVK",
+		"Category": "Mountains"
+	},
+]
