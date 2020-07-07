@@ -59,6 +59,9 @@ namespace HorizontApp.Views.Camera
 
         // ID of the current {@link CameraDevice}.
         private string mCameraId;
+        public float ViewAngleHorizontal { get; private set; }
+        public float ViewAngleVertical { get; private set; }
+
 
         // An AutoFitTextureView for camera preview
         private AutoFitTextureView mTextureView;
@@ -388,6 +391,8 @@ namespace HorizontApp.Views.Camera
                         mFlashSupported = (bool)available;
                     }
 
+                    FetchCameraViewAngle(cameraId);
+
                     mCameraId = cameraId;
                     return;
                 }
@@ -688,6 +693,22 @@ namespace HorizontApp.Views.Camera
             if (mFlashSupported)
             {
                 requestBuilder.Set(CaptureRequest.ControlAeMode, (int)ControlAEMode.OnAutoFlash);
+            }
+        }
+
+        void FetchCameraViewAngle(string cameraId)
+        {
+            try
+            {
+                var camera = Android.Hardware.Camera.Open(Int32.Parse(cameraId));
+                ViewAngleHorizontal = camera.GetParameters().HorizontalViewAngle;
+                ViewAngleVertical = camera.GetParameters().VerticalViewAngle;
+            }
+            catch
+            {
+                //Default values
+                ViewAngleHorizontal = 60;
+                ViewAngleVertical = 40;
             }
         }
     }

@@ -51,6 +51,7 @@ namespace HorizontApp
         Button getGPSButton;
         Button stopCompassButton;
         CompassView compassView;
+        private CameraFragment cameraFragment;
         SeekBar distanceSeekBar;
         SeekBar heightSeekBar;
         private View layout;
@@ -123,7 +124,8 @@ namespace HorizontApp
 
             if (bundle == null)
             {
-                FragmentManager.BeginTransaction().Replace(Resource.Id.container, CameraFragment.NewInstance()).Commit();
+                cameraFragment = CameraFragment.NewInstance();
+                FragmentManager.BeginTransaction().Replace(Resource.Id.container, cameraFragment).Commit();
             }
 
             compassProvider.Start();
@@ -227,6 +229,9 @@ namespace HorizontApp
 
                     var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress);
                     compassView.SetPoiViewItemList(points);
+
+                    compassView.ViewAngleHorizontal = cameraFragment.ViewAngleHorizontal;
+                    compassView.ViewAngleVertical = cameraFragment.ViewAngleVertical;
                 }
             }
             catch (Exception ex)
