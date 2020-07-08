@@ -23,8 +23,8 @@ namespace HorizontApp.Views
         private Android.Graphics.Paint paintRect;
         private Android.Graphics.Paint textpaint;
         public static PoiViewItemList list;
-        public double Heading { get; set; }
-
+        //public double Heading { get; set; }
+        public Queue<double> headings = new Queue<double>(10);
         public float ViewAngleHorizontal { private get; set; }
         public float ViewAngleVertical { private get; set; }
 
@@ -82,7 +82,7 @@ namespace HorizontApp.Views
             {
                 foreach (var item in list)
                 {
-                    var startX = CompassViewUtils.GetLocationOnScreen((float)Heading, (float)item.Bearing, canvas.Width, ViewAngleHorizontal);
+                    var startX = CompassViewUtils.GetLocationOnScreen((float)CalculateHeading(), (float)item.Bearing, canvas.Width, ViewAngleHorizontal);
                     if (startX != null)
                     {
                         
@@ -94,6 +94,16 @@ namespace HorizontApp.Views
                 }
 
             }
+        }
+
+        private double CalculateHeading ()
+        {
+            var a = headings.Average();
+            if (Math.Abs(headings.Min() - headings.Max()) > 180)
+                a = a - 180;
+            if (a < 0)
+                a = 360 - a;
+            return a;
         }
     }
 }

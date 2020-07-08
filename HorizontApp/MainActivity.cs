@@ -205,7 +205,7 @@ namespace HorizontApp
         private void OnCompassTimerElapsed(object sender, ElapsedEventArgs e)
         {
             headingEditText.Text = compassProvider.Heading.ToString();
-            compassView.Heading = compassProvider.Heading;
+            compassView.headings.Enqueue(compassProvider.Heading);
             compassView.Invalidate();
         }
 
