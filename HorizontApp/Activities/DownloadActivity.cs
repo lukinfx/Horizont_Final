@@ -22,9 +22,8 @@ namespace HorizontApp.Activities
     [Activity(Label = "DownloadActivity")]
     public class DownloadActivity : Activity, IOnClickListener
     {
-        private static readonly string IndexUrl = "http://krvaveoleje.cz/horizont/index.json";
-        //private static readonly string IndexUrl = "http://37.9.175.21/horizont/index.json";
-            
+        private static readonly string WebsiteUrl = "http://krvaveoleje.cz/horizont/";
+        private static readonly string IndexFile = "poi-index.json";
 
         private ListView downloadItemListView;
         private Button backButton;
@@ -46,7 +45,7 @@ namespace HorizontApp.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            var json = GpxFileProvider.GetFile(IndexUrl);
+            var json = GpxFileProvider.GetFile(GetUrl(IndexFile));
             /*var json = @"[" +
                        "{\"Id\":\"4d5f2e7b-6a31-4e68-ac92-87009976e602\"," +
                        "\"Description\": \"All mountains in the Czech Republic\"," +
@@ -75,7 +74,7 @@ namespace HorizontApp.Activities
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             PoisToDownload item = items[e.Position];
-            LoadDataFromInternet(item.Url, item.Category);
+            LoadDataFromInternet(GetUrl(item.Url), item.Category);
         }
 
         public void OnClick(View v)
@@ -107,6 +106,11 @@ namespace HorizontApp.Activities
                 dialog.SetMessage(message);
                 dialog.Show();
             }
+        }
+
+        public string GetUrl(string path)
+        {
+            return WebsiteUrl + path;
         }
     }
 }
