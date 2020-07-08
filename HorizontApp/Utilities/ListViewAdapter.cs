@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using HorizontApp.Domain.Enums;
 using HorizontApp.Domain.ViewModel;
 
 namespace HorizontApp.Utilities
@@ -17,6 +18,7 @@ namespace HorizontApp.Utilities
 	{
 		Activity context;
 		List<PoiViewItem> list;
+		private ImageView Thumbnail;
 
 		public ListViewAdapter(Activity _context,IEnumerable<PoiViewItem> _list)
 			: base()
@@ -53,6 +55,10 @@ namespace HorizontApp.Utilities
 			view.FindViewById<TextView>(Resource.Id.Title).Text = item.Name;
 			view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Altitude) + "m | " + Convert.ToString(Math.Round(item.Distance/1000, 2)) + " km";
 
+			Thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
+
+			Thumbnail.SetImageResource(GetImage(item));
+
 			//using (var imageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail))
 			//{
 			//	string url = Android.Text.Html.FromHtml(item.thumbnail).ToString();
@@ -61,6 +67,28 @@ namespace HorizontApp.Utilities
 			//		url, Resource.Drawable.Placeholder);
 			//}
 			return view;
+		}
+		public int GetImage(PoiViewItem item)
+        {
+			switch (item.Category)
+			{
+				case PoiCategory.Castles:
+					return Resource.Drawable.c_castle;
+				case PoiCategory.Mountains:
+					return Resource.Drawable.c_mountain;
+				case PoiCategory.Lakes:
+					return Resource.Drawable.c_lake;
+				case PoiCategory.ViewTowers:
+					return Resource.Drawable.c_viewtower;
+				case PoiCategory.Palaces:
+					return Resource.Drawable.c_palace;
+				case PoiCategory.Ruins:
+					return Resource.Drawable.c_ruins;
+				case PoiCategory.Transmitters:
+					return Resource.Drawable.c_transmitter;
+				default:
+					return Resource.Drawable.c_basic;
+			}
 		}
 	}
 }

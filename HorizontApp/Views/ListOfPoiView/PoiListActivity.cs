@@ -24,7 +24,6 @@ namespace HorizontApp.Views.ListOfPoiView
         ListView listViewPoi;
         Button back;
         private List<PoiViewItem> items;
-
         private PoiDatabase database;
         public PoiDatabase Database
         {
@@ -56,6 +55,7 @@ namespace HorizontApp.Views.ListOfPoiView
             // Create your application here
 
             listViewPoi = FindViewById<ListView>(Resource.Id.listView1);
+            
             back = FindViewById<Button>(Resource.Id.button1);
             back.SetOnClickListener(this);
 
