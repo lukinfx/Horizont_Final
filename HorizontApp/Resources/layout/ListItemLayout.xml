@@ -12,7 +12,7 @@
         android:paddingLeft="10dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:src="@android:drawable/ic_delete" />
+        android:src="@drawable/c_lake_small" />
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"

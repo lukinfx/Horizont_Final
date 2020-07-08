@@ -173,7 +173,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\hamburger.png" />
+    <AndroidResource Include="Resources\drawable\f_hamburger.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\content_menu_left.xml">
@@ -191,43 +191,73 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\czechFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_czechFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\austriaFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_austriaFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\franceFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_franceFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\germanyFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_germanyFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\hungaryFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_hungaryFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\italyFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_italyFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\polandFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_polandFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\romaniaFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_romaniaFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\slovakiaFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_slovakiaFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\sloveniaFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_sloveniaFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\spainFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_spainFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\switzerlandFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_switzerlandFlagIcon128.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\unknownFlagIcon128.png" />
+    <AndroidResource Include="Resources\drawable\f_unknownFlagIcon128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\c_basic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\c_castle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\c_lake.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\c_mountain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\c_palace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\c_ruins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\c_transmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\c_viewtower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\c_readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\c_lake_small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
