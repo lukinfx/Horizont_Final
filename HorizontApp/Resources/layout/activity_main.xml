@@ -16,10 +16,7 @@
         app:slideMode="left"
         android:id="@+id/slideMenuLayoutMain">
         
-    <include layout="@layout/content_menu_left"/>
-      
-    </com.jkb.slidemenu.SlideMenuLayout>  
-
+        <include layout="@layout/content_menu_left"/>
 
         <AbsoluteLayout
             android:layout_width="match_parent"
@@ -30,8 +27,7 @@
                 android:layout_width=    "match_parent"
                 android:layout_height=    "match_parent"
                 android:layout_weight="1"
-                android:id="@+id/container">
-            </LinearLayout>
+                android:id="@+id/container" />
 
             <HorizontApp.Views.CompassView
                 android:layout_width="match_parent"
@@ -42,25 +38,18 @@
                 android:orientation=    "horizontal"
                 android:layout_width=    "match_parent"
                 android:layout_height=    "wrap_content">
-
                 <EditText
                     android:inputType="number"
                     android:layout_width="67.5dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/editText1"
-                    android:layout_marginRight="0.0dp" 
-                        />
-
+                    android:layout_marginRight="0.0dp" />
                 <EditText
                     android:inputType="number"
                     android:layout_width="171.5dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editText2"
-                        />
+                    android:id="@+id/editText2" />
             </LinearLayout>
-
-        
-
 
             <LinearLayout
                 android:orientation=    "horizontal"
@@ -73,8 +62,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:id="@+id/imageButton1" />
-                
-                
                 <Button
                     android:text="Load data"
                     android:layout_width="wrap_content"
@@ -82,9 +69,9 @@
                     android:layout_gravity="bottom"
                     android:id="@+id/button4" />
                 <LinearLayout
-                android:orientation=    "vertical"
-                android:layout_width=    "match_parent"
-                android:layout_height=    "match_parent"
+                    android:orientation=    "vertical"
+                    android:layout_width=    "match_parent"
+                    android:layout_height=    "match_parent"
                     android:gravity="bottom">
                     <SeekBar
                         android:layout_width="match_parent"
@@ -98,19 +85,17 @@
                         android:layout_gravity="bottom"
                         android:id="@+id/seekBar1"
                         android:progress="10" />
-                <EditText
-                    android:inputType="number"
-                    android:textSize="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    <EditText
+                        android:inputType="number"
+                        android:textSize="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:textColor="#ffffff"
                         android:background="#50000000"
-                    android:id="@+id/editText3"
-                        />
-            
-            </LinearLayout>
-            
+                        android:id="@+id/editText3"/>
+                </LinearLayout>
             </LinearLayout>
         </AbsoluteLayout>
+    </com.jkb.slidemenu.SlideMenuLayout>
 </LinearLayout>
