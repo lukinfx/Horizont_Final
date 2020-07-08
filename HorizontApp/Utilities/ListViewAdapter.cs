@@ -24,7 +24,7 @@ namespace HorizontApp.Utilities
 			: base()
 		{
 			this.context = _context;
-			this.list = _list.ToList();
+			this.list = _list.OrderBy(i => i.Distance).ToList();
 		}
 
 		public override int Count
