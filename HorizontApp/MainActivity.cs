@@ -206,6 +206,8 @@ namespace HorizontApp
         {
             headingEditText.Text = compassProvider.Heading.ToString();
             compassView.headings.Enqueue(compassProvider.Heading);
+            if (compassView.headings.Count() > 5)
+                compassView.headings.Dequeue();
             compassView.Invalidate();
         }
 
