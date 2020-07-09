@@ -45,9 +45,10 @@ namespace HorizontApp
         private static readonly int REQUEST_LOCATION_PERMISSION = 0;
         private static readonly int REQUEST_CAMERA_PERMISSION = 1;
 
-        EditText headingEditText;
-        EditText GPSEditText;
+        TextView headingEditText;
+        TextView GPSEditText;
         EditText DistanceEditText;
+        TextView filterText;
         Button getHeadingButton;
         Button getGPSButton;
         Button stopCompassButton;
@@ -87,15 +88,15 @@ namespace HorizontApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            headingEditText = FindViewById<EditText>(Resource.Id.editText1);
-            GPSEditText = FindViewById<EditText>(Resource.Id.editText2);
+            headingEditText = FindViewById<TextView>(Resource.Id.editText1);
+            GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
 
             getHeadingButton = FindViewById<Button>(Resource.Id.button1);
             getHeadingButton.SetOnClickListener(this);
-            
-            DistanceEditText = FindViewById<EditText>(Resource.Id.editText3);
-            DistanceEditText.SetOnClickListener(this);
-            
+
+            filterText = FindViewById<TextView>(Resource.Id.textView1);
+
+
             distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBar2);
             distanceSeekBar.ProgressChanged += SeekBarProgressChanged;
             //System.EventHandler
@@ -247,7 +248,7 @@ namespace HorizontApp
 
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            DistanceEditText.Text = "vyska nad " + heightSeekBar.Progress * 16 + "m, do " + distanceSeekBar.Progress + "km daleko";
+            filterText.Text = "vyska nad " + heightSeekBar.Progress * 16 + "m, do " + distanceSeekBar.Progress + "km daleko";
         }
 
         private void ReloadData()
