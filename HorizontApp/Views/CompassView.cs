@@ -24,7 +24,7 @@ namespace HorizontApp.Views
         private Android.Graphics.Paint textpaint;
         public static PoiViewItemList list;
         //public double Heading { get; set; }
-        public Queue<double> headings = new Queue<double>(10);
+        public Queue<double> headings = new Queue<double>();
         public float ViewAngleHorizontal { private get; set; }
         public float ViewAngleVertical { private get; set; }
 
@@ -99,10 +99,22 @@ namespace HorizontApp.Views
         private double CalculateHeading ()
         {
             var a = headings.Average();
+            var q = new Queue<double>(10);
+
             if (Math.Abs(headings.Min() - headings.Max()) > 180)
-                a = a - 180;
+            {
+                var items = headings.ToList();
+
+                for (int i = 0; i < items.Count; i++)
+                {
+                    if (items[i] > 180)
+                    items[i] = items[i] - 360;
+                }
+                a = items.Average();
+            }
+            
             if (a < 0)
-                a = 360 - a;
+                a = 360 + a;
             return a;
         }
     }
