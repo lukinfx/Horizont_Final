@@ -84,7 +84,7 @@ namespace HorizontApp.DataAccess
         /// <param name="loc"></param>
         /// <param name="distance"></param>
         /// <returns></returns>
-        public IEnumerable<Poi> GetItems(GpsLocation loc, double distance)
+        public IEnumerable<Poi> GetItems(GpsLocation loc, double distance, bool favourite = false)
         {
             GpsLocation min;
             GpsLocation max;
@@ -97,6 +97,10 @@ namespace HorizontApp.DataAccess
             and [Latitude] > {min.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture)} 
             and [Latitude] < {max.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture)}";
 
+            if (favourite)
+            {
+                query += " and [Favourite] = true";
+            }
             var task = Database.QueryAsync<Poi>(query);
             task.Wait();
             return task.Result;

@@ -58,6 +58,7 @@ namespace HorizontApp
         SeekBar heightSeekBar;
         private View layout;
         ImageButton menu;
+        bool favourite = false;
 
         Timer compassTimer = new Timer();
         Timer locationTimer = new Timer();
@@ -193,11 +194,12 @@ namespace HorizontApp
                     }
                 case Resource.Id.button4:
                     {
-                        ReloadData();
+                        ReloadData(favourite);
                         break;
                     }
                 case Resource.Id.imageButton1:
                     {
+                        favourite = !favourite;
                         break;
                     }
 
@@ -234,7 +236,7 @@ namespace HorizontApp
                     GPSEditText.Text = ($"Latitude: {myLocation.Latitude}, Longitude: {myLocation.Longitude}, Altitude: {myLocation.Altitude}");
 
 
-                    var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress);
+                    var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress, favourite);
                     compassView.SetPoiViewItemList(points);
 
                     compassView.ViewAngleHorizontal = cameraFragment.ViewAngleHorizontal;
@@ -253,14 +255,14 @@ namespace HorizontApp
             filterText.Text = "vyska nad " + heightSeekBar.Progress * 16 + "m, do " + distanceSeekBar.Progress + "km daleko";
         }
 
-        private void ReloadData()
+        private void ReloadData(bool favourite)
         {
             try
             {
                 if (myLocation == null)
                     return;
 
-                var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress);
+                var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress, favourite);
                 compassView.SetPoiViewItemList(points);
             }
             catch (Exception ex)
@@ -269,11 +271,11 @@ namespace HorizontApp
             }
         }
 
-        private PoiViewItemList GetPointsToDisplay(GpsLocation location, double maxDistance, double minAltitude)
+        private PoiViewItemList GetPointsToDisplay(GpsLocation location, double maxDistance, double minAltitude, bool favourite = false)
         {
             try
             {
-                var poiList = Database.GetItems(location, maxDistance);
+                var poiList = Database.GetItems(location, maxDistance, favourite);
 
                 PoiViewItemList poiViewItemList = new PoiViewItemList(poiList, location, maxDistance, minAltitude);
                 return poiViewItemList;

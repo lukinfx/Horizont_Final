@@ -19,6 +19,7 @@ namespace HorizontApp.Utilities
 		Activity context;
 		List<PoiViewItem> list;
 		private ImageView Thumbnail;
+		TextView Favourite;
 
 		public ListViewAdapter(Activity _context,IEnumerable<PoiViewItem> _list)
 			: base()
@@ -55,8 +56,13 @@ namespace HorizontApp.Utilities
 			view.FindViewById<TextView>(Resource.Id.Title).Text = item.Name;
 			view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Altitude) + "m | " + Convert.ToString(Math.Round(item.Distance/1000, 2)) + " km";
 
-			Thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
+			Favourite = view.FindViewById<TextView>(Resource.Id.Favourite);
+			if (item.Favorite)
+				Favourite.Text = "❤";
+			else 
+				Favourite.Text = "♡";
 
+			Thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
 			Thumbnail.SetImageResource(GetImage(item));
 
 			//using (var imageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail))
@@ -89,6 +95,10 @@ namespace HorizontApp.Utilities
 				default:
 					return Resource.Drawable.c_basic;
 			}
+		}
+		public static void RefreshFavourite()
+        {
+			
 		}
 	}
 }
