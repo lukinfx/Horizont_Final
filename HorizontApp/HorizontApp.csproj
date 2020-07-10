@@ -86,6 +86,7 @@
     <Compile Include="Utilities\DownloadItemAdapter.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
     <Compile Include="Utilities\GpxFileParser.cs" />
+    <Compile Include="Utilities\HeadingStabilizator.cs" />
     <Compile Include="Utilities\ListViewAdapter.cs" />
     <Compile Include="Views\CameraView\AutoFitTextureView.cs" />
     <Compile Include="Views\CameraView\CameraFragment.cs" />

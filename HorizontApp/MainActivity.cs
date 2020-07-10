@@ -64,6 +64,7 @@ namespace HorizontApp
 
         private GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
         private CompassProvider compassProvider = new CompassProvider();
+        private HeadingStabilizator headingStabilizator = new HeadingStabilizator();
         GpsLocation myLocation = null;
 
         private PoiDatabase database;
@@ -205,10 +206,11 @@ namespace HorizontApp
 
         private void OnCompassTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            headingEditText.Text = compassProvider.Heading.ToString();
-            compassView.headings.Enqueue(compassProvider.Heading);
-            if (compassView.headings.Count() > 5)
-                compassView.headings.Dequeue();
+            headingStabilizator.AddValue(compassProvider.Heading);
+
+            compassView.Heading = headingStabilizator.GetHeading();
+            headingEditText.Text = headingStabilizator.GetHeading().ToString();
+
             compassView.Invalidate();
         }
 
