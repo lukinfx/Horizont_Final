@@ -89,15 +89,6 @@
                         android:layout_gravity="bottom"
                         android:id="@+id/seekBar1"
                         android:progress="10" />
-                    <EditText
-                        android:inputType="number"
-                        android:textSize="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:textColor="#ffffff"
-                        android:background="#50000000"
-                        android:id="@+id/editText3"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

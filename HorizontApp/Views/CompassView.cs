@@ -88,8 +88,8 @@ namespace HorizontApp.Views
                         
                         canvas.DrawLine(0, -startX.Value, 300, -startX.Value, paint);
 
-                        canvas.DrawText(item.Name, 10, -startX.Value-10, textpaint);
-                        canvas.DrawText($"{item.Altitude} m / {(item.Distance/1000):F2} km", 10, -startX.Value+35, textpaint);
+                        canvas.DrawText(item.Poi.Name, 10, -startX.Value-10, textpaint);
+                        canvas.DrawText($"{item.Poi.Altitude} m / {(item.Distance/1000):F2} km", 10, -startX.Value+35, textpaint);
                     }
                 }
 

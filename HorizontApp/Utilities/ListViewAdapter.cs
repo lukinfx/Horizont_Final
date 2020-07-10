@@ -53,11 +53,11 @@ namespace HorizontApp.Utilities
 				view = context.LayoutInflater.Inflate(Resource.Layout.ListItemLayout, parent, false);
 
 			PoiViewItem item = this[position];
-			view.FindViewById<TextView>(Resource.Id.Title).Text = item.Name;
-			view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Altitude) + "m | " + Convert.ToString(Math.Round(item.Distance/1000, 2)) + " km";
+			view.FindViewById<TextView>(Resource.Id.Title).Text = item.Poi.Name;
+			view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Poi.Altitude) + "m | " + Convert.ToString(Math.Round(item.Distance/1000, 2)) + " km";
 
 			Favourite = view.FindViewById<TextView>(Resource.Id.Favourite);
-			if (item.Favorite)
+			if (item.Poi.Favorite)
 				Favourite.Text = "❤";
 			else 
 				Favourite.Text = "♡";
@@ -76,7 +76,7 @@ namespace HorizontApp.Utilities
 		}
 		public int GetImage(PoiViewItem item)
         {
-			switch (item.Category)
+			switch (item.Poi.Category)
 			{
 				case PoiCategory.Castles:
 					return Resource.Drawable.c_castle;

@@ -35,7 +35,7 @@ namespace HorizontApp.Domain.ViewModel
                 poiViewItem.Bearing = CompassViewUtils.GetBearing(location, poiViewItem.GpsLocation);
                 poiViewItem.Distance = CompassViewUtils.GetDistance(location, poiViewItem.GpsLocation);
 
-                if ((poiViewItem.Distance <= maxDistance * 1000) && (poiViewItem.Altitude >= minAltitude * 16))
+                if ((poiViewItem.Distance <= maxDistance * 1000) && (poiViewItem.Poi.Altitude >= minAltitude * 16))
                 {
                     Add(poiViewItem);
                 }

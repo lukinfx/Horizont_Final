@@ -14,7 +14,7 @@ using SQLite;
 
 namespace HorizontApp.Domain.Models
 {
-    public class Poi
+    public sealed class Poi
     {
         [PrimaryKey, AutoIncrement]
         public long Id { get; set; }

@@ -73,21 +73,21 @@ namespace HorizontApp.Views.ListOfPoiView
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             PoiViewItem item = items[e.Position];
-            item.Favorite = !item.Favorite;
+            item.Poi.Favorite = !item.Poi.Favorite;
 
             adapter.NotifyDataSetChanged();
 
-            var itemToUpdate = new Poi()
-            {
-                Id = item.Id,
-                Name = item.Name,
-                Category = item.Category,
-                Altitude = item.Altitude,
-                Latitude = item.Latitude,
-                Longitude = item.Longitude,
-                Favorite = item.Favorite
-            };
-            Database.UpdateItemAsync(itemToUpdate);
+            //var itemToUpdate = new Poi()
+            //{
+            //    Id = item.Id,
+            //    Name = item.Name,
+            //    Category = item.Category,
+            //    Altitude = item.Altitude,
+            //    Latitude = item.Latitude,
+            //    Longitude = item.Longitude,
+            //    Favorite = item.Favorite
+            //};
+            Database.UpdateItemAsync(item.Poi);
         }
 
         public void OnClick(View v)
