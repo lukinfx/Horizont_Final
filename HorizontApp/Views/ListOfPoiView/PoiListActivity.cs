@@ -23,6 +23,7 @@ namespace HorizontApp.Views.ListOfPoiView
     {
         ListView listViewPoi;
         Button back;
+        ListViewAdapter adapter;
         private List<PoiViewItem> items;
         private PoiDatabase database;
         public PoiDatabase Database
@@ -62,10 +63,9 @@ namespace HorizontApp.Views.ListOfPoiView
             var poiList = Database.GetItems();
 
             items = new PoiViewItemList(poiList, location, maxDistance, minAltitude);
+            items = items.OrderBy(i => i.Distance).ToList();
 
-            
-            var listAdapter = new ArrayAdapter<PoiViewItem>(this, Android.Resource.Layout.SimpleListItem1, items);
-            var adapter = new HorizontApp.Utilities.ListViewAdapter(this, items);
+            adapter = new ListViewAdapter(this, items);
             listViewPoi.Adapter = adapter;
             listViewPoi.ItemClick += OnListItemClick;
         }
@@ -73,8 +73,21 @@ namespace HorizontApp.Views.ListOfPoiView
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             PoiViewItem item = items[e.Position];
-
             item.Favorite = !item.Favorite;
+
+            adapter.NotifyDataSetChanged();
+
+            var itemToUpdate = new Poi()
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Category = item.Category,
+                Altitude = item.Altitude,
+                Latitude = item.Latitude,
+                Longitude = item.Longitude,
+                Favorite = item.Favorite
+            };
+            Database.UpdateItemAsync(itemToUpdate);
         }
 
         public void OnClick(View v)
