@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
+using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using HorizontApp.DataAccess;
@@ -19,7 +16,7 @@ using static Android.Views.View;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "DownloadActivity")]
+    [Activity(Label = "DownloadActivity", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class DownloadActivity : Activity, IOnClickListener
     {
         private static readonly string WebsiteUrl = "http://krvaveoleje.cz/horizont/";

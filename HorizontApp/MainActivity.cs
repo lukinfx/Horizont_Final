@@ -51,7 +51,7 @@ namespace HorizontApp
         TextView filterText;
         Button getHeadingButton;
         Button getGPSButton;
-        Button stopCompassButton;
+        ImageButton stopCompassButton;
         CompassView compassView;
         private CameraFragment cameraFragment;
         SeekBar distanceSeekBar;
@@ -106,13 +106,16 @@ namespace HorizontApp
             heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBar1);
             heightSeekBar.ProgressChanged += SeekBarProgressChanged;
 
+            var menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
+            menuButton.SetOnClickListener(this);
+
             getGPSButton = FindViewById<Button>(Resource.Id.button2);
             getGPSButton.SetOnClickListener(this);
 
             menu = FindViewById<ImageButton>(Resource.Id.imageButton1);
             menu.SetOnClickListener(this);
 
-            stopCompassButton = FindViewById<Button>(Resource.Id.button4);
+            stopCompassButton = FindViewById<ImageButton>(Resource.Id.button4);
             stopCompassButton.SetOnClickListener(this);
 
             compassView = FindViewById<CompassView>(Resource.Id.compassView1);
@@ -176,6 +179,16 @@ namespace HorizontApp
         {
             switch (v.Id)
             {
+                case Resource.Id.menuButton:
+                    Intent menuActivityIntent = new Intent(this, typeof(MenuActivity));
+                    menuActivityIntent.PutExtra("latitude", myLocation.Latitude);
+                    menuActivityIntent.PutExtra("longitude", myLocation.Longitude);
+                    menuActivityIntent.PutExtra("altitude", myLocation.Altitude);
+                    menuActivityIntent.PutExtra("maxDistance", distanceSeekBar.Progress);
+                    menuActivityIntent.PutExtra("minAltitude", heightSeekBar.Progress);
+
+                    StartActivity(menuActivityIntent);
+                    break;
                 case Resource.Id.button1:
                     Intent downloadActivityIntent = new Intent(this, typeof(DownloadActivity));
                     StartActivity(downloadActivityIntent);
@@ -201,9 +214,9 @@ namespace HorizontApp
                     {
                         favourite = !favourite;
                         if (favourite)
-                            menu.SetImageResource(Resource.Drawable.f_heart_empty);
+                            menu.SetImageResource(Resource.Drawable.ic_heart_on);
                         else
-                            menu.SetImageResource(Resource.Drawable.f_heart_solid);
+                            menu.SetImageResource(Resource.Drawable.ic_heart);
                         ReloadData(favourite);
                         break;
                     }

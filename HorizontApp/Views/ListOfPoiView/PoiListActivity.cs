@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -18,7 +19,7 @@ using static Android.Views.View;
 
 namespace HorizontApp.Views.ListOfPoiView
 {
-    [Activity(Label = "PoiListActivity")]
+    [Activity(Label = "PoiListActivity", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class PoiListActivity : Activity, IOnClickListener, IPoiActionListener
     {
         ListView listViewPoi;
@@ -60,7 +61,7 @@ namespace HorizontApp.Views.ListOfPoiView
             back = FindViewById<Button>(Resource.Id.button1);
             back.SetOnClickListener(this);
 
-            var poiList = Database.GetItems();
+            var poiList = Database.GetItems(location, maxDistance);
 
             items = new PoiViewItemList(poiList, location, maxDistance, minAltitude, false);
             items = items.OrderBy(i => i.Distance).ToList();
