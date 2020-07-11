@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-2"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" 
+creator="http://online.poi.cz">
+	<wpt lat="49.7479083" lon="18.1150000" >
+		<name>Az: 200 st, Ele: +15st</name>
+		<ele>-2288</ele>
+	</wpt>
+	<wpt lat="49.7479083" lon="18.1250000" >
+		<name>Az: 200 st, Ele: +10st</name>
+		<ele>-1422</ele>
+	</wpt>
+	<wpt lat="49.7479083" lon="18.1350000" >
+		<name>Az 200 st, Ele: +5st </name>
+		<ele>-582</ele>
+	</wpt>
+	<wpt lat="49.7479083" lon="18.1450000" >
+		<name>Azimut 200 st</name>
+		<ele>244</ele>
+	</wpt>
+	<wpt lat="49.7479083" lon="18.1550000" >
+		<name>Az 200 st, Ele: +5st </name>
+		<ele>1070</ele>
+	</wpt>
+	<wpt lat="49.7479083" lon="18.1650000" >
+		<name>Az: 200 st, Ele: +10st</name>
+		<ele>1910</ele>
+	</wpt>
+	<wpt lat="49.7479083" lon="18.1750000" >
+		<name>Az: 200 st, Ele: +15st</name>
+		<ele>2776</ele>
+	</wpt>
+
+</gpx>
