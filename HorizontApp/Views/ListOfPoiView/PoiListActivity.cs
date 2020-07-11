@@ -72,22 +72,7 @@ namespace HorizontApp.Views.ListOfPoiView
 
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            PoiViewItem item = items[e.Position];
-            item.Poi.Favorite = !item.Poi.Favorite;
-
-            adapter.NotifyDataSetChanged();
-
-            //var itemToUpdate = new Poi()
-            //{
-            //    Id = item.Id,
-            //    Name = item.Name,
-            //    Category = item.Category,
-            //    Altitude = item.Altitude,
-            //    Latitude = item.Latitude,
-            //    Longitude = item.Longitude,
-            //    Favorite = item.Favorite
-            //};
-            Database.UpdateItemAsync(item.Poi);
+            
         }
 
         public void OnClick(View v)
@@ -97,7 +82,18 @@ namespace HorizontApp.Views.ListOfPoiView
 
         public void OnPoiDelete(int position)
         {
-         
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetPositiveButton("Yes", (senderAlert, args) =>
+            {
+                PoiViewItem item = items[position];
+                database.DeleteItemAsync(item.Poi);
+            });
+            alert.SetNegativeButton("No", (senderAlert, args) => { });
+            alert.SetMessage("Are you sure you want to delete this item?");
+            var answer = alert.Show();
+
+
+            adapter.NotifyDataSetChanged();
         }
 
         public void OnPoiEdit(int position)
@@ -107,7 +103,10 @@ namespace HorizontApp.Views.ListOfPoiView
 
         public void OnPoiLike(int position)
         {
-
+            PoiViewItem item = items[position];
+            item.Poi.Favorite = !item.Poi.Favorite;
+            adapter.NotifyDataSetChanged();
+            Database.UpdateItemAsync(item.Poi);    
         }
     }
 }

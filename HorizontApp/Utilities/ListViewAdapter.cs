@@ -21,7 +21,6 @@ namespace HorizontApp.Utilities
         Activity context;
         List<PoiViewItem> list;
         private ImageView Thumbnail;
-        TextView Favourite;
         private IPoiActionListener mPoiActionListener;
 
         public ListViewAdapter(Activity _context, IEnumerable<PoiViewItem> _list, IPoiActionListener listener)
@@ -58,11 +57,6 @@ namespace HorizontApp.Utilities
             view.FindViewById<TextView>(Resource.Id.Title).Text = item.Poi.Name;
             view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Poi.Altitude) + "m | " + Convert.ToString(Math.Round(item.Distance/1000, 2)) + " km";
 
-            Favourite = view.FindViewById<TextView>(Resource.Id.Favourite);
-            if (item.Poi.Favorite)
-                Favourite.Text = "❤";
-            else 
-                Favourite.Text = "♡";
 
             Thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
             Thumbnail.SetImageResource(GetImage(item));
@@ -71,6 +65,7 @@ namespace HorizontApp.Utilities
             deleteButton.SetOnClickListener(this);
             deleteButton.Tag = position;
 
+
             var editButton = view.FindViewById<ImageButton>(Resource.Id.PoiEditButton);
             editButton.SetOnClickListener(this);
             editButton.Tag = position;
@@ -78,6 +73,12 @@ namespace HorizontApp.Utilities
             var likeButton = view.FindViewById<ImageButton>(Resource.Id.PoiLikeButton);
             likeButton.SetOnClickListener(this);
             likeButton.Tag = position;
+
+
+            if (item.Poi.Favorite)
+                likeButton.SetImageResource(Resource.Drawable.f_heart_solid);
+            else
+                likeButton.SetImageResource(Resource.Drawable.f_heart_empty);
 
             return view;
         }

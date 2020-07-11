@@ -43,13 +43,6 @@
             android:paddingTop="5dp"
             android:textColor="#000000"
             android:textSize="11sp" />
-        <TextView
-            android:text="Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/Description"
-            android:layout_below="@+id/Title"
-            android:id="@+id/Favourite" />
     </RelativeLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -60,7 +53,7 @@
         android:gravity="right"
         android:id="@+id/linearLayout2">
         <ImageButton
-          android:src="@android:drawable/star_big_off"
+          android:src="@drawable/f_heart_empty "
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:id="@+id/PoiLikeButton" />
