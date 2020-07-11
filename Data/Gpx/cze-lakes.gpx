@@ -337,4 +337,663 @@ creator="http://online.poi.cz">		<wpt lat="49.232378" lon="16.519072">
 		<wpt lat="49.414183" lon="14.662324">
 			<name>Vodni nadrz Jordan, Kosirsky potok</name>
 		</wpt>
+		<wpt lat="50.418899" lon="15.033469">
+			<name>Havranek Sukorady</name>
+			<link href="http://rybnikhavranek.7x.cz/">
+				<text>http://rybnikhavranek.7x.cz/</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Sukorady</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+						<gpxx:PostalCode>294 06</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.100047" lon="14.525042">
+			<name>Horejsi rybnik Praha 9-Hloubetin</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Mezitratova</gpxx:StreetAddress>
+						<gpxx:City>Praha 9-Hloubetin</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+						<gpxx:PostalCode>198 00</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.786695" lon="13.384352">
+			<name>Tremosensky rybnik Plzen</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Plzen</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.789701" lon="13.383000">
+			<name>Kamenny rybnik Plzen</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Plzen</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.784201" lon="13.374953">
+			<name>Sidlovsky rybnik Plzen</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Plzen</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.788046" lon="13.360931">
+			<name>Strzenka Plzen</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Plzen</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.917796" lon="16.591802">
+			<name>Dlouhy rybnik Lanskroun</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Lanskroun</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.978053" lon="16.571932">
+			<name>Cermensky rybnik Dolni Cermna</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Dolni Cermna</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.914825" lon="16.598797">
+			<name>Kratky rybnik Lanskroun</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Lanskroun</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.770700" lon="13.401200">
+			<name>Velky Bolevecky rybnik Plzen</name>
+			<desc>Cisty piskovcovy rybnik, pekne koupani</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Plzen</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.751397" lon="13.516134">
+			<name>Vodni nadrz Ejpovice</name>
+			<desc>Cista a hluboka kamenita vod. nadrz</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Ejpovice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.651637" lon="13.890839">
+			<name>Modlansky rybnik Modlany</name>
+			<desc>super rybolov 40,0 ha</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Modlany</gpxx:City>
+						<gpxx:Country>CZE</gpxx:Country>
+						<gpxx:PostalCode>41713</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.785000" lon="13.390300">
+			<name>Senecky rybnik Plzen</name>
+			<desc>Piscity rybnik, pekne koupani</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Plzen</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.608448" lon="16.022957">
+			<name>Autokemp SYKOVEC Tri Studne</name>
+			<desc>Nejvise polozeny rybnik na Vysocine</desc>
+			<link href="http://www.kempsykovec.cz">
+				<text>http://www.kempsykovec.cz</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Vlachovice 38</gpxx:StreetAddress>
+						<gpxx:City>Tri Studne</gpxx:City>
+						<gpxx:Country>CR</gpxx:Country>
+						<gpxx:PostalCode>59231</gpxx:PostalCode>
+					</gpxx:Address>
+					<gpxx:PhoneNumber>+420604441175</gpxx:PhoneNumber>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.047357" lon="14.595273">
+			<name>Podlesky rybnik Praha 9</name>
+			<desc>Na dne spoustu bahna.</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Podlesek</gpxx:StreetAddress>
+						<gpxx:City>Praha 9</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.069495" lon="14.573150">
+			<name>Slatina Praha 9, Mecholupy</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>K lesiku</gpxx:StreetAddress>
+						<gpxx:City>Praha 9, Mecholupy</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.052289" lon="14.486332">
+			<name>Hamersky rybnik Praha, Zabehlice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>K vode</gpxx:StreetAddress>
+						<gpxx:City>Praha, Zabehlice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.085730" lon="14.585574">
+			<name>Pocernicky rybnik Praha 9, Dolni Pocernice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Nad rybnikem</gpxx:StreetAddress>
+						<gpxx:City>Praha 9, Dolni Pocernice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.096647" lon="14.577034">
+			<name>Martinak Praha 9, Dolni Pocernice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Praha 9, Dolni Pocernice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.094155" lon="14.570961">
+			<name>Vidlak Praha 9, Dolni Pocernice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Praha 9, Dolni Pocernice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.099496" lon="14.546027">
+			<name>Kyjsky rybnik Praha 9, Kyje</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>U rybnika</gpxx:StreetAddress>
+						<gpxx:City>Praha 9, Kyje</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.243363" lon="14.668550">
+			<name>Jezero Lhota (piskovna) Lhota u Melnika</name>
+			<desc>Skvela voda; nudaplaz na vychodnim konci</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Lhota u Melnika</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="48.967372" lon="13.939075">
+			<name>Kristanovicky rybnik Kristanovice (u Prachatic)</name>
+			<desc>kemp i hotel</desc>
+			<link href="http://www.obeczablati.cz/index.php?nid1994">
+				<text>http://www.obeczablati.cz/index.php?nid1994</text>
+			</link>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Kristanovice (u Prachatic)</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.616854" lon="16.052380">
+			<name>Medlovsky rybnik</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Medlov</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.037306" lon="14.754049">
+			<name>Rozmberk Trebon</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Trebon</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.665878" lon="16.089135">
+			<name>Milovsky rybnik Milovy</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Milovy</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.133483" lon="16.253200">
+			<name>Tutlecky rybnik Tutleky</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Tutleky</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.525687" lon="14.646446">
+			<name>Mezensky rybnik Mezno</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Mezno</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.414781" lon="14.671254">
+			<name>Jordan Tabor</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Tabor</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.365677" lon="16.657973">
+			<name>Palava Blansko</name>
+			<desc>Koupaliste</desc>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Blansko</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.481785" lon="16.756762">
+			<name>Sussky rybnik Suchy-kemp</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Suchy-kemp</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="50.559522" lon="15.189124">
+			<name>Bazantnik Sedmihorky-kemp</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Sedmihorky-kemp</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.213453" lon="16.141630">
+			<name>Rathan Namest nad Oslavou</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Ocmanicka</gpxx:StreetAddress>
+						<gpxx:City>Namest nad Oslavou</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.238494" lon="16.364140">
+			<name>Bahnak Ricky u Brna</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Ricky u Brna</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.631971" lon="15.903774">
+			<name>Velke Darko Skrdlovice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Skrdlovice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.467084" lon="17.007547">
+			<name>Bydelec Plumlov</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Plumlov</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.463540" lon="17.013979">
+			<name>Podhradsky rybnik Plumlov</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Plumlov</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.438422" lon="16.858622">
+			<name>Dolni rybnik Niva</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Niva</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.444360" lon="16.852963">
+			<name>Horni rybnik Niva</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Niva</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.430190" lon="16.803853">
+			<name>Housko Vysocany</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Vysocany</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.378795" lon="16.765004">
+			<name>Stavek Ostrov u Macochy</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Ostrov u Macochy</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.403059" lon="16.703093">
+			<name>Petrovicky rybnik Petrovice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Petrovice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.334183" lon="16.776871">
+			<name>Budkovan Jedovnice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Jedovnice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.340072" lon="16.759503">
+			<name>Olsovec Jedovnice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Jedovnice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.338263" lon="16.748859">
+			<name>Dymak Jedovnice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:StreetAddress>Brnenska</gpxx:StreetAddress>
+						<gpxx:City>Jedovnice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.301251" lon="16.524971">
+			<name>Srpek Kurim</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Kurim</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+						<gpxx:PostalCode>66434</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.154771" lon="16.763880">
+			<name>Grunty Ponetovice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Ponetovice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+						<gpxx:PostalCode>66451</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
+		<wpt lat="49.154894" lon="16.744566">
+			<name>Ponetovicky rybnik Ponetovice</name>
+			<sym>Waypoint</sym>
+			<extensions>
+				<gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+					<gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+					<gpxx:Address>
+						<gpxx:City>Ponetovice</gpxx:City>
+						<gpxx:Country>CZ</gpxx:Country>
+						<gpxx:PostalCode>66451</gpxx:PostalCode>
+					</gpxx:Address>
+				</gpxx:WaypointExtension>
+			</extensions>
+		</wpt>
 </gpx>

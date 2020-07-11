@@ -8,7 +8,7 @@
 	},
 	{
 		"Id":"5818de17-160e-4382-a839-1a54b4f08f2d",
-		"Description": "All lakes in the Czech Republic",
+		"Description": "All lakes, dams and ponds in the Czech Republic",
 		"Url": "cze-lakes.gpx",
 		"Country":"CZE",
 		"Category": "Lakes"
@@ -19,6 +19,13 @@
 		"Url": "cze-castles.gpx",
 		"Country":"CZE",
 		"Category": "Castles"
+	},
+	{
+		"Id":"54c97f51-2c2c-4976-89d4-5854ff9daa35",
+		"Description": "All churches and catherdrals in the Czech Republic",
+		"Url": "cze-churches.gpx",
+		"Country":"CZE",
+		"Category": "Churches"
 	},
 	{
 		"Id":"548a4c51-f378-49a9-aa80-6c23cc75fe4c",
