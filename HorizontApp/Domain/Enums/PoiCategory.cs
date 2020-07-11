@@ -10,5 +10,6 @@
         Ruins,
         ViewTowers,
         Transmitters,
+        Churches,
     }
 }

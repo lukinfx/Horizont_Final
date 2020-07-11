@@ -92,6 +92,8 @@ namespace HorizontApp.Utilities
 					return Resource.Drawable.c_ruins;
 				case PoiCategory.Transmitters:
 					return Resource.Drawable.c_transmitter;
+                case PoiCategory.Churches:
+                    return Resource.Drawable.c_church;
 				default:
 					return Resource.Drawable.c_basic;
 			}
