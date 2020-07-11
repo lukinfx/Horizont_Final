@@ -18,7 +18,8 @@ namespace HorizontApp.Domain.ViewModel
         public Poi Poi;
         public double Bearing;
         public double Distance;
-        
+        public float AltitudeDifference { get; internal set; }
+
         public GpsLocation GpsLocation
         {
             get
@@ -26,6 +27,8 @@ namespace HorizontApp.Domain.ViewModel
                 return new GpsLocation() { Latitude = this.Poi.Latitude, Longitude = this.Poi.Longitude, Altitude = this.Poi.Altitude };
             }
         }
+
+        
 
         public PoiViewItem(Poi poi) 
         {

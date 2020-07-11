@@ -33,6 +33,7 @@ namespace HorizontApp.Domain.ViewModel
             {
                 var poiViewItem = new PoiViewItem(item);
                 poiViewItem.Bearing = CompassViewUtils.GetBearing(location, poiViewItem.GpsLocation);
+                poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(location, poiViewItem.GpsLocation);
                 poiViewItem.Distance = CompassViewUtils.GetDistance(location, poiViewItem.GpsLocation);
 
                 if (favourite && !poiViewItem.Poi.Favorite)

@@ -82,11 +82,12 @@ namespace HorizontApp.Views
             {
                 foreach (var item in list)
                 {
-                    var startX = CompassViewUtils.GetLocationOnScreen((float)Heading, (float)item.Bearing, canvas.Width, ViewAngleHorizontal);
+                    var startX = CompassViewUtils.GetXLocationOnScreen((float)Heading, (float)item.Bearing, canvas.Width, ViewAngleHorizontal);
+                    
                     if (startX != null)
                     {
-                        
-                        canvas.DrawLine(0, -startX.Value, 300, -startX.Value, paint);
+                        var endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, ViewAngleVertical);
+                        canvas.DrawLine(0, -startX.Value, endY, -startX.Value, paint);
 
                         canvas.DrawText(item.Poi.Name, 10, -startX.Value-10, textpaint);
                         canvas.DrawText($"{item.Poi.Altitude} m / {(item.Distance/1000):F2} km", 10, -startX.Value+35, textpaint);

@@ -33,17 +33,30 @@ namespace HorizontApp.Utilities
             return x;
         }
 
-        public static float? GetLocationOnScreen(float heading, float bearing, float canvasWidth, float cameraViewAngle)
+        public static float GetAltitudeDifference(GpsLocation myLocation, GpsLocation point)
         {
-            float PointCanvasCoords;
+            var diff = point.Altitude - myLocation.Altitude;
+            float a = (float)diff;
+            return a;
+        }
+
+        public static float? GetXLocationOnScreen(float heading, float bearing, float canvasWidth, float cameraViewAngle)
+        {
+            float XCoord;
             if (bearing < 0) bearing = 360 + bearing;
-            double diff = CompassUtils.GetDiff(bearing, heading);
+            double diff = CompassUtils.GetAngleDiff(bearing, heading);
             if (Math.Abs(diff) < cameraViewAngle / 2)
             {
-                PointCanvasCoords = ((float)diff/ (cameraViewAngle / 2)) * canvasWidth/2 + canvasWidth / 2;
-                return PointCanvasCoords;
+                XCoord = ((float)diff/ (cameraViewAngle / 2)) * canvasWidth/2 + canvasWidth / 2;
+                return XCoord;
             }
             else return null;
+        }
+        public static float GetYLocationOnScreen(double distance, float altitudeDifference, float canvasHeight, float cameraViewAngle)
+        {
+            var YCoord = (canvasHeight / 2) - ((GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance)) / (cameraViewAngle / 2)) * canvasHeight / 2);
+            var YCoordFloat = (float)YCoord;
+            return YCoordFloat;
         }
 
     } 

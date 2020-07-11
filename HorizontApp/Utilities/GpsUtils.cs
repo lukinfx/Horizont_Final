@@ -58,12 +58,12 @@ namespace HorizontApp.Utilities
             return Convert(loc1).DistanceTo(Convert(loc2));
         }
 
-        private static double Dg2Rad(double degrees)
+        public static double Dg2Rad(double degrees)
         {
             return (Math.PI / 180) * degrees;
         }
 
-        private static double Rad2Dg(double radian)
+        public static double Rad2Dg(double radian)
         {
             return radian * (180.0 / Math.PI);
         }
