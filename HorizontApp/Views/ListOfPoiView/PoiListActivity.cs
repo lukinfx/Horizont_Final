@@ -62,7 +62,7 @@ namespace HorizontApp.Views.ListOfPoiView
 
             var poiList = Database.GetItems();
 
-            items = new PoiViewItemList(poiList, location, maxDistance, minAltitude);
+            items = new PoiViewItemList(poiList, location, maxDistance, minAltitude, false);
             items = items.OrderBy(i => i.Distance).ToList();
 
             adapter = new ListViewAdapter(this, items);

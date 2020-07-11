@@ -200,6 +200,11 @@ namespace HorizontApp
                 case Resource.Id.imageButton1:
                     {
                         favourite = !favourite;
+                        if (favourite)
+                            menu.SetImageResource(Resource.Drawable.f_heart_empty);
+                        else
+                            menu.SetImageResource(Resource.Drawable.f_heart_solid);
+                        ReloadData(favourite);
                         break;
                     }
 
@@ -271,13 +276,13 @@ namespace HorizontApp
             }
         }
 
-        private PoiViewItemList GetPointsToDisplay(GpsLocation location, double maxDistance, double minAltitude, bool favourite = false)
+        private PoiViewItemList GetPointsToDisplay(GpsLocation location, double maxDistance, double minAltitude, bool favourite)
         {
             try
             {
-                var poiList = Database.GetItems(location, maxDistance, favourite);
+                var poiList = Database.GetItems(location, maxDistance);
 
-                PoiViewItemList poiViewItemList = new PoiViewItemList(poiList, location, maxDistance, minAltitude);
+                PoiViewItemList poiViewItemList = new PoiViewItemList(poiList, location, maxDistance, minAltitude, favourite);
                 return poiViewItemList;
             }
             catch (Exception ex)
