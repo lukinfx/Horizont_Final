@@ -1,10 +1,10 @@
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="50dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:id="@+id/ListItemRelativeLayout">
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/linearLayout1">
     <ImageView
         android:id="@+id/Thumbnail"
         android:layout_width="70dp"
@@ -13,33 +13,66 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:src="@drawable/c_basic" />
-    <TextView
-        android:id="@+id/Title"
+
+    <RelativeLayout 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/Thumbnail"
-        android:lineSpacingExtra="3dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:typeface="sans" />
-    <TextView
-        android:id="@+id/Description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Title"
-        android:layout_toRightOf="@id/Thumbnail"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:textColor="#000000"
-        android:textSize="11sp" />
-    <TextView
-        android:text="Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/Description"
+        android:minHeight="50dp"
+        android:minWidth="30dp"
+        android:orientation="horizontal"
+        android:id="@+id/ListItemRelativeLayout">
         
-        android:layout_below="@+id/Title"
-        android:id="@+id/Favourite" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/Thumbnail"
+            android:lineSpacingExtra="3dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:typeface="sans" />
+        <TextView
+            android:id="@+id/Description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Title"
+            android:layout_toRightOf="@id/Thumbnail"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:textColor="#000000"
+            android:textSize="11sp" />
+        <TextView
+            android:text="Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/Description"
+            android:layout_below="@+id/Title"
+            android:id="@+id/Favourite" />
+    </RelativeLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right"
+        android:id="@+id/linearLayout2">
+        <ImageButton
+          android:src="@android:drawable/star_big_off"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/PoiLikeButton" />
+        <ImageButton
+          android:src="@android:drawable/ic_menu_delete"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/PoiDeleteButton" />
+        <ImageButton
+          android:src="@android:drawable/ic_menu_edit"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/PoiEditButton" />
+    </LinearLayout>
+</LinearLayout>

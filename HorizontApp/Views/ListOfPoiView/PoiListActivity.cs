@@ -19,7 +19,7 @@ using static Android.Views.View;
 namespace HorizontApp.Views.ListOfPoiView
 {
     [Activity(Label = "PoiListActivity")]
-    public class PoiListActivity : Activity, IOnClickListener
+    public class PoiListActivity : Activity, IOnClickListener, IPoiActionListener
     {
         ListView listViewPoi;
         Button back;
@@ -65,7 +65,7 @@ namespace HorizontApp.Views.ListOfPoiView
             items = new PoiViewItemList(poiList, location, maxDistance, minAltitude, false);
             items = items.OrderBy(i => i.Distance).ToList();
 
-            adapter = new ListViewAdapter(this, items);
+            adapter = new ListViewAdapter(this, items, this);
             listViewPoi.Adapter = adapter;
             listViewPoi.ItemClick += OnListItemClick;
         }
@@ -93,6 +93,21 @@ namespace HorizontApp.Views.ListOfPoiView
         public void OnClick(View v)
         {
             Finish();
+        }
+
+        public void OnPoiDelete(int position)
+        {
+         
+        }
+
+        public void OnPoiEdit(int position)
+        {
+
+        }
+
+        public void OnPoiLike(int position)
+        {
+
         }
     }
 }
