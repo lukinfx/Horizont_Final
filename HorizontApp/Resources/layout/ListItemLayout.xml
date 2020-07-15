@@ -53,7 +53,7 @@
         android:gravity="right"
         android:id="@+id/linearLayout2">
         <ImageButton
-          android:src="@drawable/f_heart_empty "
+          android:src="@drawable/f_heart_empty"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:id="@+id/PoiLikeButton" />
