@@ -7,7 +7,6 @@ using Android.Widget;
 using HorizontApp.Providers;
 using Android.Content.PM;
 using static Android.Views.View;
-using SkiaSharp.Views.Android;
 using Android.Locations;
 using System.Timers;
 using System.Linq;
