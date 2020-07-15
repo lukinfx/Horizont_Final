@@ -51,6 +51,7 @@ namespace HorizontApp
         TextView filterText;
         Button getHeadingButton;
         Button getGPSButton;
+        ImageButton pauseButton;
         ImageButton stopCompassButton;
         CompassView compassView;
         private CameraFragment cameraFragment;
@@ -58,7 +59,8 @@ namespace HorizontApp
         SeekBar heightSeekBar;
         private View layout;
         ImageButton menu;
-        bool favourite = false;
+        private bool favourite = false;
+        private bool compassPaused = false;
 
         Timer compassTimer = new Timer();
         Timer locationTimer = new Timer();
@@ -117,6 +119,10 @@ namespace HorizontApp
 
             stopCompassButton = FindViewById<ImageButton>(Resource.Id.button4);
             stopCompassButton.SetOnClickListener(this);
+
+            pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
+            pauseButton.SetOnClickListener(this);
+            
 
             compassView = FindViewById<CompassView>(Resource.Id.compassView1);
 
@@ -220,18 +226,30 @@ namespace HorizontApp
                         ReloadData(favourite);
                         break;
                     }
+                case Resource.Id.buttonPause:
+                {
+                    compassPaused = !compassPaused;
+                    if (compassPaused)
+                        pauseButton.SetImageResource(Resource.Drawable.ic_pause_on);
+                    else
+                        pauseButton.SetImageResource(Resource.Drawable.ic_pause);
+                    break;
+                }
 
             }
         }
 
         private void OnCompassTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            headingStabilizator.AddValue(compassProvider.Heading);
+            if (!compassPaused)
+            {
+                headingStabilizator.AddValue(compassProvider.Heading);
 
-            compassView.Heading = headingStabilizator.GetHeading();
-            headingEditText.Text = headingStabilizator.GetHeading().ToString();
+                compassView.Heading = headingStabilizator.GetHeading();
+                headingEditText.Text = headingStabilizator.GetHeading().ToString();
 
-            compassView.Invalidate();
+                compassView.Invalidate();
+            }
         }
 
         private async void OnLocationTimerElapsed(object sender, ElapsedEventArgs e)

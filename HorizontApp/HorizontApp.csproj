@@ -325,6 +325,12 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_pause_on.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_heart2.png" />
   </ItemGroup>
   <ItemGroup>
