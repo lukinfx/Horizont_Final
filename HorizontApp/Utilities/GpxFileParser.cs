@@ -10,6 +10,7 @@ namespace HorizontApp.Utilities
     {
         static public IEnumerable<Poi> Parse(string xml, PoiCategory category, Guid source)
         {
+            var lastNode = "";
             try
             {
                 var listOfPoi = new PoiList();
@@ -36,6 +37,7 @@ namespace HorizontApp.Utilities
                     //TODO: Resolve problem with decimal separator
                     lat = lat.Replace(".", ",");
                     lon = lon.Replace(".", ",");
+                    ele = ele.Replace(".", ",");
 
                     listOfPoi.Add(new Poi
                     {
@@ -46,13 +48,15 @@ namespace HorizontApp.Utilities
                         Category = category,
                         Source =  source,
                     });
+
+                    lastNode = name;
                 }
 
                 return listOfPoi;
             }
             catch(Exception ex)
             {
-                throw new Exception("Error when parsing GPX file", ex);
+                throw new Exception($"Error when parsing GPX file (last node:{lastNode})", ex);
             }
         }
     }

@@ -47,13 +47,13 @@ namespace GpxAltitudeFixer
         }
         static void Main(string[] args)
         {
-            string xmlFileContext = File.ReadAllText(@"C:\temp\hory-in.gpx");
+            string xmlFileContext = File.ReadAllText(@"c:\Src\Xamarin\Horizon\Data\Gpx\svk-mountains.gpx");
             var poiList = HorizontLib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles);
 
-            foreach (var poi in poiList)
+            /*foreach (var poi in poiList)
             {
                 SplitNameAndAltitude(poi);
-            }
+            }*/
 
             var gpxNamespace = "http://www.topografix.com/GPX/1/1";
             var doc = new XmlDocument();
@@ -84,7 +84,7 @@ namespace GpxAltitudeFixer
 
             }
 
-            doc.Save(@"c:\temp\hory-out.gpx");
+            doc.Save(@"c:\Src\Xamarin\Horizon\Data\Gpx\svk-mountains2.gpx");
         }
     }
 }
