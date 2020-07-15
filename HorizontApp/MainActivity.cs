@@ -214,6 +214,7 @@ namespace HorizontApp
                 case Resource.Id.button4:
                     {
                         ReloadData(favourite);
+                        compassView.Invalidate();
                         break;
                     }
                 case Resource.Id.imageButton1:
@@ -224,6 +225,7 @@ namespace HorizontApp
                         else
                             menu.SetImageResource(Resource.Drawable.ic_heart2);
                         ReloadData(favourite);
+                        compassView.Invalidate();
                         break;
                     }
                 case Resource.Id.buttonPause:
