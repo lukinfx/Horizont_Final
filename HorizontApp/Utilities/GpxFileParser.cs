@@ -8,7 +8,7 @@ namespace HorizontApp.Utilities
 {
     class GpxFileParser
     {
-        static public IEnumerable<Poi> Parse(string xml, PoiCategory category)
+        static public IEnumerable<Poi> Parse(string xml, PoiCategory category, Guid source)
         {
             try
             {
@@ -44,6 +44,7 @@ namespace HorizontApp.Utilities
                         Latitude = Convert.ToDouble(lat),
                         Altitude = Convert.ToDouble(ele),
                         Category = category,
+                        Source =  source,
                     });
                 }
 

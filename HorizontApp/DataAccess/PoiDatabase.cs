@@ -55,8 +55,14 @@ namespace HorizontApp.DataAccess
                     if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Poi).Name))
                     {
                         Database.CreateTablesAsync(CreateFlags.None, typeof(Poi)).ConfigureAwait(false);
-                        initialized = true;
                     }
+                    
+                    if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(PoisToDownload).Name))
+                    {
+                        Database.CreateTablesAsync(CreateFlags.None, typeof(PoisToDownload)).ConfigureAwait(false);
+                    }
+
+                    initialized = true;
                 }
             }
             catch(Exception ex)
@@ -64,6 +70,34 @@ namespace HorizontApp.DataAccess
                 throw;
             }
             
+        }
+
+        public async Task<IEnumerable<PoisToDownload>> GetDownloadedPoisAsync()
+        {
+            var task = Database.Table<PoisToDownload>().ToListAsync();
+            task.Wait();
+            return task.Result;
+        }
+
+        public int InsertItem(PoisToDownload item)
+        {
+            var task = Database.InsertAsync(item);
+            task.Wait();
+            return task.Result; 
+        }
+
+        public int UpdateItem(PoisToDownload item)
+        {
+            var task = Database.UpdateAsync(item);
+            task.Wait();
+            return task.Result;
+        }
+
+        public int DeleteItem(PoisToDownload item)
+        {
+            var task = Database.DeleteAsync(item);
+            task.Wait();
+            return task.Result;
         }
 
         public async Task<IEnumerable<Poi>> GetItemsAsync()
@@ -117,9 +151,18 @@ namespace HorizontApp.DataAccess
             return await Database.InsertAsync(item);
         }
 
-        public async Task<int> InsertAllAsync(IEnumerable<Poi> items)
+        public int DeleteAllFromSource(Guid source)
         {
-            return await Database.InsertAllAsync(items);
+            var task = Database.ExecuteAsync($"DELETE FROM [Poi] WHERE [Source] = \"{source.ToString()}\"");
+            task.Wait();
+            return task.Result;
+        }
+
+        public int InsertAll(IEnumerable<Poi> items)
+        {
+            var task = Database.InsertAllAsync(items);
+            task.Wait();
+            return task.Result;
         }
 
         public async Task<int> UpdateItemAsync(Poi item)

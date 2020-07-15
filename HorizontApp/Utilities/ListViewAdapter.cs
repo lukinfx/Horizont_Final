@@ -59,7 +59,7 @@ namespace HorizontApp.Utilities
 
 
             Thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
-            Thumbnail.SetImageResource(GetImage(item));
+            Thumbnail.SetImageResource(PoiCategoryHelper.GetImage(item.Poi.Category));
 
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.PoiDeleteButton);
             deleteButton.SetOnClickListener(this);
@@ -81,31 +81,6 @@ namespace HorizontApp.Utilities
                 likeButton.SetImageResource(Resource.Drawable.f_heart_empty);
 
             return view;
-        }
-
-        public int GetImage(PoiViewItem item)
-        { 
-            switch (item.Poi.Category) 
-            { 
-                case PoiCategory.Castles: 
-                    return Resource.Drawable.c_castle; 
-                case PoiCategory.Mountains: 
-                    return Resource.Drawable.c_mountain; 
-                case PoiCategory.Lakes: 
-                    return Resource.Drawable.c_lake; 
-                case PoiCategory.ViewTowers: 
-                    return Resource.Drawable.c_viewtower; 
-                case PoiCategory.Palaces: 
-                    return Resource.Drawable.c_palace; 
-                case PoiCategory.Ruins: 
-                    return Resource.Drawable.c_ruins; 
-                case PoiCategory.Transmitters: 
-                    return Resource.Drawable.c_transmitter;
-                case PoiCategory.Churches:
-                    return Resource.Drawable.c_church; 
-                default: 
-                    return Resource.Drawable.c_basic;
-            }
         }
 
         public void OnClick(View v)

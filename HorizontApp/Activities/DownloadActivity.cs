@@ -23,8 +23,15 @@ namespace HorizontApp.Activities
         private static readonly string IndexFile = "poi-index.json";
 
         private ListView downloadItemListView;
+        private ListView downloadCountryListView;
         private Button backButton;
+        
+        private List<PoisToDownload> allItems;
+
         private List<PoisToDownload> items;
+        private List<PoiCountry> countries;
+        private DownloadItemAdapter itemsAdapter;
+
         private PoiDatabase database;
         public PoiDatabase Database
         {
@@ -55,23 +62,64 @@ namespace HorizontApp.Activities
                        "\"Country\":\"SVN\"," +
                        "\"Category\": \"Castles\" }" +
                        "]";*/
-            items = JsonConvert.DeserializeObject<List<PoisToDownload>>(json);
+
+            var itemsToDownload = JsonConvert.DeserializeObject<List<PoisToDownload>>(json);
 
             SetContentView(Resource.Layout.DownloadActivity);
 
             downloadItemListView = FindViewById<ListView>(Resource.Id.DownloadItemListView);
+            downloadCountryListView = FindViewById<ListView>(Resource.Id.DownloadCountryListView);
+
+            var downloadedTask = Database.GetDownloadedPoisAsync();
+            downloadedTask.Wait();
+            allItems = downloadedTask.Result.ToList();
+            
+            foreach (var item in itemsToDownload)
+            {
+                if (!allItems.Any(x => x.Id == item.Id))
+                {
+                    allItems.Add(item);
+                }
+            }
+
+            countries = allItems.Select(x => x.Country).Distinct().ToList();
+            items = new List<PoisToDownload>();
+
+            itemsAdapter = new DownloadItemAdapter(this);
+
+
             backButton = FindViewById<Button>(Resource.Id.BackButton);
             backButton.SetOnClickListener(this);
 
-            var adapter = new DownloadItemAdapter(this, items);
-            downloadItemListView.Adapter = adapter;
+            var countryAdapter = new DownloadCountryAdapter(this, countries);
+            downloadCountryListView.Adapter = countryAdapter;
+            downloadCountryListView.ItemClick += OnListCountryClick;
+
+            itemsAdapter = new DownloadItemAdapter(this);
+            downloadItemListView.Adapter = itemsAdapter;
             downloadItemListView.ItemClick += OnListItemClick;
+
         }
 
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             PoisToDownload item = items[e.Position];
-            LoadDataFromInternet(GetUrl(item.Url), item.Category);
+            if (item.DownloadDate == null)
+            {
+                DownloadFromInternet(item);
+            }
+            else
+            {
+                DeleteFromInternet(item);
+            }
+            itemsAdapter.NotifyDataSetChanged();
+        }
+
+        void OnListCountryClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            PoiCountry country = countries[e.Position];
+            items = allItems.Where(x => x.Country == country).ToList();
+            itemsAdapter.SetItems(items);
         }
 
         public void OnClick(View v)
@@ -79,13 +127,16 @@ namespace HorizontApp.Activities
             Finish();
         }
 
-        private async void LoadDataFromInternet(string filePath, PoiCategory category)
+        private void DownloadFromInternet(PoisToDownload source)
         {
             try
             {
-                var file = GpxFileProvider.GetFile(filePath);
-                var listOfPoi = GpxFileParser.Parse(file, category);
-                await Database.InsertAllAsync(listOfPoi);
+                var file = GpxFileProvider.GetFile(GetUrl(source.Url));
+                var listOfPoi = GpxFileParser.Parse(file, source.Category, source.Id);
+                Database.InsertAll(listOfPoi);
+
+                source.DownloadDate = DateTime.Now;
+                Database.InsertItem(source);
 
                 PopupDialog("Information", $"{listOfPoi.Count()} items loaded to database.");
             }
@@ -94,6 +145,24 @@ namespace HorizontApp.Activities
                 PopupDialog("Error", $"Error when loading data. {ex.Message}");
             }
         }
+
+        private void DeleteFromInternet(PoisToDownload source)
+        {
+            try
+            {
+                Database.DeleteAllFromSource(source.Id);
+                
+                source.DownloadDate = null;
+                Database.DeleteItem(source);
+
+                PopupDialog("Information", $"Items removed from database.");
+            }
+            catch (Exception ex)
+            {
+                PopupDialog("Error", $"Error when removing data. {ex.Message}");
+            }
+        }
+        
 
         public void PopupDialog(string title, string message)
         {

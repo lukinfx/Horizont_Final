@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:orientation="horizontal"
+                android:id="@+id/DownloadCountryListRelativeLayout">
+  <ImageView
+    android:id="@+id/PoiItemCountryAsIcon"
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+    android:paddingLeft="10dp"
+    android:layout_alignParentLeft="true"
+    android:layout_centerVertical="true"
+    android:src="@drawable/f_unknownFlagIcon128" />
+  <TextView
+    android:id="@+id/PoiItemCountryAsText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@id/PoiItemCountryAsIcon"
+    android:lineSpacingExtra="3dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    android:textColor="#000000"
+    android:textStyle="bold"
+    android:typeface="sans" />
+</RelativeLayout>

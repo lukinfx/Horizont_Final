@@ -5,18 +5,18 @@
                 android:orientation="horizontal"
                 android:id="@+id/DownloadItemListRelativeLayout">
   <ImageView
-    android:id="@+id/PoiItemCountry"
+    android:id="@+id/PoiItemCategoryAsIcon"
     android:layout_width="70dp"
     android:layout_height="70dp"
     android:paddingLeft="10dp"
     android:layout_alignParentLeft="true"
     android:layout_centerVertical="true"
-    android:src="@drawable/f_unknownFlagIcon128" />
+    android:src="@drawable/c_basic" />
   <TextView
-    android:id="@+id/PoiItemCategory"
+    android:id="@+id/PoiItemCategoryAsText"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_toRightOf="@id/PoiItemCountry"
+    android:layout_toRightOf="@id/PoiItemCategoryAsIcon"
     android:lineSpacingExtra="3dp"
     android:paddingLeft="10dp"
     android:paddingTop="5dp"
@@ -27,8 +27,18 @@
     android:id="@+id/PoiItemDescription"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/PoiItemCategory"
-    android:layout_toRightOf="@id/PoiItemCountry"
+    android:layout_below="@+id/PoiItemCategoryAsText"
+    android:layout_toRightOf="@id/PoiItemCategoryAsIcon"
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    android:textColor="#000000"
+    android:textSize="11sp" />
+  <TextView
+    android:id="@+id/PoiItemDownloadedDate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/PoiItemDescription"
+    android:layout_toRightOf="@id/PoiItemCategoryAsIcon"
     android:paddingLeft="10dp"
     android:paddingTop="5dp"
     android:textColor="#000000"

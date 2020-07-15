@@ -28,21 +28,10 @@ namespace HorizontApp.Domain.Models
         public double Altitude { get; set; }
 
         public bool Favorite { get; set; }
+        public Guid Source { get; set; }
 
         public Poi()
         {
         }
-
-        public Poi(Poi poi)
-        {
-            Id = poi.Id;
-            Category = poi.Category;
-            Name = poi.Name;
-            Longitude = poi.Longitude;
-            Latitude = poi.Latitude;
-            Altitude = poi.Altitude;
-            Favorite = poi.Favorite;
-        }
-
     }
 }

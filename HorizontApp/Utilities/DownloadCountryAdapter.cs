@@ -15,22 +15,16 @@ using HorizontApp.Domain.ViewModel;
 
 namespace HorizontApp.Utilities
 {
-    public class DownloadItemAdapter : BaseAdapter<PoisToDownload>
+    public class DownloadCountryAdapter : BaseAdapter<PoiCountry>
     {
         Activity context;
-        List<PoisToDownload> list;
+        List<PoiCountry> list;
 
-        public DownloadItemAdapter(Activity _context)
+        public DownloadCountryAdapter(Activity _context, IEnumerable<PoiCountry> _list)
             : base()
         {
             this.context = _context;
-            this.list = new List<PoisToDownload>();
-        }
-
-        public void SetItems(IEnumerable<PoisToDownload> items)
-        {
-            list = items.ToList();
-            NotifyDataSetChanged();
+            this.list = _list.ToList();
         }
 
         public override int Count
@@ -43,7 +37,7 @@ namespace HorizontApp.Utilities
             return position;
         }
 
-        public override PoisToDownload this[int index]
+        public override PoiCountry this[int index]
         {
             get { return list[index]; }
         }
@@ -53,19 +47,46 @@ namespace HorizontApp.Utilities
             View view = convertView;
 
             if (view == null)
-                view = context.LayoutInflater.Inflate(Resource.Layout.DownloadItemListLayout, parent, false);
+                view = context.LayoutInflater.Inflate(Resource.Layout.DownloadCountryListLayout, parent, false);
 
-            PoisToDownload item = this[position];
-            view.FindViewById<TextView>(Resource.Id.PoiItemCategoryAsText).Text = item.Category.ToString();
-            view.FindViewById<TextView>(Resource.Id.PoiItemDescription).Text = item.Description;
-            if (item.DownloadDate != null)
-                view.FindViewById<TextView>(Resource.Id.PoiItemDownloadedDate).Text = "Downloaded on " + item.DownloadDate;
-            else
-                view.FindViewById<TextView>(Resource.Id.PoiItemDownloadedDate).Text = "Not downloaded yet";
-
-            view.FindViewById<ImageView>(Resource.Id.PoiItemCategoryAsIcon).SetImageResource(PoiCategoryHelper.GetImage(item.Category));
+            PoiCountry item = this[position];
+            view.FindViewById<TextView>(Resource.Id.PoiItemCountryAsText).Text = GetCountryName(item);
+            view.FindViewById<ImageView>(Resource.Id.PoiItemCountryAsIcon).SetImageResource(GetCountryIcon(item));
 
             return view;
+        }
+
+        private string GetCountryName(PoiCountry country)
+        {
+            switch (country)
+            {
+                case PoiCountry.AUT:
+                    return "Austria";
+                case PoiCountry.CZE:
+                    return "Czech republic";
+                case PoiCountry.FRA:
+                    return "France";
+                case PoiCountry.DEU:
+                    return "Germany";
+                case PoiCountry.HUN:
+                    return "Hungary";
+                case PoiCountry.ITA:
+                    return "Italy";
+                case PoiCountry.POL:
+                    return "Poland";
+                case PoiCountry.ROU:
+                    return "Romania";
+                case PoiCountry.SVK:
+                    return "Slovakia";
+                case PoiCountry.SVN:
+                    return "Slovenia";
+                case PoiCountry.ESP:
+                    return "Spain";
+                case PoiCountry.CHE:
+                    return "Switzerland";
+                default:
+                    return "Unknown";
+            }
         }
 
         private int GetCountryIcon(PoiCountry country)
