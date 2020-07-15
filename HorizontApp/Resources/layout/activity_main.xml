@@ -7,136 +7,124 @@
     android:orientation="vertical"
     android:id="@+id/sample_main_layout">
 
-    <com.jkb.slidemenu.SlideMenuLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:contentAlpha="0.5"
-        app:contentToggle="true"
-        app:parallax="false"
-        app:slideMode="left"
-        android:id="@+id/slideMenuLayoutMain">
-        
-        <include layout="@layout/content_menu_left"/>
+    <AbsoluteLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <AbsoluteLayout
+        <LinearLayout
+            android:orientation=    "horizontal"
+            android:layout_width=    "match_parent"
+            android:layout_height=    "match_parent"
+            android:layout_weight="1"
+            android:id="@+id/container" />
+
+        <HorizontApp.Views.CompassView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/compassView1"/>
 
+        <LinearLayout
+            android:orientation=    "horizontal"
+            android:layout_width=    "match_parent"
+            android:layout_height=    "wrap_content">
+            <TextView
+                android:inputType="number"
+                android:layout_width="67.5dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText1"
+                android:layout_marginRight="0.0dp"
+                android:textColor="#30ffff00"
+                android:background="#50000000"/>
+            <TextView
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText2"
+                android:textColor="#30ffff00"
+                android:background="#50000000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation=    "horizontal"
+            android:layout_width=    "match_parent"
+            android:layout_height=    "match_parent"
+            android:layout_gravity="bottom">
+            <ImageButton
+              android:src="@drawable/ic_menu"
+              android:layout_width="40dp"
+              android:layout_height="40dp"
+              android:layout_gravity="bottom"
+              android:adjustViewBounds="true"
+              android:scaleType="fitCenter"
+              android:layout_marginBottom="0dp"
+              android:layout_marginLeft="0dp"
+              android:layout_marginRight="0dp"
+              android:layout_marginTop="0dp"
+              android:padding="0dp"
+              android:id="@+id/menuButton" />
+            <ImageButton
+                android:src="@drawable/ic_heart2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:padding="0dp"
+                android:id="@+id/imageButton1" />
+            <ImageButton
+                android:src="@drawable/ic_refresh2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:padding="0dp"
+                android:id="@+id/button4" />
+            <ImageButton
+              android:src="@drawable/ic_pause"
+              android:layout_width="40dp"
+              android:layout_height="40dp"
+              android:layout_gravity="bottom"
+              android:adjustViewBounds="true"
+              android:scaleType="fitCenter"
+              android:layout_marginBottom="0dp"
+              android:layout_marginLeft="0dp"
+              android:layout_marginRight="0dp"
+              android:layout_marginTop="0dp"
+              android:padding="0dp"
+              android:id="@+id/buttonPause" />
             <LinearLayout
-                android:orientation=    "horizontal"
+                android:orientation=    "vertical"
                 android:layout_width=    "match_parent"
                 android:layout_height=    "match_parent"
-                android:layout_weight="1"
-                android:id="@+id/container" />
-
-            <HorizontApp.Views.CompassView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/compassView1"/>
-
-            <LinearLayout
-                android:orientation=    "horizontal"
-                android:layout_width=    "match_parent"
-                android:layout_height=    "wrap_content">
-                <TextView
-                    android:inputType="number"
-                    android:layout_width="67.5dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText1"
-                    android:layout_marginRight="0.0dp"
-                    android:textColor="#30ffff00"
-                    android:background="#50000000"/>
-                <TextView
-                    android:inputType="number"
+                android:gravity="bottom">
+                <SeekBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editText2"
-                    android:textColor="#30ffff00"
-                    android:background="#50000000"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation=    "horizontal"
-                android:layout_width=    "match_parent"
-                android:layout_height=    "match_parent"
-                android:layout_gravity="bottom">
-                <ImageButton
-                  android:src="@drawable/ic_menu"
-                  android:layout_width="40dp"
-                  android:layout_height="40dp"
-                  android:layout_gravity="bottom"
-                  android:adjustViewBounds="true"
-                  android:scaleType="fitCenter"
-                  android:layout_marginBottom="0dp"
-                  android:layout_marginLeft="0dp"
-                  android:layout_marginRight="0dp"
-                  android:layout_marginTop="0dp"
-                  android:padding="0dp"
-                  android:id="@+id/menuButton" />
-                <ImageButton
-                    android:src="@drawable/ic_heart2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
                     android:layout_gravity="bottom"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginTop="0dp"
-                    android:padding="0dp"
-                    android:id="@+id/imageButton1" />
-                <ImageButton
-                    android:src="@drawable/ic_refresh2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/seekBar2"
+                    android:progress="10" />
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginTop="0dp"
-                    android:padding="0dp"
-                    android:id="@+id/button4" />
-                <ImageButton
-                  android:src="@drawable/ic_pause"
-                  android:layout_width="40dp"
-                  android:layout_height="40dp"
-                  android:layout_gravity="bottom"
-                  android:adjustViewBounds="true"
-                  android:scaleType="fitCenter"
-                  android:layout_marginBottom="0dp"
-                  android:layout_marginLeft="0dp"
-                  android:layout_marginRight="0dp"
-                  android:layout_marginTop="0dp"
-                  android:padding="0dp"
-                  android:id="@+id/buttonPause" />
-                <LinearLayout
-                    android:orientation=    "vertical"
-                    android:layout_width=    "match_parent"
-                    android:layout_height=    "match_parent"
-                    android:gravity="bottom">
-                    <SeekBar
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:id="@+id/seekBar2"
-                        android:progress="10" />
-                    <SeekBar
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:id="@+id/seekBar1"
-                        android:progress="10" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#ffff00"
-                        android:background="#50000000"
-                        android:id="@+id/textView1" />
-                </LinearLayout>
+                    android:id="@+id/seekBar1"
+                    android:progress="10" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffff00"
+                    android:background="#50000000"
+                    android:id="@+id/textView1" />
             </LinearLayout>
-        </AbsoluteLayout>
-    </com.jkb.slidemenu.SlideMenuLayout>
+        </LinearLayout>
+    </AbsoluteLayout>
 </LinearLayout>

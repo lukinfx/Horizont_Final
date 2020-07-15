@@ -95,11 +95,7 @@ namespace HorizontApp
             headingEditText = FindViewById<TextView>(Resource.Id.editText1);
             GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
 
-            getHeadingButton = FindViewById<Button>(Resource.Id.button1);
-            getHeadingButton.SetOnClickListener(this);
-
             filterText = FindViewById<TextView>(Resource.Id.textView1);
-
 
             distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBar2);
             distanceSeekBar.ProgressChanged += SeekBarProgressChanged;
@@ -110,9 +106,6 @@ namespace HorizontApp
 
             var menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
             menuButton.SetOnClickListener(this);
-
-            getGPSButton = FindViewById<Button>(Resource.Id.button2);
-            getGPSButton.SetOnClickListener(this);
 
             menu = FindViewById<ImageButton>(Resource.Id.imageButton1);
             menu.SetOnClickListener(this);
@@ -186,29 +179,15 @@ namespace HorizontApp
             switch (v.Id)
             {
                 case Resource.Id.menuButton:
-                    Intent menuActivityIntent = new Intent(this, typeof(MenuActivity));
-                    menuActivityIntent.PutExtra("latitude", myLocation.Latitude);
-                    menuActivityIntent.PutExtra("longitude", myLocation.Longitude);
-                    menuActivityIntent.PutExtra("altitude", myLocation.Altitude);
-                    menuActivityIntent.PutExtra("maxDistance", distanceSeekBar.Progress);
-                    menuActivityIntent.PutExtra("minAltitude", heightSeekBar.Progress);
-
-                    StartActivity(menuActivityIntent);
-                    break;
-                case Resource.Id.button1:
-                    Intent downloadActivityIntent = new Intent(this, typeof(DownloadActivity));
-                    StartActivity(downloadActivityIntent);
-                    break;
-                case Resource.Id.button2:
                     {
-                        Intent i = new Intent(this, typeof(PoiListActivity));
-                        i.PutExtra("latitude", myLocation.Latitude);
-                        i.PutExtra("longitude", myLocation.Longitude);
-                        i.PutExtra("altitude", myLocation.Altitude);
-                        i.PutExtra("maxDistance", distanceSeekBar.Progress);
-                        i.PutExtra("minAltitude", heightSeekBar.Progress);
-                        
-                        StartActivity(i);
+                        Intent menuActivityIntent = new Intent(this, typeof(MenuActivity));
+                        menuActivityIntent.PutExtra("latitude", myLocation.Latitude);
+                        menuActivityIntent.PutExtra("longitude", myLocation.Longitude);
+                        menuActivityIntent.PutExtra("altitude", myLocation.Altitude);
+                        menuActivityIntent.PutExtra("maxDistance", distanceSeekBar.Progress);
+                        menuActivityIntent.PutExtra("minAltitude", heightSeekBar.Progress);
+
+                        StartActivity(menuActivityIntent);
                         break;
                     }
                 case Resource.Id.button4:
