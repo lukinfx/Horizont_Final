@@ -30,5 +30,8 @@ creator="http://online.poi.cz">
 		<name>Az: 200 st, Ele: +15st</name>
 		<ele>2776</ele>
 	</wpt>
-
+	<wpt lat="49.8309003" lon="18.5252769" >
+		<name>Dul Lazy, Karvina</name>
+		<ele>300</ele>
+	</wpt>
 </gpx>
