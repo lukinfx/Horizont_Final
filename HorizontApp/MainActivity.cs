@@ -214,9 +214,9 @@ namespace HorizontApp
                     {
                         favourite = !favourite;
                         if (favourite)
-                            menu.SetImageResource(Resource.Drawable.ic_heart_on);
+                            menu.SetImageResource(Resource.Drawable.ic_heart2_on);
                         else
-                            menu.SetImageResource(Resource.Drawable.ic_heart);
+                            menu.SetImageResource(Resource.Drawable.ic_heart2);
                         ReloadData(favourite);
                         break;
                     }
