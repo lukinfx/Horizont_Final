@@ -29,6 +29,7 @@ using Android.Support.V13.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
 using HorizontApp.Activities;
+using Android.Graphics;
 
 namespace HorizontApp
 {
@@ -51,7 +52,6 @@ namespace HorizontApp
         Button getHeadingButton;
         Button getGPSButton;
         ImageButton pauseButton;
-        ImageButton stopCompassButton;
         CompassView compassView;
         private CameraFragment cameraFragment;
         SeekBar distanceSeekBar;
@@ -63,6 +63,7 @@ namespace HorizontApp
 
         Timer compassTimer = new Timer();
         Timer locationTimer = new Timer();
+        Timer changeFilterTimer = new Timer();
 
         private GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
         private CompassProvider compassProvider = new CompassProvider();
@@ -109,9 +110,6 @@ namespace HorizontApp
             menu = FindViewById<ImageButton>(Resource.Id.imageButton1);
             menu.SetOnClickListener(this);
 
-            stopCompassButton = FindViewById<ImageButton>(Resource.Id.button4);
-            stopCompassButton.SetOnClickListener(this);
-
             pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
             pauseButton.SetOnClickListener(this);
             
@@ -139,6 +137,7 @@ namespace HorizontApp
 
             InitializeCompassTimer();
             InitializeLocationTimer();
+            InitializeChangeFilterTimer();
         }
 
 
@@ -154,6 +153,13 @@ namespace HorizontApp
             locationTimer.Interval = 3000;
             locationTimer.Elapsed += OnLocationTimerElapsed;
             locationTimer.Enabled = true;
+        }
+
+        private void InitializeChangeFilterTimer()
+        {
+            changeFilterTimer.Interval = 1000;
+            changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;
+            changeFilterTimer.AutoReset = false;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -187,12 +193,6 @@ namespace HorizontApp
                         menuActivityIntent.PutExtra("minAltitude", heightSeekBar.Progress);
 
                         StartActivity(menuActivityIntent);
-                        break;
-                    }
-                case Resource.Id.button4:
-                    {
-                        ReloadData(favourite);
-                        compassView.Invalidate();
                         break;
                     }
                 case Resource.Id.imageButton1:
@@ -237,6 +237,15 @@ namespace HorizontApp
             LoadAndDisplayData();
         }
 
+        private async void OnChangeFilterTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            
+            ReloadData(favourite);
+            filterText.Visibility = ViewStates.Invisible;
+            changeFilterTimer.Stop();
+            //filterText.SetTextAppearance(this, Color.Transparent);
+        }
+
         private async void LoadAndDisplayData()
         {
             try
@@ -268,7 +277,12 @@ namespace HorizontApp
 
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            filterText.Text = "vyska nad " + heightSeekBar.Progress * 16 + "m, do " + distanceSeekBar.Progress + "km daleko";
+            filterText.Text = "vyska nad " + heightSeekBar.Progress * 16 + "m, do " + distanceSeekBar.Progress + "km daleko";            filterText.Visibility = ViewStates.Visible;
+            
+            //reset timer
+            changeFilterTimer.Stop();
+            changeFilterTimer.Start();
+            //filterText.SetTextAppearance(this, Color.GreenYellow);
         }
 
         private void ReloadData(bool favourite)
