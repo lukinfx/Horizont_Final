@@ -26,6 +26,7 @@ namespace HorizontApp.Activities
         Switch fullscreenBackground;
         Switch textBackground;
         Spinner appStyle;
+        Button back;
         private AppStyles[] x = new AppStyles[] { AppStyles.NewStyle, AppStyles.OldStyle };
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -33,6 +34,9 @@ namespace HorizontApp.Activities
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.SettingsLayout);
+
+            var back = FindViewById<Button>(Resource.Id.buttonBack);
+            back.SetOnClickListener(this);
 
             var fullscreenBackground = FindViewById<Switch>(Resource.Id.TransparentRectangleFullscreen);
             fullscreenBackground.SetOnClickListener(this);
@@ -60,7 +64,14 @@ namespace HorizontApp.Activities
 
         public void OnClick(View v)
         {
-           
+           switch (v.Id)
+            {
+                case Resource.Id.buttonBack:
+                    Finish();
+                    break;
+            }
+                
+
         }
     }
 }
