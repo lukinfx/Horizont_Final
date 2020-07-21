@@ -226,7 +226,7 @@ namespace HorizontApp
                 headingStabilizator.AddValue(compassProvider.Heading);
 
                 compassView.Heading = headingStabilizator.GetHeading();
-                headingEditText.Text = headingStabilizator.GetHeading().ToString();
+                headingEditText.Text = Math.Round(headingStabilizator.GetHeading(), 0).ToString() + "° | ";
 
                 compassView.Invalidate();
             }
@@ -258,7 +258,7 @@ namespace HorizontApp
                 if (myLocation == null || GpsUtils.Distance(myLocation, newLocation) > 100)
                 {
                     myLocation = newLocation;
-                    GPSEditText.Text = ($"Latitude: {myLocation.Latitude}, Longitude: {myLocation.Longitude}, Altitude: {myLocation.Altitude}");
+                    GPSEditText.Text = ($"Latitude: {myLocation.Latitude}, Longitude: {myLocation.Longitude}, Altitude: {Math.Round(myLocation.Altitude, 0)}");
 
 
                     var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress, favourite);

@@ -7,7 +7,7 @@ using Android.Views;
 using HorizontApp.Views.ListOfPoiView;
 using Android.Content;
 using static Android.Views.View;
-
+using HorizontApp.Activities;
 
 namespace HorizontApp.Activities
 {
@@ -71,6 +71,10 @@ namespace HorizontApp.Activities
                     listActivityIntent.PutExtra("maxDistance", _maxDistance);
                     listActivityIntent.PutExtra("minAltitude", _minAltitude);
                     StartActivity(listActivityIntent);
+                    break;
+                case Resource.Id.buttonSettings:
+                    Intent settingsActivityIntent = new Intent(this, typeof(SettingsActivity));
+                    StartActivity(settingsActivityIntent);
                     break;
             }
         }

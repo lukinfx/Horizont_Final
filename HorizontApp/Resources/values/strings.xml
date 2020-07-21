@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">HorizontApp</string>
     <string name="action_settings">Settings</string>
+    <string name="SpinnerItems">Choose a style</string>
+  
+    <string-array name="SpinnerItemsArray">
+      <item>New Style</item>
+      <item>Old Style</item>
+    </string-array>
+
 </resources>
