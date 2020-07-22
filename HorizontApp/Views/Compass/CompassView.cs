@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
+﻿using Android.Content;
 using Android.Util;
 using Android.Views;
-using Android.Widget;
 using HorizontApp.Domain.ViewModel;
-using HorizontApp.Providers;
 using HorizontApp.Utilities;
 using HorizontApp.Views.Compass;
 

@@ -3,15 +3,9 @@ using Android.OS;
 using Android.Widget;
 using Android.Content.PM;
 using Android.Views;
-using Android.Content;
 using static Android.Views.View;
 using HorizontApp.Utilities;
-using Xamarin.Essentials;
 using System;
-using Java.Interop;
-using Android.Database;
-using Android.Support.V7.Widget;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace HorizontApp.Activities

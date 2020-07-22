@@ -7,16 +7,11 @@ using Android.Widget;
 using HorizontApp.Providers;
 using Android.Content.PM;
 using static Android.Views.View;
-using Android.Locations;
 using System.Timers;
-using System.Linq;
 using HorizontApp.Utilities;
-using HorizontApp.Domain.Enums;
-using System.Collections.Generic;
 using HorizontApp.Domain.Models;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Views;
-using Javax.Xml.Transform.Dom;
 using HorizontApp.Views.Camera;
 using Android.Views;
 using HorizontApp.DataAccess;
@@ -29,7 +24,6 @@ using Android.Support.V13.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
 using HorizontApp.Activities;
-using Android.Graphics;
 
 namespace HorizontApp
 {
