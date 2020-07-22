@@ -88,6 +88,9 @@ namespace HorizontApp.Views.ListOfPoiView
             {
                 PoiViewItem item = items[position];
                 database.DeleteItemAsync(item.Poi);
+                items.Remove(item);
+                adapter = new ListViewAdapter(this, items, this);
+                listViewPoi.Adapter = adapter;
             });
             alert.SetNegativeButton("No", (senderAlert, args) => { });
             alert.SetMessage("Are you sure you want to delete this item?");
