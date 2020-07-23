@@ -146,6 +146,13 @@ namespace HorizontApp.DataAccess
             return await Database.Table<Poi>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
+        public Poi GetItem(long id)
+        {
+            var task = Database.Table<Poi>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            task.Wait();
+            return task.Result;
+        }
+
         public async Task<int> InsertItemAsync(Poi item)
         {
             return await Database.InsertAsync(item);
@@ -168,6 +175,12 @@ namespace HorizontApp.DataAccess
         public async Task<int> UpdateItemAsync(Poi item)
         {
             return await Database.UpdateAsync(item);
+        }
+        public int UpdateItem(Poi item)
+        {
+            var task = Database.UpdateAsync(item);
+            task.Wait();
+            return task.Result;
         }
 
         public async Task<int> DeleteItemAsync(Poi item)

@@ -21,7 +21,7 @@ namespace HorizontApp.Activities
         Switch textBackground;
         Spinner appStyle;
         Button back;
-        private AppStyles[] x = new AppStyles[] { AppStyles.NewStyle, AppStyles.OldStyle };
+        private AppStyles[] _listOfAppStyles = new AppStyles[] { AppStyles.NewStyle, AppStyles.OldStyle };
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -29,31 +29,31 @@ namespace HorizontApp.Activities
 
             SetContentView(Resource.Layout.SettingsLayout);
 
-            var back = FindViewById<Button>(Resource.Id.buttonBack);
+            back = FindViewById<Button>(Resource.Id.buttonBack);
             back.SetOnClickListener(this);
 
-            var fullscreenBackground = FindViewById<Switch>(Resource.Id.TransparentRectangleFullscreen);
+            fullscreenBackground = FindViewById<Switch>(Resource.Id.TransparentRectangleFullscreen);
             fullscreenBackground.SetOnClickListener(this);
 
-            var appStyle = FindViewById<Spinner>(Resource.Id.spinnerAppStyle);
+            appStyle = FindViewById<Spinner>(Resource.Id.spinnerAppStyle);
             //var appStyleDropDown = FindViewById<DropDownListView>(Resource.Id.appStyleDropDown);
             
 
-            var textBackground = FindViewById<Switch>(Resource.Id.TransparentRectangleTextBackground);
+            textBackground = FindViewById<Switch>(Resource.Id.TransparentRectangleTextBackground);
             textBackground.SetOnClickListener(this);
 
             appStyle.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(appStyle_ItemSelected);
             //var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.SpinnerItemsArray, Android.Resource.Layout.SimpleSpinnerItem);
             //adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             
-            var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, x.ToList());
+            var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfAppStyles.ToList());
             appStyle.Adapter = adapter;
-            appStyle.SetSelection(x.ToList().FindIndex(i => i == CompassViewSettings.Instance().AppStyle));
+            appStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == CompassViewSettings.Instance().AppStyle));
         }
 
         private void appStyle_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            CompassViewSettings.Instance().AppStyle = x[e.Position];
+            CompassViewSettings.Instance().AppStyle = _listOfAppStyles[e.Position];
         }
 
         public void OnClick(View v)

@@ -6,6 +6,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using HorizontApp.Activities;
 using HorizontApp.DataAccess;
 using HorizontApp.Domain.Models;
 using HorizontApp.Domain.ViewModel;
@@ -98,8 +99,20 @@ namespace HorizontApp.Views.ListOfPoiView
 
         public void OnPoiEdit(int position)
         {
+            PoiViewItem item = items[position];
+            Intent editActivityIntent = new Intent(this, typeof(EditActivity));
+            editActivityIntent.PutExtra("Id", item.Poi.Id);
+            StartActivity(editActivityIntent);
+
+            adapter = new ListViewAdapter(this, items, this);
+            listViewPoi.Adapter = adapter;
+        }
+
+        public void OnPoiAdd()
+        {
 
         }
+
 
         public void OnPoiLike(int position)
         {
