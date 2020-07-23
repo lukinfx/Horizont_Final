@@ -46,6 +46,7 @@ namespace HorizontApp
         Button getHeadingButton;
         Button getGPSButton;
         ImageButton pauseButton;
+        ImageButton recordButton;
         CompassView compassView;
         private CameraFragment cameraFragment;
         SeekBar distanceSeekBar;
@@ -107,6 +108,8 @@ namespace HorizontApp
             pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
             pauseButton.SetOnClickListener(this);
             
+            recordButton = FindViewById<ImageButton>(Resource.Id.buttonRecord);
+            recordButton.SetOnClickListener(this);
 
             compassView = FindViewById<CompassView>(Resource.Id.compassView1);
 
@@ -178,38 +181,52 @@ namespace HorizontApp
             switch (v.Id)
             {
                 case Resource.Id.menuButton:
-                    {
-                        Intent menuActivityIntent = new Intent(this, typeof(MenuActivity));
-                        menuActivityIntent.PutExtra("latitude", myLocation.Latitude);
-                        menuActivityIntent.PutExtra("longitude", myLocation.Longitude);
-                        menuActivityIntent.PutExtra("altitude", myLocation.Altitude);
-                        menuActivityIntent.PutExtra("maxDistance", distanceSeekBar.Progress);
-                        menuActivityIntent.PutExtra("minAltitude", heightSeekBar.Progress);
+                {
+                    Intent menuActivityIntent = new Intent(this, typeof(MenuActivity));
+                    menuActivityIntent.PutExtra("latitude", myLocation.Latitude);
+                    menuActivityIntent.PutExtra("longitude", myLocation.Longitude);
+                    menuActivityIntent.PutExtra("altitude", myLocation.Altitude);
+                    menuActivityIntent.PutExtra("maxDistance", distanceSeekBar.Progress);
+                    menuActivityIntent.PutExtra("minAltitude", heightSeekBar.Progress);
 
-                        StartActivity(menuActivityIntent);
-                        break;
-                    }
+                    StartActivity(menuActivityIntent);
+                    break;
+                }
                 case Resource.Id.imageButton1:
-                    {
-                        favourite = !favourite;
-                        if (favourite)
-                            menu.SetImageResource(Resource.Drawable.ic_heart2_on);
-                        else
-                            menu.SetImageResource(Resource.Drawable.ic_heart2);
-                        ReloadData(favourite);
-                        compassView.Invalidate();
-                        break;
-                    }
+                {
+                    favourite = !favourite;
+                    if (favourite)
+                        menu.SetImageResource(Resource.Drawable.ic_heart2_on);
+                    else
+                        menu.SetImageResource(Resource.Drawable.ic_heart2);
+                    ReloadData(favourite);
+                    compassView.Invalidate();
+                    break;
+                }
                 case Resource.Id.buttonPause:
                 {
                     compassPaused = !compassPaused;
                     if (compassPaused)
+                    {
+                        cameraFragment.StopPreview();
+                        recordButton.Enabled = false;
+                        recordButton.Visibility = ViewStates.Invisible;
                         pauseButton.SetImageResource(Resource.Drawable.ic_pause_on);
+                    }
                     else
+                    {
+                        cameraFragment.StartPreview();
+                        recordButton.Enabled = true;
+                        recordButton.Visibility = ViewStates.Visible;
                         pauseButton.SetImageResource(Resource.Drawable.ic_pause);
+                    }
                     break;
                 }
-
+                case Resource.Id.buttonRecord:
+                {
+                    cameraFragment.TakePicture();
+                    break;
+                }
             }
         }
 

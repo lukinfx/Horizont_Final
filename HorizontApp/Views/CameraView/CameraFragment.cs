@@ -24,7 +24,7 @@ using Orientation = Android.Content.Res.Orientation;
 
 namespace HorizontApp.Views.Camera
 {
-    public class CameraFragment : Fragment, View.IOnClickListener//, FragmentCompat.IOnRequestPermissionsResultCallback
+    public class CameraFragment : Fragment//, FragmentCompat.IOnRequestPermissionsResultCallback
     {
         private static readonly SparseIntArray ORIENTATIONS = new SparseIntArray();
         public static readonly int REQUEST_CAMERA_PERMISSION = 1;
@@ -72,6 +72,7 @@ namespace HorizontApp.Views.Camera
         // A reference to the opened CameraDevice
         public CameraDevice mCameraDevice;
 
+        private Surface mSurface;
         // The size of the camera preview
         private Size mPreviewSize;
 
@@ -214,7 +215,6 @@ namespace HorizontApp.Views.Camera
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             mTextureView = (AutoFitTextureView)view.FindViewById(Resource.Id.texture);
-            view.FindViewById(Resource.Id.picture).SetOnClickListener(this);
         }
 
         public override void OnActivityCreated(Bundle savedInstanceState)
@@ -243,6 +243,23 @@ namespace HorizontApp.Views.Camera
                 mTextureView.SurfaceTextureListener = mSurfaceTextureListener;
             }
         }
+
+        public void StopPreview()
+        {
+            //mSurface.Freeze();
+            //mTextureView.SurfaceTextureListener = null;
+            //mPreviewRequestBuilder.RemoveTarget(mSurface);
+            mCaptureSession.StopRepeating();
+        }
+
+        public void StartPreview()
+        {
+            //mSurface.Unfreeze();
+            //mTextureView.SurfaceTextureListener = mSurfaceTextureListener;
+            //mPreviewRequestBuilder.AddTarget(mSurface);
+            mCaptureSession.SetRepeatingRequest(mPreviewRequest, mCaptureCallback, mBackgroundHandler);
+        }
+
 
         public override void OnPause()
         {
@@ -511,15 +528,15 @@ namespace HorizontApp.Views.Camera
                 texture.SetDefaultBufferSize(mPreviewSize.Width, mPreviewSize.Height);
 
                 // This is the output Surface we need to start preview.
-                Surface surface = new Surface(texture);
-
+                mSurface = new Surface(texture);
+                
                 // We set up a CaptureRequest.Builder with the output Surface.
                 mPreviewRequestBuilder = mCameraDevice.CreateCaptureRequest(CameraTemplate.Preview);
-                mPreviewRequestBuilder.AddTarget(surface);
+                mPreviewRequestBuilder.AddTarget(mSurface);
 
                 // Here, we create a CameraCaptureSession for camera preview.
                 List<Surface> surfaces = new List<Surface>();
-                surfaces.Add(surface);
+                surfaces.Add(mSurface);
                 surfaces.Add(mImageReader.Surface);
                 mCameraDevice.CreateCaptureSession(surfaces, new CameraCaptureSessionCallback(this), null);
 
@@ -570,7 +587,7 @@ namespace HorizontApp.Views.Camera
         }
 
         // Initiate a still image capture.
-        private void TakePicture()
+        public void TakePicture()
         {
             LockFocus();
         }
@@ -677,14 +694,6 @@ namespace HorizontApp.Views.Camera
             catch (CameraAccessException e)
             {
                 e.PrintStackTrace();
-            }
-        }
-
-        public void OnClick(View v)
-        {
-            if (v.Id == Resource.Id.picture)
-            {
-                TakePicture();
             }
         }
 
