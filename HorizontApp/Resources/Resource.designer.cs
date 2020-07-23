@@ -4478,6 +4478,9 @@ namespace HorizontApp
 		public partial class Mipmap
 		{
 			
+			// aapt resource value: 0x7F0D0003
+			public const int icon_docasna = 2131558403;
+			
 			// aapt resource value: 0x7F0D0000
 			public const int ic_launcher = 2131558400;
 			
@@ -4486,6 +4489,9 @@ namespace HorizontApp
 			
 			// aapt resource value: 0x7F0D0002
 			public const int ic_launcher_round = 2131558402;
+			
+			// aapt resource value: 0x7F0D0004
+			public const int newLogo = 2131558404;
 			
 			static Mipmap()
 			{

@@ -1,15 +1,14 @@
 ﻿using Android.Content;
+using Android.Graphics;
 using Android.Util;
 using Android.Views;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Utilities;
 using HorizontApp.Views.Compass;
+using System;
 
 namespace HorizontApp.Views
 {
-
-    
-
     public class CompassView : View
     {
         public static PoiViewItemList list;
@@ -67,7 +66,7 @@ namespace HorizontApp.Views
         private void Initialize()
         {
             CompassViewSettings.Instance().SettingsChanged += OnSettingsChanged;
-
+            
             InitializeViewDrawer();
         }
 
@@ -100,6 +99,12 @@ namespace HorizontApp.Views
                     compassViewDrawer.OnDrawItem(canvas, item, (float)Heading);
                 }
             }
+        }
+
+        public void OnScroll(float distanceX)
+        {
+            Heading += CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX);
+            Invalidate();
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using Android.App;
 using Android.Content;
 using Android.Locations;
+using Android.Media;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -57,6 +58,13 @@ namespace HorizontApp.Utilities
             var YCoord = (canvasHeight / 2) - ((GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance)) / (cameraViewAngle / 2)) * canvasHeight / 2);
             var YCoordFloat = (float)YCoord;
             return YCoordFloat;
+        }
+
+        public static float GetHeadingDifference(float cameraViewAngle, float canvasWidth, float moveX)
+        {
+            float headingDiff = (moveX / canvasWidth) * cameraViewAngle;
+
+            return headingDiff;
         }
 
     } 

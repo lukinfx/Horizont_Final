@@ -34,7 +34,7 @@ namespace HorizontApp
 
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     //[Activity(Theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
-    public class MainActivity : AppCompatActivity, IOnClickListener
+    public class MainActivity : AppCompatActivity, IOnClickListener, GestureDetector.IOnGestureListener
     {
         private static readonly int REQUEST_LOCATION_PERMISSION = 0;
         private static readonly int REQUEST_CAMERA_PERMISSION = 1;
@@ -55,6 +55,7 @@ namespace HorizontApp
         ImageButton menu;
         private bool favourite = false;
         private bool compassPaused = false;
+        private GestureDetector _gestureDetector;
 
         Timer compassTimer = new Timer();
         Timer locationTimer = new Timer();
@@ -114,6 +115,8 @@ namespace HorizontApp
             compassView = FindViewById<CompassView>(Resource.Id.compassView1);
 
             layout = FindViewById(Resource.Id.sample_main_layout);
+
+            _gestureDetector = new GestureDetector(this);
 
             if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) != Permission.Granted ||
                 ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != Permission.Granted)
@@ -288,7 +291,8 @@ namespace HorizontApp
 
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            filterText.Text = "vyska nad " + heightSeekBar.Progress * 16 + "m, do " + distanceSeekBar.Progress + "km daleko";            filterText.Visibility = ViewStates.Visible;
+            filterText.Text = "vyska nad " + heightSeekBar.Progress * 16 + "m, do " + distanceSeekBar.Progress + "km daleko";            
+            filterText.Visibility = ViewStates.Visible;
             
             //reset timer
             changeFilterTimer.Stop();
@@ -305,6 +309,7 @@ namespace HorizontApp
 
                 var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress, favourite);
                 compassView.SetPoiViewItemList(points);
+                compassView.Invalidate();
             }
             catch (Exception ex)
             {
@@ -348,6 +353,42 @@ namespace HorizontApp
             {
                 ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION_PERMISSION);
             }
+        }
+
+        public bool OnDown(MotionEvent e)
+        {
+            return false;
+        }
+
+        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
+        {
+            return false;
+        }
+
+        public void OnLongPress(MotionEvent e)
+        {
+            
+        }
+
+        public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
+        {
+            compassView.OnScroll(distanceX);
+            return false;
+        }
+
+        public void OnShowPress(MotionEvent e)
+        {
+        }
+
+        public bool OnSingleTapUp(MotionEvent e)
+        {
+            return false;
+        }
+
+        public override bool OnTouchEvent(MotionEvent e)
+        {
+            _gestureDetector.OnTouchEvent(e);
+            return false;
         }
     }
 }
