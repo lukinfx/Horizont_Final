@@ -27,11 +27,6 @@ using HorizontApp.Activities;
 
 namespace HorizontApp
 {
-    class x : Application
-    {
-
-    }
-
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     //[Activity(Theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : AppCompatActivity, IOnClickListener, GestureDetector.IOnGestureListener
