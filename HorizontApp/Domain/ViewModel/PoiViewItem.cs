@@ -18,6 +18,7 @@ namespace HorizontApp.Domain.ViewModel
         public Poi Poi;
         public double Bearing;
         public double Distance;
+        public bool Visibility = true;
         public float AltitudeDifference { get; internal set; }
 
         public GpsLocation GpsLocation

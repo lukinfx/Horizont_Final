@@ -6,12 +6,14 @@ using HorizontApp.Domain.ViewModel;
 using HorizontApp.Utilities;
 using HorizontApp.Views.Compass;
 using System;
+using System.Linq;
 
 namespace HorizontApp.Views
 {
     public class CompassView : View
     {
         public static PoiViewItemList list;
+        private CompassViewFilter _compassViewFilter = new CompassViewFilter();
         public double Heading { get; set; }
 
         private float viewAngleHorizontal;
@@ -50,10 +52,15 @@ namespace HorizontApp.Views
         public void SetPoiViewItemList(PoiViewItemList list2)
         {
             list = list2;
+            _compassViewFilter.SetList(list);
+            foreach (var item in list)
+            {
+                item.Visibility = _compassViewFilter.Filter(item);
+            }
         }
 
         public CompassView(Context context, IAttributeSet attrs, int defStyle) :
-            base(context, attrs, defStyle)
+            base(context, attrs, defStyle) 
         {
             Initialize();
         }
@@ -96,7 +103,8 @@ namespace HorizontApp.Views
             {
                 foreach (var item in list)
                 {
-                    compassViewDrawer.OnDrawItem(canvas, item, (float)Heading);
+                    if (item.Visibility)
+                        compassViewDrawer.OnDrawItem(canvas, item, (float)Heading);
                 }
             }
         }

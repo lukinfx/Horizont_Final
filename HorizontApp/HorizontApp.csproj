@@ -112,6 +112,7 @@
     <Compile Include="Views\Compass\CompassViewDrawerOldStyle.cs" />
     <Compile Include="Views\Compass\CompassDrawer.cs" />
     <Compile Include="Views\Compass\CompassView.cs" />
+    <Compile Include="Views\Compass\CompassViewFilter.cs" />
     <Compile Include="Views\ErrorDialog.cs" />
     <Compile Include="Views\ListOfPoiView\PoiListActivity.cs" />
   </ItemGroup>
