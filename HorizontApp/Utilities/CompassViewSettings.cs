@@ -21,7 +21,7 @@ namespace HorizontApp.Utilities
         private AppStyles appStyle = AppStyles.OldStyle;
         public AppStyles AppStyle
         {
-            get 
+            get  
             { 
                 return appStyle; 
             }

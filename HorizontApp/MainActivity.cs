@@ -40,6 +40,7 @@ namespace HorizontApp
         TextView filterText;
         Button getHeadingButton;
         Button getGPSButton;
+        ImageButton selectCategoryButton;
         ImageButton pauseButton;
         ImageButton recordButton;
         CompassView compassView;
@@ -86,11 +87,13 @@ namespace HorizontApp
             headingEditText = FindViewById<TextView>(Resource.Id.editText1);
             GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
 
+            selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
+            selectCategoryButton.SetOnClickListener(this);
+
             filterText = FindViewById<TextView>(Resource.Id.textView1);
 
             distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBar2);
             distanceSeekBar.ProgressChanged += SeekBarProgressChanged;
-            //System.EventHandler
 
             heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBar1);
             heightSeekBar.ProgressChanged += SeekBarProgressChanged;
@@ -225,6 +228,11 @@ namespace HorizontApp
                     cameraFragment.TakePicture();
                     break;
                 }
+                case Resource.Id.buttonCategorySelect:
+                    Intent selectCategoryIntent = new Intent(this, typeof(SelectCategoryActivity));
+                    StartActivity(selectCategoryIntent);
+
+                    break;
             }
         }
 
