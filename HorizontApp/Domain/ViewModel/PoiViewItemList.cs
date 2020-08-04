@@ -50,12 +50,12 @@ namespace HorizontApp.Domain.ViewModel
                     (instance.VisiblePalaces && poiViewItem.Poi.Category == Enums.PoiCategory.Palaces) ||
                     (instance.VisibleRuins && poiViewItem.Poi.Category == Enums.PoiCategory.Ruins) ||
                     (instance.VisibleViewTowers && poiViewItem.Poi.Category == Enums.PoiCategory.ViewTowers) ||
+                    (instance.VisibleTransmitters && poiViewItem.Poi.Category == Enums.PoiCategory.Transmitters) ||
                     (instance.VisibleChurches && poiViewItem.Poi.Category == Enums.PoiCategory.Churches) ||
                     (instance.VisibleTest && poiViewItem.Poi.Category == Enums.PoiCategory.Test))
                 {
                     Add(poiViewItem);
                 }
-                    
             }
         }
     }

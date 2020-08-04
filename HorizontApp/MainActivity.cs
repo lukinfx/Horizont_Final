@@ -34,6 +34,8 @@ namespace HorizontApp
         private static readonly int REQUEST_LOCATION_PERMISSION = 0;
         private static readonly int REQUEST_CAMERA_PERMISSION = 1;
 
+        private static readonly int ReqCode_SelectCategoryActivity = 1000;
+
         TextView headingEditText;
         TextView GPSEditText;
         EditText DistanceEditText;
@@ -189,7 +191,6 @@ namespace HorizontApp
                     menuActivityIntent.PutExtra("altitude", myLocation.Altitude);
                     menuActivityIntent.PutExtra("maxDistance", distanceSeekBar.Progress);
                     menuActivityIntent.PutExtra("minAltitude", heightSeekBar.Progress);
-
                     StartActivity(menuActivityIntent);
                     break;
                 }
@@ -230,9 +231,18 @@ namespace HorizontApp
                 }
                 case Resource.Id.buttonCategorySelect:
                     Intent selectCategoryIntent = new Intent(this, typeof(SelectCategoryActivity));
-                    StartActivity(selectCategoryIntent);
-
+                    StartActivityForResult(selectCategoryIntent, ReqCode_SelectCategoryActivity);
+                    
                     break;
+            }
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (requestCode == ReqCode_SelectCategoryActivity)
+            {
+                ReloadData(favourite);
             }
         }
 
@@ -256,7 +266,7 @@ namespace HorizontApp
 
         private async void OnChangeFilterTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            
+
             ReloadData(favourite);
             filterText.Visibility = ViewStates.Invisible;
             changeFilterTimer.Stop();

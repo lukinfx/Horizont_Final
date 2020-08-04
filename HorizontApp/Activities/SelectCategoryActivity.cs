@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
+﻿using Android.App;
+using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using HorizontApp.Utilities;
 using static Android.Views.View;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "SelectCategoryActivity")]
+    [Activity(Label = "SelectCategoryActivity", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class SelectCategoryActivity : Activity, IOnClickListener
     {
         CheckBox checkBoxPeaks;
@@ -24,6 +17,7 @@ namespace HorizontApp.Activities
         CheckBox checkBoxPalaces;
         CheckBox checkBoxRuins;
         CheckBox checkBoxViewTowers;
+        CheckBox checkBoxViewTransmitters;
         CheckBox checkBoxChurches;
         CheckBox checkBoxTest;
         Button back;
@@ -60,6 +54,9 @@ namespace HorizontApp.Activities
             checkBoxViewTowers = FindViewById<CheckBox>(Resource.Id.checkBoxViewTowers);
             checkBoxViewTowers.Checked = instance.VisibleViewTowers;
 
+            checkBoxViewTransmitters = FindViewById<CheckBox>(Resource.Id.checkBoxTransmitters);
+            checkBoxViewTransmitters.Checked = instance.VisibleTransmitters;
+
             checkBoxChurches = FindViewById<CheckBox>(Resource.Id.checkBoxChurches);
             checkBoxChurches.Checked = instance.VisibleChurches;
 
@@ -74,6 +71,7 @@ namespace HorizontApp.Activities
             checkBoxPalaces.CheckedChange += CheckedChange;
             checkBoxRuins.CheckedChange += CheckedChange;
             checkBoxViewTowers.CheckedChange += CheckedChange;
+            checkBoxViewTransmitters.CheckedChange += CheckedChange;
             checkBoxChurches.CheckedChange += CheckedChange;
             checkBoxTest.CheckedChange += CheckedChange;
         }
@@ -88,10 +86,9 @@ namespace HorizontApp.Activities
             instance.VisiblePalaces = checkBoxPalaces.Checked;
             instance.VisibleRuins = checkBoxRuins.Checked;
             instance.VisibleViewTowers = checkBoxViewTowers.Checked;
+            instance.VisibleTransmitters = checkBoxViewTransmitters.Checked; 
             instance.VisibleChurches = checkBoxChurches.Checked;
             instance.VisibleTest = checkBoxTest.Checked;
-
-
         }
 
         public async void OnClick(Android.Views.View v)
