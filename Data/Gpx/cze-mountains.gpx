@@ -3,6 +3,18 @@
     <name>Halda Ema</name>
     <ele>324</ele>
   </wpt>
+  <wpt lat="49.8569364" lon="18.2817794">
+    <name>Halda Přívoz</name>
+    <ele>272</ele>
+  </wpt>
+  <wpt lat="49.8673386" lon="18.3151211">
+    <name>Halda Heřmanice</name>
+    <ele>270</ele>
+  </wpt>
+  <wpt lat="49.8671656" lon="18.3046761">
+    <name>Halda Muglinov</name>
+    <ele>240</ele>
+  </wpt>
   <wpt lat="49.739083" lon="15.891736">
     <name>Predni Hradiste</name>
     <ele>593</ele>
@@ -28,16 +40,16 @@
     <ele>952</ele>
   </wpt>
   <wpt lat="50.860972" lon="15.21575">
-    <name>Hajni kostel  730 m.n.m Bily potok</name>
-    <ele>0</ele>
+    <name>Hajni kostel, Bily potok</name>
+    <ele>730</ele>
   </wpt>
   <wpt lat="50.872444" lon="15.257917">
-    <name>Palicnik 944 m.n.m. Liberecko,Hejnice</name>
-    <ele>0</ele>
+    <name>Palicnik, Hejnice</name>
+    <ele>944</ele>
   </wpt>
   <wpt lat="50.860172" lon="15.188897">
-    <name>Oresnik 806 m.n.m Liberecko,Hejnice</name>
-    <ele>0</ele>
+    <name>Oresnik, Hejnice</name>
+    <ele>806</ele>
   </wpt>
   <wpt lat="50.207575" lon="16.847153">
     <name>Kralicky sneznik</name>
