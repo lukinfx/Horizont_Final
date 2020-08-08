@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -21,6 +22,7 @@ namespace HorizontApp.Views.ListOfPoiView
     {
         ListView listViewPoi;
         Button back;
+        Button add;
         ListViewAdapter adapter;
         private List<PoiViewItem> items;
         private PoiDatabase database;
@@ -55,8 +57,10 @@ namespace HorizontApp.Views.ListOfPoiView
 
             listViewPoi = FindViewById<ListView>(Resource.Id.listView1);
             
-            back = FindViewById<Button>(Resource.Id.button1);
+            back = FindViewById<Button>(Resource.Id.buttonBack);
             back.SetOnClickListener(this);
+            add = FindViewById<Button>(Resource.Id.buttonAdd);
+            add.SetOnClickListener(this);
 
             var poiList = Database.GetItems(location, maxDistance);
 
@@ -75,7 +79,15 @@ namespace HorizontApp.Views.ListOfPoiView
 
         public void OnClick(View v)
         {
-            Finish();
+            switch (v.Id)
+            {
+                case Resource.Id.buttonBack:
+                    Finish();
+                    break;
+                case Resource.Id.buttonAdd:
+                    OnPoiAdd();
+                    break;
+            }
         }
 
         public void OnPoiDelete(int position)
@@ -110,7 +122,11 @@ namespace HorizontApp.Views.ListOfPoiView
 
         public void OnPoiAdd()
         {
+            Intent editActivityIntent = new Intent(this, typeof(EditActivity));
+            StartActivity(editActivityIntent);
 
+            adapter = new ListViewAdapter(this, items, this);
+            listViewPoi.Adapter = adapter;
         }
 
 

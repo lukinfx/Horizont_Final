@@ -3506,10 +3506,10 @@ namespace HorizontApp
 			public const int browser_actions_menu_view = 2131296317;
 			
 			// aapt resource value: 0x7F09003E
-			public const int button1 = 2131296318;
+			public const int buttonAbout = 2131296318;
 			
 			// aapt resource value: 0x7F09003F
-			public const int buttonAbout = 2131296319;
+			public const int buttonAdd = 2131296319;
 			
 			// aapt resource value: 0x7F090040
 			public const int buttonBack = 2131296320;

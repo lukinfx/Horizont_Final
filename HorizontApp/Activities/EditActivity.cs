@@ -34,8 +34,10 @@ namespace HorizontApp.Activities
         Spinner spinnerCategory;
         Button buttonSave;
         Button back;
-        Poi item;
+        Poi item = new Poi();
         PoiDatabase database;
+        long id;
+        PoiCategory category;
 
         private PoiCategory[] _poiCategories = new PoiCategory[] { PoiCategory.Castles, PoiCategory.Churches, PoiCategory.Lakes, PoiCategory.Mountains, PoiCategory.Palaces, PoiCategory.Peaks, PoiCategory.Ruins, PoiCategory.Test, PoiCategory.Transmitters, PoiCategory.ViewTowers};
 
@@ -55,8 +57,8 @@ namespace HorizontApp.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            long id = Intent.GetLongExtra("Id", -1);
-            item = Database.GetItem(id);
+            id = Intent.GetLongExtra("Id", -1);
+            
 
             SetContentView(Resource.Layout.EditActivity);
 
@@ -78,23 +80,27 @@ namespace HorizontApp.Activities
             spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _poiCategories.ToList());
             spinnerCategory.Adapter = adapter;
-            spinnerCategory.SetSelection(_poiCategories.ToList().FindIndex(i => i == item.Category));
             spinnerCategory.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinnerCategory_ItemSelected);
+
             buttonSave = FindViewById<Button>(Resource.Id.buttonSave);
             buttonSave.SetOnClickListener(this);
 
-
-            editTextName.Text = item.Name;
-            editTextAltitude.Text = String.Format("{0,5:#.0}", item.Altitude);
-            editTextLongitude.Text = String.Format("{0,3:#.00000000}", item.Longitude);
-            editTextLatitude.Text = String.Format("{0,3:#.00000000}", item.Latitude);
-
+            if (id != -1)
+            {
+                item = Database.GetItem(id);
+                spinnerCategory.SetSelection(_poiCategories.ToList().FindIndex(i => i == item.Category));
+                editTextName.Text = item.Name;
+                editTextAltitude.Text = String.Format("{0,5:#.0}", item.Altitude);
+                editTextLongitude.Text = String.Format("{0,3:#.00000000}", item.Longitude);
+                editTextLatitude.Text = String.Format("{0,3:#.00000000}", item.Latitude);
+            }
+            
             // Create your application here
         }
 
         private void spinnerCategory_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            item.Category = _poiCategories[e.Position];
+            category = _poiCategories[e.Position];
         }
 
         public void OnClick(View v)
@@ -109,7 +115,16 @@ namespace HorizontApp.Activities
                     item.Latitude = Convert.ToDouble(editTextLatitude.Text);
                     item.Longitude = Convert.ToDouble(editTextLongitude.Text);
                     item.Altitude = Convert.ToDouble(editTextAltitude.Text);
-                    database.UpdateItem(item);
+                    item.Category = category;
+                    if (id == -1)
+                    {
+                        Database.InsertItemAsync(item);
+                    }
+                    else
+                    {
+                        database.UpdateItem(item);
+                    }
+                    
                     Finish();
                     break;
             }

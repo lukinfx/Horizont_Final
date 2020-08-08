@@ -153,9 +153,11 @@ namespace HorizontApp.DataAccess
             return task.Result;
         }
 
-        public async Task<int> InsertItemAsync(Poi item)
+        public int InsertItemAsync(Poi item)
         {
-            return await Database.InsertAsync(item);
+            var task = Database.InsertAsync(item);
+            task.Wait();
+            return task.Result;
         }
 
         public int DeleteAllFromSource(Guid source)
