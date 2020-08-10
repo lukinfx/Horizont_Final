@@ -52,7 +52,8 @@ namespace HorizontApp.Views
         public void SetPoiViewItemList(PoiViewItemList list2)
         {
             list = list2;
-            _compassViewFilter.SetList(list);
+
+            _compassViewFilter.Reset();
             foreach (var item in list)
             {
                 item.Visibility = _compassViewFilter.Filter(item);

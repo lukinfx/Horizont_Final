@@ -10,35 +10,38 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using HorizontApp.Domain.ViewModel;
+using HorizontApp.Utilities;
 
 namespace HorizontApp.Views.Compass
 {
     class CompassViewFilter
     {
-        private PoiViewItemList _headings;
+        private static int itemAngle = 7;
+        private PoiViewItemList _headings = new PoiViewItemList();
+
+        bool IsOverlapping(double item1, double item2)
+        {
+            return Math.Abs(CompassUtils.GetAngleDiff(item1, item2)) < itemAngle;
+        }
+
         public bool Filter(PoiViewItem item)
         {
-            if (_headings.Count ==0)
-
             foreach (var heading in _headings)
             {
+                if (IsOverlapping(heading.Bearing, item.Bearing))
                 if (item.Bearing > heading.Bearing - 10 && item.Bearing < heading.Bearing + 10)
                 {
                     return false;
                 }
-                else
-                {
-                    _headings.Add(item);
-                    return true;
-                }
             }
+
+            _headings.Add(item);
             return true;
         }
 
-        public void SetList(PoiViewItemList list)
+        public void Reset()
         {
-            _headings = null;
-            _headings = list;
+            _headings.Clear();
         }
     }
 }
