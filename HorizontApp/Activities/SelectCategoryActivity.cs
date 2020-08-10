@@ -35,9 +35,6 @@ namespace HorizontApp.Activities
             back = FindViewById<Button>(Resource.Id.buttonBack);
             back.SetOnClickListener(this);
 
-            checkBoxPeaks = FindViewById<CheckBox>(Resource.Id.checkBoxPeaks);
-            checkBoxPeaks.Checked = instance.Categories.Contains(PoiCategory.Peaks);
-
             checkBoxMountains = FindViewById<CheckBox>(Resource.Id.checkBoxMountains);
             checkBoxMountains.Checked = instance.Categories.Contains(PoiCategory.Mountains);
 
@@ -80,7 +77,6 @@ namespace HorizontApp.Activities
         private void CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
             var selectedCategories = new List<PoiCategory>();
-            if (checkBoxPeaks.Checked) selectedCategories.Add(PoiCategory.Peaks);
             if (checkBoxMountains.Checked) selectedCategories.Add(PoiCategory.Mountains);
             if (checkBoxLakes.Checked) selectedCategories.Add(PoiCategory.Lakes);
             if (checkBoxCastles.Checked) selectedCategories.Add(PoiCategory.Castles);

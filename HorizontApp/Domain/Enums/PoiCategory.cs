@@ -2,7 +2,6 @@
 {
     public enum PoiCategory
     {
-        Peaks = 0,
         Mountains = 1,
         Lakes = 2,
         Castles = 3,
