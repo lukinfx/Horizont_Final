@@ -138,6 +138,8 @@ namespace HorizontApp
             InitializeCompassTimer();
             InitializeLocationTimer();
             InitializeChangeFilterTimer();
+
+            CompassViewSettings.Instance().SettingsChanged += OnSettingsChanged;
         }
 
 
@@ -242,7 +244,7 @@ namespace HorizontApp
             base.OnActivityResult(requestCode, resultCode, data);
             if (requestCode == ReqCode_SelectCategoryActivity)
             {
-                ReloadData(favourite);
+                //ReloadData(favourite);
             }
         }
 
@@ -402,6 +404,11 @@ namespace HorizontApp
         {
             _gestureDetector.OnTouchEvent(e);
             return false;
+        }
+
+        public void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
+        {
+            ReloadData(favourite);
         }
     }
 }

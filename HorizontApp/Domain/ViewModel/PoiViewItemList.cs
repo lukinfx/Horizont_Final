@@ -42,20 +42,10 @@ namespace HorizontApp.Domain.ViewModel
                 if ((poiViewItem.Distance > maxDistance * 1000) || (poiViewItem.Poi.Altitude < minAltitude * 16))
                     continue;
 
-                var instance = SelectedCategory.Instance();
-                if ((instance.VisiblePeaks && poiViewItem.Poi.Category == Enums.PoiCategory.Peaks) ||
-                    (instance.VisibleMountains && poiViewItem.Poi.Category == Enums.PoiCategory.Mountains) ||
-                    (instance.VisibleLakes && poiViewItem.Poi.Category == Enums.PoiCategory.Lakes) ||
-                    (instance.VisibleCastles && poiViewItem.Poi.Category == Enums.PoiCategory.Castles) ||
-                    (instance.VisiblePalaces && poiViewItem.Poi.Category == Enums.PoiCategory.Palaces) ||
-                    (instance.VisibleRuins && poiViewItem.Poi.Category == Enums.PoiCategory.Ruins) ||
-                    (instance.VisibleViewTowers && poiViewItem.Poi.Category == Enums.PoiCategory.ViewTowers) ||
-                    (instance.VisibleTransmitters && poiViewItem.Poi.Category == Enums.PoiCategory.Transmitters) ||
-                    (instance.VisibleChurches && poiViewItem.Poi.Category == Enums.PoiCategory.Churches) ||
-                    (instance.VisibleTest && poiViewItem.Poi.Category == Enums.PoiCategory.Test))
-                {
+                if (!CompassViewSettings.Instance().Categories.Contains(poiViewItem.Poi.Category))
+                    continue;
+                
                     Add(poiViewItem);
-                }
             }
         }
     }

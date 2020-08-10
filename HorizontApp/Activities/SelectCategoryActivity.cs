@@ -2,7 +2,9 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
+using HorizontApp.Domain.Enums;
 using HorizontApp.Utilities;
+using System.Collections.Generic;
 using static Android.Views.View;
 
 namespace HorizontApp.Activities
@@ -28,41 +30,40 @@ namespace HorizontApp.Activities
             SetContentView(Resource.Layout.SelectCategoryActivity);
             // Create your application here
 
-            var instance = SelectedCategory.Instance();
+            var instance = CompassViewSettings.Instance();
 
             back = FindViewById<Button>(Resource.Id.buttonBack);
             back.SetOnClickListener(this);
 
             checkBoxPeaks = FindViewById<CheckBox>(Resource.Id.checkBoxPeaks);
-            checkBoxPeaks.Checked = instance.VisiblePeaks;
+            checkBoxPeaks.Checked = instance.Categories.Contains(PoiCategory.Peaks);
 
             checkBoxMountains = FindViewById<CheckBox>(Resource.Id.checkBoxMountains);
-            checkBoxMountains.Checked = instance.VisibleMountains;
+            checkBoxMountains.Checked = instance.Categories.Contains(PoiCategory.Mountains);
 
             checkBoxLakes = FindViewById<CheckBox>(Resource.Id.checkBoxLakes);
-            checkBoxLakes.Checked = instance.VisibleLakes;
+            checkBoxLakes.Checked = instance.Categories.Contains(PoiCategory.Lakes);
 
             checkBoxCastles = FindViewById<CheckBox>(Resource.Id.checkBoxCastles);
-            checkBoxCastles.Checked = instance.VisibleCastles;
+            checkBoxCastles.Checked = instance.Categories.Contains(PoiCategory.Castles);
 
             checkBoxPalaces = FindViewById<CheckBox>(Resource.Id.checkBoxPalaces);
-            checkBoxPalaces.Checked = instance.VisiblePalaces;
+            checkBoxPalaces.Checked = instance.Categories.Contains(PoiCategory.Palaces);
 
             checkBoxRuins = FindViewById<CheckBox>(Resource.Id.checkBoxRuins);
-            checkBoxRuins.Checked = instance.VisibleRuins;
+            checkBoxRuins.Checked = instance.Categories.Contains(PoiCategory.Ruins);
 
             checkBoxViewTowers = FindViewById<CheckBox>(Resource.Id.checkBoxViewTowers);
-            checkBoxViewTowers.Checked = instance.VisibleViewTowers;
+            checkBoxViewTowers.Checked = instance.Categories.Contains(PoiCategory.ViewTowers);
 
             checkBoxViewTransmitters = FindViewById<CheckBox>(Resource.Id.checkBoxTransmitters);
-            checkBoxViewTransmitters.Checked = instance.VisibleTransmitters;
+            checkBoxViewTransmitters.Checked = instance.Categories.Contains(PoiCategory.Transmitters);
 
             checkBoxChurches = FindViewById<CheckBox>(Resource.Id.checkBoxChurches);
-            checkBoxChurches.Checked = instance.VisibleChurches;
+            checkBoxChurches.Checked = instance.Categories.Contains(PoiCategory.Churches);
 
             checkBoxTest = FindViewById<CheckBox>(Resource.Id.checkBoxTest);
-            checkBoxTest.Checked = instance.VisibleTest;
-
+            checkBoxTest.Checked = instance.Categories.Contains(PoiCategory.Test);
 
             checkBoxPeaks.CheckedChange += CheckedChange;
             checkBoxMountains.CheckedChange += CheckedChange;
@@ -78,17 +79,20 @@ namespace HorizontApp.Activities
 
         private void CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-            var instance = SelectedCategory.Instance();
-            instance.VisiblePeaks = checkBoxPeaks.Checked;
-            instance.VisibleMountains = checkBoxMountains.Checked;
-            instance.VisibleLakes = checkBoxLakes.Checked;
-            instance.VisibleCastles = checkBoxCastles.Checked;
-            instance.VisiblePalaces = checkBoxPalaces.Checked;
-            instance.VisibleRuins = checkBoxRuins.Checked;
-            instance.VisibleViewTowers = checkBoxViewTowers.Checked;
-            instance.VisibleTransmitters = checkBoxViewTransmitters.Checked; 
-            instance.VisibleChurches = checkBoxChurches.Checked;
-            instance.VisibleTest = checkBoxTest.Checked;
+            var selectedCategories = new List<PoiCategory>();
+            if (checkBoxPeaks.Checked) selectedCategories.Add(PoiCategory.Peaks);
+            if (checkBoxMountains.Checked) selectedCategories.Add(PoiCategory.Mountains);
+            if (checkBoxLakes.Checked) selectedCategories.Add(PoiCategory.Lakes);
+            if (checkBoxCastles.Checked) selectedCategories.Add(PoiCategory.Castles);
+            if (checkBoxPalaces.Checked) selectedCategories.Add(PoiCategory.Palaces);
+            if (checkBoxRuins.Checked) selectedCategories.Add(PoiCategory.Ruins);
+            if (checkBoxViewTowers.Checked) selectedCategories.Add(PoiCategory.ViewTowers);
+            if (checkBoxViewTransmitters.Checked) selectedCategories.Add(PoiCategory.Transmitters);
+            if (checkBoxChurches.Checked) selectedCategories.Add(PoiCategory.Churches);
+            if (checkBoxTest.Checked) selectedCategories.Add(PoiCategory.Test);
+
+            var instance = CompassViewSettings.Instance();
+            instance.Categories = selectedCategories;
         }
 
         public async void OnClick(Android.Views.View v)

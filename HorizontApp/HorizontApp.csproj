@@ -55,6 +55,16 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\franktom\AppData\Local\Xamarin\Mono for Android\Keystore\HorizontApp\HorizontApp.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>Lutofr1973</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>HorizontApp</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>Lutofr1973</AndroidSigningKeyPass>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
