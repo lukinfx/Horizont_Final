@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,19 +9,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonBack" />
-    <Switch
+    <TextView
+        android:text="Compass view style"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fullscreen background"
-        android:id="@+id/TransparentRectangleFullscreen" />
-    <Switch
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"  
-        android:text="Text background"
-        android:id="@+id/TransparentRectangleTextBackground" />
+        android:id="@+id/textAppStyle" />
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerAppStyle" />
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:switchTextAppearance="?android:attr/textAppearanceSmall"
+        android:text="Camera view angle"
+        android:showText="true"
+        android:textOn="Man"
+        android:textOff="Auto"
+        android:id="@+id/switchManualViewAngle" />
+    <TextView
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textManualViewAngle" />
+    <SeekBar
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom"
+      android:id="@+id/seekBarManualViewAngle"
+      android:min="500"
+      android:max="700"
+      android:progress="1" />
 
-    </LinearLayout>
+
+</LinearLayout>

@@ -292,9 +292,6 @@ namespace HorizontApp
 
                     var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress, favourite);
                     compassView.SetPoiViewItemList(points);
-
-                    compassView.ViewAngleHorizontal = cameraFragment.ViewAngleHorizontal;
-                    compassView.ViewAngleVertical = cameraFragment.ViewAngleVertical;
                 }
             }
             catch (Exception ex)

@@ -21,6 +21,7 @@ using Java.Util.Concurrent;
 using Boolean = Java.Lang.Boolean;
 using Math = Java.Lang.Math;
 using Orientation = Android.Content.Res.Orientation;
+using HorizontApp.Utilities;
 
 namespace HorizontApp.Views.Camera
 {
@@ -710,8 +711,9 @@ namespace HorizontApp.Views.Camera
             try
             {
                 var camera = Android.Hardware.Camera.Open(Int32.Parse(cameraId));
-                ViewAngleHorizontal = camera.GetParameters().HorizontalViewAngle;
-                ViewAngleVertical = camera.GetParameters().VerticalViewAngle;
+                CompassViewSettings.Instance().ViewAngleHorizontal = camera.GetParameters().HorizontalViewAngle;
+                CompassViewSettings.Instance().ViewAngleVertical = camera.GetParameters().VerticalViewAngle;
+                
             }
             catch
             {

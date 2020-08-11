@@ -16,31 +16,6 @@ namespace HorizontApp.Views
         private CompassViewFilter _compassViewFilter = new CompassViewFilter();
         public double Heading { get; set; }
 
-        private float viewAngleHorizontal;
-        private float viewAngleVertical;
-        public float ViewAngleHorizontal { 
-            get
-            {
-                return viewAngleHorizontal;
-            }
-            set 
-            { 
-                compassViewDrawer.ViewAngleHorizontal = value;
-                viewAngleHorizontal = value;
-            } 
-        }
-        public float ViewAngleVertical
-        {
-            get
-            {
-                return viewAngleHorizontal;
-            }
-            set
-            {
-                compassViewDrawer.ViewAngleVertical = value;
-                viewAngleVertical = value;
-            }
-        }
         private CompassViewDrawer compassViewDrawer;
 
         public CompassView(Context context, IAttributeSet attrs) :
@@ -90,8 +65,8 @@ namespace HorizontApp.Views
                         break;
                 }
 
-            compassViewDrawer.ViewAngleHorizontal = ViewAngleHorizontal;
-            compassViewDrawer.ViewAngleVertical = ViewAngleVertical;
+            compassViewDrawer.ViewAngleHorizontal = CompassViewSettings.Instance().ViewAngleHorizontal;
+            compassViewDrawer.ViewAngleVertical = CompassViewSettings.Instance().ViewAngleVertical;
             compassViewDrawer.Initialize();
         }
         protected override void OnDraw(Android.Graphics.Canvas canvas)
@@ -112,6 +87,7 @@ namespace HorizontApp.Views
 
         public void OnScroll(float distanceX)
         {
+            var viewAngleHorizontal = CompassViewSettings.Instance().ViewAngleHorizontal;
             Heading += CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX);
             Invalidate();
         }

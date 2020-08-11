@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Android.Content;
+﻿using Android.Content;
 using Android.Preferences;
 using HorizontApp.Domain.Enums;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace HorizontApp.Utilities
 {
@@ -19,6 +19,62 @@ namespace HorizontApp.Utilities
 
         private CompassViewSettings()
         {
+        }
+
+        private bool isManualViewAngle;
+        public bool IsManualViewAngle
+        {
+            get
+            {
+                return isManualViewAngle;
+            }
+            set
+            {
+                isManualViewAngle = value;
+                HandleSettingsChanged();
+            }
+        }
+
+        private float manualViewAngleHorizontal;
+        public float ManualViewAngleHorizontal
+        {
+            get
+            {
+                return manualViewAngleHorizontal;
+            }
+            set
+            {
+                manualViewAngleHorizontal = value;
+                HandleSettingsChanged();
+            }
+        }
+
+        private float? viewAngleHorizontal;
+        public float ViewAngleHorizontal
+        {
+            get
+            {
+                return (isManualViewAngle || !viewAngleHorizontal.HasValue) ? manualViewAngleHorizontal : viewAngleHorizontal.Value;
+            }
+            set
+            {
+                viewAngleHorizontal = value;
+                HandleSettingsChanged();
+            }
+        }
+
+        private float viewAngleVertical;
+        public float ViewAngleVertical
+        {
+            get
+            {
+                return viewAngleVertical;
+            }
+            set
+            {
+                viewAngleVertical = value;
+                HandleSettingsChanged();
+            }
         }
 
         private AppStyles appStyle = AppStyles.OldStyle;
@@ -82,6 +138,9 @@ namespace HorizontApp.Utilities
             {
                 categories.Add(Enum.Parse<PoiCategory>(i));
             }
+
+            isManualViewAngle = prefs.GetBoolean("IsManualViewAngleHorizontal", false);
+            manualViewAngleHorizontal = prefs.GetFloat("ManualViewAngleHorizontal", 60);
         }
 
         internal void SaveData()
@@ -92,13 +151,16 @@ namespace HorizontApp.Utilities
                 ISharedPreferencesEditor editor = prefs.Edit();
 
                 editor.PutString("AppStyle", appStyle.ToString());
-                
+
                 var categoriesAsCollection = new Collection<string>();
                 foreach (var i in categories)
                 {
                     categoriesAsCollection.Add(i.ToString());
                 }
                 editor.PutStringSet("Categories", categoriesAsCollection);
+
+                editor.PutBoolean("IsManualViewAngleHorizontal", isManualViewAngle);
+                editor.PutFloat("ManualViewAngleHorizontal", manualViewAngleHorizontal);
 
                 editor.Apply();
             }
