@@ -26,7 +26,7 @@ namespace HorizontApp.Views
 
         public void SetPoiViewItemList(PoiViewItemList list2)
         {
-            list = list2.OrderByDescending(poi => poi.Poi.Altitude);
+            list = list2.OrderByDescending(poi => poi.Poi.Altitude).ThenBy(poi => poi.Distance);
             
             var d = compassViewDrawer.GetMinItemAngleDiff(this.Width);
 
