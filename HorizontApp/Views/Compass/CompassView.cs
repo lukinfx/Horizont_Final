@@ -27,11 +27,13 @@ namespace HorizontApp.Views
         public void SetPoiViewItemList(PoiViewItemList list2)
         {
             list = list2.OrderByDescending(poi => poi.Poi.Altitude);
+            
+            var d = compassViewDrawer.GetMinItemAngleDiff(this.Width);
 
             _compassViewFilter.Reset();
             foreach (var item in list)
             {
-                item.Visibility = _compassViewFilter.Filter(item);
+                item.Visibility = _compassViewFilter.Filter(item, d);
             }
         }
 

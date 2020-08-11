@@ -42,6 +42,7 @@ namespace HorizontApp.Views.Compass
             textpaint.SetTypeface(normal);
         }
 
+        public virtual double GetMinItemAngleDiff(int canvasWidth) { return 0; }
         public virtual void OnDrawBackground(Android.Graphics.Canvas canvas) { }
         public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading) { }
     }

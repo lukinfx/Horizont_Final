@@ -16,20 +16,18 @@ namespace HorizontApp.Views.Compass
 {
     class CompassViewFilter
     {
-        private static int itemAngle = 7;
         private PoiViewItemList _headings = new PoiViewItemList();
 
-        bool IsOverlapping(double item1, double item2)
+        bool IsOverlapping(double item1, double item2, double minDiff)
         {
-            return Math.Abs(CompassUtils.GetAngleDiff(item1, item2)) < itemAngle;
+            return Math.Abs(CompassUtils.GetAngleDiff(item1, item2)) < minDiff;
         }
 
-        public bool Filter(PoiViewItem item)
+        public bool Filter(PoiViewItem item, double minDiff)
         {
             foreach (var heading in _headings)
             {
-                if (IsOverlapping(heading.Bearing, item.Bearing))
-                if (item.Bearing > heading.Bearing - 10 && item.Bearing < heading.Bearing + 10)
+                if (IsOverlapping(heading.Bearing, item.Bearing, minDiff))
                 {
                     return false;
                 }
