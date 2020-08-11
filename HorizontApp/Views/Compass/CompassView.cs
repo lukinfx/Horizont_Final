@@ -12,7 +12,7 @@ namespace HorizontApp.Views
 {
     public class CompassView : View
     {
-        public static PoiViewItemList list;
+        public static IOrderedEnumerable<PoiViewItem> list;
         private CompassViewFilter _compassViewFilter = new CompassViewFilter();
         public double Heading { get; set; }
 
@@ -51,7 +51,7 @@ namespace HorizontApp.Views
 
         public void SetPoiViewItemList(PoiViewItemList list2)
         {
-            list = list2;
+            list = list2.OrderByDescending(poi => poi.Poi.Altitude);
 
             _compassViewFilter.Reset();
             foreach (var item in list)
