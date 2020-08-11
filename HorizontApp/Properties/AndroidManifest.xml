@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-          android:versionCode="4" 
+          android:versionCode="5" 
           android:versionName="1.01" 
           package="com.franklab17.horizontapp">
   <uses-sdk android:minSdkVersion="28" android:targetSdkVersion="28" />

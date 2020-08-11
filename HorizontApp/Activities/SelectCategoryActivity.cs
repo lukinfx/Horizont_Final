@@ -12,7 +12,6 @@ namespace HorizontApp.Activities
     [Activity(Label = "SelectCategoryActivity", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class SelectCategoryActivity : Activity, IOnClickListener
     {
-        CheckBox checkBoxPeaks;
         CheckBox checkBoxMountains;
         CheckBox checkBoxLakes;
         CheckBox checkBoxCastles;
@@ -62,7 +61,6 @@ namespace HorizontApp.Activities
             checkBoxTest = FindViewById<CheckBox>(Resource.Id.checkBoxTest);
             checkBoxTest.Checked = instance.Categories.Contains(PoiCategory.Test);
 
-            checkBoxPeaks.CheckedChange += CheckedChange;
             checkBoxMountains.CheckedChange += CheckedChange;
             checkBoxLakes.CheckedChange += CheckedChange;
             checkBoxCastles.CheckedChange += CheckedChange;
