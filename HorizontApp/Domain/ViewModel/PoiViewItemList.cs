@@ -39,13 +39,16 @@ namespace HorizontApp.Domain.ViewModel
                 if (favourite && !poiViewItem.Poi.Favorite)
                     continue;
 
-                if ((poiViewItem.Distance > maxDistance * 1000) || (poiViewItem.Poi.Altitude < minAltitude * 16))
+                if (poiViewItem.Distance > maxDistance * 1000)
+                    continue;
+
+                if (poiViewItem.Poi.Altitude > 0.1 && poiViewItem.Poi.Altitude < minAltitude * 16)
                     continue;
 
                 if (!CompassViewSettings.Instance().Categories.Contains(poiViewItem.Poi.Category))
                     continue;
                 
-                    Add(poiViewItem);
+                Add(poiViewItem);
             }
         }
     }
