@@ -62,7 +62,7 @@ namespace HorizontApp
         private GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
         private CompassProvider compassProvider = new CompassProvider();
         private HeadingStabilizator headingStabilizator = new HeadingStabilizator();
-        GpsLocation myLocation = null;
+        private GpsLocation myLocation = new GpsLocation();
 
         private PoiDatabase database;
         public PoiDatabase Database
