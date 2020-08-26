@@ -123,12 +123,12 @@ namespace HorizontApp
             {
                 RequestGPSLocationPermissions();
             }
-
-
-            if (bundle == null)
+            else
             {
-                cameraFragment = CameraFragment.NewInstance();
-                FragmentManager.BeginTransaction().Replace(Resource.Id.container, cameraFragment).Commit();
+                if (bundle == null)
+                {
+                    InitializeCameraFragment();
+                }
             }
 
             compassProvider.Start();
@@ -142,6 +142,11 @@ namespace HorizontApp
             CompassViewSettings.Instance().SettingsChanged += OnSettingsChanged;
         }
 
+        private void InitializeCameraFragment()
+        {
+            cameraFragment = CameraFragment.NewInstance();
+            FragmentManager.BeginTransaction().Replace(Resource.Id.container, cameraFragment).Commit();
+        }
 
         private void InitializeCompassTimer()
         {
@@ -169,6 +174,8 @@ namespace HorizontApp
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            InitializeCameraFragment();
         }
 
         public void PopupDialog(string title, string message)
@@ -183,6 +190,9 @@ namespace HorizontApp
 
         public async void OnClick(Android.Views.View v)
         {
+            if (cameraFragment == null)
+                return;
+
             switch (v.Id)
             {
                 case Resource.Id.menuButton:
