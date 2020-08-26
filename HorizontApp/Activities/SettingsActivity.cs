@@ -13,6 +13,7 @@ using Java.Lang;
 using Double = Java.Lang.Double;
 using Exception = Java.Lang.Exception;
 using Math = System.Math;
+using System.Timers;
 
 namespace HorizontApp.Activities
 {
@@ -25,7 +26,8 @@ namespace HorizontApp.Activities
         private SeekBar seekBarManualViewAngle;
         private Spinner appStyle;
         private Button back;
-        private AppStyles[] _listOfAppStyles = new AppStyles[] { AppStyles.NewStyle, AppStyles.OldStyle };
+        private AppStyles[] _listOfAppStyles = new AppStyles[] {AppStyles.NewStyle, AppStyles.OldStyle};
+        private Timer changeFilterTimer = new Timer();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -41,57 +43,70 @@ namespace HorizontApp.Activities
             seekBarManualViewAngle = FindViewById<SeekBar>(Resource.Id.seekBarManualViewAngle);
             textManualViewAngle = FindViewById<TextView>(Resource.Id.textManualViewAngle);
 
-
             appStyle.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(appStyle_ItemSelected);
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfAppStyles.ToList());
             appStyle.Adapter = adapter;
-            appStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == CompassViewSettings.Instance().AppStyle));
+            appStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == settings.AppStyle));
 
             switchManualViewAngle.SetOnClickListener(this);
-            switchManualViewAngle.Checked = CompassViewSettings.Instance().IsManualViewAngle;
+            switchManualViewAngle.Checked = settings.IsManualViewAngle;
 
             seekBarManualViewAngle.ProgressChanged += SeekBarProgressChanged;
-            seekBarManualViewAngle.Enabled = CompassViewSettings.Instance().IsManualViewAngle;
-            seekBarManualViewAngle.Progress = (int)(CompassViewSettings.Instance().ViewAngleHorizontal*10);
+            seekBarManualViewAngle.Enabled = settings.IsManualViewAngle;
+            seekBarManualViewAngle.Progress = (int) (settings.ViewAngleHorizontal * 10);
 
-            textManualViewAngle.Text = GetViewAngleText();
+            textManualViewAngle.Text = GetViewAngleText(settings.IsManualViewAngle, settings.ViewAngleHorizontal);
+
+            changeFilterTimer.Enabled = false;
+            changeFilterTimer.Interval = 3000;
+            changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;
+            changeFilterTimer.AutoReset = false;
         }
 
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
             if (CompassViewSettings.Instance().IsManualViewAngle)
             {
-                var viewAngle = seekBarManualViewAngle.Progress/(float)10.0;
-                textManualViewAngle.Text = GetViewAngleText();
-                CompassViewSettings.Instance().ManualViewAngleHorizontal = viewAngle;
+                var viewAngle = seekBarManualViewAngle.Progress / (float) 10.0;
+                textManualViewAngle.Text = GetViewAngleText(settings.IsManualViewAngle, viewAngle);
+                changeFilterTimer.Stop();
+                changeFilterTimer.Start();
             }
         }
 
         private void appStyle_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            CompassViewSettings.Instance().AppStyle = _listOfAppStyles[e.Position];
+            settings.AppStyle = _listOfAppStyles[e.Position];
         }
 
         public void OnClick(View v)
         {
-           switch (v.Id)
+            switch (v.Id)
             {
                 case Resource.Id.buttonBack:
                     Finish();
                     break;
                 case Resource.Id.switchManualViewAngle:
-                    CompassViewSettings.Instance().IsManualViewAngle = switchManualViewAngle.Checked;
-                    textManualViewAngle.Text = GetViewAngleText();
-                    seekBarManualViewAngle.Enabled = CompassViewSettings.Instance().IsManualViewAngle;
-                    seekBarManualViewAngle.Progress = (int)(CompassViewSettings.Instance().ViewAngleHorizontal * 10);
+                    settings.IsManualViewAngle = switchManualViewAngle.Checked;
+                    textManualViewAngle.Text = GetViewAngleText(settings.IsManualViewAngle, settings.ViewAngleHorizontal);
+                    seekBarManualViewAngle.Enabled = settings.IsManualViewAngle;
+                    seekBarManualViewAngle.Progress = (int) (settings.ViewAngleHorizontal * 10);
                     break;
             }
         }
 
-        private string GetViewAngleText()
+        private string GetViewAngleText(bool manual, double viewAngle)
         {
-            var autoOrManual = CompassViewSettings.Instance().IsManualViewAngle ? "set manually":"obtained automatically";
-            return $"Current camera view angle is {CompassViewSettings.Instance().ViewAngleHorizontal:0.0} ({autoOrManual})";
+            var autoOrManual = manual ? "set manually" : "obtained automatically";
+            return $"Current camera view angle is {viewAngle:0.0} ({autoOrManual})";
+        }
+
+        private async void OnChangeFilterTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+
+            changeFilterTimer.Stop();
+            var viewAngle = seekBarManualViewAngle.Progress / (float) 10.0;
+            settings.ManualViewAngleHorizontal = viewAngle;
         }
     }
 }

@@ -40,8 +40,8 @@
       android:layout_height="wrap_content"
       android:layout_gravity="bottom"
       android:id="@+id/seekBarManualViewAngle"
-      android:min="500"
-      android:max="700"
+      android:min="400"
+      android:max="800"
       android:progress="1" />
 
 
