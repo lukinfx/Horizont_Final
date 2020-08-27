@@ -1,13 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout3">
+        
     <Button
         android:text="Back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonBack" />
+    
+    <Button
+        android:text="Save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSave" />
+        
+    <Button
+        android:text="Paste from ClipBoard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonPaste" />
+    </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"
@@ -24,7 +45,7 @@
             android:gravity="center"
             android:id="@+id/NameTitle" />
         <EditText
-            android:text="Name"
+            android:text="My current location"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +66,6 @@
             android:gravity="center"
             android:id="@+id/latitudeTitle" />
         <EditText
-            android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -58,7 +78,6 @@
             android:gravity="center"
             android:id="@+id/longitudeTitle" />
         <EditText
-            android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -71,7 +90,6 @@
             android:gravity="center"
             android:id="@+id/altitudeTitle" />
         <EditText
-            android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -81,9 +99,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerCategory" />
-    <Button
-        android:text="Save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonSave" />
 </LinearLayout>

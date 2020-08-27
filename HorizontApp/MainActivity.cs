@@ -80,10 +80,9 @@ namespace HorizontApp
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            //Window.RequestFeature(WindowFeatures.NoTitle);
-
             Xamarin.Essentials.Platform.Init(this, bundle);
             // Set our view from the "main" layout resource
+
             SetContentView(Resource.Layout.activity_main);
 
             headingEditText = FindViewById<TextView>(Resource.Id.editText1);
