@@ -112,6 +112,8 @@ namespace HorizontApp.Activities
                 //        ClipBoardInput();
                 //    }
                 //});
+
+                //nasledujici kod zatim nefunguje
                 GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
                 GpsLocation location = gpsLocationProvider.CurrentLocation;
                 editTextAltitude.Text = location.Altitude.ToString();
@@ -168,7 +170,6 @@ namespace HorizontApp.Activities
                         {
                             // Ok button click task  
                         });
-                        alert.SetButton2("CANCEL", (c, ev) => { });
                         alert.Show();
                     }
                     break;
