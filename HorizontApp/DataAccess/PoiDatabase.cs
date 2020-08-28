@@ -136,6 +136,11 @@ namespace HorizontApp.DataAccess
             return task.Result;
         }
 
+        public IEnumerable<Poi> GetMyItems()
+        {
+            return Database.QueryAsync<Poi>($"SELECT * FROM [Poi] WHERE [Source] = \"{Guid.Empty.ToString()}\"").Result;
+        }
+
         public async Task<IEnumerable<Poi>> GetFavoriteItemsAsync()
         {
             return await Database.QueryAsync<Poi>("SELECT * FROM [Poi] WHERE [Favorite] = true");

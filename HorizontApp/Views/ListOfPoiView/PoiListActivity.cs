@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using Android.App;
@@ -24,8 +25,14 @@ namespace HorizontApp.Views.ListOfPoiView
         Button back;
         Button add;
         ListViewAdapter adapter;
+        Spinner spinnerSelection;
+        GpsLocation location = new GpsLocation();
+        double maxDistance;
+        double minAltitude;
         private List<PoiViewItem> items;
         private PoiDatabase database;
+        private String[] _listOfSelections = new String[] { "Serad podle vzdalenosti", "Zobraz mnou pridane body", "Najdi podle jmena"};
+
         public PoiDatabase Database
         {
             get
@@ -42,39 +49,73 @@ namespace HorizontApp.Views.ListOfPoiView
         {
             base.OnCreate(savedInstanceState);
 
-            var location = new GpsLocation()
-            {
-                Latitude = Intent.GetDoubleExtra("latitude", 0),
-                Longitude = Intent.GetDoubleExtra("longitude", 0),
-                Altitude = Intent.GetDoubleExtra("altitude", 0),
-            };
+            location.Latitude = Intent.GetDoubleExtra("latitude", 0);
+            location.Longitude = Intent.GetDoubleExtra("longitude", 0);
+            location.Altitude = Intent.GetDoubleExtra("altitude", 0);
 
-            var maxDistance = Intent.GetIntExtra("maxDistance", 0);
-            var minAltitude = Intent.GetIntExtra("minAltitude", 0);
+            maxDistance = Intent.GetIntExtra("maxDistance", 0);
+            minAltitude = Intent.GetIntExtra("minAltitude", 0);
 
             SetContentView(Resource.Layout.PoiListActivity);
             // Create your application here
 
             listViewPoi = FindViewById<ListView>(Resource.Id.listView1);
-            
+            listViewPoi.ItemClick += OnListItemClick;
+
             back = FindViewById<Button>(Resource.Id.buttonBack);
             back.SetOnClickListener(this);
             add = FindViewById<Button>(Resource.Id.buttonAdd);
             add.SetOnClickListener(this);
 
-            var poiList = Database.GetItems(location, maxDistance);
+            spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
+            var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfSelections.ToList());
+            spinnerSelection.Adapter = selectionAdapter;
+            spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Selection_ItemSelected);
 
-            items = new PoiViewItemList(poiList, location, maxDistance, minAltitude, false);
-            items = items.OrderBy(i => i.Distance).ToList();
-
-            adapter = new ListViewAdapter(this, items, this);
-            listViewPoi.Adapter = adapter;
-            listViewPoi.ItemClick += OnListItemClick;
+            _selectByDistance();
         }
 
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             
+        }
+
+        private void _selectByDistance()
+        {
+            var poiList = Database.GetItems(location, maxDistance);
+
+            items = new PoiViewItemList(poiList, location, maxDistance, minAltitude, false);
+            items = items.OrderBy(i => i.Distance).ToList();
+            adapter = new ListViewAdapter(this, items, this);
+            listViewPoi.Adapter = adapter;
+            listViewPoi.Invalidate();
+        }
+
+        private void _selectMyPois()
+        {
+            var poiList = Database.GetMyItems();
+
+            items = new PoiViewItemList(poiList, location, 10000000, 0, false);
+            items = items.OrderBy(i => i.Distance).ToList();
+            adapter = new ListViewAdapter(this, items, this);
+            listViewPoi.Adapter = adapter;
+            listViewPoi.Invalidate();
+        }
+
+        private void Selection_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            int selection = e.Position;
+            if (selection == 0)
+            {
+                _selectByDistance();
+            } else if (selection == 1)
+            {
+                _selectMyPois();
+            }
+            else if (selection == 2)
+            {
+
+            }
         }
 
         public void OnClick(View v)
