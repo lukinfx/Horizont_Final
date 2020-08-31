@@ -3989,10 +3989,10 @@ namespace HorizontApp
 			public const int search_voice_btn = 2131296455;
 			
 			// aapt resource value: 0x7F0900C8
-			public const int seekBar1 = 2131296456;
+			public const int seekBarDistance = 2131296456;
 			
 			// aapt resource value: 0x7F0900C9
-			public const int seekBar2 = 2131296457;
+			public const int seekBarHeight = 2131296457;
 			
 			// aapt resource value: 0x7F0900CA
 			public const int seekBarManualViewAngle = 2131296458;

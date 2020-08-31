@@ -114,14 +114,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:id="@+id/seekBar2"
+                    android:id="@+id/seekBarDistance"
                     android:progress="10" />
                 <SeekBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:id="@+id/seekBar1"
-                    android:progress="10" />
+                    android:id="@+id/seekBarHeight"
+                    android:progress="0" />
              
                 <LinearLayout
                     android:orientation=    "horizontal"

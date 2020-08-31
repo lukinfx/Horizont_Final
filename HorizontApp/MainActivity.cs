@@ -93,10 +93,10 @@ namespace HorizontApp
 
             filterText = FindViewById<TextView>(Resource.Id.textView1);
 
-            distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBar2);
+            distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
             distanceSeekBar.ProgressChanged += SeekBarProgressChanged;
 
-            heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBar1);
+            heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
             heightSeekBar.ProgressChanged += SeekBarProgressChanged;
 
             var menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
