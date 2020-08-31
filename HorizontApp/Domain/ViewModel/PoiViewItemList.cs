@@ -51,5 +51,17 @@ namespace HorizontApp.Domain.ViewModel
                 Add(poiViewItem);
             }
         }
+
+        public PoiViewItemList(IEnumerable<Poi> poiList, GpsLocation location)
+        {
+            foreach (var item in poiList)
+            {
+                var poiViewItem = new PoiViewItem(item);
+                poiViewItem.Bearing = CompassViewUtils.GetBearing(location, poiViewItem.GpsLocation);
+                poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(location, poiViewItem.GpsLocation);
+                poiViewItem.Distance = CompassViewUtils.GetDistance(location, poiViewItem.GpsLocation);
+                Add(poiViewItem);
+            }
+        }
     }
 }

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Timers;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using HorizontApp.Activities;
@@ -26,12 +28,14 @@ namespace HorizontApp.Views.ListOfPoiView
         Button add;
         ListViewAdapter adapter;
         Spinner spinnerSelection;
+        EditText search;
         GpsLocation location = new GpsLocation();
         double maxDistance;
         double minAltitude;
         private List<PoiViewItem> items;
+        Timer searchTimer = new Timer();
         private PoiDatabase database;
-        private String[] _listOfSelections = new String[] { "Serad podle vzdalenosti", "Zobraz mnou pridane body", "Najdi podle jmena"};
+        private String[] _listOfSelections = new String[] { "Visible points", "My points", "Find by name"};
 
         public PoiDatabase Database
         {
@@ -66,6 +70,8 @@ namespace HorizontApp.Views.ListOfPoiView
             back.SetOnClickListener(this);
             add = FindViewById<Button>(Resource.Id.buttonAdd);
             add.SetOnClickListener(this);
+            search = FindViewById<EditText>(Resource.Id.editTextSearch);
+            search.TextChanged += editTextSearch_TextChanged;
 
             spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
             var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfSelections.ToList());
@@ -73,6 +79,38 @@ namespace HorizontApp.Views.ListOfPoiView
             spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Selection_ItemSelected);
 
             _selectByDistance();
+
+            InitializeSearchTimer();
+        }
+
+        private void InitializeSearchTimer()
+        {
+            searchTimer.Interval = 500;
+            searchTimer.AutoReset = false;
+            searchTimer.Elapsed += OnSearchTimerTimerElapsed;
+        }
+
+        private void OnSearchTimerTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            searchTimer.Stop();
+            _FindItem();
+        }
+
+        private void _FindItem()
+        {
+            var poiList = Database.FindItems(search.Text);
+
+            items = new PoiViewItemList(poiList, location);
+            items = items.OrderBy(i => i.Distance).ToList();
+            adapter = new ListViewAdapter(this, items, this);
+            listViewPoi.Adapter = adapter;
+            listViewPoi.Invalidate();
+        }
+
+        private void editTextSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            searchTimer.Stop();
+            searchTimer.Start();
         }
 
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -95,7 +133,7 @@ namespace HorizontApp.Views.ListOfPoiView
         {
             var poiList = Database.GetMyItems();
 
-            items = new PoiViewItemList(poiList, location, 10000000, 0, false);
+            items = new PoiViewItemList(poiList, location);
             items = items.OrderBy(i => i.Distance).ToList();
             adapter = new ListViewAdapter(this, items, this);
             listViewPoi.Adapter = adapter;

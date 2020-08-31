@@ -146,6 +146,11 @@ namespace HorizontApp.DataAccess
             return await Database.QueryAsync<Poi>("SELECT * FROM [Poi] WHERE [Favorite] = true");
         }
 
+        public IEnumerable<Poi> FindItems(string text)
+        {
+            return Database.QueryAsync<Poi>($"SELECT * FROM [Poi] WHERE [Name] LIKE '{text}%'").Result;
+        }
+
         public async Task<Poi> GetItemAsync(long id)
         {
             return await Database.Table<Poi>().Where(i => i.Id == id).FirstOrDefaultAsync();
