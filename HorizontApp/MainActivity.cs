@@ -149,7 +149,7 @@ namespace HorizontApp
 
         private void InitializeCompassTimer()
         {
-            compassTimer.Interval = 100;
+            compassTimer.Interval = 40;
             compassTimer.Elapsed += OnCompassTimerElapsed;
             compassTimer.Enabled = true;
         }
@@ -262,12 +262,12 @@ namespace HorizontApp
             if (!compassPaused)
             {
                 headingStabilizator.AddValue(compassProvider.Heading);
-
-                compassView.Heading = headingStabilizator.GetHeading();
-                headingEditText.Text = Math.Round(headingStabilizator.GetHeading(), 0).ToString() + "° | ";
-
-                compassView.Invalidate();
             }
+
+            compassView.Heading = headingStabilizator.GetHeading() + compassView.HeadingCorrector;
+            headingEditText.Text = Math.Round(headingStabilizator.GetHeading(), 0).ToString() + "° + " + compassView.HeadingCorrector + " | ";
+            compassView.Invalidate();
+            
         }
 
         private async void OnLocationTimerElapsed(object sender, ElapsedEventArgs e)

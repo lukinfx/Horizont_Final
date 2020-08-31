@@ -15,6 +15,18 @@ namespace HorizontApp.Views
         public static IOrderedEnumerable<PoiViewItem> list;
         private CompassViewFilter _compassViewFilter = new CompassViewFilter();
         public double Heading { get; set; }
+        private static double _headingCorrector = 0;
+        public double HeadingCorrector
+        {
+            get
+            {
+                return _headingCorrector;
+            }
+            set
+            {
+                _headingCorrector = value;
+            }
+        }
 
         private CompassViewDrawer compassViewDrawer;
 
@@ -90,7 +102,7 @@ namespace HorizontApp.Views
         public void OnScroll(float distanceX)
         {
             var viewAngleHorizontal = CompassViewSettings.Instance().ViewAngleHorizontal;
-            Heading += CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX);
+            HeadingCorrector = HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX);
             Invalidate();
         }
     }
