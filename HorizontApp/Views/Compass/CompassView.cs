@@ -40,12 +40,12 @@ namespace HorizontApp.Views
         {
             list = list2.OrderByDescending(poi => poi.Poi.Altitude).ThenBy(poi => poi.Distance);
             
-            var d = compassViewDrawer.GetMinItemAngleDiff(this.Width);
-
+            var rightMinAngleDiff = compassViewDrawer.GetMinItemRightAngleDiff(this.Width);
+            var leftMinAngleDiff = compassViewDrawer.GetMinItemLeftAngleDiff(this.Width);
             _compassViewFilter.Reset();
             foreach (var item in list)
             {
-                item.Visibility = _compassViewFilter.Filter(item, d);
+                item.Visibility = _compassViewFilter.Filter(item, rightMinAngleDiff, leftMinAngleDiff);
             }
         }
 
@@ -77,7 +77,10 @@ namespace HorizontApp.Views
                     case AppStyles.OldStyle:
                         compassViewDrawer = new CompassViewDrawerOldStyle();
                         break;
-                }
+                    case AppStyles.RightOnly:
+                        compassViewDrawer = new CompassViewDrawerRightOnly();
+                        break;
+            }
 
             compassViewDrawer.ViewAngleHorizontal = CompassViewSettings.Instance().ViewAngleHorizontal;
             compassViewDrawer.ViewAngleVertical = CompassViewSettings.Instance().ViewAngleVertical;

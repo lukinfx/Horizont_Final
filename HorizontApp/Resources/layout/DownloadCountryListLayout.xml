@@ -11,7 +11,7 @@
     android:paddingLeft="10dp"
     android:layout_alignParentLeft="true"
     android:layout_centerVertical="true"
-    android:src="@drawable/f_unknownFlagIcon128" />
+    android:src="@drawable/f_unknownflagicon128" />
   <TextView
     android:id="@+id/PoiItemCountryAsText"
     android:layout_width="wrap_content"
