@@ -108,6 +108,7 @@
     <Compile Include="Utilities\ListViewAdapter.cs" />
     <Compile Include="Utilities\PoiCategoryHelper.cs" />
     <Compile Include="Utilities\CompassViewSettings.cs" />
+    <Compile Include="Utilities\SolarPositionUtils.cs" />
     <Compile Include="Views\CameraView\AutoFitTextureView.cs" />
     <Compile Include="Views\CameraView\CameraFragment.cs" />
     <Compile Include="Views\CameraView\CameraSurfaceTextureListener.cs" />

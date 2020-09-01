@@ -130,18 +130,18 @@
          
                     <TextView
                         android:inputType="number"
-                        android:layout_width="50dp"
+                        android:layout_width="75dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/editText1"
                         android:layout_marginRight="0.0dp"
-                        android:textColor="#30ffff00"
+                        android:textColor="#ffff00"
                         android:background="#50000000"/>
                     <TextView
                         android:inputType="number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/editText2"
-                        android:textColor="#30ffff00"
+                        android:textColor="#ffff00"
                         android:background="#50000000"/>
                 </LinearLayout>  
             </LinearLayout>
