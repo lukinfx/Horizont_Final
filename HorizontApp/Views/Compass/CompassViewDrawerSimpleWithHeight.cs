@@ -4,7 +4,7 @@ using HorizontApp.Utilities;
 
 namespace HorizontApp.Views.Compass
 {
-    public class CompassViewDrawerNewStyle : CompassViewDrawer
+    public class CompassViewDrawerSimpleWithHeight : CompassViewDrawer
     {
         public override void OnDrawBackground(Canvas canvas)
         {
@@ -18,17 +18,16 @@ namespace HorizontApp.Views.Compass
             {
                 var endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, ViewAngleVertical);
 
-                canvas.DrawRect(0, -startX.Value + 50, endY - 50, -startX.Value - 50, paintRect);
+                canvas.DrawRect(0, -startX.Value, endY - 50, -startX.Value - 40, paintRect);
                 canvas.DrawLine(0, -startX.Value, endY, -startX.Value, paint);
 
-                canvas.DrawText(item.Poi.Name, 10, -startX.Value - 10, textpaint);
-                canvas.DrawText($"{item.Poi.Altitude} m / {(item.Distance / 1000):F2} km", 10, -startX.Value + 35, textpaint);
+                canvas.DrawText($"{item.Poi.Name} ({item.Poi.Altitude}m)", 10, -startX.Value - 10, textpaint);
             }
         }
 
         public override double GetMinItemAngleDiff(int canvasWidth)
         {
-            return 4;
+            return 1.7;
         }
     }
 }

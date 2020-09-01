@@ -70,14 +70,20 @@ namespace HorizontApp.Views
         {
             switch (CompassViewSettings.Instance().AppStyle)
                 {
-                    case AppStyles.NewStyle:
-                        compassViewDrawer = new CompassViewDrawerNewStyle();
+                    case AppStyles.EachPoiSeparate:
+                        compassViewDrawer = new CompassViewDrawerEachPoiSeparate();
                         break;
-                    case AppStyles.OldStyle:
-                        compassViewDrawer = new CompassViewDrawerOldStyle();
+                    case AppStyles.FullScreenRectangle:
+                        compassViewDrawer = new CompassViewDrawerFullScreenRectangle();
                         break;
-                    case AppStyles.RightOnly:
-                        compassViewDrawer = new CompassViewDrawerRightOnly();
+                    case AppStyles.Simple:
+                        compassViewDrawer = new CompassViewDrawerSimple();
+                        break;
+                    case AppStyles.SimpleWithDistance:
+                        compassViewDrawer = new CompassViewDrawerSimpleWithDistance();
+                        break;
+                    case AppStyles.SimpleWithHeight:
+                        compassViewDrawer = new CompassViewDrawerSimpleWithHeight();
                         break;
             }
 

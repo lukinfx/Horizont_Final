@@ -77,7 +77,7 @@ namespace HorizontApp.Utilities
             }
         }
 
-        private AppStyles appStyle = AppStyles.OldStyle;
+        private AppStyles appStyle = AppStyles.FullScreenRectangle;
         public AppStyles AppStyle
         {
             get  
@@ -118,7 +118,7 @@ namespace HorizontApp.Utilities
             if (instance == null)
             {
                 instance = new CompassViewSettings();
-                instance.appStyle = AppStyles.NewStyle;
+                instance.appStyle = AppStyles.EachPoiSeparate;
             }
             return instance;
         }

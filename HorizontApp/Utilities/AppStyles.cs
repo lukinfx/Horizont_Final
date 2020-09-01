@@ -3,8 +3,10 @@ namespace HorizontApp.Utilities
 {
     public enum AppStyles
     {
-        OldStyle = 0,
-        NewStyle = 1,
-        RightOnly = 2
+        FullScreenRectangle = 0,
+        EachPoiSeparate = 1,
+        Simple = 2,
+        SimpleWithDistance = 3,
+        SimpleWithHeight = 4
     }
 }

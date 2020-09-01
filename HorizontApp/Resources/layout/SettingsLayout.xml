@@ -26,8 +26,6 @@
         android:switchTextAppearance="?android:attr/textAppearanceSmall"
         android:text="Camera view angle"
         android:showText="true"
-        android:textOn="Man"
-        android:textOff="Auto"
         android:id="@+id/switchManualViewAngle" />
     <TextView
         android:text="Medium Text"

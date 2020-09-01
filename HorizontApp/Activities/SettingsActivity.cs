@@ -26,7 +26,7 @@ namespace HorizontApp.Activities
         private SeekBar seekBarManualViewAngle;
         private Spinner appStyle;
         private Button back;
-        private AppStyles[] _listOfAppStyles = new AppStyles[] {AppStyles.NewStyle, AppStyles.OldStyle, AppStyles.RightOnly};
+        private AppStyles[] _listOfAppStyles = new AppStyles[] {AppStyles.EachPoiSeparate, AppStyles.FullScreenRectangle, AppStyles.Simple, AppStyles.SimpleWithDistance, AppStyles.SimpleWithHeight};
         private Timer changeFilterTimer = new Timer();
 
         protected override void OnCreate(Bundle savedInstanceState)
