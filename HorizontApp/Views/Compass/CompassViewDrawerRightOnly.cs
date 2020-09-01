@@ -18,18 +18,14 @@ namespace HorizontApp.Views.Compass
             {
                 var endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, ViewAngleVertical);
 
-                canvas.DrawRect(0, -startX.Value, endY - 50, -startX.Value - 50, paintRect);
+                canvas.DrawRect(0, -startX.Value, endY - 50, -startX.Value - 40, paintRect);
                 canvas.DrawLine(0, -startX.Value, endY, -startX.Value, paint);
 
                 canvas.DrawText($"{item.Poi.Name}", 10, -startX.Value - 10, textpaint);
             }
         }
 
-        public override double GetMinItemRightAngleDiff(int canvasWidth)
-        {
-            return 1.7;
-        }
-        public override double GetMinItemLeftAngleDiff(int canvasWidth)
+        public override double GetMinItemAngleDiff(int canvasWidth)
         {
             return 1.7;
         }

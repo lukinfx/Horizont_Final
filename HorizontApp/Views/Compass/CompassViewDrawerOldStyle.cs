@@ -36,11 +36,7 @@ namespace HorizontApp.Views.Compass
                 canvas.DrawText($"{item.Poi.Altitude} m / {(item.Distance / 1000):F2} km", 10, -startX.Value + 35, textpaint);
             }
         }
-        public override double GetMinItemRightAngleDiff(int canvasWidth)
-        {
-            return 4;
-        }
-        public override double GetMinItemLeftAngleDiff(int canvasWidth)
+        public override double GetMinItemAngleDiff(int canvasWidth)
         {
             return 4;
         }
