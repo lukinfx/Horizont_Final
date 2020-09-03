@@ -533,7 +533,8 @@ namespace HorizontApp
 
         public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
         {
-            compassView.OnScroll(distanceX);
+            if (e1.RawY < Resources.DisplayMetrics.HeightPixels / 2)
+                compassView.OnScroll(distanceX);
             return false;
         }
 
