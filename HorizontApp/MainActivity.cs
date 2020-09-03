@@ -326,123 +326,66 @@ namespace HorizontApp
                 }
                     
                 case Resource.Id.imageButtonSelectMountain:
-                    SelectedCategory.Instance().VisibleMountains = !SelectedCategory.Instance().VisibleMountains;
-                    if (SelectedCategory.Instance().VisibleMountains)
-                    {
-                        selectedCategories.Add(PoiCategory.Mountains);
-                        imageButtonMountains.SetImageResource(Resource.Drawable.c_mountain);
-                    }
-                    else
-                    {
-                        selectedCategories.Remove(PoiCategory.Mountains);
-                        imageButtonMountains.SetImageResource(Resource.Drawable.c_mountain_grey);
-                    }
-                    CompassViewSettings.Instance().Categories = selectedCategories;
+                    _handleCategoryFilterChanged(PoiCategory.Mountains);
+                    imageButtonMountains.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Mountains, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Mountains)));
                     break;
 
                 case Resource.Id.imageButtonSelectLake:
-                    SelectedCategory.Instance().VisibleLakes = !SelectedCategory.Instance().VisibleLakes;
-                    if (SelectedCategory.Instance().VisibleLakes)
-                    {
-                        selectedCategories.Add(PoiCategory.Lakes);
-                        imageButtonLakes.SetImageResource(Resource.Drawable.c_lake);
-                    }
-                    else
-                    {
-                        imageButtonLakes.SetImageResource(Resource.Drawable.c_lake_grey);
-                        selectedCategories.Remove(PoiCategory.Lakes);
-                    }
+                    _handleCategoryFilterChanged(PoiCategory.Lakes);
+                    imageButtonLakes.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Lakes, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Lakes)));
+
                     break;
 
                 case Resource.Id.imageButtonSelectCastle:
-                    SelectedCategory.Instance().VisibleCastles = !SelectedCategory.Instance().VisibleCastles;
-                    if (SelectedCategory.Instance().VisibleCastles)
-                    {
-                        selectedCategories.Add(PoiCategory.Castles);
-                        imageButtonCastles.SetImageResource(Resource.Drawable.c_castle);
-                    }
-                    else
-                    {
-                        selectedCategories.Remove(PoiCategory.Castles);
-                        imageButtonCastles.SetImageResource(Resource.Drawable.c_castle_grey);
-                    }
+                    _handleCategoryFilterChanged(PoiCategory.Castles);
+                    imageButtonCastles.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Castles, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Castles)));
+
                     break;
 
                 case Resource.Id.imageButtonSelectPalace:
-                    SelectedCategory.Instance().VisiblePalaces = !SelectedCategory.Instance().VisiblePalaces;
-                    if (SelectedCategory.Instance().VisiblePalaces)
-                    {
-                        selectedCategories.Add(PoiCategory.Palaces);
-                        imageButtonPalaces.SetImageResource(Resource.Drawable.c_palace);
-                    }
-                    else
-                    {
-                        imageButtonPalaces.SetImageResource(Resource.Drawable.c_palace_grey);
-                        selectedCategories.Remove(PoiCategory.Palaces);
-                    }
+                    _handleCategoryFilterChanged(PoiCategory.Palaces);
+                    imageButtonPalaces.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Palaces, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Palaces)));
+
                     break;
 
                 case Resource.Id.imageButtonSelectTransmitter:
-                    SelectedCategory.Instance().VisibleTransmitters = !SelectedCategory.Instance().VisibleTransmitters;
-                    
-                    if (SelectedCategory.Instance().VisibleTransmitters)
-                    {
-                        selectedCategories.Add(PoiCategory.Transmitters);
-                        imageButtonTransmitters.SetImageResource(Resource.Drawable.c_transmitter);
-                    }
-                    else
-                    {
-                        imageButtonTransmitters.SetImageResource(Resource.Drawable.c_transmitter_grey);
-                        selectedCategories.Remove(PoiCategory.Transmitters);
-                    }
-                        
+                    _handleCategoryFilterChanged(PoiCategory.Transmitters);
+                    imageButtonTransmitters.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Transmitters, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Transmitters)));
+
                     break;
 
                 case Resource.Id.imageButtonSelectRuins:
-                    SelectedCategory.Instance().VisibleRuins = !SelectedCategory.Instance().VisibleRuins;
-                    if (SelectedCategory.Instance().VisibleRuins)
-                    {
-                        selectedCategories.Add(PoiCategory.Ruins);
-                        imageButtonRuins.SetImageResource(Resource.Drawable.c_ruins);
-                    }
-                    else
-                    {
-                        imageButtonRuins.SetImageResource(Resource.Drawable.c_ruins_grey);
-                        selectedCategories.Remove(PoiCategory.Ruins);
-                    }
+                    _handleCategoryFilterChanged(PoiCategory.Ruins);
+                    imageButtonRuins.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Ruins, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Ruins)));
 
                     break;
 
                 case Resource.Id.imageButtonSelectViewtower:
-                    SelectedCategory.Instance().VisibleViewTowers = !SelectedCategory.Instance().VisibleViewTowers;
-                    if (SelectedCategory.Instance().VisibleViewTowers)
-                    {
-                        selectedCategories.Add(PoiCategory.ViewTowers);
-                        imageButtonViewTowers.SetImageResource(Resource.Drawable.c_viewtower);
-                    }
-                    else
-                    {
-                        selectedCategories.Remove(PoiCategory.ViewTowers);
-                        imageButtonViewTowers.SetImageResource(Resource.Drawable.c_viewtower_grey);
-                    }
+                    _handleCategoryFilterChanged(PoiCategory.ViewTowers);
+                    imageButtonViewTowers.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.ViewTowers, CompassViewSettings.Instance().Categories.Contains(PoiCategory.ViewTowers)));
 
                     break;
 
                 case Resource.Id.imageButtonSelectChurch:
-                    SelectedCategory.Instance().VisibleChurches = !SelectedCategory.Instance().VisibleChurches;
-                    if (SelectedCategory.Instance().VisibleChurches)
-                    {
-                        selectedCategories.Add(PoiCategory.Churches);
-                        imageButtonChurches.SetImageResource(Resource.Drawable.c_church);
-                    }
-                    else
-                    {
-                        selectedCategories.Remove(PoiCategory.Churches);
-                        imageButtonChurches.SetImageResource(Resource.Drawable.c_church_grey);
-                    }
+                    _handleCategoryFilterChanged(PoiCategory.Churches);
+                    imageButtonChurches.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Churches, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Churches)));
 
                     break;
             }
+        }
+
+        private void _handleCategoryFilterChanged(PoiCategory poiCategory)
+        {
+            if (CompassViewSettings.Instance().Categories.Contains(poiCategory))
+            {
+                CompassViewSettings.Instance().Categories.Remove(poiCategory);
+            }
+            else
+            {
+                CompassViewSettings.Instance().Categories.Add(poiCategory);
+            }
+
+            CompassViewSettings.Instance().HandleSettingsChanged();
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)

@@ -4,26 +4,26 @@ namespace HorizontApp.Utilities
 {
     public class PoiCategoryHelper
     {
-        public static int GetImage(PoiCategory category)
+        public static int GetImage(PoiCategory category, bool enabled = true)
         {
             switch (category)
             {
                 case PoiCategory.Castles:
-                    return Resource.Drawable.c_castle;
+                    return enabled ? Resource.Drawable.c_castle : Resource.Drawable.c_castle_grey;
                 case PoiCategory.Mountains:
-                    return Resource.Drawable.c_mountain;
+                    return enabled ? Resource.Drawable.c_mountain : Resource.Drawable.c_mountain_grey;
                 case PoiCategory.Lakes:
-                    return Resource.Drawable.c_lake;
+                    return enabled ? Resource.Drawable.c_lake : Resource.Drawable.c_lake_grey;
                 case PoiCategory.ViewTowers:
-                    return Resource.Drawable.c_viewtower;
+                    return enabled ? Resource.Drawable.c_viewtower : Resource.Drawable.c_viewtower_grey;
                 case PoiCategory.Palaces:
-                    return Resource.Drawable.c_palace;
+                    return enabled ? Resource.Drawable.c_palace : Resource.Drawable.c_palace_grey;
                 case PoiCategory.Ruins:
-                    return Resource.Drawable.c_ruins;
+                    return enabled ? Resource.Drawable.c_ruins : Resource.Drawable.c_ruins_grey;
                 case PoiCategory.Transmitters:
-                    return Resource.Drawable.c_transmitter;
+                    return enabled ? Resource.Drawable.c_transmitter : Resource.Drawable.c_transmitter_grey;
                 case PoiCategory.Churches:
-                    return Resource.Drawable.c_church;
+                    return enabled ? Resource.Drawable.c_church : Resource.Drawable.c_church_grey;
                 default:
                     return Resource.Drawable.c_basic;
             }

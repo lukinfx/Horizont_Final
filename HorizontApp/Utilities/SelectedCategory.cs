@@ -9,11 +9,13 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using HorizontApp.Domain.Enums;
 
 namespace HorizontApp.Utilities
 {
     public class SelectedCategory
     {
+        List<PoiCategory> visibleCategories;
         public bool VisiblePeaks = true;
         public bool VisibleMountains = true;
         public bool VisibleLakes = true;

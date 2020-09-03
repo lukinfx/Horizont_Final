@@ -105,7 +105,7 @@ namespace HorizontApp.Utilities
             }
         }
 
-        private void HandleSettingsChanged()
+        public void HandleSettingsChanged()
         {
             var args = new SettingsChangedEventArgs();
             SettingsChanged?.Invoke(this, args);
