@@ -24,6 +24,8 @@ using Android.Support.V13.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
 using HorizontApp.Activities;
+using System.Collections.Generic;
+using HorizontApp.Domain.Enums;
 
 namespace HorizontApp
 {
@@ -45,6 +47,7 @@ namespace HorizontApp
         ImageButton selectCategoryButton;
         ImageButton pauseButton;
         ImageButton recordButton;
+        LinearLayout selectCategoryLayout;
         CompassView compassView;
         private CameraFragment cameraFragment;
         SeekBar distanceSeekBar;
@@ -76,6 +79,15 @@ namespace HorizontApp
                 return database;
             }
         }
+        List<PoiCategory> selectedCategories = new List<PoiCategory>();
+        ImageButton imageButtonMountains;
+        ImageButton imageButtonLakes;
+        ImageButton imageButtonCastles;
+        ImageButton imageButtonPalaces;
+        ImageButton imageButtonRuins;
+        ImageButton imageButtonViewTowers;
+        ImageButton imageButtonTransmitters;
+        ImageButton imageButtonChurches;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -87,6 +99,10 @@ namespace HorizontApp
 
             headingEditText = FindViewById<TextView>(Resource.Id.editText1);
             GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
+
+            selectCategoryLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutSelectCategory);
+            selectCategoryLayout.Enabled = false;
+            selectCategoryLayout.Visibility = ViewStates.Invisible;
 
             selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
             selectCategoryButton.SetOnClickListener(this);
@@ -139,6 +155,60 @@ namespace HorizontApp
             InitializeChangeFilterTimer();
 
             CompassViewSettings.Instance().SettingsChanged += OnSettingsChanged;
+
+            filterButtonsInitialization();
+        }
+
+        private void filterButtonsInitialization()
+        {
+            imageButtonMountains = FindViewById<ImageButton>(Resource.Id.imageButtonSelectMountain);
+            imageButtonMountains.SetOnClickListener(this);
+            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Mountains))
+                imageButtonMountains.SetImageResource(Resource.Drawable.c_mountain);
+            else
+                imageButtonMountains.SetImageResource(Resource.Drawable.c_mountain_grey);
+            imageButtonLakes = FindViewById<ImageButton>(Resource.Id.imageButtonSelectLake);
+            imageButtonLakes.SetOnClickListener(this);
+            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Lakes))
+                imageButtonLakes.SetImageResource(Resource.Drawable.c_lake);
+            else
+                imageButtonLakes.SetImageResource(Resource.Drawable.c_lake_grey);
+            imageButtonCastles = FindViewById<ImageButton>(Resource.Id.imageButtonSelectCastle);
+            imageButtonCastles.SetOnClickListener(this);
+            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Castles))
+                imageButtonCastles.SetImageResource(Resource.Drawable.c_castle);
+            else
+                imageButtonCastles.SetImageResource(Resource.Drawable.c_castle_grey);
+            imageButtonPalaces = FindViewById<ImageButton>(Resource.Id.imageButtonSelectPalace);
+            imageButtonPalaces.SetOnClickListener(this);
+            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Palaces))
+                imageButtonPalaces.SetImageResource(Resource.Drawable.c_palace);
+            else
+                imageButtonPalaces.SetImageResource(Resource.Drawable.c_palace_grey);
+            imageButtonTransmitters = FindViewById<ImageButton>(Resource.Id.imageButtonSelectTransmitter);
+            imageButtonTransmitters.SetOnClickListener(this);
+            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Transmitters))
+                imageButtonTransmitters.SetImageResource(Resource.Drawable.c_transmitter);
+            else
+                imageButtonTransmitters.SetImageResource(Resource.Drawable.c_transmitter_grey);
+            imageButtonRuins = FindViewById<ImageButton>(Resource.Id.imageButtonSelectRuins);
+            imageButtonRuins.SetOnClickListener(this);
+            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Ruins))
+                imageButtonRuins.SetImageResource(Resource.Drawable.c_ruins);
+            else
+                imageButtonRuins.SetImageResource(Resource.Drawable.c_ruins_grey);
+            imageButtonViewTowers = FindViewById<ImageButton>(Resource.Id.imageButtonSelectViewtower);
+            imageButtonViewTowers.SetOnClickListener(this);
+            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.ViewTowers))
+                imageButtonViewTowers.SetImageResource(Resource.Drawable.c_viewtower);
+            else
+                imageButtonViewTowers.SetImageResource(Resource.Drawable.c_viewtower_grey);
+            imageButtonChurches = FindViewById<ImageButton>(Resource.Id.imageButtonSelectChurch);
+            imageButtonChurches.SetOnClickListener(this);
+            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Churches))
+                imageButtonChurches.SetImageResource(Resource.Drawable.c_church);
+            else
+                imageButtonChurches.SetImageResource(Resource.Drawable.c_church_grey);
         }
 
         private void InitializeCameraFragment()
@@ -241,9 +311,136 @@ namespace HorizontApp
                     break;
                 }
                 case Resource.Id.buttonCategorySelect:
-                    Intent selectCategoryIntent = new Intent(this, typeof(SelectCategoryActivity));
-                    StartActivityForResult(selectCategoryIntent, ReqCode_SelectCategoryActivity);
+                {
+                    if (selectCategoryLayout.Visibility == ViewStates.Visible)
+                    {
+                        selectCategoryLayout.Visibility = ViewStates.Invisible;
+                    }
+                    else if (selectCategoryLayout.Visibility == ViewStates.Invisible)
+                    {
+                        selectCategoryLayout.Visibility = ViewStates.Visible;
+                        selectedCategories = new List<PoiCategory>();
+                    }
+                        
+                    break;
+                }
                     
+                case Resource.Id.imageButtonSelectMountain:
+                    SelectedCategory.Instance().VisibleMountains = !SelectedCategory.Instance().VisibleMountains;
+                    if (SelectedCategory.Instance().VisibleMountains)
+                    {
+                        selectedCategories.Add(PoiCategory.Mountains);
+                        imageButtonMountains.SetImageResource(Resource.Drawable.c_mountain);
+                    }
+                    else
+                    {
+                        selectedCategories.Remove(PoiCategory.Mountains);
+                        imageButtonMountains.SetImageResource(Resource.Drawable.c_mountain_grey);
+                    }
+                    CompassViewSettings.Instance().Categories = selectedCategories;
+                    break;
+
+                case Resource.Id.imageButtonSelectLake:
+                    SelectedCategory.Instance().VisibleLakes = !SelectedCategory.Instance().VisibleLakes;
+                    if (SelectedCategory.Instance().VisibleLakes)
+                    {
+                        selectedCategories.Add(PoiCategory.Lakes);
+                        imageButtonLakes.SetImageResource(Resource.Drawable.c_lake);
+                    }
+                    else
+                    {
+                        imageButtonLakes.SetImageResource(Resource.Drawable.c_lake_grey);
+                        selectedCategories.Remove(PoiCategory.Lakes);
+                    }
+                    break;
+
+                case Resource.Id.imageButtonSelectCastle:
+                    SelectedCategory.Instance().VisibleCastles = !SelectedCategory.Instance().VisibleCastles;
+                    if (SelectedCategory.Instance().VisibleCastles)
+                    {
+                        selectedCategories.Add(PoiCategory.Castles);
+                        imageButtonCastles.SetImageResource(Resource.Drawable.c_castle);
+                    }
+                    else
+                    {
+                        selectedCategories.Remove(PoiCategory.Castles);
+                        imageButtonCastles.SetImageResource(Resource.Drawable.c_castle_grey);
+                    }
+                    break;
+
+                case Resource.Id.imageButtonSelectPalace:
+                    SelectedCategory.Instance().VisiblePalaces = !SelectedCategory.Instance().VisiblePalaces;
+                    if (SelectedCategory.Instance().VisiblePalaces)
+                    {
+                        selectedCategories.Add(PoiCategory.Palaces);
+                        imageButtonPalaces.SetImageResource(Resource.Drawable.c_palace);
+                    }
+                    else
+                    {
+                        imageButtonPalaces.SetImageResource(Resource.Drawable.c_palace_grey);
+                        selectedCategories.Remove(PoiCategory.Palaces);
+                    }
+                    break;
+
+                case Resource.Id.imageButtonSelectTransmitter:
+                    SelectedCategory.Instance().VisibleTransmitters = !SelectedCategory.Instance().VisibleTransmitters;
+                    
+                    if (SelectedCategory.Instance().VisibleTransmitters)
+                    {
+                        selectedCategories.Add(PoiCategory.Transmitters);
+                        imageButtonTransmitters.SetImageResource(Resource.Drawable.c_transmitter);
+                    }
+                    else
+                    {
+                        imageButtonTransmitters.SetImageResource(Resource.Drawable.c_transmitter_grey);
+                        selectedCategories.Remove(PoiCategory.Transmitters);
+                    }
+                        
+                    break;
+
+                case Resource.Id.imageButtonSelectRuins:
+                    SelectedCategory.Instance().VisibleRuins = !SelectedCategory.Instance().VisibleRuins;
+                    if (SelectedCategory.Instance().VisibleRuins)
+                    {
+                        selectedCategories.Add(PoiCategory.Ruins);
+                        imageButtonRuins.SetImageResource(Resource.Drawable.c_ruins);
+                    }
+                    else
+                    {
+                        imageButtonRuins.SetImageResource(Resource.Drawable.c_ruins_grey);
+                        selectedCategories.Remove(PoiCategory.Ruins);
+                    }
+
+                    break;
+
+                case Resource.Id.imageButtonSelectViewtower:
+                    SelectedCategory.Instance().VisibleViewTowers = !SelectedCategory.Instance().VisibleViewTowers;
+                    if (SelectedCategory.Instance().VisibleViewTowers)
+                    {
+                        selectedCategories.Add(PoiCategory.ViewTowers);
+                        imageButtonViewTowers.SetImageResource(Resource.Drawable.c_viewtower);
+                    }
+                    else
+                    {
+                        selectedCategories.Remove(PoiCategory.ViewTowers);
+                        imageButtonViewTowers.SetImageResource(Resource.Drawable.c_viewtower_grey);
+                    }
+
+                    break;
+
+                case Resource.Id.imageButtonSelectChurch:
+                    SelectedCategory.Instance().VisibleChurches = !SelectedCategory.Instance().VisibleChurches;
+                    if (SelectedCategory.Instance().VisibleChurches)
+                    {
+                        selectedCategories.Add(PoiCategory.Churches);
+                        imageButtonChurches.SetImageResource(Resource.Drawable.c_church);
+                    }
+                    else
+                    {
+                        selectedCategories.Remove(PoiCategory.Churches);
+                        imageButtonChurches.SetImageResource(Resource.Drawable.c_church_grey);
+                    }
+
                     break;
             }
         }
