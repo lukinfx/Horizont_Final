@@ -16,6 +16,7 @@ using HorizontApp.Domain.Models;
 using HorizontApp.Domain.ViewModel;
 
 using HorizontApp.Utilities;
+using Xamarin.Essentials;
 using static Android.Views.View;
 
 namespace HorizontApp.Views.ListOfPoiView
@@ -93,7 +94,10 @@ namespace HorizontApp.Views.ListOfPoiView
         private void OnSearchTimerTimerElapsed(object sender, ElapsedEventArgs e)
         {
             searchTimer.Stop();
-            _FindItem();
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                _FindItem();
+            });
         }
 
         private void _FindItem()
