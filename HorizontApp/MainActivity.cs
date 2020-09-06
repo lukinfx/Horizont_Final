@@ -105,10 +105,10 @@ namespace HorizontApp
             filterText = FindViewById<TextView>(Resource.Id.textView1);
 
             distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
-            distanceSeekBar.ProgressChanged += SeekBarProgressChanged;
+            distanceSeekBar.ProgressChanged += OnSeekBarProgressChanged;
 
             heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
-            heightSeekBar.ProgressChanged += SeekBarProgressChanged;
+            heightSeekBar.ProgressChanged += OnSeekBarProgressChanged;
 
             var menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
             menuButton.SetOnClickListener(this);
@@ -386,8 +386,9 @@ namespace HorizontApp
 
         }
 
-        private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+        private void OnSeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
+            //TODO: Save minAltitude and maxDistance to CompassViewSettings
             filterText.Text = "vyska nad " + heightSeekBar.Progress * 16 + "m, do " + distanceSeekBar.Progress + "km daleko";            
             filterText.Visibility = ViewStates.Visible;
             
