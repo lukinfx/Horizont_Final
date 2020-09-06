@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Text;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 using HorizontApp.Activities;
 using HorizontApp.DataAccess;
@@ -27,29 +28,29 @@ namespace HorizontApp.Views.ListOfPoiView
     {
         private static int ReqCode_AddPoiActivity = 1;
 
-        private ListView listViewPoi;
-        private Button back;
-        private Button add;
-        private ListViewAdapter adapter;
-        private Spinner spinnerSelection;
-        private EditText search;
-        private GpsLocation location = new GpsLocation();
-        private double maxDistance;
-        private double minAltitude;
-        private List<PoiViewItem> items;
-        private Timer searchTimer = new Timer();
-        private PoiDatabase database;
+        private ListView _listViewPoi;
+        private Button _buttonBack;
+        private Button _buttonAdd;
+        private ListViewAdapter _adapter;
+        private Spinner _spinnerSelection;
+        private EditText _editTextSearch;
+        private GpsLocation _location = new GpsLocation();
+        private double _maxDistance; 
+        private double _minAltitude;
+        private List<PoiViewItem> _items;
+        private Timer _searchTimer = new Timer();
+        private PoiDatabase _database;
         private String[] _listOfSelections = new String[] { "Visible points", "My points", "Find by name"};
 
         public PoiDatabase Database
         {
             get
             {
-                if (database == null)
+                if (_database == null)
                 {
-                    database = new PoiDatabase();
+                    _database = new PoiDatabase();
                 }
-                return database;
+                return _database;
             }
         }
 
@@ -57,31 +58,31 @@ namespace HorizontApp.Views.ListOfPoiView
         {
             base.OnCreate(savedInstanceState);
 
-            location.Latitude = Intent.GetDoubleExtra("latitude", 0);
-            location.Longitude = Intent.GetDoubleExtra("longitude", 0);
-            location.Altitude = Intent.GetDoubleExtra("altitude", 0);
+            _location.Latitude = Intent.GetDoubleExtra("latitude", 0);
+            _location.Longitude = Intent.GetDoubleExtra("longitude", 0);
+            _location.Altitude = Intent.GetDoubleExtra("altitude", 0);
             
             //TODO: we can get minAltitude and maxDistance - not needed as activity parameter
-            maxDistance = Intent.GetIntExtra("maxDistance", 0);
-            minAltitude = Intent.GetIntExtra("minAltitude", 0);
+            _maxDistance = Intent.GetIntExtra("maxDistance", 0);
+            _minAltitude = Intent.GetIntExtra("minAltitude", 0);
 
             SetContentView(Resource.Layout.PoiListActivity);
             // Create your application here
 
-            listViewPoi = FindViewById<ListView>(Resource.Id.listView1);
-            listViewPoi.ItemClick += OnListItemClick;
+            _listViewPoi = FindViewById<ListView>(Resource.Id.listView1);
+            _listViewPoi.ItemClick += OnListItemClick;
 
-            back = FindViewById<Button>(Resource.Id.buttonBack);
-            back.SetOnClickListener(this);
-            add = FindViewById<Button>(Resource.Id.buttonAdd);
-            add.SetOnClickListener(this);
-            search = FindViewById<EditText>(Resource.Id.editTextSearch);
-            search.TextChanged += editTextSearch_TextChanged;
+            _buttonBack = FindViewById<Button>(Resource.Id.buttonBack);
+            _buttonBack.SetOnClickListener(this);
+            _buttonAdd = FindViewById<Button>(Resource.Id.buttonAdd);
+            _buttonAdd.SetOnClickListener(this);
+            _editTextSearch = FindViewById<EditText>(Resource.Id.editTextSearch);
+            _editTextSearch.TextChanged += editTextSearch_TextChanged;
 
-            spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
+            _spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
             var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfSelections.ToList());
-            spinnerSelection.Adapter = selectionAdapter;
-            spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Selection_ItemSelected);
+            _spinnerSelection.Adapter = selectionAdapter;
+            _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Selection_ItemSelected);
 
             _selectByDistance();
 
@@ -90,14 +91,14 @@ namespace HorizontApp.Views.ListOfPoiView
 
         private void InitializeSearchTimer()
         {
-            searchTimer.Interval = 500;
-            searchTimer.AutoReset = false;
-            searchTimer.Elapsed += OnSearchTimerTimerElapsed;
+            _searchTimer.Interval = 500;
+            _searchTimer.AutoReset = false;
+            _searchTimer.Elapsed += OnSearchTimerTimerElapsed;
         }
 
         private void OnSearchTimerTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            searchTimer.Stop();
+            _searchTimer.Stop();
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 _FindItem();
@@ -106,19 +107,19 @@ namespace HorizontApp.Views.ListOfPoiView
 
         private void _FindItem()
         {
-            var poiList = Database.FindItems(search.Text);
+            var poiList = Database.FindItems(_editTextSearch.Text);
 
-            items = new PoiViewItemList(poiList, location);
-            items = items.OrderBy(i => i.Distance).ToList();
-            adapter = new ListViewAdapter(this, items, this);
-            listViewPoi.Adapter = adapter;
-            listViewPoi.Invalidate();
+            _items = new PoiViewItemList(poiList, _location);
+            _items = _items.OrderBy(i => i.Distance).ToList();
+            _adapter = new ListViewAdapter(this, _items, this);
+            _listViewPoi.Adapter = _adapter;
+            _listViewPoi.Invalidate();
         }
 
         private void editTextSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            searchTimer.Stop();
-            searchTimer.Start();
+            _searchTimer.Stop();
+            _searchTimer.Start();
         }
 
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -128,24 +129,24 @@ namespace HorizontApp.Views.ListOfPoiView
         private void _selectByDistance()
         {
             //TODO: get minAltitude and maxDistance from CompassViewSettings
-            var poiList = Database.GetItems(location, maxDistance);
+            var poiList = Database.GetItems(_location, _maxDistance);
 
-            items = new PoiViewItemList(poiList, location, maxDistance, minAltitude, false);
-            items = items.OrderBy(i => i.Distance).ToList();
-            adapter = new ListViewAdapter(this, items, this);
-            listViewPoi.Adapter = adapter;
-            listViewPoi.Invalidate();
+            _items = new PoiViewItemList(poiList, _location, _maxDistance, _minAltitude, false);
+            _items = _items.OrderBy(i => i.Distance).ToList();
+            _adapter = new ListViewAdapter(this, _items, this);
+            _listViewPoi.Adapter = _adapter;
+            _listViewPoi.Invalidate();
         }
 
         private void _selectMyPois()
         {
             var poiList = Database.GetMyItems();
 
-            items = new PoiViewItemList(poiList, location);
-            items = items.OrderBy(i => i.Distance).ToList();
-            adapter = new ListViewAdapter(this, items, this);
-            listViewPoi.Adapter = adapter;
-            listViewPoi.Invalidate();
+            _items = new PoiViewItemList(poiList, _location);
+            _items = _items.OrderBy(i => i.Distance).ToList();
+            _adapter = new ListViewAdapter(this, _items, this);
+            _listViewPoi.Adapter = _adapter;
+            _listViewPoi.Invalidate();
         }
 
         private void Selection_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
@@ -153,14 +154,16 @@ namespace HorizontApp.Views.ListOfPoiView
             int selection = e.Position;
             if (selection == 0)
             {
+                _editTextSearch.Visibility = ViewStates.Invisible;
                 _selectByDistance();
             } else if (selection == 1)
             {
+                _editTextSearch.Visibility = ViewStates.Invisible;
                 _selectMyPois();
             }
             else if (selection == 2)
             {
-
+                _editTextSearch.Visibility = ViewStates.Visible;
             }
         }
 
@@ -182,29 +185,29 @@ namespace HorizontApp.Views.ListOfPoiView
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.SetPositiveButton("Yes", (senderAlert, args) =>
             {
-                PoiViewItem item = items[position];
-                database.DeleteItemAsync(item.Poi);
-                items.Remove(item);
-                adapter = new ListViewAdapter(this, items, this);
-                listViewPoi.Adapter = adapter;
+                PoiViewItem item = _items[position];
+                _database.DeleteItemAsync(item.Poi);
+                _items.Remove(item);
+                _adapter = new ListViewAdapter(this, _items, this);
+                _listViewPoi.Adapter = _adapter;
             });
             alert.SetNegativeButton("No", (senderAlert, args) => { });
             alert.SetMessage("Are you sure you want to delete this item?");
             var answer = alert.Show();
 
 
-            adapter.NotifyDataSetChanged();
+            _adapter.NotifyDataSetChanged();
         }
 
         public void OnPoiEdit(int position)
         {
-            PoiViewItem item = items[position];
+            PoiViewItem item = _items[position];
             Intent editActivityIntent = new Intent(this, typeof(EditActivity));
             editActivityIntent.PutExtra("Id", item.Poi.Id);
             StartActivity(editActivityIntent);
 
-            adapter = new ListViewAdapter(this, items, this);
-            listViewPoi.Adapter = adapter;
+            _adapter = new ListViewAdapter(this, _items, this);
+            _listViewPoi.Adapter = _adapter;
         }
 
         public void OnPoiAdd()
@@ -212,16 +215,16 @@ namespace HorizontApp.Views.ListOfPoiView
             Intent editActivityIntent = new Intent(this, typeof(EditActivity));
             StartActivityForResult(editActivityIntent, ReqCode_AddPoiActivity);
 
-            adapter = new ListViewAdapter(this, items, this);
-            listViewPoi.Adapter = adapter;
+            _adapter = new ListViewAdapter(this, _items, this);
+            _listViewPoi.Adapter = _adapter;
         }
 
 
         public void OnPoiLike(int position)
         {
-            PoiViewItem item = items[position];
+            PoiViewItem item = _items[position];
             item.Poi.Favorite = !item.Poi.Favorite;
-            adapter.NotifyDataSetChanged();
+            _adapter.NotifyDataSetChanged();
             Database.UpdateItemAsync(item.Poi);    
         }
 
