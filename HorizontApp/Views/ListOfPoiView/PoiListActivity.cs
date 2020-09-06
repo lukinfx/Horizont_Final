@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
@@ -33,6 +34,8 @@ namespace HorizontApp.Views.ListOfPoiView
         GpsLocation location = new GpsLocation();
         double maxDistance;
         double minAltitude;
+        private static int ReqCode_AddPoiActivity = 1;
+
         private List<PoiViewItem> items;
         Timer searchTimer = new Timer();
         private PoiDatabase database;
@@ -206,7 +209,7 @@ namespace HorizontApp.Views.ListOfPoiView
         public void OnPoiAdd()
         {
             Intent editActivityIntent = new Intent(this, typeof(EditActivity));
-            StartActivity(editActivityIntent);
+            StartActivityForResult(editActivityIntent, ReqCode_AddPoiActivity);
 
             adapter = new ListViewAdapter(this, items, this);
             listViewPoi.Adapter = adapter;
@@ -219,6 +222,15 @@ namespace HorizontApp.Views.ListOfPoiView
             item.Poi.Favorite = !item.Poi.Favorite;
             adapter.NotifyDataSetChanged();
             Database.UpdateItemAsync(item.Poi);    
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (requestCode == ReqCode_AddPoiActivity)
+            {
+                //ReloadData(favourite);
+            }
         }
     }
 }
