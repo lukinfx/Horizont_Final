@@ -433,7 +433,7 @@ namespace HorizontApp
                 if (newLocation == null)
                     return;
 
-                if (myLocation == null || GpsUtils.Distance(myLocation, newLocation) > 100)
+                if (myLocation == null || GpsUtils.Distance(myLocation, newLocation) > 100 || Math.Abs(myLocation.Altitude - newLocation.Altitude) > 50)
                 {
                     myLocation = newLocation;
                     GPSEditText.Text = ($"Lat: {myLocation.Latitude} Lon: {myLocation.Longitude} Alt: {Math.Round(myLocation.Altitude, 0)}");
