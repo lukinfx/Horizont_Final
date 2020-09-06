@@ -405,6 +405,7 @@ namespace HorizontApp
                 if (myLocation == null)
                     return;
 
+                //TODO: get minAltitude and maxDistance from CompassViewSettings
                 var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress, favourite);
                 compassView.SetPoiViewItemList(points);
                 compassView.Invalidate();

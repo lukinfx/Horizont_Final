@@ -25,19 +25,19 @@ namespace HorizontApp.Views.ListOfPoiView
     [Activity(Label = "PoiListActivity", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class PoiListActivity : Activity, IOnClickListener, IPoiActionListener
     {
-        ListView listViewPoi;
-        Button back;
-        Button add;
-        ListViewAdapter adapter;
-        Spinner spinnerSelection;
-        EditText search;
-        GpsLocation location = new GpsLocation();
-        double maxDistance;
-        double minAltitude;
         private static int ReqCode_AddPoiActivity = 1;
 
+        private ListView listViewPoi;
+        private Button back;
+        private Button add;
+        private ListViewAdapter adapter;
+        private Spinner spinnerSelection;
+        private EditText search;
+        private GpsLocation location = new GpsLocation();
+        private double maxDistance;
+        private double minAltitude;
         private List<PoiViewItem> items;
-        Timer searchTimer = new Timer();
+        private Timer searchTimer = new Timer();
         private PoiDatabase database;
         private String[] _listOfSelections = new String[] { "Visible points", "My points", "Find by name"};
 
@@ -60,7 +60,8 @@ namespace HorizontApp.Views.ListOfPoiView
             location.Latitude = Intent.GetDoubleExtra("latitude", 0);
             location.Longitude = Intent.GetDoubleExtra("longitude", 0);
             location.Altitude = Intent.GetDoubleExtra("altitude", 0);
-
+            
+            //TODO: we can get minAltitude and maxDistance - not needed as activity parameter
             maxDistance = Intent.GetIntExtra("maxDistance", 0);
             minAltitude = Intent.GetIntExtra("minAltitude", 0);
 
@@ -122,11 +123,11 @@ namespace HorizontApp.Views.ListOfPoiView
 
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            
         }
 
         private void _selectByDistance()
         {
+            //TODO: get minAltitude and maxDistance from CompassViewSettings
             var poiList = Database.GetItems(location, maxDistance);
 
             items = new PoiViewItemList(poiList, location, maxDistance, minAltitude, false);
