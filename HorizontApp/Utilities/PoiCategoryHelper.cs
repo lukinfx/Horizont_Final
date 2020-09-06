@@ -1,9 +1,35 @@
-﻿using HorizontApp.Domain.Enums;
+﻿using System;
+using HorizontApp.Domain.Enums;
 
 namespace HorizontApp.Utilities
 {
     public class PoiCategoryHelper
     {
+        public static PoiCategory GetCategory(int buttonResourceId)
+        {
+            switch (buttonResourceId)
+            {
+                case Resource.Id.imageButtonSelectCastle:
+                    return PoiCategory.Castles;
+                case Resource.Id.imageButtonSelectMountain:
+                    return PoiCategory.Mountains;
+                case Resource.Id.imageButtonSelectLake:
+                    return PoiCategory.Lakes;
+                case Resource.Id.imageButtonSelectViewtower:
+                    return PoiCategory.ViewTowers;
+                case Resource.Id.imageButtonSelectPalace:
+                    return PoiCategory.Palaces;
+                case Resource.Id.imageButtonSelectRuins:
+                    return PoiCategory.Ruins;
+                case Resource.Id.imageButtonSelectTransmitter:
+                    return PoiCategory.Transmitters;
+                case Resource.Id.imageButtonSelectChurch:
+                    return PoiCategory.Churches;
+                default:
+                    throw new SystemException("Unsupported category");
+            }
+        }
+
         public static int GetImage(PoiCategory category, bool enabled = true)
         {
             switch (category)

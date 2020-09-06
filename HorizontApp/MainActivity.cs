@@ -38,29 +38,33 @@ namespace HorizontApp
 
         private static readonly int ReqCode_SelectCategoryActivity = 1000;
 
-        TextView headingEditText;
-        TextView GPSEditText;
-        EditText DistanceEditText;
-        TextView filterText;
-        Button getHeadingButton;
-        Button getGPSButton;
-        ImageButton selectCategoryButton;
-        ImageButton pauseButton;
-        ImageButton recordButton;
-        LinearLayout selectCategoryLayout;
-        CompassView compassView;
+        //UI elements
+        private TextView headingEditText;
+        private TextView GPSEditText;
+        private EditText DistanceEditText;
+        private TextView filterText;
+        private Button getHeadingButton;
+        private Button getGPSButton;
+        private ImageButton selectCategoryButton;
+        private ImageButton pauseButton;
+        private ImageButton recordButton;
+        private ImageButton menuButton;
+        private LinearLayout selectCategoryLayout;
+        private CompassView compassView;
+        private SeekBar distanceSeekBar;
+        private SeekBar heightSeekBar;
+        private View mainLayout;
+        private Dictionary<PoiCategory, ImageButton> imageButtonCategoryFilter = new Dictionary<PoiCategory, ImageButton>();
         private CameraFragment cameraFragment;
-        SeekBar distanceSeekBar;
-        SeekBar heightSeekBar;
-        private View layout;
-        ImageButton menu;
-        private bool favourite = false;
-        private bool compassPaused = false;
-        private GestureDetector _gestureDetector;
 
+        //Timers
         Timer compassTimer = new Timer();
         Timer locationTimer = new Timer();
         Timer changeFilterTimer = new Timer();
+
+        private bool favourite = false;
+        private bool compassPaused = false;
+        private GestureDetector _gestureDetector;
 
         private GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
         private CompassProvider compassProvider = new CompassProvider();
@@ -79,21 +83,12 @@ namespace HorizontApp
                 return database;
             }
         }
-        List<PoiCategory> selectedCategories = new List<PoiCategory>();
-        ImageButton imageButtonMountains;
-        ImageButton imageButtonLakes;
-        ImageButton imageButtonCastles;
-        ImageButton imageButtonPalaces;
-        ImageButton imageButtonRuins;
-        ImageButton imageButtonViewTowers;
-        ImageButton imageButtonTransmitters;
-        ImageButton imageButtonChurches;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
-            // Set our view from the "main" layout resource
+            // Set our view from the "main" mainLayout resource
 
             SetContentView(Resource.Layout.activity_main);
 
@@ -118,8 +113,8 @@ namespace HorizontApp
             var menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
             menuButton.SetOnClickListener(this);
 
-            menu = FindViewById<ImageButton>(Resource.Id.imageButton1);
-            menu.SetOnClickListener(this);
+            this.menuButton = FindViewById<ImageButton>(Resource.Id.imageButton1);
+            this.menuButton.SetOnClickListener(this);
 
             pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
             pauseButton.SetOnClickListener(this);
@@ -129,7 +124,7 @@ namespace HorizontApp
 
             compassView = FindViewById<CompassView>(Resource.Id.compassView1);
 
-            layout = FindViewById(Resource.Id.sample_main_layout);
+            mainLayout = FindViewById(Resource.Id.sample_main_layout);
 
             _gestureDetector = new GestureDetector(this);
 
@@ -156,59 +151,32 @@ namespace HorizontApp
 
             CompassViewSettings.Instance().SettingsChanged += OnSettingsChanged;
 
-            filterButtonsInitialization();
+            InitializeCategoryFilterButtons();
         }
 
-        private void filterButtonsInitialization()
+        private void InitializeCategoryFilterButton(int resourceId)
         {
-            imageButtonMountains = FindViewById<ImageButton>(Resource.Id.imageButtonSelectMountain);
-            imageButtonMountains.SetOnClickListener(this);
-            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Mountains))
-                imageButtonMountains.SetImageResource(Resource.Drawable.c_mountain);
-            else
-                imageButtonMountains.SetImageResource(Resource.Drawable.c_mountain_grey);
-            imageButtonLakes = FindViewById<ImageButton>(Resource.Id.imageButtonSelectLake);
-            imageButtonLakes.SetOnClickListener(this);
-            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Lakes))
-                imageButtonLakes.SetImageResource(Resource.Drawable.c_lake);
-            else
-                imageButtonLakes.SetImageResource(Resource.Drawable.c_lake_grey);
-            imageButtonCastles = FindViewById<ImageButton>(Resource.Id.imageButtonSelectCastle);
-            imageButtonCastles.SetOnClickListener(this);
-            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Castles))
-                imageButtonCastles.SetImageResource(Resource.Drawable.c_castle);
-            else
-                imageButtonCastles.SetImageResource(Resource.Drawable.c_castle_grey);
-            imageButtonPalaces = FindViewById<ImageButton>(Resource.Id.imageButtonSelectPalace);
-            imageButtonPalaces.SetOnClickListener(this);
-            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Palaces))
-                imageButtonPalaces.SetImageResource(Resource.Drawable.c_palace);
-            else
-                imageButtonPalaces.SetImageResource(Resource.Drawable.c_palace_grey);
-            imageButtonTransmitters = FindViewById<ImageButton>(Resource.Id.imageButtonSelectTransmitter);
-            imageButtonTransmitters.SetOnClickListener(this);
-            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Transmitters))
-                imageButtonTransmitters.SetImageResource(Resource.Drawable.c_transmitter);
-            else
-                imageButtonTransmitters.SetImageResource(Resource.Drawable.c_transmitter_grey);
-            imageButtonRuins = FindViewById<ImageButton>(Resource.Id.imageButtonSelectRuins);
-            imageButtonRuins.SetOnClickListener(this);
-            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Ruins))
-                imageButtonRuins.SetImageResource(Resource.Drawable.c_ruins);
-            else
-                imageButtonRuins.SetImageResource(Resource.Drawable.c_ruins_grey);
-            imageButtonViewTowers = FindViewById<ImageButton>(Resource.Id.imageButtonSelectViewtower);
-            imageButtonViewTowers.SetOnClickListener(this);
-            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.ViewTowers))
-                imageButtonViewTowers.SetImageResource(Resource.Drawable.c_viewtower);
-            else
-                imageButtonViewTowers.SetImageResource(Resource.Drawable.c_viewtower_grey);
-            imageButtonChurches = FindViewById<ImageButton>(Resource.Id.imageButtonSelectChurch);
-            imageButtonChurches.SetOnClickListener(this);
-            if (CompassViewSettings.Instance().Categories.Contains(PoiCategory.Churches))
-                imageButtonChurches.SetImageResource(Resource.Drawable.c_church);
-            else
-                imageButtonChurches.SetImageResource(Resource.Drawable.c_church_grey);
+            var category = PoiCategoryHelper.GetCategory(resourceId);
+            var imageButton = FindViewById<ImageButton>(resourceId);
+
+            imageButton.SetOnClickListener(this);
+            bool enabled = CompassViewSettings.Instance().Categories.Contains(category);
+
+            imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, enabled));
+
+            imageButtonCategoryFilter.Add(category, imageButton);
+        }
+
+        private void InitializeCategoryFilterButtons()
+        {
+            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectMountain);
+            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectLake);
+            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectCastle);
+            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectPalace);
+            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectTransmitter);
+            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectRuins);
+            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectViewtower);
+            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectChurch);
         }
 
         private void InitializeCameraFragment()
@@ -279,9 +247,9 @@ namespace HorizontApp
                 {
                     favourite = !favourite;
                     if (favourite)
-                        menu.SetImageResource(Resource.Drawable.ic_heart2_on);
+                        menuButton.SetImageResource(Resource.Drawable.ic_heart2_on);
                     else
-                        menu.SetImageResource(Resource.Drawable.ic_heart2);
+                        menuButton.SetImageResource(Resource.Drawable.ic_heart2);
                     ReloadData(favourite);
                     compassView.Invalidate();
                     break;
@@ -319,70 +287,38 @@ namespace HorizontApp
                     else if (selectCategoryLayout.Visibility == ViewStates.Invisible)
                     {
                         selectCategoryLayout.Visibility = ViewStates.Visible;
-                        selectedCategories = new List<PoiCategory>();
                     }
                         
                     break;
                 }
                     
                 case Resource.Id.imageButtonSelectMountain:
-                    _handleCategoryFilterChanged(PoiCategory.Mountains);
-                    imageButtonMountains.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Mountains, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Mountains)));
-                    break;
-
                 case Resource.Id.imageButtonSelectLake:
-                    _handleCategoryFilterChanged(PoiCategory.Lakes);
-                    imageButtonLakes.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Lakes, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Lakes)));
-
-                    break;
-
                 case Resource.Id.imageButtonSelectCastle:
-                    _handleCategoryFilterChanged(PoiCategory.Castles);
-                    imageButtonCastles.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Castles, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Castles)));
-
-                    break;
-
                 case Resource.Id.imageButtonSelectPalace:
-                    _handleCategoryFilterChanged(PoiCategory.Palaces);
-                    imageButtonPalaces.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Palaces, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Palaces)));
-
-                    break;
-
                 case Resource.Id.imageButtonSelectTransmitter:
-                    _handleCategoryFilterChanged(PoiCategory.Transmitters);
-                    imageButtonTransmitters.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Transmitters, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Transmitters)));
-
-                    break;
-
                 case Resource.Id.imageButtonSelectRuins:
-                    _handleCategoryFilterChanged(PoiCategory.Ruins);
-                    imageButtonRuins.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Ruins, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Ruins)));
-
-                    break;
-
                 case Resource.Id.imageButtonSelectViewtower:
-                    _handleCategoryFilterChanged(PoiCategory.ViewTowers);
-                    imageButtonViewTowers.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.ViewTowers, CompassViewSettings.Instance().Categories.Contains(PoiCategory.ViewTowers)));
-
-                    break;
-
                 case Resource.Id.imageButtonSelectChurch:
-                    _handleCategoryFilterChanged(PoiCategory.Churches);
-                    imageButtonChurches.SetImageResource(PoiCategoryHelper.GetImage(PoiCategory.Churches, CompassViewSettings.Instance().Categories.Contains(PoiCategory.Churches)));
-
+                    _handleCategoryFilterChanged(v.Id);
                     break;
             }
         }
 
-        private void _handleCategoryFilterChanged(PoiCategory poiCategory)
+        private void _handleCategoryFilterChanged(int resourceId)
         {
+            var poiCategory = PoiCategoryHelper.GetCategory(resourceId);
+            var imageButton = imageButtonCategoryFilter[poiCategory];
+
             if (CompassViewSettings.Instance().Categories.Contains(poiCategory))
             {
                 CompassViewSettings.Instance().Categories.Remove(poiCategory);
+                imageButton.SetImageResource(PoiCategoryHelper.GetImage(poiCategory, false));
             }
             else
             {
                 CompassViewSettings.Instance().Categories.Add(poiCategory);
+                imageButton.SetImageResource(PoiCategoryHelper.GetImage(poiCategory, true));
             }
 
             CompassViewSettings.Instance().HandleSettingsChanged();
@@ -503,7 +439,7 @@ namespace HorizontApp
             if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation) ||
                 ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera))
             {
-                Snackbar.Make(layout, "Location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
+                Snackbar.Make(mainLayout, "Location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
                     .SetAction("OK", new Action<View>(delegate (View obj) 
                         {
                             ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION_PERMISSION);
