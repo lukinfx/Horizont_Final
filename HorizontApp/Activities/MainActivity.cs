@@ -223,6 +223,91 @@ namespace HorizontApp
             }
         }
 
+      
+        
+
+        private async void LoadAndDisplayData()
+        {
+            try
+            {
+                var newLocation = await _gpsLocationProvider.GetLocationAsync();
+
+                if (newLocation == null)
+                    return;
+
+                if (_myLocation == null || GpsUtils.Distance(_myLocation, newLocation) > 100 || Math.Abs(_myLocation.Altitude - newLocation.Altitude) > 50)
+                {
+                    _myLocation = newLocation;
+                    _GPSEditText.Text = ($"Lat: {_myLocation.Latitude} Lon: {_myLocation.Longitude} Alt: {Math.Round(_myLocation.Altitude, 0)}");
+
+
+                    var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
+                    _compassView.SetPoiViewItemList(points);
+                }
+            }
+            catch (Exception ex)
+            {
+                PopupDialog("Error", ex.Message);
+            }
+
+        }
+
+        private void ReloadData(bool favourite)
+        {
+            try
+            {
+                if (_myLocation == null)
+                    return;
+
+                //TODO: get minAltitude and maxDistance from CompassViewSettings
+                var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, favourite);
+                _compassView.SetPoiViewItemList(points);
+                _compassView.Invalidate();
+            }
+            catch (Exception ex)
+            {
+                PopupDialog("Error", $"Error when loading data. {ex.Message}");
+            }
+        }
+
+        private PoiViewItemList GetPointsToDisplay(GpsLocation location, double maxDistance, double minAltitude, bool favourite)
+        {
+            try
+            {
+                var poiList = Database.GetItems(location, maxDistance);
+
+                PoiViewItemList poiViewItemList = new PoiViewItemList(poiList, location, maxDistance, minAltitude, favourite);
+                return poiViewItemList;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error when fetching data. {ex.Message}");
+            }
+        }
+
+        private void RequestGPSLocationPermissions()
+        {
+            //From: https://docs.microsoft.com/cs-cz/xamarin/android/app-fundamentals/permissions
+            //Sample app: https://github.com/xamarin/monodroid-samples/tree/master/android-m/RuntimePermissions
+
+            var requiredPermissions = new String[] { Manifest.Permission.AccessFineLocation, Manifest.Permission.Camera };
+
+            if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation) ||
+                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera))
+            {
+                Snackbar.Make(_mainLayout, "Location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
+                    .SetAction("OK", new Action<View>(delegate (View obj) 
+                        {
+                            ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION_PERMISSION);
+                        })
+                    ).Show();
+            }
+            else
+            {
+                ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION_PERMISSION);
+            }
+        }
+
         public async void OnClick(Android.Views.View v)
         {
             if (_cameraFragment == null)
@@ -357,33 +442,7 @@ namespace HorizontApp
             _changeFilterTimer.Stop();
             //filterText.SetTextAppearance(this, Color.Transparent);
         }
-
-        private async void LoadAndDisplayData()
-        {
-            try
-            {
-                var newLocation = await _gpsLocationProvider.GetLocationAsync();
-
-                if (newLocation == null)
-                    return;
-
-                if (_myLocation == null || GpsUtils.Distance(_myLocation, newLocation) > 100 || Math.Abs(_myLocation.Altitude - newLocation.Altitude) > 50)
-                {
-                    _myLocation = newLocation;
-                    _GPSEditText.Text = ($"Lat: {_myLocation.Latitude} Lon: {_myLocation.Longitude} Alt: {Math.Round(_myLocation.Altitude, 0)}");
-
-
-                    var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
-                    _compassView.SetPoiViewItemList(points);
-                }
-            }
-            catch (Exception ex)
-            {
-                PopupDialog("Error", ex.Message);
-            }
-
-        }
-
+        
         private void OnSeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
             //TODO: Save minAltitude and maxDistance to CompassViewSettings
@@ -394,62 +453,6 @@ namespace HorizontApp
             _changeFilterTimer.Stop();
             _changeFilterTimer.Start();
             //filterText.SetTextAppearance(this, Color.GreenYellow);
-        }
-
-        private void ReloadData(bool favourite)
-        {
-            try
-            {
-                if (_myLocation == null)
-                    return;
-
-                //TODO: get minAltitude and maxDistance from CompassViewSettings
-                var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, favourite);
-                _compassView.SetPoiViewItemList(points);
-                _compassView.Invalidate();
-            }
-            catch (Exception ex)
-            {
-                PopupDialog("Error", $"Error when loading data. {ex.Message}");
-            }
-        }
-
-        private PoiViewItemList GetPointsToDisplay(GpsLocation location, double maxDistance, double minAltitude, bool favourite)
-        {
-            try
-            {
-                var poiList = Database.GetItems(location, maxDistance);
-
-                PoiViewItemList poiViewItemList = new PoiViewItemList(poiList, location, maxDistance, minAltitude, favourite);
-                return poiViewItemList;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error when fetching data. {ex.Message}");
-            }
-        }
-
-        private void RequestGPSLocationPermissions()
-        {
-            //From: https://docs.microsoft.com/cs-cz/xamarin/android/app-fundamentals/permissions
-            //Sample app: https://github.com/xamarin/monodroid-samples/tree/master/android-m/RuntimePermissions
-
-            var requiredPermissions = new String[] { Manifest.Permission.AccessFineLocation, Manifest.Permission.Camera };
-
-            if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation) ||
-                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera))
-            {
-                Snackbar.Make(_mainLayout, "Location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
-                    .SetAction("OK", new Action<View>(delegate (View obj) 
-                        {
-                            ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION_PERMISSION);
-                        })
-                    ).Show();
-            }
-            else
-            {
-                ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION_PERMISSION);
-            }
         }
 
         public bool OnDown(MotionEvent e)
