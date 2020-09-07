@@ -113,5 +113,11 @@ namespace HorizontApp.Views
             HeadingCorrector = HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX);
             Invalidate();
         }
+
+        public void ResetHeadingCorrector()
+        {
+            HeadingCorrector = 0;
+            Invalidate();
+        }
     }
 }

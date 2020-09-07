@@ -47,6 +47,8 @@ namespace HorizontApp
         private ImageButton _pauseButton;
         private ImageButton _recordButton;
         private ImageButton _menuButton;
+
+        private ImageButton _refreshCorrectorButton;
         private LinearLayout _selectCategoryLayout;
         private CompassView _compassView;
         private SeekBar _distanceSeekBar;
@@ -119,6 +121,9 @@ namespace HorizontApp
             
             _recordButton = FindViewById<ImageButton>(Resource.Id.buttonRecord);
             _recordButton.SetOnClickListener(this);
+
+            _refreshCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
+            _refreshCorrectorButton.SetOnClickListener(this);
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
 
@@ -384,6 +389,9 @@ namespace HorizontApp
                 case Resource.Id.imageButtonSelectViewtower:
                 case Resource.Id.imageButtonSelectChurch:
                     OnCategoryFilterChanged(v.Id);
+                    break;
+                case Resource.Id.buttonResetCorrector:
+                    _compassView.ResetHeadingCorrector();
                     break;
             }
         }
