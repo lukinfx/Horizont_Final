@@ -39,48 +39,46 @@ namespace HorizontApp
         private static readonly int ReqCode_SelectCategoryActivity = 1000;
 
         //UI elements
-        private TextView headingEditText;
-        private TextView GPSEditText;
-        private EditText DistanceEditText;
-        private TextView filterText;
-        private Button getHeadingButton;
-        private Button getGPSButton;
-        private ImageButton selectCategoryButton;
-        private ImageButton pauseButton;
-        private ImageButton recordButton;
-        private ImageButton menuButton;
-        private LinearLayout selectCategoryLayout;
-        private CompassView compassView;
-        private SeekBar distanceSeekBar;
-        private SeekBar heightSeekBar;
-        private View mainLayout;
-        private Dictionary<PoiCategory, ImageButton> imageButtonCategoryFilter = new Dictionary<PoiCategory, ImageButton>();
-        private CameraFragment cameraFragment;
+        private TextView _headingEditText;
+        private TextView _GPSEditText;
+        private EditText _DistanceEditText;
+        private TextView _filterText;
+        private ImageButton _selectCategoryButton;
+        private ImageButton _pauseButton;
+        private ImageButton _recordButton;
+        private ImageButton _menuButton;
+        private LinearLayout _selectCategoryLayout;
+        private CompassView _compassView;
+        private SeekBar _distanceSeekBar;
+        private SeekBar _heightSeekBar;
+        private View _mainLayout;
+        private Dictionary<PoiCategory, ImageButton> _imageButtonCategoryFilter = new Dictionary<PoiCategory, ImageButton>();
+        private CameraFragment _cameraFragment;
 
         //Timers
-        Timer compassTimer = new Timer();
-        Timer locationTimer = new Timer();
-        Timer changeFilterTimer = new Timer();
+        private Timer _compassTimer = new Timer();
+        private Timer _locationTimer = new Timer();
+        private Timer _changeFilterTimer = new Timer();
 
-        private bool favourite = false;
-        private bool compassPaused = false;
+        private bool _favourite = false;
+        private bool _compassPaused = false;
         private GestureDetector _gestureDetector;
 
-        private GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
-        private CompassProvider compassProvider = new CompassProvider();
-        private HeadingStabilizator headingStabilizator = new HeadingStabilizator();
-        private GpsLocation myLocation = new GpsLocation();
+        private GpsLocationProvider _gpsLocationProvider = new GpsLocationProvider();
+        private CompassProvider _compassProvider = new CompassProvider();
+        private HeadingStabilizator _headingStabilizator = new HeadingStabilizator();
+        private GpsLocation _myLocation = new GpsLocation();
 
-        private PoiDatabase database;
+        private PoiDatabase _database;
         public PoiDatabase Database
         {
             get
             {
-                if (database == null)
+                if (_database == null)
                 {
-                    database = new PoiDatabase();
+                    _database = new PoiDatabase();
                 }
-                return database;
+                return _database;
             }
         }
 
@@ -92,39 +90,39 @@ namespace HorizontApp
 
             SetContentView(Resource.Layout.activity_main);
 
-            headingEditText = FindViewById<TextView>(Resource.Id.editText1);
-            GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
+            _headingEditText = FindViewById<TextView>(Resource.Id.editText1);
+            _GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
 
-            selectCategoryLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutSelectCategory);
-            selectCategoryLayout.Enabled = false;
-            selectCategoryLayout.Visibility = ViewStates.Invisible;
+            _selectCategoryLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutSelectCategory);
+            _selectCategoryLayout.Enabled = false;
+            _selectCategoryLayout.Visibility = ViewStates.Invisible;
 
-            selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
-            selectCategoryButton.SetOnClickListener(this);
+            _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
+            _selectCategoryButton.SetOnClickListener(this);
 
-            filterText = FindViewById<TextView>(Resource.Id.textView1);
+            _filterText = FindViewById<TextView>(Resource.Id.textView1);
 
-            distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
-            distanceSeekBar.ProgressChanged += OnSeekBarProgressChanged;
+            _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
+            _distanceSeekBar.ProgressChanged += OnSeekBarProgressChanged;
 
-            heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
-            heightSeekBar.ProgressChanged += OnSeekBarProgressChanged;
+            _heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
+            _heightSeekBar.ProgressChanged += OnSeekBarProgressChanged;
 
             var menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
             menuButton.SetOnClickListener(this);
 
-            this.menuButton = FindViewById<ImageButton>(Resource.Id.imageButton1);
-            this.menuButton.SetOnClickListener(this);
+            this._menuButton = FindViewById<ImageButton>(Resource.Id.imageButton1);
+            this._menuButton.SetOnClickListener(this);
 
-            pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
-            pauseButton.SetOnClickListener(this);
+            _pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
+            _pauseButton.SetOnClickListener(this);
             
-            recordButton = FindViewById<ImageButton>(Resource.Id.buttonRecord);
-            recordButton.SetOnClickListener(this);
+            _recordButton = FindViewById<ImageButton>(Resource.Id.buttonRecord);
+            _recordButton.SetOnClickListener(this);
 
-            compassView = FindViewById<CompassView>(Resource.Id.compassView1);
+            _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
 
-            mainLayout = FindViewById(Resource.Id.sample_main_layout);
+            _mainLayout = FindViewById(Resource.Id.sample_main_layout);
 
             _gestureDetector = new GestureDetector(this);
 
@@ -141,8 +139,8 @@ namespace HorizontApp
                 }
             }
 
-            compassProvider.Start();
-            gpsLocationProvider.Start();
+            _compassProvider.Start();
+            _gpsLocationProvider.Start();
 
 
             InitializeCompassTimer();
@@ -164,7 +162,7 @@ namespace HorizontApp
 
             imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, enabled));
 
-            imageButtonCategoryFilter.Add(category, imageButton);
+            _imageButtonCategoryFilter.Add(category, imageButton);
         }
 
         private void InitializeCategoryFilterButtons()
@@ -181,29 +179,29 @@ namespace HorizontApp
 
         private void InitializeCameraFragment()
         {
-            cameraFragment = CameraFragment.NewInstance();
-            FragmentManager.BeginTransaction().Replace(Resource.Id.container, cameraFragment).Commit();
+            _cameraFragment = CameraFragment.NewInstance();
+            FragmentManager.BeginTransaction().Replace(Resource.Id.container, _cameraFragment).Commit();
         }
 
         private void InitializeCompassTimer()
         {
-            compassTimer.Interval = 40;
-            compassTimer.Elapsed += OnCompassTimerElapsed;
-            compassTimer.Enabled = true;
+            _compassTimer.Interval = 40;
+            _compassTimer.Elapsed += OnCompassTimerElapsed;
+            _compassTimer.Enabled = true;
         }
 
         private void InitializeLocationTimer()
         {
-            locationTimer.Interval = 3000;
-            locationTimer.Elapsed += OnLocationTimerElapsed;
-            locationTimer.Enabled = true;
+            _locationTimer.Interval = 3000;
+            _locationTimer.Elapsed += OnLocationTimerElapsed;
+            _locationTimer.Enabled = true;
         }
 
         private void InitializeChangeFilterTimer()
         {
-            changeFilterTimer.Interval = 1000;
-            changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;
-            changeFilterTimer.AutoReset = false;
+            _changeFilterTimer.Interval = 1000;
+            _changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;
+            _changeFilterTimer.AutoReset = false;
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -227,7 +225,7 @@ namespace HorizontApp
 
         public async void OnClick(Android.Views.View v)
         {
-            if (cameraFragment == null)
+            if (_cameraFragment == null)
                 return;
 
             switch (v.Id)
@@ -235,58 +233,58 @@ namespace HorizontApp
                 case Resource.Id.menuButton:
                 {
                     Intent menuActivityIntent = new Intent(this, typeof(MenuActivity));
-                    menuActivityIntent.PutExtra("latitude", myLocation.Latitude);
-                    menuActivityIntent.PutExtra("longitude", myLocation.Longitude);
-                    menuActivityIntent.PutExtra("altitude", myLocation.Altitude);
-                    menuActivityIntent.PutExtra("maxDistance", distanceSeekBar.Progress);
-                    menuActivityIntent.PutExtra("minAltitude", heightSeekBar.Progress);
+                    menuActivityIntent.PutExtra("latitude", _myLocation.Latitude);
+                    menuActivityIntent.PutExtra("longitude", _myLocation.Longitude);
+                    menuActivityIntent.PutExtra("altitude", _myLocation.Altitude);
+                    menuActivityIntent.PutExtra("maxDistance", _distanceSeekBar.Progress);
+                    menuActivityIntent.PutExtra("minAltitude", _heightSeekBar.Progress);
                     StartActivity(menuActivityIntent);
                     break;
                 }
                 case Resource.Id.imageButton1:
                 {
-                    favourite = !favourite;
-                    if (favourite)
-                        menuButton.SetImageResource(Resource.Drawable.ic_heart2_on);
+                    _favourite = !_favourite;
+                    if (_favourite)
+                        _menuButton.SetImageResource(Resource.Drawable.ic_heart2_on);
                     else
-                        menuButton.SetImageResource(Resource.Drawable.ic_heart2);
-                    ReloadData(favourite);
-                    compassView.Invalidate();
+                        _menuButton.SetImageResource(Resource.Drawable.ic_heart2);
+                    ReloadData(_favourite);
+                    _compassView.Invalidate();
                     break;
                 }
                 case Resource.Id.buttonPause:
                 {
-                    compassPaused = !compassPaused;
-                    if (compassPaused)
+                    _compassPaused = !_compassPaused;
+                    if (_compassPaused)
                     {
-                        cameraFragment.StopPreview();
-                        recordButton.Enabled = false;
-                        recordButton.Visibility = ViewStates.Invisible;
-                        pauseButton.SetImageResource(Resource.Drawable.ic_pause_on);
+                        _cameraFragment.StopPreview();
+                        _recordButton.Enabled = false;
+                        _recordButton.Visibility = ViewStates.Invisible;
+                        _pauseButton.SetImageResource(Resource.Drawable.ic_pause_on);
                     }
                     else
                     {
-                        cameraFragment.StartPreview();
-                        recordButton.Enabled = true;
-                        recordButton.Visibility = ViewStates.Visible;
-                        pauseButton.SetImageResource(Resource.Drawable.ic_pause);
+                        _cameraFragment.StartPreview();
+                        _recordButton.Enabled = true;
+                        _recordButton.Visibility = ViewStates.Visible;
+                        _pauseButton.SetImageResource(Resource.Drawable.ic_pause);
                     }
                     break;
                 }
                 case Resource.Id.buttonRecord:
                 {
-                    cameraFragment.TakePicture();
+                    _cameraFragment.TakePicture();
                     break;
                 }
                 case Resource.Id.buttonCategorySelect:
                 {
-                    if (selectCategoryLayout.Visibility == ViewStates.Visible)
+                    if (_selectCategoryLayout.Visibility == ViewStates.Visible)
                     {
-                        selectCategoryLayout.Visibility = ViewStates.Invisible;
+                        _selectCategoryLayout.Visibility = ViewStates.Invisible;
                     }
-                    else if (selectCategoryLayout.Visibility == ViewStates.Invisible)
+                    else if (_selectCategoryLayout.Visibility == ViewStates.Invisible)
                     {
-                        selectCategoryLayout.Visibility = ViewStates.Visible;
+                        _selectCategoryLayout.Visibility = ViewStates.Visible;
                     }
                         
                     break;
@@ -300,15 +298,15 @@ namespace HorizontApp
                 case Resource.Id.imageButtonSelectRuins:
                 case Resource.Id.imageButtonSelectViewtower:
                 case Resource.Id.imageButtonSelectChurch:
-                    _handleCategoryFilterChanged(v.Id);
+                    OnCategoryFilterChanged(v.Id);
                     break;
             }
         }
 
-        private void _handleCategoryFilterChanged(int resourceId)
+        private void OnCategoryFilterChanged(int resourceId)
         {
             var poiCategory = PoiCategoryHelper.GetCategory(resourceId);
-            var imageButton = imageButtonCategoryFilter[poiCategory];
+            var imageButton = _imageButtonCategoryFilter[poiCategory];
 
             if (CompassViewSettings.Instance().Categories.Contains(poiCategory))
             {
@@ -335,14 +333,14 @@ namespace HorizontApp
 
         private void OnCompassTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            if (!compassPaused)
+            if (!_compassPaused)
             {
-                headingStabilizator.AddValue(compassProvider.Heading);
+                _headingStabilizator.AddValue(_compassProvider.Heading);
             }
 
-            compassView.Heading = headingStabilizator.GetHeading() + compassView.HeadingCorrector;
-            headingEditText.Text = $"{Math.Round(headingStabilizator.GetHeading(), 0).ToString()}° + {compassView.HeadingCorrector:F1} | ";
-            compassView.Invalidate();
+            _compassView.Heading = _headingStabilizator.GetHeading() + _compassView.HeadingCorrector;
+            _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0).ToString()}° + {_compassView.HeadingCorrector:F1} | ";
+            _compassView.Invalidate();
             
         }
 
@@ -354,9 +352,9 @@ namespace HorizontApp
         private async void OnChangeFilterTimerElapsed(object sender, ElapsedEventArgs e)
         {
 
-            ReloadData(favourite);
-            filterText.Visibility = ViewStates.Invisible;
-            changeFilterTimer.Stop();
+            ReloadData(_favourite);
+            _filterText.Visibility = ViewStates.Invisible;
+            _changeFilterTimer.Stop();
             //filterText.SetTextAppearance(this, Color.Transparent);
         }
 
@@ -364,19 +362,19 @@ namespace HorizontApp
         {
             try
             {
-                var newLocation = await gpsLocationProvider.GetLocationAsync();
+                var newLocation = await _gpsLocationProvider.GetLocationAsync();
 
                 if (newLocation == null)
                     return;
 
-                if (myLocation == null || GpsUtils.Distance(myLocation, newLocation) > 100 || Math.Abs(myLocation.Altitude - newLocation.Altitude) > 50)
+                if (_myLocation == null || GpsUtils.Distance(_myLocation, newLocation) > 100 || Math.Abs(_myLocation.Altitude - newLocation.Altitude) > 50)
                 {
-                    myLocation = newLocation;
-                    GPSEditText.Text = ($"Lat: {myLocation.Latitude} Lon: {myLocation.Longitude} Alt: {Math.Round(myLocation.Altitude, 0)}");
+                    _myLocation = newLocation;
+                    _GPSEditText.Text = ($"Lat: {_myLocation.Latitude} Lon: {_myLocation.Longitude} Alt: {Math.Round(_myLocation.Altitude, 0)}");
 
 
-                    var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress, favourite);
-                    compassView.SetPoiViewItemList(points);
+                    var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
+                    _compassView.SetPoiViewItemList(points);
                 }
             }
             catch (Exception ex)
@@ -389,12 +387,12 @@ namespace HorizontApp
         private void OnSeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
             //TODO: Save minAltitude and maxDistance to CompassViewSettings
-            filterText.Text = "vyska nad " + heightSeekBar.Progress * 16 + "m, do " + distanceSeekBar.Progress + "km daleko";            
-            filterText.Visibility = ViewStates.Visible;
+            _filterText.Text = "vyska nad " + _heightSeekBar.Progress * 16 + "m, do " + _distanceSeekBar.Progress + "km daleko";            
+            _filterText.Visibility = ViewStates.Visible;
             
             //reset timer
-            changeFilterTimer.Stop();
-            changeFilterTimer.Start();
+            _changeFilterTimer.Stop();
+            _changeFilterTimer.Start();
             //filterText.SetTextAppearance(this, Color.GreenYellow);
         }
 
@@ -402,13 +400,13 @@ namespace HorizontApp
         {
             try
             {
-                if (myLocation == null)
+                if (_myLocation == null)
                     return;
 
                 //TODO: get minAltitude and maxDistance from CompassViewSettings
-                var points = GetPointsToDisplay(myLocation, distanceSeekBar.Progress, heightSeekBar.Progress, favourite);
-                compassView.SetPoiViewItemList(points);
-                compassView.Invalidate();
+                var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, favourite);
+                _compassView.SetPoiViewItemList(points);
+                _compassView.Invalidate();
             }
             catch (Exception ex)
             {
@@ -441,7 +439,7 @@ namespace HorizontApp
             if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation) ||
                 ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera))
             {
-                Snackbar.Make(mainLayout, "Location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
+                Snackbar.Make(_mainLayout, "Location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
                     .SetAction("OK", new Action<View>(delegate (View obj) 
                         {
                             ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION_PERMISSION);
@@ -472,7 +470,7 @@ namespace HorizontApp
         public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
         {
             if (e1.RawY < Resources.DisplayMetrics.HeightPixels / 2)
-                compassView.OnScroll(distanceX);
+                _compassView.OnScroll(distanceX);
             return false;
         }
 
@@ -493,7 +491,7 @@ namespace HorizontApp
 
         public void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
-            ReloadData(favourite);
+            ReloadData(_favourite);
         }
     }
 }

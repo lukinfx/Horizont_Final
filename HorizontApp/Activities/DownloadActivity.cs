@@ -22,26 +22,26 @@ namespace HorizontApp.Activities
         private static readonly string WebsiteUrl = "http://krvaveoleje.cz/horizont/";
         private static readonly string IndexFile = "poi-index.json";
 
-        private ListView downloadItemListView;
-        private ListView downloadCountryListView;
-        private Button backButton;
+        private ListView _downloadItemListView;
+        private ListView _downloadCountryListView;
+        private Button _backButton;
         
-        private List<PoisToDownload> allItems;
+        private List<PoisToDownload> _allItems;
 
-        private List<PoisToDownload> items;
-        private List<PoiCountry> countries;
-        private DownloadItemAdapter itemsAdapter;
+        private List<PoisToDownload> _items;
+        private List<PoiCountry> _countries;
+        private DownloadItemAdapter _itemsAdapter;
 
-        private PoiDatabase database;
+        private PoiDatabase _database;
         public PoiDatabase Database
         {
             get
             {
-                if (database == null)
+                if (_database == null)
                 {
-                    database = new PoiDatabase();
+                    _database = new PoiDatabase();
                 }
-                return database;
+                return _database;
             }
         }
 
@@ -67,43 +67,43 @@ namespace HorizontApp.Activities
 
             SetContentView(Resource.Layout.DownloadActivity);
 
-            downloadItemListView = FindViewById<ListView>(Resource.Id.DownloadItemListView);
-            downloadCountryListView = FindViewById<ListView>(Resource.Id.DownloadCountryListView);
+            _downloadItemListView = FindViewById<ListView>(Resource.Id.DownloadItemListView);
+            _downloadCountryListView = FindViewById<ListView>(Resource.Id.DownloadCountryListView);
 
             var downloadedTask = Database.GetDownloadedPoisAsync();
             downloadedTask.Wait();
-            allItems = downloadedTask.Result.ToList();
+            _allItems = downloadedTask.Result.ToList();
             
             foreach (var item in itemsToDownload)
             {
-                if (!allItems.Any(x => x.Id == item.Id))
+                if (!_allItems.Any(x => x.Id == item.Id))
                 {
-                    allItems.Add(item);
+                    _allItems.Add(item);
                 }
             }
 
-            countries = allItems.Select(x => x.Country).Distinct().ToList();
-            items = new List<PoisToDownload>();
+            _countries = _allItems.Select(x => x.Country).Distinct().ToList();
+            _items = new List<PoisToDownload>();
 
-            itemsAdapter = new DownloadItemAdapter(this);
+            _itemsAdapter = new DownloadItemAdapter(this);
 
 
-            backButton = FindViewById<Button>(Resource.Id.BackButton);
-            backButton.SetOnClickListener(this);
+            _backButton = FindViewById<Button>(Resource.Id.BackButton);
+            _backButton.SetOnClickListener(this);
 
-            var countryAdapter = new DownloadCountryAdapter(this, countries);
-            downloadCountryListView.Adapter = countryAdapter;
-            downloadCountryListView.ItemClick += OnListCountryClick;
+            var countryAdapter = new DownloadCountryAdapter(this, _countries);
+            _downloadCountryListView.Adapter = countryAdapter;
+            _downloadCountryListView.ItemClick += OnListCountryClick;
 
-            itemsAdapter = new DownloadItemAdapter(this);
-            downloadItemListView.Adapter = itemsAdapter;
-            downloadItemListView.ItemClick += OnListItemClick;
+            _itemsAdapter = new DownloadItemAdapter(this);
+            _downloadItemListView.Adapter = _itemsAdapter;
+            _downloadItemListView.ItemClick += OnListItemClick;
 
         }
 
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            PoisToDownload item = items[e.Position];
+            PoisToDownload item = _items[e.Position];
             if (item.DownloadDate == null)
             {
                 DownloadFromInternet(item);
@@ -112,14 +112,14 @@ namespace HorizontApp.Activities
             {
                 DeleteFromInternet(item);
             }
-            itemsAdapter.NotifyDataSetChanged();
+            _itemsAdapter.NotifyDataSetChanged();
         }
 
         void OnListCountryClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            PoiCountry country = countries[e.Position];
-            items = allItems.Where(x => x.Country == country).ToList();
-            itemsAdapter.SetItems(items);
+            PoiCountry country = _countries[e.Position];
+            _items = _allItems.Where(x => x.Country == country).ToList();
+            _itemsAdapter.SetItems(_items);
         }
 
         public void OnClick(View v)
