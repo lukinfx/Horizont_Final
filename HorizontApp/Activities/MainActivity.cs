@@ -1,4 +1,8 @@
-﻿using Android;
+﻿using System;
+using System.Timers;
+using System.Collections.Generic;
+
+using Android;
 using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
@@ -6,26 +10,22 @@ using Android.Runtime;
 using Android.Widget;
 using HorizontApp.Providers;
 using Android.Content.PM;
+using Android.Views;
+using Android.Content;
+using Android.Support.V13.App;
+using Android.Support.Design.Widget;
+using Android.Support.V4.Content;
 using static Android.Views.View;
-using System.Timers;
+
 using HorizontApp.Utilities;
 using HorizontApp.Domain.Models;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Views;
 using HorizontApp.Views.Camera;
-using Android.Views;
 using HorizontApp.DataAccess;
-using Xamarin.Essentials;
-using AlertDialog = Android.App.AlertDialog;
-using System;
-using HorizontApp.Views.ListOfPoiView;
-using Android.Content;
-using Android.Support.V13.App;
-using Android.Support.Design.Widget;
-using Android.Support.V4.Content;
 using HorizontApp.Activities;
-using System.Collections.Generic;
 using HorizontApp.Domain.Enums;
+using AlertDialog = Android.Support.V7.App.AlertDialog;
 
 namespace HorizontApp
 {
@@ -144,17 +144,18 @@ namespace HorizontApp
                 }
             }
 
-            _compassProvider.Start();
-            _gpsLocationProvider.Start();
-
-
-            InitializeCompassTimer();
-            InitializeLocationTimer();
+            InitializeUIElements();
+            InitializeCompassProvider();
+            InitializeLocationProvider();
             InitializeChangeFilterTimer();
+            InitializeCategoryFilterButtons();
 
             CompassViewSettings.Instance().SettingsChanged += OnSettingsChanged;
+        }
 
-            InitializeCategoryFilterButtons();
+        private void InitializeUIElements()
+        {
+        
         }
 
         private void InitializeCategoryFilterButton(int resourceId)
@@ -188,15 +189,19 @@ namespace HorizontApp
             FragmentManager.BeginTransaction().Replace(Resource.Id.container, _cameraFragment).Commit();
         }
 
-        private void InitializeCompassTimer()
+        private void InitializeCompassProvider()
         {
+            _compassProvider.Start();
+
             _compassTimer.Interval = 40;
             _compassTimer.Elapsed += OnCompassTimerElapsed;
             _compassTimer.Enabled = true;
         }
 
-        private void InitializeLocationTimer()
+        private void InitializeLocationProvider()
         {
+            _gpsLocationProvider.Start();
+
             _locationTimer.Interval = 3000;
             _locationTimer.Elapsed += OnLocationTimerElapsed;
             _locationTimer.Enabled = true;

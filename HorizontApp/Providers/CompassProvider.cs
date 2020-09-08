@@ -14,7 +14,7 @@ namespace HorizontApp.Providers
             Xamarin.Essentials.Compass.ReadingChanged += Compass_ReadingChanged;
         }
 
-         public double Heading { get { return heading; } }
+        public double Heading { get { return heading; } }
 
         void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
         {

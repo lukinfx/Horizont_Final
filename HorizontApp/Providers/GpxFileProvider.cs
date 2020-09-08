@@ -4,6 +4,11 @@ namespace HorizontApp.Providers
 {
     public class GpxFileProvider
     {
+        /// <summary>
+        /// Gets content from given URL
+        /// </summary>
+        /// <param name="url">URL location</param>
+        /// <returns>Content of the file</returns>
         public static string GetFile(string url)
         {
             var client = new HttpClient();
