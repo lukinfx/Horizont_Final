@@ -17,6 +17,7 @@
         SVK,
         SVN,
         ESP,
-        CHE
+        CHE,
+        BIH
     }
 }

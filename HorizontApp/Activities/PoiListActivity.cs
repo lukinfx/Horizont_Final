@@ -74,8 +74,9 @@ namespace HorizontApp.Views.ListOfPoiView
 
             
 
-            _selectByDistance();
+            
             InitializeUI();
+            _selectByDistance();
             InitializeSearchTimer();
         }
 
@@ -88,7 +89,7 @@ namespace HorizontApp.Views.ListOfPoiView
 
         private void InitializeUI()
         {
-            _listViewPoi = FindViewById<ListView>(Resource.Id.listView1);
+            _listViewPoi = FindViewById<ListView>(Resource.Id.listViewPoi);
             _listViewPoi.ItemClick += OnListItemClick;
 
             _buttonBack = FindViewById<Button>(Resource.Id.buttonBack);

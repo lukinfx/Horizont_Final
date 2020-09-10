@@ -19,6 +19,7 @@ namespace HorizontApp.Utilities
                 gpxDoc.LoadXml(xml);
                 XmlNamespaceManager nsmgr = new XmlNamespaceManager(gpxDoc.NameTable);
                 nsmgr.AddNamespace("x", "http://www.topografix.com/GPX/1/1");
+                nsmgr.AddNamespace("ogr", "http://osgeo.org/gdal");
                 XmlNodeList nl = gpxDoc.SelectNodes("/x:gpx/x:wpt ", nsmgr);
                 foreach (XmlElement xelement in nl)
                 {

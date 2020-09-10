@@ -3836,7 +3836,7 @@ namespace HorizontApp
 			public const int listMode = 2131296406;
 			
 			// aapt resource value: 0x7F090097
-			public const int listView1 = 2131296407;
+			public const int listViewPoi = 2131296407;
 			
 			// aapt resource value: 0x7F090098
 			public const int list_item = 2131296408;
