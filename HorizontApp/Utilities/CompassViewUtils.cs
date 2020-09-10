@@ -60,6 +60,13 @@ namespace HorizontApp.Utilities
             return YCoordFloat;
         }
 
+        /// <summary>
+        /// Returns angular difference defined by moveX translation
+        /// </summary>
+        /// <param name="cameraViewAngle"></param>
+        /// <param name="canvasWidth"></param>
+        /// <param name="moveX"></param>
+        /// <returns></returns>
         public static float GetHeadingDifference(float cameraViewAngle, float canvasWidth, float moveX)
         {
             float headingDiff = (moveX / canvasWidth) * cameraViewAngle;

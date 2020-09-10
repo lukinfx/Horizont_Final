@@ -30,6 +30,12 @@ namespace HorizontApp.Utilities
             }
         }
 
+        /// <summary>
+        /// Returns int representing Icon of the category.
+        /// </summary>
+        /// <param name="category"></param>
+        /// <param name="enabled"></param>
+        /// <returns></returns>
         public static int GetImage(PoiCategory category, bool enabled = true)
         {
             switch (category)

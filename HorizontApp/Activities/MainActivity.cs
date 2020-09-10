@@ -33,22 +33,21 @@ namespace HorizontApp
     //[Activity(Theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainActivity : AppCompatActivity, IOnClickListener, GestureDetector.IOnGestureListener
     {
-        private static readonly int REQUEST_LOCATION_PERMISSION = 0;
-        private static readonly int REQUEST_CAMERA_PERMISSION = 1;
+        private static readonly int REQUEST_PERMISSIONS = 0;
 
         private static readonly int ReqCode_SelectCategoryActivity = 1000;
 
         //UI elements
         private TextView _headingEditText;
         private TextView _GPSEditText;
-        private EditText _DistanceEditText;
         private TextView _filterText;
         private ImageButton _selectCategoryButton;
         private ImageButton _pauseButton;
         private ImageButton _recordButton;
         private ImageButton _menuButton;
-
+        private ImageButton _favouriteButton;
         private ImageButton _refreshCorrectorButton;
+
         private LinearLayout _selectCategoryLayout;
         private CompassView _compassView;
         private SeekBar _distanceSeekBar;
@@ -92,43 +91,6 @@ namespace HorizontApp
 
             SetContentView(Resource.Layout.activity_main);
 
-            _headingEditText = FindViewById<TextView>(Resource.Id.editText1);
-            _GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
-
-            _selectCategoryLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutSelectCategory);
-            _selectCategoryLayout.Enabled = false;
-            _selectCategoryLayout.Visibility = ViewStates.Invisible;
-
-            _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
-            _selectCategoryButton.SetOnClickListener(this);
-
-            _filterText = FindViewById<TextView>(Resource.Id.textView1);
-
-            _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
-            _distanceSeekBar.ProgressChanged += OnSeekBarProgressChanged;
-
-            _heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
-            _heightSeekBar.ProgressChanged += OnSeekBarProgressChanged;
-
-            var menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
-            menuButton.SetOnClickListener(this);
-
-            this._menuButton = FindViewById<ImageButton>(Resource.Id.imageButton1);
-            this._menuButton.SetOnClickListener(this);
-
-            _pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
-            _pauseButton.SetOnClickListener(this);
-            
-            _recordButton = FindViewById<ImageButton>(Resource.Id.buttonRecord);
-            _recordButton.SetOnClickListener(this);
-
-            _refreshCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
-            _refreshCorrectorButton.SetOnClickListener(this);
-
-            _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
-
-            _mainLayout = FindViewById(Resource.Id.sample_main_layout);
-
             _gestureDetector = new GestureDetector(this);
 
             if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) != Permission.Granted ||
@@ -155,7 +117,43 @@ namespace HorizontApp
 
         private void InitializeUIElements()
         {
-        
+            _headingEditText = FindViewById<TextView>(Resource.Id.editText1);
+            _GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
+
+            _selectCategoryLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutSelectCategory);
+            _selectCategoryLayout.Enabled = false;
+            _selectCategoryLayout.Visibility = ViewStates.Invisible;
+
+            _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
+            _selectCategoryButton.SetOnClickListener(this);
+
+            _filterText = FindViewById<TextView>(Resource.Id.textView1);
+
+            _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
+            _distanceSeekBar.ProgressChanged += OnSeekBarProgressChanged;
+
+            _heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
+            _heightSeekBar.ProgressChanged += OnSeekBarProgressChanged;
+
+            _menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
+            _menuButton.SetOnClickListener(this);
+
+            _favouriteButton = FindViewById<ImageButton>(Resource.Id.favouriteFilterButton);
+            _favouriteButton.SetOnClickListener(this);
+
+            _pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
+            _pauseButton.SetOnClickListener(this);
+
+            _recordButton = FindViewById<ImageButton>(Resource.Id.buttonRecord);
+            _recordButton.SetOnClickListener(this);
+
+            _refreshCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
+            _refreshCorrectorButton.SetOnClickListener(this);
+
+            _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
+
+            _mainLayout = FindViewById(Resource.Id.sample_main_layout);
+
         }
 
         private void InitializeCategoryFilterButton(int resourceId)
@@ -233,9 +231,6 @@ namespace HorizontApp
             }
         }
 
-      
-        
-
         private async void LoadAndDisplayData()
         {
             try
@@ -308,13 +303,13 @@ namespace HorizontApp
                 Snackbar.Make(_mainLayout, "Location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
                     .SetAction("OK", new Action<View>(delegate (View obj) 
                         {
-                            ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION_PERMISSION);
+                            ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_PERMISSIONS);
                         })
                     ).Show();
             }
             else
             {
-                ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_LOCATION_PERMISSION);
+                ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_PERMISSIONS);
             }
         }
 
@@ -336,13 +331,13 @@ namespace HorizontApp
                     StartActivity(menuActivityIntent);
                     break;
                 }
-                case Resource.Id.imageButton1:
+                case Resource.Id.favouriteFilterButton:
                 {
                     _favourite = !_favourite;
                     if (_favourite)
-                        _menuButton.SetImageResource(Resource.Drawable.ic_heart2_on);
+                        _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
                     else
-                        _menuButton.SetImageResource(Resource.Drawable.ic_heart2);
+                        _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
                     ReloadData(_favourite);
                     _compassView.Invalidate();
                     break;

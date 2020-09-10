@@ -7,7 +7,7 @@ using Android.Support.V13.App;
 
 namespace HorizontApp.Views.Camera
 {
-    public class ConfirmationDialog : DialogFragment
+    /*public class ConfirmationDialog : DialogFragment
     {
         private static Fragment mParent;
         private class PositiveListener : Java.Lang.Object, IDialogInterfaceOnClickListener
@@ -40,5 +40,5 @@ namespace HorizontApp.Views.Camera
                 .SetNegativeButton(Android.Resource.String.Cancel, new NegativeListener())
                 .Create();
         }
-    }
+    }*/
 }

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Timers;
+
+using Xamarin.Essentials;
+using static Android.Views.View;
+
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -12,14 +16,12 @@ using Android.Text;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
+
 using HorizontApp.Activities;
 using HorizontApp.DataAccess;
 using HorizontApp.Domain.Models;
 using HorizontApp.Domain.ViewModel;
-
 using HorizontApp.Utilities;
-using Xamarin.Essentials;
-using static Android.Views.View;
 
 namespace HorizontApp.Views.ListOfPoiView
 {
@@ -31,16 +33,17 @@ namespace HorizontApp.Views.ListOfPoiView
         private ListView _listViewPoi;
         private Button _buttonBack;
         private Button _buttonAdd;
-        private ListViewAdapter _adapter;
         private Spinner _spinnerSelection;
         private EditText _editTextSearch;
+
+        private ListViewAdapter _adapter;
         private GpsLocation _location = new GpsLocation();
-        private double _maxDistance; 
-        private double _minAltitude;
         private List<PoiViewItem> _items;
         private Timer _searchTimer = new Timer();
         private PoiDatabase _database;
         private String[] _listOfSelections = new String[] { "Visible points", "My points", "Find by name"};
+        private double _maxDistance; 
+        private double _minAltitude;
 
         public PoiDatabase Database
         {
@@ -69,6 +72,22 @@ namespace HorizontApp.Views.ListOfPoiView
             SetContentView(Resource.Layout.PoiListActivity);
             // Create your application here
 
+            
+
+            _selectByDistance();
+            InitializeUI();
+            InitializeSearchTimer();
+        }
+
+        private void InitializeSearchTimer()
+        {
+            _searchTimer.Interval = 500;
+            _searchTimer.AutoReset = false;
+            _searchTimer.Elapsed += OnSearchTimerTimerElapsed;
+        }
+
+        private void InitializeUI()
+        {
             _listViewPoi = FindViewById<ListView>(Resource.Id.listView1);
             _listViewPoi.ItemClick += OnListItemClick;
 
@@ -83,17 +102,6 @@ namespace HorizontApp.Views.ListOfPoiView
             var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfSelections.ToList());
             _spinnerSelection.Adapter = selectionAdapter;
             _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Selection_ItemSelected);
-
-            _selectByDistance();
-
-            InitializeSearchTimer();
-        }
-
-        private void InitializeSearchTimer()
-        {
-            _searchTimer.Interval = 500;
-            _searchTimer.AutoReset = false;
-            _searchTimer.Elapsed += OnSearchTimerTimerElapsed;
         }
 
         private void OnSearchTimerTimerElapsed(object sender, ElapsedEventArgs e)

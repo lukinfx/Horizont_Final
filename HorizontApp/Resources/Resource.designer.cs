@@ -3716,52 +3716,52 @@ namespace HorizontApp
 			public const int expand_activities_button = 2131296367;
 			
 			// aapt resource value: 0x7F090071
-			public const int fill = 2131296369;
-			
-			// aapt resource value: 0x7F090074
-			public const int filled = 2131296372;
+			public const int favouriteFilterButton = 2131296369;
 			
 			// aapt resource value: 0x7F090072
-			public const int fill_horizontal = 2131296370;
-			
-			// aapt resource value: 0x7F090073
-			public const int fill_vertical = 2131296371;
+			public const int fill = 2131296370;
 			
 			// aapt resource value: 0x7F090075
-			public const int @fixed = 2131296373;
+			public const int filled = 2131296373;
+			
+			// aapt resource value: 0x7F090073
+			public const int fill_horizontal = 2131296371;
+			
+			// aapt resource value: 0x7F090074
+			public const int fill_vertical = 2131296372;
 			
 			// aapt resource value: 0x7F090076
-			public const int forever = 2131296374;
+			public const int @fixed = 2131296374;
+			
+			// aapt resource value: 0x7F090077
+			public const int forever = 2131296375;
 			
 			// aapt resource value: 0x7F090008
 			public const int FUNCTION = 2131296264;
 			
-			// aapt resource value: 0x7F090077
-			public const int ghost_view = 2131296375;
-			
 			// aapt resource value: 0x7F090078
-			public const int group_divider = 2131296376;
+			public const int ghost_view = 2131296376;
 			
 			// aapt resource value: 0x7F090079
-			public const int home = 2131296377;
+			public const int group_divider = 2131296377;
 			
 			// aapt resource value: 0x7F09007A
-			public const int homeAsUp = 2131296378;
+			public const int home = 2131296378;
 			
 			// aapt resource value: 0x7F09007B
-			public const int icon = 2131296379;
+			public const int homeAsUp = 2131296379;
 			
 			// aapt resource value: 0x7F09007C
-			public const int icon_group = 2131296380;
+			public const int icon = 2131296380;
 			
 			// aapt resource value: 0x7F09007D
-			public const int ifRoom = 2131296381;
+			public const int icon_group = 2131296381;
 			
 			// aapt resource value: 0x7F09007E
-			public const int image = 2131296382;
+			public const int ifRoom = 2131296382;
 			
 			// aapt resource value: 0x7F09007F
-			public const int imageButton1 = 2131296383;
+			public const int image = 2131296383;
 			
 			// aapt resource value: 0x7F090080
 			public const int imageButtonSelectCastle = 2131296384;

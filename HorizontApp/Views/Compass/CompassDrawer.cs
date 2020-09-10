@@ -43,7 +43,17 @@ namespace HorizontApp.Views.Compass
         }
 
         public virtual double GetMinItemAngleDiff(int canvasWidth) { return 0; }
+        /// <summary>
+        /// Draws background of canvas
+        /// </summary>
+        /// <param name="canvas"></param>
         public virtual void OnDrawBackground(Android.Graphics.Canvas canvas) { }
+        /// <summary>
+        /// Draws item into given canvas
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="item"></param>
+        /// <param name="heading"></param>
         public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading) { }
     }
 }

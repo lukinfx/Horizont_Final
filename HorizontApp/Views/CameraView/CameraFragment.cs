@@ -28,7 +28,6 @@ namespace HorizontApp.Views.Camera
     public class CameraFragment : Fragment//, FragmentCompat.IOnRequestPermissionsResultCallback
     {
         private static readonly SparseIntArray ORIENTATIONS = new SparseIntArray();
-        public static readonly int REQUEST_CAMERA_PERMISSION = 1;
         private static readonly string FRAGMENT_DIALOG = "dialog";
 
         // Tag for the {@link Log}.
@@ -268,34 +267,6 @@ namespace HorizontApp.Views.Camera
             StopBackgroundThread();
             base.OnPause();
         }
-
-        /*private void RequestCameraPermission()
-        {
-            //###
-            if (FragmentCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera))
-            {
-                new ConfirmationDialog().Show(ChildFragmentManager, FRAGMENT_DIALOG);
-            }
-            else
-            {
-                FragmentCompat.RequestPermissions(this, new string[] { Manifest.Permission.Camera },
-                        REQUEST_CAMERA_PERMISSION);
-            }
-        }
-
-        public void OnRequestPermissionsResult(int requestCode, string[] permissions, int[] grantResults)
-        {
-            if (requestCode != REQUEST_CAMERA_PERMISSION)
-                return;
-
-            if (grantResults.Length != 1 || grantResults[0] != (int)Permission.Granted)
-            {
-                //###
-                ErrorDialog.NewInstance("Request Camera Permissions")
-                        .Show(ChildFragmentManager, FRAGMENT_DIALOG);
-            }
-        }*/
-
 
         // Sets up member variables related to camera.
         private void SetUpCameraOutputs(int width, int height)
