@@ -1,5 +1,26 @@
 [
 	{
+		"Id":"948268dd-71a7-4696-bb8c-dafdad5e4872",
+		"Description": "All mountains in the Czech Republic (from openstreetmap.org)",
+		"Url": "czech-republic-mountains.gpx",
+		"Country":"CZE",
+		"Category": "Mountains"
+	},
+	{
+		"Id":"6415ba5e-2c02-47e6-9f0e-d14b1f099c46",
+		"Description": "All transmitters in the Czech Republic (from openstreetmap.org)",
+		"Url": "czech-republic-transmitters.gpx",
+		"Country":"CZE",
+		"Category": "Transmitters"
+	},
+	{
+		"Id":"4fb8a6da-3693-47bb-bc79-6622c615bf7e",
+		"Description": "All view towers in the Czech Republic  (from openstreetmap.org)",
+		"Url": "czech-republic-viewtowers.gpx",
+		"Country":"CZE",
+		"Category": "ViewTowers"
+	},
+	{
 		"Id":"4d5f2e7b-6a31-4e68-ac92-87009976e602",
 		"Description": "All mountains in the Czech Republic",
 		"Url": "cze-mountains.gpx",
@@ -68,5 +89,26 @@
 		"Url": "svk-mountains.gpx",
 		"Country":"SVK",
 		"Category": "Mountains"
+	},
+		{
+		"Id":"a936b146-ab96-451f-b24b-f270c8373ead",
+		"Description": "All mountains in Slovakia (from openstreetmap.org)",
+		"Url": "slovakia-mountains.gpx",
+		"Country":"SVK",
+		"Category": "Mountains"
+	},
+	{
+		"Id":"951431fc-b4f7-4e8d-b24d-b55848c4fbf4",
+		"Description": "All transmitters in Slovakia (from openstreetmap.org)",
+		"Url": "slovakia-transmitters.gpx",
+		"Country":"SVK",
+		"Category": "Transmitters"
+	},
+	{
+		"Id":"b6e75930-9044-418a-8c27-50eeb1faae34",
+		"Description": "All view towers in Slovakia (from openstreetmap.org)",
+		"Url": "slovakia-viewtowers.gpx",
+		"Country":"SVK",
+		"Category": "ViewTowers"
 	},
 ]
