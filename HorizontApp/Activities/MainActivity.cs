@@ -100,10 +100,7 @@ namespace HorizontApp
             }
             else
             {
-                if (bundle == null)
-                {
-                    InitializeCameraFragment();
-                }
+                InitializeCameraFragment();
             }
 
             InitializeUIElements();
