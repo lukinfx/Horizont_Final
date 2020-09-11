@@ -221,7 +221,7 @@
               android:id="@+id/buttonCategorySelect" />
             
             <ImageButton
-              android:src="@drawable/ic_refresh"
+              android:src="@drawable/ic_refresh2"
               android:layout_width="40dp"
               android:layout_height="40dp"
               android:layout_gravity="bottom"
