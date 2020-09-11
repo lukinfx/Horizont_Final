@@ -11,7 +11,7 @@ using HorizontApp.Activities;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "MenuActivity", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
+    [Activity(Label = "MenuActivity")]
     public class MenuActivity : Activity, IOnClickListener
     {
         private GpsLocation _location;

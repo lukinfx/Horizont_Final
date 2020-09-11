@@ -17,7 +17,7 @@ using System.Timers;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "SettingsActivity", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
+    [Activity(Label = "SettingsActivity")]
     public class SettingsActivity : Activity, IOnClickListener
     {
         private CompassViewSettings _settings = CompassViewSettings.Instance();

@@ -25,7 +25,7 @@ using HorizontApp.Utilities;
 
 namespace HorizontApp.Views.ListOfPoiView
 {
-    [Activity(Label = "PoiListActivity", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
+    [Activity(Label = "PoiListActivity")]
     public class PoiListActivity : Activity, IOnClickListener, IPoiActionListener
     {
         private static int ReqCode_AddPoiActivity = 1;

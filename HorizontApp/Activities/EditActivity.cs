@@ -27,7 +27,7 @@ using HorizontApp.Providers;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "EditActivity", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
+    [Activity(Label = "EditActivity")]
     public class EditActivity : Activity, IOnClickListener
     { 
         private EditText _editTextName;

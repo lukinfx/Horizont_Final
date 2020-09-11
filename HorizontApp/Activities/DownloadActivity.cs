@@ -16,7 +16,7 @@ using static Android.Views.View;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "DownloadActivity", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Landscape)]
+    [Activity(Label = "DownloadActivity")]
     public class DownloadActivity : Activity, IOnClickListener
     {
         private static readonly string WebsiteUrl = "http://krvaveoleje.cz/horizont/";
