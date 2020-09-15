@@ -8,6 +8,8 @@ using HorizontApp.Views.ListOfPoiView;
 using Android.Content;
 using static Android.Views.View;
 using HorizontApp.Activities;
+using Xamarin.Essentials;
+using System;
 
 namespace HorizontApp.Activities
 {
@@ -17,6 +19,8 @@ namespace HorizontApp.Activities
         private GpsLocation _location;
         private int _maxDistance;
         private int _minAltitude;
+        private DisplayOrientation appOrientation;
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,7 +36,17 @@ namespace HorizontApp.Activities
             _maxDistance = Intent.GetIntExtra("maxDistance", 0);
             _minAltitude = Intent.GetIntExtra("minAltitude", 0);
 
-            SetContentView(Resource.Layout.MenuActivity);
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            var orientation = mainDisplayInfo.Orientation;
+
+            if (orientation == DisplayOrientation.Portrait)
+            {
+                SetContentView(Resource.Layout.MenuActivityPortrait);
+            }
+            else
+            {
+                SetContentView(Resource.Layout.MenuActivity);
+            }
 
             var buttonHome = FindViewById<ImageButton>(Resource.Id.buttonHome);
             buttonHome.SetOnClickListener(this);
@@ -49,6 +63,15 @@ namespace HorizontApp.Activities
             var buttonAbout = FindViewById<ImageButton>(Resource.Id.buttonAbout);
             buttonAbout.SetOnClickListener(this);
         }
+
+        //private void OnMainDisplayInfoChanged(object sender, DisplayInfoChangedEventArgs e)
+        //{
+        //    var displayInfo = e.DisplayInfo;
+        //    if (displayInfo.Orientation != appOrientation)
+        //    {
+        //        appOrientation = displayInfo.Orientation;
+        //    }
+        //}
 
         public void OnClick(View v)
         {

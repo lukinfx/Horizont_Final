@@ -26,6 +26,7 @@ using HorizontApp.DataAccess;
 using HorizontApp.Activities;
 using HorizontApp.Domain.Enums;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
+using Xamarin.Essentials;
 
 namespace HorizontApp
 {
@@ -63,6 +64,7 @@ namespace HorizontApp
         private bool _favourite = false;
         private bool _compassPaused = false;
         private GestureDetector _gestureDetector;
+        private DisplayOrientation appOrientation;
 
         private GpsLocationProvider _gpsLocationProvider = new GpsLocationProvider();
         private CompassProvider _compassProvider = new CompassProvider();
@@ -86,9 +88,21 @@ namespace HorizontApp
         {
             base.OnCreate(bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
-            // Set our view from the "main" mainLayout resource
 
-            SetContentView(Resource.Layout.activity_main);
+            appOrientation = DeviceDisplay.MainDisplayInfo.Orientation;
+            DeviceDisplay.MainDisplayInfoChanged += OnMainDisplayInfoChanged;
+
+            // Set our view from the "main" mainLayout resource
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            var orientation = mainDisplayInfo.Orientation;
+            if (orientation == DisplayOrientation.Portrait)
+            {
+                SetContentView(Resource.Layout.MainActivityPortrait);
+            }
+            else
+            {
+                SetContentView(Resource.Layout.MainActivityLandscape);
+            }
 
             _gestureDetector = new GestureDetector(this);
 
@@ -107,7 +121,6 @@ namespace HorizontApp
             InitializeLocationProvider();
             InitializeChangeFilterTimer();
             InitializeCategoryFilterButtons();
-
             CompassViewSettings.Instance().SettingsChanged += OnSettingsChanged;
         }
 
@@ -499,6 +512,20 @@ namespace HorizontApp
         public void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
             ReloadData(_favourite);
+        }
+
+        private void OnMainDisplayInfoChanged(object sender, DisplayInfoChangedEventArgs e)
+        {
+            // Process changes
+            var displayInfo = e.DisplayInfo;
+            if (displayInfo.Orientation != appOrientation)
+            {
+                var x = CompassViewSettings.Instance().ViewAngleHorizontal;
+                CompassViewSettings.Instance().ViewAngleHorizontal = CompassViewSettings.Instance().ViewAngleVertical;
+                CompassViewSettings.Instance().ViewAngleVertical = x;
+                appOrientation = displayInfo.Orientation;
+            }
+            
         }
     }
 }

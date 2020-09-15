@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorizontApp", "HorizontApp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GpxAltitudeFixer", "GpxAltitudeFixer\GpxAltitudeFixer.csproj", "{58A3523D-F534-40B8-8BBB-73AB5910C76E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorizonLib", "HorizonLib\HorizonLib.csproj", "{52E0547C-AFEC-4042-9CBA-2A601B9BD62D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HorizonLib", "HorizonLib\HorizonLib.csproj", "{52E0547C-AFEC-4042-9CBA-2A601B9BD62D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
