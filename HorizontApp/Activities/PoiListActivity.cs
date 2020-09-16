@@ -90,9 +90,17 @@ namespace HorizontApp.Views.ListOfPoiView
         private void InitializeUI()
         {
             _listViewPoi = FindViewById<ListView>(Resource.Id.listViewPoi);
+
+            var poiList = Database.GetItems(_location, _maxDistance);
+
+            _items = new PoiViewItemList(poiList, _location, _maxDistance, _minAltitude, false);
+            _items = _items.OrderBy(i => i.Distance).ToList();
+            _adapter = new ListViewAdapter(this, _items, this);
+            _listViewPoi.Adapter = _adapter;
+
             _listViewPoi.ItemClick += OnListItemClick;
 
-            _buttonBack = FindViewById<Button>(Resource.Id.buttonBack);
+            /*_buttonBack = FindViewById<Button>(Resource.Id.buttonBack);
             _buttonBack.SetOnClickListener(this);
             _buttonAdd = FindViewById<Button>(Resource.Id.buttonAdd);
             _buttonAdd.SetOnClickListener(this);
@@ -102,7 +110,7 @@ namespace HorizontApp.Views.ListOfPoiView
             _spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
             var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfSelections.ToList());
             _spinnerSelection.Adapter = selectionAdapter;
-            _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Selection_ItemSelected);
+            _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Selection_ItemSelected);*/
         }
 
         private void OnSearchTimerTimerElapsed(object sender, ElapsedEventArgs e)
@@ -133,6 +141,7 @@ namespace HorizontApp.Views.ListOfPoiView
 
         void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
+            OnPoiEdit(e.Position);
         }
 
         private void _selectByDistance()

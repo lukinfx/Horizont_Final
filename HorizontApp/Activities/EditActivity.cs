@@ -62,10 +62,18 @@ namespace HorizontApp.Activities
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
-            _id = Intent.GetLongExtra("Id", -1);
-            
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            var orientation = mainDisplayInfo.Orientation;
+            if (orientation == DisplayOrientation.Portrait)
+            {
+                SetContentView(Resource.Layout.EditActivityPortrait);
+            }
+            else
+            {
+                SetContentView(Resource.Layout.EditActivityLandscape);
+            }
 
-            SetContentView(Resource.Layout.EditActivity);
+            _id = Intent.GetLongExtra("Id", -1);
 
             _editTextName = FindViewById<EditText>(Resource.Id.editTextName);
             _editTextName.SetOnClickListener(this);

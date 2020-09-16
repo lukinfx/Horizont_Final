@@ -51,7 +51,9 @@ namespace HorizontApp.Utilities
             View view = convertView;
 
             if (view == null)
-                view = context.LayoutInflater.Inflate(Resource.Layout.ListItemLayout, parent, false);
+                view = context.LayoutInflater.Inflate(Resource.Layout. PoiListItemLayout, parent, false);
+
+            view.SetOnClickListener(this);
 
             PoiViewItem item = this[position];
             view.FindViewById<TextView>(Resource.Id.Title).Text = item.Poi.Name;
@@ -66,11 +68,6 @@ namespace HorizontApp.Utilities
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.PoiDeleteButton);
             deleteButton.SetOnClickListener(this);
             deleteButton.Tag = position;
-
-
-            var editButton = view.FindViewById<ImageButton>(Resource.Id.PoiEditButton);
-            editButton.SetOnClickListener(this);
-            editButton.Tag = position;
 
             var likeButton = view.FindViewById<ImageButton>(Resource.Id.PoiLikeButton);
             likeButton.SetOnClickListener(this);
@@ -97,12 +94,14 @@ namespace HorizontApp.Utilities
                 case Resource.Id.PoiDeleteButton:
                     mPoiActionListener.OnPoiDelete(position);
                     break;
-                case Resource.Id.PoiEditButton:
-                    mPoiActionListener.OnPoiEdit(position);
-                    break;
                 case Resource.Id.PoiLikeButton:
                     mPoiActionListener.OnPoiLike(position);
                     break;
+                case Resource.Id.linearLayoutItem:
+                    mPoiActionListener.OnPoiEdit(position);
+                    break;
+
+
             }
         }
     }

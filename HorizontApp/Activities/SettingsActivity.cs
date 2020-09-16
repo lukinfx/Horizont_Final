@@ -14,6 +14,7 @@ using Double = Java.Lang.Double;
 using Exception = Java.Lang.Exception;
 using Math = System.Math;
 using System.Timers;
+using Xamarin.Essentials;
 
 namespace HorizontApp.Activities
 {
@@ -33,7 +34,16 @@ namespace HorizontApp.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.SettingsLayout);
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            var orientation = mainDisplayInfo.Orientation;
+            if (orientation == DisplayOrientation.Portrait)
+            {
+                SetContentView(Resource.Layout.SettingsActivityPortrait);
+            }
+            else
+            {
+                SetContentView(Resource.Layout.SettingsActivityLandscape);
+            }
 
             _buttonBack = FindViewById<Button>(Resource.Id.buttonBack);
             _buttonBack.SetOnClickListener(this);
