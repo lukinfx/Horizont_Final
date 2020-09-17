@@ -7,6 +7,7 @@ using HorizontApp.Utilities;
 using HorizontApp.Views.Compass;
 using System;
 using System.Linq;
+using Xamarin.Essentials;
 
 namespace HorizontApp.Views
 {
@@ -57,6 +58,15 @@ namespace HorizontApp.Views
         public void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
             InitializeViewDrawer();
+            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+            {
+                HeadingCorrector = -90;
+            }
+            else
+            {
+                HeadingCorrector = 0;
+            }
+            
         }
 
         private void Initialize()

@@ -4,6 +4,7 @@ using HorizontApp.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Xamarin.Essentials;
 
 namespace HorizontApp.Utilities
 {
@@ -54,9 +55,14 @@ namespace HorizontApp.Utilities
         {
             get
             {
-                return (isManualViewAngle || !viewAngleHorizontal.HasValue) ? manualViewAngleHorizontal : viewAngleHorizontal.Value;
+                if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Landscape)
+                {
+                    return (isManualViewAngle || !viewAngleHorizontal.HasValue) ? manualViewAngleHorizontal : viewAngleHorizontal.Value;
+                } else
+                    return viewAngleVertical;
+
             }
-            set
+            set 
             {
                 viewAngleHorizontal = value;
                 HandleSettingsChanged();
@@ -68,7 +74,13 @@ namespace HorizontApp.Utilities
         {
             get
             {
-                return viewAngleVertical;
+                if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Landscape)
+                {
+                    return viewAngleVertical;
+                }
+                else
+                    return (isManualViewAngle || !viewAngleHorizontal.HasValue) ? manualViewAngleHorizontal : viewAngleHorizontal.Value;
+
             }
             set
             {
@@ -105,6 +117,7 @@ namespace HorizontApp.Utilities
             }
         }
 
+
         public void HandleSettingsChanged()
         {
             var args = new SettingsChangedEventArgs();
@@ -112,6 +125,7 @@ namespace HorizontApp.Utilities
 
             SaveData();
         }
+        
 
         public static CompassViewSettings Instance()
         {

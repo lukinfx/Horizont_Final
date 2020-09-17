@@ -440,10 +440,16 @@ namespace HorizontApp
                 _headingStabilizator.AddValue(_compassProvider.Heading);
             }
 
-            _compassView.Heading = _headingStabilizator.GetHeading() + _compassView.HeadingCorrector;
-            _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0).ToString()}° + {_compassView.HeadingCorrector:F1} | ";
+            _compassView.Heading = _headingStabilizator.GetHeading()+_compassView.HeadingCorrector;
+            if (appOrientation == DisplayOrientation.Portrait)
+            {
+                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0).ToString()}° + { _compassView.HeadingCorrector + 90 :F1} |  ";
+            }
+            else
+            {
+                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0).ToString()}° + { _compassView.HeadingCorrector :F1} |  ";
+            }
             _compassView.Invalidate();
-            
         }
 
         private async void OnLocationTimerElapsed(object sender, ElapsedEventArgs e)
@@ -517,14 +523,6 @@ namespace HorizontApp
         private void OnMainDisplayInfoChanged(object sender, DisplayInfoChangedEventArgs e)
         {
             // Process changes
-            var displayInfo = e.DisplayInfo;
-            if (displayInfo.Orientation != appOrientation)
-            {
-                var x = CompassViewSettings.Instance().ViewAngleHorizontal;
-                CompassViewSettings.Instance().ViewAngleHorizontal = CompassViewSettings.Instance().ViewAngleVertical;
-                CompassViewSettings.Instance().ViewAngleVertical = x;
-                appOrientation = displayInfo.Orientation;
-            }
             
         }
     }
