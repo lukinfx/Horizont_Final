@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GpxAltitudeFixer", "GpxAlti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HorizonLib", "HorizonLib\HorizonLib.csproj", "{52E0547C-AFEC-4042-9CBA-2A601B9BD62D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadGeoTiff", "ReadGeoTiff\ReadGeoTiff.csproj", "{53382003-13BE-4D42-9249-36AF6FDECEF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintSkyLine", "PaintSkyLine\PaintSkyLine.csproj", "{40C9EFC0-8CA4-41CF-99A9-BB823253491C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{52E0547C-AFEC-4042-9CBA-2A601B9BD62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52E0547C-AFEC-4042-9CBA-2A601B9BD62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52E0547C-AFEC-4042-9CBA-2A601B9BD62D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53382003-13BE-4D42-9249-36AF6FDECEF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53382003-13BE-4D42-9249-36AF6FDECEF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53382003-13BE-4D42-9249-36AF6FDECEF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53382003-13BE-4D42-9249-36AF6FDECEF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40C9EFC0-8CA4-41CF-99A9-BB823253491C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40C9EFC0-8CA4-41CF-99A9-BB823253491C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40C9EFC0-8CA4-41CF-99A9-BB823253491C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40C9EFC0-8CA4-41CF-99A9-BB823253491C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
