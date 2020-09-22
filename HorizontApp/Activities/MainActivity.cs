@@ -107,7 +107,8 @@ namespace HorizontApp
             _gestureDetector = new GestureDetector(this);
 
             if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) != Permission.Granted ||
-                ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != Permission.Granted)
+                ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != Permission.Granted ||
+                ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) != Permission.Granted )
             {
                 RequestGPSLocationPermissions();
             }
@@ -304,12 +305,13 @@ namespace HorizontApp
             //From: https://docs.microsoft.com/cs-cz/xamarin/android/app-fundamentals/permissions
             //Sample app: https://github.com/xamarin/monodroid-samples/tree/master/android-m/RuntimePermissions
 
-            var requiredPermissions = new String[] { Manifest.Permission.AccessFineLocation, Manifest.Permission.Camera };
+            var requiredPermissions = new String[] { Manifest.Permission.AccessFineLocation, Manifest.Permission.Camera, Manifest.Permission.ReadExternalStorage };
 
             if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation) ||
-                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera))
+                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera) ||
+                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage) )
             {
-                Snackbar.Make(_mainLayout, "Location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
+                Snackbar.Make(_mainLayout, "Internal storage, location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
                     .SetAction("OK", new Action<View>(delegate (View obj) 
                         {
                             ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_PERMISSIONS);
@@ -324,84 +326,108 @@ namespace HorizontApp
 
         public async void OnClick(Android.Views.View v)
         {
-            if (_cameraFragment == null)
-                return;
+            try {
+                switch (v.Id)
+                {
+                    case Resource.Id.menuButton:
+                    {
+                        Intent menuActivityIntent = new Intent(this, typeof(MenuActivity));
+                        menuActivityIntent.PutExtra("latitude", _myLocation.Latitude);
+                        menuActivityIntent.PutExtra("longitude", _myLocation.Longitude);
+                        menuActivityIntent.PutExtra("altitude", _myLocation.Altitude);
+                        menuActivityIntent.PutExtra("maxDistance", _distanceSeekBar.Progress);
+                        menuActivityIntent.PutExtra("minAltitude", _heightSeekBar.Progress);
+                        StartActivity(menuActivityIntent);
+                        break;
+                    }
+                    case Resource.Id.favouriteFilterButton:
+                    {
+                        _favourite = !_favourite;
+                        if (_favourite)
+                            _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
+                        else
+                            _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
+                        ReloadData(_favourite);
+                        _compassView.Invalidate();
+                        break;
+                    }
+                    case Resource.Id.buttonPause:
+                    {
+                        _compassPaused = !_compassPaused;
+                        if (_compassPaused)
+                        {
+                            if (_cameraFragment != null)
+                            {
+                                _cameraFragment.StopPreview();
+                            }
 
-            switch (v.Id)
-            {
-                case Resource.Id.menuButton:
-                {
-                    Intent menuActivityIntent = new Intent(this, typeof(MenuActivity));
-                    menuActivityIntent.PutExtra("latitude", _myLocation.Latitude);
-                    menuActivityIntent.PutExtra("longitude", _myLocation.Longitude);
-                    menuActivityIntent.PutExtra("altitude", _myLocation.Altitude);
-                    menuActivityIntent.PutExtra("maxDistance", _distanceSeekBar.Progress);
-                    menuActivityIntent.PutExtra("minAltitude", _heightSeekBar.Progress);
-                    StartActivity(menuActivityIntent);
-                    break;
-                }
-                case Resource.Id.favouriteFilterButton:
-                {
-                    _favourite = !_favourite;
-                    if (_favourite)
-                        _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
-                    else
-                        _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
-                    ReloadData(_favourite);
-                    _compassView.Invalidate();
-                    break;
-                }
-                case Resource.Id.buttonPause:
-                {
-                    _compassPaused = !_compassPaused;
-                    if (_compassPaused)
-                    {
-                        _cameraFragment.StopPreview();
-                        _recordButton.Enabled = false;
-                        _recordButton.Visibility = ViewStates.Invisible;
-                        _pauseButton.SetImageResource(Resource.Drawable.ic_pause_on);
+                            _recordButton.Enabled = false;
+                            _recordButton.Visibility = ViewStates.Invisible;
+                            _pauseButton.SetImageResource(Resource.Drawable.ic_pause_on);
+                        }
+                        else
+                        {
+                            if (_cameraFragment != null)
+                            {
+                                _cameraFragment.StartPreview();
+                            }
+
+                            _recordButton.Enabled = true;
+                            _recordButton.Visibility = ViewStates.Visible;
+                            _pauseButton.SetImageResource(Resource.Drawable.ic_pause);
+                        }
+                        break;
                     }
-                    else
+                    case Resource.Id.buttonRecord:
                     {
-                        _cameraFragment.StartPreview();
-                        _recordButton.Enabled = true;
-                        _recordButton.Visibility = ViewStates.Visible;
-                        _pauseButton.SetImageResource(Resource.Drawable.ic_pause);
+                        //if (_cameraFragment != null)
+                        //{
+                        //    _cameraFragment.TakePicture();
+                        //}
+
+                        if (_myLocation.Altitude < -999)
+                        {
+                            PopupDialog("Error", "It's not possible to generate elevation profile without known altitude");
+                        }
+                        else
+                        {
+                            _compassView.LoadElevation(_myLocation, _distanceSeekBar.Progress);
+                        }
+
+                        break;
                     }
-                    break;
-                }
-                case Resource.Id.buttonRecord:
-                {
-                    _cameraFragment.TakePicture();
-                    break;
-                }
-                case Resource.Id.buttonCategorySelect:
-                {
-                    if (_selectCategoryLayout.Visibility == ViewStates.Visible)
+                    case Resource.Id.buttonCategorySelect:
                     {
-                        _selectCategoryLayout.Visibility = ViewStates.Invisible;
-                    }
-                    else if (_selectCategoryLayout.Visibility == ViewStates.Invisible)
-                    {
-                        _selectCategoryLayout.Visibility = ViewStates.Visible;
+                        if (_selectCategoryLayout.Visibility == ViewStates.Visible)
+                        {
+                            _selectCategoryLayout.Visibility = ViewStates.Invisible;
+                        }
+                        else if (_selectCategoryLayout.Visibility == ViewStates.Invisible)
+                        {
+                            _selectCategoryLayout.Visibility = ViewStates.Visible;
+                        }
+                            
+                        break;
                     }
                         
-                    break;
+                    case Resource.Id.imageButtonSelectMountain:
+                    case Resource.Id.imageButtonSelectLake:
+                    case Resource.Id.imageButtonSelectCastle:
+                    case Resource.Id.imageButtonSelectPalace:
+                    case Resource.Id.imageButtonSelectTransmitter:
+                    case Resource.Id.imageButtonSelectRuins:
+                    case Resource.Id.imageButtonSelectViewtower:
+                    case Resource.Id.imageButtonSelectChurch:
+                        OnCategoryFilterChanged(v.Id);
+                        break;
+                    case Resource.Id.buttonResetCorrector:
+                        _compassView.ResetHeadingCorrector();
+                        break;
                 }
-                    
-                case Resource.Id.imageButtonSelectMountain:
-                case Resource.Id.imageButtonSelectLake:
-                case Resource.Id.imageButtonSelectCastle:
-                case Resource.Id.imageButtonSelectPalace:
-                case Resource.Id.imageButtonSelectTransmitter:
-                case Resource.Id.imageButtonSelectRuins:
-                case Resource.Id.imageButtonSelectViewtower:
-                case Resource.Id.imageButtonSelectChurch:
-                    OnCategoryFilterChanged(v.Id);
-                    break;
-                case Resource.Id.buttonResetCorrector:
-                    _compassView.ResetHeadingCorrector();
-                    break;
+            }
+            catch (Exception ex)
+            {
+                PopupDialog("Error", ex.Message);
             }
         }
 

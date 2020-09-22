@@ -68,6 +68,26 @@ namespace HorizontApp.Utilities
             return radian * (180.0 / Math.PI);
         }
 
+        public static double Normalize180(double angle)
+        {
+            var x = Normalize360(angle);
+            if (x > 180)
+                return x - 360;
+            return x;
+        }
+        public static double Normalize360(double angle)
+        {
+            var x = angle - Math.Floor(angle / 360) * 360;
+            return x;
+        }
+
+        public static double VerticalAngle(GpsLocation c1, GpsLocation c2)
+        {
+            var dist = Distance(c1, c2);
+            var x = Math.Atan((c2.Altitude - c1.Altitude) / dist);
+            return Rad2Dg(x);
+        }
+
         public static void BoundingRect(GpsLocation loc, double distance, out GpsLocation min, out GpsLocation max)
         {
             var radLat = Dg2Rad(loc.Latitude);

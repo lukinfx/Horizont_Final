@@ -53,11 +53,17 @@ namespace HorizontApp.Utilities
             }
             else return null;
         }
-        public static float GetYLocationOnScreen(double distance, float altitudeDifference, float canvasHeight, float cameraViewAngle)
+
+        public static float GetYLocationOnScreen(double verticalAngle, float canvasHeight, float cameraViewAngle)
         {
-            var YCoord = (canvasHeight / 2) - ((GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance)) / (cameraViewAngle / 2)) * canvasHeight / 2);
+            var YCoord = (canvasHeight / 2) - ((verticalAngle / (cameraViewAngle / 2)) * canvasHeight / 2);
             var YCoordFloat = (float)YCoord;
             return YCoordFloat;
+        }
+
+        public static float GetYLocationOnScreen(double distance, float altitudeDifference, float canvasHeight, float cameraViewAngle)
+        {
+            return GetYLocationOnScreen(GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance)), canvasHeight, cameraViewAngle);
         }
 
         /// <summary>

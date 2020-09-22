@@ -101,6 +101,8 @@
     <Compile Include="Utilities\CompassViewUtils.cs" />
     <Compile Include="Utilities\DownloadCountryAdapter.cs" />
     <Compile Include="Utilities\DownloadItemAdapter.cs" />
+    <Compile Include="Utilities\ElevationProfile.cs" />
+    <Compile Include="Utilities\GeoTiffReader.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
     <Compile Include="Utilities\GpxFileParser.cs" />
     <Compile Include="Utilities\HeadingStabilizator.cs" />
@@ -166,6 +168,9 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="BitMiracle.LibTiff.NET">
+      <Version>2.4.639</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
@@ -411,6 +416,7 @@
     <AndroidResource Include="Resources\drawable\c_viewtower_grey.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\layout-land\" />
     <Folder Include="Views\ListOfPoiView\" />
   </ItemGroup>
   <ItemGroup>

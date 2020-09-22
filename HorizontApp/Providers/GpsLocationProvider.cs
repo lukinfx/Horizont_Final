@@ -30,10 +30,22 @@ namespace HorizontApp.Providers
                 {
                     currentLocation.Latitude = location.Latitude;
                     currentLocation.Longitude = location.Longitude;
-                    currentLocation.Altitude = location.Altitude.Value;
+                    currentLocation.Altitude = location.Altitude ?? -1000;
                     return currentLocation;
                 }
                 return null;
+
+                //Celadna-Pstruzi
+                //currentLocation.Latitude = 49.5651525;
+                //currentLocation.Longitude = 18.3406403;
+                //currentLocation.Altitude = 430;
+                //return currentLocation;
+
+                //Svarna hanka
+                //currentLocation.Latitude = 49.4894558;
+                //currentLocation.Longitude = 18.4914856;
+                //currentLocation.Altitude = 830;
+                //return currentLocation;
             }
             catch (FeatureNotSupportedException ex)
             {
@@ -53,7 +65,7 @@ namespace HorizontApp.Providers
             }
         }
 
-        public GpsLocation GetLocation()
+        /*public GpsLocation GetLocation()
         {
             try
             {
@@ -88,6 +100,6 @@ namespace HorizontApp.Providers
             {
                 throw new Exception($"Error when fetching GPS location. {ex.Message}");
             }
-        }
+        }*/
     }
 }

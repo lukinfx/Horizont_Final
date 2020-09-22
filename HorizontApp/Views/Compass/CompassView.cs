@@ -1,13 +1,13 @@
-﻿using Android.Content;
+﻿using System.Linq;
+using Android.Content;
 using Android.Graphics;
 using Android.Util;
 using Android.Views;
+using Xamarin.Essentials;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Utilities;
 using HorizontApp.Views.Compass;
-using System;
-using System.Linq;
-using Xamarin.Essentials;
+using HorizontApp.Domain.Models;
 
 namespace HorizontApp.Views
 {
@@ -16,6 +16,7 @@ namespace HorizontApp.Views
         public static IOrderedEnumerable<PoiViewItem> list;
         private CompassViewFilter _compassViewFilter = new CompassViewFilter();
         public double Heading { get; set; }
+        private Paint _paint;
         private static double _headingCorrector = 0;
         public double HeadingCorrector
         {
@@ -25,11 +26,12 @@ namespace HorizontApp.Views
             }
             set
             {
-                _headingCorrector = value;
+                _headingCorrector = GpsUtils.Normalize180(value);
             }
         }
 
         private CompassViewDrawer compassViewDrawer;
+        private ElevationProfile elevationProfile = new ElevationProfile();
 
         public CompassView(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -74,6 +76,11 @@ namespace HorizontApp.Views
             CompassViewSettings.Instance().SettingsChanged += OnSettingsChanged;
             
             InitializeViewDrawer();
+
+            _paint = new Paint();
+            _paint.SetARGB(255, 255, 255, 0);
+            _paint.SetStyle(Paint.Style.Stroke);
+            _paint.StrokeWidth = 3;
         }
 
         private void InitializeViewDrawer()
@@ -101,10 +108,13 @@ namespace HorizontApp.Views
             compassViewDrawer.ViewAngleVertical = CompassViewSettings.Instance().ViewAngleVertical;
             compassViewDrawer.Initialize();
         }
+
         protected override void OnDraw(Android.Graphics.Canvas canvas)
         {
             compassViewDrawer.OnDrawBackground(canvas);
-            
+
+            PaintElevationProfile(canvas);
+
             canvas.Rotate(90, 0, 0);
 
             if (list != null)
@@ -128,6 +138,34 @@ namespace HorizontApp.Views
         {
             HeadingCorrector = 0;
             Invalidate();
+        }
+
+        public void LoadElevation(GpsLocation myLocation, double visibility)
+        {
+            elevationProfile.Load(myLocation, visibility);
+            Invalidate();
+        }
+
+        private void PaintElevationProfile(Android.Graphics.Canvas canvas)
+        {
+            var viewAngleHorizontal = CompassViewSettings.Instance().ViewAngleHorizontal;
+            var viewAngleVertical = CompassViewSettings.Instance().ViewAngleVertical;
+            var ep = elevationProfile.GetProfile();
+
+            float? lastX = null;
+            float? lastY = null;
+            for (int i=0; i<=360; i++)
+            {
+                var x = CompassViewUtils.GetXLocationOnScreen((float)Heading, (float)i, canvas.Width, viewAngleHorizontal);
+                var y = CompassViewUtils.GetYLocationOnScreen(ep[i%360], canvas.Height, viewAngleVertical);
+                if (lastX.HasValue && lastY.HasValue && x.HasValue)
+                {
+                    canvas.DrawLine(lastX.Value, lastY.Value, x.Value, y, _paint);
+                }
+
+                lastX = x;
+                lastY = y;
+            }
         }
     }
 }
