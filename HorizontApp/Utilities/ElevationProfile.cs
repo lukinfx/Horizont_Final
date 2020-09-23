@@ -87,13 +87,13 @@ namespace HorizontApp.Utilities
                 };
 
 
-                var dist = GpsUtils.Distance(myLocation, loc);
-
+                var dist = GpsUtils.QuickDistance(myLocation, loc);
+                
                 if (dist < MIN_DISTANCE || dist > visibility * 1000)
                     continue;
 
                 var bearing = CompassViewUtils.GetBearing(myLocation, loc);
-                var verticalAngle = GpsUtils.VerticalAngle(myLocation, loc);
+                var verticalAngle = GpsUtils.VerticalAngle(loc.Altitude - myLocation.Altitude, dist);
 
                 int dg = ((int)Math.Floor(bearing)+360)%360;
 

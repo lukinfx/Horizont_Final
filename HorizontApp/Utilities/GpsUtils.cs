@@ -62,6 +62,17 @@ namespace HorizontApp.Utilities
         {
             return Convert(loc1).DistanceTo(Convert(loc2));
         }
+        public static double QuickDistance(GpsLocation loc1, GpsLocation loc2)
+        {
+            double x = 0;
+            double x1 = Math.PI * (loc1.Latitude/360) * 12713500;
+            double x2 = Math.PI * (loc2.Latitude/360) * 12713500;
+            double y1 = Math.Cos(loc1.Latitude * Math.PI / 180) * (loc1.Longitude/360) * 40075000;
+            double y2 = Math.Cos(loc2.Latitude * Math.PI / 180) * (loc2.Longitude/360) * 40075000;
+            x = Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
+
+            return x;
+        }
 
         public static double Dg2Rad(double degrees)
         {
@@ -80,6 +91,7 @@ namespace HorizontApp.Utilities
                 return x - 360;
             return x;
         }
+
         public static double Normalize360(double angle)
         {
             var x = angle - Math.Floor(angle / 360) * 360;
@@ -89,7 +101,12 @@ namespace HorizontApp.Utilities
         public static double VerticalAngle(GpsLocation c1, GpsLocation c2)
         {
             var dist = Distance(c1, c2);
-            var x = Math.Atan((c2.Altitude - c1.Altitude) / dist);
+            return VerticalAngle((c2.Altitude - c1.Altitude), dist);
+        }
+
+        public static double VerticalAngle(double altDif, double distance)
+        {
+            var x = Math.Atan(altDif / distance);
             return Rad2Dg(x);
         }
 
