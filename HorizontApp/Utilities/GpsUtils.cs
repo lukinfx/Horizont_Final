@@ -6,6 +6,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Locations;
 using Android.OS;
 using Android.Runtime;
@@ -64,14 +65,57 @@ namespace HorizontApp.Utilities
         }
         public static double QuickDistance(GpsLocation loc1, GpsLocation loc2)
         {
-            double x = 0;
             double x1 = Math.PI * (loc1.Latitude/360) * 12713500;
             double x2 = Math.PI * (loc2.Latitude/360) * 12713500;
             double y1 = Math.Cos(loc1.Latitude * Math.PI / 180) * (loc1.Longitude/360) * 40075000;
             double y2 = Math.Cos(loc2.Latitude * Math.PI / 180) * (loc2.Longitude/360) * 40075000;
-            x = Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
+            var x = Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
 
             return x;
+        }
+
+        public static double QuickBearing(GpsLocation myLoc, GpsLocation otherLoc)
+        {
+            double myY = Math.PI * (myLoc.Latitude / 360) * 12713500;
+            double otherY = Math.PI * (otherLoc.Latitude / 360) * 12713500;
+
+            double c = Math.Cos(((myLoc.Latitude + otherLoc.Latitude) / 2) * Math.PI / 180);
+            double myX = c * (myLoc.Longitude / 360) * 40075000;
+            double otherX = c * (otherLoc.Longitude / 360) * 40075000;
+
+            var dX = otherX - myX;
+            var dY = otherY - myY;
+
+            //TODO:This can be simplified probably (no if-then-else)
+            double result;
+            if (dX>0)
+            {
+                if (dY>0)
+                {
+                    var alfa = Rad2Dg(Math.Atan(dX / dY));
+                    result = 0 + alfa;
+                }
+                else
+                {
+                    var alfa = Rad2Dg(Math.Atan(dX / -dY));
+                    result = 180 - alfa;
+                }
+            }
+            else
+            {
+                if (dY>0)
+                {
+                    var alfa = Rad2Dg(Math.Atan(-dX / dY));
+                    result = 0 - alfa;
+                }
+                else
+                {
+                    var alfa = Rad2Dg(Math.Atan(-dX / -dY));
+                    result = 180 + alfa;
+                }
+            }
+
+            return Normalize180(result);
         }
 
         public static double Dg2Rad(double degrees)

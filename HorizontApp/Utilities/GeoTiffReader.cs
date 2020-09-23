@@ -18,7 +18,7 @@ namespace HorizontApp.Utilities
     public class GeoTiffReader
     {
         private static readonly short VALUE_SIZE = 2;//Bytes
-        private static readonly short SKIP_FACTOR = 3;
+        private static readonly short SKIP_FACTOR = 2;
 
         public static List<GpsLocation> ReadTiff(string filename, GpsLocation filterMin, GpsLocation filterMax)
         {

@@ -416,7 +416,7 @@ namespace HorizontApp
                                 progress =>
                                 {
                                     var tickCount = System.Environment.TickCount;
-                                    if (tickCount - lastProgressUpdate > 500)
+                                    if (tickCount - lastProgressUpdate > 200)
                                     {
                                         pd.Progress = progress;
                                         lastProgressUpdate = tickCount;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -62,10 +62,13 @@ namespace HorizontApp.Tasks
             _onProgressChange(0);
             var downloadPath = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads);
             var elevationDataFile = downloadPath.Path + "/ALPSMLC30_N049E018_DSM.tif";
+            Thread.Sleep(100);
             _onProgressChange(50);
             GpsUtils.BoundingRect(_myLocation, _visibility, out var min, out var max);
             var elevationData = GeoTiffReader.ReadTiff(elevationDataFile, min, max);
+            Thread.Sleep(100);
             _onProgressChange(100);
+            Thread.Sleep(50);
 
             _onStageChange("Processing elevation data.", elevationData.Count);
             ElevationProfile ep = new ElevationProfile();
@@ -74,10 +77,6 @@ namespace HorizontApp.Tasks
                 _onProgressChange(progress);
             });
             return ep.GetProfile();
-
-            /*ElevationProfile elevationProfile = new ElevationProfile();
-            elevationProfile.Load(_myLocation, _visibility);
-            return elevationProfile.GetProfile();*/
         }
     }
 }
