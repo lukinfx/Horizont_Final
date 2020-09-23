@@ -18,6 +18,7 @@ namespace HorizontApp.Views
         public double Heading { get; set; }
         private Paint _paint;
         private static double _headingCorrector = 0;
+        private ElevationProfileData _elevationProfile;
         public double HeadingCorrector
         {
             get
@@ -31,7 +32,7 @@ namespace HorizontApp.Views
         }
 
         private CompassViewDrawer compassViewDrawer;
-        private ElevationProfile elevationProfile = new ElevationProfile();
+        
 
         public CompassView(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -140,24 +141,29 @@ namespace HorizontApp.Views
             Invalidate();
         }
 
-        public void LoadElevation(GpsLocation myLocation, double visibility)
+        public void SetElevationProfile(ElevationProfileData elevationProfile)
         {
-            elevationProfile.Load(myLocation, visibility);
+            _elevationProfile = elevationProfile;
             Invalidate();
         }
 
         private void PaintElevationProfile(Android.Graphics.Canvas canvas)
         {
+            if (_elevationProfile == null)
+            {
+                canvas.DrawLine(0, canvas.Height / (float)2.0, canvas.Width, canvas.Height / (float)2.0, _paint);
+                return;
+            }
+
             var viewAngleHorizontal = CompassViewSettings.Instance().ViewAngleHorizontal;
             var viewAngleVertical = CompassViewSettings.Instance().ViewAngleVertical;
-            var ep = elevationProfile.GetProfile();
 
             float? lastX = null;
             float? lastY = null;
             for (int i=0; i<=360; i++)
             {
                 var x = CompassViewUtils.GetXLocationOnScreen((float)Heading, (float)i, canvas.Width, viewAngleHorizontal);
-                var y = CompassViewUtils.GetYLocationOnScreen(ep[i%360], canvas.Height, viewAngleVertical);
+                var y = CompassViewUtils.GetYLocationOnScreen(_elevationProfile.Get(i%360), canvas.Height, viewAngleVertical);
                 if (lastX.HasValue && lastY.HasValue && x.HasValue)
                 {
                     canvas.DrawLine(lastX.Value, lastY.Value, x.Value, y, _paint);

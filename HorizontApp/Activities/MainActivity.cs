@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Timers;
 using System.Collections.Generic;
-
 using Android;
 using Android.App;
 using Android.OS;
@@ -25,6 +24,7 @@ using HorizontApp.Views.Camera;
 using HorizontApp.DataAccess;
 using HorizontApp.Activities;
 using HorizontApp.Domain.Enums;
+using HorizontApp.Tasks;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
 using Xamarin.Essentials;
 
@@ -394,8 +394,9 @@ namespace HorizontApp
                         //}
 
                         if (GpsUtils.HasAltitude(_myLocation))
-                        {
-                            _compassView.LoadElevation(_myLocation, _distanceSeekBar.Progress); 
+                        { 
+                            var ec = new ElevationCalculation(_myLocation, _distanceSeekBar.Progress, _compassView);
+                            ec.Execute(_myLocation);
                         }
                         else
                         {

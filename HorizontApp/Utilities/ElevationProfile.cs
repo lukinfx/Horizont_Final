@@ -13,19 +13,49 @@ using HorizontApp.Domain.Models;
 
 namespace HorizontApp.Utilities
 {
+    public class ElevationProfileData
+    {
+        private double[] _data = new double[360];
+
+        public void Set(int angle, double viewAngle)
+        {
+            _data[angle] = viewAngle;
+        }
+
+        public void Add(int angle, double viewAngle)
+        {
+            if (viewAngle > _data[angle])
+            {
+                _data[angle] = viewAngle;
+            }
+        }
+
+        public double Get(int angle)
+        {
+            return _data[angle];
+        }
+        public void Clear()
+        {
+            for (int i = 0; i < 360; i++)
+            {
+                _data[i] = -90;
+            }
+        }
+    }
+
     class ElevationProfile
     {
         private static readonly int MIN_DISTANCE = 2000;
 
-        double[] _elevationProfile = new double[360];
+        private ElevationProfileData _elevationProfileData = new ElevationProfileData();
 
         public ElevationProfile()
         {
         }
 
-        public double[] GetProfile()
+        public ElevationProfileData GetProfile()
         {
-            return _elevationProfile;
+            return _elevationProfileData;
         }
 
         public void Load(GpsLocation myLocation, double visibility)
@@ -36,16 +66,12 @@ namespace HorizontApp.Utilities
             GpsUtils.BoundingRect(myLocation, visibility, out var min, out var max);
 
             var elevationData = GeoTiffReader.ReadTiff(elevationDataFile, min, max);
-
             GenerateElevationProfile(myLocation, visibility, elevationData);
         }
 
         private void GenerateElevationProfile(GpsLocation myLocation, double visibility, IEnumerable<GpsLocation> elevationData)
         {
-            for (int i = 0; i < 360; i++)
-            {
-                _elevationProfile[i] = -90;
-            }
+            _elevationProfileData.Clear();
 
             int progress = 0;
             foreach (var point in elevationData)
@@ -70,11 +96,7 @@ namespace HorizontApp.Utilities
 
                 int dg = ((int)Math.Floor(bearing)+360)%360;
 
-                if (verticalAngle > _elevationProfile[dg])
-                {
-                    _elevationProfile[dg] = verticalAngle;
-                }
-
+                _elevationProfileData.Add(dg, verticalAngle);
             }
         }
     }
