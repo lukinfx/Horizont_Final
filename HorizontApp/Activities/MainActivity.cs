@@ -201,7 +201,7 @@ namespace HorizontApp
         {
             _compassProvider.Start();
 
-            _compassTimer.Interval = 40;
+            _compassTimer.Interval = 100;
             _compassTimer.Elapsed += OnCompassTimerElapsed;
             _compassTimer.Enabled = true;
         }
@@ -498,6 +498,7 @@ namespace HorizontApp
         {
             if (!_compassPaused)
             {
+                //TODO:Move _headingStabilizator to _compassProvider class
                 _headingStabilizator.AddValue(_compassProvider.Heading);
             }
 
