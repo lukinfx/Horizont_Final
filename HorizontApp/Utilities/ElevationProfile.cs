@@ -58,7 +58,7 @@ namespace HorizontApp.Utilities
             return _elevationProfileData;
         }
 
-        public void Load(GpsLocation myLocation, double visibility)
+        /*public void Load(GpsLocation myLocation, double visibility)
         {
             var downloadPath = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads);
             var elevationDataFile = downloadPath.Path + "/ALPSMLC30_N049E018_DSM.tif";
@@ -67,9 +67,9 @@ namespace HorizontApp.Utilities
 
             var elevationData = GeoTiffReader.ReadTiff(elevationDataFile, min, max);
             GenerateElevationProfile(myLocation, visibility, elevationData);
-        }
+        }*/
 
-        private void GenerateElevationProfile(GpsLocation myLocation, double visibility, IEnumerable<GpsLocation> elevationData)
+        public void GenerateElevationProfile(GpsLocation myLocation, double visibility, IEnumerable<GpsLocation> elevationData, Action<int> onProgressChange)
         {
             _elevationProfileData.Clear();
 
@@ -77,6 +77,7 @@ namespace HorizontApp.Utilities
             foreach (var point in elevationData)
             {
                 progress++;
+                onProgressChange(progress);
 
                 var loc = new GpsLocation()
                 {

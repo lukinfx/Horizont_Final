@@ -394,8 +394,28 @@ namespace HorizontApp
                         //}
 
                         if (GpsUtils.HasAltitude(_myLocation))
-                        { 
-                            var ec = new ElevationCalculation(_myLocation, _distanceSeekBar.Progress, _compassView);
+                        {
+                            var pd = new ProgressDialog(this);
+                            pd.SetMessage("Loading elevation data. Please Wait.");
+                            pd.SetCancelable(false);
+                            pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
+                            pd.Show();
+
+                            var ec = new ElevationCalculation(_myLocation, _distanceSeekBar.Progress,
+                                result =>
+                                {
+                                    _compassView.SetElevationProfile(result);
+                                    pd.Hide();
+                                },
+                                (text, max) =>
+                                {
+                                    //pd.SetMessage(text);
+                                    pd.Max = max;
+                                },
+                                progress =>
+                                {
+                                    pd.Progress = progress;
+                                });
                             ec.Execute(_myLocation);
                         }
                         else

@@ -20,7 +20,7 @@ namespace HorizontApp.Utilities
         private static readonly short VALUE_SIZE = 2;//Bytes
         private static readonly short SKIP_FACTOR = 3;
 
-        public static IEnumerable<GpsLocation> ReadTiff(string filename, GpsLocation filterMin, GpsLocation filterMax)
+        public static List<GpsLocation> ReadTiff(string filename, GpsLocation filterMin, GpsLocation filterMax)
         {
             try
             {

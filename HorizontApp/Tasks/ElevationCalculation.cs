@@ -20,13 +20,21 @@ namespace HorizontApp.Tasks
     {
         private GpsLocation _myLocation;
         private int _visibility;
-        private CompassView _compassView;
-
-        public ElevationCalculation(GpsLocation myLocation, int visibility, CompassView compassView)
+        private Action<ElevationProfileData> _onFinishedAction;
+        private Action<string, int> _onStageChange;
+        private Action<int> _onProgressChange;
+        public ElevationCalculation(
+            GpsLocation myLocation, 
+            int visibility, 
+            Action<ElevationProfileData> onFinishedAction,
+            Action<string, int> onStageChange,
+            Action<int> onProgressChange)
         {
             _myLocation = myLocation;
             _visibility = visibility;
-            _compassView = compassView;
+            _onFinishedAction = onFinishedAction;
+            _onStageChange = onStageChange;
+            _onProgressChange = onProgressChange;
         }
 
         protected override void OnProgressUpdate(params string[] values)
@@ -45,14 +53,31 @@ namespace HorizontApp.Tasks
         {
             base.OnPostExecute(result);
             System.Console.WriteLine("Finished");
-            _compassView.SetElevationProfile(result);
+            _onFinishedAction(result);
         }
 
         protected override ElevationProfileData RunInBackground(params GpsLocation[] @params)
         {
-            ElevationProfile elevationProfile = new ElevationProfile();
+            _onStageChange("Loading elevation data.", 100);
+            _onProgressChange(0);
+            var downloadPath = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads);
+            var elevationDataFile = downloadPath.Path + "/ALPSMLC30_N049E018_DSM.tif";
+            _onProgressChange(50);
+            GpsUtils.BoundingRect(_myLocation, _visibility, out var min, out var max);
+            var elevationData = GeoTiffReader.ReadTiff(elevationDataFile, min, max);
+            _onProgressChange(100);
+
+            _onStageChange("Processing elevation data.", elevationData.Count);
+            ElevationProfile ep = new ElevationProfile();
+            ep.GenerateElevationProfile(_myLocation, _visibility, elevationData, progress =>
+            {
+                _onProgressChange(progress);
+            });
+            return ep.GetProfile();
+
+            /*ElevationProfile elevationProfile = new ElevationProfile();
             elevationProfile.Load(_myLocation, _visibility);
-            return elevationProfile.GetProfile();
+            return elevationProfile.GetProfile();*/
         }
     }
 }
