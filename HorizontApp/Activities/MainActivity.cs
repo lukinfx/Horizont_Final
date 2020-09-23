@@ -401,6 +401,7 @@ namespace HorizontApp
                             pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
                             pd.Show();
 
+                            var lastProgressUpdate = System.Environment.TickCount;
                             var ec = new ElevationCalculation(_myLocation, _distanceSeekBar.Progress,
                                 result =>
                                 {
@@ -414,7 +415,12 @@ namespace HorizontApp
                                 },
                                 progress =>
                                 {
-                                    pd.Progress = progress;
+                                    var tickCount = System.Environment.TickCount;
+                                    if (tickCount - lastProgressUpdate > 500)
+                                    {
+                                        pd.Progress = progress;
+                                        lastProgressUpdate = tickCount;
+                                    }
                                 });
                             ec.Execute(_myLocation);
                         }
