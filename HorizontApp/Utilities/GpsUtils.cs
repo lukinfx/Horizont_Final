@@ -53,6 +53,11 @@ namespace HorizontApp.Utilities
             ;
         }
 
+        public static bool HasAltitude(GpsLocation loc)
+        {
+            return (loc.Altitude < -0.01 || loc.Altitude > 0.01);
+        }
+
         public static double Distance(GpsLocation loc1, GpsLocation loc2)
         {
             return Convert(loc1).DistanceTo(Convert(loc2));

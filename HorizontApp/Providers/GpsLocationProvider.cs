@@ -30,7 +30,7 @@ namespace HorizontApp.Providers
                 {
                     currentLocation.Latitude = location.Latitude;
                     currentLocation.Longitude = location.Longitude;
-                    currentLocation.Altitude = location.Altitude ?? -1000;
+                    currentLocation.Altitude = location.Altitude.Value;
                     return currentLocation;
                 }
                 return null;

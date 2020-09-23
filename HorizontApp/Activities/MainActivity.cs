@@ -250,11 +250,19 @@ namespace HorizontApp
                 if (newLocation == null)
                     return;
 
-                if (_myLocation == null || GpsUtils.Distance(_myLocation, newLocation) > 100 || Math.Abs(_myLocation.Altitude - newLocation.Altitude) > 50)
+                if (GpsUtils.Distance(_myLocation, newLocation) > 100 
+                    || Math.Abs(_myLocation.Altitude - newLocation.Altitude) > 50)
                 {
-                    _myLocation = newLocation;
-                    _GPSEditText.Text = ($"Lat: {_myLocation.Latitude} Lon: {_myLocation.Longitude} Alt: {Math.Round(_myLocation.Altitude, 0)}");
+                    _myLocation.Latitude = newLocation.Latitude;
+                    _myLocation.Longitude = newLocation.Longitude;
 
+                    //keep old location if new location has no altitude
+                    if (!GpsUtils.HasAltitude(_myLocation) || GpsUtils.HasAltitude(newLocation))
+                    {
+                        _myLocation.Altitude = newLocation.Altitude;
+                    }
+
+                    _GPSEditText.Text = ($"Lat: {_myLocation.Latitude} Lon: {_myLocation.Longitude} Alt: {Math.Round(_myLocation.Altitude, 0)}");
 
                     var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
                     _compassView.SetPoiViewItemList(points);
@@ -385,13 +393,13 @@ namespace HorizontApp
                         //    _cameraFragment.TakePicture();
                         //}
 
-                        if (_myLocation.Altitude < -999)
+                        if (GpsUtils.HasAltitude(_myLocation))
                         {
-                            PopupDialog("Error", "It's not possible to generate elevation profile without known altitude");
+                            _compassView.LoadElevation(_myLocation, _distanceSeekBar.Progress); 
                         }
                         else
                         {
-                            _compassView.LoadElevation(_myLocation, _distanceSeekBar.Progress);
+                            PopupDialog("Error", "It's not possible to generate elevation profile without known altitude");
                         }
 
                         break;
