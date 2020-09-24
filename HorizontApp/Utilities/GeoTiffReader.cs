@@ -18,9 +18,8 @@ namespace HorizontApp.Utilities
     public class GeoTiffReader
     {
         private static readonly short VALUE_SIZE = 2;//Bytes
-        private static readonly short SKIP_FACTOR = 2;
 
-        public static List<GpsLocation> ReadTiff(string filename, GpsLocation filterMin, GpsLocation filterMax)
+        public static List<GpsLocation> ReadTiff(string filename, GpsLocation filterMin, GpsLocation filterMax, int skipFactor)
         {
             try
             {
@@ -56,7 +55,7 @@ namespace HorizontApp.Utilities
 
                                 if (longitude >= filterMin.Longitude && longitude <= filterMax.Longitude)
                                 {
-                                    if (i % SKIP_FACTOR == 0 && j % SKIP_FACTOR == 0)
+                                    if (i % skipFactor == 0 && j % skipFactor == 0)
                                     {
                                         var ep = new GpsLocation() {Latitude = latitude, Longitude = longitude, Altitude = (UInt32) alt};
                                         eleData.Add(ep);

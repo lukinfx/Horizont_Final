@@ -45,7 +45,7 @@ namespace HorizontApp.Utilities
 
     class ElevationProfile
     {
-        private static readonly int MIN_DISTANCE = 2000;
+        private static readonly int MIN_DISTANCE = 1000;
 
         private ElevationProfileData _elevationProfileData = new ElevationProfileData();
 

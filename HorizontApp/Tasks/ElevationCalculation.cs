@@ -65,7 +65,7 @@ namespace HorizontApp.Tasks
             Thread.Sleep(100);
             _onProgressChange(50);
             GpsUtils.BoundingRect(_myLocation, _visibility, out var min, out var max);
-            var elevationData = GeoTiffReader.ReadTiff(elevationDataFile, min, max);
+            var elevationData = GeoTiffReader.ReadTiff(elevationDataFile, min, max, _visibility<20 ? 1 : 2);
             Thread.Sleep(100);
             _onProgressChange(100);
             Thread.Sleep(50);
