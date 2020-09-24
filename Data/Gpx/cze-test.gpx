@@ -34,4 +34,20 @@ creator="http://online.poi.cz">
 		<name>Dul Lazy, Karvina</name>
 		<ele>300</ele>
 	</wpt>
+	<wpt lat="49.8569358" lon="18.2817789" >
+		<name>Halda Přívoz</name>
+		<ele>272</ele>
+	</wpt>
+	<wpt lat="49.8612242" lon="18.2946428" >
+		<name>Halda Muglinov</name>
+		<ele>232</ele>
+	</wpt>
+	<wpt lat="49.8424550" lon="18.2874703" >
+		<name>Ostravský mrakodrap :-)</name>
+		<ele>210</ele>
+	</wpt>
+	<wpt lat="49.8416558" lon="18.2916803" >
+		<name>Radnice Ostrava</name>
+		<ele>210</ele>
+	</wpt>
 </gpx>
