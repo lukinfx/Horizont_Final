@@ -14,10 +14,11 @@ namespace PaintSkyLine
     public class SkyLine : Control
     {
         private static readonly int DG_WIDTH = 20;
-        private static readonly int MIN_DISTANCE = 2000;
+        private static readonly int MIN_DISTANCE = 2500;
 
         private List<GeoPoint> _data;
         private double[] _elevationProfile = new double[360];
+        private List<GeoPoint> _data2 = new List<GeoPoint>();
         private int _heading = 0;
         private double _visibility = 10;
         private GeoPoint _myLocation = new GeoPoint(49.4894558, 18.4914856, 830);
@@ -52,7 +53,7 @@ namespace PaintSkyLine
         {
             _myLocation.BoundingRect(_visibility, out var min, out var max);
             
-            string inputFileName = @"c:\temp\ElevationMap\N049E018\ALPSMLC30_N049E018_DSM.tif";
+            string inputFileName = @"c:\Temp\ElevationMap\ALPSMLC30_N049E018_DSM.tif";
 
             /*{
                 var myData = ElevationData.GeoTiffReader.ReadTiff2(inputFileName, min.Latitude, max.Latitude, min.Longitude, max.Longitude);
@@ -109,23 +110,108 @@ namespace PaintSkyLine
 
         void PaintTerrain(PaintEventArgs e)
         {
-            var pen = new Pen(Brushes.Black, 20);
-
+            var pen = new Pen(Brushes.Black, 10);
+            _data2 = new List<GeoPoint>();
             var sortedData = _data
                 .Where(i =>
                     i.Distance > MIN_DISTANCE && i.Distance < _visibility * 1000
                     && GeoPoint.IsAngleBetween(i.Bearing, _heading, 35))
-                .OrderByDescending(i => i.Distance);
+                .OrderBy(i => i.Distance);
 
-            foreach (var point in sortedData)
+            var z = _data
+                .Where(i => i.Distance > MIN_DISTANCE && i.Distance < _visibility * 1000)
+                .GroupBy(i => Math.Floor(i.Bearing));
+
+            foreach (var i in z)
             {
-                var b = GeoPoint.Normalize360(point.Bearing - _heading);
-                var c = (point.Distance / (_visibility*1000)) *200;
-                pen.Color = Color.FromArgb(100,(int)c, (int)c, (int)c);
-                var x = GeoPoint.Normalize360(b+35) * DG_WIDTH;
-                var y = 250-point.VerticalAngle *40;
+                var bearing = i.Key;
+                var points = i.OrderBy(i2 => i2.Distance);
+                List<GeoPoint> displayedPoints = new List<GeoPoint>();
+                foreach (var point in points)
+                {
 
-                e.Graphics.DrawLine(pen, (float)x, (float)500, (float)x, (float)y);
+                    bool display = true;
+                    foreach (var poi in displayedPoints)
+                    {
+                        if (point.VerticalAngle < poi.VerticalAngle)
+                        {
+                            display = false;
+                            break;
+                        }
+                    }
+                    if (display || displayedPoints.Count == 0)
+                    {
+                        displayedPoints.Add(point);
+                    }
+                }
+
+                displayedPoints.OrderByDescending(j => j.Distance);
+                
+                foreach (var point in displayedPoints)
+                {
+                    bool display = true;
+                    foreach (var otherPoint in displayedPoints)
+                    {
+                        if (point.Altitude < otherPoint.Altitude && Math.Abs(point.Distance - otherPoint.Distance) < 500)
+                        {
+                            display = false;
+                        }
+                    }
+
+                    if (display)
+                    {
+
+                        var b = GeoPoint.Normalize360(point.Bearing - _heading);
+                        var c = (point.Distance / (_visibility * 1000)) * 200;
+                        pen.Color = Color.FromArgb(100, (int)c, (int)c, (int)c);
+                        var x = GeoPoint.Normalize360(b + 35) * DG_WIDTH;
+                        var y = 250 - point.VerticalAngle * 40;
+                        e.Graphics.DrawLine(pen, (float)x, (float)y - 10, (float)x, (float)y);
+                        _data2.Add(point);
+                    }
+                }
+
+            }
+
+            //foreach (var point in sortedData)
+            //{
+            //    var b = GeoPoint.Normalize360(point.Bearing - _heading);
+            //    var c = (point.Distance / (_visibility * 1000)) * 200;
+            //    pen.Color = Color.FromArgb(100, (int)c, (int)c, (int)c);
+            //    var x = GeoPoint.Normalize360(b + 35) * DG_WIDTH;
+            //    var y = 250 - point.VerticalAngle * 40;
+            //    if (IsMax(point))
+            //    {
+            //        e.Graphics.DrawLine(pen, (float)x, (float)y-10, (float)x, (float)y);
+            //    }
+                
+            //}
+        }
+
+        void PaintProfile2(PaintEventArgs e)
+        {
+            _data2.OrderBy(i => i.Distance);
+
+            var pen = new Pen(Brushes.Black, 3);
+
+            foreach (var point in _data2)
+            {
+                foreach (var otherPoint in _data2)
+                {
+                    if (Math.Abs(point.Distance - otherPoint.Distance)< point.Distance / 10 && Math.Abs(point.Bearing - otherPoint.Bearing) < 2)
+                    {
+                        var b1 = GeoPoint.Normalize360(point.Bearing - _heading);
+                        var x1 = GeoPoint.Normalize360(b1 + 35) * DG_WIDTH;
+                        var y1 = 250 - point.VerticalAngle * 40;
+
+                        var b2 = GeoPoint.Normalize360(otherPoint.Bearing - _heading);
+                        var x2 = GeoPoint.Normalize360(b2 + 35) * DG_WIDTH;
+                        var y2 = 250 - otherPoint.VerticalAngle * 40;
+                        if (Math.Sqrt(Math.Pow(x1-x2, 2)+ Math.Pow(y1 - y2, 2))<100)
+                            e.Graphics.DrawLine(pen, (float)x1, (float)y1, (float)x2, (float)y2);
+                        
+                    }
+                }
             }
         }
 
@@ -152,7 +238,7 @@ namespace PaintSkyLine
             
             points.Add(new PointF((float)69 * DG_WIDTH, this.Height));
             points.Add(new PointF((float)0 * DG_WIDTH, this.Height));
-            e.Graphics.DrawPolygon(new Pen(Color.LightSkyBlue), points.ToArray());
+            e.Graphics.DrawPolygon(new Pen(Color.LightSkyBlue, 3), points.ToArray());
             //e.Graphics.FillPolygon(Brushes.LightSkyBlue, points.ToArray());
 
             e.Graphics.DrawLine(new Pen(Brushes.Black, 3), 0, 250, 69 * DG_WIDTH, 250);
@@ -167,6 +253,8 @@ namespace PaintSkyLine
                 return;
 
             PaintTerrain(e);
+            PaintProfile2(e);
+
             PaintProfile(e);
         }
 

@@ -20,8 +20,8 @@ namespace PaintSkyLine
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var lat = double.Parse(textBoxLat.Text);
-            var lon = double.Parse(textBoxLon.Text);
+            var lat = double.Parse(textBoxLat.Text.Replace(".",","));
+            var lon = double.Parse(textBoxLon.Text.Replace(".", ","));
             var alt = double.Parse(textBoxAlt.Text);
             var visibility = double.Parse(textBoxVisibility.Text);
             skyLine1.SetMyLocation(new GeoPoint(lat, lon, alt));
