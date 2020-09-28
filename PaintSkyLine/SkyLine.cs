@@ -14,7 +14,7 @@ namespace PaintSkyLine
     public class SkyLine : Control
     {
         private static readonly int DG_WIDTH = 20;
-        private static readonly int MIN_DISTANCE = 2500;
+        private static readonly int MIN_DISTANCE = 1000;
 
         private List<GeoPoint> _data;
         private double[] _elevationProfile = new double[360];
@@ -110,14 +110,23 @@ namespace PaintSkyLine
 
         void PaintTerrain(PaintEventArgs e)
         {
-            var pen = new Pen(Brushes.Black, 10);
+            var pen = new Pen(Brushes.Black, 20);
             _data2 = new List<GeoPoint>();
             var sortedData = _data
                 .Where(i =>
                     i.Distance > MIN_DISTANCE && i.Distance < _visibility * 1000
                     && GeoPoint.IsAngleBetween(i.Bearing, _heading, 35))
-                .OrderBy(i => i.Distance);
+                .OrderByDescending(i2 => i2.Distance);
+            foreach (var point in sortedData)
+            {
 
+                var b = GeoPoint.Normalize360(point.Bearing - _heading);
+                var c = (point.Distance / (_visibility * 1000)) * 200;
+                pen.Color = Color.FromArgb(100, (int)c, (int)c, (int)c);
+                var x = GeoPoint.Normalize360(b + 35) * DG_WIDTH;
+                var y = 250 - point.VerticalAngle * 40;
+                e.Graphics.DrawLine(pen, (float)x, (float)500, (float)x, (float)y);
+            }
             var z = _data
                 .Where(i => i.Distance > MIN_DISTANCE && i.Distance < _visibility * 1000)
                 .GroupBy(i => Math.Floor(i.Bearing));
@@ -149,6 +158,7 @@ namespace PaintSkyLine
                 
                 foreach (var point in displayedPoints)
                 {
+
                     bool display = true;
                     foreach (var otherPoint in displayedPoints)
                     {
@@ -161,12 +171,7 @@ namespace PaintSkyLine
                     if (display)
                     {
 
-                        var b = GeoPoint.Normalize360(point.Bearing - _heading);
-                        var c = (point.Distance / (_visibility * 1000)) * 200;
-                        pen.Color = Color.FromArgb(100, (int)c, (int)c, (int)c);
-                        var x = GeoPoint.Normalize360(b + 35) * DG_WIDTH;
-                        var y = 250 - point.VerticalAngle * 40;
-                        e.Graphics.DrawLine(pen, (float)x, (float)y - 10, (float)x, (float)y);
+                        
                         _data2.Add(point);
                     }
                 }
@@ -213,6 +218,18 @@ namespace PaintSkyLine
                     }
                 }
             }
+
+            for (int i = _heading - 35; i < _heading + 35; i++)
+            {
+                var dg = (i + 360) % 360;
+                double x = (i - _heading + 35) * DG_WIDTH;
+
+                //e.Graphics.DrawLine(new Pen(Brushes.Blue), (float)x, 250, (float)x, (float)(250-y));
+                if (i % 10 == 0)
+                {
+                    e.Graphics.DrawString(i.ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), (float)x, 10);
+                }
+            }
         }
 
         void PaintProfile(PaintEventArgs e)
@@ -254,8 +271,6 @@ namespace PaintSkyLine
 
             PaintTerrain(e);
             PaintProfile2(e);
-
-            PaintProfile(e);
         }
 
         public int GetElevationPointCount()

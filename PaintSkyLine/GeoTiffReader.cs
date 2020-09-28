@@ -166,9 +166,9 @@ namespace ElevationData
 
                             if (longitude >= filterLonMin && longitude <= filterLonMax)
                             {
-                                if ((i % 12 == 0 && j % 6 == 0) || (i % 12 == 6 && j % 6 == 0))
+                                //if ((i % 12 == 0 && j % 6 == 0) || (i % 12 == 6 && j % 6 == 0))
 
-                                //if ((i % 6 == 0 && j % 3 == 0) || (i % 6 == 3 && j % 3 == 0))
+                                if ((i % 6 == 0 && j % 3 == 0) || (i % 6 == 3 && j % 3 == 0))
                                 {
                                     var ep = new GeoPoint(latitude, longitude, alt, myLocation);
                                     eleData.Add(ep);
