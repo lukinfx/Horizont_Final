@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using BitMiracle.LibTiff.Classic;
 using HorizontApp.Domain.Models;
+using PaintSkyLine;
 
 namespace HorizontApp.Utilities
 {
@@ -19,7 +20,7 @@ namespace HorizontApp.Utilities
     {
         private static readonly short VALUE_SIZE = 2;//Bytes
 
-        public static List<GpsLocation> ReadTiff(string filename, GpsLocation filterMin, GpsLocation filterMax, int skipFactor)
+        public static List<GpsLocation> ReadTiff(string filename, GpsLocation filterMin, GpsLocation filterMax, GpsLocation myLocation, int skipFactor)
         {
             try
             {
@@ -27,17 +28,36 @@ namespace HorizontApp.Utilities
 
                 using (Tiff tiff = Tiff.Open(filename, "r"))
                 {
-                    var (width, height) = GetImageSize(tiff);
+                    int height = tiff.GetField(TiffTag.IMAGELENGTH)[0].ToInt();
+                    int width = tiff.GetField(TiffTag.IMAGEWIDTH)[0].ToInt();
+                    FieldValue[] modelPixelScaleTag = tiff.GetField(TiffTag.GEOTIFF_MODELPIXELSCALETAG);
+                    FieldValue[] modelTiepointTag = tiff.GetField(TiffTag.GEOTIFF_MODELTIEPOINTTAG);
 
-                    var (pixelSizeX, pixelSizeY) = GetPixelSize(tiff);
-                    var startLocation = GetStartLocation(tiff);
+                    byte[] modelPixelScale = modelPixelScaleTag[1].GetBytes();
+                    double pixelSizeX = BitConverter.ToDouble(modelPixelScale, 0);
+                    double pixelSizeY = BitConverter.ToDouble(modelPixelScale, 8) * -1;
+
+                    double dpiX = tiff.GetField(TiffTag.XRESOLUTION)[0].ToDouble();
+                    double dpiY = tiff.GetField(TiffTag.YRESOLUTION)[0].ToDouble();
+
+
+                    byte[] modelTransformation = modelTiepointTag[1].GetBytes();
+                    double startLon = BitConverter.ToDouble(modelTransformation, 24);
+                    double startLat = BitConverter.ToDouble(modelTransformation, 32);
+
 
                     var scanline = new byte[tiff.ScanlineSize()];
+
+                //TODO: Check if band is stored in 1 byte or 2 bytes. 
+                //If 2, the following code would be required
+                //var scanline16Bit = new ushort[tiff.ScanlineSize() / 2];
+                //Buffer.BlockCopy(scanline, 0, scanline16Bit, 0, scanline.Length);
+
                     for (int i = 0; i < height; i++)
                     {
-                        tiff.ReadScanline(scanline, i);
+                        tiff.ReadScanline(scanline, i); //Loading ith Line            
 
-                        var latitude = startLocation.Latitude + (pixelSizeY * i);
+                        var latitude = startLat + (pixelSizeY * i);
                         if (scanline.Length / 2 != width)
                         {
                             throw new SystemException("Invalid data");
@@ -45,28 +65,31 @@ namespace HorizontApp.Utilities
 
                         if (latitude >= filterMin.Latitude && latitude <= filterMax.Latitude)
                         {
-                            for (var j = 0; j < scanline.Length/VALUE_SIZE; j++)
+                            for (var j = 0; j < scanline.Length; j += 2)
                             {
-                                var longitude = startLocation.Longitude + (pixelSizeX * j);
+                                var longitude = startLon + (pixelSizeX * j / 2);
 
-                                byte loByte = scanline[j * VALUE_SIZE + 0];
-                                byte hiByte = scanline[j * VALUE_SIZE + 1];
-                                var alt = hiByte * 256 + loByte;
+                                byte a = scanline[j + 0];
+                                byte b = scanline[j + 1];
+                                var alt = b * 256 + a;
 
                                 if (longitude >= filterMin.Longitude && longitude <= filterMax.Longitude)
                                 {
-                                    if (i % skipFactor == 0 && j % skipFactor == 0)
+                                    //if ((i % 12 == 0 && j % 6 == 0) || (i % 12 == 6 && j % 6 == 0))
+
+                                    if ((i % 6 == 0 && j % 3 == 0) || (i % 6 == 3 && j % 3 == 0))
                                     {
-                                        var ep = new GpsLocation() {Latitude = latitude, Longitude = longitude, Altitude = (UInt32) alt};
+                                        var ep = new GpsLocation { Altitude = alt, Latitude = latitude, Longitude = longitude };
+                                        ep.QuickDistance(myLocation);
+                                        ep.QuickBearing(myLocation);
                                         eleData.Add(ep);
                                     }
                                 }
                             }
                         }
                     }
+                    return eleData;
                 }
-
-                return eleData;
             }
             catch (Exception ex)
             {

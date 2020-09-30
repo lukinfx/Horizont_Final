@@ -103,6 +103,7 @@
     <Compile Include="Utilities\DownloadCountryAdapter.cs" />
     <Compile Include="Utilities\DownloadItemAdapter.cs" />
     <Compile Include="Utilities\ElevationProfile.cs" />
+    <Compile Include="Utilities\GeoLocationExtension.cs" />
     <Compile Include="Utilities\GeoTiffReader.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
     <Compile Include="Utilities\GpxFileParser.cs" />

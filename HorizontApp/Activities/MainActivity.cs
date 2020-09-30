@@ -388,11 +388,11 @@ namespace HorizontApp
                     }
                     case Resource.Id.buttonRecord:
                     {
-                        //if (_cameraFragment != null)
-                        //{
-                        //    _cameraFragment.TakePicture();
-                        //}
-
+                            //if (_cameraFragment != null)
+                            //{
+                            //    _cameraFragment.TakePicture();
+                            //}
+                        _compassView.IsLoading = true;
                         if (GpsUtils.HasAltitude(_myLocation))
                         {
                             var pd = new ProgressDialog(this);
@@ -406,6 +406,7 @@ namespace HorizontApp
                                 result =>
                                 {
                                     _compassView.SetElevationProfile(result);
+                                    _compassView.IsLoading = false;
                                     pd.Hide();
                                 },
                                 (text, max) =>

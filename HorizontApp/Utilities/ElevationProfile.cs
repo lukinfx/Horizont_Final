@@ -15,31 +15,26 @@ namespace HorizontApp.Utilities
 {
     public class ElevationProfileData
     {
-        private double[] _data = new double[360];
+        public static List<(double, double)> displayedPoints = new List<(double, double)>();
 
-        public void Set(int angle, double viewAngle)
+        /*public void Set(double angle, double viewAngle)
         {
             _data[angle] = viewAngle;
-        }
+        }*/
 
-        public void Add(int angle, double viewAngle)
+        public void Add(double angle, double viewAngle)
         {
-            if (viewAngle > _data[angle])
-            {
-                _data[angle] = viewAngle;
-            }
+            displayedPoints.Add((angle, viewAngle));
         }
 
-        public double Get(int angle)
+        /*public double Get(int angle)
         {
             return _data[angle];
-        }
+        }*/
+
         public void Clear()
         {
-            for (int i = 0; i < 360; i++)
-            {
-                _data[i] = -90;
-            }
+            displayedPoints.Clear();
         }
     }
 
@@ -63,30 +58,60 @@ namespace HorizontApp.Utilities
             _elevationProfileData.Clear();
 
             int progress = 0;
-            foreach (var point in elevationData)
+
+
+            var sortedData = elevationData
+                .Where(i =>
+                    i.Distance > MIN_DISTANCE && i.Distance < visibility * 1000)
+                .OrderBy(i2 => i2.Distance);
+
+            var z = elevationData
+                .Where(i => i.Distance > MIN_DISTANCE && i.Distance < visibility * 1000)
+                .GroupBy(i => Math.Floor(i.Bearing.Value));
+
+            foreach (var i in z)
             {
-                progress++;
-                onProgressChange(progress);
-
-                var loc = new GpsLocation()
+                var points = i.OrderBy(i2 => i2.Distance);
+                List<GpsLocation> temporary = new List<GpsLocation>();
+                foreach (var point in points)
                 {
-                    Latitude = point.Latitude,
-                    Longitude = point.Longitude,
-                    Altitude = point.Altitude
-                };
+                    progress++;
+                    bool display = true;
+                    foreach (var otherPoint in points)
+                    {
 
+                        if (GpsUtils.VerticalAngle(point.Altitude - myLocation.Altitude, point.Distance.Value) < GpsUtils.VerticalAngle(otherPoint.Altitude - myLocation.Altitude, otherPoint.Distance.Value))
+                        {
+                            display = false;
+                            break;
+                        }
+                    }
+                    if (display || ElevationProfileData.displayedPoints.Count == 0)
+                    {
+                        temporary.Add(point);
+                        //_elevationProfileData.Add(point.Bearing.Value, GpsUtils.VerticalAngle(point.Altitude - myLocation.Altitude, point.Distance.Value));
+                    }
+                }
 
-                var dist = GpsUtils.QuickDistance(myLocation, loc);
-                
-                if (dist < MIN_DISTANCE || dist > visibility * 1000)
-                    continue;
+                temporary.OrderByDescending(j => j.Distance);
 
-                var bearing = GpsUtils.QuickBearing(myLocation, loc);
-                var verticalAngle = GpsUtils.VerticalAngle(loc.Altitude - myLocation.Altitude, dist);
+                foreach (var point in temporary)
+                {
 
-                int dg = ((int)Math.Floor(bearing)+360)%360;
+                    bool display = true;
+                    foreach (var otherPoint in temporary)
+                    {
+                        if (point.Altitude < otherPoint.Altitude && Math.Abs(point.Distance.Value - otherPoint.Distance.Value) < 500)
+                        {
+                            display = false;
+                        }
+                    }
 
-                _elevationProfileData.Add(dg, verticalAngle);
+                    if (display)
+                    {
+                        _elevationProfileData.Add(point.Bearing.Value, GpsUtils.VerticalAngle(point.Altitude - myLocation.Altitude, point.Distance.Value));
+                    }
+                }
             }
         }
     }
