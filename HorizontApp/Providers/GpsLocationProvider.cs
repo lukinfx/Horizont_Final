@@ -36,10 +36,10 @@ namespace HorizontApp.Providers
                 return null;*/
 
                 //Celadna-Pstruzi
-                //currentLocation.Latitude = 49.5651525;
-                //currentLocation.Longitude = 18.3406403;
-                //currentLocation.Altitude = 430;
-                //return currentLocation;
+                /*currentLocation.Latitude = 49.5651525;
+                currentLocation.Longitude = 18.3406403;
+                currentLocation.Altitude = 430;
+                return currentLocation;*/
 
                 //Svarna hanka
                 currentLocation.Latitude = 49.4894558;

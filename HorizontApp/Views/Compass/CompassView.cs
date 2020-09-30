@@ -20,7 +20,6 @@ namespace HorizontApp.Views
         private Paint _paint;
         private static double _headingCorrector = 0;
         private ElevationProfileData _elevationProfile;
-        public bool IsLoading { get; set; }
         public double HeadingCorrector
         {
             get
@@ -116,10 +115,10 @@ namespace HorizontApp.Views
         {
             compassViewDrawer.OnDrawBackground(canvas);
 
-            if (IsLoading)
-                return;
-
-            compassViewDrawer.PaintProfile(canvas, (float) Heading);
+            if (_elevationProfile != null)
+            {
+                compassViewDrawer.PaintProfile(canvas, (float) Heading, _elevationProfile);
+            }
 
             canvas.Rotate(90, 0, 0);
 

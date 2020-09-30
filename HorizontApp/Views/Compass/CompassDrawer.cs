@@ -57,11 +57,12 @@ namespace HorizontApp.Views.Compass
         /// <param name="heading"></param>
         public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading) { }
 
-        public void PaintProfile(Android.Graphics.Canvas canvas, float heading)
+        public void PaintProfile(Android.Graphics.Canvas canvas, float heading, ElevationProfileData epd)
         {
-            foreach (var point in ElevationProfileData.displayedPoints)
+            var points = epd.GetPoints();
+            foreach (var point in points)
             {
-                foreach (var otherPoint in ElevationProfileData.displayedPoints)
+                foreach (var otherPoint in points)
                 {
                     if (point.Bearing.HasValue && otherPoint.Bearing.HasValue && point.Distance.HasValue && otherPoint.Distance.HasValue && point.VerticalViewAngle.HasValue && otherPoint.VerticalViewAngle.HasValue)
                     {

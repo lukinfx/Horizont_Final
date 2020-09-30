@@ -15,27 +15,28 @@ namespace HorizontApp.Utilities
 {
     public class ElevationProfileData
     {
-        public static List<GpsLocation> displayedPoints = new List<GpsLocation>();
+        private List<GpsLocation> displayedPoints = new List<GpsLocation>();
 
+        public string ErrorMessage { get; set; }
 
-        /*public void Set(double angle, double viewAngle)
+        public ElevationProfileData(string errorMessage=null)
         {
-            _data[angle] = viewAngle;
-        }*/
+            ErrorMessage = errorMessage;
+        }
 
         public void Add(GpsLocation gpsLocation)
         {
             displayedPoints.Add(gpsLocation);
         }
 
-        /*public double Get(int angle)
-        {
-            return _data[angle];
-        }*/
-
         public void Clear()
         {
             displayedPoints.Clear();
+        }
+
+        public List<GpsLocation> GetPoints()
+        {
+            return displayedPoints;
         }
     }
 
@@ -55,6 +56,27 @@ namespace HorizontApp.Utilities
         }
 
         public void GenerateElevationProfile(GpsLocation myLocation, double visibility, IEnumerable<GpsLocation> elevationData, Action<int> onProgressChange)
+        {
+            _elevationProfileData.Clear();
+
+            int progress = 0;
+
+            var elevationDataGrouped = elevationData
+                .Where(i => i.Distance > MIN_DISTANCE && i.Distance < visibility * 1000)
+                .GroupBy(i => Math.Floor(i.Bearing.Value));
+
+
+            foreach (var group in elevationDataGrouped)
+            {
+                progress++;
+                onProgressChange(progress);
+
+                var maxPoint = group.OrderByDescending(i => i.VerticalViewAngle).FirstOrDefault();
+                _elevationProfileData.Add(maxPoint);
+            }
+        }
+
+        public void GenerateElevationProfile2(GpsLocation myLocation, double visibility, IEnumerable<GpsLocation> elevationData, Action<int> onProgressChange)
         {
             _elevationProfileData.Clear();
 
@@ -81,7 +103,7 @@ namespace HorizontApp.Utilities
                             break;
                         }
                     }
-                    if (display || ElevationProfileData.displayedPoints.Count == 0)
+                    if (display || _elevationProfileData.GetPoints().Count == 0)
                     {
                         temporary.Add(point);
                     }

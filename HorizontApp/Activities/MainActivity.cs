@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Timers;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Android;
 using Android.App;
 using Android.OS;
@@ -388,48 +389,7 @@ namespace HorizontApp
                     }
                     case Resource.Id.buttonRecord:
                     {
-                            //if (_cameraFragment != null)
-                            //{
-                            //    _cameraFragment.TakePicture();
-                            //}
-                        _compassView.IsLoading = true;
-                        if (GpsUtils.HasAltitude(_myLocation))
-                        {
-                            var pd = new ProgressDialog(this);
-                            pd.SetMessage("Loading elevation data. Please Wait.");
-                            pd.SetCancelable(false);
-                            pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
-                            pd.Show();
-
-                            var lastProgressUpdate = System.Environment.TickCount;
-                            var ec = new ElevationCalculation(_myLocation, _distanceSeekBar.Progress,
-                                result =>
-                                {
-                                    _compassView.SetElevationProfile(result);
-                                    _compassView.IsLoading = false;
-                                    pd.Hide();
-                                },
-                                (text, max) =>
-                                {
-                                    //pd.SetMessage(text);
-                                    pd.Max = max;
-                                },
-                                progress =>
-                                {
-                                    var tickCount = System.Environment.TickCount;
-                                    if (tickCount - lastProgressUpdate > 200)
-                                    {
-                                        pd.Progress = progress;
-                                        lastProgressUpdate = tickCount;
-                                    }
-                                });
-                            ec.Execute(_myLocation);
-                        }
-                        else
-                        {
-                            PopupDialog("Error", "It's not possible to generate elevation profile without known altitude");
-                        }
-
+                        GenerateElevationProfile();
                         break;
                     }
                     case Resource.Id.buttonCategorySelect:
@@ -465,6 +425,73 @@ namespace HorizontApp
             {
                 PopupDialog("Error", ex.Message);
             }
+        }
+
+        private void GenerateElevationProfile()
+        {
+            if (!GpsUtils.HasAltitude(_myLocation))
+            {
+                PopupDialog("Error", "It's not possible to generate elevation profile without known altitude");
+                return;
+            }
+
+            var ec = new ElevationCalculation(_myLocation, _distanceSeekBar.Progress);
+
+            var size = ec.GetSizeToDownload();
+            if (size == 0)
+            {
+                StartDownloadAndCalculate(ec);
+                return;
+            }
+
+            using (var builder = new AlertDialog.Builder(this))
+            {
+                builder.SetTitle("Question");
+                builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount downloaded data. \r\n\r\nDo you really want to continue?");
+
+                builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculate(ec); });
+                builder.SetNegativeButton("Cancel", (senderAlert, args) => { });
+                var myCustomDialog = builder.Create();
+
+                myCustomDialog.Show();
+            }
+        }
+
+        private void StartDownloadAndCalculate(ElevationCalculation ec)
+        {
+            var lastProgressUpdate = System.Environment.TickCount;
+
+            var pd = new ProgressDialog(this);
+            pd.SetMessage("Loading elevation data. Please Wait.");
+            pd.SetCancelable(false);
+            pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
+            pd.Show();
+
+            ec.OnFinishedAction = (result) =>
+            {
+                pd.Hide();
+                if (!string.IsNullOrEmpty(result.ErrorMessage))
+                {
+                    PopupDialog("Error", result.ErrorMessage);
+                }
+                _compassView.SetElevationProfile(result);
+            };
+            ec.OnStageChange = (text, max) =>
+            {
+                //pd.SetMessage(text);
+                pd.Max = max;
+            };
+            ec.OnProgressChange = (progress) =>
+            {
+                var tickCount = System.Environment.TickCount;
+                if (tickCount - lastProgressUpdate > 200)
+                {
+                    pd.Progress = progress;
+                    lastProgressUpdate = tickCount;
+                }
+            };
+
+            ec.Execute(_myLocation);
         }
 
         private void OnCategoryFilterChanged(int resourceId)
