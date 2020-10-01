@@ -82,6 +82,7 @@ namespace HorizontApp.Utilities
                                         var ep = new GpsLocation { Altitude = alt, Latitude = latitude, Longitude = longitude };
                                         ep.QuickDistance(myLocation);
                                         ep.QuickBearing(myLocation);
+                                        ep.GetVerticalViewAngle(myLocation);
                                         eleData.Add(ep);
                                     }
                                 }

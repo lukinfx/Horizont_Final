@@ -1,4 +1,5 @@
-﻿using PaintSkyLine;
+﻿using HorizontApp.Utilities;
+using PaintSkyLine;
 using System;
 
 namespace HorizontApp.Domain.Models
@@ -11,7 +12,7 @@ namespace HorizontApp.Domain.Models
 
         public double? Distance = null;
         public double? Bearing = null;
-
+        public double? VerticalViewAngle = null;
 
         public double QuickDistance(GpsLocation myLoc)
         {
@@ -31,12 +32,12 @@ namespace HorizontApp.Domain.Models
         {
             if (Bearing == null)
             {
-                double myY = Math.PI * (this.Latitude / 360) * 12713500;
-                double otherY = Math.PI * (myLoc.Latitude / 360) * 12713500;
+                double myY = Math.PI * (myLoc.Latitude / 360) * 12713500;
+                double otherY = Math.PI * (this.Latitude / 360) * 12713500;
 
                 double c = Math.Cos(((this.Latitude + myLoc.Latitude) / 2) * Math.PI / 180);
-                double myX = c * (this.Longitude / 360) * 40075000;
-                double otherX = c * (myLoc.Longitude / 360) * 40075000;
+                double myX = c * (myLoc.Longitude / 360) * 40075000;
+                double otherX = c * (this.Longitude / 360) * 40075000;
 
                 var dX = otherX - myX;
                 var dY = otherY - myY;
@@ -72,6 +73,12 @@ namespace HorizontApp.Domain.Models
                 Bearing = Normalize180(result);
             }
             return Bearing.Value;
+        }
+
+        public double GetVerticalViewAngle(GpsLocation myLoc)
+        {
+            this.VerticalViewAngle = GpsUtils.VerticalAngle(this.Altitude - myLoc.Altitude, this.Distance.Value);
+            return VerticalViewAngle.Value;
         }
 
         public static double Dg2Rad(double degrees)

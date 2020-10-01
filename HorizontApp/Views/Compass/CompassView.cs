@@ -119,7 +119,7 @@ namespace HorizontApp.Views
             if (IsLoading)
                 return;
 
-            PaintProfile(canvas);
+            compassViewDrawer.PaintProfile(canvas, (float) Heading);
 
             canvas.Rotate(90, 0, 0);
 
@@ -185,43 +185,6 @@ namespace HorizontApp.Views
             }
         }*/
 
-        void PaintProfile(Android.Graphics.Canvas canvas)
-        {
-            var viewAngleHorizontal = CompassViewSettings.Instance().ViewAngleHorizontal;
-            var viewAngleVertical = CompassViewSettings.Instance().ViewAngleVertical;
-
-            foreach (var point in ElevationProfileData.displayedPoints)
-            {
-                foreach (var otherPoint in ElevationProfileData.displayedPoints)
-                {
-                    if (Math.Abs(point.Item1 - otherPoint.Item1) < 2 && Math.Abs(point.Item2 - otherPoint.Item2) < 10)
-                    {
-                        var y1 = CompassViewUtils.GetYLocationOnScreen(point.Item2, canvas.Height, viewAngleHorizontal);
-                        var x1 = CompassViewUtils.GetXLocationOnScreen((float)Heading, (float)point.Item1, canvas.Height, viewAngleHorizontal);
-
-                        var y2 = CompassViewUtils.GetYLocationOnScreen(otherPoint.Item2, canvas.Height, viewAngleHorizontal);
-                        var x2 = CompassViewUtils.GetXLocationOnScreen((float)Heading, (float)otherPoint.Item1, canvas.Height, viewAngleHorizontal);
-                        if (x1.HasValue && x2.HasValue)
-                        {
-                            if (Math.Sqrt(Math.Pow(x1.Value - x2.Value, 2) + Math.Pow(y1 - y2, 2)) < 500)
-                                canvas.DrawLine((float)x1, (float)y1, (float)x2, (float)y2, _paint);
-                        }
-
-                    }
-                }
-            }
-
-            /*for (int i = Heading - viewAngleVertical/2; i < Heading + 35; i++)
-            {
-                var dg = (i + 360) % 360;
-                double x = (i - _heading + 35) * DG_WIDTH;
-
-                //e.Graphics.DrawLine(new Pen(Brushes.Blue), (float)x, 250, (float)x, (float)(250-y));
-                if (i % 10 == 0)
-                {
-                    e.Graphics.DrawString(i.ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), (float)x, 10);
-                }
-            }*/
-        }
+        
     }
 }

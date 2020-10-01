@@ -15,16 +15,17 @@ namespace HorizontApp.Utilities
 {
     public class ElevationProfileData
     {
-        public static List<(double, double)> displayedPoints = new List<(double, double)>();
+        public static List<GpsLocation> displayedPoints = new List<GpsLocation>();
+
 
         /*public void Set(double angle, double viewAngle)
         {
             _data[angle] = viewAngle;
         }*/
 
-        public void Add(double angle, double viewAngle)
+        public void Add(GpsLocation gpsLocation)
         {
-            displayedPoints.Add((angle, viewAngle));
+            displayedPoints.Add(gpsLocation);
         }
 
         /*public double Get(int angle)
@@ -59,12 +60,6 @@ namespace HorizontApp.Utilities
 
             int progress = 0;
 
-
-            var sortedData = elevationData
-                .Where(i =>
-                    i.Distance > MIN_DISTANCE && i.Distance < visibility * 1000)
-                .OrderBy(i2 => i2.Distance);
-
             var z = elevationData
                 .Where(i => i.Distance > MIN_DISTANCE && i.Distance < visibility * 1000)
                 .GroupBy(i => Math.Floor(i.Bearing.Value));
@@ -80,7 +75,7 @@ namespace HorizontApp.Utilities
                     foreach (var otherPoint in points)
                     {
 
-                        if (GpsUtils.VerticalAngle(point.Altitude - myLocation.Altitude, point.Distance.Value) < GpsUtils.VerticalAngle(otherPoint.Altitude - myLocation.Altitude, otherPoint.Distance.Value))
+                        if (point.VerticalViewAngle < otherPoint.VerticalViewAngle)
                         {
                             display = false;
                             break;
@@ -89,7 +84,6 @@ namespace HorizontApp.Utilities
                     if (display || ElevationProfileData.displayedPoints.Count == 0)
                     {
                         temporary.Add(point);
-                        //_elevationProfileData.Add(point.Bearing.Value, GpsUtils.VerticalAngle(point.Altitude - myLocation.Altitude, point.Distance.Value));
                     }
                 }
 
@@ -109,7 +103,7 @@ namespace HorizontApp.Utilities
 
                     if (display)
                     {
-                        _elevationProfileData.Add(point.Bearing.Value, GpsUtils.VerticalAngle(point.Altitude - myLocation.Altitude, point.Distance.Value));
+                        _elevationProfileData.Add(point);
                     }
                 }
             }
