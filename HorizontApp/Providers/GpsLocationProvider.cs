@@ -23,7 +23,23 @@ namespace HorizontApp.Providers
         {
             try
             {
-                /*var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                bool FAKE_LOCATION = false;
+                if (FAKE_LOCATION)
+                {
+                    //Celadna-Pstruzi
+                    /*currentLocation.Latitude = 49.5651525;
+                    currentLocation.Longitude = 18.3406403;
+                    currentLocation.Altitude = 430;
+                    return currentLocation;*/
+
+                    //Svarna hanka
+                    currentLocation.Latitude = 49.4894558;
+                    currentLocation.Longitude = 18.4914856;
+                    currentLocation.Altitude = 830;
+                    return currentLocation;
+                }
+
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
                 Location location = await Geolocation.GetLocationAsync(request);
                 
                 if (location != null)
@@ -33,19 +49,8 @@ namespace HorizontApp.Providers
                     currentLocation.Altitude = location.Altitude.Value;
                     return currentLocation;
                 }
-                return null;*/
+                return null;
 
-                //Celadna-Pstruzi
-                /*currentLocation.Latitude = 49.5651525;
-                currentLocation.Longitude = 18.3406403;
-                currentLocation.Altitude = 430;
-                return currentLocation;*/
-
-                //Svarna hanka
-                currentLocation.Latitude = 49.4894558;
-                currentLocation.Longitude = 18.4914856;
-                currentLocation.Altitude = 830;
-                return currentLocation;
             }
             catch (FeatureNotSupportedException ex)
             {
