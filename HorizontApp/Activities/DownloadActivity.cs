@@ -138,11 +138,11 @@ namespace HorizontApp.Activities
                 source.DownloadDate = DateTime.Now;
                 Database.InsertItem(source);
 
-                PopupDialog("Information", $"{listOfPoi.Count()} items loaded to database.");
+                PopupHelper.InfoDialog(this, "Information", $"{listOfPoi.Count()} items loaded to database.");
             }
             catch (Exception ex)
             {
-                PopupDialog("Error", $"Error when loading data. {ex.Message}");
+                PopupHelper.ErrorDialog(this, "Error", $"Error when loading data. {ex.Message}");
             }
         }
 
@@ -155,22 +155,11 @@ namespace HorizontApp.Activities
                 source.DownloadDate = null;
                 Database.DeleteItem(source);
 
-                PopupDialog("Information", $"Items removed from database.");
+                PopupHelper.InfoDialog(this, "Information", $"Items removed from database.");
             }
             catch (Exception ex)
             {
-                PopupDialog("Error", $"Error when removing data. {ex.Message}");
-            }
-        }
-        
-
-        public void PopupDialog(string title, string message)
-        {
-            using (var dialog = new AlertDialog.Builder(this))
-            {
-                dialog.SetTitle(title);
-                dialog.SetMessage(message);
-                dialog.Show();
+                PopupHelper.ErrorDialog(this, "Error", $"Error when removing data. {ex.Message}");
             }
         }
 

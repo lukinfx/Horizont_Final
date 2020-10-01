@@ -232,16 +232,6 @@ namespace HorizontApp
             InitializeCameraFragment();
         }
 
-        public void PopupDialog(string title, string message)
-        {
-            using (var dialog = new AlertDialog.Builder(this))
-            {
-                dialog.SetTitle(title);
-                dialog.SetMessage(message);
-                dialog.Show();
-            }
-        }
-
         private async void LoadAndDisplayData()
         {
             try
@@ -263,7 +253,7 @@ namespace HorizontApp
                         _myLocation.Altitude = newLocation.Altitude;
                     }
 
-                    _GPSEditText.Text = ($"Lat: {_myLocation.Latitude} Lon: {_myLocation.Longitude} Alt: {Math.Round(_myLocation.Altitude, 0)}");
+                    _GPSEditText.Text = ($"Lat: {_myLocation.Latitude:F7} Lon: {_myLocation.Longitude:F7} Alt: {_myLocation.Altitude:F0}");
 
                     var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
                     _compassView.SetPoiViewItemList(points);
@@ -271,7 +261,7 @@ namespace HorizontApp
             }
             catch (Exception ex)
             {
-                PopupDialog("Error", ex.Message);
+                PopupHelper.ErrorDialog(this, "Error", ex.Message);
             }
 
         }
@@ -290,7 +280,7 @@ namespace HorizontApp
             }
             catch (Exception ex)
             {
-                PopupDialog("Error", $"Error when loading data. {ex.Message}");
+                PopupHelper.ErrorDialog(this, "Error", $"Error when loading data. {ex.Message}");
             }
         }
 
@@ -423,7 +413,7 @@ namespace HorizontApp
             }
             catch (Exception ex)
             {
-                PopupDialog("Error", ex.Message);
+                PopupHelper.ErrorDialog(this, "Error", ex.Message);
             }
         }
 
@@ -431,7 +421,7 @@ namespace HorizontApp
         {
             if (!GpsUtils.HasAltitude(_myLocation))
             {
-                PopupDialog("Error", "It's not possible to generate elevation profile without known altitude");
+                PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
                 return;
             }
 
@@ -448,9 +438,10 @@ namespace HorizontApp
             {
                 builder.SetTitle("Question");
                 builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount downloaded data. \r\n\r\nDo you really want to continue?");
-
+                builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
                 builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculate(ec); });
                 builder.SetNegativeButton("Cancel", (senderAlert, args) => { });
+
                 var myCustomDialog = builder.Create();
 
                 myCustomDialog.Show();
@@ -472,7 +463,7 @@ namespace HorizontApp
                 pd.Hide();
                 if (!string.IsNullOrEmpty(result.ErrorMessage))
                 {
-                    PopupDialog("Error", result.ErrorMessage);
+                    PopupHelper.ErrorDialog(this, "Error", result.ErrorMessage);
                 }
                 _compassView.SetElevationProfile(result);
             };

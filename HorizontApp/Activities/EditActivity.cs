@@ -1,24 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
-using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using static Android.Views.View;
-
-using HorizontApp.Activities;
 using HorizontApp.DataAccess;
 using HorizontApp.Domain.Models;
-using HorizontApp.Domain.ViewModel;
-
 using HorizontApp.Utilities;
-using HorizontApp.Views.ListOfPoiView;
 using HorizontApp.Domain.Enums;
 using Xamarin.Essentials;
 using System.Text.RegularExpressions;
@@ -168,16 +157,7 @@ namespace HorizontApp.Activities
                     }
                     else
                     {
-                        Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-                        AlertDialog alert = dialog.Create();
-                        alert.SetTitle("Wrong format");
-                        alert.SetMessage("Use correct format. Example: '12,34567890' ");
-                        alert.SetIcon(Resource.Drawable.notification_bg);
-                        alert.SetButton("OK", (c, ev) =>
-                        {
-                            // Ok button click task  
-                        });
-                        alert.Show();
+                        PopupHelper.ErrorDialog(this,"Wrong format", "Use correct format. Example: '12,34567890' ");
                     }
                     break;
                 case Resource.Id.buttonPaste:
@@ -197,11 +177,11 @@ namespace HorizontApp.Activities
 
                         catch (Exception ex)
                         {
-                            PopupDialog("The format is not correct", ex.Message);
+                            PopupHelper.ErrorDialog(this, "The format is not correct", ex.Message);
                         }
                     }
                     else
-                        PopupDialog("Error", "It seems you don't have any text in your ClipBoard.");
+                        PopupHelper.ErrorDialog(this, "Error", "It seems you don't have any text in your ClipBoard.");
                     break;
 
             }
@@ -255,18 +235,8 @@ namespace HorizontApp.Activities
             }
             catch (Exception ex)
             {
-                PopupDialog("Error while parsing", ex.Message);
+                PopupHelper.ErrorDialog(this, "Error while parsing", ex.Message);
                 return null;
-            }
-        }
-
-        public void PopupDialog(string title, string message)
-        {
-            using (var dialog = new AlertDialog.Builder(this))
-            {
-                dialog.SetTitle(title);
-                dialog.SetMessage(message);
-                dialog.Show();
             }
         }
     }
