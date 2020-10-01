@@ -95,42 +95,44 @@ namespace HorizontApp.Utilities
 
                 var points = group.OrderBy(i => i.Distance);
                 List<GpsLocation> temporary = new List<GpsLocation>();
+                double maxViewAngle = -90;
+                var x1 = points.Count();
                 foreach (var point in points)
                 {
-                    bool display = true;
-                    foreach (var otherPoint in points)
-                    {
-
-                        if (point.VerticalViewAngle < otherPoint.VerticalViewAngle)
-                        {
-                            display = false;
-                            break;
-                        }
-                    }
-                    if (display || _elevationProfileData.GetPoints().Count == 0)
+                    if (point.VerticalViewAngle > maxViewAngle)
                     {
                         temporary.Add(point);
+                        maxViewAngle = point.VerticalViewAngle.Value;
                     }
                 }
+                var x2 = temporary.Count();
 
-                temporary.OrderByDescending(j => j.Distance);
+                var temporary2 = temporary.OrderByDescending(j => j.Distance);
 
-                foreach (var point in temporary)
+                var x3 = temporary2.Count();
+
+                GpsLocation lastPoint = null;
+                GpsLocation lastAddedPoint = null;
+                foreach (var point in temporary2)
                 {
-
-                    bool display = true;
-                    foreach (var otherPoint in temporary)
-                    {
-                        if (point.Altitude < otherPoint.Altitude && Math.Abs(point.Distance.Value - otherPoint.Distance.Value) < 500)
-                        {
-                            display = false;
-                        }
-                    }
-
-                    if (display)
+                    if (lastPoint == null)
                     {
                         _elevationProfileData.Add(point);
+                        lastAddedPoint = point;
+                        lastPoint = point;
+                        continue;
                     }
+
+
+                    if (Math.Abs(point.Distance.Value - lastPoint.Distance.Value) < 500)// || lastAddedPoint.Altitude-point.Altitude < 100)
+                    {
+                        lastPoint = point;
+                        continue;
+                    }
+
+                    _elevationProfileData.Add(point);
+                    lastAddedPoint = point;
+                    lastPoint = point;
                 }
             }
         }
