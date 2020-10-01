@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Device.Location;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Windows.Forms;
 using HorizontLib.Domain.Models;
 using HorizontLib.Utilities;
 using PaintSkyLine;
+using SkiaSharp;
 
 namespace PaintSkyLine
 {
@@ -24,6 +26,8 @@ namespace PaintSkyLine
         private double _visibility = 10;
         private GpsLocation _myLocation = new GpsLocation(49.4894558, 18.4914856, 830);
 
+        private SKData profileImageData;
+
         public SkyLine()
         {
             //od radhoste po ropici
@@ -38,6 +42,23 @@ namespace PaintSkyLine
             double filterLatMax = 49.5946578;
             double filterLonMax = 18.5352992;
 
+            var imageInfo = new SKImageInfo(width: 100, height: 100, colorType: SKColorType.Rgba8888, alphaType: SKAlphaType.Premul);
+            var surface = SKSurface.Create(imageInfo);
+            var canvas = surface.Canvas;
+
+            //canvas.Clear(SKColors.White);
+
+            var paint = new SKPaint();
+            paint.IsAntialias = true;
+            paint.Color = SKColors.Red;
+            paint.StrokeWidth = 3;
+
+            canvas.DrawCircle(50, 50, 25, paint);
+
+            using (SKImage image = surface.Snapshot())
+            {
+                profileImageData = image.Encode();
+            }
         }
 
         public void SetMyLocation(GpsLocation myLocation)
@@ -53,7 +74,7 @@ namespace PaintSkyLine
         public void CalculateProfile()
         {
             GpsUtils.BoundingRect(_myLocation,_visibility*1000, out var min, out var max);
-
+            
             _data = new List<GpsLocation>();
             string inputFileName = @"c:\Temp\ElevationMap\ALPSMLC30_N049E018_DSM.tif";
             GeoTiffReader.ReadTiff(inputFileName, min, max, _myLocation, 3, _data);
@@ -92,7 +113,7 @@ namespace PaintSkyLine
         void PaintTerrain(PaintEventArgs e)
         {
             var pen = new Pen(Brushes.Black, 20);
-            _data2 = new List<GpsLocation>();
+            var _data2 = new List<GpsLocation>();
             var sortedData = _data
                 .Where(i =>
                     i.Distance > MIN_DISTANCE && i.Distance < _visibility * 1000
@@ -151,8 +172,6 @@ namespace PaintSkyLine
 
                     if (display)
                     {
-
-                        
                         _data2.Add(point);
                     }
                 }
@@ -250,7 +269,9 @@ namespace PaintSkyLine
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            e.Graphics.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
+            e.Graphics.FillRectangle(Brushes.AntiqueWhite, 0, 0, this.Width, this.Height);
+
+            PaintTest(e);
 
             PaintProfileScale(e);
 
@@ -258,6 +279,18 @@ namespace PaintSkyLine
 
             //PaintTerrain(e);
             PaintProfile2(e);
+            //PaintProfile2(e);
+
+        }
+
+        void PaintTest(PaintEventArgs e)
+        {
+            using (System.IO.MemoryStream mStream = new System.IO.MemoryStream(profileImageData.ToArray()))
+            {
+                var bmp = new Bitmap(mStream, false);
+                var img = Image.FromStream(mStream);
+                e.Graphics.DrawImage(img, new Point(_heading, 0));
+            };
         }
 
         public int GetElevationPointCount()

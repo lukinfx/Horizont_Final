@@ -96,6 +96,7 @@
     <Compile Include="Utilities\CompassViewUtils.cs" />
     <Compile Include="Utilities\DownloadCountryAdapter.cs" />
     <Compile Include="Utilities\DownloadItemAdapter.cs" />
+    <Compile Include="Utilities\ElevationProfileBitmapDrawer.cs" />
     <Compile Include="Utilities\GeoLocationExtension.cs" />
     <Compile Include="Utilities\ExceptionHelper.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
@@ -169,6 +170,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp">
+      <Version>2.80.2</Version>
     </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.7.335</Version>

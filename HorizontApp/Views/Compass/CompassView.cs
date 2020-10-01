@@ -35,7 +35,8 @@ namespace HorizontApp.Views
         }
 
         private CompassViewDrawer compassViewDrawer;
-        
+        private ElevationProfileBitmapDrawer elevationProfileBitmapDrawer;
+
 
         public CompassView(Context context, IAttributeSet attrs) :
             base(context, attrs)
@@ -81,6 +82,8 @@ namespace HorizontApp.Views
             
             InitializeViewDrawer();
 
+            elevationProfileBitmapDrawer = new ElevationProfileBitmapDrawer();
+
             _paint = new Paint();
             _paint.SetARGB(255, 255, 255, 0);
             _paint.SetStyle(Paint.Style.Stroke);
@@ -122,6 +125,17 @@ namespace HorizontApp.Views
                 compassViewDrawer.PaintProfile(canvas, (float) Heading, _elevationProfile);
             }
 
+
+            //###paint profile
+            /*var profileImageData = elevationProfileBitmapDrawer.GetElevationBitmap();
+            using (System.IO.MemoryStream mStream = new System.IO.MemoryStream(profileImageData.ToArray()))
+            {
+                var bmp = new Bitmap(mStream, false);
+                var img = Image.FromStream(mStream);
+                canvas.DrawBitmap(bmp,Heading, 0, _paint);
+            }*/
+
+
             canvas.Rotate(90, 0, 0);
 
             if (list != null)
@@ -150,6 +164,8 @@ namespace HorizontApp.Views
         public void SetElevationProfile(ElevationProfileData elevationProfile)
         {
             _elevationProfile = elevationProfile;
+            //###
+            //elevationProfileBitmapDrawer.SetElevationProfile(_elevationProfile);
             Invalidate();
         }
 
