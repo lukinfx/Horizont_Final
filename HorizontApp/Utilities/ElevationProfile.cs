@@ -84,16 +84,16 @@ namespace HorizontApp.Utilities
 
             int progress = 0;
 
-            var z = elevationData
+            var elevationDataGrouped = elevationData
                 .Where(i => i.Distance > MIN_DISTANCE && i.Distance < visibility * 1000)
                 .GroupBy(i => Math.Floor(i.Bearing.Value));
 
-            foreach (var i in z)
+            foreach (var group in elevationDataGrouped)
             {
                 progress++;
                 onProgressChange(progress);
 
-                var points = i.OrderBy(i2 => i2.Distance);
+                var points = group.OrderBy(i => i.Distance);
                 List<GpsLocation> temporary = new List<GpsLocation>();
                 foreach (var point in points)
                 {
