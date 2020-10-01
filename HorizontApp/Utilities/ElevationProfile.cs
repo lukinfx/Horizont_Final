@@ -72,6 +72,8 @@ namespace HorizontApp.Utilities
                 onProgressChange(progress);
 
                 var maxPoint = group.OrderByDescending(i => i.VerticalViewAngle).FirstOrDefault();
+                
+                maxPoint.Distance = 0;//workaround to display all connections 
                 _elevationProfileData.Add(maxPoint);
             }
         }

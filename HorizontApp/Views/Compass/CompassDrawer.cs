@@ -66,7 +66,7 @@ namespace HorizontApp.Views.Compass
                 {
                     if (point.Bearing.HasValue && otherPoint.Bearing.HasValue && point.Distance.HasValue && otherPoint.Distance.HasValue && point.VerticalViewAngle.HasValue && otherPoint.VerticalViewAngle.HasValue)
                     {
-                        if (Math.Abs(point.Bearing.Value - otherPoint.Bearing.Value) < 2 && Math.Abs(point.Distance.Value - otherPoint.Distance.Value) < point.Distance.Value / 10)
+                        if (Math.Abs(point.Bearing.Value - otherPoint.Bearing.Value) < 2 && Math.Abs(point.Distance.Value - otherPoint.Distance.Value) <= point.Distance.Value / 10)
                         {
                             var y1 = CompassViewUtils.GetYLocationOnScreen(point.VerticalViewAngle.Value, canvas.Height, ViewAngleVertical);
                             var x1 = CompassViewUtils.GetXLocationOnScreen(heading, (float)point.Bearing.Value, canvas.Width, ViewAngleHorizontal);
