@@ -88,11 +88,13 @@ namespace HorizontApp.Utilities
 
             foreach (var i in z)
             {
+                progress++;
+                onProgressChange(progress);
+
                 var points = i.OrderBy(i2 => i2.Distance);
                 List<GpsLocation> temporary = new List<GpsLocation>();
                 foreach (var point in points)
                 {
-                    progress++;
                     bool display = true;
                     foreach (var otherPoint in points)
                     {

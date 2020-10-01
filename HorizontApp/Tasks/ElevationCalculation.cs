@@ -106,7 +106,7 @@ namespace HorizontApp.Tasks
 
         private ElevationProfileData ProcessElevationData(GpsLocation myLocation, int visibility, List<GpsLocation> elevationData)
         {
-            OnStageChange("Processing elevation data.", elevationData.Count);
+            OnStageChange("Processing elevation data.", 360);
             ElevationProfile ep = new ElevationProfile();
             ep.GenerateElevationProfile(_myLocation, _visibility, elevationData, progress => { OnProgressChange(progress); });
             return ep.GetProfile();
