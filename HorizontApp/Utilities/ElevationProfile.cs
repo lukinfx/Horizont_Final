@@ -94,26 +94,26 @@ namespace HorizontApp.Utilities
                 onProgressChange(progress);
 
                 var points = group.OrderBy(i => i.Distance);
-                List<GpsLocation> temporary = new List<GpsLocation>();
+
+                //Select visible points
+                List<GpsLocation> tmpVisiblePoints = new List<GpsLocation>();
                 double maxViewAngle = -90;
-                var x1 = points.Count();
                 foreach (var point in points)
                 {
                     if (point.VerticalViewAngle > maxViewAngle)
                     {
-                        temporary.Add(point);
+                        tmpVisiblePoints.Add(point);
                         maxViewAngle = point.VerticalViewAngle.Value;
                     }
                 }
-                var x2 = temporary.Count();
 
-                var temporary2 = temporary.OrderByDescending(j => j.Distance);
+                //Change order (now from the farthest to the nearest)
+                tmpVisiblePoints.Reverse();
 
-                var x3 = temporary2.Count();
-
+                //... and ignore points on descending slope
                 GpsLocation lastPoint = null;
                 GpsLocation lastAddedPoint = null;
-                foreach (var point in temporary2)
+                foreach (var point in tmpVisiblePoints)
                 {
                     if (lastPoint == null)
                     {
