@@ -9,7 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using HorizontApp.Domain.Models;
+using HorizontLib.Domain.Models;
 
 namespace HorizontApp.Domain.ViewModel
 {

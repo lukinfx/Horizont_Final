@@ -1,5 +1,5 @@
 ﻿using System;
-using HorizontApp.Domain.Enums;
+using HorizontLib.Domain.Enums;
 
 namespace HorizontApp.Utilities
 {

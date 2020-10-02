@@ -1,8 +1,8 @@
 ﻿using System;
-using HorizontApp.Domain.Enums;
 using SQLite;
+using HorizontLib.Domain.Enums;
 
-namespace HorizontApp.Domain.Models
+namespace HorizontLib.Domain.Models
 {
     public class PoisToDownload
     {

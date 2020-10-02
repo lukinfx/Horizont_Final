@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ElevationData;
+using HorizontLib.Domain.Models;
+using HorizontLib.Utilities;
 using PaintSkyLine;
 
 namespace PaintSkyLine
@@ -16,12 +17,12 @@ namespace PaintSkyLine
         private static readonly int DG_WIDTH = 20;
         private static readonly int MIN_DISTANCE = 1000;
 
-        private List<GeoPoint> _data;
+        private List<GpsLocation> _data;
         private double[] _elevationProfile = new double[360];
-        private List<GeoPoint> _data2 = new List<GeoPoint>();
+        private List<GpsLocation> _data2 = new List<GpsLocation>();
         private int _heading = 0;
         private double _visibility = 10;
-        private GeoPoint _myLocation = new GeoPoint(49.4894558, 18.4914856, 830);
+        private GpsLocation _myLocation = new GpsLocation(49.4894558, 18.4914856, 830);
 
         public SkyLine()
         {
@@ -39,7 +40,7 @@ namespace PaintSkyLine
 
         }
 
-        public void SetMyLocation(GeoPoint myLocation)
+        public void SetMyLocation(GpsLocation myLocation)
         {
             _myLocation = myLocation;
         }
@@ -51,7 +52,7 @@ namespace PaintSkyLine
 
         public void Draw()
         {
-            _myLocation.BoundingRect(_visibility, out var min, out var max);
+            GpsUtils.BoundingRect(_myLocation,_visibility*1000, out var min, out var max);
             
             string inputFileName = @"c:\Temp\ElevationMap\ALPSMLC30_N049E018_DSM.tif";
 
@@ -62,8 +63,9 @@ namespace PaintSkyLine
                 var ele = myData[(int)y, (int)x];
             }*/
 
+            _data = new List<GpsLocation>();
 
-            _data = ElevationData.GeoTiffReader.QuickReadTiff(inputFileName, _myLocation, min.Latitude, max.Latitude, min.Longitude, max.Longitude);
+            GeoTiffReader.ReadTiff(inputFileName, min, max, _myLocation, 3, _data);
 
             for (int i=0; i<360; i++)
             {
@@ -74,8 +76,8 @@ namespace PaintSkyLine
             {
 
                 var dist = point.Distance;
-                var bearing = GeoPoint.Normalize360(point.Bearing);
-                var verticalAngle = point.VerticalAngle;
+                var bearing = GpsUtils.Normalize360(point.Bearing.Value);
+                var verticalAngle = point.VerticalViewAngle.Value;
 
                 if (dist > MIN_DISTANCE && dist < _visibility * 1000)
                 {
@@ -111,38 +113,38 @@ namespace PaintSkyLine
         void PaintTerrain(PaintEventArgs e)
         {
             var pen = new Pen(Brushes.Black, 20);
-            _data2 = new List<GeoPoint>();
+            _data2 = new List<GpsLocation>();
             var sortedData = _data
                 .Where(i =>
                     i.Distance > MIN_DISTANCE && i.Distance < _visibility * 1000
-                    && GeoPoint.IsAngleBetween(i.Bearing, _heading, 35))
+                    && GpsUtils.IsAngleBetween(i.Bearing.Value, _heading, 35))
                 .OrderByDescending(i2 => i2.Distance);
             foreach (var point in sortedData)
             {
 
-                var b = GeoPoint.Normalize360(point.Bearing - _heading);
+                var b = GpsUtils.Normalize360(point.Bearing.Value - _heading);
                 var c = (point.Distance / (_visibility * 1000)) * 200;
                 pen.Color = Color.FromArgb(100, (int)c, (int)c, (int)c);
-                var x = GeoPoint.Normalize360(b + 35) * DG_WIDTH;
-                var y = 250 - point.VerticalAngle * 40;
+                var x = GpsUtils.Normalize360(b + 35) * DG_WIDTH;
+                var y = 250 - point.VerticalViewAngle * 40;
                 e.Graphics.DrawLine(pen, (float)x, (float)500, (float)x, (float)y);
             }
             var z = _data
                 .Where(i => i.Distance > MIN_DISTANCE && i.Distance < _visibility * 1000)
-                .GroupBy(i => Math.Floor(i.Bearing));
+                .GroupBy(i => Math.Floor(i.Bearing.Value));
 
             foreach (var i in z)
             {
                 var bearing = i.Key;
                 var points = i.OrderBy(i2 => i2.Distance);
-                List<GeoPoint> displayedPoints = new List<GeoPoint>();
+                List<GpsLocation> displayedPoints = new List<GpsLocation>();
                 foreach (var point in points)
                 {
 
                     bool display = true;
                     foreach (var poi in displayedPoints)
                     {
-                        if (point.VerticalAngle < poi.VerticalAngle)
+                        if (point.VerticalViewAngle < poi.VerticalViewAngle)
                         {
                             display = false;
                             break;
@@ -162,7 +164,7 @@ namespace PaintSkyLine
                     bool display = true;
                     foreach (var otherPoint in displayedPoints)
                     {
-                        if (point.Altitude < otherPoint.Altitude && Math.Abs(point.Distance - otherPoint.Distance) < 500)
+                        if (point.Altitude < otherPoint.Altitude && Math.Abs(point.Distance.Value - otherPoint.Distance.Value) < 500)
                         {
                             display = false;
                         }
@@ -203,15 +205,15 @@ namespace PaintSkyLine
             {
                 foreach (var otherPoint in _data2)
                 {
-                    if (Math.Abs(point.Distance - otherPoint.Distance)< point.Distance / 10 && Math.Abs(point.Bearing - otherPoint.Bearing) < 2)
+                    if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value)< point.Distance / 10 && Math.Abs(point.Bearing.Value - otherPoint.Bearing.Value) < 2)
                     {
-                        var b1 = GeoPoint.Normalize360(point.Bearing - _heading);
-                        var x1 = GeoPoint.Normalize360(b1 + 35) * DG_WIDTH;
-                        var y1 = 250 - point.VerticalAngle * 40;
+                        var b1 = GpsUtils.Normalize360(point.Bearing.Value - _heading);
+                        var x1 = GpsUtils.Normalize360(b1 + 35) * DG_WIDTH;
+                        var y1 = 250 - point.VerticalViewAngle.Value * 40;
 
-                        var b2 = GeoPoint.Normalize360(otherPoint.Bearing - _heading);
-                        var x2 = GeoPoint.Normalize360(b2 + 35) * DG_WIDTH;
-                        var y2 = 250 - otherPoint.VerticalAngle * 40;
+                        var b2 = GpsUtils.Normalize360(otherPoint.Bearing.Value - _heading);
+                        var x2 = GpsUtils.Normalize360(b2 + 35) * DG_WIDTH;
+                        var y2 = 250 - otherPoint.VerticalViewAngle.Value  * 40;
                         if (Math.Sqrt(Math.Pow(x1-x2, 2)+ Math.Pow(y1 - y2, 2))<100)
                             e.Graphics.DrawLine(pen, (float)x1, (float)y1, (float)x2, (float)y2);
                         

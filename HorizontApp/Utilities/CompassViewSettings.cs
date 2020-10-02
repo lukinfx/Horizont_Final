@@ -1,6 +1,6 @@
 ﻿using Android.Content;
 using Android.Preferences;
-using HorizontApp.Domain.Enums;
+using HorizontLib.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

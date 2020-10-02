@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-using HorizontApp.Domain.Enums;
-using HorizontApp.Domain.Models;
+using HorizontLib.Domain.Enums;
+using HorizontLib.Domain.Models;
 
 namespace HorizontApp.Utilities
 {

@@ -9,8 +9,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using HorizontApp.Domain.Enums;
-using HorizontApp.Domain.Models;
+using HorizontLib.Domain.Enums;
+using HorizontLib.Domain.Models;
 using HorizontApp.Domain.ViewModel;
 
 namespace HorizontApp.Utilities

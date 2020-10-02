@@ -5,14 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ElevationData;
 
 namespace ReadGeoTiff
 {
     class Program
     {
-        
-
         static void Main(string[] args)
         {
             string inputFileName = @"c:\temp\ElevationMap\N049E018\ALPSMLC30_N049E018_DSM.tif";

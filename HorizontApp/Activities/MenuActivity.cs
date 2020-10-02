@@ -2,7 +2,7 @@
 using Android.OS;
 using Android.Widget;
 using Android.Content.PM;
-using HorizontApp.Domain.Models;
+using HorizontLib.Domain.Models;
 using Android.Views;
 using HorizontApp.Views.ListOfPoiView;
 using Android.Content;

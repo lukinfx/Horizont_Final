@@ -7,7 +7,7 @@ using Xamarin.Essentials;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Utilities;
 using HorizontApp.Views.Compass;
-using HorizontApp.Domain.Models;
+using HorizontLib.Domain.Models;
 using System;
 
 namespace HorizontApp.Views

@@ -1,5 +1,5 @@
 ﻿using System;
-using HorizontApp.Domain.Models;
+using HorizontLib.Domain.Models;
 using Xamarin.Essentials;
 
 namespace HorizontApp.Providers

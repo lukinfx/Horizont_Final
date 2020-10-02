@@ -2,10 +2,15 @@
 {
     public enum PoiCategory
     {
-        Peaks,
-        Castles,
-        ViewTowers,
-        TransmissionTowers,
-        Lakes
+        Mountains = 1,
+        Lakes = 2,
+        Castles = 3,
+        Palaces = 4,
+        Ruins = 5,
+        ViewTowers = 6,
+        Transmitters = 7,
+        Churches = 8,
+
+        Test = 100
     }
 }

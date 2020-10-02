@@ -1,11 +1,16 @@
-﻿using HorizontLib.Domain.Enums;
-//using SQLite;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using HorizontLib.Domain.Enums;
+using SQLite;
 
 namespace HorizontLib.Domain.Models
 {
-    public class Poi
+    public sealed class Poi
     {
-        //[PrimaryKey, AutoIncrement]
+        [PrimaryKey, AutoIncrement]
         public long Id { get; set; }
 
         public PoiCategory Category { get; set; }
@@ -17,21 +22,10 @@ namespace HorizontLib.Domain.Models
         public double Altitude { get; set; }
 
         public bool Favorite { get; set; }
+        public Guid Source { get; set; }
 
         public Poi()
         {
         }
-
-        public Poi(Poi poi)
-        {
-            Id = poi.Id;
-            Category = poi.Category;
-            Name = poi.Name;
-            Longitude = poi.Longitude;
-            Latitude = poi.Latitude;
-            Altitude = poi.Altitude;
-            Favorite = poi.Favorite;
-        }
-
     }
 }

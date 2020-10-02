@@ -9,10 +9,12 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using HorizontApp.Domain.Models;
+using HorizontLib.Domain.Models;
 using HorizontApp.Utilities;
 using HorizontApp.Providers;
 using HorizontApp.Views;
+using HorizontLib.Utilities;
+using GpsUtils = HorizontApp.Utilities.GpsUtils;
 using Object = Java.Lang.Object;
 
 namespace HorizontApp.Tasks

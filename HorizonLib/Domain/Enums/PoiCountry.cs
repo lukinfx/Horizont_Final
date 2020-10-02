@@ -1,4 +1,4 @@
-﻿namespace HorizontApp.Domain.Enums
+﻿namespace HorizontLib.Domain.Enums
 {
     /// <summary>
     /// ISO 3166-1 alpha-3

@@ -80,16 +80,10 @@
     <Compile Include="Activities\MenuActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="DataAccess\PoiDatabase.cs" />
-    <Compile Include="Domain\Enums\PoiCategory.cs" />
-    <Compile Include="Domain\Enums\PoiCountry.cs" />
-    <Compile Include="Domain\Models\GpsLocation.cs" />
-    <Compile Include="Domain\Models\PoiList.cs" />
-    <Compile Include="Domain\Models\PoisToDownload.cs" />
     <Compile Include="Domain\ViewModel\PoiViewItem.cs" />
     <Compile Include="Domain\ViewModel\PoiViewItemList.cs" />
     <Compile Include="HorizontApplication.cs" />
     <Compile Include="Activities\MainActivity.cs" />
-    <Compile Include="Domain\Models\Poi.cs" />
     <Compile Include="Providers\CompassProvider.cs" />
     <Compile Include="Providers\GpsLocationProvider.cs" />
     <Compile Include="Providers\GpxFileProvider.cs" />
@@ -106,7 +100,6 @@
     <Compile Include="Utilities\GeoLocationExtension.cs" />
     <Compile Include="Utilities\ExceptionHelper.cs" />
     <Compile Include="Providers\ElevationFileProvider.cs" />
-    <Compile Include="Utilities\GeoTiffReader.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
     <Compile Include="Utilities\GpxFileParser.cs" />
     <Compile Include="Utilities\HeadingStabilizator.cs" />
@@ -447,6 +440,12 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HorizonLib\HorizonLib.csproj">
+      <Project>{52e0547c-afec-4042-9cba-2a601b9bd62d}</Project>
+      <Name>HorizonLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

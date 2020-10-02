@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HorizontLib.Domain.Models;
 
 namespace PaintSkyLine
 {
@@ -20,11 +21,11 @@ namespace PaintSkyLine
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var lat = double.Parse(textBoxLat.Text.Replace(".",","));
-            var lon = double.Parse(textBoxLon.Text.Replace(".", ","));
+            var lat = double.Parse(textBoxLat.Text.Replace(",","."));
+            var lon = double.Parse(textBoxLon.Text.Replace(",", "."));
             var alt = double.Parse(textBoxAlt.Text);
             var visibility = double.Parse(textBoxVisibility.Text);
-            skyLine1.SetMyLocation(new GeoPoint(lat, lon, alt));
+            skyLine1.SetMyLocation(new GpsLocation(lon, lat, alt));
             skyLine1.SetVisibility(visibility);
 
             var start = Environment.TickCount;

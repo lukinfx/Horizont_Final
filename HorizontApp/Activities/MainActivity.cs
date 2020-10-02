@@ -18,13 +18,13 @@ using Android.Support.V4.Content;
 using static Android.Views.View;
 
 using HorizontApp.Utilities;
-using HorizontApp.Domain.Models;
+using HorizontLib.Domain.Models;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Views;
 using HorizontApp.Views.Camera;
 using HorizontApp.DataAccess;
 using HorizontApp.Activities;
-using HorizontApp.Domain.Enums;
+using HorizontLib.Domain.Enums;
 using HorizontApp.Tasks;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
 using Xamarin.Essentials;

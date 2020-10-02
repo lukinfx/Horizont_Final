@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using HorizontApp.Domain.Models;
+using HorizontLib.Domain.Models;
 using HorizontApp.Utilities;
 using SQLite;
 

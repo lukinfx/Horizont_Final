@@ -4,7 +4,7 @@ using System.Linq;
 using Android.App;
 using Android.Views;
 using Android.Widget;
-using HorizontApp.Domain.Enums;
+using HorizontLib.Domain.Enums;
 using HorizontApp.Domain.ViewModel;
 
 namespace HorizontApp.Utilities

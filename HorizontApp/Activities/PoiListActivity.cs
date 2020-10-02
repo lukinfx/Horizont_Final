@@ -19,7 +19,7 @@ using Android.Widget;
 
 using HorizontApp.Activities;
 using HorizontApp.DataAccess;
-using HorizontApp.Domain.Models;
+using HorizontLib.Domain.Models;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Utilities;
 
