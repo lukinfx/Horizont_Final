@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Utilities;
+using HorizontLib.Utilities;
 
 namespace HorizontApp.Views.Compass
 {

@@ -4,9 +4,9 @@ using System.IO;
 using System.Net;
 
 
-namespace HorizontApp.Providers
+namespace HorizontLib.Providers
 {
-    class ElevationFileProvider
+    public class ElevationFileProvider
     {
         private static string ELEVATION_MAPS_FOLDER = "ElevationMaps";
         private static string ELEVATION_MAPS_URL = "http://www.krvaveoleje.cz/horizont/ElevationData/";

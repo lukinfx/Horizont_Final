@@ -96,10 +96,8 @@
     <Compile Include="Utilities\CompassViewUtils.cs" />
     <Compile Include="Utilities\DownloadCountryAdapter.cs" />
     <Compile Include="Utilities\DownloadItemAdapter.cs" />
-    <Compile Include="Utilities\ElevationProfile.cs" />
     <Compile Include="Utilities\GeoLocationExtension.cs" />
     <Compile Include="Utilities\ExceptionHelper.cs" />
-    <Compile Include="Providers\ElevationFileProvider.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
     <Compile Include="Utilities\GpxFileParser.cs" />
     <Compile Include="Utilities\HeadingStabilizator.cs" />

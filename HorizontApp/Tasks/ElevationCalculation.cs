@@ -14,6 +14,7 @@ using HorizontApp.Utilities;
 using HorizontApp.Providers;
 using HorizontApp.Views;
 using HorizontLib.Utilities;
+using HorizontLib.Providers;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
 using Object = Java.Lang.Object;
 

@@ -4,11 +4,13 @@ using Android.Graphics;
 using Android.Util;
 using Android.Views;
 using Xamarin.Essentials;
+using HorizontLib.Utilities;
 using HorizontApp.Domain.ViewModel;
 using HorizontApp.Utilities;
 using HorizontApp.Views.Compass;
 using HorizontLib.Domain.Models;
 using System;
+using GpsUtils = HorizontApp.Utilities.GpsUtils;
 
 namespace HorizontApp.Views
 {

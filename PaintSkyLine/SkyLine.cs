@@ -18,8 +18,8 @@ namespace PaintSkyLine
         private static readonly int MIN_DISTANCE = 1000;
 
         private List<GpsLocation> _data;
-        private double[] _elevationProfile = new double[360];
         private List<GpsLocation> _data2 = new List<GpsLocation>();
+        private ElevationProfileData epd;
         private int _heading = 0;
         private double _visibility = 10;
         private GpsLocation _myLocation = new GpsLocation(49.4894558, 18.4914856, 830);
@@ -67,27 +67,9 @@ namespace PaintSkyLine
 
             GeoTiffReader.ReadTiff(inputFileName, min, max, _myLocation, 3, _data);
 
-            for (int i=0; i<360; i++)
-            {
-                _elevationProfile[i] = -90;
-            }
-
-            foreach (var point in _data)
-            {
-
-                var dist = point.Distance;
-                var bearing = GpsUtils.Normalize360(point.Bearing.Value);
-                var verticalAngle = point.VerticalViewAngle.Value;
-
-                if (dist > MIN_DISTANCE && dist < _visibility * 1000)
-                {
-                    int dg = (int) Math.Floor(bearing);
-                    if (verticalAngle > _elevationProfile[dg])
-                    {
-                        _elevationProfile[dg] = verticalAngle;
-                    }
-                }
-            }
+            ElevationProfile ep = new ElevationProfile();
+            ep.GenerateElevationProfile(_myLocation, _visibility, _data, progress => { });
+            epd = ep.GetProfile();
 
             Invalidate();
         }
@@ -236,25 +218,34 @@ namespace PaintSkyLine
 
         void PaintProfile(PaintEventArgs e)
         {
+            for (int i = 0; i < 360; i++)
+            {
+                if (GpsUtils.IsAngleBetween(i, _heading, 35))
+                {
+                    if (i % 10 == 0)
+                    {
+                        e.Graphics.DrawString(i.ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), (float)i, 10);
+                    }
+                }
+            }
+
+
             var points = new List<PointF>();
 
-            for (int i = _heading - 35; i < _heading + 35; i++)
-            {
-                var dg = (i + 360) % 360;
+            var visiblePoints = epd.GetPoints()
+                .Where(i => GpsUtils.IsAngleBetween(i.Bearing.Value, _heading, 35))
+                .OrderBy(i => i.Bearing.Value);
 
-                double y = _elevationProfile[dg] * 40;
-                double x = (i - _heading + 35) * DG_WIDTH;
+            foreach (var i in visiblePoints)
+            {
+                double y = i.VerticalViewAngle.Value * 40;
+                double x = (i.Bearing.Value - _heading + 35) * DG_WIDTH;
 
                 points.Add(new PointF((float)x, (float)(250 - y)));
 
                 //e.Graphics.DrawLine(new Pen(Brushes.Blue), (float)x, 250, (float)x, (float)(250-y));
-                if (i % 10 == 0)
-                {
-                    e.Graphics.DrawString(i.ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), (float)x, 10);
-                }
             }
 
-            
             points.Add(new PointF((float)69 * DG_WIDTH, this.Height));
             points.Add(new PointF((float)0 * DG_WIDTH, this.Height));
             e.Graphics.DrawPolygon(new Pen(Color.LightSkyBlue, 3), points.ToArray());
@@ -271,8 +262,10 @@ namespace PaintSkyLine
             if (_data == null)
                 return;
 
-            PaintTerrain(e);
-            PaintProfile2(e);
+            PaintProfile(e);
+
+            //PaintTerrain(e);
+            //PaintProfile2(e);
         }
 
         public int GetElevationPointCount()
