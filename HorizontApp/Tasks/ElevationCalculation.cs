@@ -111,7 +111,7 @@ namespace HorizontApp.Tasks
         {
             OnStageChange("Processing elevation data.", 360);
             ElevationProfile ep = new ElevationProfile();
-            ep.GenerateElevationProfile(_myLocation, _visibility, elevationData, progress => { OnProgressChange(progress); });
+            ep.GenerateElevationProfile3(_myLocation, _visibility, elevationData, progress => { OnProgressChange(progress); });
             return ep.GetProfile();
         }
 

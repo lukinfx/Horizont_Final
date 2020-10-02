@@ -18,8 +18,8 @@ namespace PaintSkyLine
         private static readonly int MIN_DISTANCE = 1000;
 
         private List<GpsLocation> _data;
-        private List<GpsLocation> _data2 = new List<GpsLocation>();
-        private ElevationProfileData epd;
+        private ElevationProfileData elevationProfileOld;
+        private ElevationProfileData elevationProfileNew;
         private int _heading = 0;
         private double _visibility = 10;
         private GpsLocation _myLocation = new GpsLocation(49.4894558, 18.4914856, 830);
@@ -50,26 +50,23 @@ namespace PaintSkyLine
             _visibility = visibility;
         }
 
-        public void Draw()
+        public void CalculateProfile()
         {
             GpsUtils.BoundingRect(_myLocation,_visibility*1000, out var min, out var max);
-            
-            string inputFileName = @"c:\Temp\ElevationMap\ALPSMLC30_N049E018_DSM.tif";
-
-            /*{
-                var myData = ElevationData.GeoTiffReader.ReadTiff2(inputFileName, min.Latitude, max.Latitude, min.Longitude, max.Longitude);
-                var y = 3599-(_myLocation.Latitude - (int) _myLocation.Latitude) / (1 / 3600.0);
-                var x = (_myLocation.Longitude - (int)_myLocation.Longitude) / (1 / 3600.0);
-                var ele = myData[(int)y, (int)x];
-            }*/
 
             _data = new List<GpsLocation>();
-
+            string inputFileName = @"c:\Temp\ElevationMap\ALPSMLC30_N049E018_DSM.tif";
             GeoTiffReader.ReadTiff(inputFileName, min, max, _myLocation, 3, _data);
 
+            //Calculate old profile
             ElevationProfile ep = new ElevationProfile();
             ep.GenerateElevationProfile(_myLocation, _visibility, _data, progress => { });
-            epd = ep.GetProfile();
+            elevationProfileOld = ep.GetProfile();
+
+            //Calucate new profile
+            ElevationProfile ep2 = new ElevationProfile();
+            ep2.GenerateElevationProfile3(_myLocation, _visibility, _data, progress => { });
+            elevationProfileNew = ep2.GetProfile();
 
             Invalidate();
         }
@@ -179,13 +176,16 @@ namespace PaintSkyLine
 
         void PaintProfile2(PaintEventArgs e)
         {
-            _data2.OrderBy(i => i.Distance);
+            if (elevationProfileNew == null)
+                return;
+
+            
 
             var pen = new Pen(Brushes.Black, 3);
 
-            foreach (var point in _data2)
+            foreach (var point in elevationProfileNew.GetPoints())
             {
-                foreach (var otherPoint in _data2)
+                foreach (var otherPoint in elevationProfileNew.GetPoints())
                 {
                     if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value)< point.Distance / 10 && Math.Abs(point.Bearing.Value - otherPoint.Bearing.Value) < 2)
                     {
@@ -202,21 +202,9 @@ namespace PaintSkyLine
                     }
                 }
             }
-
-            for (int i = _heading - 35; i < _heading + 35; i++)
-            {
-                var dg = (i + 360) % 360;
-                double x = (i - _heading + 35) * DG_WIDTH;
-
-                //e.Graphics.DrawLine(new Pen(Brushes.Blue), (float)x, 250, (float)x, (float)(250-y));
-                if (i % 10 == 0)
-                {
-                    e.Graphics.DrawString(i.ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), (float)x, 10);
-                }
-            }
         }
 
-        void PaintProfile(PaintEventArgs e)
+        void PaintProfileScale(PaintEventArgs e)
         {
             for (int i = 0; i < 360; i++)
             {
@@ -228,11 +216,16 @@ namespace PaintSkyLine
                     }
                 }
             }
+        }
 
+        void PaintProfileOld(PaintEventArgs e)
+        {
+            if (elevationProfileOld == null)
+                return;
 
             var points = new List<PointF>();
 
-            var visiblePoints = epd.GetPoints()
+            var visiblePoints = elevationProfileOld.GetPoints()
                 .Where(i => GpsUtils.IsAngleBetween(i.Bearing.Value, _heading, 35))
                 .OrderBy(i => i.Bearing.Value);
 
@@ -259,13 +252,12 @@ namespace PaintSkyLine
             base.OnPaint(e);
             e.Graphics.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
 
-            if (_data == null)
-                return;
+            PaintProfileScale(e);
 
-            PaintProfile(e);
+            PaintProfileOld(e);
 
             //PaintTerrain(e);
-            //PaintProfile2(e);
+            PaintProfile2(e);
         }
 
         public int GetElevationPointCount()

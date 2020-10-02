@@ -29,7 +29,7 @@ namespace PaintSkyLine
             skyLine1.SetVisibility(visibility);
 
             var start = Environment.TickCount;
-            skyLine1.Draw();
+            skyLine1.CalculateProfile();
             var end = Environment.TickCount;
             labelTime.Text = (end - start).ToString();
             labelCount.Text = skyLine1.GetElevationPointCount().ToString();

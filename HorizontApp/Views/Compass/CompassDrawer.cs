@@ -79,7 +79,6 @@ namespace HorizontApp.Views.Compass
                                 //if (Math.Sqrt(Math.Pow(x1.Value - x2.Value, 2) + Math.Pow(y1 - y2, 2)) < 100)
                                 canvas.DrawLine((float)x1, (float)y1, (float)x2, (float)y2, paint);
                             }
-
                         }
                     }
                 }
