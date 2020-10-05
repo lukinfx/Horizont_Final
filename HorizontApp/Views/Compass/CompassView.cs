@@ -11,6 +11,7 @@ using HorizontApp.Views.Compass;
 using HorizontLib.Domain.Models;
 using System;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
+using System.Drawing;
 
 namespace HorizontApp.Views
 {
@@ -22,6 +23,7 @@ namespace HorizontApp.Views
         private Paint _paint;
         private static double _headingCorrector = 0;
         private ElevationProfileData _elevationProfile;
+        private Android.Graphics.Bitmap _elevationProfileBitmap;
         public double HeadingCorrector
         {
             get
@@ -120,21 +122,26 @@ namespace HorizontApp.Views
         {
             compassViewDrawer.OnDrawBackground(canvas);
 
-            if (_elevationProfile != null)
+            /*if (_elevationProfile != null)
             {
                 compassViewDrawer.PaintProfile(canvas, (float) Heading, _elevationProfile);
-            }
-
-
-            //###paint profile
-            /*var profileImageData = elevationProfileBitmapDrawer.GetElevationBitmap();
-            using (System.IO.MemoryStream mStream = new System.IO.MemoryStream(profileImageData.ToArray()))
-            {
-                var bmp = new Bitmap(mStream, false);
-                var img = Image.FromStream(mStream);
-                canvas.DrawBitmap(bmp,Heading, 0, _paint);
             }*/
 
+
+            if(_elevationProfileBitmap != null)
+            {
+                float offset = (float)(_elevationProfileBitmap.Width * (Heading - CompassViewSettings.Instance().ViewAngleHorizontal / 2) / 360);
+                canvas.DrawBitmap(_elevationProfileBitmap, -offset, (float)0, _paint);
+                if (Heading > 360 - CompassViewSettings.Instance().ViewAngleHorizontal)
+                {
+                    canvas.DrawBitmap(_elevationProfileBitmap, -offset + _elevationProfileBitmap.Width, (float)0, _paint);
+                }
+                    if(Heading < CompassViewSettings.Instance().ViewAngleHorizontal)
+                {
+                    canvas.DrawBitmap(_elevationProfileBitmap, -offset - _elevationProfileBitmap.Width, (float)0, _paint);
+                }
+                     
+            }
 
             canvas.Rotate(90, 0, 0);
 
@@ -164,8 +171,10 @@ namespace HorizontApp.Views
         public void SetElevationProfile(ElevationProfileData elevationProfile)
         {
             _elevationProfile = elevationProfile;
-            //###
-            //elevationProfileBitmapDrawer.SetElevationProfile(_elevationProfile);
+            elevationProfileBitmapDrawer.SetElevationProfile(_elevationProfile, Width, Height);
+            var profileImageData = elevationProfileBitmapDrawer.GetElevationBitmap().ToArray();
+            _elevationProfileBitmap = BitmapFactory.DecodeByteArray(profileImageData, 0, profileImageData.Length);
+
             Invalidate();
         }
 
