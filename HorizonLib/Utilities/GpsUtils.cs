@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using HorizontLib.Domain.Models;
 
@@ -114,6 +115,16 @@ namespace HorizontLib.Utilities
         {
             var d = Normalize180(angle - heading);
             return Math.Abs(d) < limit;
+        }
+
+        public static GpsLocation GetGeoLocation(GpsLocation loc, double distance, double angle)
+        {
+            var alfa = Dg2Rad(angle);
+
+            var x = Math.Sin(angle) * distance;
+            var y = Math.Cos(angle) * distance;
+
+            return new GpsLocation(loc.Longitude + x, loc.Latitude + y, 0);
         }
 
         public static void BoundingRect(GpsLocation loc, double distance, out GpsLocation min, out GpsLocation max)

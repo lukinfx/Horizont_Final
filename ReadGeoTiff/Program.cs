@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HorizontLib.Domain.Models;
 
 namespace ReadGeoTiff
 {
@@ -12,10 +13,39 @@ namespace ReadGeoTiff
     {
         static void Main(string[] args)
         {
-            string inputFileName = @"c:\temp\ElevationMap\N049E018\ALPSMLC30_N049E018_DSM.tif";
-            //string outputFileName = @"c:\temp\ElevationMap\N049E018\ALPSMLC30_N049E018_DSM2.txt";
-            //string outputFileName = @"c:\temp\ElevationMap\N049E018\ALPSMLC30_N049E018_DSM3.txt";
-            //ElevationData.GeoTiffReader.ReadTiff(inputFileName);
+            string inputFileName = @"c:\temp\ElevationMap\ALPSMLC30_N049E018_DSM.tif";
+
+            //var _myLocation = new GpsLocation() {Latitude = 49.4894558, Longitude = 18.4914856}; //830
+            var _myLocation = new GpsLocation() {Latitude = 49.5459858, Longitude = 18.4472864}; //1323
+            //var _myLocation = new GpsLocation() { Latitude = 49.5153378, Longitude = 18.3473525 }; //711
+            //var _myLocation = new GpsLocation() { Latitude = 49.5272403, Longitude = 18.1608797 }; //918
+            //var _myLocation = new GpsLocation() { Latitude = 50.0, Longitude = 18.0 }; //288
+            //var _myLocation = new GpsLocation() { Latitude = 49.0000001, Longitude = 18.0000001 }; //288
+            //var _myLocation = new GpsLocation() { Latitude = 49.0+0.00013, Longitude = 19.0-0.00013 }; //288
+
+            /*var data3 = HorizontLib.Utilities.GeoTiffReader.ReadTiff3(inputFileName, 0, 999, 0, 999);
+
+            
+            {
+                var y = (1-(_myLocation.Latitude - (int)_myLocation.Latitude)) / (1 / 1799.0);
+                var x = (_myLocation.Longitude - (int)_myLocation.Longitude) / (1 / 1799.0);
+                var ele11 = data3[(int)y, (int)x];
+            }*/
+
+            var data2 = HorizontLib.Utilities.GeoTiffReader.ReadTiff2(inputFileName, 0, 999, 0, 999);
+
+            var ed = new EleData(new GpsLocation(18, 49, 0), ref data2, 3600, 3600);
+
+            var ele = ed.GetElevation(_myLocation);
+            bool ok = ed.TryGetElevation(_myLocation, out var ele2);
+
+            foreach (var edi in ed)
+            {
+                var a = edi.Latitude;
+                var b = edi.Longitude;
+                var c = edi.Altitude;
+            }
+
 
         }
     }
