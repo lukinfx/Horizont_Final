@@ -10,6 +10,12 @@ namespace HorizontLib.Utilities
 {
     public class GpsUtils
     {
+        private static readonly double EARTH_MERIDIAN_LENGTH_M = 40075004;
+        private static readonly double EARTH_POLAR_LENGTH_M = 39940638;
+
+        private static readonly double EARTH_POLAR_RADIUS = 12713500;
+        private static readonly double EARTH_MERIDIAN_RADIUS = 12756270;
+
         private static readonly double MIN_LAT = Dg2Rad(-90d); // -PI/2
         private static readonly double MAX_LAT = Dg2Rad(90d); //  PI/2
         private static readonly double MIN_LON = Dg2Rad(-180d); // -PI
@@ -22,10 +28,10 @@ namespace HorizontLib.Utilities
 
         public static double QuickDistance(GpsLocation loc1, GpsLocation loc2)
         {
-            double x1 = Math.PI * (loc1.Latitude/360) * 12713500;
-            double x2 = Math.PI * (loc2.Latitude/360) * 12713500;
-            double y1 = Math.Cos(loc1.Latitude * Math.PI / 180) * (loc1.Longitude/360) * 40075000;
-            double y2 = Math.Cos(loc2.Latitude * Math.PI / 180) * (loc2.Longitude/360) * 40075000;
+            double x1 = Math.PI * (loc1.Latitude/360) * EARTH_POLAR_RADIUS;
+            double x2 = Math.PI * (loc2.Latitude/360) * EARTH_POLAR_RADIUS;
+            double y1 = Math.Cos(loc1.Latitude * Math.PI / 180) * (loc1.Longitude/360) * EARTH_MERIDIAN_LENGTH_M;
+            double y2 = Math.Cos(loc2.Latitude * Math.PI / 180) * (loc2.Longitude/360) * EARTH_MERIDIAN_LENGTH_M;
             var x = Math.Sqrt(Math.Pow((x2 - x1), 2) + Math.Pow((y2 - y1), 2));
 
             return x;
@@ -117,23 +123,25 @@ namespace HorizontLib.Utilities
             return Math.Abs(d) < limit;
         }
 
-        public static GpsLocation GetGeoLocation(GpsLocation loc, double distance, double angle)
+        public static GpsLocation QuickGetGeoLocation(GpsLocation loc, double distance, double angle)
         {
             var alfa = Dg2Rad(angle);
 
-            var x = Math.Sin(angle) * distance;
-            var y = Math.Cos(angle) * distance;
+            var meridianLength = Math.Cos(loc.Latitude * Math.PI / 180) * EARTH_MERIDIAN_LENGTH_M;
+
+            var x = Math.Sin(alfa) * (distance/meridianLength) * 360;
+            var y = Math.Cos(alfa) * (distance/(EARTH_POLAR_LENGTH_M/2)) * 180;
 
             return new GpsLocation(loc.Longitude + x, loc.Latitude + y, 0);
         }
 
-        public static void BoundingRect(GpsLocation loc, double distance, out GpsLocation min, out GpsLocation max)
+        public static void BoundingRect(GpsLocation loc, double distanceInKm, out GpsLocation min, out GpsLocation max)
         {
             var radLat = Dg2Rad(loc.Latitude);
             var radLon = Dg2Rad(loc.Longitude);
 
             // angular distance in radians on a great circle
-            double radDist = distance / 6371.01;
+            double radDist = distanceInKm / 6371.01;
             double minLat = radLat - radDist;
             double maxLat = radLat + radDist;
 

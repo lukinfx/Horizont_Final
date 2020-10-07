@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HorizonLib.Utilities;
 using HorizontLib.Domain.Models;
 using HorizontLib.Utilities;
 using PaintSkyLine;
@@ -22,8 +23,12 @@ namespace PaintSkyLine
         private List<GpsLocation> _data;
         private ElevationProfileData elevationProfileOld;
         private ElevationProfileData elevationProfileNew;
+        private ElevationProfileData elevationProfileNew2; 
+
+        ElevationPainter3 elevationPainter3;
+
         private int _heading = 0;
-        private double _visibility = 10;
+        private int _visibility = 10;
         private GpsLocation _myLocation = new GpsLocation(49.4894558, 18.4914856, 830);
 
         private SKData profileImageData;
@@ -42,23 +47,7 @@ namespace PaintSkyLine
             double filterLatMax = 49.5946578;
             double filterLonMax = 18.5352992;
 
-            var imageInfo = new SKImageInfo(width: 100, height: 100, colorType: SKColorType.Rgba8888, alphaType: SKAlphaType.Premul);
-            var surface = SKSurface.Create(imageInfo);
-            var canvas = surface.Canvas;
-
-            //canvas.Clear(SKColors.White);
-
-            var paint = new SKPaint();
-            paint.IsAntialias = true;
-            paint.Color = SKColors.Red;
-            paint.StrokeWidth = 3;
-
-            canvas.DrawCircle(50, 50, 25, paint);
-
-            using (SKImage image = surface.Snapshot())
-            {
-                profileImageData = image.Encode();
-            }
+            elevationPainter3 = new ElevationPainter3();
         }
 
         public void SetMyLocation(GpsLocation myLocation)
@@ -66,7 +55,7 @@ namespace PaintSkyLine
             _myLocation = myLocation;
         }
 
-        public void SetVisibility(double visibility)
+        public void SetVisibility(int visibility)
         {
             _visibility = visibility;
         }
@@ -85,9 +74,21 @@ namespace PaintSkyLine
             elevationProfileOld = ep.GetProfile();
 
             //Calucate new profile
-            ElevationProfile ep2 = new ElevationProfile();
-            ep2.GenerateElevationProfile3(_myLocation, _visibility, _data, progress => { });
-            elevationProfileNew = ep2.GetProfile();
+            
+            var etc = new ElevationTileCollection(_myLocation, (int)_visibility);
+            var d = etc.GetSizeToDownload();
+            etc.Download();
+            etc.Read();
+            elevationPainter3.Generate(_myLocation, etc);
+
+            /*ElevationProfile ep2 = new ElevationProfile();
+            //ep2.GenerateElevationProfile3(_myLocation, _visibility, _data, progress => { });
+            ep2.GenerateElevationProfile3(_myLocation, _visibility, elevationPainter3.list, progress => { });
+            elevationProfileNew = ep2.GetProfile();*/
+
+            ElevationProfile ep3 = new ElevationProfile();
+            ep3.GenerateElevationProfile3(_myLocation, _visibility, elevationPainter3.list, progress => { });
+            elevationProfileNew = ep3.GetProfile();
 
             Invalidate();
         }
@@ -195,10 +196,12 @@ namespace PaintSkyLine
 
         void PaintProfile2(PaintEventArgs e)
         {
+            List<GpsLocation> lst;
             if (elevationProfileNew == null)
+            {
                 return;
+            }
 
-            
 
             var pen = new Pen(Brushes.Black, 3);
 
@@ -225,45 +228,17 @@ namespace PaintSkyLine
 
         void PaintProfileScale(PaintEventArgs e)
         {
-            for (int i = 0; i < 360; i++)
+            for (int i = _heading - 35; i < _heading + 35; i++)
             {
-                if (GpsUtils.IsAngleBetween(i, _heading, 35))
-                {
-                    if (i % 10 == 0)
-                    {
-                        e.Graphics.DrawString(i.ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), (float)i, 10);
-                    }
-                }
-            }
-        }
-
-        void PaintProfileOld(PaintEventArgs e)
-        {
-            if (elevationProfileOld == null)
-                return;
-
-            var points = new List<PointF>();
-
-            var visiblePoints = elevationProfileOld.GetPoints()
-                .Where(i => GpsUtils.IsAngleBetween(i.Bearing.Value, _heading, 35))
-                .OrderBy(i => i.Bearing.Value);
-
-            foreach (var i in visiblePoints)
-            {
-                double y = i.VerticalViewAngle.Value * 40;
-                double x = (i.Bearing.Value - _heading + 35) * DG_WIDTH;
-
-                points.Add(new PointF((float)x, (float)(250 - y)));
+                var dg = (i + 360) % 360;
+                double x = (i - _heading + 35) * DG_WIDTH;
 
                 //e.Graphics.DrawLine(new Pen(Brushes.Blue), (float)x, 250, (float)x, (float)(250-y));
+                if (i % 10 == 0)
+                {
+                    e.Graphics.DrawString(i.ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), (float)x, 10);
+                }
             }
-
-            points.Add(new PointF((float)69 * DG_WIDTH, this.Height));
-            points.Add(new PointF((float)0 * DG_WIDTH, this.Height));
-            e.Graphics.DrawPolygon(new Pen(Color.LightSkyBlue, 3), points.ToArray());
-            //e.Graphics.FillPolygon(Brushes.LightSkyBlue, points.ToArray());
-
-            e.Graphics.DrawLine(new Pen(Brushes.Black, 3), 0, 250, 69 * DG_WIDTH, 250);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -271,27 +246,14 @@ namespace PaintSkyLine
             base.OnPaint(e);
             e.Graphics.FillRectangle(Brushes.AntiqueWhite, 0, 0, this.Width, this.Height);
 
-            PaintTest(e);
-
             PaintProfileScale(e);
 
-            PaintProfileOld(e);
-
             //PaintTerrain(e);
-            PaintProfile2(e);
             //PaintProfile2(e);
-
+            PaintProfile2(e);
         }
 
-        void PaintTest(PaintEventArgs e)
-        {
-            using (System.IO.MemoryStream mStream = new System.IO.MemoryStream(profileImageData.ToArray()))
-            {
-                var bmp = new Bitmap(mStream, false);
-                var img = Image.FromStream(mStream);
-                e.Graphics.DrawImage(img, new Point(_heading, 0));
-            };
-        }
+ 
 
         public int GetElevationPointCount()
         {

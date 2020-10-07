@@ -86,7 +86,11 @@ namespace HorizontLib.Domain.Models
 
         public double GetVerticalViewAngle(GpsLocation myLoc)
         {
-            this.VerticalViewAngle = GpsUtils.VerticalAngle(this.Altitude - myLoc.Altitude, this.Distance.Value);
+            if (VerticalViewAngle == null)
+            {
+                this.VerticalViewAngle = GpsUtils.VerticalAngle(this.Altitude - myLoc.Altitude, Distance.Value);
+            }
+
             return VerticalViewAngle.Value;
         }
 

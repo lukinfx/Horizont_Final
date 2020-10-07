@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HorizontLib.Domain.Models;
+using HorizontLib.Utilities;
 
 namespace ReadGeoTiff
 {
@@ -32,11 +33,10 @@ namespace ReadGeoTiff
                 var ele11 = data3[(int)y, (int)x];
             }*/
 
-            var data2 = HorizontLib.Utilities.GeoTiffReader.ReadTiff2(inputFileName, 0, 999, 0, 999);
+            var ed = new ElevationTile(new GpsLocation(18, 49, 0));
+            ed.ReadMatrix();
 
-            var ed = new EleData(new GpsLocation(18, 49, 0), ref data2, 3600, 3600);
-
-            var ele = ed.GetElevation(_myLocation);
+            /*var ele = ed.GetElevation(_myLocation);
             bool ok = ed.TryGetElevation(_myLocation, out var ele2);
 
             foreach (var edi in ed)
@@ -44,9 +44,21 @@ namespace ReadGeoTiff
                 var a = edi.Latitude;
                 var b = edi.Longitude;
                 var c = edi.Altitude;
+            }*/
+
+
+
+            Console.WriteLine(System.DateTime.Now.ToString("hh:mm:ss.fff"));
+            var myLoc = new GpsLocation(18.5, 49.5, 0);
+            for (int a = 0; a < 360; a++)
+            {
+                for (int d = 500; d < 4000; d+=50)
+                {
+                    var x = GpsUtils.QuickGetGeoLocation(myLoc, d, a);
+                    var isOk = ed.TryGetElevation(x, out var elevation);
+                }
             }
-
-
+            Console.WriteLine(System.DateTime.Now.ToString("hh:mm:ss.fff"));
         }
     }
 }

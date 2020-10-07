@@ -54,8 +54,8 @@ namespace HorizontLib.Utilities
             int progress = 0;
 
             var elevationDataGrouped = elevationData
-                .Where(i => i.Distance > MIN_DISTANCE && i.Distance < visibility * 1000)
-                .GroupBy(i => Math.Floor(i.Bearing.Value));
+                .Where(i => i.QuickDistance(myLocation) > MIN_DISTANCE && i.QuickDistance(myLocation) < visibility * 1000)
+                .GroupBy(i => Math.Floor(i.QuickBearing(myLocation)));
 
 
             foreach (var group in elevationDataGrouped)
@@ -77,11 +77,12 @@ namespace HorizontLib.Utilities
             int progress = 0;
 
             var elevationDataGrouped = elevationData
-                .Where(i => i.Distance > MIN_DISTANCE && i.Distance < visibility * 1000)
-                .GroupBy(i => Math.Floor(i.Bearing.Value));
+                .Where(i => i.QuickDistance(myLocation) > MIN_DISTANCE && i.QuickDistance(myLocation) < visibility * 1000)
+                .GroupBy(i => Math.Floor(i.QuickBearing(myLocation)));
 
             foreach (var group in elevationDataGrouped)
             {
+                var x = group.Count();
                 progress++;
                 onProgressChange(progress);
 
@@ -93,7 +94,7 @@ namespace HorizontLib.Utilities
                     foreach (var otherPoint in points)
                     {
 
-                        if (point.VerticalViewAngle < otherPoint.VerticalViewAngle)
+                        if (point.GetVerticalViewAngle(myLocation) < otherPoint.GetVerticalViewAngle(myLocation))
                         {
                             display = false;
                             break;
@@ -105,7 +106,7 @@ namespace HorizontLib.Utilities
                     }
                 }
 
-                temporary.OrderByDescending(j => j.Distance);
+                temporary.Reverse();
 
                 foreach (var point in temporary)
                 {
