@@ -25,7 +25,9 @@ namespace PaintSkyLine
             var lon = double.Parse(textBoxLon.Text.Replace(",", "."));
             var alt = double.Parse(textBoxAlt.Text);
             var visibility = int.Parse(textBoxVisibility.Text);
+            var minDist = int.Parse(textBoxMinDist.Text);
             skyLine1.SetMyLocation(new GpsLocation(lon, lat, alt));
+            skyLine1.SetMinDist(minDist);
             skyLine1.SetVisibility(visibility);
 
             var start = Environment.TickCount;

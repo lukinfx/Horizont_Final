@@ -17,7 +17,7 @@ namespace HorizontApp.Views
 {
     public class CompassView : View
     {
-        public static IOrderedEnumerable<PoiViewItem> list;
+        private static IOrderedEnumerable<PoiViewItem> list;
         private CompassViewFilter _compassViewFilter = new CompassViewFilter();
         public double Heading { get; set; }
         private Paint _paint;

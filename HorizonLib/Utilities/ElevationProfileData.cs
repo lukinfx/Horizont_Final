@@ -5,15 +5,14 @@ using HorizontLib.Domain.Models;
 
 namespace HorizontLib.Utilities
 {
-    public class ElevationProfileData
+    public class ElevationData
     {
         private List<GpsLocation> displayedPoints = new List<GpsLocation>();
+        public ushort Angle { get; private set; }
 
-        public string ErrorMessage { get; set; }
-
-        public ElevationProfileData(string errorMessage = null)
+        public ElevationData(ushort angle)
         {
-            ErrorMessage = errorMessage;
+            Angle = angle;
         }
 
         public void Add(GpsLocation gpsLocation)
@@ -21,14 +20,40 @@ namespace HorizontLib.Utilities
             displayedPoints.Add(gpsLocation);
         }
 
-        public void Clear()
-        {
-            displayedPoints.Clear();
-        }
-
         public List<GpsLocation> GetPoints()
         {
             return displayedPoints;
+        }
+    }
+
+    public class ElevationProfileData
+    {
+        private List<ElevationData> elevationData = new List<ElevationData>();
+        public string ErrorMessage { get; set; }
+
+        public ElevationProfileData(string errMsg)
+        {
+            ErrorMessage = errMsg;
+        }
+
+        public void Add(ElevationData ed)
+        {
+            elevationData.Add(ed);
+        }
+
+        public void Clear()
+        {
+            elevationData.Clear();
+        }
+
+        public List<ElevationData> GetData()
+        {
+            return elevationData;
+        }
+
+        public ElevationData GetData(int angle)
+        {
+            return elevationData.Single(i => i.Angle == GpsUtils.Normalize360(angle));
         }
     }
 }

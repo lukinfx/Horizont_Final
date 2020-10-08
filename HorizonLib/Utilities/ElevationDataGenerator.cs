@@ -11,7 +11,7 @@ namespace HorizonLib.Utilities
 {
     public class ElevationDataGenerator
     {
-        private ElevationProfileData _elevationProfileData = new ElevationProfileData();
+        private ElevationProfileData _elevationProfileData = new ElevationProfileData("");
 
         public ElevationDataGenerator()
         {
@@ -26,9 +26,35 @@ namespace HorizonLib.Utilities
         {
             _elevationProfileData.Clear();
 
-            for (int a = 0; a < 360; a++)
+            /*for (ushort a = 0; a < 360; a++)
             {
                 onProgressChange(a);
+
+                var ed = new ElevationData(a);
+
+                for (int d = 500; d < 12000; d += 25)
+                {
+                    var x = GpsUtils.QuickGetGeoLocation(_myLocation, d, a);
+                    if (etc.TryGetElevation(x, out var elevation, 1))
+                    {
+                        x.Altitude = elevation;
+                        x.Distance = d;
+                        x.Bearing = a;
+                        x.GetVerticalViewAngle(_myLocation);
+
+                        ed.Add(x);
+                    }
+                }
+
+                _elevationProfileData.Add(ed);
+            }*/
+
+
+            for (ushort a = 0; a < 360; a++)
+            {
+                onProgressChange(a);
+
+                var ed = new ElevationData(a);
 
                 for (int d = 500; d < 3000; d += 50)
                 {
@@ -40,7 +66,7 @@ namespace HorizonLib.Utilities
                         x.Bearing = a;
                         x.GetVerticalViewAngle(_myLocation);
 
-                        _elevationProfileData.Add(x);
+                        ed.Add(x);
                     }
                 }
                 for (int d = 3000; d < 8000; d += 100)
@@ -53,7 +79,7 @@ namespace HorizonLib.Utilities
                         x.Bearing = a;
                         x.GetVerticalViewAngle(_myLocation);
 
-                        _elevationProfileData.Add(x);
+                        ed.Add(x);
                     }
                 }
 
@@ -67,7 +93,7 @@ namespace HorizonLib.Utilities
                         x.Bearing = a;
                         x.GetVerticalViewAngle(_myLocation);
 
-                        _elevationProfileData.Add(x);
+                        ed.Add(x);
                     }
                 }
                 for (int d = 15000; d < 50000; d += 400)
@@ -80,7 +106,7 @@ namespace HorizonLib.Utilities
                         x.Bearing = a;
                         x.GetVerticalViewAngle(_myLocation);
 
-                        _elevationProfileData.Add(x);
+                        ed.Add(x);
                     }
                 }
                 for (int d = 50000; d < 100000; d += 800)
@@ -93,9 +119,11 @@ namespace HorizonLib.Utilities
                         x.Bearing = a;
                         x.GetVerticalViewAngle(_myLocation);
 
-                        _elevationProfileData.Add(x);
+                        ed.Add(x);
                     }
                 }
+
+                _elevationProfileData.Add(ed);
             }
         }
 

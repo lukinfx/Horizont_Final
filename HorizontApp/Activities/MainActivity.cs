@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Timers;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Android;
 using Android.App;
@@ -26,8 +27,12 @@ using HorizontApp.DataAccess;
 using HorizontApp.Activities;
 using HorizontLib.Domain.Enums;
 using HorizontApp.Tasks;
+using Java.Lang;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
 using Xamarin.Essentials;
+using Exception = System.Exception;
+using Math = System.Math;
+using String = System.String;
 
 namespace HorizontApp
 {
@@ -241,22 +246,31 @@ namespace HorizontApp
                 if (newLocation == null)
                     return;
 
-                if (GpsUtils.Distance(_myLocation, newLocation) > 100 
-                    || Math.Abs(_myLocation.Altitude - newLocation.Altitude) > 50)
+                var distance = GpsUtils.Distance(_myLocation, newLocation);
+                if (distance > 100 || Math.Abs(_myLocation.Altitude - newLocation.Altitude) > 50)
                 {
-                    _myLocation.Latitude = newLocation.Latitude;
-                    _myLocation.Longitude = newLocation.Longitude;
+                    bool needRefresh = false;
+                    if (distance > 100)
+                    {
+                        _myLocation.Latitude = newLocation.Latitude;
+                        _myLocation.Longitude = newLocation.Longitude;
+                        needRefresh = true;
+                    }
 
                     //keep old location if new location has no altitude
                     if (!GpsUtils.HasAltitude(_myLocation) || GpsUtils.HasAltitude(newLocation))
                     {
                         _myLocation.Altitude = newLocation.Altitude;
+                        needRefresh = true;
                     }
 
-                    _GPSEditText.Text = ($"Lat: {_myLocation.Latitude:F7} Lon: {_myLocation.Longitude:F7} Alt: {_myLocation.Altitude:F0}");
+                    if (needRefresh)
+                    {
+                        _GPSEditText.Text = ($"Lat: {_myLocation.Latitude:F7} Lon: {_myLocation.Longitude:F7} Alt: {_myLocation.Altitude:F0}");
 
-                    var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
-                    _compassView.SetPoiViewItemList(points);
+                        var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
+                        _compassView.SetPoiViewItemList(points);
+                    }
                 }
             }
             catch (Exception ex)
@@ -478,9 +492,10 @@ namespace HorizontApp
             ec.OnProgressChange = (progress) =>
             {
                 var tickCount = System.Environment.TickCount;
-                if (tickCount - lastProgressUpdate > 200)
+                if (tickCount - lastProgressUpdate > 100)
                 {
                     MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
+                    Thread.Sleep(50);
                     lastProgressUpdate = tickCount;
                 }
             };

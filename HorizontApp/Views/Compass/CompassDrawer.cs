@@ -57,44 +57,5 @@ namespace HorizontApp.Views.Compass
         /// <param name="item"></param>
         /// <param name="heading"></param>
         public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading) { }
-
-        public void PaintProfile(Android.Graphics.Canvas canvas, float heading, ElevationProfileData epd)
-        {
-            var points = epd.GetPoints();
-            foreach (var point in points)
-            {
-                foreach (var otherPoint in points)
-                {
-                    if (point.Bearing.HasValue && otherPoint.Bearing.HasValue && point.Distance.HasValue && otherPoint.Distance.HasValue && point.VerticalViewAngle.HasValue && otherPoint.VerticalViewAngle.HasValue)
-                    {
-                        if (Math.Abs(point.Bearing.Value - otherPoint.Bearing.Value) < 2 && Math.Abs(point.Distance.Value - otherPoint.Distance.Value) <= point.Distance.Value / 10)
-                        {
-                            var y1 = CompassViewUtils.GetYLocationOnScreen(point.VerticalViewAngle.Value, canvas.Height, ViewAngleVertical);
-                            var x1 = CompassViewUtils.GetXLocationOnScreen(heading, (float)point.Bearing.Value, canvas.Width, ViewAngleHorizontal);
-
-                            var y2 = CompassViewUtils.GetYLocationOnScreen(otherPoint.VerticalViewAngle.Value, canvas.Height, ViewAngleVertical);
-                            var x2 = CompassViewUtils.GetXLocationOnScreen(heading, (float)otherPoint.Bearing.Value, canvas.Width, ViewAngleHorizontal);
-                            if (x1.HasValue && x2.HasValue)
-                            {
-                                //if (Math.Sqrt(Math.Pow(x1.Value - x2.Value, 2) + Math.Pow(y1 - y2, 2)) < 100)
-                                canvas.DrawLine((float)x1, (float)y1, (float)x2, (float)y2, paint);
-                            }
-                        }
-                    }
-                }
-            }
-
-            /*for (int i = Heading - viewAngleVertical/2; i < Heading + 35; i++)
-            {
-                var dg = (i + 360) % 360;
-                double x = (i - _heading + 35) * DG_WIDTH;
-
-                //e.Graphics.DrawLine(new Pen(Brushes.Blue), (float)x, 250, (float)x, (float)(250-y));
-                if (i % 10 == 0)
-                {
-                    e.Graphics.DrawString(i.ToString(), new Font("Arial", 10), new SolidBrush(Color.Black), (float)x, 10);
-                }
-            }*/
-        }
     }
 }

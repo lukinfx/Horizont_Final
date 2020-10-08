@@ -44,6 +44,7 @@
             this.labelCount = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.labelTime = new System.Windows.Forms.Label();
+            this.textBoxMinDist = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -188,11 +189,20 @@
             this.labelTime.TabIndex = 9;
             this.labelTime.Text = "0";
             // 
+            // textBoxMinDist
+            // 
+            this.textBoxMinDist.Location = new System.Drawing.Point(657, 498);
+            this.textBoxMinDist.Name = "textBoxMinDist";
+            this.textBoxMinDist.Size = new System.Drawing.Size(100, 20);
+            this.textBoxMinDist.TabIndex = 10;
+            this.textBoxMinDist.Text = "12";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1521, 600);
+            this.Controls.Add(this.textBoxMinDist);
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.label6);
@@ -234,6 +244,7 @@
         private System.Windows.Forms.Label labelCount;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelTime;
+        private System.Windows.Forms.TextBox textBoxMinDist;
     }
 }
 

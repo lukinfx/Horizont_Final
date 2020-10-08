@@ -53,29 +53,44 @@ namespace HorizontApp.Utilities
                 return;
             }
 
-            var points = epd.GetPoints();
 
-            var maxDist = points.Max(p => p.Distance.Value);
-
-            foreach (var point in points)
+            double maxDist = 0;
+            foreach(var ed in epd.GetData())
             {
-                foreach (var otherPoint in points)
+                var edMaxDist = ed.GetPoints().Max(p => p.Distance.Value);
+                if (edMaxDist > maxDist)
                 {
-                    if (point.Bearing.HasValue && otherPoint.Bearing.HasValue && point.Distance.HasValue && otherPoint.Distance.HasValue && point.VerticalViewAngle.HasValue && otherPoint.VerticalViewAngle.HasValue)
+                    maxDist = edMaxDist;
+                }
+            }
+
+            var data = epd.GetData();
+            for (ushort i = 0; i < 360; i++)
+            {
+                var thisAngle = epd.GetData(i);
+                var prevAngle = epd.GetData(i - 1);
+
+
+                foreach (var point in thisAngle.GetPoints())
+                {
+                    foreach (var otherPoint in prevAngle.GetPoints())
                     {
-                        if (Math.Abs(point.Bearing.Value - otherPoint.Bearing.Value) < 2 && Math.Abs(point.Distance.Value - otherPoint.Distance.Value) <= point.Distance.Value / 10)
+                        if (point.Bearing.HasValue && otherPoint.Bearing.HasValue && point.Distance.HasValue && otherPoint.Distance.HasValue && point.VerticalViewAngle.HasValue && otherPoint.VerticalViewAngle.HasValue)
                         {
-                            var y1 = GetYLocation(point.VerticalViewAngle.Value, imageInfo.Height, viewAngleVertical);
-                            var x1 = GetXLocation(point.Bearing.Value, imageInfo.Width);
+                            if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value) <= point.Distance.Value / 12)
+                            {
+                                var y1 = GetYLocation(point.VerticalViewAngle.Value, imageInfo.Height, viewAngleVertical);
+                                var x1 = GetXLocation(point.Bearing.Value, imageInfo.Width);
 
-                            var y2 = GetYLocation(otherPoint.VerticalViewAngle.Value, imageInfo.Height, viewAngleVertical);
-                            var x2 = GetXLocation(otherPoint.Bearing.Value, imageInfo.Width);
+                                var y2 = GetYLocation(otherPoint.VerticalViewAngle.Value, imageInfo.Height, viewAngleVertical);
+                                var x2 = GetXLocation(otherPoint.Bearing.Value, imageInfo.Width);
 
-                            
-                            _paint.Color = SKColor.FromHsl(60, 100, (float)(50.0 - (point.Distance.Value / maxDist) / 2 * 50));
-                            if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) < 100)
-                                canvas.DrawLine(x1, y1, x2, y2, _paint);
-                            
+
+                                _paint.Color = SKColor.FromHsl(60, 100, (float) (50.0 - (point.Distance.Value / maxDist) / 2 * 50));
+                                if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) < 100)
+                                    canvas.DrawLine(x1, y1, x2, y2, _paint);
+
+                            }
                         }
                     }
                 }

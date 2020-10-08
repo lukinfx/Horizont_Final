@@ -21,7 +21,7 @@ namespace PaintSkyLine
         private static readonly int MIN_DISTANCE = 1000;
 
         private List<GpsLocation> _data;
-        private ElevationProfileData elevationProfileOld;
+        //private ElevationProfileData elevationProfileOld;
         private ElevationProfileData elevationProfileNew;
         private ElevationProfileData elevationProfileNew2; 
 
@@ -29,6 +29,7 @@ namespace PaintSkyLine
 
         private int _heading = 0;
         private int _visibility = 10;
+        private int _minDist = 10;
         private GpsLocation _myLocation = new GpsLocation(49.4894558, 18.4914856, 830);
 
         private SKData profileImageData;
@@ -55,6 +56,11 @@ namespace PaintSkyLine
             _myLocation = myLocation;
         }
 
+        public void SetMinDist(int minDist)
+        {
+            _minDist = minDist;
+        }
+
         public void SetVisibility(int visibility)
         {
             _visibility = visibility;
@@ -69,9 +75,9 @@ namespace PaintSkyLine
             GeoTiffReader.ReadTiff(inputFileName, min, max, _myLocation, 3, _data);
 
             //Calculate old profile
-            ElevationProfile ep = new ElevationProfile();
+            /*ElevationProfile ep = new ElevationProfile();
             ep.GenerateElevationProfile(_myLocation, _visibility, _data, progress => { });
-            elevationProfileOld = ep.GetProfile();
+            elevationProfileOld = ep.GetProfile();*/
 
             //Calucate new profile
             
@@ -202,25 +208,30 @@ namespace PaintSkyLine
                 return;
             }
 
-
             var pen = new Pen(Brushes.Black, 3);
 
-            foreach (var point in elevationProfileNew.GetPoints())
+            var data = elevationProfileNew.GetData();
+            for(ushort i = 0; i < 360; i++)
             {
-                foreach (var otherPoint in elevationProfileNew.GetPoints())
-                {
-                    if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value)< point.Distance / 10 && Math.Abs(point.Bearing.Value - otherPoint.Bearing.Value) < 2)
-                    {
-                        var b1 = GpsUtils.Normalize360(point.Bearing.Value - _heading);
-                        var x1 = GpsUtils.Normalize360(b1 + 35) * DG_WIDTH;
-                        var y1 = 250 - point.VerticalViewAngle.Value * 40;
+                var thisAngle = elevationProfileNew.GetData(i);
+                var prevAngle = elevationProfileNew.GetData(i - 1);
 
-                        var b2 = GpsUtils.Normalize360(otherPoint.Bearing.Value - _heading);
-                        var x2 = GpsUtils.Normalize360(b2 + 35) * DG_WIDTH;
-                        var y2 = 250 - otherPoint.VerticalViewAngle.Value  * 40;
-                        if (Math.Sqrt(Math.Pow(x1-x2, 2)+ Math.Pow(y1 - y2, 2))<100)
-                            e.Graphics.DrawLine(pen, (float)x1, (float)y1, (float)x2, (float)y2);
-                        
+                foreach (var point in thisAngle.GetPoints())
+                {
+                    foreach (var otherPoint in prevAngle.GetPoints())
+                    {
+                        if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value) < point.Distance / _minDist )
+                        {
+                            var b1 = GpsUtils.Normalize360(point.Bearing.Value - _heading);
+                            var x1 = GpsUtils.Normalize360(b1 + 35) * DG_WIDTH;
+                            var y1 = 250 - point.VerticalViewAngle.Value * 40;
+
+                            var b2 = GpsUtils.Normalize360(otherPoint.Bearing.Value - _heading);
+                            var x2 = GpsUtils.Normalize360(b2 + 35) * DG_WIDTH;
+                            var y2 = 250 - otherPoint.VerticalViewAngle.Value * 40;
+                            if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) < 100)
+                                e.Graphics.DrawLine(pen, (float) x1, (float) y1, (float) x2, (float) y2);
+                        }
                     }
                 }
             }
