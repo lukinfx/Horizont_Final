@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using HorizonLib.Utilities;
 using HorizontLib.Domain.Models;
 using HorizontApp.Utilities;
 using HorizontApp.Providers;
@@ -27,6 +28,7 @@ namespace HorizontApp.Tasks
         private GpsLocation _boundingRectMin, _boundingRectMax;
 
         private List<string> noDataTiles = new List<string>();
+        private ElevationTileCollection _elevationTileCollection;
 
         public Action<ElevationProfileData> OnFinishedAction;
         public Action<string, int> OnStageChange;
@@ -37,23 +39,13 @@ namespace HorizontApp.Tasks
             _myLocation = myLocation;
             _visibility = visibility;
             GpsUtils.BoundingRect(_myLocation, _visibility, out _boundingRectMin, out _boundingRectMax);
+
+            _elevationTileCollection = new ElevationTileCollection(_myLocation, (int)_visibility);
         }
 
         public int GetSizeToDownload()
         {
-            int count = 0;
-            for (var lat = (int)_boundingRectMin.Latitude; lat < ((int)_boundingRectMax.Latitude) + 1; lat++)
-            {
-                for (var lon = (int)_boundingRectMin.Longitude; lon < ((int)_boundingRectMax.Longitude) + 1; lon++)
-                {
-                    if (!ElevationFileProvider.ElevationFileExists(lat, lon))
-                    {
-                        count++;
-                    }
-                }
-            }
-
-            return count * ElevationFileProvider.GetFileSize();
+            return _elevationTileCollection.GetSizeToDownload();
         }
 
         protected override void OnProgressUpdate(params string[] values)
@@ -79,9 +71,20 @@ namespace HorizontApp.Tasks
         {
             try
             {
-                var elevationData = ReadElevationData(_boundingRectMin, _boundingRectMax);
+                OnStageChange("Downloading elevation data", _elevationTileCollection.GetCountToDownload());
+                _elevationTileCollection.Download(progress => { OnProgressChange(progress); });
+                
+                OnStageChange("Reading elevation data", _elevationTileCollection.GetCount());
+                _elevationTileCollection.Read(progress => { OnProgressChange(progress); });
 
-                var epd = ProcessElevationData(_myLocation, _visibility, elevationData);
+                OnStageChange("Preparing elevation data.", 360);
+                ElevationDataGenerator ep = new ElevationDataGenerator();
+                ep.Generate(_myLocation, _elevationTileCollection, progress => { OnProgressChange(progress); });
+
+                OnStageChange("Processing elevation data.", 360);
+                ElevationProfile ep2 = new ElevationProfile();
+                ep2.GenerateElevationProfile3(_myLocation, _visibility, ep.GetProfile(), progress => { OnProgressChange(progress); });
+                var epd  = ep2.GetProfile();
 
                 epd.ErrorMessage = GetErrorList();
 
@@ -105,14 +108,6 @@ namespace HorizontApp.Tasks
             });
 
             return $"Some tiles were not loaded. The elevation profile may not be complete. \r\n\r\nMissing tiles: {errorsAsString}";
-        }
-
-        private ElevationProfileData ProcessElevationData(GpsLocation myLocation, int visibility, List<GpsLocation> elevationData)
-        {
-            OnStageChange("Processing elevation data.", 360);
-            ElevationProfile ep = new ElevationProfile();
-            ep.GenerateElevationProfile3(_myLocation, _visibility, elevationData, progress => { OnProgressChange(progress); });
-            return ep.GetProfile();
         }
 
         private List<GpsLocation> ReadElevationData(GpsLocation min, GpsLocation max)

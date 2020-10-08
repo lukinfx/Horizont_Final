@@ -469,15 +469,18 @@ namespace HorizontApp
             };
             ec.OnStageChange = (text, max) =>
             {
-                //pd.SetMessage(text);
-                pd.Max = max;
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    pd.SetMessage(text);
+                    pd.Max = max;
+                });
             };
             ec.OnProgressChange = (progress) =>
             {
                 var tickCount = System.Environment.TickCount;
                 if (tickCount - lastProgressUpdate > 200)
                 {
-                    pd.Progress = progress;
+                    MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
                     lastProgressUpdate = tickCount;
                 }
             };

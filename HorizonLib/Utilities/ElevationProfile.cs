@@ -5,33 +5,6 @@ using HorizontLib.Domain.Models;
 
 namespace HorizontLib.Utilities
 {
-    public class ElevationProfileData
-    {
-        private List<GpsLocation> displayedPoints = new List<GpsLocation>();
-
-        public string ErrorMessage { get; set; }
-
-        public ElevationProfileData(string errorMessage=null)
-        {
-            ErrorMessage = errorMessage;
-        }
-
-        public void Add(GpsLocation gpsLocation)
-        {
-            displayedPoints.Add(gpsLocation);
-        }
-
-        public void Clear()
-        {
-            displayedPoints.Clear();
-        }
-
-        public List<GpsLocation> GetPoints()
-        {
-            return displayedPoints;
-        }
-    }
-
     public class ElevationProfile
     {
         private static readonly int MIN_DISTANCE = 1000;
@@ -128,13 +101,13 @@ namespace HorizontLib.Utilities
             }
         }
 
-        public void GenerateElevationProfile3(GpsLocation myLocation, double visibility, IEnumerable<GpsLocation> elevationData, Action<int> onProgressChange)
+        public void GenerateElevationProfile3(GpsLocation myLocation, double visibility, ElevationProfileData elevationData, Action<int> onProgressChange)
         {
             _elevationProfileData.Clear();
 
             int progress = 0;
 
-            var elevationDataGrouped = elevationData
+            var elevationDataGrouped = elevationData.GetPoints()
                 .Where(i => i.Distance > MIN_DISTANCE && i.Distance < visibility * 1000)
                 .GroupBy(i => Math.Floor(i.Bearing.Value));
 

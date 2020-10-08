@@ -25,7 +25,7 @@ namespace PaintSkyLine
         private ElevationProfileData elevationProfileNew;
         private ElevationProfileData elevationProfileNew2; 
 
-        ElevationPainter3 elevationPainter3;
+        ElevationDataGenerator profileGenerator;
 
         private int _heading = 0;
         private int _visibility = 10;
@@ -47,7 +47,7 @@ namespace PaintSkyLine
             double filterLatMax = 49.5946578;
             double filterLonMax = 18.5352992;
 
-            elevationPainter3 = new ElevationPainter3();
+            profileGenerator = new ElevationDataGenerator();
         }
 
         public void SetMyLocation(GpsLocation myLocation)
@@ -77,17 +77,17 @@ namespace PaintSkyLine
             
             var etc = new ElevationTileCollection(_myLocation, (int)_visibility);
             var d = etc.GetSizeToDownload();
-            etc.Download();
-            etc.Read();
-            elevationPainter3.Generate(_myLocation, etc);
+            etc.Download(progress => { });
+            etc.Read(progress => { });
+            profileGenerator.Generate(_myLocation, etc, progress => { });
 
-            /*ElevationProfile ep2 = new ElevationProfile();
+            /*ProfileGeneratorOld ep2 = new ProfileGeneratorOld();
             //ep2.GenerateElevationProfile3(_myLocation, _visibility, _data, progress => { });
             ep2.GenerateElevationProfile3(_myLocation, _visibility, elevationPainter3.list, progress => { });
             elevationProfileNew = ep2.GetProfile();*/
 
             ElevationProfile ep3 = new ElevationProfile();
-            ep3.GenerateElevationProfile3(_myLocation, _visibility, elevationPainter3.list, progress => { });
+            ep3.GenerateElevationProfile3(_myLocation, _visibility, profileGenerator.GetProfile(), progress => { });
             elevationProfileNew = ep3.GetProfile();
 
             Invalidate();

@@ -55,6 +55,8 @@ namespace HorizontApp.Utilities
 
             var points = epd.GetPoints();
 
+            var maxDist = points.Max(p => p.Distance.Value);
+
             foreach (var point in points)
             {
                 foreach (var otherPoint in points)
@@ -68,7 +70,9 @@ namespace HorizontApp.Utilities
 
                             var y2 = GetYLocation(otherPoint.VerticalViewAngle.Value, imageInfo.Height, viewAngleVertical);
                             var x2 = GetXLocation(otherPoint.Bearing.Value, imageInfo.Width);
+
                             
+                            _paint.Color = SKColor.FromHsl(60, 100, (float)(50.0 - (point.Distance.Value / maxDist) / 2 * 50));
                             if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) < 100)
                                 canvas.DrawLine(x1, y1, x2, y2, _paint);
                             

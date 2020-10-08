@@ -7,22 +7,29 @@ using HorizonLib.Utilities;
 using HorizontLib.Domain.Models;
 using HorizontLib.Utilities;
 
-namespace PaintSkyLine
+namespace HorizonLib.Utilities
 {
-    class ElevationPainter3
+    public class ElevationDataGenerator
     {
-        public List<GpsLocation> list = new List<GpsLocation>();
+        private ElevationProfileData _elevationProfileData = new ElevationProfileData();
 
-        public ElevationPainter3()
+        public ElevationDataGenerator()
         {
         }
 
-        public void Generate(GpsLocation _myLocation, ElevationTileCollection etc)
+        public ElevationProfileData GetProfile()
         {
-            list.Clear();
+            return _elevationProfileData;
+        }
+
+        public void Generate(GpsLocation _myLocation, ElevationTileCollection etc, Action<int> onProgressChange)
+        {
+            _elevationProfileData.Clear();
 
             for (int a = 0; a < 360; a++)
             {
+                onProgressChange(a);
+
                 for (int d = 500; d < 3000; d += 50)
                 {
                     var x = GpsUtils.QuickGetGeoLocation(_myLocation, d, a);
@@ -33,7 +40,7 @@ namespace PaintSkyLine
                         x.Bearing = a;
                         x.GetVerticalViewAngle(_myLocation);
 
-                        list.Add(x);
+                        _elevationProfileData.Add(x);
                     }
                 }
                 for (int d = 3000; d < 8000; d += 100)
@@ -46,7 +53,7 @@ namespace PaintSkyLine
                         x.Bearing = a;
                         x.GetVerticalViewAngle(_myLocation);
 
-                        list.Add(x);
+                        _elevationProfileData.Add(x);
                     }
                 }
 
@@ -60,7 +67,7 @@ namespace PaintSkyLine
                         x.Bearing = a;
                         x.GetVerticalViewAngle(_myLocation);
 
-                        list.Add(x);
+                        _elevationProfileData.Add(x);
                     }
                 }
                 for (int d = 15000; d < 50000; d += 400)
@@ -73,7 +80,7 @@ namespace PaintSkyLine
                         x.Bearing = a;
                         x.GetVerticalViewAngle(_myLocation);
 
-                        list.Add(x);
+                        _elevationProfileData.Add(x);
                     }
                 }
                 for (int d = 50000; d < 100000; d += 800)
@@ -86,18 +93,10 @@ namespace PaintSkyLine
                         x.Bearing = a;
                         x.GetVerticalViewAngle(_myLocation);
 
-                        list.Add(x);
+                        _elevationProfileData.Add(x);
                     }
                 }
             }
-
-            /*int c = 0;
-            foreach (var et in etc)
-            {
-                c++;
-                if (et.QuickDistance(_myLocation) > 50000)
-                    continue;
-            }*/
         }
 
     }

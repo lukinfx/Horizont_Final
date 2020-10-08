@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using HorizontLib.Domain.Models;
 using HorizontLib.Providers;
@@ -96,12 +97,24 @@ namespace HorizonLib.Utilities
         {
             return _elevationTiles.Count(i => !i.Exists()) * ElevationFileProvider.GetFileSize();
         }
-
-        public void Download()
+        
+        public int GetCountToDownload()
         {
+            return _elevationTiles.Count(i => !i.Exists());
+        }
+
+        public int GetCount()
+        {
+            return _elevationTiles.Count();
+        }
+
+        public void Download(Action<int> onProgressChange)
+        {
+            int count = 0;
             foreach (var et in _elevationTiles)
             {
                 et.Download();
+                onProgressChange(count++);
             }
         }
 
@@ -113,9 +126,16 @@ namespace HorizonLib.Utilities
             }
         }*/
 
-        public void Read()
+        public void Read(Action<int> onProgressChange)
         {
-            GpsUtils.BoundingRect(_myLocation, _visibility, out var tmpRectMin, out var tmpRectMax);
+            int count = 0;
+            foreach (var et in _elevationTiles)
+            {
+                et.ReadMatrix();
+                onProgressChange(count++);
+            }
+
+            /*GpsUtils.BoundingRect(_myLocation, _visibility, out var tmpRectMin, out var tmpRectMax);
 
             for (var lat = (int)tmpRectMin.Latitude; lat < ((int)tmpRectMax.Latitude) + 1; lat++)
             {
@@ -125,8 +145,9 @@ namespace HorizonLib.Utilities
                         .Find(et => et.HasElevation(new GpsLocation(lon, lat, 0)))
                         .ReadMatrix();
                 }
-            }
+            }*/
         }
+
 
         public bool TryGetElevation(GpsLocation location, out double elevation, int size=1)
         {
