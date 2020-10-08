@@ -52,6 +52,8 @@ namespace HorizontApp.Utilities
 
             if (view == null)
                 view = context.LayoutInflater.Inflate(Resource.Layout. PoiListItemLayout, parent, false);
+            
+            view.Tag = position;
 
             view.SetOnClickListener(this);
 

@@ -11,24 +11,28 @@
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout3">
         
-    <Button
-        android:text="Back"
+    <ImageButton
+        android:src="@drawable/back"
+        android:background="#00000000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonBack" />
     
-    <Button
-        android:text="Save"
+    <ImageButton
+        android:src="@drawable/check"
+        android:background="#00000000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonSave" />
         
-    <Button
-        android:text="Paste from ClipBoard"
+    <ImageButton
+        android:src="@drawable/paste"
+        android:background="#00000000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonPaste" />
     </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"
@@ -36,20 +40,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout1">
-        
-        <TextView
-            android:text="Name: "
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:id="@+id/NameTitle" />
-        <EditText
+        <ImageView
+            android:id="@+id/Thumbnail"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/c_basic" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1">
+            <TextView
+                android:text="Name: "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:id="@+id/NameTitle" />
+            <EditText
             android:text="My current location"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextName" />
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -99,4 +119,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerCategory" />
+    <ImageButton
+        android:text="Open in map"
+        android:src="@drawable/map_icon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00000000"
+        android:id="@+id/buttonMap"/>
+    <ImageButton
+        android:src="@drawable/wikipedia_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00000000"
+        android:id="@+id/buttonWiki"/>
 </LinearLayout>

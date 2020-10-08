@@ -23,6 +23,8 @@ namespace HorizontLib.Domain.Models
 
         public bool Favorite { get; set; }
         public Guid Source { get; set; }
+        public string Wikidata { get; set; }
+        public string Wikipedia { get; set; }
 
         public Poi()
         {

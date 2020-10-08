@@ -33,6 +33,31 @@ namespace HorizontApp.Utilities
                     var eleElement = xelement.GetElementsByTagName("ele");
                     var ele = eleElement.Count==1 ? eleElement.Item(0).InnerText : "0";
 
+                    XmlNodeList wikidataElement;
+                    string wikidata = "";
+                    try
+                    {
+                        wikidataElement = xelement.GetElementsByTagName("wikidata");
+                        if (wikidataElement != null)
+                        {
+                            wikidata = wikidataElement.Item(0).InnerText;
+                        }
+                    }
+                    catch { }
+
+                    XmlNodeList wikipediaElement;
+                    string wikipedia = "";
+                    try
+                    {
+                        wikipediaElement = xelement.GetElementsByTagName("wikipedia");
+
+                        if (wikipediaElement != null)
+                        {
+                            wikipedia = wikipediaElement.Item(0).InnerText;
+                        }
+                    }
+                    catch { }
+
                     //var name = xelement.InnerText;
 
                     //TODO: Resolve problem with decimal separator
@@ -40,15 +65,21 @@ namespace HorizontApp.Utilities
                     lon = lon.Replace(".", ",");
                     ele = ele.Replace(".", ",");
 
-                    listOfPoi.Add(new Poi
+                    Poi poi = new Poi
                     {
                         Name = name,
-                        Longitude = Convert.ToDouble(lon), 
+                        Longitude = Convert.ToDouble(lon),
                         Latitude = Convert.ToDouble(lat),
                         Altitude = Convert.ToDouble(ele),
                         Category = category,
-                        Source =  source,
-                    });
+                        Source = source
+                    };
+                    if (wikipedia != "")
+                        poi.Wikipedia = wikipedia;
+                    if (wikidata != "")
+                        poi.Wikidata = wikidata;
+
+                    listOfPoi.Add(poi);
 
                     lastNode = name;
                 }

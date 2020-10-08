@@ -24,9 +24,12 @@ namespace HorizontApp.Activities
         private EditText _editTextLongitude;
         private EditText _editTextAltitude;
         private Spinner _spinnerCategory;
-        private Button _buttonSave;
-        private Button _buttonBack;
-        private Button _buttonPaste;
+        private ImageButton _buttonSave;
+        private ImageButton _buttonBack;
+        private ImageButton _buttonOpenMap;
+        private ImageButton _buttonOpenWiki;
+        private ImageView _thumbnail;
+        private ImageButton _buttonPaste;
         private Poi _item = new Poi();
         private PoiDatabase _database;
         private long _id;
@@ -76,20 +79,29 @@ namespace HorizontApp.Activities
             _editTextAltitude = FindViewById<EditText>(Resource.Id.editTextAltitude);
             _editTextAltitude.SetOnClickListener(this);
 
-            _buttonBack = FindViewById<Button>(Resource.Id.buttonBack);
+            _buttonBack = FindViewById<ImageButton>(Resource.Id.buttonBack);
             _buttonBack.SetOnClickListener(this);
 
-            _buttonPaste = FindViewById<Button>(Resource.Id.buttonPaste);
+            _buttonPaste = FindViewById<ImageButton>(Resource.Id.buttonPaste);
             _buttonPaste.SetOnClickListener(this);
+            _buttonOpenMap = FindViewById<ImageButton>(Resource.Id.buttonMap);
+            _buttonOpenMap.SetOnClickListener(this);
+
+            _buttonOpenWiki = FindViewById<ImageButton>(Resource.Id.buttonWiki);
+            _buttonOpenWiki.SetOnClickListener(this);
+
+
 
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _poiCategories.ToList());
             _spinnerCategory.Adapter = adapter;
             _spinnerCategory.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinnerCategory_ItemSelected);
 
-            _buttonSave = FindViewById<Button>(Resource.Id.buttonSave);
+            _buttonSave = FindViewById<ImageButton>(Resource.Id.buttonSave);
             _buttonSave.SetOnClickListener(this);
-
+            
+            _thumbnail = FindViewById<ImageView>(Resource.Id.Thumbnail);
+            
             if (_id != -1)
             {
                 _item = Database.GetItem(_id);
@@ -98,6 +110,9 @@ namespace HorizontApp.Activities
                 _editTextAltitude.Text = String.Format("{0,5:#.0}", _item.Altitude);
                 _editTextLongitude.Text = String.Format("{0,3:#.00000000}", _item.Longitude);
                 _editTextLatitude.Text = String.Format("{0,3:#.00000000}", _item.Latitude);
+                
+                
+                _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_item.Category));
             }
             else 
             {
@@ -117,7 +132,14 @@ namespace HorizontApp.Activities
                 _editTextLongitude.Text = location.Altitude.ToString();
             }
 
-            
+
+            if (_item.Wikidata == null && _item.Wikipedia == null)
+            {
+                _buttonOpenWiki.Enabled = false;
+                _buttonOpenWiki.Visibility = ViewStates.Gone;
+            }
+
+
 
             // Create your application here
         }
@@ -127,6 +149,7 @@ namespace HorizontApp.Activities
         private void spinnerCategory_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             _category = _poiCategories[e.Position];
+            _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_category));
         }
 
         public void OnClick(View v)
@@ -183,6 +206,27 @@ namespace HorizontApp.Activities
                     else
                         PopupHelper.ErrorDialog(this, "Error", "It seems you don't have any text in your ClipBoard.");
                     break;
+                case Resource.Id.buttonMap:
+                    {
+                        var location = new Location(Convert.ToDouble(_editTextLatitude.Text), Convert.ToDouble(_editTextLongitude.Text));
+                        Map.OpenAsync(location);
+                        break;
+                    }
+                case Resource.Id.buttonWiki:
+                    {
+                        if (_item.Wikipedia != "")
+                        {
+                            Browser.OpenAsync("https://en.wikipedia.org/w/index.php?search=" + _item.Wikipedia, BrowserLaunchMode.SystemPreferred);
+                        }
+                        else
+                        {
+                            Browser.OpenAsync("https://www.wikidata.org/wiki/" + _item.Wikidata, BrowserLaunchMode.SystemPreferred);
+                        }
+                        
+                        break;
+                    }
+
+
 
             }
         }

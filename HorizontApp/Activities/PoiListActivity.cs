@@ -31,7 +31,7 @@ namespace HorizontApp.Views.ListOfPoiView
         private static int ReqCode_AddPoiActivity = 1;
 
         private ListView _listViewPoi;
-        private Button _buttonBack;
+        private ImageButton _buttonBack;
         private Button _buttonAdd;
         private Spinner _spinnerSelection;
         private EditText _editTextSearch;
@@ -100,7 +100,7 @@ namespace HorizontApp.Views.ListOfPoiView
 
             _listViewPoi.ItemClick += OnListItemClick;
 
-            /*_buttonBack = FindViewById<Button>(Resource.Id.buttonBack);
+            _buttonBack = FindViewById<ImageButton>(Resource.Id.buttonBack);
             _buttonBack.SetOnClickListener(this);
             _buttonAdd = FindViewById<Button>(Resource.Id.buttonAdd);
             _buttonAdd.SetOnClickListener(this);
@@ -110,7 +110,7 @@ namespace HorizontApp.Views.ListOfPoiView
             _spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
             var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfSelections.ToList());
             _spinnerSelection.Adapter = selectionAdapter;
-            _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Selection_ItemSelected);*/
+            _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Selection_ItemSelected);
         }
 
         private void OnSearchTimerTimerElapsed(object sender, ElapsedEventArgs e)
