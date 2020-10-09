@@ -122,27 +122,13 @@ namespace HorizontApp.Views
         {
             compassViewDrawer.OnDrawBackground(canvas);
 
-            /*if (_elevationProfile != null)
-            {
-                compassViewDrawer.PaintProfile(canvas, (float) Heading, _elevationProfile);
-            }*/
+            PaintElevationProfileBitmap(canvas);
 
+            PaintVisiblePois(canvas);
+        }
 
-            if(_elevationProfileBitmap != null)
-            {
-                float offset = (float)(_elevationProfileBitmap.Width * (Heading - CompassViewSettings.Instance().ViewAngleHorizontal / 2) / 360);
-                canvas.DrawBitmap(_elevationProfileBitmap, -offset, (float)0, _paint);
-                if (Heading > 360 - CompassViewSettings.Instance().ViewAngleHorizontal)
-                {
-                    canvas.DrawBitmap(_elevationProfileBitmap, -offset + _elevationProfileBitmap.Width, (float)0, _paint);
-                }
-                    if(Heading < CompassViewSettings.Instance().ViewAngleHorizontal)
-                {
-                    canvas.DrawBitmap(_elevationProfileBitmap, -offset - _elevationProfileBitmap.Width, (float)0, _paint);
-                }
-                     
-            }
-
+        private void PaintVisiblePois(Canvas canvas)
+        {
             canvas.Rotate(90, 0, 0);
 
             if (list != null)
@@ -153,6 +139,8 @@ namespace HorizontApp.Views
                         compassViewDrawer.OnDrawItem(canvas, item, (float)Heading);
                 }
             }
+            
+            canvas.Rotate(-90, 0, 0);
         }
 
         public void OnScroll(float distanceX)
@@ -171,46 +159,33 @@ namespace HorizontApp.Views
         public void SetElevationProfile(ElevationProfileData elevationProfile)
         {
             _elevationProfile = elevationProfile;
-            elevationProfileBitmapDrawer.SetElevationProfile(_elevationProfile, Width, Height);
-            var profileImageData = elevationProfileBitmapDrawer.GetElevationBitmap().ToArray();
-            _elevationProfileBitmap = BitmapFactory.DecodeByteArray(profileImageData, 0, profileImageData.Length);
+            GenerateElevationProfileBitmap();
 
             Invalidate();
         }
 
-        /*private void PaintElevationProfile(Android.Graphics.Canvas canvas)
+        private void GenerateElevationProfileBitmap()
         {
-            if (_elevationProfile == null)
-            {
-                canvas.DrawLine(0, canvas.Height / (float)2.0, canvas.Width, canvas.Height / (float)2.0, _paint);
-                return;
-            }
+            elevationProfileBitmapDrawer.SetElevationProfile(_elevationProfile, Width, Height);
+            var profileImageData = elevationProfileBitmapDrawer.GetElevationBitmap().ToArray();
+            _elevationProfileBitmap = BitmapFactory.DecodeByteArray(profileImageData, 0, profileImageData.Length);
+        }
 
-            var viewAngleHorizontal = CompassViewSettings.Instance().ViewAngleHorizontal;
-            var viewAngleVertical = CompassViewSettings.Instance().ViewAngleVertical;
-
-            foreach (var point in ElevationProfileData.displayedPoints)
+        private void PaintElevationProfileBitmap(Canvas canvas)
+        {
+            if (_elevationProfileBitmap != null)
             {
-                var x = CompassViewUtils.GetXLocationOnScreen((float)Heading, (float)point.Item1, canvas.Width, viewAngleHorizontal);
-                var y = CompassViewUtils.GetYLocationOnScreen(point.Item2, canvas.Height, viewAngleVertical);
-            }
-
-            float? lastX = null;
-            float? lastY = null;
-            for (int i=0; i<=360; i++)
-            {
-                var x = CompassViewUtils.GetXLocationOnScreen((float)Heading, (float)i, canvas.Width, viewAngleHorizontal);
-                var y = CompassViewUtils.GetYLocationOnScreen(_elevationProfile.Get(i%360), canvas.Height, viewAngleVertical);
-                if (lastX.HasValue && lastY.HasValue && x.HasValue)
+                float offset = (float)(_elevationProfileBitmap.Width * (Heading - CompassViewSettings.Instance().ViewAngleHorizontal / 2) / 360);
+                canvas.DrawBitmap(_elevationProfileBitmap, -offset, (float)0, _paint);
+                if (Heading > 360 - CompassViewSettings.Instance().ViewAngleHorizontal)
                 {
-                    canvas.DrawLine(lastX.Value, lastY.Value, x.Value, y, _paint);
+                    canvas.DrawBitmap(_elevationProfileBitmap, -offset + _elevationProfileBitmap.Width, (float)0, _paint);
                 }
-
-                lastX = x;
-                lastY = y;
+                if (Heading < CompassViewSettings.Instance().ViewAngleHorizontal)
+                {
+                    canvas.DrawBitmap(_elevationProfileBitmap, -offset - _elevationProfileBitmap.Width, (float)0, _paint);
+                }
             }
-        }*/
-
-        
+        }
     }
 }
