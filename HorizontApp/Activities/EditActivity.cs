@@ -12,6 +12,7 @@ using HorizontLib.Domain.Enums;
 using Xamarin.Essentials;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Android.Graphics.Drawables;
 using HorizontApp.Providers;
 
 namespace HorizontApp.Activities
@@ -49,7 +50,6 @@ namespace HorizontApp.Activities
             }
         }
         protected override void OnCreate(Bundle savedInstanceState)
-
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -67,6 +67,14 @@ namespace HorizontApp.Activities
 
             _id = Intent.GetLongExtra("Id", -1);
 
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
+
+            //ActionBar.Title = "Edit POI";
+            //ActionBar.SetHomeButtonEnabled(true);
+            ActionBar.SetDisplayShowHomeEnabled(true);
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
+
             _editTextName = FindViewById<EditText>(Resource.Id.editTextName);
             _editTextName.SetOnClickListener(this);
 
@@ -79,11 +87,6 @@ namespace HorizontApp.Activities
             _editTextAltitude = FindViewById<EditText>(Resource.Id.editTextAltitude);
             _editTextAltitude.SetOnClickListener(this);
 
-            _buttonBack = FindViewById<ImageButton>(Resource.Id.buttonBack);
-            _buttonBack.SetOnClickListener(this);
-
-            _buttonPaste = FindViewById<ImageButton>(Resource.Id.buttonPaste);
-            _buttonPaste.SetOnClickListener(this);
             _buttonOpenMap = FindViewById<ImageButton>(Resource.Id.buttonMap);
             _buttonOpenMap.SetOnClickListener(this);
 
@@ -97,9 +100,6 @@ namespace HorizontApp.Activities
             _spinnerCategory.Adapter = adapter;
             _spinnerCategory.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinnerCategory_ItemSelected);
 
-            _buttonSave = FindViewById<ImageButton>(Resource.Id.buttonSave);
-            _buttonSave.SetOnClickListener(this);
-            
             _thumbnail = FindViewById<ImageView>(Resource.Id.Thumbnail);
             
             if (_id != -1)
@@ -138,28 +138,21 @@ namespace HorizontApp.Activities
                 _buttonOpenWiki.Enabled = false;
                 _buttonOpenWiki.Visibility = ViewStates.Gone;
             }
-
-
-
-            // Create your application here
         }
 
-        
-
-        private void spinnerCategory_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            _category = _poiCategories[e.Position];
-            _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_category));
+            MenuInflater.Inflate(Resource.Menu.EditActivityMenu, menu);
+            return base.OnCreateOptionsMenu(menu);
         }
-
-        public void OnClick(View v)
+        public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            switch (v.Id)
+            switch (item.ItemId)
             {
-                case Resource.Id.buttonBack:
+                case Android.Resource.Id.Home:
                     Finish();
                     break;
-                case Resource.Id.buttonSave:
+                case Resource.Id.menu_save:
                     _item.Name = _editTextName.Text;
 
                     if (IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
@@ -176,14 +169,16 @@ namespace HorizontApp.Activities
                         {
                             _database.UpdateItem(_item);
                         }
+
                         Finish();
                     }
                     else
                     {
-                        PopupHelper.ErrorDialog(this,"Wrong format", "Use correct format. Example: '12,34567890' ");
+                        PopupHelper.ErrorDialog(this, "Wrong format", "Use correct format. Example: '12,34567890' ");
                     }
+
                     break;
-                case Resource.Id.buttonPaste:
+                case Resource.Id.menu_paste:
                     if (Clipboard.HasText)
                     {
                         try
@@ -205,7 +200,23 @@ namespace HorizontApp.Activities
                     }
                     else
                         PopupHelper.ErrorDialog(this, "Error", "It seems you don't have any text in your ClipBoard.");
+
                     break;
+            }
+
+            return base.OnOptionsItemSelected(item);
+        }
+    
+        private void spinnerCategory_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            _category = _poiCategories[e.Position];
+            _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_category));
+        }
+
+        public void OnClick(View v)
+        {
+            switch (v.Id)
+            {
                 case Resource.Id.buttonMap:
                     {
                         var location = new Location(Convert.ToDouble(_editTextLatitude.Text), Convert.ToDouble(_editTextLongitude.Text));
@@ -225,9 +236,6 @@ namespace HorizontApp.Activities
                         
                         break;
                     }
-
-
-
             }
         }
 
