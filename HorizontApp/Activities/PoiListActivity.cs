@@ -26,13 +26,11 @@ using HorizontApp.Utilities;
 namespace HorizontApp.Views.ListOfPoiView
 {
     [Activity(Label = "PoiListActivity")]
-    public class PoiListActivity : Activity, IOnClickListener, IPoiActionListener
+    public class PoiListActivity : Activity, IPoiActionListener
     {
         private static int ReqCode_AddPoiActivity = 1;
 
         private ListView _listViewPoi;
-        private ImageButton _buttonBack;
-        private Button _buttonAdd;
         private Spinner _spinnerSelection;
         private EditText _editTextSearch;
 
@@ -100,10 +98,14 @@ namespace HorizontApp.Views.ListOfPoiView
 
             _listViewPoi.ItemClick += OnListItemClick;
 
-            _buttonBack = FindViewById<ImageButton>(Resource.Id.buttonBack);
-            _buttonBack.SetOnClickListener(this);
-            _buttonAdd = FindViewById<Button>(Resource.Id.buttonAdd);
-            _buttonAdd.SetOnClickListener(this);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
+
+            ActionBar.SetDisplayShowHomeEnabled(true);
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
+            ActionBar.SetDisplayShowTitleEnabled(false);
+
+
             _editTextSearch = FindViewById<EditText>(Resource.Id.editTextSearch);
             _editTextSearch.TextChanged += editTextSearch_TextChanged;
 
@@ -111,6 +113,12 @@ namespace HorizontApp.Views.ListOfPoiView
             var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfSelections.ToList());
             _spinnerSelection.Adapter = selectionAdapter;
             _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Selection_ItemSelected);
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.PoiListActivityMenu, menu);
+            return base.OnCreateOptionsMenu(menu);
         }
 
         private void OnSearchTimerTimerElapsed(object sender, ElapsedEventArgs e)
@@ -185,17 +193,18 @@ namespace HorizontApp.Views.ListOfPoiView
             }
         }
 
-        public void OnClick(View v)
+        public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            switch (v.Id)
+            switch (item.ItemId)
             {
-                case Resource.Id.buttonBack:
+                case Android.Resource.Id.Home:
                     Finish();
                     break;
-                case Resource.Id.buttonAdd:
+                case Resource.Id.menu_addNew:
                     OnPoiAdd();
                     break;
             }
+            return base.OnOptionsItemSelected(item);
         }
 
         public void OnPoiDelete(int position)

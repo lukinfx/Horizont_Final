@@ -27,13 +27,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/Thumbnail"
-            android:lineSpacingExtra="3dp"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:textColor="#000000"
             android:textStyle="bold"
-            android:typeface="sans" 
-        android:text="gukjgagglhgi;hkbvcxikhbdfbsiyv"/>
+            android:typeface="sans"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:maxWidth="200dp"
+            android:text="gukjgagglhgi;hkbvcxghjhjjhgikhbdfbsiyv"/>
         <TextView
             android:id="@+id/Description"
             android:layout_width="wrap_content"
