@@ -220,9 +220,9 @@ namespace HorizontApp.Views.Camera
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            mFile = new File(Activity.GetExternalFilesDir(null), "pic.jpg");
+            //mFile = new File(Activity.GetExternalFilesDir(null), "pic.jpg");
             mCaptureCallback = new CameraCaptureListener(this);
-            mOnImageAvailableListener = new ImageAvailableListener(this, mFile);
+            mOnImageAvailableListener = new ImageAvailableListener(this);
         }
 
         public override void OnResume()
