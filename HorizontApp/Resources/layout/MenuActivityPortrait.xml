@@ -42,6 +42,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout2">
         <ImageButton
+          android:src="@drawable/ic_camera"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="5"
+          android:id="@+id/buttonPhotos" />
+        <ImageButton
           android:src="@drawable/ic_settingsalt2"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
