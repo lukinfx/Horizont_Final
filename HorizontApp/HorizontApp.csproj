@@ -100,7 +100,6 @@
     <Compile Include="Utilities\GeoLocationExtension.cs" />
     <Compile Include="Utilities\ExceptionHelper.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
-    <Compile Include="Utilities\GpxFileParser.cs" />
     <Compile Include="Utilities\HeadingStabilizator.cs" />
     <Compile Include="Utilities\ListViewAdapter.cs" />
     <Compile Include="Utilities\PoiCategoryHelper.cs" />

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-using System.Linq;
 using HorizontLib.Domain.Enums;
 using HorizontLib.Domain.Models;
 
@@ -9,24 +8,9 @@ namespace HorizontLib.Utilities
 {
     public class GpxFileParser
     {
-        private static string HMS2Deg(string text)
+        static public IEnumerable<Poi> Parse(string xml, PoiCategory category, Guid source)
         {
-            if (text.Length != 8)
-            {
-                return "0";
-            }
-
-            var h = Int32.Parse(text.Substring(0, 2));
-            var m = Int32.Parse(text.Substring(3, 2));
-            var s = Int32.Parse(text.Substring(6, 2));
-
-            var hms = (((( h * 60) + m) * 60) + s) / ((double)60 * 60);
-            return hms.ToString();
-        }
-
-
-        static public IEnumerable<Poi> Parse(string xml, PoiCategory category)
-        {
+            var lastNode = "";
             try
             {
                 var listOfPoi = new PoiList();
@@ -35,41 +19,76 @@ namespace HorizontLib.Utilities
                 gpxDoc.LoadXml(xml);
                 XmlNamespaceManager nsmgr = new XmlNamespaceManager(gpxDoc.NameTable);
                 nsmgr.AddNamespace("x", "http://www.topografix.com/GPX/1/1");
+                nsmgr.AddNamespace("ogr", "http://osgeo.org/gdal");
                 XmlNodeList nl = gpxDoc.SelectNodes("/x:gpx/x:wpt ", nsmgr);
                 foreach (XmlElement xelement in nl)
                 {
 
                     var lat = xelement.Attributes.GetNamedItem("lat").Value;
                     var lon = xelement.Attributes.GetNamedItem("lon").Value;
-                    
-                    var nameList = xelement.GetElementsByTagName("name");
-                    var name = nameList.Count > 0 ? nameList.Item(0).InnerText : "XXXXXXXXXXXXXXXXXXXXXXXX";
-                    
-                    var eleList = xelement.GetElementsByTagName("ele");
-                    var ele = eleList.Count > 0 ? eleList.Item(0).InnerText : "0";
 
-                    //lon = HMS2Deg(lon);
-                    //lat = HMS2Deg(lat);
+                    var nameElement = xelement.GetElementsByTagName("name");
+                    var name = nameElement.Count == 1 ? nameElement.Item(0).InnerText : "Unnamed";
+
+                    var eleElement = xelement.GetElementsByTagName("ele");
+                    var ele = eleElement.Count == 1 ? eleElement.Item(0).InnerText : "0";
+
+                    XmlNodeList wikidataElement;
+                    string wikidata = "";
+                    try
+                    {
+                        wikidataElement = xelement.GetElementsByTagName("wikidata");
+                        if (wikidataElement != null)
+                        {
+                            wikidata = wikidataElement.Item(0).InnerText;
+                        }
+                    }
+                    catch { }
+
+                    XmlNodeList wikipediaElement;
+                    string wikipedia = "";
+                    try
+                    {
+                        wikipediaElement = xelement.GetElementsByTagName("wikipedia");
+
+                        if (wikipediaElement != null)
+                        {
+                            wikipedia = wikipediaElement.Item(0).InnerText;
+                        }
+                    }
+                    catch { }
+
+                    //var name = xelement.InnerText;
 
                     //TODO: Resolve problem with decimal separator
                     lat = lat.Replace(".", ",");
                     lon = lon.Replace(".", ",");
+                    ele = ele.Replace(".", ",");
 
-                    listOfPoi.Add(new Poi
+                    Poi poi = new Poi
                     {
                         Name = name,
                         Longitude = Convert.ToDouble(lon),
                         Latitude = Convert.ToDouble(lat),
-                        Category = category,
                         Altitude = Convert.ToDouble(ele),
-                    });
+                        Category = category,
+                        Source = source
+                    };
+                    if (wikipedia != "")
+                        poi.Wikipedia = wikipedia;
+                    if (wikidata != "")
+                        poi.Wikidata = wikidata;
+
+                    listOfPoi.Add(poi);
+
+                    lastNode = name;
                 }
 
                 return listOfPoi;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error when parsing GPX file", ex);
+                throw new Exception($"Error when parsing GPX file (last node:{lastNode})", ex);
             }
         }
     }

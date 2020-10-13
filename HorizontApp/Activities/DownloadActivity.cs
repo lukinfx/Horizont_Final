@@ -9,6 +9,7 @@ using Android.Widget;
 using HorizontApp.DataAccess;
 using HorizontLib.Domain.Enums;
 using HorizontLib.Domain.Models;
+using HorizontLib.Utilities;
 using HorizontApp.Providers;
 using HorizontApp.Utilities;
 using Newtonsoft.Json;
