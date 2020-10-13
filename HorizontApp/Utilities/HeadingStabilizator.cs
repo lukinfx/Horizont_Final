@@ -19,6 +19,11 @@ namespace HorizontApp.Utilities
 
         public double GetHeading()
         {
+            if (!headings.Any())
+            {
+                return 0;
+            }
+
             var a = headings.Average();
             var q = new Queue<double>(10);
 
