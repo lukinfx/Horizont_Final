@@ -19,7 +19,11 @@ namespace HorizontApp.Activities
 {
     [Activity(Label = "EditActivity")]
     public class EditActivity : Activity, IOnClickListener
-    { 
+    {
+        public static int REQUEST_ADD_POI = 0;
+        public static int REQUEST_EDIT_POI = 1;
+        
+
         private EditText _editTextName;
         private EditText _editTextLatitude;
         private EditText _editTextLongitude;
@@ -107,11 +111,10 @@ namespace HorizontApp.Activities
                 _item = Database.GetItem(_id);
                 _spinnerCategory.SetSelection(_poiCategories.ToList().FindIndex(i => i == _item.Category));
                 _editTextName.Text = _item.Name;
-                _editTextAltitude.Text = String.Format("{0,5:#.0}", _item.Altitude);
-                _editTextLongitude.Text = String.Format("{0,3:#.00000000}", _item.Longitude);
-                _editTextLatitude.Text = String.Format("{0,3:#.00000000}", _item.Latitude);
-                
-                
+                _editTextAltitude.Text = $"{_item.Altitude:F0}";
+                _editTextLongitude.Text = $"{_item.Longitude:F7}";
+                _editTextLatitude.Text = $"{_item.Latitude:F7}";
+
                 _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_item.Category));
             }
             else 
@@ -150,6 +153,7 @@ namespace HorizontApp.Activities
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
+                    SetResult(Result.Canceled);
                     Finish();
                     break;
                 case Resource.Id.menu_save:
@@ -167,9 +171,10 @@ namespace HorizontApp.Activities
                         }
                         else
                         {
-                            _database.UpdateItem(_item);
+                            Database.UpdateItem(_item);
                         }
 
+                        SetResult(Result.Ok);
                         Finish();
                     }
                     else

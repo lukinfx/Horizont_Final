@@ -28,8 +28,6 @@ namespace HorizontApp.Views.ListOfPoiView
     [Activity(Label = "PoiListActivity")]
     public class PoiListActivity : Activity, IPoiActionListener
     {
-        private static int ReqCode_AddPoiActivity = 1;
-
         private ListView _listViewPoi;
         private Spinner _spinnerSelection;
         private EditText _editTextSearch;
@@ -112,7 +110,7 @@ namespace HorizontApp.Views.ListOfPoiView
             _spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
             var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfSelections.ToList());
             _spinnerSelection.Adapter = selectionAdapter;
-            _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Selection_ItemSelected);
+            _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(FilterSelectionChanged);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -126,19 +124,8 @@ namespace HorizontApp.Views.ListOfPoiView
             _searchTimer.Stop();
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                _FindItem();
+                _selectByName();
             });
-        }
-
-        private void _FindItem()
-        {
-            var poiList = Database.FindItems(_editTextSearch.Text);
-
-            _items = new PoiViewItemList(poiList, _location);
-            _items = _items.OrderBy(i => i.Distance).ToList();
-            _adapter = new ListViewAdapter(this, _items, this);
-            _listViewPoi.Adapter = _adapter;
-            _listViewPoi.Invalidate();
         }
 
         private void editTextSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -175,7 +162,18 @@ namespace HorizontApp.Views.ListOfPoiView
             _listViewPoi.Invalidate();
         }
 
-        private void Selection_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private void _selectByName()
+        {
+            var poiList = Database.FindItems(_editTextSearch.Text);
+
+            _items = new PoiViewItemList(poiList, _location);
+            _items = _items.OrderBy(i => i.Distance).ToList();
+            _adapter = new ListViewAdapter(this, _items, this);
+            _listViewPoi.Adapter = _adapter;
+            _listViewPoi.Invalidate();
+        }
+
+        private void FilterSelectionChanged(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             int selection = e.Position;
             if (selection == 0)
@@ -231,16 +229,16 @@ namespace HorizontApp.Views.ListOfPoiView
             PoiViewItem item = _items[position];
             Intent editActivityIntent = new Intent(this, typeof(EditActivity));
             editActivityIntent.PutExtra("Id", item.Poi.Id);
-            StartActivity(editActivityIntent);
+            StartActivityForResult(editActivityIntent, EditActivity.REQUEST_EDIT_POI);
 
-            _adapter = new ListViewAdapter(this, _items, this);
-            _listViewPoi.Adapter = _adapter;
+            /*_adapter = new ListViewAdapter(this, _items, this);
+            _listViewPoi.Adapter = _adapter;*/
         }
 
         public void OnPoiAdd()
         {
             Intent editActivityIntent = new Intent(this, typeof(EditActivity));
-            StartActivityForResult(editActivityIntent, ReqCode_AddPoiActivity);
+            StartActivityForResult(editActivityIntent, EditActivity.REQUEST_ADD_POI);
 
             _adapter = new ListViewAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;
@@ -258,9 +256,22 @@ namespace HorizontApp.Views.ListOfPoiView
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-            if (requestCode == ReqCode_AddPoiActivity)
+            if (requestCode == EditActivity.REQUEST_ADD_POI)
             {
-                //ReloadData(favourite);
+                if (resultCode == Result.Ok)
+                {
+                    _adapter = new ListViewAdapter(this, _items, this);
+                    _listViewPoi.Adapter = _adapter;
+                }
+            }
+
+            if (requestCode == EditActivity.REQUEST_EDIT_POI)
+            {
+                if (resultCode == Result.Ok)
+                {
+                    _adapter = new ListViewAdapter(this, _items, this);
+                    _listViewPoi.Adapter = _adapter;
+                }
             }
         }
     }
