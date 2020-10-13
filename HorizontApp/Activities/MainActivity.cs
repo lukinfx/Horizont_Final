@@ -266,7 +266,7 @@ namespace HorizontApp
 
                     if (needRefresh)
                     {
-                        _GPSEditText.Text = ($"Lat: {_myLocation.Latitude:F7} Lon: {_myLocation.Longitude:F7} Alt: {_myLocation.Altitude:F0}");
+                        _GPSEditText.Text = ($"Lat:{_myLocation.Latitude:F7} Lon:{_myLocation.Longitude:F7} Alt:{_myLocation.Altitude:F0}");
 
                         var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
                         _compassView.SetPoiViewItemList(points);
@@ -560,11 +560,11 @@ namespace HorizontApp
             _compassView.Heading = _headingStabilizator.GetHeading()+_compassView.HeadingCorrector;
             if (appOrientation == DisplayOrientation.Portrait)
             {
-                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0).ToString()}° + { _compassView.HeadingCorrector + 90 :F1} |  ";
+                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0):F7}°+{ _compassView.HeadingCorrector + 90 :F0} | ";
             }
             else
             {
-                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0).ToString()}° + { _compassView.HeadingCorrector :F1} |  ";
+                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0):F7}°+{ _compassView.HeadingCorrector :F0} | ";
             }
             _compassView.Invalidate();
         }
