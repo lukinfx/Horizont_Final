@@ -560,11 +560,11 @@ namespace HorizontApp
             _compassView.Heading = _headingStabilizator.GetHeading()+_compassView.HeadingCorrector;
             if (appOrientation == DisplayOrientation.Portrait)
             {
-                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0):F7}°+{ _compassView.HeadingCorrector + 90 :F0} | ";
+                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0):F0}°+{ _compassView.HeadingCorrector + 90 :F0} | ";
             }
             else
             {
-                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0):F7}°+{ _compassView.HeadingCorrector :F0} | ";
+                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0):F0}°+{ _compassView.HeadingCorrector :F0} | ";
             }
             _compassView.Invalidate();
         }
