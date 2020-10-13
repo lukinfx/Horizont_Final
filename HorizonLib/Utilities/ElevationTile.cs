@@ -76,48 +76,63 @@ namespace HorizontLib.Utilities
 
     public class ElevationTile : IEnumerable<GpsLocation>
     {
-        private readonly GpsLocation _startLocation;
         private ushort[,] _elevationData;
         private int _width, _height;
         private bool? _fileExists;
+        public string ErrorMessage { get; private set; }
+        public GpsLocation StartLocation { get; private set; }
+
+        public bool IsOk { get { return string.IsNullOrEmpty(ErrorMessage); } }
 
         public ElevationTile(GpsLocation startLocation)
         {
-            this._startLocation = startLocation;
+            this.StartLocation = startLocation;
         }
 
         public bool Exists()
         {
             if (!_fileExists.HasValue)
             {
-                _fileExists = ElevationFileProvider.ElevationFileExists((int) _startLocation.Latitude, (int) _startLocation.Longitude);
+                _fileExists = ElevationFileProvider.ElevationFileExists((int) StartLocation.Latitude, (int) StartLocation.Longitude);
             }
             return _fileExists.Value;
         }
 
-        public void Download()
+        public bool Download()
         {
             try
             {
-                ElevationFileProvider.GetElevationFile((int) _startLocation.Latitude, (int) _startLocation.Longitude);
+                ElevationFileProvider.GetElevationFile((int) StartLocation.Latitude, (int) StartLocation.Longitude);
+                return true;
             }
             catch (Exception ex)
             {
-                //TODO: save error message
+                ErrorMessage = $"Download error ({ex.Message})";
+                return false;
             }
         }
 
-        public void ReadMatrix()
+        public bool ReadMatrix()
         {
-            if (_elevationData == null)
+            try
             {
-                if (ElevationFileProvider.ElevationFileExists((int) _startLocation.Latitude, (int) _startLocation.Longitude))
+                if (_elevationData == null)
                 {
-                    var inputFileName = ElevationFileProvider.GetElevationFile((int) _startLocation.Latitude, (int) _startLocation.Longitude);
-                    _elevationData = GeoTiffReader.ReadTiff3(inputFileName, 0, 999, 0, 999);
-                    _width = 1800;
-                    _height = 1800;
+                    if (ElevationFileProvider.ElevationFileExists((int) StartLocation.Latitude, (int) StartLocation.Longitude))
+                    {
+                        var inputFileName = ElevationFileProvider.GetElevationFile((int) StartLocation.Latitude, (int) StartLocation.Longitude);
+                        _elevationData = GeoTiffReader.ReadTiff3(inputFileName, 0, 999, 0, 999);
+                        _width = 1800;
+                        _height = 1800;
+                        return true;
+                    }
                 }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"Load error ({ex.Message})";
+                return false;
             }
         }
 
@@ -130,13 +145,12 @@ namespace HorizontLib.Utilities
             }
         }*/
 
-
         public IEnumerator<GpsLocation> GetEnumerator()
         {
             if (_elevationData == null)
                 throw new SystemException("Elevation Tile is now loaded yet");
 
-            return new EleDataEnumerator(_startLocation, ref _elevationData, _width, _height);
+            return new EleDataEnumerator(StartLocation, ref _elevationData, _width, _height);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -144,7 +158,7 @@ namespace HorizontLib.Utilities
             if (_elevationData == null)
                 throw new SystemException("Elevation Tile is now loaded yet");
 
-            return new EleDataEnumerator(_startLocation, ref _elevationData, _width, _height);
+            return new EleDataEnumerator(StartLocation, ref _elevationData, _width, _height);
         }
 
         public bool TryGetElevation(GpsLocation myLocation, out double elevation)
@@ -161,10 +175,10 @@ namespace HorizontLib.Utilities
 
         public bool HasElevation(GpsLocation myLocation)
         {
-            return (myLocation.Latitude >= _startLocation.Latitude
-                    && myLocation.Latitude < _startLocation.Latitude + 1
-                    && myLocation.Longitude >= _startLocation.Longitude
-                    && myLocation.Longitude < _startLocation.Longitude + 1);
+            return (myLocation.Latitude >= StartLocation.Latitude
+                    && myLocation.Latitude < StartLocation.Latitude + 1
+                    && myLocation.Longitude >= StartLocation.Longitude
+                    && myLocation.Longitude < StartLocation.Longitude + 1);
         }
 
         public bool IsLoaded()

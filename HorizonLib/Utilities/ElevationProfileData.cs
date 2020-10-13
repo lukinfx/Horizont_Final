@@ -53,7 +53,7 @@ namespace HorizontLib.Utilities
 
         public ElevationData GetData(int angle)
         {
-            return elevationData.Single(i => i.Angle == GpsUtils.Normalize360(angle));
+            return elevationData.SingleOrDefault(i => i.Angle == GpsUtils.Normalize360(angle));
         }
     }
 }

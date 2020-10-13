@@ -14,26 +14,19 @@ namespace HorizontLib.Providers
 
         public static string GetElevationFile(int lat, int lon)
         {
-            try
+            var filePath = GetElevationFilePath(lat, lon);
+
+            //Have we already downloaded the file?
+            if (File.Exists(filePath))
             {
-                var filePath = GetElevationFilePath(lat, lon);
-
-                //Have we already downloaded the file?
-                if (File.Exists(filePath))
-                {
-                    return filePath;
-                }
-
-                Directory.CreateDirectory(GetElevationFileFolder());
-
-                WebClient webClient = new WebClient();
-                webClient.DownloadFile(new Uri(GetElevationFileUrl(lat, lon)), filePath);
                 return filePath;
             }
-            catch (Exception ex)
-            {
-                throw new SystemException("Download error.", ex);
-            }
+
+            Directory.CreateDirectory(GetElevationFileFolder());
+
+            WebClient webClient = new WebClient();
+            webClient.DownloadFile(new Uri(GetElevationFileUrl(lat, lon)), filePath);
+            return filePath;
         }
 
         private static string GetElevationFileName(int lat, int lon)

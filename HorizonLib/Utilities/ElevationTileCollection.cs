@@ -108,14 +108,41 @@ namespace HorizonLib.Utilities
             return _elevationTiles.Count();
         }
 
-        public void Download(Action<int> onProgressChange)
+        public bool Download(Action<int> onProgressChange)
         {
             int count = 0;
+            bool isOk = true;
             foreach (var et in _elevationTiles)
             {
-                et.Download();
+                if (!et.Download())
+                {
+                    isOk = false;
+                }
                 onProgressChange(count++);
             }
+
+            return isOk;
+        }
+
+        public string GetErrorList()
+        {
+            string errorsAsString = "";
+            foreach (var et in _elevationTiles)
+            {
+                if (!et.IsOk)
+                {
+                    if (!string.IsNullOrEmpty(errorsAsString))
+                    {
+                        errorsAsString += ",";
+                    }
+
+                    errorsAsString += $"Tile {et.StartLocation.Latitude:F0}/{et.StartLocation.Longitude:F0} : {et.ErrorMessage}, \r\n";
+                }
+            }
+
+            return $"Some tiles were not loaded. The elevation profile may not be complete. \r\n\r\nMissing tiles: \r\n{errorsAsString}";
+
+            throw new NotImplementedException();
         }
 
         /*public void ReadRadius(List<GpsLocation> eleData)
@@ -126,26 +153,20 @@ namespace HorizonLib.Utilities
             }
         }*/
 
-        public void Read(Action<int> onProgressChange)
+        public bool Read(Action<int> onProgressChange)
         {
             int count = 0;
+            bool isOk = true;
             foreach (var et in _elevationTiles)
             {
-                et.ReadMatrix();
+                if (!et.ReadMatrix())
+                {
+                    isOk = false;
+                }
                 onProgressChange(count++);
             }
 
-            /*GpsUtils.BoundingRect(_myLocation, _visibility, out var tmpRectMin, out var tmpRectMax);
-
-            for (var lat = (int)tmpRectMin.Latitude; lat < ((int)tmpRectMax.Latitude) + 1; lat++)
-            {
-                for (var lon = (int)tmpRectMin.Longitude; lon < ((int)tmpRectMax.Longitude) + 1; lon++)
-                {
-                    _elevationTiles
-                        .Find(et => et.HasElevation(new GpsLocation(lon, lat, 0)))
-                        .ReadMatrix();
-                }
-            }*/
+            return isOk;
         }
 
 

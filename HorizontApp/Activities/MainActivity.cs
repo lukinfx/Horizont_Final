@@ -433,32 +433,50 @@ namespace HorizontApp
 
         private void GenerateElevationProfile()
         {
-            if (!GpsUtils.HasAltitude(_myLocation))
-            {
-                PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
-                return;
+            try {
+                if (!GpsUtils.HasAltitude(_myLocation))
+                {
+                    PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
+                    return;
+                }
+
+                var ec = new ElevationCalculation(_myLocation, _distanceSeekBar.Progress);
+
+                var size = ec.GetSizeToDownload();
+                if (size == 0)
+                {
+                    StartDownloadAndCalculate(ec);
+                    return;
+                }
+
+                using (var builder = new AlertDialog.Builder(this))
+                {
+                    builder.SetTitle("Question");
+                    builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount downloaded data. \r\n\r\nDo you really want to continue?");
+                    builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
+                    builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
+                    builder.SetNegativeButton("Cancel", (senderAlert, args) => { });
+
+                    var myCustomDialog = builder.Create();
+
+                    myCustomDialog.Show();
+                }
             }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
+            }
+        }
 
-            var ec = new ElevationCalculation(_myLocation, _distanceSeekBar.Progress);
-
-            var size = ec.GetSizeToDownload();
-            if (size == 0)
+        private void StartDownloadAndCalculateAsync(ElevationCalculation ec)
+        {
+            try
             {
                 StartDownloadAndCalculate(ec);
-                return;
             }
-
-            using (var builder = new AlertDialog.Builder(this))
+            catch (Exception ex)
             {
-                builder.SetTitle("Question");
-                builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount downloaded data. \r\n\r\nDo you really want to continue?");
-                builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
-                builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculate(ec); });
-                builder.SetNegativeButton("Cancel", (senderAlert, args) => { });
-
-                var myCustomDialog = builder.Create();
-
-                myCustomDialog.Show();
+                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
             }
         }
 
