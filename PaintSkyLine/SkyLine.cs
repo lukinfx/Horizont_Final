@@ -216,21 +216,24 @@ namespace PaintSkyLine
                 var thisAngle = elevationProfileNew.GetData(i);
                 var prevAngle = elevationProfileNew.GetData(i - 1);
 
-                foreach (var point in thisAngle.GetPoints())
+                if (thisAngle != null && prevAngle != null)
                 {
-                    foreach (var otherPoint in prevAngle.GetPoints())
+                    foreach (var point in thisAngle.GetPoints())
                     {
-                        if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value) < point.Distance / _minDist )
+                        foreach (var otherPoint in prevAngle.GetPoints())
                         {
-                            var b1 = GpsUtils.Normalize360(point.Bearing.Value - _heading);
-                            var x1 = GpsUtils.Normalize360(b1 + 35) * DG_WIDTH;
-                            var y1 = 250 - point.VerticalViewAngle.Value * 40;
+                            if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value) < point.Distance / _minDist)
+                            {
+                                var b1 = GpsUtils.Normalize360(point.Bearing.Value - _heading);
+                                var x1 = GpsUtils.Normalize360(b1 + 35) * DG_WIDTH;
+                                var y1 = 250 - point.VerticalViewAngle.Value * 40;
 
-                            var b2 = GpsUtils.Normalize360(otherPoint.Bearing.Value - _heading);
-                            var x2 = GpsUtils.Normalize360(b2 + 35) * DG_WIDTH;
-                            var y2 = 250 - otherPoint.VerticalViewAngle.Value * 40;
-                            if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) < 100)
-                                e.Graphics.DrawLine(pen, (float) x1, (float) y1, (float) x2, (float) y2);
+                                var b2 = GpsUtils.Normalize360(otherPoint.Bearing.Value - _heading);
+                                var x2 = GpsUtils.Normalize360(b2 + 35) * DG_WIDTH;
+                                var y2 = 250 - otherPoint.VerticalViewAngle.Value * 40;
+                                if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) < 100)
+                                    e.Graphics.DrawLine(pen, (float) x1, (float) y1, (float) x2, (float) y2);
+                            }
                         }
                     }
                 }
