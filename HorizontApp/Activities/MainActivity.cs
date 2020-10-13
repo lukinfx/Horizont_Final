@@ -393,8 +393,8 @@ namespace HorizontApp
                     }
                     case Resource.Id.buttonRecord:
                     {
-                        //GenerateElevationProfile();
-                        _cameraFragment.TakePicture();
+                        GenerateElevationProfile();
+                        _cameraFragment.TakePicture(_myLocation, _compassProvider.Heading);
                         break;
                     }
                     case Resource.Id.buttonCategorySelect:

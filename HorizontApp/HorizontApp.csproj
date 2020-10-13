@@ -75,10 +75,12 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\PhotosActivity.cs" />
     <Compile Include="Activities\DownloadActivity.cs" />
     <Compile Include="Activities\EditActivity.cs" />
     <Compile Include="Activities\MenuActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="DataAccess\PhotosDatabase.cs" />
     <Compile Include="DataAccess\PoiDatabase.cs" />
     <Compile Include="Domain\ViewModel\PoiViewItem.cs" />
     <Compile Include="Domain\ViewModel\PoiViewItemList.cs" />
@@ -504,6 +506,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\bg_activity.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PhotosActivity.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

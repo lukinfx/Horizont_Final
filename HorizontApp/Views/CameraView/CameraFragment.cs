@@ -22,6 +22,7 @@ using Boolean = Java.Lang.Boolean;
 using Math = Java.Lang.Math;
 using Orientation = Android.Content.Res.Orientation;
 using HorizontApp.Utilities;
+using HorizontLib.Domain.Models;
 
 namespace HorizontApp.Views.Camera
 {
@@ -559,8 +560,10 @@ namespace HorizontApp.Views.Camera
         }
 
         // Initiate a still image capture.
-        public void TakePicture()
+        public void TakePicture(GpsLocation location, double heading)
         {
+            mOnImageAvailableListener.SetLocation(location);
+            mOnImageAvailableListener.SetHeading(heading);
             LockFocus();
         }
 

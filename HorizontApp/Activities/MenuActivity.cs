@@ -60,6 +60,9 @@ namespace HorizontApp.Activities
             var buttonSettings = FindViewById<ImageButton>(Resource.Id.buttonSettings);
             buttonSettings.SetOnClickListener(this);
 
+            var buttonPhotos = FindViewById<ImageButton>(Resource.Id.buttonPhotos);
+            buttonPhotos.SetOnClickListener(this);
+
             var buttonAbout = FindViewById<ImageButton>(Resource.Id.buttonAbout);
             buttonAbout.SetOnClickListener(this);
         }
@@ -98,6 +101,10 @@ namespace HorizontApp.Activities
                 case Resource.Id.buttonSettings:
                     Intent settingsActivityIntent = new Intent(this, typeof(SettingsActivity));
                     StartActivity(settingsActivityIntent);
+                    break;
+                case Resource.Id.buttonPhotos:
+                    Intent photosActivityIntent = new Intent(this, typeof(PhotosActivity));
+                    StartActivity(photosActivityIntent);
                     break;
             }
         }

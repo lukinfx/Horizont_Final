@@ -29,6 +29,12 @@
           android:layout_weight="5"
           android:id="@+id/buttonList" />
         <ImageButton
+          android:src="@drawable/ic_camera"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="5"
+          android:id="@+id/buttonPhotos" />
+        <ImageButton
             android:src="@drawable/ic_download"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

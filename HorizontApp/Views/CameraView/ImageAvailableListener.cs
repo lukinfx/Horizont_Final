@@ -1,4 +1,6 @@
 using Android.Media;
+using HorizontApp.DataAccess;
+using HorizontLib.Domain.Models;
 //using Java.IO;
 using Java.Lang;
 using Java.Nio;
@@ -21,13 +23,15 @@ namespace HorizontApp.Views.Camera
 
         private readonly Java.IO.File file;
         private readonly CameraFragment owner;
+        private GpsLocation _location;
+        private double _heading;
 
         //public File File { get; private set; }
         //public CameraFragment Owner { get; private set; }
 
         public void OnImageAvailable(ImageReader reader)
         {
-            owner.mBackgroundHandler.Post(new ImageSaver(reader.AcquireNextImage()));
+            owner.mBackgroundHandler.Post(new ImageSaver(reader.AcquireNextImage(), _location, _heading));
         }
 
         // Saves a JPEG {@link Image} into the specified {@link File}.
@@ -36,19 +40,23 @@ namespace HorizontApp.Views.Camera
             private static string SAVED_PICTURES_FOLDER = "HorizonPhotos";
 
             // The JPEG image
-            private Image mImage;
+            private Image _Image;
+            private GpsLocation _location;
+            private double _heading;
 
             // The file we save the image into.
             //private File mFile;
 
-            public ImageSaver(Image image)
+            public ImageSaver(Image image, GpsLocation location, double heading)
             {
                 if (image == null)
                     throw new System.ArgumentNullException("image");
-                mImage = image;
+                _Image = image;
+                _location = location;
+                _heading = heading;
             }
 
-            private static string GetElevationFileName(DateTime? dt = null)
+            private static string GetPhotoFileName(DateTime? dt = null)
             {
                 if (!dt.HasValue)
                     dt = DateTime.Now;
@@ -76,12 +84,12 @@ namespace HorizontApp.Views.Camera
 
             private static string GetPhotosFilePath(DateTime? dt = null)
             {
-                return System.IO.Path.Combine(GetPhootsFileFolder(), GetElevationFileName(dt));
+                return System.IO.Path.Combine(GetPhootsFileFolder(), GetPhotoFileName(dt));
             }
 
             public void Run()
             {
-                ByteBuffer buffer = mImage.GetPlanes()[0].Buffer;
+                ByteBuffer buffer = _Image.GetPlanes()[0].Buffer;
                 byte[] bytes = new byte[buffer.Remaining()];
                 buffer.Get(bytes);
 
@@ -100,10 +108,23 @@ namespace HorizontApp.Views.Camera
                     }
                     finally
                     {
-                        mImage.Close();
+                        _Image.Close();
+                        PoiDatabase photoDatabase = new PoiDatabase();
+                        photoDatabase.InsertItem(new PhotoData { Datetime = DateTime.Now, PhotoFileName = GetPhotoFileName(), Longitude = _location.Longitude, Latitude = _location.Latitude, Altitude = _location.Altitude, Heading = _heading }); ;
                     }
                 }
             }
+
+        }
+
+        public void SetLocation(GpsLocation location)
+        {
+            _location = location;
+        }
+
+        public void SetHeading(double heading)
+        {
+            _heading = heading;
         }
     }
 }

@@ -20,7 +20,6 @@ namespace HorizontApp.Views.Camera
         {
             // If something goes wrong with the save (or the handler isn't even 
             // registered, this code will toast a success message regardless...)
-            ///owner doesnt contain definition for mFile now
             owner.ShowToast("Saved: " + "new photo");
             Log.Debug(TAG, "new photo");
             owner.UnlockFocus();

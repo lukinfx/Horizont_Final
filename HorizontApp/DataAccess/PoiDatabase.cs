@@ -62,6 +62,11 @@ namespace HorizontApp.DataAccess
                         Database.CreateTablesAsync(CreateFlags.None, typeof(PoisToDownload)).ConfigureAwait(false);
                     }
 
+                    if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(PhotoData).Name))
+                    {
+                        Database.CreateTablesAsync(CreateFlags.None, typeof(PhotoData)).ConfigureAwait(false);
+                    }
+
                     initialized = true;
                 }
             }
@@ -71,6 +76,8 @@ namespace HorizontApp.DataAccess
             }
             
         }
+
+        #region PoisToDownload
 
         public async Task<IEnumerable<PoisToDownload>> GetDownloadedPoisAsync()
         {
@@ -99,6 +106,10 @@ namespace HorizontApp.DataAccess
             task.Wait();
             return task.Result;
         }
+
+        #endregion PoisToDownload
+
+        #region Poi
 
         public async Task<IEnumerable<Poi>> GetItemsAsync()
         {
@@ -199,5 +210,44 @@ namespace HorizontApp.DataAccess
         {
             return await Database.DeleteAsync(item);
         }
+
+        #endregion Poi
+
+        #region PhotoData
+
+        public int InsertItem(PhotoData item)
+        {
+            var task = Database.InsertAsync(item);
+            task.Wait();
+            return task.Result;
+        }
+
+        public int UpdateItem(PhotoData item)
+        {
+            var task = Database.UpdateAsync(item);
+            task.Wait();
+            return task.Result;
+        }
+
+        public int DeleteItem(PhotoData item)
+        {
+            var task = Database.DeleteAsync(item);
+            task.Wait();
+            return task.Result;
+        }
+
+        public async Task<IEnumerable<PhotoData>> GetPhotoDataItemsAsync()
+        {
+            return await Database.Table<PhotoData>().ToListAsync();
+        }
+
+        public IEnumerable<PhotoData> GetPhotoDataItems()
+        {
+            var task = Database.Table<PhotoData>().ToListAsync();
+            task.Wait();
+            return task.Result;
+        }
+
+        #endregion PhotoData
     }
 }
