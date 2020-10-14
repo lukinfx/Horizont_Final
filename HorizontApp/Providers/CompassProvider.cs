@@ -3,7 +3,7 @@ using Xamarin.Essentials;
 
 namespace HorizontApp.Providers
 {
-    class CompassProvider
+    public class CompassProvider
     {
         private double heading;
         SensorSpeed speed = SensorSpeed.UI;

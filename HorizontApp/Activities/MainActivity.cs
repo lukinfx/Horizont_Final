@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Timers;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Android;
 using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
-using HorizontApp.Providers;
 using Android.Content.PM;
 using Android.Views;
 using Android.Content;
@@ -17,7 +14,6 @@ using Android.Support.V13.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
 using static Android.Views.View;
-
 using HorizontApp.Utilities;
 using HorizontLib.Domain.Models;
 using HorizontApp.Domain.ViewModel;
@@ -30,6 +26,7 @@ using HorizontApp.Tasks;
 using Java.Lang;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
 using Xamarin.Essentials;
+using AppContext = HorizontApp.Utilities.AppContext;
 using Exception = System.Exception;
 using Math = System.Math;
 using String = System.String;
@@ -72,9 +69,6 @@ namespace HorizontApp
         private GestureDetector _gestureDetector;
         private DisplayOrientation appOrientation;
 
-        private GpsLocationProvider _gpsLocationProvider = new GpsLocationProvider();
-        private CompassProvider _compassProvider = new CompassProvider();
-        private HeadingStabilizator _headingStabilizator = new HeadingStabilizator();
         private GpsLocation _myLocation = new GpsLocation();
 
         private PoiDatabase _database;
@@ -90,6 +84,7 @@ namespace HorizontApp
             }
         }
 
+        private AppContext Context { get { return AppContext.Instance; } }
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -129,6 +124,37 @@ namespace HorizontApp
             InitializeChangeFilterTimer();
             InitializeCategoryFilterButtons();
             CompassViewSettings.Instance().SettingsChanged += OnSettingsChanged;
+
+            if (bundle != null)
+            {
+                _myLocation.Latitude = bundle.GetDouble("MyLatitude");
+                _myLocation.Longitude = bundle.GetDouble("MyLongitude");
+                _myLocation.Altitude = bundle.GetDouble("MyAltitude");
+
+                var delayedAction = new System.Threading.Timer(o =>
+                    {
+                        RefreshLocation();
+                        RefreshHeading();
+                        RefreshElevationProfile();
+                    },
+                    null, TimeSpan.FromSeconds(1), TimeSpan.FromMilliseconds(-1));
+            }
+
+        }
+
+        protected override void OnSaveInstanceState(Bundle bundle)
+        {
+            base.OnSaveInstanceState(bundle);
+
+            // Save UI state changes to the savedInstanceState.
+            // This bundle will be passed to onCreate if the process is
+            // killed and restarted.
+            bundle.PutDouble("MyLatitude", _myLocation.Latitude);
+            bundle.PutDouble("MyLongitude", _myLocation.Longitude);
+            bundle.PutDouble("MyAltitude", _myLocation.Altitude);
+
+            _compassTimer.Elapsed -= OnCompassTimerElapsed;
+            _locationTimer.Elapsed -= OnLocationTimerElapsed;
         }
 
         private void InitializeUIElements()
@@ -205,7 +231,7 @@ namespace HorizontApp
 
         private void InitializeCompassProvider()
         {
-            _compassProvider.Start();
+            Context.CompassProvider.Start();
 
             _compassTimer.Interval = 100;
             _compassTimer.Elapsed += OnCompassTimerElapsed;
@@ -214,7 +240,7 @@ namespace HorizontApp
 
         private void InitializeLocationProvider()
         {
-            _gpsLocationProvider.Start();
+            Context.GpsLocationProvider.Start();
 
             _locationTimer.Interval = 3000;
             _locationTimer.Elapsed += OnLocationTimerElapsed;
@@ -241,7 +267,7 @@ namespace HorizontApp
         {
             try
             {
-                var newLocation = await _gpsLocationProvider.GetLocationAsync();
+                var newLocation = await Context.GpsLocationProvider.GetLocationAsync();
 
                 if (newLocation == null)
                     return;
@@ -266,10 +292,7 @@ namespace HorizontApp
 
                     if (needRefresh)
                     {
-                        _GPSEditText.Text = ($"Lat:{_myLocation.Latitude:F7} Lon:{_myLocation.Longitude:F7} Alt:{_myLocation.Altitude:F0}");
-
-                        var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
-                        _compassView.SetPoiViewItemList(points);
+                        RefreshLocation();
                     }
                 }
             }
@@ -498,7 +521,9 @@ namespace HorizontApp
                 {
                     PopupHelper.ErrorDialog(this, "Error", result.ErrorMessage);
                 }
-                _compassView.SetElevationProfile(result);
+
+                Context.ElevationProfileData = result;
+                RefreshElevationProfile();
             };
             ec.OnStageChange = (text, max) =>
             {
@@ -555,19 +580,41 @@ namespace HorizontApp
             if (!_compassPaused)
             {
                 //TODO:Move _headingStabilizator to _compassProvider class
-                _headingStabilizator.AddValue(_compassProvider.Heading);
+                Context.HeadingStabilizator.AddValue(Context.CompassProvider.Heading);
             }
 
-            _compassView.Heading = _headingStabilizator.GetHeading()+_compassView.HeadingCorrector;
+            RefreshHeading();
+        }
+
+        private void RefreshHeading()
+        {
+            _compassView.Heading = Context.HeadingStabilizator.GetHeading() + _compassView.HeadingCorrector;
             if (appOrientation == DisplayOrientation.Portrait)
             {
-                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0):F0}°+{ _compassView.HeadingCorrector + 90 :F0} | ";
+                _headingEditText.Text = $"{Math.Round(Context.HeadingStabilizator.GetHeading(), 0):F0}°+{_compassView.HeadingCorrector + 90:F0} | ";
             }
             else
             {
-                _headingEditText.Text = $"{Math.Round(_headingStabilizator.GetHeading(), 0):F0}°+{ _compassView.HeadingCorrector :F0} | ";
+                _headingEditText.Text = $"{Math.Round(Context.HeadingStabilizator.GetHeading(), 0):F0}°+{_compassView.HeadingCorrector:F0} | ";
             }
+
             _compassView.Invalidate();
+        }
+
+        private void RefreshLocation()
+        {
+            _GPSEditText.Text = ($"Lat:{_myLocation.Latitude:F7} Lon:{_myLocation.Longitude:F7} Alt:{_myLocation.Altitude:F0}");
+
+            var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
+            _compassView.SetPoiViewItemList(points);
+        }
+
+        private void RefreshElevationProfile()
+        {
+            if (Context.ElevationProfileData != null)
+            {
+                _compassView.SetElevationProfile(Context.ElevationProfileData);
+            }
         }
 
         private async void OnLocationTimerElapsed(object sender, ElapsedEventArgs e)
