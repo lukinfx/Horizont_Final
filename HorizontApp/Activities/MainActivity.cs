@@ -49,6 +49,7 @@ namespace HorizontApp
         private ImageButton _recordButton;
         private ImageButton _menuButton;
         private ImageButton _favouriteButton;
+        private ImageButton _displayTerrainButton;
         private ImageButton _refreshCorrectorButton;
 
         private LinearLayout _mainActivitySeekBars;
@@ -193,6 +194,9 @@ namespace HorizontApp
 
             _recordButton = FindViewById<ImageButton>(Resource.Id.buttonRecord);
             _recordButton.SetOnClickListener(this);
+
+            _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
+            _displayTerrainButton.SetOnClickListener(this);
 
             _refreshCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
             _refreshCorrectorButton.SetOnClickListener(this);
@@ -419,9 +423,13 @@ namespace HorizontApp
                         }
                         break;
                     }
-                    case Resource.Id.buttonRecord:
+                    case Resource.Id.buttonDisplayTerrain:
                     {
                         GenerateElevationProfile();
+                        break;
+                    }
+                    case Resource.Id.buttonRecord:
+                    {
                         _cameraFragment.TakePicture(_myLocation, Context.CompassProvider.Heading);
                         break;
                     }
