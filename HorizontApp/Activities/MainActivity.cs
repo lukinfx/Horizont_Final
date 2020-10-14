@@ -51,7 +51,8 @@ namespace HorizontApp
         private ImageButton _favouriteButton;
         private ImageButton _refreshCorrectorButton;
 
-        private LinearLayout _selectCategoryLayout;
+        private LinearLayout _mainActivitySeekBars;
+        private LinearLayout _mainActivityPoiFilter;
         private CompassView _compassView;
         private SeekBar _distanceSeekBar;
         private SeekBar _heightSeekBar;
@@ -162,9 +163,13 @@ namespace HorizontApp
             _headingEditText = FindViewById<TextView>(Resource.Id.editText1);
             _GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
 
-            _selectCategoryLayout = FindViewById<LinearLayout>(Resource.Id.linearLayoutSelectCategory);
-            _selectCategoryLayout.Enabled = false;
-            _selectCategoryLayout.Visibility = ViewStates.Invisible;
+            _mainActivityPoiFilter = FindViewById<LinearLayout>(Resource.Id.mainActivityPoiFilter);
+            _mainActivityPoiFilter.Enabled = false;
+            _mainActivityPoiFilter.Visibility = ViewStates.Invisible;
+
+            _mainActivitySeekBars = FindViewById<LinearLayout>(Resource.Id.mainActivitySeekBars);
+            _mainActivitySeekBars.Enabled = true;
+            _mainActivitySeekBars.Visibility = ViewStates.Visible;
 
             _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
             _selectCategoryButton.SetOnClickListener(this);
@@ -417,19 +422,21 @@ namespace HorizontApp
                     case Resource.Id.buttonRecord:
                     {
                         GenerateElevationProfile();
-                        _cameraFragment.TakePicture(_myLocation, _compassProvider.Heading);
+                        _cameraFragment.TakePicture(_myLocation, Context.CompassProvider.Heading);
                         break;
                     }
                     case Resource.Id.buttonCategorySelect:
                     {
-                        if (_selectCategoryLayout.Visibility == ViewStates.Visible)
+                        if (_mainActivityPoiFilter.Visibility == ViewStates.Visible)
                         {
-                            _selectCategoryLayout.Visibility = ViewStates.Invisible;
+                            _mainActivityPoiFilter.Visibility = ViewStates.Invisible;
+                            _mainActivitySeekBars.Visibility = ViewStates.Visible;
                         }
-                        else if (_selectCategoryLayout.Visibility == ViewStates.Invisible)
+                        else if (_mainActivityPoiFilter.Visibility == ViewStates.Invisible)
                         {
-                            _selectCategoryLayout.Visibility = ViewStates.Visible;
-                        }
+                            _mainActivityPoiFilter.Visibility = ViewStates.Visible;
+                            _mainActivitySeekBars.Visibility = ViewStates.Invisible;
+                            }
                             
                         break;
                     }
@@ -603,10 +610,17 @@ namespace HorizontApp
 
         private void RefreshLocation()
         {
-            _GPSEditText.Text = ($"Lat:{_myLocation.Latitude:F7} Lon:{_myLocation.Longitude:F7} Alt:{_myLocation.Altitude:F0}");
+            try
+            {
+                _GPSEditText.Text = ($"Lat:{_myLocation.Latitude:F7} Lon:{_myLocation.Longitude:F7} Alt:{_myLocation.Altitude:F0}");
 
-            var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
-            _compassView.SetPoiViewItemList(points);
+                var points = GetPointsToDisplay(_myLocation, _distanceSeekBar.Progress, _heightSeekBar.Progress, _favourite);
+                _compassView.SetPoiViewItemList(points);
+            }
+            catch (Exception)
+            {
+                //TODO: handle this
+            }
         }
 
         private void RefreshElevationProfile()
