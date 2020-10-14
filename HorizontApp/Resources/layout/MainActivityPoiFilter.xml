@@ -1,114 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:paddingTop="200dp"
-            android:gravity="center_horizontal"
-            android:id="@+id/linearLayoutSelectCategory">
-            <ImageButton
-              android:src="@drawable/c_castle"
-              android:layout_width="40dp"
-              android:layout_height="40dp"
-              android:layout_gravity="bottom"
-              android:adjustViewBounds="true"
-              android:scaleType="fitCenter"
-              android:layout_marginBottom="60dp"
-              android:layout_marginLeft="0dp"
-              android:layout_marginRight="0dp"
-              android:layout_marginTop="0dp"
-              android:padding="0dp"
-              android:id="@+id/imageButtonSelectCastle" />
-            <ImageButton
-              android:src="@drawable/c_church"
-              android:layout_width="40dp"
-              android:layout_height="40dp"
-              android:layout_gravity="bottom"
-              android:adjustViewBounds="true"
-              android:scaleType="fitCenter"
-              android:layout_marginBottom="60dp"
-              android:layout_marginLeft="0dp"
-              android:layout_marginRight="0dp"
-              android:layout_marginTop="0dp"
-              android:padding="0dp"
-              android:id="@+id/imageButtonSelectChurch" />
-            <ImageButton
-              android:src="@drawable/c_lake"
-              android:layout_width="40dp"
-              android:layout_height="40dp"
-              android:layout_gravity="bottom"
-              android:adjustViewBounds="true"
-              android:scaleType="fitCenter"
-              android:layout_marginBottom="60dp"
-              android:layout_marginLeft="0dp"
-              android:layout_marginRight="0dp"
-              android:layout_marginTop="0dp"
-              android:padding="0dp"
-              android:id="@+id/imageButtonSelectLake" />
-            <ImageButton
-              android:src="@drawable/c_mountain"
-              android:layout_width="40dp"
-              android:layout_height="40dp"
-              android:layout_gravity="bottom"
-              android:adjustViewBounds="true"
-              android:scaleType="fitCenter"
-              android:layout_marginBottom="60dp"
-              android:layout_marginLeft="0dp"
-              android:layout_marginRight="0dp"
-              android:layout_marginTop="0dp"
-              android:padding="0dp"
-                android:id="@+id/imageButtonSelectMountain" />
-            <ImageButton
-              android:src="@drawable/c_palace"
-              android:layout_width="40dp"
-              android:layout_height="40dp"
-              android:layout_gravity="bottom"
-              android:adjustViewBounds="true"
-              android:scaleType="fitCenter"
-              android:layout_marginBottom="60dp"
-              android:layout_marginLeft="0dp"
-              android:layout_marginRight="0dp"
-              android:layout_marginTop="0dp"
-              android:padding="0dp"
-              android:id="@+id/imageButtonSelectPalace" />
-            <ImageButton
-              android:src="@drawable/c_ruins"
-              android:layout_width="40dp"
-              android:layout_height="40dp"
-              android:layout_gravity="bottom"
-              android:adjustViewBounds="true"
-              android:scaleType="fitCenter"
-              android:layout_marginBottom="60dp"
-              android:layout_marginLeft="0dp"
-              android:layout_marginRight="0dp"
-              android:layout_marginTop="0dp"
-              android:padding="0dp"
-              android:id="@+id/imageButtonSelectRuins" /> 
-            <ImageButton
-              android:src="@drawable/c_transmitter"
-              android:layout_width="40dp"
-              android:layout_height="40dp"
-              android:layout_gravity="bottom"
-              android:adjustViewBounds="true"
-              android:scaleType="fitCenter"
-              android:layout_marginBottom="60dp"
-              android:layout_marginLeft="0dp"
-              android:layout_marginRight="0dp"
-              android:layout_marginTop="0dp"
-              android:padding="0dp"
-              android:id="@+id/imageButtonSelectTransmitter" />
-            <ImageButton
-              android:src="@drawable/c_viewtower"
-              android:layout_width="40dp"
-              android:layout_height="40dp"
-              android:layout_gravity="bottom"
-              android:adjustViewBounds="true"
-              android:scaleType="fitCenter"
-              android:layout_marginBottom="60dp"
-              android:layout_marginLeft="0dp"
-              android:layout_marginRight="0dp"
-              android:layout_marginTop="0dp"
-              android:padding="0dp"
-              android:id="@+id/imageButtonSelectViewtower" />
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="invisible"
+    android:gravity="center_horizontal"
+    android:paddingTop="50dp"
+    android:id="@+id/linearLayoutSelectCategory">
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+      <TextView
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Category filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF"
+        android:background="#E0404040"
+        />
+
+      <GridLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:rowCount="2"
+          android:columnCount="4"
+          android:background="#E0808080"
+          android:orientation="horizontal">
+      
+                <ImageButton
+                  android:src="@drawable/c_castle"
+                  android:layout_columnWeight="1"
+                  android:layout_height="60dp"
+                  android:layout_gravity="bottom"
+                  android:adjustViewBounds="true"
+                  android:scaleType="fitCenter"
+                  android:padding="5dp"
+                  android:background="#00000000"
+                  android:id="@+id/imageButtonSelectCastle" />
+                <ImageButton
+                  android:src="@drawable/c_church"
+                  android:layout_columnWeight="1"
+                  android:layout_height="60dp"
+                  android:layout_gravity="bottom"
+                  android:adjustViewBounds="true"
+                  android:scaleType="fitCenter"
+                  android:padding="5dp"
+                  android:background="#00000000"
+                  android:id="@+id/imageButtonSelectChurch" />
+                <ImageButton
+                  android:layout_columnWeight="1"
+                  android:src="@drawable/c_lake"
+                  android:layout_height="60dp"
+                  android:layout_gravity="bottom"
+                  android:adjustViewBounds="true"
+                  android:scaleType="fitCenter"
+                  android:padding="5dp"
+                  android:background="#00000000"
+                  android:id="@+id/imageButtonSelectLake" />
+                <ImageButton
+                  android:layout_columnWeight="1"
+                  android:src="@drawable/c_mountain"
+                  android:layout_height="60dp"
+                  android:layout_gravity="bottom"
+                  android:adjustViewBounds="true"
+                  android:scaleType="fitCenter"
+                  android:padding="5dp"
+                  android:background="#00000000"
+                  android:id="@+id/imageButtonSelectMountain" />
+                <ImageButton
+                  android:layout_columnWeight="1"
+                  android:src="@drawable/c_palace"
+                  android:layout_height="60dp"
+                  android:layout_gravity="bottom"
+                  android:adjustViewBounds="true"
+                  android:scaleType="fitCenter"
+                  android:padding="5dp"
+                  android:background="#00000000"
+                  android:id="@+id/imageButtonSelectPalace" />
+                <ImageButton
+                  android:layout_columnWeight="1"
+                  android:src="@drawable/c_ruins"
+                  android:layout_height="60dp"
+                  android:layout_gravity="bottom"
+                  android:adjustViewBounds="true"
+                  android:scaleType="fitCenter"
+                  android:padding="5dp"
+                  android:background="#00000000"
+                  android:id="@+id/imageButtonSelectRuins" /> 
+                <ImageButton
+                  android:layout_columnWeight="1"
+                  android:src="@drawable/c_transmitter"
+                  android:layout_height="60dp"
+                  android:layout_gravity="bottom"
+                  android:adjustViewBounds="true"
+                  android:scaleType="fitCenter"
+                  android:padding="5dp"
+                  android:background="#00000000"
+                  android:id="@+id/imageButtonSelectTransmitter" />
+                <ImageButton
+                  android:layout_columnWeight="1"
+                  android:src="@drawable/c_viewtower"
+                  android:layout_height="60dp"
+                  android:layout_gravity="bottom"
+                  android:adjustViewBounds="true"
+                  android:scaleType="fitCenter"
+                  android:padding="5dp"
+                  android:background="#00000000"
+                  android:id="@+id/imageButtonSelectViewtower" />
+        </GridLayout>
+        <LinearLayout android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_horizontal"
+                  android:background="#E0404040">
+            <Button android:text="All"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <Button android:text="None"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            <Button android:text="Save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
