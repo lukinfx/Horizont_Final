@@ -104,6 +104,7 @@
     <Compile Include="Utilities\GpsUtils.cs" />
     <Compile Include="Utilities\HeadingStabilizator.cs" />
     <Compile Include="Utilities\ListViewAdapter.cs" />
+    <Compile Include="Utilities\PhotosItemAdapter.cs" />
     <Compile Include="Utilities\PoiCategoryHelper.cs" />
     <Compile Include="Utilities\CompassViewSettings.cs" />
     <Compile Include="Utilities\PopupHelper.cs" />
@@ -511,6 +512,17 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\PhotosActivity.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PhotosActivityToolbar.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PhotosActivityItem.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
