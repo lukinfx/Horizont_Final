@@ -70,9 +70,9 @@ namespace HorizontApp.Utilities
 
 
             //Thumbnail.SetImageBitmap(bmp);
-            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(path);
+            /*System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(path);
             var thumbnail = ImageResizer.BitmapToThumbnail(bitmap);
-            ThumbnailImageView.SetImageResource(thumbnail.GetHashCode());
+            ThumbnailImageView.SetImageResource(thumbnail.GetHashCode());*/
             return view;
         }
 

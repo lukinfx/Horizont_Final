@@ -13,7 +13,7 @@ using Android.Widget;
 namespace HorizontApp.Activities
 {
     [Activity(Label = "Activity1")]
-    public class Activity1 : Activity
+    public class PhotoShowActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

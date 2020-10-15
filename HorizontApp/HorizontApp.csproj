@@ -75,7 +75,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities\Activity1.cs" />
+    <Compile Include="Activities\PhotoShowActivity.cs" />
     <Compile Include="Activities\PhotosActivity.cs" />
     <Compile Include="Activities\DownloadActivity.cs" />
     <Compile Include="Activities\EditActivity.cs" />
@@ -94,7 +94,6 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\ElevationCalculation.cs" />
-    <Compile Include="Utilities\AppContext.cs" />
     <Compile Include="Utilities\AppStyles.cs" />
     <Compile Include="Utilities\ImageResizer.cs" />
     <Compile Include="Utilities\CompassUtils.cs" />
@@ -530,29 +529,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\PhotosActivityItem.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_terrain.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\MainActivityControlBar.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\MainActivityPoiFilter.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\MainActivitySeekBars.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\MainActivityStatusBar.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
