@@ -21,7 +21,8 @@ namespace HorizontApp.Activities
     [Activity(Label = "SettingsActivity")]
     public class SettingsActivity : Activity, IOnClickListener
     {
-        private CompassViewSettings _settings = CompassViewSettings.Instance();
+        private CompassViewSettings _settings { get { return CompassViewSettings.Instance(); } }
+
         private Switch _switchManualViewAngle;
         private TextView _textManualViewAngle;
         private SeekBar _seekBarManualViewAngle;
