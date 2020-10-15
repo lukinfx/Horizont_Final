@@ -61,7 +61,7 @@ namespace HorizontApp.Activities
 
         void OnPhotoShow(int position)
         {
-
+           
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -75,7 +75,7 @@ namespace HorizontApp.Activities
             return base.OnOptionsItemSelected(item);
         }
 
-        public void OnPoiDelete(int position)
+        public void OnPhotoDelete(int position)
         {
             throw new NotImplementedException();
         }

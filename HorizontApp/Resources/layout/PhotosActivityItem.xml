@@ -11,8 +11,7 @@
         android:layout_height="70dp"
         android:paddingLeft="10dp"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/c_basic" />
+        android:layout_centerVertical="true"/>
 
     <RelativeLayout 
         android:layout_width="wrap_content"

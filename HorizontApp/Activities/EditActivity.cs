@@ -29,8 +29,6 @@ namespace HorizontApp.Activities
         private EditText _editTextLongitude;
         private EditText _editTextAltitude;
         private Spinner _spinnerCategory;
-        private ImageButton _buttonSave;
-        private ImageButton _buttonBack;
         private ImageButton _buttonOpenMap;
         private ImageButton _buttonOpenWiki;
         private ImageView _thumbnail;

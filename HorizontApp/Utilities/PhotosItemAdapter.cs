@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using HorizontApp.Views.Camera;
 using HorizontLib.Domain.Models;
 
 namespace HorizontApp.Utilities
 {
     public interface IPhotoActionListener
     {
-        void OnPoiDelete(int position);
+        void OnPhotoDelete(int position);
     }
 
     [Activity(Label = "PhotosItemAdapter")]
@@ -23,7 +25,7 @@ namespace HorizontApp.Utilities
     {
         Activity context;
         List<PhotoData> list;
-        private ImageView Thumbnail;
+        private ImageView ThumbnailImageView;
         private IPhotoActionListener mPoiActionListener;
 
 
@@ -59,11 +61,18 @@ namespace HorizontApp.Utilities
             PhotoData item = this[position];
             view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.Datetime.ToString();
             view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = item.Altitude + " m";
-
+            ThumbnailImageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.photoDeleteButton);
             deleteButton.SetOnClickListener(this);
             deleteButton.Tag = position;
 
+            var path = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), item.PhotoFileName);
+
+
+            //Thumbnail.SetImageBitmap(bmp);
+            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(path);
+            var thumbnail = ImageResizer.BitmapToThumbnail(bitmap);
+            ThumbnailImageView.SetImageResource(thumbnail.GetHashCode());
             return view;
         }
 
@@ -77,7 +86,7 @@ namespace HorizontApp.Utilities
             switch (v.Id)
             {
                 case Resource.Id.photoDeleteButton:
-                    mPoiActionListener.OnPoiDelete(position);
+                    mPoiActionListener.OnPhotoDelete(position);
                     break;
             }
         }
