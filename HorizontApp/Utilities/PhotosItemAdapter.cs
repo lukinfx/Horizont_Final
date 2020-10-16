@@ -61,36 +61,30 @@ namespace HorizontApp.Utilities
             view.SetOnClickListener(this);
             PhotoData item = this[position];
             view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.Datetime.ToString();
-            view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = item.Altitude + " m";
+            view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = Math.Round(item.Altitude) + " m";
             ThumbnailImageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.photoDeleteButton);
             deleteButton.SetOnClickListener(this);
             deleteButton.Tag = position;
 
-            var path = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), item.PhotoFileName);
+            var bitmap = BitmapFactory.DecodeByteArray(item.Thumbnail, 0, item.Thumbnail.Length);
+            ThumbnailImageView.SetImageBitmap(bitmap);
+
+            /*var path = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), item.PhotoFileName);
 
             try
             {
-                //Thumbnail.SetImageBitmap(bmp);
                 using (FileStream fs = System.IO.File.OpenRead(path))
                 {
-                    //var pic = Picture.CreateFromStream(fs);
-                    //Bitmap.CreateBitmap(pic);
                     var bitmap = BitmapFactory.DecodeStream(fs);
                     var bitmapScalled = Bitmap.CreateScaledBitmap(bitmap, 150, 100, true);
                     ThumbnailImageView.SetImageBitmap(bitmapScalled);
-
-                    //var thumbnail = ImageResizer.BitmapToThumbnail(bitmap);
-                    //ThumbnailImageView.SetImageResource(thumbnail.GetHashCode());
                 }
             }
             catch (Exception)
             { 
-            }
-                
-            /*Bitmap.CreateBitmap()
-            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(path);*/
-            
+            }*/
+
             return view;
         }
 

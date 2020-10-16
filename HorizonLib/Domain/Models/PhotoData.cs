@@ -11,6 +11,7 @@ namespace HorizontLib.Domain.Models
         public double Latitude { get; set; }
         public double Altitude { get; set; }
         public double Heading { get; set; }
+        public byte[] Thumbnail { get; set; }
 
         public PhotoData()
         {

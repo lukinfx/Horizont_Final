@@ -67,7 +67,7 @@ namespace HorizontApp.Utilities
             buffer.Get(bytes);
 
             var file = new Java.IO.File(GetPhotosFilePath());
-
+            byte[] thumbnail = ImageResizer.ResizeImageAndroid(bytes, 150, 100, 50 );
 
             using (var output = new Java.IO.FileOutputStream(file))
             {
@@ -83,7 +83,7 @@ namespace HorizontApp.Utilities
                 {
                     _Image.Close();
                     PoiDatabase photoDatabase = new PoiDatabase();
-                    photoDatabase.InsertItem(new PhotoData { Datetime = DateTime.Now, PhotoFileName = GetPhotoFileName(), Longitude = _location.Longitude, Latitude = _location.Latitude, Altitude = _location.Altitude, Heading = _heading }); ;
+                    photoDatabase.InsertItem(new PhotoData { Datetime = DateTime.Now, PhotoFileName = GetPhotoFileName(), Longitude = _location.Longitude, Latitude = _location.Latitude, Altitude = _location.Altitude, Heading = _heading, Thumbnail = thumbnail }); ;
                 }
             }
         }
