@@ -122,13 +122,16 @@
                   android:background="#E0404040">
             <Button android:text="All"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" 
+                    android:id="@+id/buttonSelectAll" />
             <Button android:text="None"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonSelectNone" />
             <Button android:text="Save"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" 
+                    android:id="@+id/buttonSavePoiFilter" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

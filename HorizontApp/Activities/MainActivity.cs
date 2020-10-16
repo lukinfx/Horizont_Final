@@ -230,6 +230,14 @@ namespace HorizontApp
             InitializeCategoryFilterButton(Resource.Id.imageButtonSelectRuins);
             InitializeCategoryFilterButton(Resource.Id.imageButtonSelectViewtower);
             InitializeCategoryFilterButton(Resource.Id.imageButtonSelectChurch);
+
+
+            var buttonSave = FindViewById<Button>(Resource.Id.buttonSavePoiFilter);
+            buttonSave.SetOnClickListener(this);
+            var buttonSelectAll = FindViewById<Button>(Resource.Id.buttonSelectAll);
+            buttonSelectAll.SetOnClickListener(this);
+            var buttonSelectNone = FindViewById<Button>(Resource.Id.buttonSelectNone);
+            buttonSelectNone.SetOnClickListener(this);
         }
 
         private void InitializeCameraFragment()
@@ -462,6 +470,17 @@ namespace HorizontApp
                     case Resource.Id.buttonResetCorrector:
                         _compassView.ResetHeadingCorrector();
                         break;
+                    case Resource.Id.buttonSavePoiFilter:
+                        _mainActivityPoiFilter.Visibility = ViewStates.Invisible;
+                        break;
+                    case Resource.Id.buttonSelectAll:
+                        OnCategoryFilterSelectAll();
+                        break;
+                    case Resource.Id.buttonSelectNone:
+                        OnCategoryFilterSelectNone();
+                        break;
+
+
                 }
             }
             catch (Exception ex)
@@ -578,6 +597,38 @@ namespace HorizontApp
                 imageButton.SetImageResource(PoiCategoryHelper.GetImage(poiCategory, true));
             }
 
+            CompassViewSettings.Instance().HandleSettingsChanged();
+        }
+
+        private void OnCategoryFilterSelectAll()
+        {
+            IEnumerable<PoiCategory> a = (IEnumerable<PoiCategory>)System.Enum.GetValues(typeof(PoiCategory));
+            foreach (var category in a)
+            {
+                if (CompassViewSettings.Instance().Categories.Contains(category))
+                {
+                    continue;
+                }
+                else
+                {
+                    var imageButton = _imageButtonCategoryFilter[category];
+                    CompassViewSettings.Instance().Categories.Add(category);
+                    imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, true));
+                }
+            }
+            CompassViewSettings.Instance().HandleSettingsChanged();
+        } 
+
+        private void OnCategoryFilterSelectNone()
+        {
+            foreach (var category in CompassViewSettings.Instance().Categories)
+            {
+                var imageButton = _imageButtonCategoryFilter[category];
+                imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, false));
+            }
+
+            CompassViewSettings.Instance().Categories.Clear();
+            
             CompassViewSettings.Instance().HandleSettingsChanged();
         }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Android.App;
@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using HorizontApp.Views.Camera;
 using HorizontLib.Domain.Models;
+using Java.IO;
 
 namespace HorizontApp.Utilities
 {
@@ -68,11 +69,28 @@ namespace HorizontApp.Utilities
 
             var path = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), item.PhotoFileName);
 
+            try
+            {
+                //Thumbnail.SetImageBitmap(bmp);
+                using (FileStream fs = System.IO.File.OpenRead(path))
+                {
+                    //var pic = Picture.CreateFromStream(fs);
+                    //Bitmap.CreateBitmap(pic);
+                    var bitmap = BitmapFactory.DecodeStream(fs);
+                    var bitmapScalled = Bitmap.CreateScaledBitmap(bitmap, 150, 100, true);
+                    ThumbnailImageView.SetImageBitmap(bitmapScalled);
 
-            //Thumbnail.SetImageBitmap(bmp);
-            /*System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(path);
-            var thumbnail = ImageResizer.BitmapToThumbnail(bitmap);
-            ThumbnailImageView.SetImageResource(thumbnail.GetHashCode());*/
+                    //var thumbnail = ImageResizer.BitmapToThumbnail(bitmap);
+                    //ThumbnailImageView.SetImageResource(thumbnail.GetHashCode());
+                }
+            }
+            catch (Exception)
+            { 
+            }
+                
+            /*Bitmap.CreateBitmap()
+            System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(path);*/
+            
             return view;
         }
 
