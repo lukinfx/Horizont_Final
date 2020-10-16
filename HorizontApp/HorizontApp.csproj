@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -217,7 +217,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\DownloadActivity.xml">
+    <AndroidResource Include="Resources\layout\DownloadActivityPortrait.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -553,6 +553,19 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MainActivityStatusBar.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DownloadActivityLandscape.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DownloadActivityToolbar.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\DownloadActivityMenu.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

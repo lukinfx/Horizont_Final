@@ -56,9 +56,7 @@ namespace HorizontApp.Activities
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
-            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
-            var orientation = mainDisplayInfo.Orientation;
-            if (orientation == DisplayOrientation.Portrait)
+            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
                 SetContentView(Resource.Layout.EditActivityPortrait);
             }
@@ -98,9 +96,8 @@ namespace HorizontApp.Activities
 
 
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
-            var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _poiCategories.ToList());
-            _spinnerCategory.Adapter = adapter;
-            _spinnerCategory.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinnerCategory_ItemSelected);
+            _spinnerCategory.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _poiCategories.ToList());
+            _spinnerCategory.ItemSelected += OnSpinnerCategoryItemSelected;
 
             _thumbnail = FindViewById<ImageView>(Resource.Id.Thumbnail);
             
@@ -146,6 +143,7 @@ namespace HorizontApp.Activities
             MenuInflater.Inflate(Resource.Menu.EditActivityMenu, menu);
             return base.OnCreateOptionsMenu(menu);
         }
+
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
@@ -210,7 +208,7 @@ namespace HorizontApp.Activities
             return base.OnOptionsItemSelected(item);
         }
     
-        private void spinnerCategory_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private void OnSpinnerCategoryItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             _category = _poiCategories[e.Position];
             _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_category));

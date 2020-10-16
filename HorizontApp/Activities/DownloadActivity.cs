@@ -13,28 +13,28 @@ using HorizontLib.Utilities;
 using HorizontApp.Providers;
 using HorizontApp.Utilities;
 using Newtonsoft.Json;
+using Xamarin.Essentials;
 using static Android.Views.View;
 
 namespace HorizontApp.Activities
 {
     [Activity(Label = "DownloadActivity")]
-    public class DownloadActivity : Activity, IOnClickListener
+    public class DownloadActivity : Activity
     {
         private static readonly string WebsiteUrl = "http://krvaveoleje.cz/horizont/";
         private static readonly string IndexFile = "poi-index.json";
 
         private ListView _downloadItemListView;
         private ListView _downloadCountryListView;
-        private Button _backButton;
-        
-        private List<PoisToDownload> _allItems;
+        private Spinner _downloadCountrySpinner;
+        private DownloadItemAdapter _downloadItemAdapter;
 
+        private List<PoisToDownload> _downloadItems;
         private List<PoisToDownload> _items;
         private List<PoiCountry> _countries;
-        private DownloadItemAdapter _itemsAdapter;
 
         private PoiDatabase _database;
-        public PoiDatabase Database
+        private PoiDatabase Database
         {
             get
             {
@@ -50,59 +50,88 @@ namespace HorizontApp.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            var json = GpxFileProvider.GetFile(GetUrl(IndexFile));
-            /*var json = @"[" +
-                       "{\"Id\":\"4d5f2e7b-6a31-4e68-ac92-87009976e602\"," +
-                       "\"Description\": \"All mountains in the Czech Republic\"," +
-                       "\"Url\": \"http://vrcholky.8u.cz/hory.gpx\"," +
-                       "\"Country\":\"CZE\"," +
-                       "\"Category\": \"Peaks\" }," +
-                       "{\"Id\":\"e366eda1-a958-470e-9a93-6c0b6c16390d\"," +
-                       "\"Description\": \"All castles in the Slovakia\"," +
-                       "\"Url\": \"http://vrcholky.8u.cz/hrady.gpx\"," +
-                       "\"Country\":\"SVN\"," +
-                       "\"Category\": \"Castles\" }" +
-                       "]";*/
+            InitializeData();
 
-            var itemsToDownload = JsonConvert.DeserializeObject<List<PoisToDownload>>(json);
+            InitializeUI();
+        }
 
-            SetContentView(Resource.Layout.DownloadActivity);
-
-            _downloadItemListView = FindViewById<ListView>(Resource.Id.DownloadItemListView);
-            _downloadCountryListView = FindViewById<ListView>(Resource.Id.DownloadCountryListView);
-
+        private void InitializeData()
+        {
+            //fetch list of already downladed items from database
             var downloadedTask = Database.GetDownloadedPoisAsync();
             downloadedTask.Wait();
-            _allItems = downloadedTask.Result.ToList();
-            
+            _downloadItems = downloadedTask.Result.ToList();
+
+            //fetch list of item from internet
+            var json = GpxFileProvider.GetFile(GetUrl(IndexFile));
+            var itemsToDownload = JsonConvert.DeserializeObject<List<PoisToDownload>>(json);
+
+            //combine those two lists together
             foreach (var item in itemsToDownload)
             {
-                if (!_allItems.Any(x => x.Id == item.Id))
+                if (!_downloadItems.Any(x => x.Id == item.Id))
                 {
-                    _allItems.Add(item);
+                    _downloadItems.Add(item);
                 }
             }
 
-            _countries = _allItems.Select(x => x.Country).Distinct().ToList();
+            _countries = _downloadItems.Select(x => x.Country).Distinct().ToList();
             _items = new List<PoisToDownload>();
-
-            _itemsAdapter = new DownloadItemAdapter(this);
-
-
-            _backButton = FindViewById<Button>(Resource.Id.BackButton);
-            _backButton.SetOnClickListener(this);
-
-            var countryAdapter = new DownloadCountryAdapter(this, _countries);
-            _downloadCountryListView.Adapter = countryAdapter;
-            _downloadCountryListView.ItemClick += OnListCountryClick;
-
-            _itemsAdapter = new DownloadItemAdapter(this);
-            _downloadItemListView.Adapter = _itemsAdapter;
-            _downloadItemListView.ItemClick += OnListItemClick;
-
         }
 
-        void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        private void InitializeUI()
+        {
+            var countryAdapter = new DownloadCountryAdapter(this, _countries);
+            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+            {
+                SetContentView(Resource.Layout.DownloadActivityPortrait);
+                
+                _downloadCountrySpinner = FindViewById<Spinner>(Resource.Id.DownloadCountrySpinner);
+                _downloadCountrySpinner.Adapter = countryAdapter;
+                _downloadCountrySpinner.ItemSelected += OnCountrySpinnerItemSelected;
+
+            }
+            else
+            {
+                SetContentView(Resource.Layout.DownloadActivityLandscape);
+                
+                _downloadCountryListView = FindViewById<ListView>(Resource.Id.DownloadCountryListView);
+                _downloadCountryListView.Adapter = countryAdapter;
+                _downloadCountryListView.ItemClick += OnCountryListItemClicked;
+            }
+
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
+
+            ActionBar.Title = "Download POIs";
+            ActionBar.SetDisplayShowHomeEnabled(true);
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            _downloadItemListView = FindViewById<ListView>(Resource.Id.DownloadItemListView);
+
+            _downloadItemAdapter = new DownloadItemAdapter(this);
+            _downloadItemListView.Adapter = _downloadItemAdapter;
+            _downloadItemListView.ItemClick += OnDownloadListItemClicked;
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.DownloadActivityMenu, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    Finish();
+                    break;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+
+        private void OnDownloadListItemClicked(object sender, AdapterView.ItemClickEventArgs e)
         {
             PoisToDownload item = _items[e.Position];
             if (item.DownloadDate == null)
@@ -113,19 +142,24 @@ namespace HorizontApp.Activities
             {
                 DeleteFromInternet(item);
             }
-            _itemsAdapter.NotifyDataSetChanged();
+            _downloadItemAdapter.NotifyDataSetChanged();
         }
 
-        void OnListCountryClick(object sender, AdapterView.ItemClickEventArgs e)
+        private void OnCountryListItemClicked(object sender, AdapterView.ItemClickEventArgs e)
         {
-            PoiCountry country = _countries[e.Position];
-            _items = _allItems.Where(x => x.Country == country).ToList();
-            _itemsAdapter.SetItems(_items);
+            OnCountrySelected(e.Position);
+        }
+        
+        private void OnCountrySpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            OnCountrySelected(e.Position);
         }
 
-        public void OnClick(View v)
+        private void OnCountrySelected(int position)
         {
-            Finish();
+            PoiCountry country = _countries[position];
+            _items = _downloadItems.Where(x => x.Country == country).ToList();
+            _downloadItemAdapter.SetItems(_items);
         }
 
         private void DownloadFromInternet(PoisToDownload source)
@@ -164,7 +198,7 @@ namespace HorizontApp.Activities
             }
         }
 
-        public string GetUrl(string path)
+        private string GetUrl(string path)
         {
             return WebsiteUrl + path;
         }
