@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using HorizontApp.DataAccess;
 using HorizontApp.Utilities;
+using Xamarin.Essentials;
 
 namespace HorizontApp.Activities
 {
@@ -25,7 +26,15 @@ namespace HorizontApp.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.PhotosActivity);
+
+            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+            {
+                SetContentView(Resource.Layout.PhotosActivityPortrait);
+            }
+            else
+            {
+                SetContentView(Resource.Layout.PhotosActivityLandscape);
+            }
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
