@@ -65,12 +65,15 @@ namespace HorizontApp.Views.ListOfPoiView
             _maxDistance = Intent.GetIntExtra("maxDistance", 0);
             _minAltitude = Intent.GetIntExtra("minAltitude", 0);
 
-            SetContentView(Resource.Layout.PoiListActivity);
-            // Create your application here
+            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+            {
+                SetContentView(Resource.Layout.PoiListActivityPortrait);
+            }
+            else
+            {
+                SetContentView(Resource.Layout.PoiListActivityLandscape);
+            }
 
-            
-
-            
             InitializeUI();
             _selectByDistance();
             InitializeSearchTimer();

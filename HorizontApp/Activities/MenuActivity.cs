@@ -36,16 +36,13 @@ namespace HorizontApp.Activities
             _maxDistance = Intent.GetIntExtra("maxDistance", 0);
             _minAltitude = Intent.GetIntExtra("minAltitude", 0);
 
-            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
-            var orientation = mainDisplayInfo.Orientation;
-
-            if (orientation == DisplayOrientation.Portrait)
+            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
                 SetContentView(Resource.Layout.MenuActivityPortrait);
             }
             else
             {
-                SetContentView(Resource.Layout.MenuActivity);
+                SetContentView(Resource.Layout.MenuActivityLandspace);
             }
 
             var buttonHome = FindViewById<ImageButton>(Resource.Id.buttonHome);

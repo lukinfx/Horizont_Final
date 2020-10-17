@@ -204,7 +204,7 @@
     <AndroidResource Include="Resources\layout\fragment_camera2_basic.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\PoiListActivity.xml">
+    <AndroidResource Include="Resources\layout\PoiListActivityPortrait.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -297,7 +297,7 @@
     <AndroidResource Include="Resources\drawable\c_church.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\MenuActivity.xml">
+    <AndroidResource Include="Resources\layout\MenuActivityLandspace.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -566,6 +566,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\DownloadActivityMenu.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PoiListActivityLandscape.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -9803,7 +9803,7 @@ namespace HorizontApp
 			public const int MainActivityStatusBar = 2131492924;
 			
 			// aapt resource value: 0x7F0C003D
-			public const int MenuActivity = 2131492925;
+			public const int MenuActivityLandspace = 2131492925;
 			
 			// aapt resource value: 0x7F0C003E
 			public const int MenuActivityPortrait = 2131492926;
@@ -9869,37 +9869,40 @@ namespace HorizontApp
 			public const int PhotosActivityToolbar = 2131492946;
 			
 			// aapt resource value: 0x7F0C0053
-			public const int PoiListActivity = 2131492947;
+			public const int PoiListActivityLandscape = 2131492947;
 			
 			// aapt resource value: 0x7F0C0054
-			public const int PoiListActivityToolbar = 2131492948;
+			public const int PoiListActivityPortrait = 2131492948;
 			
 			// aapt resource value: 0x7F0C0055
-			public const int PoiListItemLayout = 2131492949;
+			public const int PoiListActivityToolbar = 2131492949;
 			
 			// aapt resource value: 0x7F0C0056
-			public const int RootLayout = 2131492950;
+			public const int PoiListItemLayout = 2131492950;
 			
 			// aapt resource value: 0x7F0C0057
-			public const int select_dialog_item_material = 2131492951;
+			public const int RootLayout = 2131492951;
 			
 			// aapt resource value: 0x7F0C0058
-			public const int select_dialog_multichoice_material = 2131492952;
+			public const int select_dialog_item_material = 2131492952;
 			
 			// aapt resource value: 0x7F0C0059
-			public const int select_dialog_singlechoice_material = 2131492953;
+			public const int select_dialog_multichoice_material = 2131492953;
 			
 			// aapt resource value: 0x7F0C005A
-			public const int SettingsActivityLandscape = 2131492954;
+			public const int select_dialog_singlechoice_material = 2131492954;
 			
 			// aapt resource value: 0x7F0C005B
-			public const int SettingsActivityPortrait = 2131492955;
+			public const int SettingsActivityLandscape = 2131492955;
 			
 			// aapt resource value: 0x7F0C005C
-			public const int ShellContent = 2131492956;
+			public const int SettingsActivityPortrait = 2131492956;
 			
 			// aapt resource value: 0x7F0C005D
-			public const int support_simple_spinner_dropdown_item = 2131492957;
+			public const int ShellContent = 2131492957;
+			
+			// aapt resource value: 0x7F0C005E
+			public const int support_simple_spinner_dropdown_item = 2131492958;
 			
 			static Layout()
 			{
