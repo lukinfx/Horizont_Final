@@ -34,23 +34,13 @@ namespace HorizontApp.Activities
         private ImageView _thumbnail;
         private ImageButton _buttonPaste;
         private Poi _item = new Poi();
-        private PoiDatabase _database;
         private long _id;
         private PoiCategory _category;
 
-        private PoiCategory[] _poiCategories = new PoiCategory[] { PoiCategory.Castles, PoiCategory.Churches, PoiCategory.Lakes, PoiCategory.Mountains, PoiCategory.Palaces, PoiCategory.Ruins, PoiCategory.Test, PoiCategory.Transmitters, PoiCategory.ViewTowers};
+        private PoiCategory[] _poiCategories = new PoiCategory[] { PoiCategory.Castles, PoiCategory.Churches, PoiCategory.Lakes, PoiCategory.Mountains, PoiCategory.Palaces, PoiCategory.Ruins, PoiCategory.Transmitters, PoiCategory.ViewTowers};
 
-        public PoiDatabase Database
-        {
-            get
-            {
-                if (_database == null)
-                {
-                    _database = new PoiDatabase();
-                }
-                return _database;
-            }
-        }
+        private Utilities.AppContext Context { get { return Utilities.AppContext.Instance; } }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -103,7 +93,7 @@ namespace HorizontApp.Activities
             
             if (_id != -1)
             {
-                _item = Database.GetItem(_id);
+                _item = Context.Database.GetItem(_id);
                 _spinnerCategory.SetSelection(_poiCategories.ToList().FindIndex(i => i == _item.Category));
                 _editTextName.Text = _item.Name;
                 _editTextAltitude.Text = $"{_item.Altitude:F0}";
@@ -163,11 +153,11 @@ namespace HorizontApp.Activities
                         _item.Category = _category;
                         if (_id == -1)
                         {
-                            Database.InsertItemAsync(_item);
+                            Context.Database.InsertItemAsync(_item);
                         }
                         else
                         {
-                            Database.UpdateItem(_item);
+                            Context.Database.UpdateItem(_item);
                         }
 
                         SetResult(Result.Ok);

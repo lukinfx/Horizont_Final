@@ -191,7 +191,6 @@ namespace HorizontApp.Utilities
                 PoiCategory.Ruins.ToString(),
                 PoiCategory.ViewTowers.ToString(),
                 PoiCategory.Transmitters.ToString(),
-                PoiCategory.Test.ToString(),
                 PoiCategory.Churches.ToString()
             };
 

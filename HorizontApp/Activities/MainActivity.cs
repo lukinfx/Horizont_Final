@@ -30,6 +30,7 @@ using AppContext = HorizontApp.Utilities.AppContext;
 using Exception = System.Exception;
 using Math = System.Math;
 using String = System.String;
+using System.Threading.Tasks;
 
 namespace HorizontApp
 {
@@ -69,31 +70,14 @@ namespace HorizontApp
         private bool _favourite = false;
         private bool _compassPaused = false;
         private GestureDetector _gestureDetector;
-        private DisplayOrientation appOrientation;
 
         private GpsLocation _myLocation = new GpsLocation();
-
-        private PoiDatabase _database;
-        public PoiDatabase Database
-        {
-            get
-            {
-                if (_database == null)
-                {
-                    _database = new PoiDatabase();
-                }
-                return _database;
-            }
-        }
 
         private AppContext Context { get { return AppContext.Instance; } }
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
-
-            appOrientation = DeviceDisplay.MainDisplayInfo.Orientation;
-            DeviceDisplay.MainDisplayInfoChanged += OnMainDisplayInfoChanged;
 
             // Set our view from the "main" mainLayout resource
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
@@ -280,37 +264,44 @@ namespace HorizontApp
             InitializeCameraFragment();
         }
 
+        private async Task<bool> UpdateMyLocation()
+        {
+            var newLocation = await Context.GpsLocationProvider.GetLocationAsync();
+
+            if (newLocation == null)
+                return false;
+
+            var distance = GpsUtils.Distance(_myLocation, newLocation);
+            if (distance < 100 && Math.Abs(_myLocation.Altitude - newLocation.Altitude) < 50)
+                return false;
+
+            bool needRefresh = false;
+            if (distance > 100)
+            {
+                _myLocation.Latitude = newLocation.Latitude;
+                _myLocation.Longitude = newLocation.Longitude;
+                needRefresh = true;
+            }
+
+            //keep old location if new location has no altitude
+            if (!GpsUtils.HasAltitude(_myLocation) || GpsUtils.HasAltitude(newLocation))
+            {
+                _myLocation.Altitude = newLocation.Altitude;
+                needRefresh = true;
+            }
+
+            return needRefresh;
+        }
+
         private async void LoadAndDisplayData()
         {
             try
             {
-                var newLocation = await Context.GpsLocationProvider.GetLocationAsync();
+                bool needRefresh = await UpdateMyLocation();
 
-                if (newLocation == null)
-                    return;
-
-                var distance = GpsUtils.Distance(_myLocation, newLocation);
-                if (distance > 100 || Math.Abs(_myLocation.Altitude - newLocation.Altitude) > 50)
+                if (needRefresh)
                 {
-                    bool needRefresh = false;
-                    if (distance > 100)
-                    {
-                        _myLocation.Latitude = newLocation.Latitude;
-                        _myLocation.Longitude = newLocation.Longitude;
-                        needRefresh = true;
-                    }
-
-                    //keep old location if new location has no altitude
-                    if (!GpsUtils.HasAltitude(_myLocation) || GpsUtils.HasAltitude(newLocation))
-                    {
-                        _myLocation.Altitude = newLocation.Altitude;
-                        needRefresh = true;
-                    }
-
-                    if (needRefresh)
-                    {
-                        RefreshLocation();
-                    }
+                    RefreshLocation();
                 }
             }
             catch (Exception ex)
@@ -342,7 +333,7 @@ namespace HorizontApp
         {
             try
             {
-                var poiList = Database.GetItems(location, maxDistance);
+                var poiList = Context.Database.GetItems(location, maxDistance);
 
                 PoiViewItemList poiViewItemList = new PoiViewItemList(poiList, location, maxDistance, minAltitude, favourite);
                 return poiViewItemList;
@@ -645,7 +636,6 @@ namespace HorizontApp
         {
             if (!_compassPaused)
             {
-                //TODO:Move _headingStabilizator to _compassProvider class
                 Context.HeadingStabilizator.AddValue(Context.CompassProvider.Heading);
             }
 
@@ -655,7 +645,7 @@ namespace HorizontApp
         private void RefreshHeading()
         {
             _compassView.Heading = Context.HeadingStabilizator.GetHeading() + _compassView.HeadingCorrector;
-            if (appOrientation == DisplayOrientation.Portrait)
+            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
                 _headingEditText.Text = $"{Math.Round(Context.HeadingStabilizator.GetHeading(), 0):F0}°+{_compassView.HeadingCorrector + 90:F0} | ";
             }
@@ -715,35 +705,17 @@ namespace HorizontApp
             _changeFilterTimer.Start();
             //filterText.SetTextAppearance(this, Color.GreenYellow);
         }
-
-        public bool OnDown(MotionEvent e)
-        {
-            return false;
-        }
-
-        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
-        {
-            return false;
-        }
-
-        public void OnLongPress(MotionEvent e)
-        {
-            
-        }
+        
+        public bool OnDown(MotionEvent e) { return false; }
+        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) { return false; }
+        public void OnLongPress(MotionEvent e) { }
+        public void OnShowPress(MotionEvent e) { }
+        public bool OnSingleTapUp(MotionEvent e) { return false; }
 
         public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
         {
             if (e1.RawY < Resources.DisplayMetrics.HeightPixels / 2)
                 _compassView.OnScroll(distanceX);
-            return false;
-        }
-
-        public void OnShowPress(MotionEvent e)
-        {
-        }
-
-        public bool OnSingleTapUp(MotionEvent e)
-        {
             return false;
         }
 

@@ -19,19 +19,8 @@ namespace HorizontApp.Activities
     {
         private ListView _photosListView;
         private PhotosItemAdapter _adapter;
-        private PoiDatabase _database;
-        public PoiDatabase Database
-        {
-            get
-            {
-                if (_database == null)
-                {
-                    _database = new PoiDatabase();
-                }
-                return _database;
-            }
-            // Create your application here
-        }
+        private Utilities.AppContext Context { get { return Utilities.AppContext.Instance; } }
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -47,7 +36,7 @@ namespace HorizontApp.Activities
 
             _photosListView = FindViewById<ListView>(Resource.Id.listViewPhotos);
 
-            var photoList = Database.GetPhotoDataItems();
+            var photoList = Context.Database.GetPhotoDataItems();
             _adapter = new PhotosItemAdapter(this, photoList, this);
 
             _photosListView.Adapter = _adapter;

@@ -84,14 +84,8 @@ namespace HorizontLib.Utilities
 
                 var scanline = new byte[tiff.ScanlineSize()];
 
-                //TODO: Check if band is stored in 1 byte or 2 bytes. 
-                //If 2, the following code would be required
-                //var scanline16Bit = new ushort[tiff.ScanlineSize() / 2];
-                //Buffer.BlockCopy(scanline, 0, scanline16Bit, 0, scanline.Length);
-
                 double endLat = startLocation.Latitude + (pixelSizeY * height);
                 double endLon = startLocation.Longitude + (pixelSizeX * width);
-
 
                 int minAlt = 10000;
                 double minLat = 0;
@@ -134,11 +128,6 @@ namespace HorizontLib.Utilities
                 var startLocation = GetStartLocation(tiff);
 
                 var scanline = new byte[tiff.ScanlineSize()];
-
-                //TODO: Check if band is stored in 1 byte or 2 bytes. 
-                //If 2, the following code would be required
-                //var scanline16Bit = new ushort[tiff.ScanlineSize() / 2];
-                //Buffer.BlockCopy(scanline, 0, scanline16Bit, 0, scanline.Length);
 
                 double endLat = startLocation.Latitude + (pixelSizeY * height);
                 double endLon = startLocation.Longitude + (pixelSizeX * width);

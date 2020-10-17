@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using HorizontApp.DataAccess;
 using HorizontApp.Providers;
 using HorizontLib.Utilities;
 
@@ -20,8 +21,23 @@ namespace HorizontApp.Utilities
         
         public GpsLocationProvider GpsLocationProvider { get; private set; }
         public CompassProvider CompassProvider { get; private set; }
-        public HeadingStabilizator HeadingStabilizator { get; private set; }
         public ElevationProfileData ElevationProfileData { get; set; }
+
+        //TODO:Move _headingStabilizator to _compassProvider class
+        public HeadingStabilizator HeadingStabilizator { get; private set; }
+
+        private PoiDatabase _database;
+        public PoiDatabase Database
+        {
+            get
+            {
+                if (_database == null)
+                {
+                    _database = new PoiDatabase();
+                }
+                return _database;
+            }
+        }
 
         public static AppContext Instance
         {

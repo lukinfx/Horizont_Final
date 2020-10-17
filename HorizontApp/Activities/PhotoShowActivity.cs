@@ -19,6 +19,21 @@ namespace HorizontApp.Activities
         {
             base.OnCreate(savedInstanceState);
 
+            /*var path = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), item.PhotoFileName);
+
+            try
+            {
+                using (FileStream fs = System.IO.File.OpenRead(path))
+                {
+                    var bitmap = BitmapFactory.DecodeStream(fs);
+                    var bitmapScalled = Bitmap.CreateScaledBitmap(bitmap, 150, 100, true);
+                    ThumbnailImageView.SetImageBitmap(bitmapScalled);
+                }
+            }
+            catch (Exception)
+            { 
+            }*/
+
             // Create your application here
         }
     }

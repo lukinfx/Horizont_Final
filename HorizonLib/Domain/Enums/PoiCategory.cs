@@ -10,7 +10,5 @@
         ViewTowers = 6,
         Transmitters = 7,
         Churches = 8,
-
-        Test = 100
     }
 }

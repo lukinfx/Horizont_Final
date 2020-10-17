@@ -36,22 +36,11 @@ namespace HorizontApp.Views.ListOfPoiView
         private GpsLocation _location = new GpsLocation();
         private List<PoiViewItem> _items;
         private Timer _searchTimer = new Timer();
-        private PoiDatabase _database;
         private String[] _listOfSelections = new String[] { "Visible points", "My points", "Find by name"};
         private double _maxDistance; 
         private double _minAltitude;
 
-        public PoiDatabase Database
-        {
-            get
-            {
-                if (_database == null)
-                {
-                    _database = new PoiDatabase();
-                }
-                return _database;
-            }
-        }
+        private Utilities.AppContext Context { get { return Utilities.AppContext.Instance; } }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -90,7 +79,7 @@ namespace HorizontApp.Views.ListOfPoiView
         {
             _listViewPoi = FindViewById<ListView>(Resource.Id.listViewPoi);
 
-            var poiList = Database.GetItems(_location, _maxDistance);
+            var poiList = Context.Database.GetItems(_location, _maxDistance);
 
             _items = new PoiViewItemList(poiList, _location, _maxDistance, _minAltitude, false);
             _items = _items.OrderBy(i => i.Distance).ToList();
@@ -145,7 +134,7 @@ namespace HorizontApp.Views.ListOfPoiView
         private void _selectByDistance()
         {
             //TODO: get minAltitude and maxDistance from CompassViewSettings
-            var poiList = Database.GetItems(_location, _maxDistance);
+            var poiList = Context.Database.GetItems(_location, _maxDistance);
 
             _items = new PoiViewItemList(poiList, _location, _maxDistance, _minAltitude, false);
             _items = _items.OrderBy(i => i.Distance).ToList();
@@ -156,7 +145,7 @@ namespace HorizontApp.Views.ListOfPoiView
 
         private void _selectMyPois()
         {
-            var poiList = Database.GetMyItems();
+            var poiList = Context.Database.GetMyItems();
 
             _items = new PoiViewItemList(poiList, _location);
             _items = _items.OrderBy(i => i.Distance).ToList();
@@ -167,7 +156,7 @@ namespace HorizontApp.Views.ListOfPoiView
 
         private void _selectByName()
         {
-            var poiList = Database.FindItems(_editTextSearch.Text);
+            var poiList = Context.Database.FindItems(_editTextSearch.Text);
 
             _items = new PoiViewItemList(poiList, _location);
             _items = _items.OrderBy(i => i.Distance).ToList();
@@ -214,7 +203,7 @@ namespace HorizontApp.Views.ListOfPoiView
             alert.SetPositiveButton("Yes", (senderAlert, args) =>
             {
                 PoiViewItem item = _items[position];
-                _database.DeleteItemAsync(item.Poi);
+                Context.Database.DeleteItemAsync(item.Poi);
                 _items.Remove(item);
                 _adapter = new ListViewAdapter(this, _items, this);
                 _listViewPoi.Adapter = _adapter;
@@ -253,7 +242,7 @@ namespace HorizontApp.Views.ListOfPoiView
             PoiViewItem item = _items[position];
             item.Poi.Favorite = !item.Poi.Favorite;
             _adapter.NotifyDataSetChanged();
-            Database.UpdateItemAsync(item.Poi);    
+            Context.Database.UpdateItemAsync(item.Poi);    
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)

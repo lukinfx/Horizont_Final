@@ -67,23 +67,11 @@ namespace HorizontApp.Utilities
             deleteButton.SetOnClickListener(this);
             deleteButton.Tag = position;
 
-            var bitmap = BitmapFactory.DecodeByteArray(item.Thumbnail, 0, item.Thumbnail.Length);
-            ThumbnailImageView.SetImageBitmap(bitmap);
-
-            /*var path = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), item.PhotoFileName);
-
-            try
+            if (item.Thumbnail != null)
             {
-                using (FileStream fs = System.IO.File.OpenRead(path))
-                {
-                    var bitmap = BitmapFactory.DecodeStream(fs);
-                    var bitmapScalled = Bitmap.CreateScaledBitmap(bitmap, 150, 100, true);
-                    ThumbnailImageView.SetImageBitmap(bitmapScalled);
-                }
+                var bitmap = BitmapFactory.DecodeByteArray(item.Thumbnail, 0, item.Thumbnail.Length);
+                ThumbnailImageView.SetImageBitmap(bitmap);
             }
-            catch (Exception)
-            { 
-            }*/
 
             return view;
         }
