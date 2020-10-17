@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
       <ImageButton
-        android:src="@drawable/ic_home"
+        android:src="@drawable/ic_camera"
         android:layout_columnWeight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
           android:id="@+id/buttonList"
           android:background="#00000000"/>
         <ImageButton
-          android:src="@drawable/ic_camera"
+          android:src="@drawable/ic_gallery"
           android:layout_columnWeight="1"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
