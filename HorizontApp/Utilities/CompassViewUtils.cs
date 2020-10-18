@@ -1,23 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.Locations;
-using Android.Media;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using HorizontLib.Domain.Models;
 
 namespace HorizontApp.Utilities
 {
     public class CompassViewUtils
     {
-        //mozna bychom to tady mohli spojit do jedne funkce, nebo presunout GetBearing do CompassProvideru
         public static float GetBearing(GpsLocation myLocation, GpsLocation point)
         {
             var myLoc = GpsUtils.Convert(myLocation);

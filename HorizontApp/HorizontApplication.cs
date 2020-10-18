@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Runtime;
 using HorizontApp.Utilities;
+using AppContext = HorizontApp.Utilities.AppContext;
 
 namespace HorizontApp
 {
@@ -15,7 +16,7 @@ namespace HorizontApp
         public override void OnCreate()
         {
             base.OnCreate();
-            CompassViewSettings.Instance().LoadData(this);
+            AppContext.Instance.Settings.LoadData(this);
         }
     }
 }

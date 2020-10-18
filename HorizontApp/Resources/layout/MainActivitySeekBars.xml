@@ -8,14 +8,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:id="@+id/seekBarDistance"
-    android:progress="10" />
+    android:max="100"
+    android:id="@+id/seekBarDistance"/>
   <SeekBar
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity= "bottom"
     android:layout_marginBottom="20dp"
-    android:id="@+id/seekBarHeight"
-    android:progress="0" />
+    android:max="2000"
+    android:id="@+id/seekBarHeight" />
 
 </LinearLayout>

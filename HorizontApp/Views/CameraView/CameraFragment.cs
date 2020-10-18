@@ -685,8 +685,8 @@ namespace HorizontApp.Views.Camera
             try
             {
                 var camera = Android.Hardware.Camera.Open(Int32.Parse(cameraId));
-                CompassViewSettings.Instance().ViewAngleHorizontal = camera.GetParameters().HorizontalViewAngle;
-                CompassViewSettings.Instance().ViewAngleVertical = camera.GetParameters().VerticalViewAngle;
+                Utilities.AppContext.Instance.Settings.ViewAngleHorizontal = camera.GetParameters().HorizontalViewAngle;
+                Utilities.AppContext.Instance.Settings.ViewAngleVertical = camera.GetParameters().VerticalViewAngle;
                 
             }
             catch

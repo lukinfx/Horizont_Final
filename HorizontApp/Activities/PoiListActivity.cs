@@ -79,9 +79,7 @@ namespace HorizontApp.Views.ListOfPoiView
         {
             _listViewPoi = FindViewById<ListView>(Resource.Id.listViewPoi);
 
-            var poiList = Context.Database.GetItems(_location, _maxDistance);
-
-            _items = new PoiViewItemList(poiList, _location, _maxDistance, _minAltitude, false);
+            _items = Context.PoiData;
             _items = _items.OrderBy(i => i.Distance).ToList();
             _adapter = new ListViewAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;
@@ -133,10 +131,7 @@ namespace HorizontApp.Views.ListOfPoiView
 
         private void _selectByDistance()
         {
-            //TODO: get minAltitude and maxDistance from CompassViewSettings
-            var poiList = Context.Database.GetItems(_location, _maxDistance);
-
-            _items = new PoiViewItemList(poiList, _location, _maxDistance, _minAltitude, false);
+            _items = Context.PoiData;
             _items = _items.OrderBy(i => i.Distance).ToList();
             _adapter = new ListViewAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;

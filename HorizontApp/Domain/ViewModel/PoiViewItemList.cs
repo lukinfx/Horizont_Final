@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -16,6 +15,8 @@ namespace HorizontApp.Domain.ViewModel
 {
     public class PoiViewItemList : List<PoiViewItem>
     {
+        private AppContext Context { get { return AppContext.Instance; } }
+
         public PoiViewItemList()
         { 
         }
@@ -42,10 +43,10 @@ namespace HorizontApp.Domain.ViewModel
                 if (poiViewItem.Distance > maxDistance * 1000)
                     continue;
 
-                if (poiViewItem.Poi.Altitude > 0.1 && poiViewItem.Poi.Altitude < minAltitude * 16)
+                if (poiViewItem.Poi.Altitude > 0.1 && poiViewItem.Poi.Altitude < minAltitude)
                     continue;
 
-                if (!CompassViewSettings.Instance().Categories.Contains(poiViewItem.Poi.Category))
+                if (!AppContext.Instance.Settings.Categories.Contains(poiViewItem.Poi.Category))
                     continue;
                 
                 Add(poiViewItem);

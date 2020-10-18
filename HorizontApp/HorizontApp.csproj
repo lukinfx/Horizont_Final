@@ -110,7 +110,7 @@
     <Compile Include="Utilities\ListViewAdapter.cs" />
     <Compile Include="Utilities\PhotosItemAdapter.cs" />
     <Compile Include="Utilities\PoiCategoryHelper.cs" />
-    <Compile Include="Utilities\CompassViewSettings.cs" />
+    <Compile Include="Utilities\Settings.cs" />
     <Compile Include="Utilities\PopupHelper.cs" />
     <Compile Include="Utilities\SolarPositionUtils.cs" />
     <Compile Include="Views\CameraView\AutoFitTextureView.cs" />

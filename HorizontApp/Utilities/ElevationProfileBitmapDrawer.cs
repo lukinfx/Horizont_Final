@@ -35,8 +35,8 @@ namespace HorizontApp.Utilities
 
         public void SetElevationProfile(ElevationProfileData epd, double displayWidth, double displayHeight)
         {
-            var viewAngleHorizontal = CompassViewSettings.Instance().ViewAngleHorizontal;
-            var viewAngleVertical = CompassViewSettings.Instance().ViewAngleVertical;
+            var viewAngleHorizontal = AppContext.Instance.Settings.ViewAngleHorizontal;
+            var viewAngleVertical = AppContext.Instance.Settings.ViewAngleVertical;
 
             var imageInfo = new SKImageInfo(width: Convert.ToInt32(displayWidth * (360 / viewAngleHorizontal)), height: Convert.ToInt32(displayHeight), colorType: SKColorType.Rgba8888, alphaType: SKAlphaType.Premul);
             var surface = SKSurface.Create(imageInfo);

@@ -111,13 +111,6 @@ namespace HorizontApp.Activities
                 //        ClipBoardInput();
                 //    }
                 //});
-
-                //nasledujici kod zatim nefunguje
-                GpsLocationProvider gpsLocationProvider = new GpsLocationProvider();
-                GpsLocation location = gpsLocationProvider.CurrentLocation;
-                _editTextAltitude.Text = location.Altitude.ToString();
-                _editTextLatitude.Text = location.Latitude.ToString();
-                _editTextLongitude.Text = location.Altitude.ToString();
             }
 
 

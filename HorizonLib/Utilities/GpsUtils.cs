@@ -23,7 +23,12 @@ namespace HorizontLib.Utilities
 
         public static bool HasAltitude(GpsLocation loc)
         {
-            return (loc.Altitude < -0.01 || loc.Altitude > 0.01);
+            return (loc.Altitude < -0.0000001 || loc.Altitude > 0.0000001);
+        }
+
+        public static bool HasLocation(GpsLocation loc)
+        {
+            return (loc.Latitude < -0.0000001 || loc.Latitude > 0.0000001) && (loc.Longitude < -0.0000001 || loc.Longitude> 0.0000001);
         }
 
         public static double QuickDistance(GpsLocation loc1, GpsLocation loc2)

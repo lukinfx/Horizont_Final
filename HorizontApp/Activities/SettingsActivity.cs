@@ -5,7 +5,6 @@ using Android.Content.PM;
 using Android.Views;
 using static Android.Views.View;
 using HorizontApp.Utilities;
-using System;
 using System.Linq;
 using Android.Content;
 using Android.Text;
@@ -15,13 +14,14 @@ using Exception = Java.Lang.Exception;
 using Math = System.Math;
 using System.Timers;
 using Xamarin.Essentials;
+using HorizontApp.Utilities;
 
 namespace HorizontApp.Activities
 {
     [Activity(Label = "SettingsActivity")]
     public class SettingsActivity : Activity, IOnClickListener
     {
-        private CompassViewSettings _settings { get { return CompassViewSettings.Instance(); } }
+        private Settings _settings { get { return AppContext.Instance.Settings; } }
 
         private Switch _switchManualViewAngle;
         private TextView _textManualViewAngle;
@@ -54,7 +54,7 @@ namespace HorizontApp.Activities
             _seekBarManualViewAngle = FindViewById<SeekBar>(Resource.Id.seekBarManualViewAngle);
             _textManualViewAngle = FindViewById<TextView>(Resource.Id.textManualViewAngle);
 
-            _spinnerAppStyle.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(appStyle_ItemSelected);
+            _spinnerAppStyle.ItemSelected += new System.EventHandler<AdapterView.ItemSelectedEventArgs>(appStyle_ItemSelected);
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfAppStyles.ToList());
             _spinnerAppStyle.Adapter = adapter;
             _spinnerAppStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == _settings.AppStyle));
@@ -76,7 +76,7 @@ namespace HorizontApp.Activities
 
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            if (CompassViewSettings.Instance().IsManualViewAngle)
+            if (AppContext.Instance.Settings.IsManualViewAngle)
             {
                 var viewAngle = _seekBarManualViewAngle.Progress / (float) 10.0;
                 _textManualViewAngle.Text = GetViewAngleText(_settings.IsManualViewAngle, viewAngle);

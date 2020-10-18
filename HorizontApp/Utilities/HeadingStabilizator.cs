@@ -8,6 +8,7 @@ namespace HorizontApp.Utilities
     {
         public Queue<double> headings = new Queue<double>();
 
+
         public void AddValue(double value)
         {
             headings.Enqueue(value);
