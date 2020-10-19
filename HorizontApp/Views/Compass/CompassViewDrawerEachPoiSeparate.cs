@@ -1,6 +1,6 @@
 ﻿using Android.Graphics;
-using HorizontApp.Domain.ViewModel;
-using HorizontApp.Utilities;
+using HorizontLib.Domain.ViewModel;
+using HorizontLib.Utilities;
 
 namespace HorizontApp.Views.Compass
 {

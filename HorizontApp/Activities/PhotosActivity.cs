@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using HorizontApp.DataAccess;
-using HorizontApp.Utilities;
 using Xamarin.Essentials;
+using HorizontApp.AppContext;
+using HorizontApp.Utilities;
 
 namespace HorizontApp.Activities
 {
@@ -20,8 +14,7 @@ namespace HorizontApp.Activities
     {
         private ListView _photosListView;
         private PhotosItemAdapter _adapter;
-        private Utilities.AppContext Context { get { return Utilities.AppContext.Instance; } }
-
+        private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

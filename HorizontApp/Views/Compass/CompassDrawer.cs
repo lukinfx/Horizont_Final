@@ -10,7 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using HorizontApp.Domain.ViewModel;
+using HorizontLib.Domain.ViewModel;
 using HorizontApp.Utilities;
 using HorizontLib.Utilities;
 

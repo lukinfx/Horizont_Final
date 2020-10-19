@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HorizontLib.Domain.Models;
+using HorizontLib.Domain.ViewModel;
 
 namespace HorizontLib.Utilities
 {

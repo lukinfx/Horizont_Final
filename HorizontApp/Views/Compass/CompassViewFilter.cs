@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using HorizontApp.Domain.ViewModel;
-using HorizontApp.Utilities;
+using HorizontLib.Domain.ViewModel;
+using HorizontLib.Utilities;
 
 namespace HorizontApp.Views.Compass
 {
@@ -20,7 +10,7 @@ namespace HorizontApp.Views.Compass
 
         bool IsOverlapping(double item1, double item2, double minDiff)
         {
-            return Math.Abs(CompassUtils.GetAngleDiff(item1, item2)) < minDiff;
+            return Math.Abs(CompassViewUtils.GetAngleDiff(item1, item2)) < minDiff;
         }
 
         public bool Filter(PoiViewItem item, double minDiff)

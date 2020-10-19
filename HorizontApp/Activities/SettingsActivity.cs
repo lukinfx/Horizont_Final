@@ -1,27 +1,21 @@
-﻿using Android.App;
+﻿using System.Linq;
+using System.Timers;
+using Android.App;
 using Android.OS;
 using Android.Widget;
-using Android.Content.PM;
 using Android.Views;
 using static Android.Views.View;
 using HorizontApp.Utilities;
-using System.Linq;
-using Android.Content;
-using Android.Text;
-using Java.Lang;
-using Double = Java.Lang.Double;
-using Exception = Java.Lang.Exception;
-using Math = System.Math;
-using System.Timers;
 using Xamarin.Essentials;
-using HorizontApp.Utilities;
+using HorizontApp.AppContext;
+using HorizontLib.Domain.ViewModel;
 
 namespace HorizontApp.Activities
 {
     [Activity(Label = "SettingsActivity")]
     public class SettingsActivity : Activity, IOnClickListener
     {
-        private Settings _settings { get { return AppContext.Instance.Settings; } }
+        private Settings _settings { get { return AppContextLiveData.Instance.Settings; } }
 
         private Switch _switchManualViewAngle;
         private TextView _textManualViewAngle;
@@ -76,7 +70,7 @@ namespace HorizontApp.Activities
 
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            if (AppContext.Instance.Settings.IsManualViewAngle)
+            if (AppContextLiveData.Instance.Settings.IsManualViewAngle)
             {
                 var viewAngle = _seekBarManualViewAngle.Progress / (float) 10.0;
                 _textManualViewAngle.Text = GetViewAngleText(_settings.IsManualViewAngle, viewAngle);

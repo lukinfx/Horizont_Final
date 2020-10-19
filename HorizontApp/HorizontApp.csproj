@@ -81,10 +81,10 @@
     <Compile Include="Activities\EditActivity.cs" />
     <Compile Include="Activities\MenuActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="AppContext\AppContextLiveData.cs" />
+    <Compile Include="AppContext\AppContextStaticData.cs" />
     <Compile Include="DataAccess\PhotosDatabase.cs" />
     <Compile Include="DataAccess\PoiDatabase.cs" />
-    <Compile Include="Domain\ViewModel\PoiViewItem.cs" />
-    <Compile Include="Domain\ViewModel\PoiViewItemList.cs" />
     <Compile Include="HorizontApplication.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Providers\CompassProvider.cs" />
@@ -94,11 +94,10 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\ElevationCalculation.cs" />
-    <Compile Include="Utilities\AppContext.cs" />
-    <Compile Include="Utilities\AppStyles.cs" />
+    <Compile Include="AppContext\AppContextBase.cs" />
+    <Compile Include="AppContext\IAppContext.cs" />
     <Compile Include="Utilities\ImageResizer.cs" />
     <Compile Include="Utilities\CompassUtils.cs" />
-    <Compile Include="Utilities\CompassViewUtils.cs" />
     <Compile Include="Utilities\DownloadCountryAdapter.cs" />
     <Compile Include="Utilities\DownloadItemAdapter.cs" />
     <Compile Include="Utilities\ElevationProfileBitmapDrawer.cs" />
@@ -425,6 +424,7 @@
     <AndroidResource Include="Resources\drawable\c_viewtower_grey.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Domain\" />
     <Folder Include="Resources\layout-land\" />
     <Folder Include="Views\ListOfPoiView\" />
   </ItemGroup>

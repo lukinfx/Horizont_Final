@@ -1,8 +1,7 @@
 ﻿using System;
 using Android.App;
 using Android.Runtime;
-using HorizontApp.Utilities;
-using AppContext = HorizontApp.Utilities.AppContext;
+using HorizontApp.AppContext;
 
 namespace HorizontApp
 {
@@ -16,7 +15,7 @@ namespace HorizontApp
         public override void OnCreate()
         {
             base.OnCreate();
-            AppContext.Instance.Settings.LoadData(this);
+            AppContextLiveData.Instance.Settings.LoadData(this);
         }
     }
 }

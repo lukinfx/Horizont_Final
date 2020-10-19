@@ -10,8 +10,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using HorizontApp.Domain.ViewModel;
-using HorizontApp.Utilities;
+using HorizontLib.Domain.ViewModel;
+using HorizontLib.Utilities;
 
 namespace HorizontApp.Views.Compass
 {

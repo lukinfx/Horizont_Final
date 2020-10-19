@@ -5,6 +5,7 @@ using System;
 using System.Timers;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using HorizontLib.Domain.ViewModel;
 using Xamarin.Essentials;
 
 namespace HorizontApp.Utilities

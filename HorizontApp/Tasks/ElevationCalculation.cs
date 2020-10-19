@@ -3,8 +3,8 @@ using Android.OS;
 using HorizonLib.Utilities;
 using HorizontLib.Domain.Models;
 using HorizontApp.Utilities;
+using HorizontLib.Domain.ViewModel;
 using HorizontLib.Utilities;
-using GpsUtils = HorizontApp.Utilities.GpsUtils;
 
 namespace HorizontApp.Tasks
 {

@@ -5,13 +5,11 @@ using Android.Util;
 using Android.Views;
 using Xamarin.Essentials;
 using HorizontLib.Utilities;
-using HorizontApp.Domain.ViewModel;
+using HorizontLib.Domain.ViewModel;
 using HorizontApp.Utilities;
 using HorizontApp.Views.Compass;
-using HorizontLib.Domain.Models;
-using System;
+using HorizontApp.AppContext;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
-using System.Drawing;
 
 namespace HorizontApp.Views
 {
@@ -19,6 +17,7 @@ namespace HorizontApp.Views
     {
         private static IOrderedEnumerable<PoiViewItem> list;
         private CompassViewFilter _compassViewFilter = new CompassViewFilter();
+        private IAppContext _context { get; set; }
         public double Heading { get; set; }
         private Paint _paint;
         private static double _headingCorrector = 0;
@@ -43,7 +42,6 @@ namespace HorizontApp.Views
         public CompassView(Context context, IAttributeSet attrs) :
             base(context, attrs)
         {
-            Initialize();
         }
 
         public void SetPoiViewItemList(PoiViewItemList list2)
@@ -61,7 +59,6 @@ namespace HorizontApp.Views
         public CompassView(Context context, IAttributeSet attrs, int defStyle) :
             base(context, attrs, defStyle) 
         {
-            Initialize();
         }
 
         public void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
@@ -78,13 +75,15 @@ namespace HorizontApp.Views
             
         }
 
-        private void Initialize()
+        public void Initialize(IAppContext context)
         {
-            Utilities.AppContext.Instance.Settings.SettingsChanged += OnSettingsChanged;
+            _context = context;
+
+            _context.Settings.SettingsChanged += OnSettingsChanged;
             
             InitializeViewDrawer();
 
-            elevationProfileBitmapDrawer = new ElevationProfileBitmapDrawer();
+            elevationProfileBitmapDrawer = new ElevationProfileBitmapDrawer(_context);
 
             _paint = new Paint();
             _paint.SetARGB(255, 255, 255, 0);
@@ -94,7 +93,7 @@ namespace HorizontApp.Views
 
         private void InitializeViewDrawer()
         {
-            switch (Utilities.AppContext.Instance.Settings.AppStyle)
+            switch (_context.Settings.AppStyle)
                 {
                     case AppStyles.EachPoiSeparate:
                         compassViewDrawer = new CompassViewDrawerEachPoiSeparate();
@@ -113,8 +112,8 @@ namespace HorizontApp.Views
                         break;
             }
 
-            compassViewDrawer.ViewAngleHorizontal = Utilities.AppContext.Instance.Settings.ViewAngleHorizontal;
-            compassViewDrawer.ViewAngleVertical = Utilities.AppContext.Instance.Settings.ViewAngleVertical;
+            compassViewDrawer.ViewAngleHorizontal = _context.Settings.ViewAngleHorizontal;
+            compassViewDrawer.ViewAngleVertical = _context.Settings.ViewAngleVertical;
             compassViewDrawer.Initialize();
         }
 
@@ -145,7 +144,7 @@ namespace HorizontApp.Views
 
         public void OnScroll(float distanceX)
         {
-            var viewAngleHorizontal = Utilities.AppContext.Instance.Settings.ViewAngleHorizontal;
+            var viewAngleHorizontal = _context.Settings.ViewAngleHorizontal;
             HeadingCorrector = HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX);
             Invalidate();
         }
@@ -175,13 +174,13 @@ namespace HorizontApp.Views
         {
             if (_elevationProfileBitmap != null)
             {
-                float offset = (float)(_elevationProfileBitmap.Width * (Heading - Utilities.AppContext.Instance.Settings.ViewAngleHorizontal / 2) / 360);
+                float offset = (float)(_elevationProfileBitmap.Width * (Heading - _context.Settings.ViewAngleHorizontal / 2) / 360);
                 canvas.DrawBitmap(_elevationProfileBitmap, -offset, (float)0, _paint);
-                if (Heading > 360 - Utilities.AppContext.Instance.Settings.ViewAngleHorizontal)
+                if (Heading > 360 - _context.Settings.ViewAngleHorizontal)
                 {
                     canvas.DrawBitmap(_elevationProfileBitmap, -offset + _elevationProfileBitmap.Width, (float)0, _paint);
                 }
-                if (Heading < Utilities.AppContext.Instance.Settings.ViewAngleHorizontal)
+                if (Heading < _context.Settings.ViewAngleHorizontal)
                 {
                     canvas.DrawBitmap(_elevationProfileBitmap, -offset - _elevationProfileBitmap.Width, (float)0, _paint);
                 }

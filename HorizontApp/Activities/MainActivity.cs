@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Timers;
 using System.Collections.Generic;
+using Java.Lang;
+using Exception = System.Exception;
+using Math = System.Math;
+using String = System.String;
 using Android;
 using Android.App;
 using Android.OS;
@@ -14,19 +18,15 @@ using Android.Support.V13.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
 using static Android.Views.View;
+using AlertDialog = Android.Support.V7.App.AlertDialog;
+using Xamarin.Essentials;
 using HorizontApp.Utilities;
 using HorizontApp.Views;
 using HorizontApp.Views.Camera;
 using HorizontApp.Activities;
 using HorizontLib.Domain.Enums;
 using HorizontApp.Tasks;
-using Java.Lang;
-using AlertDialog = Android.Support.V7.App.AlertDialog;
-using Xamarin.Essentials;
-using AppContext = HorizontApp.Utilities.AppContext;
-using Exception = System.Exception;
-using Math = System.Math;
-using String = System.String;
+using HorizontApp.AppContext;
 
 namespace HorizontApp
 {
@@ -64,8 +64,7 @@ namespace HorizontApp
 
         private GestureDetector _gestureDetector;
 
-
-        private AppContext Context { get { return AppContext.Instance; } }
+        private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -171,6 +170,7 @@ namespace HorizontApp
             _refreshCorrectorButton.SetOnClickListener(this);
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
+            _compassView.Initialize(Context);
 
             _mainLayout = FindViewById(Resource.Id.sample_main_layout);
 
@@ -591,7 +591,7 @@ namespace HorizontApp
             return false;
         }
 
-        public void OnDataChanged(object sender, AppContext.DataChangedEventArgs e)
+        public void OnDataChanged(object sender, DataChangedEventArgs e)
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {

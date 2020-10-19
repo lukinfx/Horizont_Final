@@ -14,17 +14,6 @@ namespace HorizontApp.Utilities
 {
     public class CompassUtils
     {
-        public static double GetAngleDiff(double alfa, double beta)
-        {
-            if (alfa > beta && Math.Abs(alfa - beta) > 180)
-            {
-                return alfa - beta - 360;
-            }
-            else if (alfa < beta && Math.Abs(alfa - beta) > 180)
-            {
-                return 360 - beta + alfa;
-            }
-            else return alfa - beta;
-        }
+        
     }
 }

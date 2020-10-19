@@ -1,26 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Timers;
-
-using Xamarin.Essentials;
-using static Android.Views.View;
-
 using Android.App;
 using Android.Content;
-using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Text;
 using Android.Views;
-using Android.Views.InputMethods;
 using Android.Widget;
-
+using Xamarin.Essentials;
 using HorizontApp.Activities;
-using HorizontApp.DataAccess;
+using HorizontApp.AppContext;
 using HorizontLib.Domain.Models;
-using HorizontApp.Domain.ViewModel;
+using HorizontLib.Domain.ViewModel;
 using HorizontApp.Utilities;
 
 namespace HorizontApp.Views.ListOfPoiView
@@ -40,7 +33,7 @@ namespace HorizontApp.Views.ListOfPoiView
         private double _maxDistance; 
         private double _minAltitude;
 
-        private Utilities.AppContext Context { get { return Utilities.AppContext.Instance; } }
+        private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

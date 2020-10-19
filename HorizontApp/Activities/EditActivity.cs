@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using static Android.Views.View;
-using HorizontApp.DataAccess;
+using Xamarin.Essentials;
 using HorizontLib.Domain.Models;
 using HorizontApp.Utilities;
 using HorizontLib.Domain.Enums;
-using Xamarin.Essentials;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Android.Graphics.Drawables;
-using HorizontApp.Providers;
+using HorizontApp.AppContext;
 
 namespace HorizontApp.Activities
 {
@@ -39,7 +37,7 @@ namespace HorizontApp.Activities
 
         private PoiCategory[] _poiCategories = new PoiCategory[] { PoiCategory.Castles, PoiCategory.Churches, PoiCategory.Lakes, PoiCategory.Mountains, PoiCategory.Palaces, PoiCategory.Ruins, PoiCategory.Transmitters, PoiCategory.ViewTowers};
 
-        private Utilities.AppContext Context { get { return Utilities.AppContext.Instance; } }
+        private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

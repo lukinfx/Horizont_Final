@@ -5,7 +5,7 @@ using Android.App;
 using Android.Views;
 using Android.Widget;
 using HorizontLib.Domain.Enums;
-using HorizontApp.Domain.ViewModel;
+using HorizontLib.Domain.ViewModel;
 
 namespace HorizontApp.Utilities
 {

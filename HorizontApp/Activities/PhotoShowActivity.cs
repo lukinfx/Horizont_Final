@@ -9,12 +9,16 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using HorizontApp.AppContext;
+using HorizontLib.Domain.Models;
 
 namespace HorizontApp.Activities
 {
     [Activity(Label = "PhotoShowActivity")]
     public class PhotoShowActivity : Activity
     {
+        private IAppContext _context = new AppContextStaticData(new GpsLocation(), 50);
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

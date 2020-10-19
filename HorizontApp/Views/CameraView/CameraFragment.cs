@@ -12,8 +12,6 @@ using Android.Hardware.Camera2;
 using Android.Graphics;
 using Android.Hardware.Camera2.Params;
 using Android.Media;
-using Android.Support.V13.App;
-using Android.Support.V4.Content;
 using Java.IO;
 using Java.Lang;
 using Java.Util;
@@ -21,7 +19,7 @@ using Java.Util.Concurrent;
 using Boolean = Java.Lang.Boolean;
 using Math = Java.Lang.Math;
 using Orientation = Android.Content.Res.Orientation;
-using HorizontApp.Utilities;
+using HorizontApp.AppContext;
 using HorizontLib.Domain.Models;
 
 namespace HorizontApp.Views.Camera
@@ -685,8 +683,8 @@ namespace HorizontApp.Views.Camera
             try
             {
                 var camera = Android.Hardware.Camera.Open(Int32.Parse(cameraId));
-                Utilities.AppContext.Instance.Settings.ViewAngleHorizontal = camera.GetParameters().HorizontalViewAngle;
-                Utilities.AppContext.Instance.Settings.ViewAngleVertical = camera.GetParameters().VerticalViewAngle;
+                AppContextLiveData.Instance.Settings.ViewAngleHorizontal = camera.GetParameters().HorizontalViewAngle;
+                AppContextLiveData.Instance.Settings.ViewAngleVertical = camera.GetParameters().VerticalViewAngle;
                 
             }
             catch

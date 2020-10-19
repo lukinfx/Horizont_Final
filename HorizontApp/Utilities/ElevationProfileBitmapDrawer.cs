@@ -1,24 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using HorizontLib.Domain.Models;
-using HorizontLib.Utilities;
 using SkiaSharp;
-using Xamarin.Essentials;
+using HorizontApp.AppContext;
+using HorizontLib.Domain.Models;
+using HorizontLib.Domain.ViewModel;
 
 namespace HorizontApp.Utilities
 {
     public class ElevationProfileBitmapDrawer
     {
+        private IAppContext _context;
         private SKData profileImageData;
         private SKPaint _paint = new SKPaint 
         { 
@@ -28,15 +19,15 @@ namespace HorizontApp.Utilities
         };
         
 
-        public ElevationProfileBitmapDrawer()
+        public ElevationProfileBitmapDrawer(IAppContext context)
         {
-
+            _context = context;
         }
 
         public void SetElevationProfile(ElevationProfileData epd, double displayWidth, double displayHeight)
         {
-            var viewAngleHorizontal = AppContext.Instance.Settings.ViewAngleHorizontal;
-            var viewAngleVertical = AppContext.Instance.Settings.ViewAngleVertical;
+            var viewAngleHorizontal = _context.Settings.ViewAngleHorizontal;
+            var viewAngleVertical = _context.Settings.ViewAngleVertical;
 
             var imageInfo = new SKImageInfo(width: Convert.ToInt32(displayWidth * (360 / viewAngleHorizontal)), height: Convert.ToInt32(displayHeight), colorType: SKColorType.Rgba8888, alphaType: SKAlphaType.Premul);
             var surface = SKSurface.Create(imageInfo);
