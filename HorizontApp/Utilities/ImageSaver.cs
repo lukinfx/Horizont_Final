@@ -35,8 +35,7 @@ namespace HorizontApp.Utilities
         {
             if (!dt.HasValue)
                 dt = DateTime.Now;
-
-            string mName = $"{DateTime.Now.Year}_{DateTime.Now.Month}_{DateTime.Now.Day}_{DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second}_Horizont.jpg";
+            string mName = dt?.ToString("yyyy-MM-dd-hh-mm-ss") + "_Horizont.jpg";
             return mName;
         }
 
@@ -55,18 +54,16 @@ namespace HorizontApp.Utilities
             return path;
         }
 
-        public static string GetPhotosFilePath(DateTime? dt = null)
-        {
-            return System.IO.Path.Combine(GetPhotosFileFolder(), GetPhotoFileName(dt));
-        }
-
         public void Run()
         {
             ByteBuffer buffer = _Image.GetPlanes()[0].Buffer;
             byte[] bytes = new byte[buffer.Remaining()];
             buffer.Get(bytes);
 
-            var file = new Java.IO.File(GetPhotosFilePath());
+            var filename = GetPhotoFileName();
+            var filepath = System.IO.Path.Combine(GetPhotosFileFolder(), filename);
+
+            var file = new Java.IO.File(filepath);
             byte[] thumbnail = ImageResizer.ResizeImageAndroid(bytes, 150, 100, 50 );
 
             using (var output = new Java.IO.FileOutputStream(file))
@@ -83,7 +80,7 @@ namespace HorizontApp.Utilities
                 {
                     _Image.Close();
                     PoiDatabase photoDatabase = new PoiDatabase();
-                    photoDatabase.InsertItem(new PhotoData { Datetime = DateTime.Now, PhotoFileName = GetPhotoFileName(), Longitude = _location.Longitude, Latitude = _location.Latitude, Altitude = _location.Altitude, Heading = _heading, Thumbnail = thumbnail }); ;
+                    photoDatabase.InsertItem(new PhotoData { Datetime = DateTime.Now, PhotoFileName = filename, Longitude = _location.Longitude, Latitude = _location.Latitude, Altitude = _location.Altitude, Heading = _heading, Thumbnail = thumbnail }); ;
                 }
             }
         }

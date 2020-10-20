@@ -67,6 +67,10 @@ namespace HorizontApp.Utilities
             deleteButton.SetOnClickListener(this);
             deleteButton.Tag = position;
 
+            var path = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), item.PhotoFileName);
+
+            
+            
             if (item.Thumbnail != null)
             {
                 var bitmap = BitmapFactory.DecodeByteArray(item.Thumbnail, 0, item.Thumbnail.Length);
