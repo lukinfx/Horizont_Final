@@ -63,6 +63,8 @@ namespace HorizontApp.Activities
             showIntent.PutExtra("longitude", photoList[position].Longitude);
             showIntent.PutExtra("altitude", photoList[position].Altitude);
             showIntent.PutExtra("name", photoList[position].PhotoFileName);
+            showIntent.PutExtra("thumbnail", photoList[position].Thumbnail);
+
             StartActivity(showIntent);
         }
 

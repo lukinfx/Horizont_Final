@@ -33,6 +33,7 @@ namespace HorizontApp.Utilities
             float newWidth = oldWidth * scaleFactor;
 
             Android.Graphics.Bitmap resizedImage = Android.Graphics.Bitmap.CreateScaledBitmap(originalImage, (int)newWidth, (int)newHeight, false);
+            
 
             using (MemoryStream ms = new MemoryStream())
             {
