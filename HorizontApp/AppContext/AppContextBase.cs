@@ -6,7 +6,7 @@ using HorizontLib.Domain.Models;
 
 namespace HorizontApp.AppContext
 {
-    public class AppContextBase : IAppContext
+    public abstract class AppContextBase : IAppContext
     {
         public event DataChangedEventHandler DataChanged;
 
@@ -45,6 +45,8 @@ namespace HorizontApp.AppContext
             Settings = new Settings();
             Settings.SettingsChanged += OnSettingsChanged;
         }
+
+        public abstract void Start();
 
         public void ReloadData()
         {

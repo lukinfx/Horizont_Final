@@ -45,14 +45,18 @@ namespace HorizontApp.AppContext
 
             _compassTimer.Interval = 100;
             _compassTimer.Elapsed += OnCompassTimerElapsed;
-            _compassTimer.Enabled = true;
 
             _locationTimer.Interval = 3000;
             _locationTimer.Elapsed += OnLocationTimerElapsed;
-            _locationTimer.Enabled = true;
+        }
 
-             CompassProvider.Start();
-             GpsLocationProvider.Start();
+        public override void Start()
+        {
+            CompassProvider.Start();
+            GpsLocationProvider.Start();
+
+            _compassTimer.Enabled = true;
+            _locationTimer.Enabled = true;
         }
 
         private async void OnLocationTimerElapsed(object sender, ElapsedEventArgs e)
