@@ -247,6 +247,13 @@ namespace HorizontApp.DataAccess
             return task.Result;
         }
 
+        public PhotoData GetPhotoDataItem(long id)
+        {
+            var task = Database.Table<PhotoData>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            task.Wait();
+            return task.Result;
+        }
+
         #endregion PhotoData
     }
 }

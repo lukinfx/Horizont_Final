@@ -58,12 +58,7 @@ namespace HorizontApp.Activities
         void OnPhotoShow(int position)
         {
             Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
-            showIntent.PutExtra("heading", photoList[position].Heading);
-            showIntent.PutExtra("latitude", photoList[position].Latitude);
-            showIntent.PutExtra("longitude", photoList[position].Longitude);
-            showIntent.PutExtra("altitude", photoList[position].Altitude);
-            showIntent.PutExtra("name", photoList[position].PhotoFileName);
-            showIntent.PutExtra("thumbnail", photoList[position].Thumbnail);
+            showIntent.PutExtra("ID", photoList[position].Id);
 
             StartActivity(showIntent);
         }

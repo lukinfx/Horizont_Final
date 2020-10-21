@@ -60,8 +60,8 @@ namespace HorizontApp.Utilities
 
             view.SetOnClickListener(this);
             PhotoData item = this[position];
-            view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.Datetime.ToString();
-            view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = Math.Round(item.Altitude) + " m";
+            view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.Tag + " | " +item.Datetime.ToString();
+            view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = Math.Round(item.Altitude) + " m" + " | " + item.Heading;
             ThumbnailImageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.photoDeleteButton);
             deleteButton.SetOnClickListener(this);

@@ -558,10 +558,9 @@ namespace HorizontApp.Views.Camera
         }
 
         // Initiate a still image capture.
-        public void TakePicture(GpsLocation location, double heading)
+        public void TakePicture(IAppContext context)
         {
-            mOnImageAvailableListener.SetLocation(location);
-            mOnImageAvailableListener.SetHeading(heading);
+            mOnImageAvailableListener.SetContext(context);
             LockFocus();
         }
 

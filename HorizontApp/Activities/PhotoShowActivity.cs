@@ -14,6 +14,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using HorizontApp.AppContext;
+using HorizontApp.DataAccess;
 using HorizontApp.Utilities;
 using HorizontApp.Views;
 using HorizontLib.Domain.Models;
@@ -40,37 +41,53 @@ namespace HorizontApp.Activities
 
         private SeekBar _distanceSeekBar;
         private SeekBar _heightSeekBar;
+        private PhotoData photodata;
+
+        private PoiDatabase _database;
+        private PoiDatabase Database
+        {
+            get
+            {
+                if (_database == null)
+                {
+                    _database = new PoiDatabase();
+                }
+                return _database;
+            }
+        }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.PhotoShowActivityLayout);
-            string fileName = Intent.GetStringExtra("name");
-            _thumbnail = Intent.GetByteArrayExtra("thumbnail");
+            long id = Intent.GetLongExtra("ID", -1);
+            photodata = Database.GetPhotoDataItem(id);
 
-            var heading = Intent.GetDoubleExtra("heading", 0);
+            _thumbnail = photodata.Thumbnail;
+
+            var heading = photodata.Heading;
 
             Log.WriteLine(LogPriority.Debug, TAG, $"Heading {heading:F0}");
 
-            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+            /*if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
                 heading += 90;
-            }
+            }*/
 
             _gestureDetector = new GestureDetector(this);
 
             _context = new AppContextStaticData(
                 new GpsLocation(
-                        Intent.GetDoubleExtra("longitude", 0), 
-                        Intent.GetDoubleExtra("latitude", 0),
-                        Intent.GetDoubleExtra("altitude", 0)),
+                        photodata.Longitude,
+                        photodata.Latitude,
+                        photodata.Altitude),
                 heading
                 );
 
             _context.DataChanged += OnDataChanged;
             _context.Settings.LoadData(this);
-            _context.Settings.ViewAngleVertical = AppContextLiveData.Instance.Settings.ViewAngleVertical;
-            _context.Settings.ViewAngleHorizontal = AppContextLiveData.Instance.Settings.ViewAngleHorizontal;
+            _context.Settings.ViewAngleVertical = (float)photodata.ViewAngleVertical;
+            _context.Settings.ViewAngleHorizontal = (float)photodata.ViewAngleHorizontal;
 
 
             _filterText = FindViewById<TextView>(Resource.Id.textView1);
@@ -108,7 +125,7 @@ namespace HorizontApp.Activities
             //System.Threading.Tasks.Task.Run(() => {LoadImage(fileName); });
 
             var delayedAction = new System.Threading.Timer(
-                o => { LoadImage(fileName); },
+                o => { LoadImage(photodata.PhotoFileName); },
                 null, 
                 TimeSpan.FromSeconds(0.1), 
                 TimeSpan.FromMilliseconds(-1));
