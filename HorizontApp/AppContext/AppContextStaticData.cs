@@ -9,5 +9,10 @@ namespace HorizontApp.AppContext
             this.myLocation = myLocation;
             Heading = heading;
         }
+
+        public override void Start()
+        {
+            //Nothing to do here
+        }
     }
 }

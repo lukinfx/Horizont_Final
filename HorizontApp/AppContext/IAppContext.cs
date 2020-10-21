@@ -13,6 +13,8 @@ namespace HorizontApp.AppContext
 
     public interface IAppContext
     {
+        void Start();
+
         event DataChangedEventHandler DataChanged;
         Settings Settings { get; }
         ElevationProfileData ElevationProfileData { get; set; }

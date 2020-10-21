@@ -94,6 +94,7 @@ namespace HorizontApp
             else
             {
                 InitializeCameraFragment();
+                Context.Start();
             }
 
             Context.DataChanged += OnDataChanged;
@@ -309,6 +310,7 @@ namespace HorizontApp
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             InitializeCameraFragment();
+            Context.Start();
         }
 
         private void RequestGPSLocationPermissions()
