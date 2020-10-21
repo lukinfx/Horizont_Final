@@ -7,6 +7,8 @@ using Java.Lang;
 using Java.Nio;
 
 using System.IO;
+using HorizontApp.AppContext;
+using Newtonsoft.Json;
 
 namespace HorizontApp.Utilities
 {
@@ -16,19 +18,17 @@ namespace HorizontApp.Utilities
 
         // The JPEG image
         private Image _Image;
-        private GpsLocation _location;
-        private double _heading;
+        private IAppContext _context;
 
         // The file we save the image into.
         //private File mFile;
 
-        public ImageSaver(Image image, GpsLocation location, double heading)
+        public ImageSaver(Image image, IAppContext context)
         {
             if (image == null)
                 throw new System.ArgumentNullException("image");
             _Image = image;
-            _location = location;
-            _heading = heading;
+            _context = context;
         }
 
         public static string GetPhotoFileName(DateTime? dt = null)
@@ -80,7 +80,23 @@ namespace HorizontApp.Utilities
                 {
                     _Image.Close();
                     PoiDatabase photoDatabase = new PoiDatabase();
-                    photoDatabase.InsertItem(new PhotoData { Datetime = DateTime.Now, PhotoFileName = filename, Longitude = _location.Longitude, Latitude = _location.Latitude, Altitude = _location.Altitude, Heading = _heading, Thumbnail = thumbnail }); ;
+                    string jsonCategories = JsonConvert.SerializeObject(_context.Settings.Categories);
+                    photoDatabase.InsertItem(new PhotoData
+                    {
+                        Datetime = DateTime.Now,
+                        PhotoFileName = filename,
+                        Longitude = _context.MyLocation.Longitude,
+                        Latitude = _context.MyLocation.Latitude,
+                        Altitude = _context.MyLocation.Altitude,
+                        Heading = _context.Heading,
+                        Thumbnail = thumbnail,
+                        JsonCategories = jsonCategories,
+                        ViewAngleVertical = _context.Settings.ViewAngleVertical,
+                        ViewAngleHorizontal = _context.Settings.ViewAngleHorizontal,
+                        MinAltitude = _context.Settings.MinAltitute,
+                        MaxDistance = _context.Settings.MaxDistance,
+                        Favourie = _context.Settings.Favourite
+                    }) ; 
                 }
             }
         }

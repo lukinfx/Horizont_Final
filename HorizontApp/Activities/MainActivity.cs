@@ -250,7 +250,7 @@ namespace HorizontApp
                         }
                     case Resource.Id.buttonRecord:
                         {
-                            _cameraFragment.TakePicture(Context.MyLocation, Context.Heading);
+                            _cameraFragment.TakePicture(Context);
                             break;
                         }
                     case Resource.Id.buttonCategorySelect:

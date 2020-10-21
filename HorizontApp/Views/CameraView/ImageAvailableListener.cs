@@ -1,4 +1,5 @@
 using Android.Media;
+using HorizontApp.AppContext;
 using HorizontApp.DataAccess;
 using HorizontApp.Utilities;
 using HorizontLib.Domain.Models;
@@ -22,6 +23,8 @@ namespace HorizontApp.Views.Camera
             owner = fragment;
         }
 
+
+        private IAppContext _context;
         private readonly Java.IO.File file;
         private readonly CameraFragment owner;
         private GpsLocation _location;
@@ -32,20 +35,15 @@ namespace HorizontApp.Views.Camera
 
         public void OnImageAvailable(ImageReader reader)
         {
-            ImageSaver imageSaver = new ImageSaver(reader.AcquireNextImage(), _location, _heading);
+            ImageSaver imageSaver = new ImageSaver(reader.AcquireNextImage(), _context);
             owner.mBackgroundHandler.Post(imageSaver);
         }
 
         // Saves a JPEG {@link Image} into the specified {@link File}.
         
-        public void SetLocation(GpsLocation location)
+        public void SetContext(IAppContext context)
         {
-            _location = location;
-        }
-
-        public void SetHeading(double heading)
-        {
-            _heading = heading;
+            _context = context;
         }
     }
 }
