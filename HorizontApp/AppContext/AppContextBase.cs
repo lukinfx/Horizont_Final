@@ -46,7 +46,7 @@ namespace HorizontApp.AppContext
             Settings.SettingsChanged += OnSettingsChanged;
         }
 
-        protected void ReloadData()
+        public void ReloadData()
         {
             try
             {
@@ -65,10 +65,8 @@ namespace HorizontApp.AppContext
             }
         }
 
-        private void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
+        protected virtual void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
-            Settings.SaveData();
-
             ReloadData();
         }
 

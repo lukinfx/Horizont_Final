@@ -23,6 +23,10 @@ namespace HorizontApp.Utilities
 
         public Settings()
         {
+            _maxDistance = 12;
+            _minAltitute = 0;
+            Categories.Add(PoiCategory.Mountains);
+
             _changeFilterTimer.Interval = 1000;
             _changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;
             _changeFilterTimer.AutoReset = false;
@@ -168,9 +172,6 @@ namespace HorizontApp.Utilities
 
             isManualViewAngle = prefs.GetBoolean("IsManualViewAngleHorizontal", false);
             manualViewAngleHorizontal = prefs.GetFloat("ManualViewAngleHorizontal", 60);
-
-            _maxDistance = 12;
-            _minAltitute = 0;
         }
 
         public void SaveData()

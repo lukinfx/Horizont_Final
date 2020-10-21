@@ -22,5 +22,6 @@ namespace HorizontApp.AppContext
         PoiViewItemList PoiData { get; }
         PoiDatabase Database { get; }
         void ToggleCompassPaused();
+        void ReloadData();
     }
 }
