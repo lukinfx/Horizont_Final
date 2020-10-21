@@ -10,6 +10,7 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using HorizontApp.AppContext;
@@ -24,6 +25,8 @@ namespace HorizontApp.Activities
     [Activity(Label = "PhotoShowActivity")]
     public class PhotoShowActivity : Activity, GestureDetector.IOnGestureListener
     {
+        private static string TAG = "Horizon-PhotoShowActivity";
+
         private IAppContext _context;
         private TextView _GPSTextView;
         private TextView _headingTextView;
@@ -46,6 +49,9 @@ namespace HorizontApp.Activities
             _thumbnail = Intent.GetByteArrayExtra("thumbnail");
 
             var heading = Intent.GetDoubleExtra("heading", 0);
+
+            Log.WriteLine(LogPriority.Debug, TAG, $"Heading {heading:F0}");
+
             if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
                 heading += 90;
@@ -163,6 +169,7 @@ namespace HorizontApp.Activities
 
                 _GPSTextView.Text = GpsUtils.HasLocation(_context.MyLocation) ?
                     $"Lat:{_context.MyLocation.Latitude:F7} Lon:{_context.MyLocation.Longitude:F7} Alt:{_context.MyLocation.Altitude:F0}" : "No GPS location";
+                Log.WriteLine(LogPriority.Debug, TAG, $"PoiCount: {e.PoiData.Count}");
                 _compassView.SetPoiViewItemList(e.PoiData);
 
             });
