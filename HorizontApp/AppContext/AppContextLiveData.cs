@@ -77,6 +77,13 @@ namespace HorizontApp.AppContext
             });
         }
 
+        protected override void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
+        {
+            base.OnSettingsChanged(sender, e);
+
+            Settings.SaveData();
+        }
+
         private async Task<bool> UpdateMyLocation()
         {
             var newLocation = await GpsLocationProvider.GetLocationAsync();

@@ -54,6 +54,7 @@ namespace HorizontApp.Views
             {
                 item.Visibility = _compassViewFilter.Filter(item, minAngleDiff);
             }
+            Invalidate();
         }
 
         public CompassView(Context context, IAttributeSet attrs, int defStyle) :

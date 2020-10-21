@@ -65,6 +65,13 @@
               android:layout_height="wrap_content"/>
 
         </LinearLayout>
+        
+        <include
+          android:id="@+id/mainActivityStatusBar"
+          layout="@layout/MainActivityStatusBar" 
+          android:gravity="bottom"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"/>
 
     </AbsoluteLayout>
 </LinearLayout>
