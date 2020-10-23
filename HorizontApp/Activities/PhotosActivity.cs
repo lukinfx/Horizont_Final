@@ -86,7 +86,7 @@ namespace HorizontApp.Activities
                 _photosListView.Adapter = _adapter;
             });
             alert.SetNegativeButton("No", (senderAlert, args) => { });
-            alert.SetMessage("Are you sure you want to delete this Pho?");
+            alert.SetMessage("Are you sure you want to delete this Photo?");
             var answer = alert.Show();
 
 
