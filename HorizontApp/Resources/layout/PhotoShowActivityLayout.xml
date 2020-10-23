@@ -55,8 +55,8 @@
             <include
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:id="@+id/mainActivityControlBar"
-              layout="@layout/MainActivityControlBar"
+              android:id="@+id/PhotoShowActivityControlBar"
+              layout="@layout/PhotoShowActivityControlBar"
               android:gravity="bottom" />
             <include
               android:id="@+id/mainActivitySeekBars"
