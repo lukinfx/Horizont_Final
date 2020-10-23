@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Timers;
 using Android.App;
 using Android.Content;
@@ -15,16 +16,18 @@ using Android.Views;
 using Android.Widget;
 using HorizontApp.AppContext;
 using HorizontApp.DataAccess;
+using HorizontApp.Tasks;
 using HorizontApp.Utilities;
 using HorizontApp.Views;
 using HorizontLib.Domain.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms.Platform.Android;
+using static Android.Views.View;
 
 namespace HorizontApp.Activities
 {
     [Activity(Label = "PhotoShowActivity")]
-    public class PhotoShowActivity : Activity, GestureDetector.IOnGestureListener
+    public class PhotoShowActivity : Activity, GestureDetector.IOnGestureListener, IOnClickListener
     {
         private static string TAG = "Horizon-PhotoShowActivity";
 
@@ -35,9 +38,13 @@ namespace HorizontApp.Activities
         private CompassView _compassView;
         private byte[] _thumbnail;
         private GestureDetector _gestureDetector;
-        private Timer _refreshTimer = new Timer();
+        private System.Timers.Timer _refreshTimer = new System.Timers.Timer();
 
         private TextView _filterText;
+
+        private ImageButton _favouriteButton;
+        private ImageButton _displayTerrainButton;
+        private ImageButton _refreshCorrectorButton;
 
         private SeekBar _distanceSeekBar;
         private SeekBar _heightSeekBar;
@@ -102,6 +109,14 @@ namespace HorizontApp.Activities
             _heightSeekBar.Progress = 0;
             _heightSeekBar.ProgressChanged += OnMinAltitudeChanged;
 
+            _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
+            _displayTerrainButton.SetOnClickListener(this);
+
+            _refreshCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
+            _refreshCorrectorButton.SetOnClickListener(this);
+
+            _favouriteButton = FindViewById<ImageButton>(Resource.Id.favouriteFilterButton);
+            _favouriteButton.SetOnClickListener(this);
 
             photoView = FindViewById<ImageView>(Resource.Id.photoView);
 
@@ -254,5 +269,130 @@ namespace HorizontApp.Activities
         public void OnShowPress(MotionEvent e) { }
         public bool OnSingleTapUp(MotionEvent e) { return false; }
         #endregion Required abstract methods
+
+        public void OnClick(View v)
+        {
+            switch (v.Id)
+            {
+                case Resource.Id.buttonDisplayTerrain:
+                    GenerateElevationProfile();
+                    break;
+
+                case Resource.Id.favouriteFilterButton:
+                    {
+                        _context.Settings.ToggleFavourite(); ;
+                        if (_context.Settings.Favourite)
+                            _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
+                        else
+                            _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
+                        break;
+                    }
+            }
+
+
+        }
+
+        #region ElevationProfile
+        private void GenerateElevationProfile()
+        {
+            try
+            {
+                if (!GpsUtils.HasAltitude(_context.MyLocation))
+                {
+                    PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
+                    return;
+                }
+
+                var ec = new ElevationCalculation(_context.MyLocation, _distanceSeekBar.Progress);
+
+                var size = ec.GetSizeToDownload();
+                if (size == 0)
+                {
+                    StartDownloadAndCalculate(ec);
+                    return;
+                }
+
+                using (var builder = new AlertDialog.Builder(this))
+                {
+                    builder.SetTitle("Question");
+                    builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount downloaded data. \r\n\r\nDo you really want to continue?");
+                    builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
+                    builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
+                    builder.SetNegativeButton("Cancel", (senderAlert, args) => { });
+
+                    var myCustomDialog = builder.Create();
+
+                    myCustomDialog.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
+            }
+        }
+
+        private void StartDownloadAndCalculate(ElevationCalculation ec)
+        {
+            var lastProgressUpdate = System.Environment.TickCount;
+
+            var pd = new ProgressDialog(this);
+            pd.SetMessage("Loading elevation data. Please Wait.");
+            pd.SetCancelable(false);
+            pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
+            pd.Show();
+
+            ec.OnFinishedAction = (result) =>
+            {
+                pd.Hide();
+                if (!string.IsNullOrEmpty(result.ErrorMessage))
+                {
+                    PopupHelper.ErrorDialog(this, "Error", result.ErrorMessage);
+                }
+
+                _context.ElevationProfileData = result;
+                RefreshElevationProfile();
+            };
+            ec.OnStageChange = (text, max) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    pd.SetMessage(text);
+                    pd.Max = max;
+                });
+            };
+            ec.OnProgressChange = (progress) =>
+            {
+                var tickCount = System.Environment.TickCount;
+                if (tickCount - lastProgressUpdate > 100)
+                {
+                    MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
+                    Thread.Sleep(50);
+                    lastProgressUpdate = tickCount;
+                }
+            };
+
+            ec.Execute(_context.MyLocation);
+        }
+
+        private void StartDownloadAndCalculateAsync(ElevationCalculation ec)
+        {
+            try
+            {
+                StartDownloadAndCalculate(ec);
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
+            }
+        }
+
+        private void RefreshElevationProfile()
+        {
+            if (_context.ElevationProfileData != null)
+            {
+                _compassView.SetElevationProfile(_context.ElevationProfileData);
+            }
+        }
+        #endregion ElevationProfile
     }
 }
