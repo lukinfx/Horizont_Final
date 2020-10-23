@@ -10,7 +10,7 @@ namespace HorizontLib.Providers
     {
         private static string ELEVATION_MAPS_FOLDER = "ElevationMaps";
         private static string ELEVATION_MAPS_URL = "http://www.krvaveoleje.cz/horizont/ElevationData/";
-        private static int ELEVATION_FILE_SIZE = 25;
+        private static int ELEVATION_FILE_SIZE = 3;
 
         public static string GetElevationFile(int lat, int lon)
         {
@@ -31,7 +31,7 @@ namespace HorizontLib.Providers
 
         private static string GetElevationFileName(int lat, int lon)
         {
-            return $"ALPSMLC30_N{lat:D3}E{lon:D3}_DSM.tif";
+            return $"ALPSMLC30_N{lat:D3}E{lon:D3}_DSM.zip";
         }
 
         private static string GetElevationFileFolder()

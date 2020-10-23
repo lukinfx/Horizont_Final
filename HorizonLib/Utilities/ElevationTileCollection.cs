@@ -159,7 +159,7 @@ namespace HorizonLib.Utilities
             bool isOk = true;
             foreach (var et in _elevationTiles)
             {
-                if (!et.ReadMatrix())
+                if (!et.LoadFromZip())
                 {
                     isOk = false;
                 }

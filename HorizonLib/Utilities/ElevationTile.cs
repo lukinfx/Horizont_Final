@@ -1,85 +1,25 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HorizonLib.Utilities;
 using HorizontLib.Domain.Models;
 using HorizontLib.Providers;
+using ICSharpCode.SharpZipLib.Core;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace HorizontLib.Utilities
 {
-    public class EleDataEnumerator : IEnumerator<GpsLocation>
-    {
-        private GpsLocation startLocation;
-        private ushort[,] elevationData;
-        private int width, height;
-
-        private int? latPos;
-        private int? lonPos;
-
-        public EleDataEnumerator(GpsLocation startLocation, ref ushort[,] elevationData, int width, int height)
-        {
-            this.startLocation = startLocation;
-            this.elevationData = elevationData;
-            this.width = width;
-            this.height = height;
-        }
-
-        GpsLocation IEnumerator<GpsLocation>.Current => GetCurrent();
-
-        object IEnumerator.Current => GetCurrent();
-
-        public GpsLocation GetCurrent()
-        {
-            var lat = startLocation.Latitude + latPos.Value/(float)height;
-            var lon = startLocation.Longitude + lonPos.Value / (float)width;
-            var loc = new GpsLocation(lon, lat, elevationData[latPos.Value, lonPos.Value]);
-            return loc;
-        }
-
-        public void Dispose()
-        {
-        }
-
-        public bool MoveNext()
-        {
-            if (latPos >= height)
-                return false;
-
-            if (!latPos.HasValue || !lonPos.HasValue)
-            {
-                latPos = 0;
-                lonPos = 0;
-                return true;
-            }
-
-            lonPos++;
-            if (lonPos >= width)
-            {
-                latPos++;
-                lonPos = 0;
-            }
-
-            if (latPos >= height)
-                return false;
-
-            return true;
-        }
-
-        public void Reset()
-        {
-            latPos = 0;
-            lonPos = 0;
-        }
-    }
-
+    
     public class ElevationTile : IEnumerable<GpsLocation>
     {
-        private ushort[,] _elevationData;
-        private int _width, _height;
+        protected ushort[,] _elevationData;
+        protected int width, height;
         private bool? _fileExists;
-        public string ErrorMessage { get; private set; }
+        public string ErrorMessage { get; protected set; }
         public GpsLocation StartLocation { get; private set; }
 
         public bool IsOk { get { return string.IsNullOrEmpty(ErrorMessage); } }
@@ -112,45 +52,12 @@ namespace HorizontLib.Utilities
             }
         }
 
-        public bool ReadMatrix()
-        {
-            try
-            {
-                if (_elevationData == null)
-                {
-                    if (ElevationFileProvider.ElevationFileExists((int) StartLocation.Latitude, (int) StartLocation.Longitude))
-                    {
-                        var inputFileName = ElevationFileProvider.GetElevationFile((int) StartLocation.Latitude, (int) StartLocation.Longitude);
-                        _elevationData = GeoTiffReader.ReadTiff3(inputFileName, 0, 999, 0, 999);
-                        _width = 1800;
-                        _height = 1800;
-                        return true;
-                    }
-                }
-                return false;
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = $"Load error ({ex.Message})";
-                return false;
-            }
-        }
-
-        /*public void ReadRadius(GpsLocation myLocation, GpsLocation min, GpsLocation max, List<GpsLocation> eleData)
-        {
-            if (_elevationData == null)
-            {
-                var inputFileName = ElevationFileProvider.GetElevationFile((int)_startLocation.Latitude, (int)_startLocation.Longitude);
-                GeoTiffReader.ReadTiff(inputFileName, min, max, myLocation, 1, eleData);
-            }
-        }*/
-
         public IEnumerator<GpsLocation> GetEnumerator()
         {
             if (_elevationData == null)
                 throw new SystemException("Elevation Tile is now loaded yet");
 
-            return new EleDataEnumerator(StartLocation, ref _elevationData, _width, _height);
+            return new ElevationDataEnumerator(StartLocation, ref _elevationData, width, height);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -158,7 +65,7 @@ namespace HorizontLib.Utilities
             if (_elevationData == null)
                 throw new SystemException("Elevation Tile is now loaded yet");
 
-            return new EleDataEnumerator(StartLocation, ref _elevationData, _width, _height);
+            return new ElevationDataEnumerator(StartLocation, ref _elevationData, width, height);
         }
 
         public bool TryGetElevation(GpsLocation myLocation, out double elevation)
@@ -201,8 +108,8 @@ namespace HorizontLib.Utilities
             if (_elevationData == null)
                 throw new SystemException("Elevation Tile is now loaded yet");
 
-            var stepX = 1 / (double)(_width-1);
-            var stepY = 1 / (double)(_height - 1);
+            var stepX = 1 / (double)(width-1);
+            var stepY = 1 / (double)(height - 1);
 
             var py = (myLocation.Latitude - (int)myLocation.Latitude);
             var px = (myLocation.Longitude - (int)myLocation.Longitude);
@@ -249,7 +156,7 @@ namespace HorizontLib.Utilities
                                 maxEle = _elevationData[y - dy, x - dx];
                         }
 
-                        if (y + dy < _height && x + dx < _width)
+                        if (y + dy < height && x + dx < width)
                         {
                             if (_elevationData[y + dy, x + dx] > maxEle)
                                 maxEle = _elevationData[y + dy, x + dx]; ;
@@ -259,6 +166,85 @@ namespace HorizontLib.Utilities
 
                 return maxEle;
             }
+        }
+
+        public void SaveToZip(string outputFileName)
+        {
+            try
+            {
+                using (var fs = File.Create(outputFileName))
+                using (var outStream = new ZipOutputStream(fs))
+                {
+                    outStream.PutNextEntry(new ZipEntry("ElevationData.bin"));
+
+                    var x = new byte[1800 * 1800 * 2];
+                    Buffer.BlockCopy(_elevationData, 0, x, 0, 1800 * 1800 * 2);
+
+                    var buffer = new byte[4096];
+                    var ms = new MemoryStream(x);
+                    StreamUtils.Copy(ms, outStream, buffer);
+
+                    outStream.CloseEntry();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new SystemException("Error while saving elevation data.");
+            }
+        }
+
+        public bool LoadFromZip()
+        {
+            try
+            {
+                if (_elevationData == null)
+                {
+                    if (ElevationFileProvider.ElevationFileExists((int)StartLocation.Latitude, (int)StartLocation.Longitude))
+                    {
+                        var inputFileName = ElevationFileProvider.GetElevationFile((int)StartLocation.Latitude, (int)StartLocation.Longitude);
+                        LoadFromZip(inputFileName);
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"Load error ({ex.Message})";
+                return false;
+            }
+        }
+
+        public void LoadFromZip(string inputFileName)
+        {
+            using (Stream fsInput = File.OpenRead(inputFileName))
+            using (var zf = new ZipFile(fsInput))
+            {
+                foreach (ZipEntry zipEntry in zf)
+                {
+                    if (!zipEntry.IsFile)
+                    {
+                        continue;
+                    }
+
+                    String entryFileName = zipEntry.Name;
+                    if (entryFileName != "ElevationData.bin")
+                    {
+                        throw new SystemException("Invalid file format");
+                    }
+
+                    using (var zipStream = zf.GetInputStream(zipEntry))
+                    {
+                        var x = new byte[3600 * 1800];
+                        StreamUtils.ReadFully(zipStream, x);
+
+                        _elevationData = new ushort[1800, 1800];
+                        Buffer.BlockCopy(x, 0, _elevationData, 0, 1800 * 1800 * 2);
+                    }
+                }
+            }
+            width = 1800;
+            height = 1800;
         }
     }
 }

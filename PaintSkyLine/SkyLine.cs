@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HorizonLib.Utilities;
 using HorizontLib.Domain.Models;
+using HorizontLib.Domain.ViewModel;
 using HorizontLib.Utilities;
 using PaintSkyLine;
 using SkiaSharp;
@@ -72,7 +73,7 @@ namespace PaintSkyLine
             
             _data = new List<GpsLocation>();
             string inputFileName = @"c:\Temp\ElevationMap\ALPSMLC30_N049E018_DSM.tif";
-            GeoTiffReader.ReadTiff(inputFileName, min, max, _myLocation, 3, _data);
+            GeoTiffReaderList.ReadTiff(inputFileName, min, max, _myLocation, 3, _data);
 
             //Calculate old profile
             /*ElevationProfile ep = new ElevationProfile();
