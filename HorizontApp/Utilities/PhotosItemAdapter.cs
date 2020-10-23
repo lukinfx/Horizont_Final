@@ -19,6 +19,8 @@ namespace HorizontApp.Utilities
     public interface IPhotoActionListener
     {
         void OnPhotoDelete(int position);
+
+        void OnPhotoEdit(int position);
     }
 
     [Activity(Label = "PhotosItemAdapter")]
@@ -61,7 +63,7 @@ namespace HorizontApp.Utilities
             view.SetOnClickListener(this);
             PhotoData item = this[position];
             view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.Tag + " | " +item.Datetime.ToString();
-            view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = Math.Round(item.Altitude) + " m" + " | " + item.Heading;
+            view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = Math.Round(item.Altitude) + " m" + " | " + item.Heading + "°";
             ThumbnailImageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.photoDeleteButton);
             deleteButton.SetOnClickListener(this);
@@ -91,6 +93,10 @@ namespace HorizontApp.Utilities
             {
                 case Resource.Id.photoDeleteButton:
                     mPoiActionListener.OnPhotoDelete(position);
+                    break;
+
+                case Resource.Id.linearLayoutItem:
+                    mPoiActionListener.OnPhotoEdit(position);
                     break;
             }
         }

@@ -76,6 +76,25 @@ namespace HorizontApp.Activities
 
         public void OnPhotoDelete(int position)
         {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetPositiveButton("Yes", (senderAlert, args) =>
+            {
+                PhotoData item = photoList[position];
+                Context.Database.DeleteItem(item);
+                photoList.Remove(item);
+                _adapter = new PhotosItemAdapter(this, photoList, this);
+                _photosListView.Adapter = _adapter;
+            });
+            alert.SetNegativeButton("No", (senderAlert, args) => { });
+            alert.SetMessage("Are you sure you want to delete this Pho?");
+            var answer = alert.Show();
+
+
+            _adapter.NotifyDataSetChanged();
+        }
+
+        public void OnPhotoEdit(int position)
+        {
             OnPhotoShow(position);
         }
     }
