@@ -48,7 +48,7 @@ namespace GpxAltitudeFixer
         static void Main(string[] args)
         {
             string xmlFileContext = File.ReadAllText(@"c:\Src\Xamarin\Horizon\Data\Gpx\svk-mountains.gpx");
-            var poiList = HorizontLib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles);
+            var poiList = HorizontLib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, new Guid());
 
             /*foreach (var poi in poiList)
             {
