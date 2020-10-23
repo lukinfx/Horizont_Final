@@ -112,9 +112,7 @@ namespace HorizontApp.Views
                         break;
             }
 
-            compassViewDrawer.ViewAngleHorizontal = _context.Settings.ViewAngleHorizontal;
-            compassViewDrawer.ViewAngleVertical = _context.Settings.ViewAngleVertical;
-            compassViewDrawer.Initialize();
+            compassViewDrawer.Initialize(_context.Settings.ViewAngleHorizontal, _context.Settings.ViewAngleVertical);
         }
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)

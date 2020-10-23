@@ -22,10 +22,10 @@ namespace HorizontApp.Views.Compass
         protected Android.Graphics.Paint paintRect;
         protected Android.Graphics.Paint textpaint;
 
-        public float ViewAngleHorizontal { protected get; set; }
-        public float ViewAngleVertical { protected get; set; }
+        protected float ViewAngleHorizontal { get; private set; }
+        protected float ViewAngleVertical { get; private set; }
 
-        public virtual void Initialize()
+        public CompassViewDrawer()
         {
             paint = new Android.Graphics.Paint();
             paint.SetARGB(255, 200, 255, 0);
@@ -42,6 +42,12 @@ namespace HorizontApp.Views.Compass
             textpaint.TextSize = 36;
             Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
             textpaint.SetTypeface(normal);
+        }
+
+        public virtual void Initialize(float viewAngleHorizontal, float viewAngleVertical)
+        {
+            ViewAngleHorizontal = viewAngleHorizontal;
+            ViewAngleVertical = viewAngleVertical;
         }
 
         public virtual double GetMinItemAngleDiff(int canvasWidth) { return 0; }
