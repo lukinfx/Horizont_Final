@@ -103,10 +103,10 @@ namespace HorizontApp.Activities
             _GPSTextView = FindViewById<TextView>(Resource.Id.editText2);
 
             _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
-            _distanceSeekBar.Progress = 10;
+            _distanceSeekBar.Progress = _context.Settings.MaxDistance;
             _distanceSeekBar.ProgressChanged += OnMaxDistanceChanged;
             _heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
-            _heightSeekBar.Progress = 0;
+            _heightSeekBar.Progress = _context.Settings.MinAltitute;
             _heightSeekBar.ProgressChanged += OnMinAltitudeChanged;
 
             _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);

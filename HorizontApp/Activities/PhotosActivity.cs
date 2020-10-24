@@ -47,12 +47,6 @@ namespace HorizontApp.Activities
             _adapter = new PhotosItemAdapter(this, photoList, this);
 
             _photosListView.Adapter = _adapter;
-            _photosListView.ItemClick += OnListItemClick;
-        }
-
-        void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
-        {
-            OnPhotoShow(e.Position);
         }
 
         void OnPhotoShow(int position)
