@@ -19,9 +19,12 @@ using HorizontApp.DataAccess;
 using HorizontApp.Tasks;
 using HorizontApp.Utilities;
 using HorizontApp.Views;
+using HorizontLib.Domain.Enums;
 using HorizontLib.Domain.Models;
+using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms.Platform.Android;
+using Xamarin.Forms.Xaml;
 using static Android.Views.View;
 
 namespace HorizontApp.Activities
@@ -69,7 +72,6 @@ namespace HorizontApp.Activities
             SetContentView(Resource.Layout.PhotoShowActivityLayout);
             long id = Intent.GetLongExtra("ID", -1);
             photodata = Database.GetPhotoDataItem(id);
-
             _thumbnail = photodata.Thumbnail;
 
             var heading = photodata.Heading;
@@ -95,6 +97,7 @@ namespace HorizontApp.Activities
             _context.Settings.LoadData(this);
             _context.Settings.ViewAngleVertical = (float)photodata.ViewAngleVertical;
             _context.Settings.ViewAngleHorizontal = (float)photodata.ViewAngleHorizontal;
+            _context.Settings.Categories = JsonConvert.DeserializeObject<List<PoiCategory>>(photodata.JsonCategories);
 
 
             _filterText = FindViewById<TextView>(Resource.Id.textView1);
@@ -117,6 +120,9 @@ namespace HorizontApp.Activities
 
             _favouriteButton = FindViewById<ImageButton>(Resource.Id.favouriteFilterButton);
             _favouriteButton.SetOnClickListener(this);
+
+            var _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
+            _selectCategoryButton.SetOnClickListener(this);
 
             photoView = FindViewById<ImageView>(Resource.Id.photoView);
 
@@ -285,6 +291,12 @@ namespace HorizontApp.Activities
                             _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
                         else
                             _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
+                        break;
+                    }
+                case Resource.Id.buttonCategorySelect:
+                    {
+                        var dialog = new PoiFilterDialog(this, _context);
+                        dialog.Show();
                         break;
                     }
             }

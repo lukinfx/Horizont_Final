@@ -50,12 +50,10 @@ namespace HorizontApp
         private ImageButton _refreshCorrectorButton;
 
         private LinearLayout _mainActivitySeekBars;
-        private LinearLayout _mainActivityPoiFilter;
         private CompassView _compassView;
         private SeekBar _distanceSeekBar;
         private SeekBar _heightSeekBar;
         private View _mainLayout;
-        private Dictionary<PoiCategory, ImageButton> _imageButtonCategoryFilter = new Dictionary<PoiCategory, ImageButton>();
         
         private CameraFragment _cameraFragment;
 
@@ -101,7 +99,6 @@ namespace HorizontApp
 
             InitializeUIElements();
             InitializeRefreshTimer();
-            InitializeCategoryFilterButtons();
 
             if (bundle != null)
             {
@@ -130,10 +127,6 @@ namespace HorizontApp
         {
             _headingEditText = FindViewById<TextView>(Resource.Id.editText1);
             _GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
-
-            _mainActivityPoiFilter = FindViewById<LinearLayout>(Resource.Id.mainActivityPoiFilter);
-            _mainActivityPoiFilter.Enabled = false;
-            _mainActivityPoiFilter.Visibility = ViewStates.Invisible;
 
             _mainActivitySeekBars = FindViewById<LinearLayout>(Resource.Id.mainActivitySeekBars);
             _mainActivitySeekBars.Enabled = true;
@@ -255,44 +248,10 @@ namespace HorizontApp
                         }
                     case Resource.Id.buttonCategorySelect:
                         {
-                            if (_mainActivityPoiFilter.Visibility == ViewStates.Visible)
-                            {
-                                _mainActivityPoiFilter.Visibility = ViewStates.Invisible;
-                                _mainActivitySeekBars.Visibility = ViewStates.Visible;
-                            }
-                            else if (_mainActivityPoiFilter.Visibility == ViewStates.Invisible)
-                            {
-                                _mainActivityPoiFilter.Visibility = ViewStates.Visible;
-                                _mainActivitySeekBars.Visibility = ViewStates.Invisible;
-                            }
-
+                            var dialog = new PoiFilterDialog(this, Context);
+                            dialog.Show();
                             break;
                         }
-
-                    case Resource.Id.imageButtonSelectMountain:
-                    case Resource.Id.imageButtonSelectLake:
-                    case Resource.Id.imageButtonSelectCastle:
-                    case Resource.Id.imageButtonSelectPalace:
-                    case Resource.Id.imageButtonSelectTransmitter:
-                    case Resource.Id.imageButtonSelectRuins:
-                    case Resource.Id.imageButtonSelectViewtower:
-                    case Resource.Id.imageButtonSelectChurch:
-                        OnCategoryFilterChanged(v.Id);
-                        break;
-                    case Resource.Id.buttonResetCorrector:
-                        _compassView.ResetHeadingCorrector();
-                        break;
-                    case Resource.Id.buttonSavePoiFilter:
-                        _mainActivityPoiFilter.Visibility = ViewStates.Invisible;
-                        break;
-                    case Resource.Id.buttonSelectAll:
-                        OnCategoryFilterSelectAll();
-                        break;
-                    case Resource.Id.buttonSelectNone:
-                        OnCategoryFilterSelectNone();
-                        break;
-
-
                 }
             }
             catch (Exception ex)
@@ -434,94 +393,6 @@ namespace HorizontApp
         }
 
         #endregion Elevation Profile Calculation
-
-        #region Category Filter
-
-        private void InitializeCategoryFilterButton(int resourceId)
-        {
-            var category = PoiCategoryHelper.GetCategory(resourceId);
-            var imageButton = FindViewById<ImageButton>(resourceId);
-
-            imageButton.SetOnClickListener(this);
-            bool enabled = Context.Settings.Categories.Contains(category);
-
-            imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, enabled));
-
-            _imageButtonCategoryFilter.Add(category, imageButton);
-        }
-
-        private void InitializeCategoryFilterButtons()
-        {
-            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectMountain);
-            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectLake);
-            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectCastle);
-            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectPalace);
-            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectTransmitter);
-            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectRuins);
-            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectViewtower);
-            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectChurch);
-
-
-            var buttonSave = FindViewById<Button>(Resource.Id.buttonSavePoiFilter);
-            buttonSave.SetOnClickListener(this);
-            var buttonSelectAll = FindViewById<Button>(Resource.Id.buttonSelectAll);
-            buttonSelectAll.SetOnClickListener(this);
-            var buttonSelectNone = FindViewById<Button>(Resource.Id.buttonSelectNone);
-            buttonSelectNone.SetOnClickListener(this);
-        }
-
-        private void OnCategoryFilterChanged(int resourceId)
-        {
-            var poiCategory = PoiCategoryHelper.GetCategory(resourceId);
-            var imageButton = _imageButtonCategoryFilter[poiCategory];
-
-            if (Context.Settings.Categories.Contains(poiCategory))
-            {
-                Context.Settings.Categories.Remove(poiCategory);
-                imageButton.SetImageResource(PoiCategoryHelper.GetImage(poiCategory, false));
-            }
-            else
-            {
-                Context.Settings.Categories.Add(poiCategory);
-                imageButton.SetImageResource(PoiCategoryHelper.GetImage(poiCategory, true));
-            }
-
-            Context.Settings.NotifySettingsChanged();
-        }
-
-        private void OnCategoryFilterSelectAll()
-        {
-            IEnumerable<PoiCategory> a = (IEnumerable<PoiCategory>)System.Enum.GetValues(typeof(PoiCategory));
-            foreach (var category in a)
-            {
-                if (Context.Settings.Categories.Contains(category))
-                {
-                    continue;
-                }
-                else
-                {
-                    var imageButton = _imageButtonCategoryFilter[category];
-                    Context.Settings.Categories.Add(category);
-                    imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, true));
-                }
-            }
-            Context.Settings.NotifySettingsChanged();
-        } 
-
-        private void OnCategoryFilterSelectNone()
-        {
-            foreach (var category in Context.Settings.Categories)
-            {
-                var imageButton = _imageButtonCategoryFilter[category];
-                imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, false));
-            }
-
-            Context.Settings.Categories.Clear();
-
-            Context.Settings.NotifySettingsChanged();
-        }
-
-        #endregion Category Filter
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {

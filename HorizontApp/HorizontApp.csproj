@@ -80,6 +80,7 @@
     <Compile Include="Activities\DownloadActivity.cs" />
     <Compile Include="Activities\EditActivity.cs" />
     <Compile Include="Activities\MenuActivity.cs" />
+    <Compile Include="Activities\PoiFilterDialog.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="AppContext\AppContextLiveData.cs" />
     <Compile Include="AppContext\AppContextStaticData.cs" />
