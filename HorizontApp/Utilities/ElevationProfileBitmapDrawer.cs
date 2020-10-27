@@ -4,6 +4,7 @@ using SkiaSharp;
 using HorizontApp.AppContext;
 using HorizontLib.Domain.Models;
 using HorizontLib.Domain.ViewModel;
+using HorizontLib.Utilities;
 
 namespace HorizontApp.Utilities
 {
@@ -11,6 +12,9 @@ namespace HorizontApp.Utilities
     {
         private IAppContext _context;
         private SKData profileImageData;
+        private float _adjustedViewAngleHorizontal;
+        private float _adjustedViewAngleVertical;
+
         private SKPaint _paint = new SKPaint 
         { 
         IsAntialias = true,
@@ -24,12 +28,15 @@ namespace HorizontApp.Utilities
             _context = context;
         }
 
+        public virtual void Initialize(float adjustedViewAngleHorizontal, float adjustedViewAngleVertical)
+        {
+            _adjustedViewAngleHorizontal = adjustedViewAngleHorizontal;
+            _adjustedViewAngleVertical = adjustedViewAngleVertical;
+        }
+
         public void SetElevationProfile(ElevationProfileData epd, double displayWidth, double displayHeight)
         {
-            var viewAngleHorizontal = _context.Settings.ViewAngleHorizontal;
-            var viewAngleVertical = _context.Settings.ViewAngleVertical;
-
-            var imageInfo = new SKImageInfo(width: Convert.ToInt32(displayWidth * (360 / viewAngleHorizontal)), height: Convert.ToInt32(displayHeight), colorType: SKColorType.Rgba8888, alphaType: SKAlphaType.Premul);
+            var imageInfo = new SKImageInfo(width: Convert.ToInt32(displayWidth * (360 / _adjustedViewAngleHorizontal)), height: Convert.ToInt32(displayHeight), colorType: SKColorType.Rgba8888, alphaType: SKAlphaType.Premul);
             var surface = SKSurface.Create(imageInfo);
             var canvas = surface.Canvas;
             
@@ -71,10 +78,10 @@ namespace HorizontApp.Utilities
                             {
                                 if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value) <= point.Distance.Value / 12)
                                 {
-                                    var y1 = GetYLocation(point.VerticalViewAngle.Value, imageInfo.Height, viewAngleVertical);
+                                    var y1 = GetYLocation(point.VerticalViewAngle.Value, imageInfo.Height, _adjustedViewAngleVertical);
                                     var x1 = GetXLocation(point.Bearing.Value, imageInfo.Width);
 
-                                    var y2 = GetYLocation(otherPoint.VerticalViewAngle.Value, imageInfo.Height, viewAngleVertical);
+                                    var y2 = GetYLocation(otherPoint.VerticalViewAngle.Value, imageInfo.Height, _adjustedViewAngleVertical);
                                     var x2 = GetXLocation(otherPoint.Bearing.Value, imageInfo.Width);
 
 
@@ -105,9 +112,7 @@ namespace HorizontApp.Utilities
 
         private float GetYLocation(double verticalAngle, double canvasHeight, float viewAngleVertical)
         {
-            var YCoord = (canvasHeight / 2) - ((verticalAngle / (viewAngleVertical / 2)) * canvasHeight / 2);
-            var YCoordFloat = (float)YCoord;
-            return YCoordFloat;
+            return CompassViewUtils.GetYLocationOnScreen(verticalAngle, canvasHeight, viewAngleVertical);
         }
 
         public SKData GetElevationBitmap()

@@ -22,8 +22,8 @@ namespace HorizontApp.Views.Compass
         protected Android.Graphics.Paint paintRect;
         protected Android.Graphics.Paint textpaint;
 
-        protected float ViewAngleHorizontal { get; private set; }
-        protected float ViewAngleVertical { get; private set; }
+        protected float adjustedViewAngleHorizontal;
+        protected float adjustedViewAngleVertical;
 
         public CompassViewDrawer()
         {
@@ -46,8 +46,8 @@ namespace HorizontApp.Views.Compass
 
         public virtual void Initialize(float viewAngleHorizontal, float viewAngleVertical)
         {
-            ViewAngleHorizontal = viewAngleHorizontal;
-            ViewAngleVertical = viewAngleVertical;
+            adjustedViewAngleHorizontal = viewAngleHorizontal;
+            adjustedViewAngleVertical = viewAngleVertical;
         }
 
         public virtual double GetMinItemAngleDiff(int canvasWidth) { return 0; }

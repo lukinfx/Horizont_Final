@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using HorizontLib.Domain.Models;
 
 namespace HorizontLib.Utilities
@@ -41,7 +42,7 @@ namespace HorizontLib.Utilities
             else return null;
         }
 
-        public static float GetYLocationOnScreen(double verticalAngle, float canvasHeight, float cameraViewAngle)
+        public static float GetYLocationOnScreen(double verticalAngle, double canvasHeight, double cameraViewAngle)
         {
             var YCoord = (canvasHeight / 2) - ((verticalAngle / (cameraViewAngle / 2)) * canvasHeight / 2);
             var YCoordFloat = (float)YCoord;
@@ -78,6 +79,33 @@ namespace HorizontLib.Utilities
                 return 360 - beta + alfa;
             }
             else return alfa - beta;
+        }
+
+        public static (float, float) AdjustViewAngles(float viewAngleHorizontal, float viewAngleVertical, Size canvasSize, Size imageSize)
+        {
+            var adjustedViewAngleVertical = viewAngleVertical;
+            var adjustedViewAngleHorizontal = viewAngleHorizontal;
+            if (canvasSize.Height > 0 && canvasSize.Width > 0 && imageSize.Width > 0 && imageSize.Height > 0)
+            {
+                if (canvasSize.Width > canvasSize.Height)
+                {
+                    var ratio = canvasSize.Height / (float)canvasSize.Width;
+                    var displayedPictureHeight = imageSize.Width * ratio;
+                    var r2 = displayedPictureHeight / (float)imageSize.Height;
+
+                    adjustedViewAngleVertical = viewAngleVertical * r2;
+                }
+                else
+                {
+                    var ratio = canvasSize.Width / (float)canvasSize.Height;
+                    var displayedPictureWidth = imageSize.Width * ratio;
+                    var r2 = displayedPictureWidth / (float)imageSize.Height;
+
+                    adjustedViewAngleHorizontal = viewAngleHorizontal * r2;
+                }
+            }
+
+            return (adjustedViewAngleHorizontal, adjustedViewAngleVertical);
         }
     } 
 }

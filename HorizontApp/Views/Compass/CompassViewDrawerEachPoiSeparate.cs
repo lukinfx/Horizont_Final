@@ -12,11 +12,11 @@ namespace HorizontApp.Views.Compass
 
         public override void OnDrawItem(Canvas canvas, PoiViewItem item, float heading)
         {
-            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, ViewAngleHorizontal);
+            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal);
 
             if (startX != null)
             {
-                var endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, ViewAngleVertical);
+                var endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical);
 
                 canvas.DrawRect(0, -startX.Value + 50, endY - 50, -startX.Value - 50, paintRect);
                 canvas.DrawLine(0, -startX.Value, endY, -startX.Value, paint);

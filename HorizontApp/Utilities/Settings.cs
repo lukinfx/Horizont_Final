@@ -5,8 +5,10 @@ using System;
 using System.Timers;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using HorizontLib.Domain.ViewModel;
 using Xamarin.Essentials;
+using Android.Util;
 
 namespace HorizontApp.Utilities
 {
@@ -72,11 +74,6 @@ namespace HorizontApp.Utilities
                     return viewAngleVertical;
 
             }
-            set 
-            {
-                viewAngleHorizontal = value;
-                NotifySettingsChanged();
-            }
         }
 
         private float viewAngleVertical;
@@ -92,11 +89,17 @@ namespace HorizontApp.Utilities
                     return (isManualViewAngle || !viewAngleHorizontal.HasValue) ? manualViewAngleHorizontal : viewAngleHorizontal.Value;
 
             }
-            set
-            {
-                viewAngleVertical = value;
-                NotifySettingsChanged();
-            }
+        }
+
+        private System.Drawing.Size _cameraPictureSize;
+        public System.Drawing.Size CameraPictureSize { get { return _cameraPictureSize; } }
+
+        internal void SetCameraParameters(float horizontalViewAngle, float verticalViewAngle, int imageWidth, int imageHeight)
+        {
+            viewAngleHorizontal = horizontalViewAngle;
+            viewAngleVertical = verticalViewAngle;
+            _cameraPictureSize = new System.Drawing.Size(imageWidth, imageHeight);
+            NotifySettingsChanged();
         }
 
         private AppStyles appStyle = AppStyles.FullScreenRectangle;

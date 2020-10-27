@@ -95,10 +95,9 @@ namespace HorizontApp.Activities
 
             _context.DataChanged += OnDataChanged;
             _context.Settings.LoadData(this);
-            _context.Settings.ViewAngleVertical = (float)photodata.ViewAngleVertical;
-            _context.Settings.ViewAngleHorizontal = (float)photodata.ViewAngleHorizontal;
             _context.Settings.Categories = JsonConvert.DeserializeObject<List<PoiCategory>>(photodata.JsonCategories);
-
+            _context.Settings.SetCameraParameters((float)photodata.ViewAngleHorizontal, (float)photodata.ViewAngleVertical,
+                AppContextLiveData.Instance.Settings.CameraPictureSize.Width, AppContextLiveData.Instance.Settings.CameraPictureSize.Height);
 
             _filterText = FindViewById<TextView>(Resource.Id.textView1);
 

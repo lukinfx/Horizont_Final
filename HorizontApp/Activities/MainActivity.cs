@@ -164,10 +164,15 @@ namespace HorizontApp
             _refreshCorrectorButton.SetOnClickListener(this);
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
-            _compassView.Initialize(Context);
 
             _mainLayout = FindViewById(Resource.Id.sample_main_layout);
 
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            _compassView.Initialize(Context);
         }
 
         private void InitializeCameraFragment()

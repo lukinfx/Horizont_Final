@@ -15,6 +15,8 @@ namespace HorizontApp.Views
 {
     public class CompassView : View
     {
+        private static string TAG = "Horizon-CompassView";
+
         private static IOrderedEnumerable<PoiViewItem> list;
         private CompassViewFilter _compassViewFilter = new CompassViewFilter();
         private IAppContext _context { get; set; }
@@ -81,10 +83,10 @@ namespace HorizontApp.Views
             _context = context;
 
             _context.Settings.SettingsChanged += OnSettingsChanged;
-            
-            InitializeViewDrawer();
 
             elevationProfileBitmapDrawer = new ElevationProfileBitmapDrawer(_context);
+
+            InitializeViewDrawer();
 
             _paint = new Paint();
             _paint.SetARGB(255, 255, 255, 0);
@@ -113,7 +115,16 @@ namespace HorizontApp.Views
                         break;
             }
 
-            compassViewDrawer.Initialize(_context.Settings.ViewAngleHorizontal, _context.Settings.ViewAngleVertical);
+            var (adjustedViewAngleHorizontal, adjustedViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
+                _context.Settings.ViewAngleHorizontal, _context.Settings.ViewAngleVertical,
+                new System.Drawing.Size(this.Width, this.Height), 
+                _context.Settings.CameraPictureSize);
+
+            Log.WriteLine(LogPriority.Debug, TAG, $"ViewAngle: {_context.Settings.ViewAngleHorizontal:F1}/{_context.Settings.ViewAngleVertical:F1}");
+            Log.WriteLine(LogPriority.Debug, TAG, $"AdjustedViewAngle: {adjustedViewAngleHorizontal:F1}/{adjustedViewAngleVertical:F1}");
+
+            compassViewDrawer.Initialize(adjustedViewAngleHorizontal, adjustedViewAngleVertical);
+            elevationProfileBitmapDrawer.Initialize(adjustedViewAngleHorizontal, adjustedViewAngleVertical);
         }
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
