@@ -103,6 +103,11 @@ namespace HorizontApp.Activities
                     Intent photosActivityIntent = new Intent(this, typeof(PhotosActivity));
                     StartActivity(photosActivityIntent);
                     break;
+                case Resource.Id.buttonAbout:
+                    Intent aboutActivityIntent = new Intent(this, typeof(AboutActivity));
+                    StartActivity(aboutActivityIntent);
+                    break;
+
             }
         }
     }

@@ -21,7 +21,6 @@ namespace HorizontApp.Activities
         private TextView _textManualViewAngle;
         private SeekBar _seekBarManualViewAngle;
         private Spinner _spinnerAppStyle;
-        private Button _buttonBack;
         private AppStyles[] _listOfAppStyles = new AppStyles[] {AppStyles.EachPoiSeparate, AppStyles.FullScreenRectangle, AppStyles.Simple, AppStyles.SimpleWithDistance, AppStyles.SimpleWithHeight};
         private Timer _changeFilterTimer = new Timer();
 
@@ -40,8 +39,12 @@ namespace HorizontApp.Activities
                 SetContentView(Resource.Layout.SettingsActivityLandscape);
             }
 
-            _buttonBack = FindViewById<Button>(Resource.Id.buttonBack);
-            _buttonBack.SetOnClickListener(this);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
+
+            ActionBar.SetDisplayShowHomeEnabled(true);
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
+            ActionBar.SetDisplayShowTitleEnabled(false);
 
             _spinnerAppStyle = FindViewById<Spinner>(Resource.Id.spinnerAppStyle);
             _switchManualViewAngle = FindViewById<Switch>(Resource.Id.switchManualViewAngle);
@@ -88,9 +91,6 @@ namespace HorizontApp.Activities
         {
             switch (v.Id)
             {
-                case Resource.Id.buttonBack:
-                    Finish();
-                    break;
                 case Resource.Id.switchManualViewAngle:
                     _settings.IsManualViewAngle = _switchManualViewAngle.Checked;
                     _textManualViewAngle.Text = GetViewAngleText(_settings.IsManualViewAngle, _settings.ViewAngleHorizontal);
@@ -112,6 +112,17 @@ namespace HorizontApp.Activities
             _changeFilterTimer.Stop();
             var viewAngle = _seekBarManualViewAngle.Progress / (float) 10.0;
             _settings.ManualViewAngleHorizontal = viewAngle;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    Finish();
+                    break;
+            }
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

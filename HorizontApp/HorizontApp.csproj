@@ -75,6 +75,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\AboutActivity.cs" />
     <Compile Include="Activities\PhotoShowActivity.cs" />
     <Compile Include="Activities\PhotosActivity.cs" />
     <Compile Include="Activities\DownloadActivity.cs" />
@@ -590,6 +591,11 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\PhotoShowActivityControlBar.xml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AboutActivity.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
