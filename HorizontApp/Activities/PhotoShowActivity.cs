@@ -123,6 +123,9 @@ namespace HorizontApp.Activities
             var _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
             _selectCategoryButton.SetOnClickListener(this);
 
+            var _backButton = FindViewById<ImageButton>(Resource.Id.menuButton);
+            _backButton.SetOnClickListener(this);
+
             photoView = FindViewById<ImageView>(Resource.Id.photoView);
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
@@ -296,6 +299,11 @@ namespace HorizontApp.Activities
                     {
                         var dialog = new PoiFilterDialog(this, _context);
                         dialog.Show();
+                        break;
+                    }
+                case Resource.Id.menuButton:
+                    {
+                        Finish();
                         break;
                     }
             }
