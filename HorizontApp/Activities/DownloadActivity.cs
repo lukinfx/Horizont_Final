@@ -11,19 +11,18 @@ using HorizontLib.Domain.Enums;
 using HorizontLib.Domain.Models;
 using HorizontLib.Utilities;
 using HorizontApp.Providers;
+using HorizontApp.Tasks;
 using HorizontApp.Utilities;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 using static Android.Views.View;
+using System.Threading;
 
 namespace HorizontApp.Activities
 {
     [Activity(Label = "DownloadActivity")]
     public class DownloadActivity : Activity
     {
-        private static readonly string WebsiteUrl = "http://krvaveoleje.cz/horizont/";
-        private static readonly string IndexFile = "poi-index.json";
-
         private ListView _downloadItemListView;
         private ListView _downloadCountryListView;
         private Spinner _downloadCountrySpinner;
@@ -63,7 +62,7 @@ namespace HorizontApp.Activities
             _downloadItems = downloadedTask.Result.ToList();
 
             //fetch list of item from internet
-            var json = GpxFileProvider.GetFile(GetUrl(IndexFile));
+            var json = GpxFileProvider.GetFile(GpxFileProvider.GetIndexUrl());
             var itemsToDownload = JsonConvert.DeserializeObject<List<PoisToDownload>>(json);
 
             //combine those two lists together
@@ -166,14 +165,58 @@ namespace HorizontApp.Activities
         {
             try
             {
-                var file = GpxFileProvider.GetFile(GetUrl(source.Url));
-                var listOfPoi = GpxFileParser.Parse(file, source.Category, source.Id);
-                Database.InsertAll(listOfPoi);
+                var ec = new PoiFileImport(source);
 
-                source.DownloadDate = DateTime.Now;
-                Database.InsertItem(source);
+                var lastProgressUpdate = System.Environment.TickCount;
 
-                PopupHelper.InfoDialog(this, "Information", $"{listOfPoi.Count()} items loaded to database.");
+                var pd = new ProgressDialog(this);
+                pd.SetMessage("Loading data. Please Wait.");
+                pd.SetCancelable(false);
+                pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
+                pd.Show();
+
+                ec.OnFinishedAction = (result) =>
+                {
+                    pd.Hide();
+                    if (result.Count > 0)
+                    {
+                        Database.InsertAll(result);
+                        source.DownloadDate = DateTime.Now;
+                        Database.InsertItem(source);
+
+                        PopupHelper.InfoDialog(this, "Information", $"{result.Count()} items loaded to database.");
+                    }
+                };
+                ec.OnStageChange = (text, max) =>
+                {
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        pd.SetMessage(text);
+                        pd.Max = max;
+                    });
+                };
+                ec.OnProgressChange = (progress) =>
+                {
+                    if (progress % 100 == 0)
+                    {
+                        var tickCount = System.Environment.TickCount;
+                        if (tickCount - lastProgressUpdate > 100)
+                        {
+                            MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
+                            Thread.Sleep(50);
+                            lastProgressUpdate = tickCount;
+                        }
+                    }
+                };
+                ec.OnError = (message) =>
+                {
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        PopupHelper.ErrorDialog(this, "Error", $"Error when loading data. {message}");
+                    });
+                };
+
+                ec.Execute(source.Url);
             }
             catch (Exception ex)
             {
@@ -196,11 +239,6 @@ namespace HorizontApp.Activities
             {
                 PopupHelper.ErrorDialog(this, "Error", $"Error when removing data. {ex.Message}");
             }
-        }
-
-        private string GetUrl(string path)
-        {
-            return WebsiteUrl + path;
         }
     }
 }

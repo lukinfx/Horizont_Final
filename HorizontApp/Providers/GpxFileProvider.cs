@@ -4,6 +4,20 @@ namespace HorizontApp.Providers
 {
     public class GpxFileProvider
     {
+
+        private static readonly string WebsiteUrl = "http://krvaveoleje.cz/horizont/";
+        private static readonly string IndexFile = "poi-index.json";
+
+        public static string GetIndexUrl()
+        {
+            return GetUrl(IndexFile);
+        }
+
+        public static string GetUrl(string path)
+        {
+            return WebsiteUrl + path;
+        }
+
         /// <summary>
         /// Gets content from given URL
         /// </summary>

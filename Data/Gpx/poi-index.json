@@ -104,4 +104,11 @@
 		"Country":"SVK",
 		"Category": "ViewTowers"
 	},
+	{
+		"Id":"b6e75930-9044-418a-8c27-50eeb1faae35",
+		"Description": "Some error in download",
+		"Url": "slovakia-error.gpx",
+		"Country":"SVK",
+		"Category": "Lakes"
+	}
 ]
