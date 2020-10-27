@@ -1,12 +1,10 @@
 ﻿using System;
-using Android.OS;
+using System.IO;
+using Java.Lang;
+using Java.Nio;
 using Android.Media;
 using HorizontApp.DataAccess;
 using HorizontLib.Domain.Models;
-using Java.Lang;
-using Java.Nio;
-
-using System.IO;
 using HorizontApp.AppContext;
 using Newtonsoft.Json;
 
@@ -100,7 +98,5 @@ namespace HorizontApp.Utilities
                 }
             }
         }
-
     }
-
 }

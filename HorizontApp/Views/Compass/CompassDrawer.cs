@@ -1,43 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Graphics;
 using HorizontLib.Domain.ViewModel;
-using HorizontApp.Utilities;
-using HorizontLib.Utilities;
 
 namespace HorizontApp.Views.Compass
 {
     public class CompassViewDrawer
     {
-        protected Android.Graphics.Paint paint;
-        protected Android.Graphics.Paint paintRect;
-        protected Android.Graphics.Paint textpaint;
+        protected Paint paint;
+        protected Paint paintRect;
+        protected Paint textpaint;
 
         protected float adjustedViewAngleHorizontal;
         protected float adjustedViewAngleVertical;
 
         public CompassViewDrawer()
         {
-            paint = new Android.Graphics.Paint();
+            paint = new Paint();
             paint.SetARGB(255, 200, 255, 0);
             paint.SetStyle(Paint.Style.FillAndStroke);
             paint.StrokeWidth = 4;
 
-            paintRect = new Android.Graphics.Paint();
+            paintRect = new Paint();
             paintRect.SetARGB(150, 0, 0, 0);
             paintRect.SetStyle(Paint.Style.FillAndStroke);
             paintRect.StrokeWidth = 4;
 
-            textpaint = new Android.Graphics.Paint();
+            textpaint = new Paint();
             textpaint.SetARGB(255, 200, 255, 0);
             textpaint.TextSize = 36;
             Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);

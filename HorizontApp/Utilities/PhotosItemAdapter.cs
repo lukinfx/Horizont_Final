@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using Android.App;
-using Android.Content;
 using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using HorizontApp.Views.Camera;
 using HorizontLib.Domain.Models;
-using Java.IO;
 
 namespace HorizontApp.Utilities
 {

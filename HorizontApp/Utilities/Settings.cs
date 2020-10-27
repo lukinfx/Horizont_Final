@@ -1,14 +1,12 @@
-﻿using Android.Content;
-using Android.Preferences;
-using HorizontLib.Domain.Enums;
-using System;
+﻿using System;
 using System.Timers;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
-using HorizontLib.Domain.ViewModel;
+using Android.Content;
+using Android.Preferences;
 using Xamarin.Essentials;
-using Android.Util;
+using HorizontLib.Domain.Enums;
+using HorizontLib.Domain.ViewModel;
 
 namespace HorizontApp.Utilities
 {
