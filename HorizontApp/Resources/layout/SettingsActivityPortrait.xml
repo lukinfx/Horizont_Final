@@ -19,6 +19,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:background="@drawable/bg_activity">
             <TextView
                 android:text="Compass view style"
@@ -60,6 +61,20 @@
                   android:layout_height="wrap_content"
                   android:layout_gravity="bottom"
                   android:id="@+id/seekBarManualViewAngle"
+                  android:min="400"
+                  android:max="800"
+                  android:progress="1" />
+                <TextView
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textManualViewAngleVertical" />
+                <SeekBar
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="bottom"
+                  android:id="@+id/seekBarManualViewAngleVertical"
                   android:min="400"
                   android:max="800"
                   android:progress="1" />

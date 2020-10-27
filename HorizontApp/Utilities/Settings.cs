@@ -60,32 +60,42 @@ namespace HorizontApp.Utilities
             }
         }
 
+        private float manualViewAngleVertical;
+        public float ManualViewAngleVertical
+        {
+            get
+            {
+                return manualViewAngleVertical;
+            }
+            set
+            {
+                manualViewAngleVertical = value;
+                NotifySettingsChanged();
+            }
+        }
+
         private float? viewAngleHorizontal;
         public float ViewAngleHorizontal
         {
             get
             {
                 if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Landscape)
-                {
                     return (isManualViewAngle || !viewAngleHorizontal.HasValue) ? manualViewAngleHorizontal : viewAngleHorizontal.Value;
-                } else
-                    return viewAngleVertical;
+                else
+                    return (isManualViewAngle || !viewAngleVertical.HasValue) ? manualViewAngleVertical : viewAngleVertical.Value;
 
             }
         }
 
-        private float viewAngleVertical;
+        private float? viewAngleVertical;
         public float ViewAngleVertical
         {
             get
             {
                 if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Landscape)
-                {
-                    return viewAngleVertical;
-                }
+                    return (isManualViewAngle || !viewAngleVertical.HasValue) ? manualViewAngleVertical : viewAngleVertical.Value; 
                 else
                     return (isManualViewAngle || !viewAngleHorizontal.HasValue) ? manualViewAngleHorizontal : viewAngleHorizontal.Value;
-
             }
         }
 
@@ -173,6 +183,9 @@ namespace HorizontApp.Utilities
 
             isManualViewAngle = prefs.GetBoolean("IsManualViewAngleHorizontal", false);
             manualViewAngleHorizontal = prefs.GetFloat("ManualViewAngleHorizontal", 60);
+
+            manualViewAngleVertical = prefs.GetFloat("ManualViewAngleVertical", 60);
+            //###Jak to tady funguje?
         }
 
         public void SaveData()
@@ -193,6 +206,8 @@ namespace HorizontApp.Utilities
 
                 editor.PutBoolean("IsManualViewAngleHorizontal", isManualViewAngle);
                 editor.PutFloat("ManualViewAngleHorizontal", manualViewAngleHorizontal);
+
+                editor.PutFloat("ManualViewAngleVertical", manualViewAngleHorizontal);
 
                 editor.Apply();
             }

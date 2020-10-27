@@ -20,6 +20,8 @@ namespace HorizontApp.Activities
         private Switch _switchManualViewAngle;
         private TextView _textManualViewAngle;
         private SeekBar _seekBarManualViewAngle;
+        private TextView _textManualViewAngleVertical;
+        private SeekBar _seekBarManualViewAngleVertical;
         private Spinner _spinnerAppStyle;
         private AppStyles[] _listOfAppStyles = new AppStyles[] {AppStyles.EachPoiSeparate, AppStyles.FullScreenRectangle, AppStyles.Simple, AppStyles.SimpleWithDistance, AppStyles.SimpleWithHeight};
         private Timer _changeFilterTimer = new Timer();
@@ -50,6 +52,8 @@ namespace HorizontApp.Activities
             _switchManualViewAngle = FindViewById<Switch>(Resource.Id.switchManualViewAngle);
             _seekBarManualViewAngle = FindViewById<SeekBar>(Resource.Id.seekBarManualViewAngle);
             _textManualViewAngle = FindViewById<TextView>(Resource.Id.textManualViewAngle);
+            _seekBarManualViewAngleVertical = FindViewById<SeekBar>(Resource.Id.seekBarManualViewAngleVertical);
+            _textManualViewAngleVertical = FindViewById<TextView>(Resource.Id.textManualViewAngleVertical);
 
             _spinnerAppStyle.ItemSelected += new System.EventHandler<AdapterView.ItemSelectedEventArgs>(appStyle_ItemSelected);
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfAppStyles.ToList());
@@ -65,6 +69,12 @@ namespace HorizontApp.Activities
 
             _textManualViewAngle.Text = GetViewAngleText(_settings.IsManualViewAngle, _settings.ViewAngleHorizontal);
 
+            _seekBarManualViewAngleVertical.ProgressChanged += SeekBarProgressChanged;
+            _seekBarManualViewAngleVertical.Enabled = _settings.IsManualViewAngle;
+            _seekBarManualViewAngleVertical.Progress = (int)(_settings.ViewAngleVertical * 10);
+
+            _textManualViewAngleVertical.Text = GetViewAngleText(_settings.IsManualViewAngle, _settings.ViewAngleVertical);
+
             _changeFilterTimer.Enabled = false;
             _changeFilterTimer.Interval = 3000;
             _changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;
@@ -77,6 +87,10 @@ namespace HorizontApp.Activities
             {
                 var viewAngle = _seekBarManualViewAngle.Progress / (float) 10.0;
                 _textManualViewAngle.Text = GetViewAngleText(_settings.IsManualViewAngle, viewAngle);
+
+                var viewAngleVertical = _seekBarManualViewAngleVertical.Progress / (float)10.0;
+                _textManualViewAngleVertical.Text = GetViewAngleText(_settings.IsManualViewAngle, viewAngleVertical);
+
                 _changeFilterTimer.Stop();
                 _changeFilterTimer.Start();
             }
@@ -96,6 +110,10 @@ namespace HorizontApp.Activities
                     _textManualViewAngle.Text = GetViewAngleText(_settings.IsManualViewAngle, _settings.ViewAngleHorizontal);
                     _seekBarManualViewAngle.Enabled = _settings.IsManualViewAngle;
                     _seekBarManualViewAngle.Progress = (int) (_settings.ViewAngleHorizontal * 10);
+
+                    _textManualViewAngleVertical.Text = GetViewAngleText(_settings.IsManualViewAngle, _settings.ViewAngleVertical);
+                    _seekBarManualViewAngleVertical.Enabled = _settings.IsManualViewAngle;
+                    _seekBarManualViewAngleVertical.Progress = (int)(_settings.ViewAngleVertical * 10);
                     break;
             }
         }
@@ -112,6 +130,10 @@ namespace HorizontApp.Activities
             _changeFilterTimer.Stop();
             var viewAngle = _seekBarManualViewAngle.Progress / (float) 10.0;
             _settings.ManualViewAngleHorizontal = viewAngle;
+
+
+            var viewAngleVertical = _seekBarManualViewAngleVertical.Progress / (float)10.0;
+            _settings.ManualViewAngleVertical = viewAngleVertical;
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
