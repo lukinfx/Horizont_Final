@@ -24,7 +24,6 @@ namespace HorizontApp.Views
         private Paint _paint;
         private static double _headingCorrector = 0;
         private ElevationProfileData _elevationProfile;
-        private Android.Graphics.Bitmap _elevationProfileBitmap;
         public double HeadingCorrector
         {
             get
@@ -175,26 +174,12 @@ namespace HorizontApp.Views
 
         private void GenerateElevationProfileBitmap()
         {
-            elevationProfileBitmapDrawer.SetElevationProfile(_elevationProfile, Width, Height);
-            var profileImageData = elevationProfileBitmapDrawer.GetElevationBitmap().ToArray();
-            _elevationProfileBitmap = BitmapFactory.DecodeByteArray(profileImageData, 0, profileImageData.Length);
+            elevationProfileBitmapDrawer.GenerateElevationProfileBitmap(_elevationProfile, Width, Height);
         }
 
         private void PaintElevationProfileBitmap(Canvas canvas)
         {
-            if (_elevationProfileBitmap != null)
-            {
-                float offset = (float)(_elevationProfileBitmap.Width * (Heading - _context.Settings.ViewAngleHorizontal / 2) / 360);
-                canvas.DrawBitmap(_elevationProfileBitmap, -offset, (float)0, _paint);
-                if (Heading > 360 - _context.Settings.ViewAngleHorizontal)
-                {
-                    canvas.DrawBitmap(_elevationProfileBitmap, -offset + _elevationProfileBitmap.Width, (float)0, _paint);
-                }
-                if (Heading < _context.Settings.ViewAngleHorizontal)
-                {
-                    canvas.DrawBitmap(_elevationProfileBitmap, -offset - _elevationProfileBitmap.Width, (float)0, _paint);
-                }
-            }
+            elevationProfileBitmapDrawer.PaintElevationProfileBitmap(canvas, Heading);
         }
     }
 }

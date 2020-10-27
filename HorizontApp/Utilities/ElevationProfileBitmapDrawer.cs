@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Android.Graphics;
 using SkiaSharp;
 using HorizontApp.AppContext;
 using HorizontLib.Domain.Models;
@@ -11,7 +12,7 @@ namespace HorizontApp.Utilities
     public class ElevationProfileBitmapDrawer
     {
         private IAppContext _context;
-        private SKData profileImageData;
+        private Bitmap _elevationProfileBitmap;
         private float _adjustedViewAngleHorizontal;
         private float _adjustedViewAngleVertical;
 
@@ -21,7 +22,6 @@ namespace HorizontApp.Utilities
         Color = SKColors.Yellow,
         StrokeWidth = 3
         };
-        
 
         public ElevationProfileBitmapDrawer(IAppContext context)
         {
@@ -34,7 +34,7 @@ namespace HorizontApp.Utilities
             _adjustedViewAngleVertical = adjustedViewAngleVertical;
         }
 
-        public void SetElevationProfile(ElevationProfileData epd, double displayWidth, double displayHeight)
+        public void GenerateElevationProfileBitmap(ElevationProfileData epd, double displayWidth, double displayHeight)
         {
             var imageInfo = new SKImageInfo(width: Convert.ToInt32(displayWidth * (360 / _adjustedViewAngleHorizontal)), height: Convert.ToInt32(displayHeight), colorType: SKColorType.Rgba8888, alphaType: SKAlphaType.Premul);
             var surface = SKSurface.Create(imageInfo);
@@ -96,11 +96,11 @@ namespace HorizontApp.Utilities
                 }
             }
 
-            canvas.DrawCircle(50, 50, 25, _paint);
-
             using (SKImage image = surface.Snapshot())
             {
-                profileImageData = image.Encode();
+                var profileImageData = image.Encode();
+                var profileImageDataAsArray = profileImageData.ToArray();
+                _elevationProfileBitmap = BitmapFactory.DecodeByteArray(profileImageDataAsArray, 0, profileImageDataAsArray.Length);
             }
         }
 
@@ -115,9 +115,21 @@ namespace HorizontApp.Utilities
             return CompassViewUtils.GetYLocationOnScreen(verticalAngle, canvasHeight, viewAngleVertical);
         }
 
-        public SKData GetElevationBitmap()
+        public void PaintElevationProfileBitmap(Canvas canvas, double heading)
         {
-            return profileImageData;
+            if (_elevationProfileBitmap != null)
+            {
+                float offset = (float)(_elevationProfileBitmap.Width * (heading - _adjustedViewAngleHorizontal / 2) / 360);
+                canvas.DrawBitmap(_elevationProfileBitmap, -offset, (float)0, null);
+                if (heading > 360 - _context.Settings.ViewAngleHorizontal)
+                {
+                    canvas.DrawBitmap(_elevationProfileBitmap, -offset + _elevationProfileBitmap.Width, (float)0, null);
+                }
+                if (heading < _context.Settings.ViewAngleHorizontal)
+                {
+                    canvas.DrawBitmap(_elevationProfileBitmap, -offset - _elevationProfileBitmap.Width, (float)0, null);
+                }
+            }
         }
     }
 }
