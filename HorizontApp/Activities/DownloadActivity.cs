@@ -185,6 +185,7 @@ namespace HorizontApp.Activities
                         Database.InsertItem(source);
 
                         PopupHelper.InfoDialog(this, "Information", $"{result.Count()} items loaded to database.");
+                        _downloadItemAdapter.NotifyDataSetChanged();
                     }
                 };
                 ec.OnStageChange = (text, max) =>
