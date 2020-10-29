@@ -56,7 +56,7 @@
               layout="@layout/PhotoShowActivityControlBar"
               android:gravity="bottom" />
             <ImageButton
-                android:src="@android:drawable/ic_lock_lock"
+                android:src="@drawable/ic_lock_locked"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="bottom"

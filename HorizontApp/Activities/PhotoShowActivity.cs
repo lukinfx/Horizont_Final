@@ -331,6 +331,10 @@ namespace HorizontApp.Activities
                 case Resource.Id.buttonTiltCorrector:
                     {
                         _tiltCorrectorOn = !_tiltCorrectorOn;
+                        if (_tiltCorrectorOn)
+                            _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_lock_unlocked);
+                        else if (!_tiltCorrectorOn)
+                            _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_lock_locked);
                         break;
                     }
             }
