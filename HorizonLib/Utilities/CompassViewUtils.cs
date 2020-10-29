@@ -60,19 +60,6 @@ namespace HorizontLib.Utilities
             var verticalAngle = GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance));
             var YCoord = (canvasHeight / 2) - ((verticalAngle / (cameraViewAngle / 2)) * canvasHeight / 2);
 
-            /*var newHorizon = (leftTiltCorrector + rightTiltCorrector) / 2;
-            var multiplier = (2 * XLocation / canvasWidth) - 1;
-            double YDifference;
-            if (multiplier > 0)
-            {
-                YDifference = (multiplier * rightTiltCorrector)/2 + newHorizon;
-            }
-            else if (multiplier < 0)
-            {
-                YDifference = (-multiplier * leftTiltCorrector)/2 + newHorizon;
-            }
-            else
-                YDifference = 0;*/
             double YDifference = leftTiltCorrector + XLocation * (rightTiltCorrector-leftTiltCorrector)/canvasWidth;
             var YCoordFloat = (float)(YCoord + YDifference);
             return YCoordFloat;
