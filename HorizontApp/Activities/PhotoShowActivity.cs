@@ -48,6 +48,9 @@ namespace HorizontApp.Activities
         private ImageButton _favouriteButton;
         private ImageButton _displayTerrainButton;
         private ImageButton _refreshCorrectorButton;
+        private ImageButton _tiltCorrectorButton;
+
+        private bool _tiltCorrectorOn = false;
 
         private SeekBar _distanceSeekBar;
         private SeekBar _heightSeekBar;
@@ -125,6 +128,10 @@ namespace HorizontApp.Activities
 
             var _backButton = FindViewById<ImageButton>(Resource.Id.menuButton);
             _backButton.SetOnClickListener(this);
+
+            _tiltCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonTiltCorrector);
+            _tiltCorrectorButton.SetOnClickListener(this);
+            
 
             photoView = FindViewById<ImageView>(Resource.Id.photoView);
 
@@ -259,7 +266,22 @@ namespace HorizontApp.Activities
 
         public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
         {
-            if (e1.RawY < Resources.DisplayMetrics.HeightPixels / 2)
+            if (_tiltCorrectorOn)
+            {
+                bool isLeft;
+                if (e1.RawX < Resources.DisplayMetrics.WidthPixels / 3)
+                {
+                    isLeft = true;
+                    _compassView.OnScroll(distanceY, isLeft);
+                }
+                if (e1.RawX > (2 * Resources.DisplayMetrics.WidthPixels / 3))
+                {
+
+                    isLeft = false;
+                    _compassView.OnScroll(distanceY, isLeft);
+                }
+            }
+            if (!_tiltCorrectorOn && e1.RawY < Resources.DisplayMetrics.HeightPixels / 2)
                 _compassView.OnScroll(distanceX);
             return false;
         }
@@ -304,6 +326,11 @@ namespace HorizontApp.Activities
                 case Resource.Id.menuButton:
                     {
                         Finish();
+                        break;
+                    }
+                case Resource.Id.buttonTiltCorrector:
+                    {
+                        _tiltCorrectorOn = !_tiltCorrectorOn;
                         break;
                     }
             }

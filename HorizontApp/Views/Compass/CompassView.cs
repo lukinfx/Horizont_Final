@@ -10,6 +10,7 @@ using HorizontApp.Utilities;
 using HorizontApp.Views.Compass;
 using HorizontApp.AppContext;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace HorizontApp.Views
 {
@@ -24,6 +25,9 @@ namespace HorizontApp.Views
         private Paint _paint;
         private static double _headingCorrector = 0;
         private ElevationProfileData _elevationProfile;
+        private double _leftTiltCorrector = 0;
+        private double _rightTiltCorrector = 0;
+
         public double HeadingCorrector
         {
             get
@@ -133,6 +137,18 @@ namespace HorizontApp.Views
             PaintElevationProfileBitmap(canvas);
 
             PaintVisiblePois(canvas);
+
+            PaintHorizonLine(canvas);
+        }
+
+        private void PaintHorizonLine(Canvas canvas)
+        {
+            float startX = 0;
+            float startY = (float) ((canvas.Height / 2) + _leftTiltCorrector);
+
+            float endX = canvas.Width;
+            float endY = (float) ((canvas.Height / 2) + _rightTiltCorrector);
+            canvas.DrawLine(startX, startY, endX, endY, _paint);
         }
 
         private void PaintVisiblePois(Canvas canvas)
@@ -156,6 +172,19 @@ namespace HorizontApp.Views
             var viewAngleHorizontal = _context.Settings.ViewAngleHorizontal;
             HeadingCorrector = HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX);
             Invalidate();
+        }
+
+        public void OnScroll(float distanceY, bool isLeft)
+        {
+            if (isLeft)
+            {
+                _leftTiltCorrector -= distanceY;
+            }
+            else 
+            {
+                _rightTiltCorrector -= distanceY;
+            }
+            
         }
 
         public void ResetHeadingCorrector()
