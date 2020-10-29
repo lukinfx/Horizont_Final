@@ -86,6 +86,13 @@ namespace HorizontApp.DataAccess
             return task.Result;
         }
 
+        public bool IsAnyDownloadedPois()
+        {
+            var task = Database.Table<PoisToDownload>().CountAsync();
+            task.Wait();
+            return task.Result > 0;
+        }
+
         public int InsertItem(PoisToDownload item)
         {
             var task = Database.InsertAsync(item);

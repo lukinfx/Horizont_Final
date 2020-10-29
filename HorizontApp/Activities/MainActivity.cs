@@ -57,6 +57,7 @@ namespace HorizontApp
         
         private CameraFragment _cameraFragment;
 
+        private static bool _firstStart = true;
         //Timers
         private Timer _refreshTimer = new Timer();
 
@@ -173,6 +174,23 @@ namespace HorizontApp
         {
             base.OnStart();
             _compassView.Initialize(Context);
+
+            Android.Content.Context ctx = this;
+            if (_firstStart && !Context.Database.IsAnyDownloadedPois())
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetPositiveButton("Yes", (senderAlert, args) =>
+                {
+                    Intent downloadActivityIntent = new Intent(ctx, typeof(DownloadActivity));
+                    StartActivity(downloadActivityIntent);
+                    //_adapter.NotifyDataSetChanged();
+                });
+                alert.SetNegativeButton("No", (senderAlert, args) => { });
+                alert.SetMessage("No points of interest have been downloaded yet. Do you want do download them now?");
+                var answer = alert.Show();
+            }
+
+            _firstStart = false;
         }
 
         private void InitializeCameraFragment()
