@@ -50,5 +50,7 @@ namespace HorizontApp.Views.Compass
         /// <param name="item"></param>
         /// <param name="heading"></param>
         public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading) { }
+
+        public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth) { }
     }
 }
