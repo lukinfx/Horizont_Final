@@ -21,6 +21,13 @@
 		"Category": "ViewTowers"
 	},
 	{
+		"Id":"4d5f2e7b-6a31-4e68-ac92-87009976e602",
+		"Description": "All mountains in the Czech Republic",
+		"Url": "cze-mountains.gpx",
+		"Country":"CZE",
+		"Category": "Mountains"
+	},
+	{
 		"Id":"5818de17-160e-4382-a839-1a54b4f08f2d",
 		"Description": "All lakes, dams and ponds in the Czech Republic",
 		"Url": "cze-lakes.gpx",
@@ -54,6 +61,20 @@
 		"Url": "cze-ruins.gpx",
 		"Country":"CZE",
 		"Category": "Ruins"
+	},
+	{
+		"Id":"83ab43d1-92a5-4234-a678-f20d074a526c",
+		"Description": "All transmitters in the Czech Republic",
+		"Url": "cze-transmitters.gpx",
+		"Country":"CZE",
+		"Category": "Transmitters"
+	},
+	{
+		"Id":"27aef72b-b4f9-421c-b9a5-cc37c6a0e16a",
+		"Description": "All view towers in the Czech Republic",
+		"Url": "cze-viewtowers.gpx",
+		"Country":"CZE",
+		"Category": "ViewTowers"
 	},
 	{
 		"Id":"6ab6e13c-cd42-4702-ad53-c74d5c21b28d",
