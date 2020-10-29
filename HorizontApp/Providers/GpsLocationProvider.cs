@@ -25,7 +25,7 @@ namespace HorizontApp.Providers
             {
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium);
                 Location location = await Geolocation.GetLocationAsync(request);
-                
+
                 if (location != null)
                 {
                     currentLocation.Latitude = location.Latitude;

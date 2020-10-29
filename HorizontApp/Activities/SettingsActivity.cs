@@ -18,11 +18,12 @@ namespace HorizontApp.Activities
         private Settings _settings { get { return AppContextLiveData.Instance.Settings; } }
 
         private Switch _switchManualViewAngle;
-        private TextView _textManualViewAngle;
-        private SeekBar _seekBarManualViewAngle;
-        private TextView _textManualViewAngleVertical;
-        private SeekBar _seekBarManualViewAngleVertical;
+        private TextView _textViewAngleHorizontal;
+        private SeekBar _seekBarCorrectionViewAngleHorizontal;
+        private TextView _textViewAngleVertical;
+        private SeekBar _seekBarCorrectionViewAngleVertical;
         private Spinner _spinnerAppStyle;
+        private Button _resetButton;
         private AppStyles[] _listOfAppStyles = new AppStyles[] {AppStyles.EachPoiSeparate, AppStyles.FullScreenRectangle, AppStyles.Simple, AppStyles.SimpleWithDistance, AppStyles.SimpleWithHeight};
         private Timer _changeFilterTimer = new Timer();
 
@@ -50,30 +51,31 @@ namespace HorizontApp.Activities
 
             _spinnerAppStyle = FindViewById<Spinner>(Resource.Id.spinnerAppStyle);
             _switchManualViewAngle = FindViewById<Switch>(Resource.Id.switchManualViewAngle);
-            _seekBarManualViewAngle = FindViewById<SeekBar>(Resource.Id.seekBarManualViewAngle);
-            _textManualViewAngle = FindViewById<TextView>(Resource.Id.textManualViewAngle);
-            _seekBarManualViewAngleVertical = FindViewById<SeekBar>(Resource.Id.seekBarManualViewAngleVertical);
-            _textManualViewAngleVertical = FindViewById<TextView>(Resource.Id.textManualViewAngleVertical);
+            _seekBarCorrectionViewAngleHorizontal = FindViewById<SeekBar>(Resource.Id.seekBarCorrectionViewAngleHorizontal);
+            _textViewAngleHorizontal = FindViewById<TextView>(Resource.Id.textViewAngleHorizontal);
+            _seekBarCorrectionViewAngleVertical = FindViewById<SeekBar>(Resource.Id.seekBarCorrectionViewAngleVertical);
+            _textViewAngleVertical = FindViewById<TextView>(Resource.Id.textViewAngleVertical);
+            _resetButton = FindViewById<Button>(Resource.Id.reset);
+            _resetButton.SetOnClickListener(this);
 
             _spinnerAppStyle.ItemSelected += new System.EventHandler<AdapterView.ItemSelectedEventArgs>(appStyle_ItemSelected);
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfAppStyles.ToList());
             _spinnerAppStyle.Adapter = adapter;
             _spinnerAppStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == _settings.AppStyle));
 
+            _switchManualViewAngle.Checked = _settings.IsViewAngleCorrection;
             _switchManualViewAngle.SetOnClickListener(this);
-            _switchManualViewAngle.Checked = _settings.IsManualViewAngle;
 
-            _seekBarManualViewAngle.ProgressChanged += SeekBarProgressChanged;
-            _seekBarManualViewAngle.Enabled = _settings.IsManualViewAngle;
-            _seekBarManualViewAngle.Progress = (int) (_settings.ViewAngleHorizontal * 10);
+            _seekBarCorrectionViewAngleHorizontal.Enabled = _settings.IsViewAngleCorrection;
+            _seekBarCorrectionViewAngleHorizontal.Progress = (int) (_settings.CorrectionViewAngleHorizontal * 10);
+            _seekBarCorrectionViewAngleHorizontal.ProgressChanged += SeekBarProgressChanged;
 
-            _textManualViewAngle.Text = GetViewAngleText(_settings.IsManualViewAngle, _settings.ViewAngleHorizontal);
+            _seekBarCorrectionViewAngleVertical.Enabled = _settings.IsViewAngleCorrection;
+            _seekBarCorrectionViewAngleVertical.Progress = (int)(_settings.CorrectionViewAngleVertical * 10);
+            _seekBarCorrectionViewAngleVertical.ProgressChanged += SeekBarProgressChanged;
 
-            _seekBarManualViewAngleVertical.ProgressChanged += SeekBarProgressChanged;
-            _seekBarManualViewAngleVertical.Enabled = _settings.IsManualViewAngle;
-            _seekBarManualViewAngleVertical.Progress = (int)(_settings.ViewAngleVertical * 10);
-
-            _textManualViewAngleVertical.Text = GetViewAngleText(_settings.IsManualViewAngle, _settings.ViewAngleVertical);
+            _textViewAngleHorizontal.Text = GetViewAngleText(_settings.IsViewAngleCorrection, _settings.CorrectionViewAngleHorizontal, _settings.AutomaticViewAngleHorizontal);
+            _textViewAngleVertical.Text = GetViewAngleText(_settings.IsViewAngleCorrection, _settings.CorrectionViewAngleVertical, _settings.AutomaticViewAngleVertical);
 
             _changeFilterTimer.Enabled = false;
             _changeFilterTimer.Interval = 3000;
@@ -83,13 +85,13 @@ namespace HorizontApp.Activities
 
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            if (AppContextLiveData.Instance.Settings.IsManualViewAngle)
+            if (_settings.IsViewAngleCorrection)
             {
-                var viewAngle = _seekBarManualViewAngle.Progress / (float) 10.0;
-                _textManualViewAngle.Text = GetViewAngleText(_settings.IsManualViewAngle, viewAngle);
+                var viewAngleHorizontal = _seekBarCorrectionViewAngleHorizontal.Progress / (float) 10.0;
+                _textViewAngleHorizontal.Text = GetViewAngleText(_settings.IsViewAngleCorrection, viewAngleHorizontal, _settings.AutomaticViewAngleHorizontal);
 
-                var viewAngleVertical = _seekBarManualViewAngleVertical.Progress / (float)10.0;
-                _textManualViewAngleVertical.Text = GetViewAngleText(_settings.IsManualViewAngle, viewAngleVertical);
+                var viewAngleVertical = _seekBarCorrectionViewAngleVertical.Progress / (float)10.0;
+                _textViewAngleVertical.Text = GetViewAngleText(_settings.IsViewAngleCorrection, viewAngleVertical, _settings.AutomaticViewAngleVertical);
 
                 _changeFilterTimer.Stop();
                 _changeFilterTimer.Start();
@@ -105,35 +107,45 @@ namespace HorizontApp.Activities
         {
             switch (v.Id)
             {
-                case Resource.Id.switchManualViewAngle:
-                    _settings.IsManualViewAngle = _switchManualViewAngle.Checked;
-                    _textManualViewAngle.Text = GetViewAngleText(_settings.IsManualViewAngle, _settings.ViewAngleHorizontal);
-                    _seekBarManualViewAngle.Enabled = _settings.IsManualViewAngle;
-                    _seekBarManualViewAngle.Progress = (int) (_settings.ViewAngleHorizontal * 10);
+                case Resource.Id.reset:
+                    _seekBarCorrectionViewAngleHorizontal.Progress = 0;
+                    _seekBarCorrectionViewAngleVertical.Progress = 0;
+                    break;
 
-                    _textManualViewAngleVertical.Text = GetViewAngleText(_settings.IsManualViewAngle, _settings.ViewAngleVertical);
-                    _seekBarManualViewAngleVertical.Enabled = _settings.IsManualViewAngle;
-                    _seekBarManualViewAngleVertical.Progress = (int)(_settings.ViewAngleVertical * 10);
+                case Resource.Id.switchManualViewAngle:
+                    _settings.IsViewAngleCorrection = _switchManualViewAngle.Checked;
+
+                    _textViewAngleHorizontal.Text = GetViewAngleText(_settings.IsViewAngleCorrection, _settings.CorrectionViewAngleHorizontal, _settings.AutomaticViewAngleHorizontal);
+                    _seekBarCorrectionViewAngleHorizontal.Enabled = _settings.IsViewAngleCorrection;
+                    
+                    _seekBarCorrectionViewAngleHorizontal.Progress = (int)((_settings.IsViewAngleCorrection?_settings.CorrectionViewAngleHorizontal:0) * 10);
+
+                    _textViewAngleVertical.Text = GetViewAngleText(_settings.IsViewAngleCorrection, _settings.CorrectionViewAngleVertical, _settings.AutomaticViewAngleVertical);
+                    _seekBarCorrectionViewAngleVertical.Enabled = _settings.IsViewAngleCorrection;
+                    _seekBarCorrectionViewAngleVertical.Progress = (int)((_settings.IsViewAngleCorrection?_settings.CorrectionViewAngleVertical:0) * 10);
                     break;
             }
         }
 
-        private string GetViewAngleText(bool manual, double viewAngle)
+        private string GetViewAngleText(bool manual, float? correctionViewAngle, float? automaticViewAngle)
         {
-            var autoOrManual = manual ? "set manually" : "obtained automatically";
-            return $"Current camera view angle is {viewAngle:0.0} ({autoOrManual})";
+            var viewAngle = manual ? automaticViewAngle + correctionViewAngle : automaticViewAngle;
+            var correction = manual ? correctionViewAngle : 0;
+            return $"Correction: {correction:0.0}   View angle: {viewAngle:0.0} ()";
         }
 
         private async void OnChangeFilterTimerElapsed(object sender, ElapsedEventArgs e)
         {
-
             _changeFilterTimer.Stop();
-            var viewAngle = _seekBarManualViewAngle.Progress / (float) 10.0;
-            _settings.ManualViewAngleHorizontal = viewAngle;
+            if (_settings.IsViewAngleCorrection)
+            {
+                var viewAngleHorizontal = _seekBarCorrectionViewAngleHorizontal.Progress / (float) 10.0;
+                _settings.CorrectionViewAngleHorizontal = viewAngleHorizontal;
 
 
-            var viewAngleVertical = _seekBarManualViewAngleVertical.Progress / (float)10.0;
-            _settings.ManualViewAngleVertical = viewAngleVertical;
+                var viewAngleVertical = _seekBarCorrectionViewAngleVertical.Progress / (float) 10.0;
+                _settings.CorrectionViewAngleVertical = viewAngleVertical;
+            }
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

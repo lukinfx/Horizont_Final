@@ -89,12 +89,12 @@ namespace HorizontApp.Views
 
             elevationProfileBitmapDrawer = new ElevationProfileBitmapDrawer(_context);
 
-            InitializeViewDrawer();
-
             _paint = new Paint();
             _paint.SetARGB(255, 255, 255, 0);
             _paint.SetStyle(Paint.Style.Stroke);
-            _paint.StrokeWidth = 3;
+            _paint.StrokeWidth = 3; 
+            
+            InitializeViewDrawer();
         }
 
         private void InitializeViewDrawer()

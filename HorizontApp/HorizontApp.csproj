@@ -141,7 +141,7 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\MainActivityLandscape.xml">
+    <AndroidResource Include="Resources\layout-land\MainActivityLandscape.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values\colors.xml" />
@@ -298,7 +298,7 @@
     <AndroidResource Include="Resources\drawable\c_church.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\MenuActivityLandspace.xml">
+    <AndroidResource Include="Resources\layout-land\MenuActivityLandspace.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -427,7 +427,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
-    <Folder Include="Resources\layout-land\" />
     <Folder Include="Views\ListOfPoiView\" />
   </ItemGroup>
   <ItemGroup>
@@ -443,13 +442,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\SettingsActivityLandscape.xml">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\EditActivityLandscape.xml">
+    <AndroidResource Include="Resources\layout-land\EditActivityLandscape.xml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -559,7 +552,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\DownloadActivityLandscape.xml" />
+    <AndroidResource Include="Resources\layout-land\DownloadActivityLandscape.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\DownloadActivityToolbar.xml">
@@ -572,7 +565,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\PoiListActivityLandscape.xml">
+    <AndroidResource Include="Resources\layout-land\PoiListActivityLandscape.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -582,7 +575,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\PhotosActivityLandscape.xml">
+    <AndroidResource Include="Resources\layout-land\PhotosActivityLandscape.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -608,6 +601,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_lock_unlocked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\SettingsActivity.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout-land\SettingsActivityLandscape.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

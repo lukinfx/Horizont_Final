@@ -32,70 +32,72 @@ namespace HorizontApp.Utilities
             _changeFilterTimer.AutoReset = false;
         }
 
-        private bool isManualViewAngle;
-        public bool IsManualViewAngle
+        private bool isViewAngleCorrection;
+        public bool IsViewAngleCorrection
         {
             get
             {
-                return isManualViewAngle;
+                return isViewAngleCorrection;
             }
             set
             {
-                isManualViewAngle = value;
+                isViewAngleCorrection = value;
                 NotifySettingsChanged();
             }
         }
 
-        private float manualViewAngleHorizontal;
-        public float ManualViewAngleHorizontal
+        public float? AutomaticViewAngleHorizontal { get; private set; }
+        public float? AutomaticViewAngleVertical { get; private set; }
+
+        private float correctionViewAngleHorizontal;
+        public float CorrectionViewAngleHorizontal
         {
             get
             {
-                return manualViewAngleHorizontal;
+                return correctionViewAngleHorizontal;
             }
             set
             {
-                manualViewAngleHorizontal = value;
+                correctionViewAngleHorizontal = value;
                 NotifySettingsChanged();
             }
         }
 
-        private float manualViewAngleVertical;
-        public float ManualViewAngleVertical
+        private float correctionViewAngleVertical;
+        public float CorrectionViewAngleVertical
         {
             get
             {
-                return manualViewAngleVertical;
+                return correctionViewAngleVertical;
             }
             set
             {
-                manualViewAngleVertical = value;
+                correctionViewAngleVertical = value;
                 NotifySettingsChanged();
             }
         }
 
-        private float? viewAngleHorizontal;
+        
         public float ViewAngleHorizontal
         {
             get
             {
                 if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Landscape)
-                    return (isManualViewAngle || !viewAngleHorizontal.HasValue) ? manualViewAngleHorizontal : viewAngleHorizontal.Value;
+                    return (AutomaticViewAngleHorizontal.HasValue?AutomaticViewAngleHorizontal.Value:60) + (isViewAngleCorrection?correctionViewAngleHorizontal:0);
                 else
-                    return (isManualViewAngle || !viewAngleVertical.HasValue) ? manualViewAngleVertical : viewAngleVertical.Value;
+                    return (AutomaticViewAngleVertical.HasValue?AutomaticViewAngleVertical.Value:40) + (isViewAngleCorrection? correctionViewAngleVertical:0);
 
             }
         }
 
-        private float? viewAngleVertical;
         public float ViewAngleVertical
         {
             get
             {
                 if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Landscape)
-                    return (isManualViewAngle || !viewAngleVertical.HasValue) ? manualViewAngleVertical : viewAngleVertical.Value; 
+                    return (AutomaticViewAngleVertical.HasValue ? AutomaticViewAngleVertical.Value : 40) + (isViewAngleCorrection ? correctionViewAngleVertical : 0);
                 else
-                    return (isManualViewAngle || !viewAngleHorizontal.HasValue) ? manualViewAngleHorizontal : viewAngleHorizontal.Value;
+                    return (AutomaticViewAngleHorizontal.HasValue ? AutomaticViewAngleHorizontal.Value : 60) + (isViewAngleCorrection ? correctionViewAngleHorizontal : 0);
             }
         }
 
@@ -104,8 +106,8 @@ namespace HorizontApp.Utilities
 
         internal void SetCameraParameters(float horizontalViewAngle, float verticalViewAngle, int imageWidth, int imageHeight)
         {
-            viewAngleHorizontal = horizontalViewAngle;
-            viewAngleVertical = verticalViewAngle;
+            AutomaticViewAngleHorizontal = horizontalViewAngle;
+            AutomaticViewAngleVertical = verticalViewAngle;
             _cameraPictureSize = new System.Drawing.Size(imageWidth, imageHeight);
             NotifySettingsChanged();
         }
@@ -181,11 +183,10 @@ namespace HorizontApp.Utilities
                 categories.Add(Enum.Parse<PoiCategory>(i));
             }
 
-            isManualViewAngle = prefs.GetBoolean("IsManualViewAngleHorizontal", false);
-            manualViewAngleHorizontal = prefs.GetFloat("ManualViewAngleHorizontal", 60);
+            isViewAngleCorrection = prefs.GetBoolean("IsViewAngleCorrection", false);
 
-            manualViewAngleVertical = prefs.GetFloat("ManualViewAngleVertical", 60);
-            //###Jak to tady funguje?
+            correctionViewAngleHorizontal = prefs.GetFloat("CorrectionViewAngleHorizontal", 0);
+            correctionViewAngleVertical = prefs.GetFloat("CorrectionViewAngleVertical", 0);
         }
 
         public void SaveData()
@@ -204,10 +205,9 @@ namespace HorizontApp.Utilities
                 }
                 editor.PutStringSet("Categories", categoriesAsCollection);
 
-                editor.PutBoolean("IsManualViewAngleHorizontal", isManualViewAngle);
-                editor.PutFloat("ManualViewAngleHorizontal", manualViewAngleHorizontal);
-
-                editor.PutFloat("ManualViewAngleVertical", manualViewAngleHorizontal);
+                editor.PutBoolean("IsViewAngleCorrection", isViewAngleCorrection);
+                editor.PutFloat("CorrectionViewAngleHorizontal", correctionViewAngleHorizontal);
+                editor.PutFloat("CorrectionViewAngleVertical", correctionViewAngleVertical);
 
                 editor.Apply();
             }

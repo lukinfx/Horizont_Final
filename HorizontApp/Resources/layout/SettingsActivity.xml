@@ -1,0 +1,100 @@
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:minWidth="25px"
+  android:minHeight="25px"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:id="@+id/scrollView1">
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="10dp">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:padding="10dp"
+          android:background="@drawable/bg_activity">
+            <TextView
+              android:text="Compass view style"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/textAppStyle" />
+            <Spinner
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              android:id="@+id/spinnerAppStyle" />
+        </LinearLayout>
+        
+        <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="10dp"
+          android:background="@drawable/bg_activity">
+            
+            <TextView
+              android:text="Camera View Angle"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+            <Switch
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceMedium"
+              android:text="Set view angle manually"
+              android:id="@+id/switchManualViewAngle" />
+
+            <TextView
+              android:paddingTop="10dp"
+              android:text="Horizontal view angle"
+              android:textAppearance="?android:attr/textAppearanceMedium"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+            <SeekBar
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="bottom"
+              android:id="@+id/seekBarCorrectionViewAngleHorizontal"
+              android:min="-100"
+              android:max="100"
+              android:progress="0" />
+            <TextView
+              android:text="Current camera view angle is 40 (set manually)"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/textViewAngleHorizontal" />
+
+            <TextView
+              android:paddingTop="10dp"
+              android:text="Vertical view angle"
+              android:textAppearance="?android:attr/textAppearanceMedium"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+            <SeekBar
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="bottom"
+              android:id="@+id/seekBarCorrectionViewAngleVertical"
+              android:min="-100"
+              android:max="100"
+              android:progress="0" />
+            <TextView
+              android:text="Current camera view angle is 40 (set manually)"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/textViewAngleVertical" />
+            <Button
+              android:text="Reset"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/reset" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
