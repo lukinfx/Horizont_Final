@@ -1,4 +1,5 @@
 ﻿using System;
+using HorizontApp.AppContext;
 using HorizontLib.Domain.Models;
 using Xamarin.Essentials;
 
@@ -23,6 +24,13 @@ namespace HorizontApp.Providers
         {
             try
             {
+                var manualLocation = AppContextLiveData.Instance.Settings.ManualLocation;
+
+                if (manualLocation != null)
+                {
+                    return manualLocation;
+                }
+
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium);
                 Location location = await Geolocation.GetLocationAsync(request);
 

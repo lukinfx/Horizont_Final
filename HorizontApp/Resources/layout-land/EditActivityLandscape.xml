@@ -145,17 +145,20 @@
             android:layout_height="match_parent"
             android:id="@+id/linearLayoutWiki">
             <ImageButton
-              android:src="@drawable/map_icon2"
+              android:src="@android:drawable/ic_menu_mapmode"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:backgroundTint="#00000000"
               android:id="@+id/buttonMap"/>
             <ImageButton
-              android:src="@drawable/wikipedia_logo"
+              android:src="@android:drawable/ic_menu_info_details"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:backgroundTint="#00000000"
               android:id="@+id/buttonWiki"/>
+            <ImageButton
+              android:src="@android:drawable/ic_menu_mylocation"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/buttonTeleport"/>
           </LinearLayout>
         </LinearLayout>
       </GridLayout>

@@ -6,6 +6,7 @@ using Android.Content;
 using Android.Preferences;
 using Xamarin.Essentials;
 using HorizontLib.Domain.Enums;
+using HorizontLib.Domain.Models;
 using HorizontLib.Domain.ViewModel;
 
 namespace HorizontApp.Utilities
@@ -159,6 +160,13 @@ namespace HorizontApp.Utilities
         {
             get { return _maxDistance; }
             set { _maxDistance = value; RestartTimer(); }
+        }
+
+        private GpsLocation _manualLocation;
+        public GpsLocation ManualLocation
+        {
+            get { return _manualLocation; }
+            set { _manualLocation = value; NotifySettingsChanged(); }
         }
 
         public void NotifySettingsChanged()

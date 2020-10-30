@@ -29,6 +29,7 @@ namespace HorizontApp.Activities
         private Spinner _spinnerCategory;
         private ImageButton _buttonOpenMap;
         private ImageButton _buttonOpenWiki;
+        private ImageButton _buttonTeleport;
         private ImageView _thumbnail;
         private ImageButton _buttonPaste;
         private Poi _item = new Poi();
@@ -81,6 +82,8 @@ namespace HorizontApp.Activities
             _buttonOpenWiki = FindViewById<ImageButton>(Resource.Id.buttonWiki);
             _buttonOpenWiki.SetOnClickListener(this);
 
+            _buttonTeleport = FindViewById<ImageButton>(Resource.Id.buttonTeleport);
+            _buttonTeleport.SetOnClickListener(this);
 
 
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
@@ -215,9 +218,23 @@ namespace HorizontApp.Activities
                         {
                             Browser.OpenAsync("https://www.wikidata.org/wiki/" + _item.Wikidata, BrowserLaunchMode.SystemPreferred);
                         }
-                        
+
                         break;
                     }
+                case Resource.Id.buttonTeleport:
+                {
+                    var manualLocation = new GpsLocation()
+                    {
+                        Latitude = Convert.ToDouble(_editTextLatitude.Text),
+                        Longitude = Convert.ToDouble(_editTextLongitude.Text),
+                        Altitude = Convert.ToDouble(_editTextAltitude.Text)
+                    };
+
+                    AppContextLiveData.Instance.Settings.ManualLocation = manualLocation;
+
+                    PopupHelper.InfoDialog(this, "Information", $"Your location has been set to {_editTextName.Text}. To reset your location, press [Reset] button in camera view or reset manual location in application settings.");
+                    break;
+                }
             }
         }
 

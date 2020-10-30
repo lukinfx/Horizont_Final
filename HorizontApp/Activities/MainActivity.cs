@@ -275,6 +275,12 @@ namespace HorizontApp
                             dialog.Show();
                             break;
                         }
+                    case Resource.Id.buttonResetCorrector:
+                    {
+                        _compassView.HeadingCorrector = 0;
+                        Context.Settings.ManualLocation = null;
+                        break;
+                    }
                 }
             }
             catch (Exception ex)
