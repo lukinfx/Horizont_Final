@@ -10,7 +10,7 @@ namespace HorizontApp.Views.Compass
         {
         }
 
-        public override void OnDrawItem(Canvas canvas, PoiViewItem item, float heading)
+        public override void OnDrawItem(Canvas canvas, PoiViewItem item)
         {
             var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal);
 

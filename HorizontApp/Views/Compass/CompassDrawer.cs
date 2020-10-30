@@ -1,5 +1,6 @@
 ﻿using Android.Graphics;
 using HorizontLib.Domain.ViewModel;
+using HorizontLib.Utilities;
 
 namespace HorizontApp.Views.Compass
 {
@@ -49,8 +50,23 @@ namespace HorizontApp.Views.Compass
         /// <param name="canvas"></param>
         /// <param name="item"></param>
         /// <param name="heading"></param>
-        public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading) { }
+        public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY) { }
 
-        public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth) { }
+        public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth) 
+        { 
+
+        }
+
+        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
+        {
+            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal);
+
+            if (startX != null)
+            {
+                var endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical, startX.Value, leftTiltCorrector, rightTiltCorrector, canvasWidth);
+
+                OnDrawItem(canvas, item, startX.Value, endY);
+            }
+        }
     }
 }
