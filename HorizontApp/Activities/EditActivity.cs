@@ -133,7 +133,7 @@ namespace HorizontApp.Activities
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    SetResult(Result.Canceled);
+                    SetResult(Result.Ok);
                     Finish();
                     break;
                 case Resource.Id.menu_save:
