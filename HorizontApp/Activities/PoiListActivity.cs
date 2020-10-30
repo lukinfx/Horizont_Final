@@ -21,6 +21,8 @@ namespace HorizontApp.Views.ListOfPoiView
     [Activity(Label = "PoiListActivity")]
     public class PoiListActivity : Activity, IPoiActionListener
     {
+        public static int REQUEST_SHOW_POI_LIST = 0;
+
         private ListView _listViewPoi;
         private Spinner _spinnerSelection;
         private EditText _editTextSearch;
@@ -243,6 +245,11 @@ namespace HorizontApp.Views.ListOfPoiView
                     _adapter = new ListViewAdapter(this, _items, this);
                     _listViewPoi.Adapter = _adapter;
                 }
+                else if (resultCode == Result.Canceled)
+                {
+                    SetResult(Result.Canceled);
+                    Finish();
+                }
             }
 
             if (requestCode == EditActivity.REQUEST_EDIT_POI)
@@ -251,6 +258,11 @@ namespace HorizontApp.Views.ListOfPoiView
                 {
                     _adapter = new ListViewAdapter(this, _items, this);
                     _listViewPoi.Adapter = _adapter;
+                }
+                else if (resultCode == Result.Canceled)
+                {
+                    SetResult(Result.Canceled);
+                    Finish();
                 }
             }
         }

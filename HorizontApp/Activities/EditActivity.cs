@@ -230,9 +230,18 @@ namespace HorizontApp.Activities
                         Altitude = Convert.ToDouble(_editTextAltitude.Text)
                     };
 
-                    AppContextLiveData.Instance.Settings.ManualLocation = manualLocation;
+                    AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                    alert.SetPositiveButton("Yes", (senderAlert, args) =>
+                    {
+                        AppContextLiveData.Instance.Settings.ManualLocation = manualLocation;
 
-                    PopupHelper.InfoDialog(this, "Information", $"Your location has been set to {_editTextName.Text}. To reset your location, press [Reset] button in camera view or reset manual location in application settings.");
+                        SetResult(Result.Canceled);
+                        Finish();
+                    });
+                    alert.SetNegativeButton("No", (senderAlert, args) => { });
+                    alert.SetMessage($"Your location will be set to { _editTextName.Text}. To reset your location, press [Reset] button in camera view or reset manual location in application settings.\r\n\r\nDo you want to continue?");
+                    var answer = alert.Show();
+
                     break;
                 }
             }

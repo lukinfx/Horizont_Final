@@ -10,6 +10,7 @@ using static Android.Views.View;
 using HorizontApp.Activities;
 using Xamarin.Essentials;
 using System;
+using Android.Runtime;
 
 namespace HorizontApp.Activities
 {
@@ -93,7 +94,7 @@ namespace HorizontApp.Activities
                     listActivityIntent.PutExtra("altitude", _location.Altitude);
                     listActivityIntent.PutExtra("maxDistance", _maxDistance);
                     listActivityIntent.PutExtra("minAltitude", _minAltitude);
-                    StartActivity(listActivityIntent);
+                    StartActivityForResult(listActivityIntent, PoiListActivity.REQUEST_SHOW_POI_LIST);
                     break;
                 case Resource.Id.buttonSettings:
                     Intent settingsActivityIntent = new Intent(this, typeof(SettingsActivity));
@@ -109,6 +110,23 @@ namespace HorizontApp.Activities
                     break;
 
             }
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (requestCode == PoiListActivity.REQUEST_SHOW_POI_LIST)
+            {
+                if (resultCode == Result.Ok)
+                {
+                }
+                else if (resultCode == Result.Canceled)
+                {
+                    SetResult(Result.Canceled);
+                    Finish();
+                }
+            }
+            
         }
     }
 }
