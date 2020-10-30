@@ -52,21 +52,45 @@ namespace HorizontApp.Views.Compass
         /// <param name="heading"></param>
         public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY) { }
 
-        public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth) 
-        { 
+        /*public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, double? leftTiltCorrector, double? rightTiltCorrector, double? canvasWidth)
+        {
+            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal);
+            float endY;
+            if (startX != null)
+            {
+                if (leftTiltCorrector.HasValue && rightTiltCorrector.HasValue)
+                {
+                    endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical, startX.Value, leftTiltCorrector.Value, rightTiltCorrector.Value, canvasWidth.Value);
+                }
+                else
+                {
+                    endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical);
+                }
 
+                OnDrawItem(canvas, item, startX.Value, endY);
+            }
+        }*/
+
+        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading)
+        {
+            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal);
+            if (startX != null)
+            {
+                float endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical);
+                OnDrawItem(canvas, item, startX.Value, endY);
+            }
         }
 
-        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
+        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, double? leftTiltCorrector, double? rightTiltCorrector, double? canvasWidth)
         {
             var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal);
 
             if (startX != null)
             {
-                var endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical, startX.Value, leftTiltCorrector, rightTiltCorrector, canvasWidth);
-
+                float endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical, startX.Value, leftTiltCorrector.Value, rightTiltCorrector.Value, canvasWidth.Value);
                 OnDrawItem(canvas, item, startX.Value, endY);
             }
+            
         }
     }
 }

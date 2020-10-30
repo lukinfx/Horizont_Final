@@ -160,9 +160,9 @@ namespace HorizontApp.Views
                 foreach (var item in list)
                 {
                     if (item.Visibility && (_leftTiltCorrector != 0 || _rightTiltCorrector != 0))
-                        compassViewDrawer.OnDrawItem(canvas, item, (float)Heading, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
+                        compassViewDrawer.DrawItem(canvas, item, (float)Heading, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
                     else if (item.Visibility)
-                        compassViewDrawer.OnDrawItem(canvas, item, (float)Heading);
+                        compassViewDrawer.DrawItem(canvas, item, (float)Heading);
                 }
             }
             
