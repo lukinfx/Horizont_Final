@@ -195,10 +195,22 @@ namespace HorizontApp.Activities
                     var a = ImageResizer.ResizeImageAndroid(b, (float)photoView.Width, (float)photoView.Height, 100);
                     var bmp = BitmapFactory.DecodeByteArray(a, 0, a.Length);
 
-                    var dstBmp = Bitmap.CreateBitmap(bmp,
-                        Convert.ToInt32(bmp.Width - photoView.Width) / 2, 0,
-                        Convert.ToInt32(photoView.Width),
-                        Convert.ToInt32(photoView.Height));
+                    Bitmap dstBmp;
+                    if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+                    {
+                        dstBmp = Bitmap.CreateBitmap(bmp,
+                            Convert.ToInt32(bmp.Width - photoView.Width) / 2, 0,
+                            Convert.ToInt32(photoView.Width),
+                            Convert.ToInt32(photoView.Height));
+                    }
+                    else
+                    {
+                        dstBmp = Bitmap.CreateBitmap(bmp,
+                            0, Convert.ToInt32(bmp.Height - photoView.Height) / 2,
+                            Convert.ToInt32(photoView.Width),
+                            Convert.ToInt32(photoView.Height));
+                    }
+
 
                     MainThread.BeginInvokeOnMainThread(() => { photoView.SetImageBitmap(dstBmp); });
 
