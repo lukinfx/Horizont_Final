@@ -1,0 +1,4218 @@
+<gpx xmlns="http://www.topografix.com/GPX/1/1">
+  <wpt lat="48.812544" lon="14.315658">
+    <name>Zamek Cesky Krumlov Cesky Krumlov-Latran</name>
+    <ele>506</ele>
+  </wpt>
+  <wpt lat="49.873384" lon="16.312782">
+    <name>Zamek Litomysl Litomysl-Zahradi</name>
+    <ele>360</ele>
+  </wpt>
+  <wpt lat="50.379753" lon="14.744398">
+    <name>Zamek Velke Vselisy Velke Vselisy 18</name>
+    <ele>286</ele>
+  </wpt>
+  <wpt lat="50.372665" lon="14.855822">
+    <name>Zamek Novy Stranov Jizerni Vtelno 83</name>
+    <ele>262</ele>
+  </wpt>
+  <wpt lat="50.397111" lon="14.808127">
+    <name>Zamek Nimerice Nimerice 1</name>
+    <ele>291</ele>
+  </wpt>
+  <wpt lat="50.527547" lon="14.970932">
+    <name>Zamek Mnichovo Hradiste</name>
+    <ele>240</ele>
+  </wpt>
+  <wpt lat="50.321008" lon="14.939429">
+    <name>Zamek Lustenice</name>
+    <ele>213</ele>
+  </wpt>
+  <wpt lat="50.380586" lon="14.850942">
+    <name>Zamek Krnsko Krnsko 1</name>
+    <ele>270</ele>
+  </wpt>
+  <wpt lat="50.440513" lon="14.92439">
+    <name>Zamek Kosmonosy</name>
+    <ele>262</ele>
+  </wpt>
+  <wpt lat="50.327426" lon="14.857174">
+    <name>Zamek Horky nad Jizerou Horky nad Jizerou 35</name>
+    <ele>221</ele>
+  </wpt>
+  <wpt lat="50.407232" lon="15.005195">
+    <name>Zamek Brezno Brezno 51</name>
+    <ele>226</ele>
+  </wpt>
+  <wpt lat="50.36925" lon="14.790275">
+    <name>Zamek Bezno</name>
+    <ele>291</ele>
+  </wpt>
+  <wpt lat="50.290683" lon="14.822992">
+    <name>Zamek Benatky nad Jizerou Benatky nad Jizerou I</name>
+    <ele>241</ele>
+  </wpt>
+  <wpt lat="50.501329" lon="14.807478">
+    <name>Zamek Bela pod Bezdezem</name>
+    <ele>290</ele>
+  </wpt>
+  <wpt lat="50.187471" lon="14.666115">
+    <name>Zamek Brandys nad Labem</name>
+    <ele>184</ele>
+  </wpt>
+  <wpt lat="49.982628" lon="14.57926">
+    <name>Zamek Dobrejovice</name>
+    <ele>329</ele>
+  </wpt>
+  <wpt lat="49.969945" lon="14.590638">
+    <name>Zamek Modletice Modletice 1</name>
+    <ele>370</ele>
+  </wpt>
+  <wpt lat="49.944283" lon="14.605645">
+    <name>Zamek Nebrenice Popovicky-Nebrenice 1</name>
+    <ele>475</ele>
+  </wpt>
+  <wpt lat="49.947129" lon="14.624133">
+    <name>Zamek Predbor Strancice-Predbor 1</name>
+    <ele>448</ele>
+  </wpt>
+  <wpt lat="49.928865" lon="14.667419">
+    <name>Zamek Vidovice-Berchtold Kunice-Vidovice 6</name>
+    <ele>441</ele>
+  </wpt>
+  <wpt lat="50.212919" lon="14.437103">
+    <name>Zamek Panenske Brezany - horni zamek</name>
+    <ele>274</ele>
+  </wpt>
+  <wpt lat="50.216095" lon="14.442435">
+    <name>Zamek Panenske Brezany - dolni zamek</name>
+    <ele>248</ele>
+  </wpt>
+  <wpt lat="50.181563" lon="14.479229">
+    <name>Zamek Pakomerice</name>
+    <ele>248</ele>
+  </wpt>
+  <wpt lat="50.178142" lon="14.410039">
+    <name>Zamek Klecany</name>
+    <ele>285</ele>
+  </wpt>
+  <wpt lat="49.898304" lon="14.583932">
+    <name>Zamek Kamenice</name>
+    <ele>380</ele>
+  </wpt>
+  <wpt lat="50.045896" lon="14.734747">
+    <name>Zamek Skvorec - novy zamek</name>
+    <ele>316</ele>
+  </wpt>
+  <wpt lat="50.045955" lon="14.73375">
+    <name>Zamek Skvorec</name>
+    <ele>316</ele>
+  </wpt>
+  <wpt lat="49.897226" lon="14.648552">
+    <name>Zamek Lojovice Lojovice 1</name>
+    <ele>426</ele>
+  </wpt>
+  <wpt lat="50.170879" lon="15.074953">
+    <name>Zamek Kovanice Kovanice 1</name>
+    <ele>186</ele>
+  </wpt>
+  <wpt lat="50.245565" lon="15.20437">
+    <name>Zamek Dymokury</name>
+    <ele>224</ele>
+  </wpt>
+  <wpt lat="50.205528" lon="15.023498">
+    <name>Zamek Zdonin Dvory-Veleliby 3</name>
+    <ele>192</ele>
+  </wpt>
+  <wpt lat="50.159855" lon="14.823555">
+    <name>Zamek Prerov nad Labem</name>
+    <ele>177</ele>
+  </wpt>
+  <wpt lat="50.141599" lon="15.119022">
+    <name>Zamek Podebrady Podebrady I</name>
+    <ele>203</ele>
+  </wpt>
+  <wpt lat="50.203268" lon="14.833796">
+    <name>Zamek Lysa nad Labem</name>
+    <ele>219</ele>
+  </wpt>
+  <wpt lat="50.286967" lon="15.024517">
+    <name>Zamek Loucen Loucen 1</name>
+    <ele>266</ele>
+  </wpt>
+  <wpt lat="50.108672" lon="14.855806">
+    <name>Zamek Kounice Kounice 1</name>
+    <ele>210</ele>
+  </wpt>
+  <wpt lat="50.268956" lon="15.140072">
+    <name>Zamek Krinec Krinec 1</name>
+    <ele>199</ele>
+  </wpt>
+  <wpt lat="49.954036" lon="15.028095">
+    <name>Zamek Zasmuky</name>
+    <ele>347</ele>
+  </wpt>
+  <wpt lat="50.002591" lon="15.041383">
+    <name>Zamek Svojsice Svojsice 1</name>
+    <ele>265</ele>
+  </wpt>
+  <wpt lat="49.993071" lon="15.09905">
+    <name>Zamek Polni Voderady Polni Voderady 1</name>
+    <ele>322</ele>
+  </wpt>
+  <wpt lat="50.00562" lon="15.087919">
+    <name>Zamek Libodrice Libodrice 3</name>
+    <ele>274</ele>
+  </wpt>
+  <wpt lat="49.911145" lon="15.014923">
+    <name>Zamek Cirkvice Cirkvice 1</name>
+    <ele>395</ele>
+  </wpt>
+  <wpt lat="49.943726" lon="15.097098">
+    <name>Zamek Cerveny Hradek Cerveny Hradek 45</name>
+    <ele>357</ele>
+  </wpt>
+  <wpt lat="49.956364" lon="15.078598">
+    <name>Zamek Becvary Becvary 1</name>
+    <ele>337</ele>
+  </wpt>
+  <wpt lat="49.997523" lon="15.186684">
+    <name>Zamek Pasinka Pasinka 1</name>
+    <ele>270</ele>
+  </wpt>
+  <wpt lat="49.977608" lon="15.156096">
+    <name>Zamek Ratbor - stary zamek</name>
+    <ele>321</ele>
+  </wpt>
+  <wpt lat="49.977332" lon="15.154411">
+    <name>Zamek Ratbor - novy zamek</name>
+    <ele>320</ele>
+  </wpt>
+  <wpt lat="50.02922" lon="15.199231">
+    <name>Zamek Kolin</name>
+    <ele>205</ele>
+  </wpt>
+  <wpt lat="50.039846" lon="15.285491">
+    <name>Zamek Konarovice</name>
+    <ele>242</ele>
+  </wpt>
+  <wpt lat="50.071664" lon="15.009674">
+    <name>Zamek Radim Radim 1</name>
+    <ele>206</ele>
+  </wpt>
+  <wpt lat="49.994886" lon="14.958925">
+    <name>Zamek Molitorov Molitorov 1</name>
+    <ele>277</ele>
+  </wpt>
+  <wpt lat="50.034072" lon="14.937871">
+    <name>Zamek Lipany Lipany 1</name>
+    <ele>309</ele>
+  </wpt>
+  <wpt lat="50.02293" lon="14.985529">
+    <name>Zamek Klasterni Skalice Klasterni Skalice 1</name>
+    <ele>232</ele>
+  </wpt>
+  <wpt lat="50.068884" lon="15.071124">
+    <name>Zamek Cerhenice</name>
+    <ele>221</ele>
+  </wpt>
+  <wpt lat="49.953211" lon="15.166696">
+    <name>Zamek Suchdol Suchdol 1</name>
+    <ele>371</ele>
+  </wpt>
+  <wpt lat="49.913996" lon="15.086347">
+    <name>Zamek Jindice Jindice 1</name>
+    <ele>421</ele>
+  </wpt>
+  <wpt lat="49.983945" lon="15.294677">
+    <name>Zamek Hlizov Hlizov 1</name>
+    <ele>205</ele>
+  </wpt>
+  <wpt lat="49.960721" lon="15.287561">
+    <name>Zamek Sedlec Kutna Hora-Sedlec</name>
+    <ele>223</ele>
+  </wpt>
+  <wpt lat="49.911986" lon="15.221944">
+    <name>Zamek Malesov Malesov 1</name>
+    <ele>337</ele>
+  </wpt>
+  <wpt lat="49.906814" lon="15.324651">
+    <name>Zamek Kluky</name>
+    <ele>272</ele>
+  </wpt>
+  <wpt lat="49.966967" lon="15.412118">
+    <name>Zamek Zehusice Zehusice 1</name>
+    <ele>224</ele>
+  </wpt>
+  <wpt lat="49.887798" lon="15.483363">
+    <name>Zamek Zleby</name>
+    <ele>253</ele>
+  </wpt>
+  <wpt lat="49.981744" lon="15.346055">
+    <name>Zamek Kacina Svaty Mikulas 51</name>
+    <ele>229</ele>
+  </wpt>
+  <wpt lat="49.089533" lon="17.876295">
+    <name>Zamek Slavicin</name>
+    <ele>362</ele>
+  </wpt>
+  <wpt lat="49.970911" lon="15.32287">
+    <name>Zamek Nove Dvory</name>
+    <ele>215</ele>
+  </wpt>
+  <wpt lat="49.929587" lon="15.338824">
+    <name>Zamek Trebesice u Kutne Hory Trebesice 1</name>
+    <ele>230</ele>
+  </wpt>
+  <wpt lat="49.889333" lon="15.271334">
+    <name>Zamek Umonin Umonin 1</name>
+    <ele>348</ele>
+  </wpt>
+  <wpt lat="49.886406" lon="15.368435">
+    <name>Zamek Zaky Zaky 3</name>
+    <ele>272</ele>
+  </wpt>
+  <wpt lat="49.869491" lon="15.401416">
+    <name>Zamek Tupadly Tupadly 1</name>
+    <ele>295</ele>
+  </wpt>
+  <wpt lat="49.9072" lon="15.262966">
+    <name>Zamek Kresetice Kresetice 1</name>
+    <ele>305</ele>
+  </wpt>
+  <wpt lat="49.852138" lon="15.332998">
+    <name>Zamek Hrabesin Hrabesin 1</name>
+    <ele>366</ele>
+  </wpt>
+  <wpt lat="49.897243" lon="15.422906">
+    <name>Zamek Filipov Caslav-Filipov</name>
+    <ele>274</ele>
+  </wpt>
+  <wpt lat="49.835159" lon="15.253733">
+    <name>Zamek Cervene Janovice Cervene Janovice 1</name>
+    <ele>452</ele>
+  </wpt>
+  <wpt lat="49.815194" lon="15.116925">
+    <name>Zamek Morany Cestin-Morany 1</name>
+    <ele>511</ele>
+  </wpt>
+  <wpt lat="49.808025" lon="15.103119">
+    <name>Zamek Cestin Cestin 2</name>
+    <ele>491</ele>
+  </wpt>
+  <wpt lat="49.769046" lon="15.193738">
+    <name>Zamek Ostrov u Bohdance  Ostrov 1</name>
+    <ele>437</ele>
+  </wpt>
+  <wpt lat="49.732843" lon="15.135443">
+    <name>Zamek Horka nad Sazavou Horka II 1</name>
+    <ele>350</ele>
+  </wpt>
+  <wpt lat="49.717269" lon="15.17">
+    <name>Zamek Kounice Vlastejovice-Kounice</name>
+    <ele>439</ele>
+  </wpt>
+  <wpt lat="49.78327" lon="15.147357">
+    <name>Zamek Hodkov Hodkov 1</name>
+    <ele>447</ele>
+  </wpt>
+  <wpt lat="49.777457" lon="14.829038">
+    <name>Zamek Trebesice u Benesova</name>
+    <ele>442</ele>
+  </wpt>
+  <wpt lat="49.814236" lon="14.659385">
+    <name>Zamek Vidlakova Lhota</name>
+    <ele>355</ele>
+  </wpt>
+  <wpt lat="49.638198" lon="14.643418">
+    <name>Zamek Votice - stary zamek</name>
+    <ele>489</ele>
+  </wpt>
+  <wpt lat="49.637357" lon="14.641825">
+    <name>Zamek Votice - novy zamek</name>
+    <ele>494</ele>
+  </wpt>
+  <wpt lat="49.624129" lon="15.048432">
+    <name>Zamek Cechtice</name>
+    <ele>479</ele>
+  </wpt>
+  <wpt lat="49.616131" lon="14.696564">
+    <name>Zamek Neustupov Neustupov 1</name>
+    <ele>558</ele>
+  </wpt>
+  <wpt lat="49.532132" lon="14.612393">
+    <name>Zamek Strezimir Strezimir 1</name>
+    <ele>599</ele>
+  </wpt>
+  <wpt lat="49.549344" lon="14.612288">
+    <name>Zamek Milhostice Cerveny Ujezd-Milhostice 1</name>
+    <ele>597</ele>
+  </wpt>
+  <wpt lat="49.606069" lon="15.071483">
+    <name>Zamek Ruzkovy Lhotice Cechtice-Ruzkovy Lhotice 1</name>
+    <ele>507</ele>
+  </wpt>
+  <wpt lat="49.642589" lon="15.178728">
+    <name>Zamek Vrazdovy Lhotice Dolni Kralovice-Vrazdovy Lhotice 10</name>
+    <ele>463</ele>
+  </wpt>
+  <wpt lat="49.737312" lon="14.464821">
+    <name>Zamek Krchleby Krecovice-Krchleby</name>
+    <ele>352</ele>
+  </wpt>
+  <wpt lat="49.834301" lon="14.830996">
+    <name>Zamek Ostredek Ostredek 1</name>
+    <ele>443</ele>
+  </wpt>
+  <wpt lat="49.60284" lon="14.62019">
+    <name>Zamek Smilkov</name>
+    <ele>537</ele>
+  </wpt>
+  <wpt lat="49.64435" lon="14.75819">
+    <name>Zamek Ratmerice Ratmerice 1</name>
+    <ele>502</ele>
+  </wpt>
+  <wpt lat="49.867921" lon="14.79809">
+    <name>Zamek Komorni Hradek Chocerady-Komorni Hradek</name>
+    <ele>372</ele>
+  </wpt>
+  <wpt lat="49.610049" lon="14.906505">
+    <name>Zamek Naceradec Naceradec 1</name>
+    <ele>525</ele>
+  </wpt>
+  <wpt lat="49.634991" lon="14.818926">
+    <name>Zamek Liboun Zvestov-Liboun</name>
+    <ele>403</ele>
+  </wpt>
+  <wpt lat="49.62719" lon="14.763833">
+    <name>Zamek Odlochovice Jankov-Odlochovice 1</name>
+    <ele>452</ele>
+  </wpt>
+  <wpt lat="49.636089" lon="14.942211">
+    <name>Zamek Pravonin Pravonin 1</name>
+    <ele>553</ele>
+  </wpt>
+  <wpt lat="50.319587" lon="13.750302">
+    <name>Zamek Novy Hrad - Jimlin Jimlin 220</name>
+    <ele>273</ele>
+  </wpt>
+  <wpt lat="50.479543" lon="13.725615">
+    <name>zamek Korozluky Korozluky 54</name>
+    <ele>255</ele>
+  </wpt>
+  <wpt lat="49.636999" lon="14.846617">
+    <name>Zamek Lounovice pod Blanikem</name>
+    <ele>402</ele>
+  </wpt>
+  <wpt lat="49.657876" lon="12.912606">
+    <name>Zamek Prostibor</name>
+    <ele>446</ele>
+  </wpt>
+  <wpt lat="49.652599" lon="14.51656">
+    <name>Zamek Vojkov Vojkov 1</name>
+    <ele>443</ele>
+  </wpt>
+  <wpt lat="49.843006" lon="14.525068">
+    <name>Zamek Lesany</name>
+    <ele>315</ele>
+  </wpt>
+  <wpt lat="49.759409" lon="14.525642">
+    <name>Zamek Tloskov Neveklov-Tloskov 1</name>
+    <ele>395</ele>
+  </wpt>
+  <wpt lat="49.744721" lon="14.815696">
+    <name>Zamek Chotysany Chotysany 1</name>
+    <ele>458</ele>
+  </wpt>
+  <wpt lat="49.876668" lon="14.678416">
+    <name>Zamek Pysely</name>
+    <ele>377</ele>
+  </wpt>
+  <wpt lat="49.750752" lon="14.629337">
+    <name>Zamek Tvorsovice Tvorsovice 1</name>
+    <ele>340</ele>
+  </wpt>
+  <wpt lat="50.195686" lon="14.522231">
+    <name>Zamek Mesice</name>
+    <ele>210</ele>
+  </wpt>
+  <wpt lat="50.41865" lon="16.161886">
+    <name>Zamek Nachod</name>
+    <ele>417</ele>
+  </wpt>
+  <wpt lat="49.757094" lon="16.666072">
+    <name>Zamek Moravska Trebova</name>
+    <ele>370</ele>
+  </wpt>
+  <wpt lat="49.261127" lon="13.498061">
+    <name>Zamek Hradek u Susice Hradek 1</name>
+    <ele>494</ele>
+  </wpt>
+  <wpt lat="50.627476" lon="16.242648">
+    <name>Zamek Mezimesti</name>
+    <ele>442</ele>
+  </wpt>
+  <wpt lat="50.042458" lon="13.292465">
+    <name>Zamek Rabstejn nad Strelou Rabstejn nad Strelou 1</name>
+    <ele>467</ele>
+  </wpt>
+  <wpt lat="49.76512" lon="12.712684">
+    <name>Zamek Tisova</name>
+    <ele>506</ele>
+  </wpt>
+  <wpt lat="49.812339" lon="15.181426">
+    <name>Zamek Zbraslavice Zbraslavice 2</name>
+    <ele>501</ele>
+  </wpt>
+  <wpt lat="49.865238" lon="17.874434">
+    <name>Zamek Hradec nad Moravici</name>
+    <ele>337</ele>
+  </wpt>
+  <wpt lat="50.035264" lon="16.499754">
+    <name>Zamek Letohrad</name>
+    <ele>377</ele>
+  </wpt>
+  <wpt lat="49.529599" lon="12.942683">
+    <name>Zamek Horsovsky Tyn</name>
+    <ele>396</ele>
+  </wpt>
+  <wpt lat="49.510996" lon="12.803455">
+    <name>Zamek Pobezovice</name>
+    <ele>450</ele>
+  </wpt>
+  <wpt lat="49.027609" lon="17.64495">
+    <name>Zamek Uhersky Brod</name>
+    <ele>271</ele>
+  </wpt>
+  <wpt lat="49.916489" lon="14.59921">
+    <name>Zamek Stirin Kamenice-Stirin</name>
+    <ele>412</ele>
+  </wpt>
+  <wpt lat="50.1882" lon="16.214168">
+    <name>Zamek Cernikovice Cernikovice 1</name>
+    <ele>322</ele>
+  </wpt>
+  <wpt lat="50.165543" lon="16.464386">
+    <name>Zamek Rokytnice v Orlickych Horach</name>
+    <ele>584</ele>
+  </wpt>
+  <wpt lat="50.082264" lon="16.3087">
+    <name>Zamek Potstejn</name>
+    <ele>316</ele>
+  </wpt>
+  <wpt lat="50.098003" lon="16.09592">
+    <name>Zamek Borohradek</name>
+    <ele>267</ele>
+  </wpt>
+  <wpt lat="51.004611" lon="14.455208">
+    <name>Zamek Sluknov</name>
+    <ele>0</ele>
+  </wpt>
+  <wpt lat="50.344002" lon="16.149849">
+    <name>Zamek Nove Mesto nad Metuji</name>
+    <ele>336</ele>
+  </wpt>
+  <wpt lat="49.857827" lon="13.334795">
+    <name>Zamek Visky Trnova-Visky 27</name>
+    <ele>405</ele>
+  </wpt>
+  <wpt lat="49.274493" lon="13.172103">
+    <name>Zamek Desenice Desenice 1</name>
+    <ele>512</ele>
+  </wpt>
+  <wpt lat="50.309933" lon="14.61297">
+    <name>Zamek Bysice</name>
+    <ele>204</ele>
+  </wpt>
+  <wpt lat="49.85828" lon="13.762103">
+    <name>Zamek Zbiroh</name>
+    <ele>550</ele>
+  </wpt>
+  <wpt lat="50.760887" lon="14.103473">
+    <name>Zamek Jilove Jilove u Decina</name>
+    <ele>265</ele>
+  </wpt>
+  <wpt lat="49.780355" lon="14.449181">
+    <name>Zamek Jablonna Jablonna 1</name>
+    <ele>328</ele>
+  </wpt>
+  <wpt lat="49.734091" lon="14.688442">
+    <name>Zamek Lisno Bystrice u Benesova-Lisno 1</name>
+    <ele>400</ele>
+  </wpt>
+  <wpt lat="48.800626" lon="16.83045">
+    <name>Zamek Lednice - Lovecky zamecek</name>
+    <ele>162</ele>
+  </wpt>
+  <wpt lat="48.78436" lon="16.795717">
+    <name>Zamek Lednice - Rybnicni zamecek</name>
+    <ele>186</ele>
+  </wpt>
+  <wpt lat="48.814182" lon="16.812706">
+    <name>Zamek Lednice - Minaret</name>
+    <ele>165</ele>
+  </wpt>
+  <wpt lat="48.801557" lon="16.805772">
+    <name>Zamek Lednice</name>
+    <ele>173</ele>
+  </wpt>
+  <wpt lat="48.904318" lon="16.946057">
+    <name>Zamek Cejkovice</name>
+    <ele>210</ele>
+  </wpt>
+  <wpt lat="50.320402" lon="12.737524">
+    <name>Zamek Nejdek</name>
+    <ele>571</ele>
+  </wpt>
+  <wpt lat="50.004471" lon="12.605256">
+    <name>Zamek Kynzvart Lazne Kynzvart</name>
+    <ele>584</ele>
+  </wpt>
+  <wpt lat="49.246601" lon="14.885158">
+    <name>Zamek Cervena Lhota - Pluhuv Zdar Cervena Lhota 1</name>
+    <ele>491</ele>
+  </wpt>
+  <wpt lat="49.083849" lon="17.336501">
+    <name>Zamek Buchlovice</name>
+    <ele>259</ele>
+  </wpt>
+  <wpt lat="49.670932" lon="13.530307">
+    <name>Zamek Kozel Stahlavy 67</name>
+    <ele>388</ele>
+  </wpt>
+  <wpt lat="48.774765" lon="16.796824">
+    <name>Chram Tri Gracii Charvatska Nova Ves</name>
+    <ele>187</ele>
+  </wpt>
+  <wpt lat="48.727835" lon="16.895052">
+    <name>Zamek Pohansko Pohansko 206</name>
+    <ele>158</ele>
+  </wpt>
+  <wpt lat="49.711116" lon="16.826951">
+    <name>Zamek Vranova Lhota Vranova Lhota 7</name>
+    <ele>295</ele>
+  </wpt>
+  <wpt lat="50.116949" lon="14.690196">
+    <name>Zamek Jirny</name>
+    <ele>255</ele>
+  </wpt>
+  <wpt lat="50.068806" lon="17.090231">
+    <name>Zamek Loucna nad Desnou</name>
+    <ele>497</ele>
+  </wpt>
+  <wpt lat="49.891261" lon="17.944493">
+    <name>Zamek Radun Radun 67</name>
+    <ele>298</ele>
+  </wpt>
+  <wpt lat="50.666168" lon="14.1403">
+    <name>Zamek Velke Brezno - Dolni zamek</name>
+    <ele>139</ele>
+  </wpt>
+  <wpt lat="50.662457" lon="14.138551">
+    <name>Zamek Velke Brezno - horni zamek</name>
+    <ele>161</ele>
+  </wpt>
+  <wpt lat="50.6664" lon="14.082617">
+    <name>Zamek Krasne Brezno Usti nad Labem</name>
+    <ele>149</ele>
+  </wpt>
+  <wpt lat="49.744263" lon="15.10147">
+    <name>Zamek Zruc nad Sazavou</name>
+    <ele>356</ele>
+  </wpt>
+  <wpt lat="49.405263" lon="13.715175">
+    <name>Zamek Chanovice</name>
+    <ele>561</ele>
+  </wpt>
+  <wpt lat="49.743698" lon="14.785473">
+    <name>Zamek Jemniste Postupice-Jemniste 1</name>
+    <ele>455</ele>
+  </wpt>
+  <wpt lat="49.707265" lon="14.895272">
+    <name>Zamek Vlasim</name>
+    <ele>368</ele>
+  </wpt>
+  <wpt lat="49.995526" lon="14.862624">
+    <name>Zamek Kostelec nad Cernymi Lesy</name>
+    <ele>394</ele>
+  </wpt>
+  <wpt lat="49.512971" lon="14.170416">
+    <name>Zamek Orlik nad Vltavou Orlik nad Vltavou 112</name>
+    <ele>361</ele>
+  </wpt>
+  <wpt lat="48.759889" lon="16.876186">
+    <name>Zamek Breclav</name>
+    <ele>163</ele>
+  </wpt>
+  <wpt lat="50.041018" lon="15.776678">
+    <name>Zamek Pardubice</name>
+    <ele>227</ele>
+  </wpt>
+  <wpt lat="50.223464" lon="15.66711">
+    <name>Zamek Hradek u Nechanic Nechanice</name>
+    <ele>306</ele>
+  </wpt>
+  <wpt lat="49.877411" lon="14.897466">
+    <name>Zamek Sazava (puvodne klaster)</name>
+    <ele>311</ele>
+  </wpt>
+  <wpt lat="49.779518" lon="14.65655">
+    <name>Zamek Konopiste Benesov-Konopiste 1</name>
+    <ele>377</ele>
+  </wpt>
+  <wpt lat="49.842137" lon="14.957526">
+    <name>Zamek Rataje nad Sazavou</name>
+    <ele>370</ele>
+  </wpt>
+  <wpt lat="49.776969" lon="15.028149">
+    <name>Zamek Kacov Kacov 1</name>
+    <ele>327</ele>
+  </wpt>
+  <wpt lat="50.122628" lon="16.199765">
+    <name>Zamek Kostelec nad Orlici - novy zamek</name>
+    <ele>294</ele>
+  </wpt>
+  <wpt lat="50.166127" lon="16.275328">
+    <name>Zamek Rychnov nad Kneznou</name>
+    <ele>341</ele>
+  </wpt>
+  <wpt lat="50.264903" lon="16.115345">
+    <name>Zamek Opocno</name>
+    <ele>321</ele>
+  </wpt>
+  <wpt lat="50.122133" lon="16.216432">
+    <name>Zamek Kostelec nad Orlici - stary zamek</name>
+    <ele>295</ele>
+  </wpt>
+  <wpt lat="50.108655" lon="16.264014">
+    <name>Zamek Doudleby nad Orlici</name>
+    <ele>302</ele>
+  </wpt>
+  <wpt lat="50.130438" lon="16.186847">
+    <name>Zamek Castolovice</name>
+    <ele>275</ele>
+  </wpt>
+  <wpt lat="49.629749" lon="15.491769">
+    <name>Zamek Okrouhlice</name>
+    <ele>409</ele>
+  </wpt>
+  <wpt lat="50.404742" lon="15.677994">
+    <name>Zamek Miletin</name>
+    <ele>345</ele>
+  </wpt>
+  <wpt lat="50.540096" lon="13.936385">
+    <name>Zamek Milesov u Lovosic</name>
+    <ele>398</ele>
+  </wpt>
+  <wpt lat="48.955366" lon="16.093785">
+    <name>Zamek Mikulovice u Znojma</name>
+    <ele>310</ele>
+  </wpt>
+  <wpt lat="50.20567" lon="17.689719">
+    <name>Zamek Slezske Rudoltice</name>
+    <ele>282</ele>
+  </wpt>
+  <wpt lat="49.560363" lon="13.200109">
+    <name>Zamek Merklin u Prestic</name>
+    <ele>403</ele>
+  </wpt>
+  <wpt lat="49.847003" lon="17.765283">
+    <name>Zamek Melc</name>
+    <ele>477</ele>
+  </wpt>
+  <wpt lat="49.978637" lon="15.768531">
+    <name>Zamek Medlesice</name>
+    <ele>261</ele>
+  </wpt>
+  <wpt lat="50.2646" lon="13.28118">
+    <name>Zamek Mastov</name>
+    <ele>395</ele>
+  </wpt>
+  <wpt lat="50.565214" lon="14.038642">
+    <name>Zamek Libochovany</name>
+    <ele>149</ele>
+  </wpt>
+  <wpt lat="50.157532" lon="12.273135">
+    <name>Zamek Hazlov</name>
+    <ele>548</ele>
+  </wpt>
+  <wpt lat="48.935497" lon="14.510075">
+    <name>Zamek Doubravice u Nedabyl</name>
+    <ele>493</ele>
+  </wpt>
+  <wpt lat="50.239308" lon="15.706012">
+    <name>Zamek Dolni Prim</name>
+    <ele>276</ele>
+  </wpt>
+  <wpt lat="50.15087" lon="17.01219">
+    <name>Zamek Branna u Sumperka</name>
+    <ele>636</ele>
+  </wpt>
+  <wpt lat="49.813321" lon="13.605104">
+    <name>Zamek Brezina u Rokycan</name>
+    <ele>508</ele>
+  </wpt>
+  <wpt lat="49.591931" lon="16.243983">
+    <name>Zamek Dalecin</name>
+    <ele>489</ele>
+  </wpt>
+  <wpt lat="49.305119" lon="14.787798">
+    <name>Zamek Brandlin - Tucapy</name>
+    <ele>472</ele>
+  </wpt>
+  <wpt lat="50.846028" lon="14.875978">
+    <name>Zamek Grabstejn</name>
+    <ele>332</ele>
+  </wpt>
+  <wpt lat="49.431028" lon="15.221675">
+    <name>Zamek Pelhrimov</name>
+    <ele>503</ele>
+  </wpt>
+  <wpt lat="49.340908" lon="17.998931">
+    <name>Zamek Vsetin</name>
+    <ele>381</ele>
+  </wpt>
+  <wpt lat="50.385853" lon="15.213489">
+    <name>Zamek Stare Hrady</name>
+    <ele>250</ele>
+  </wpt>
+  <wpt lat="49.243492" lon="13.452167">
+    <name>Zamek Svojsice u Susice</name>
+    <ele>589</ele>
+  </wpt>
+  <wpt lat="50.343614" lon="13.962878">
+    <name>Zamek Peruc</name>
+    <ele>335</ele>
+  </wpt>
+  <wpt lat="50.35088" lon="14.47381">
+    <name>Zamek Melnik</name>
+    <ele>228</ele>
+  </wpt>
+  <wpt lat="49.896379" lon="18.185419">
+    <name>Zamek Hlucin</name>
+    <ele>238</ele>
+  </wpt>
+  <wpt lat="49.716261" lon="13.092783">
+    <name>Zamek Vlkys</name>
+    <ele>376</ele>
+  </wpt>
+  <wpt lat="49.525005" lon="17.581016">
+    <name>Zamek Lipnik nad Becvou</name>
+    <ele>243</ele>
+  </wpt>
+  <wpt lat="49.913306" lon="16.613789">
+    <name>Zamek Lanskroun</name>
+    <ele>389</ele>
+  </wpt>
+  <wpt lat="50.6271" lon="15.609086">
+    <name>Zamek Vrchlabi</name>
+    <ele>490</ele>
+  </wpt>
+  <wpt lat="49.583242" lon="15.937056">
+    <name>Zamek Zdar nad Sazavou</name>
+    <ele>580</ele>
+  </wpt>
+  <wpt lat="49.554008" lon="16.948058">
+    <name>Zamek Premyslovice</name>
+    <ele>446</ele>
+  </wpt>
+  <wpt lat="49.766981" lon="12.910961">
+    <name>Zamek Svojsin</name>
+    <ele>412</ele>
+  </wpt>
+  <wpt lat="50.470214" lon="15.169794">
+    <name>Zamek Humprecht</name>
+    <ele>347</ele>
+  </wpt>
+  <wpt lat="49.67358" lon="13.39811">
+    <name>Zamek Stenovice</name>
+    <ele>328</ele>
+  </wpt>
+  <wpt lat="50.147876" lon="14.101411">
+    <name>Zamek Kladno</name>
+    <ele>382</ele>
+  </wpt>
+  <wpt lat="50.090381" lon="13.822229">
+    <name>Zamek Novy Dum</name>
+    <ele>434</ele>
+  </wpt>
+  <wpt lat="49.72547" lon="18.074953">
+    <name>Zamek Studenka</name>
+    <ele>257</ele>
+  </wpt>
+  <wpt lat="49.873144" lon="13.510733">
+    <name>Zamek Kacerov</name>
+    <ele>359</ele>
+  </wpt>
+  <wpt lat="49.898256" lon="17.777872">
+    <name>Zamek Dolni Zivotice</name>
+    <ele>319</ele>
+  </wpt>
+  <wpt lat="49.881806" lon="16.871664">
+    <name>Zamek Zabreh na Morave</name>
+    <ele>304</ele>
+  </wpt>
+  <wpt lat="49.294564" lon="15.487353">
+    <name>Zamek Trest</name>
+    <ele>561</ele>
+  </wpt>
+  <wpt lat="50.179217" lon="12.641667">
+    <name>Zamek Sokolov</name>
+    <ele>406</ele>
+  </wpt>
+  <wpt lat="49.47402" lon="17.108833">
+    <name>Zamek Prostejov</name>
+    <ele>232</ele>
+  </wpt>
+  <wpt lat="49.697389" lon="15.283028">
+    <name>Zamek Ledec nad Sazavou - letohradek</name>
+    <ele>396</ele>
+  </wpt>
+  <wpt lat="50.142822" lon="14.317631">
+    <name>Zamek Statenice</name>
+    <ele>275</ele>
+  </wpt>
+  <wpt lat="50.135361" lon="14.27925">
+    <name>Zamek Tuchomerice</name>
+    <ele>328</ele>
+  </wpt>
+  <wpt lat="48.907778" lon="17.313372">
+    <name>Zamek Straznice na Morave</name>
+    <ele>176</ele>
+  </wpt>
+  <wpt lat="49.473453" lon="15.003061">
+    <name>Zamek Pacov</name>
+    <ele>583</ele>
+  </wpt>
+  <wpt lat="49.281406" lon="17.201681">
+    <name>Zamek Uhrice u Kromerize</name>
+    <ele>254</ele>
+  </wpt>
+  <wpt lat="49.598394" lon="17.062972">
+    <name>Zamek Namest na Hane Horni zamek</name>
+    <ele>279</ele>
+  </wpt>
+  <wpt lat="50.295725" lon="13.916653">
+    <name>Zamek Panensky Tynec</name>
+    <ele>366</ele>
+  </wpt>
+  <wpt lat="49.589236" lon="16.891129">
+    <name>Zamek Konice</name>
+    <ele>429</ele>
+  </wpt>
+  <wpt lat="49.8474" lon="15.660222">
+    <name>Zamek Sec</name>
+    <ele>537</ele>
+  </wpt>
+  <wpt lat="48.927506" lon="14.440172">
+    <name>Zamek Porici - Borsov nad Vltavou</name>
+    <ele>405</ele>
+  </wpt>
+  <wpt lat="50.15447" lon="14.19153">
+    <name>Zamek Bustehrad</name>
+    <ele>343</ele>
+  </wpt>
+  <wpt lat="50.532067" lon="15.3719">
+    <name>Zamek Lomnice nad Popelkou</name>
+    <ele>488</ele>
+  </wpt>
+  <wpt lat="50.5451" lon="15.1946">
+    <name>Zamek Hruba Skala</name>
+    <ele>367</ele>
+  </wpt>
+  <wpt lat="50.602142" lon="13.744186">
+    <name>Zamek Duchcov</name>
+    <ele>212</ele>
+  </wpt>
+  <wpt lat="50.637281" lon="13.826036">
+    <name>Zamek Teplice</name>
+    <ele>237</ele>
+  </wpt>
+  <wpt lat="50.597728" lon="13.610775">
+    <name>Zamek Litvinov</name>
+    <ele>316</ele>
+  </wpt>
+  <wpt lat="50.554369" lon="13.504632">
+    <name>Zamek Jezeri</name>
+    <ele>396</ele>
+  </wpt>
+  <wpt lat="50.116456" lon="14.412883">
+    <name>Zamek Trojsky zamek Praha 7</name>
+    <ele>194</ele>
+  </wpt>
+  <wpt lat="49.068772" lon="14.909792">
+    <name>Zamek Straz nad Nezarkou</name>
+    <ele>453</ele>
+  </wpt>
+  <wpt lat="48.739206" lon="16.755539">
+    <name>Zamek Valtice</name>
+    <ele>218</ele>
+  </wpt>
+  <wpt lat="48.751728" lon="16.761633">
+    <name>Zamek Belveder Valtice</name>
+    <ele>216</ele>
+  </wpt>
+  <wpt lat="49.051203" lon="14.441283">
+    <name>Zamek Hluboka nad Vltavou</name>
+    <ele>443</ele>
+  </wpt>
+  <wpt lat="49.041597" lon="14.421742">
+    <name>Zamek Hluboka nad Vltavou - Ohrada</name>
+    <ele>384</ele>
+  </wpt>
+  <wpt lat="49.838221" lon="13.906581">
+    <name>Zamek Horovice - stary zamek</name>
+    <ele>367</ele>
+  </wpt>
+  <wpt lat="49.208747" lon="16.162564">
+    <name>Zamek Namest nad Oslavou</name>
+    <ele>421</ele>
+  </wpt>
+  <wpt lat="49.999717" lon="16.226633">
+    <name>Zamek Chocen</name>
+    <ele>295</ele>
+  </wpt>
+  <wpt lat="50.085231" lon="12.839597">
+    <name>Zamek Becov nad Teplou</name>
+    <ele>524</ele>
+  </wpt>
+  <wpt lat="50.302808" lon="12.941111">
+    <name>Zamek Ostrov nad Ohri</name>
+    <ele>406</ele>
+  </wpt>
+  <wpt lat="49.058458" lon="14.168918">
+    <name>Zamek Kratochvile</name>
+    <ele>433</ele>
+  </wpt>
+  <wpt lat="50.598509" lon="15.157757">
+    <name>Zamek Hruby Rohozec</name>
+    <ele>279</ele>
+  </wpt>
+  <wpt lat="50.62592" lon="15.08779">
+    <name>Zamek Sychrov</name>
+    <ele>385</ele>
+  </wpt>
+  <wpt lat="49.955064" lon="13.689205">
+    <name>Zamek Zvikovec</name>
+    <ele>320</ele>
+  </wpt>
+  <wpt lat="49.478555" lon="13.502746">
+    <name>Zamek Zinkovy</name>
+    <ele>464</ele>
+  </wpt>
+  <wpt lat="50.00925" lon="15.1475">
+    <name>Zamek Radovesnice I</name>
+    <ele>285</ele>
+  </wpt>
+  <wpt lat="49.83778" lon="13.90861">
+    <name>Zamek Horovice - novy zamek</name>
+    <ele>371</ele>
+  </wpt>
+  <wpt lat="48.8559" lon="16.0424">
+    <name>Zamek Znojmo mesto</name>
+    <ele>285</ele>
+  </wpt>
+  <wpt lat="49.225602" lon="17.663136">
+    <name>Zamek Zlin</name>
+    <ele>222</ele>
+  </wpt>
+  <wpt lat="49.472044" lon="13.684311">
+    <name>Zamek Zivotice u Kasejovic</name>
+    <ele>487</ele>
+  </wpt>
+  <wpt lat="50.554514" lon="14.156184">
+    <name>Zamek Zitenice</name>
+    <ele>224</ele>
+  </wpt>
+  <wpt lat="50.413794" lon="15.853517">
+    <name>Zamek Zirec - Dvur Kralove nad Labem</name>
+    <ele>279</ele>
+  </wpt>
+  <wpt lat="49.213141" lon="13.631066">
+    <name>Zamek Zihobce</name>
+    <ele>549</ele>
+  </wpt>
+  <wpt lat="50.045236" lon="13.37641">
+    <name>Zamek Zihle</name>
+    <ele>451</ele>
+  </wpt>
+  <wpt lat="49.03563" lon="16.6132">
+    <name>Zamek Zidlochovice</name>
+    <ele>187</ele>
+  </wpt>
+  <wpt lat="49.26673" lon="13.62587">
+    <name>Zamek Zichovice</name>
+    <ele>447</ele>
+  </wpt>
+  <wpt lat="49.291879" lon="17.602404">
+    <name>Zamek Zeranovice</name>
+    <ele>243</ele>
+  </wpt>
+  <wpt lat="49.23094" lon="17.31371">
+    <name>Zamek Zdounky</name>
+    <ele>239</ele>
+  </wpt>
+  <wpt lat="49.083741" lon="13.697434">
+    <name>Zamek Zdikov</name>
+    <ele>732</ele>
+  </wpt>
+  <wpt lat="50.013517" lon="15.469058">
+    <name>Zamek Zdechovice</name>
+    <ele>235</ele>
+  </wpt>
+  <wpt lat="49.065114" lon="17.025341">
+    <name>Zamek Zdanice</name>
+    <ele>237</ele>
+  </wpt>
+  <wpt lat="49.719303" lon="15.455771">
+    <name>Zamek Zbozi</name>
+    <ele>513</ele>
+  </wpt>
+  <wpt lat="49.251178" lon="17.278539">
+    <name>Zamek Zborovice</name>
+    <ele>265</ele>
+  </wpt>
+  <wpt lat="49.391853" lon="14.424372">
+    <name>Zamek Zbesicky</name>
+    <ele>474</ele>
+  </wpt>
+  <wpt lat="49.592597" lon="14.087254">
+    <name>Zamek Zbenice</name>
+    <ele>529</ele>
+  </wpt>
+  <wpt lat="49.85814" lon="15.12728">
+    <name>Zamek Zandov</name>
+    <ele>541</ele>
+  </wpt>
+  <wpt lat="49.98847" lon="16.131308">
+    <name>Zamek Zamrsk</name>
+    <ele>278</ele>
+  </wpt>
+  <wpt lat="50.037878" lon="16.431668">
+    <name>Zamek Zampach</name>
+    <ele>447</ele>
+  </wpt>
+  <wpt lat="50.08586" lon="16.467206">
+    <name>Zamek Zamberk</name>
+    <ele>431</ele>
+  </wpt>
+  <wpt lat="49.543299" lon="14.083687">
+    <name>Zamek Zaluzany</name>
+    <ele>485</ele>
+  </wpt>
+  <wpt lat="49.217536" lon="14.600628">
+    <name>Zamek Zalsi</name>
+    <ele>426</ele>
+  </wpt>
+  <wpt lat="50.6871" lon="14.64367">
+    <name>Zamek Zakupy</name>
+    <ele>283</ele>
+  </wpt>
+  <wpt lat="50.63541" lon="14.52542">
+    <name>Zamek Zahradky u Ceske Lipy</name>
+    <ele>280</ele>
+  </wpt>
+  <wpt lat="49.553907" lon="14.300559">
+    <name>Zamek Zahradka - Petrovice</name>
+    <ele>483</ele>
+  </wpt>
+  <wpt lat="50.53252" lon="14.215">
+    <name>Zamek Zahorany - Kresice</name>
+    <ele>170</ele>
+  </wpt>
+  <wpt lat="49.746481" lon="16.910217">
+    <name>Zamek Zadlovice</name>
+    <ele>283</ele>
+  </wpt>
+  <wpt lat="50.649824" lon="15.903907">
+    <name>Zamek Zacler</name>
+    <ele>648</ele>
+  </wpt>
+  <wpt lat="50.38933" lon="17.00019">
+    <name>Zamek Javornik - Jansky vrch</name>
+    <ele>344</ele>
+  </wpt>
+  <wpt lat="50.538828" lon="14.065229">
+    <name>Zamek Velke Zernoseky</name>
+    <ele>159</ele>
+  </wpt>
+  <wpt lat="49.388968" lon="14.354922">
+    <name>Zamek Veselicko - Milevsko</name>
+    <ele>472</ele>
+  </wpt>
+  <wpt lat="48.980658" lon="16.149239">
+    <name>Zamek Visnove</name>
+    <ele>337</ele>
+  </wpt>
+  <wpt lat="50.46416" lon="14.091507">
+    <name>Zamek Vrbicany u Lovosic</name>
+    <ele>210</ele>
+  </wpt>
+  <wpt lat="49.553792" lon="15.040786">
+    <name>Zamek Vyklantice</name>
+    <ele>610</ele>
+  </wpt>
+  <wpt lat="50.326384" lon="14.011816">
+    <name>Zamek Vrany</name>
+    <ele>312</ele>
+  </wpt>
+  <wpt lat="49.83971" lon="13.559767">
+    <name>Zamek Vranovice u Bras</name>
+    <ele>442</ele>
+  </wpt>
+  <wpt lat="48.892626" lon="15.810247">
+    <name>Zamek Vranov nad Dyji</name>
+    <ele>384</ele>
+  </wpt>
+  <wpt lat="49.416268" lon="17.14007">
+    <name>Zamek Vysovice</name>
+    <ele>227</ele>
+  </wpt>
+  <wpt lat="50.331356" lon="15.437721">
+    <name>Zamek Vysoke Veseli</name>
+    <ele>265</ele>
+  </wpt>
+  <wpt lat="49.636889" lon="13.940104">
+    <name>Zamek Vysoka u Pribrame</name>
+    <ele>626</ele>
+  </wpt>
+  <wpt lat="49.810281" lon="17.986617">
+    <name>Zamek Vyskovice - Bilovec</name>
+    <ele>460</ele>
+  </wpt>
+  <wpt lat="49.873075" lon="14.109472">
+    <name>Zamek Vseradice</name>
+    <ele>336</ele>
+  </wpt>
+  <wpt lat="49.231617" lon="14.378603">
+    <name>Zamek Neznasov - Vsemyslice</name>
+    <ele>428</ele>
+  </wpt>
+  <wpt lat="50.366076" lon="13.842852">
+    <name>Zamek Vrsovice u Loun</name>
+    <ele>177</ele>
+  </wpt>
+  <wpt lat="49.402529" lon="17.137308">
+    <name>Zamek Vresovice u Prostejova</name>
+    <ele>227</ele>
+  </wpt>
+  <wpt lat="49.669125" lon="14.578132">
+    <name>Zamek Vrchotovy Janovice</name>
+    <ele>415</ele>
+  </wpt>
+  <wpt lat="49.379196" lon="14.127054">
+    <name>Zamek Vraz u Pisku</name>
+    <ele>456</ele>
+  </wpt>
+  <wpt lat="49.225237" lon="13.706882">
+    <name>Zamek Vojnice</name>
+    <ele>555</ele>
+  </wpt>
+  <wpt lat="49.322981" lon="16.392702">
+    <name>Zamek Vohancice</name>
+    <ele>344</ele>
+  </wpt>
+  <wpt lat="49.464958" lon="14.908638">
+    <name>Zamek Vodice u Tabora</name>
+    <ele>612</ele>
+  </wpt>
+  <wpt lat="50.559854" lon="15.822706">
+    <name>Zamek Vlcice u Trutnova</name>
+    <ele>381</ele>
+  </wpt>
+  <wpt lat="50.3443" lon="17.04691">
+    <name>Zamek Vlcice u Javornika</name>
+    <ele>357</ele>
+  </wpt>
+  <wpt lat="50.49826" lon="13.960506">
+    <name>Zamek Skalka - Vlastislav</name>
+    <ele>316</ele>
+  </wpt>
+  <wpt lat="49.731261" lon="15.1747">
+    <name>Zamek Vlastejovice</name>
+    <ele>365</ele>
+  </wpt>
+  <wpt lat="49.374593" lon="14.223208">
+    <name>Zamek Cerveny Ujezdec - Vlastec</name>
+    <ele>432</ele>
+  </wpt>
+  <wpt lat="49.082375" lon="13.957906">
+    <name>Zamek Vlachovo Brezi</name>
+    <ele>564</ele>
+  </wpt>
+  <wpt lat="48.933816" lon="16.477847">
+    <name>Zamek Vlasatice</name>
+    <ele>185</ele>
+  </wpt>
+  <wpt lat="49.219711" lon="17.850264">
+    <name>Zamek Vizovice</name>
+    <ele>297</ele>
+  </wpt>
+  <wpt lat="50.306265" lon="13.273542">
+    <name>Zamek Vintirov - Radonice</name>
+    <ele>343</ele>
+  </wpt>
+  <wpt lat="50.375779" lon="14.951903">
+    <name>Zamek Vinarice u Dobrovic</name>
+    <ele>328</ele>
+  </wpt>
+  <wpt lat="49.05471" lon="13.77204">
+    <name>Zamek Vimperk</name>
+    <ele>757</ele>
+  </wpt>
+  <wpt lat="49.68782" lon="15.32167">
+    <name>Zamek Vilemovice u Ledce nad Sazavou</name>
+    <ele>436</ele>
+  </wpt>
+  <wpt lat="50.30026" lon="13.312614">
+    <name>Zamek Vilemov u Kadane</name>
+    <ele>306</ele>
+  </wpt>
+  <wpt lat="49.346133" lon="17.171565">
+    <name>Zamek Vicemerice</name>
+    <ele>211</ele>
+  </wpt>
+  <wpt lat="49.28516" lon="17.28173">
+    <name>Zamek Vezky</name>
+    <ele>280</ele>
+  </wpt>
+  <wpt lat="49.562923" lon="15.457736">
+    <name>Zamek Vez</name>
+    <ele>548</ele>
+  </wpt>
+  <wpt lat="49.475886" lon="15.478417">
+    <name>Zamek Vetrny Jenikov</name>
+    <ele>670</ele>
+  </wpt>
+  <wpt lat="49.530842" lon="17.504725">
+    <name>Zamek Veselicko u Prerova</name>
+    <ele>295</ele>
+  </wpt>
+  <wpt lat="49.349468" lon="13.205456">
+    <name>Zamek Veseli - Janovice nad Uhlavou</name>
+    <ele>417</ele>
+  </wpt>
+  <wpt lat="48.95349" lon="17.37615">
+    <name>Zamek Veseli nad Moravou</name>
+    <ele>175</ele>
+  </wpt>
+  <wpt lat="50.141564" lon="13.174172">
+    <name>Zamek Verusicky</name>
+    <ele>583</ele>
+  </wpt>
+  <wpt lat="49.474689" lon="17.283939">
+    <name>Zamek Nenakonice - Verovany</name>
+    <ele>208</ele>
+  </wpt>
+  <wpt lat="50.277865" lon="14.329873">
+    <name>Zamek Veltrusy</name>
+    <ele>174</ele>
+  </wpt>
+  <wpt lat="49.549723" lon="17.332608">
+    <name>Zamek Velky Tynec</name>
+    <ele>237</ele>
+  </wpt>
+  <wpt lat="49.109865" lon="17.669484">
+    <name>Zamek Velky Orechov</name>
+    <ele>389</ele>
+  </wpt>
+  <wpt lat="49.61016" lon="16.66818">
+    <name>Zamek Velke Opatovice</name>
+    <ele>391</ele>
+  </wpt>
+  <wpt lat="49.35778" lon="16.01236">
+    <name>Zamek Velke Mezirici</name>
+    <ele>450</ele>
+  </wpt>
+  <wpt lat="50.023217" lon="17.031315">
+    <name>Zamek Velke Losiny</name>
+    <ele>390</ele>
+  </wpt>
+  <wpt lat="49.933318" lon="17.972158">
+    <name>Zamek Velke Hostice</name>
+    <ele>250</ele>
+  </wpt>
+  <wpt lat="49.97502" lon="17.73718">
+    <name>Zamek Velke Heraltice</name>
+    <ele>352</ele>
+  </wpt>
+  <wpt lat="49.594033" lon="17.358082">
+    <name>Zamek Velka Bystrice</name>
+    <ele>249</ele>
+  </wpt>
+  <wpt lat="50.73034" lon="14.39874">
+    <name>Zamek Velka Bukovina</name>
+    <ele>318</ele>
+  </wpt>
+  <wpt lat="50.26983" lon="13.37198">
+    <name>Zamek Velika Ves</name>
+    <ele>281</ele>
+  </wpt>
+  <wpt lat="49.103457" lon="17.395383">
+    <name>Zamek Velehrad</name>
+    <ele>216</ele>
+  </wpt>
+  <wpt lat="49.43873" lon="14.141998">
+    <name>Zamek Varvazov</name>
+    <ele>431</ele>
+  </wpt>
+  <wpt lat="49.147551" lon="16.035754">
+    <name>Zamek Valec u Hrotovic</name>
+    <ele>454</ele>
+  </wpt>
+  <wpt lat="49.471578" lon="17.969142">
+    <name>Zamek Valasske Mezirici</name>
+    <ele>301</ele>
+  </wpt>
+  <wpt lat="50.270786" lon="14.958758">
+    <name>Zamek Vlkava</name>
+    <ele>206</ele>
+  </wpt>
+  <wpt lat="49.867253" lon="14.258557">
+    <name>Zamek Mnisek pod Brdy</name>
+    <ele>398</ele>
+  </wpt>
+  <wpt lat="49.422714" lon="13.879792">
+    <name>Zamek Blatna</name>
+    <ele>440</ele>
+  </wpt>
+  <wpt lat="49.363758" lon="16.646167">
+    <name>Zamek Blansko</name>
+    <ele>293</ele>
+  </wpt>
+  <wpt lat="50.224842" lon="12.188894">
+    <name>Zamek As</name>
+    <ele>644</ele>
+  </wpt>
+  <wpt lat="49.516532" lon="15.502355">
+    <name>Zamek Usobi</name>
+    <ele>542</ele>
+  </wpt>
+  <wpt lat="49.798768" lon="17.014429">
+    <name>Zamek Usov - mesto</name>
+    <ele>323</ele>
+  </wpt>
+  <wpt lat="50.082698" lon="14.129915">
+    <name>Zamek Unhost</name>
+    <ele>386</ele>
+  </wpt>
+  <wpt lat="49.759793" lon="13.148968">
+    <name>Zamek Ulice</name>
+    <ele>419</ele>
+  </wpt>
+  <wpt lat="49.536654" lon="13.403735">
+    <name>Zamek Ujezd - Horsice</name>
+    <ele>469</ele>
+  </wpt>
+  <wpt lat="49.023108" lon="16.053276">
+    <name>Zamek Ujezd nad Rokytnou</name>
+    <ele>414</ele>
+  </wpt>
+  <wpt lat="49.788078" lon="13.195406">
+    <name>Zamek Ujezd nade Mzi</name>
+    <ele>399</ele>
+  </wpt>
+  <wpt lat="50.28457" lon="14.27217">
+    <name>Zamek Uhy</name>
+    <ele>200</ele>
+  </wpt>
+  <wpt lat="49.809029" lon="15.562833">
+    <name>Zamek Uhrov</name>
+    <ele>393</ele>
+  </wpt>
+  <wpt lat="50.1613" lon="14.33287">
+    <name>Zamek Uholicky</name>
+    <ele>258</ele>
+  </wpt>
+  <wpt lat="48.985864" lon="17.390067">
+    <name>Zamek Uhersky Ostroh</name>
+    <ele>181</ele>
+  </wpt>
+  <wpt lat="48.914396" lon="15.633363">
+    <name>Zamek Uhercice u Znojma</name>
+    <ele>437</ele>
+  </wpt>
+  <wpt lat="50.129967" lon="13.088241">
+    <name>Zamek Udrc</name>
+    <ele>618</ele>
+  </wpt>
+  <wpt lat="50.43999" lon="13.45808">
+    <name>Zamek Udlice</name>
+    <ele>292</ele>
+  </wpt>
+  <wpt lat="50.359866" lon="15.508263">
+    <name>Zamek Obora u Chomutic</name>
+    <ele>257</ele>
+  </wpt>
+  <wpt lat="49.40949" lon="16.64423">
+    <name>Zamek Rajec - Rajec-Jestrebi</name>
+    <ele>342</ele>
+  </wpt>
+  <wpt lat="50.34193" lon="13.47366">
+    <name>Zamek Nove Sedlo u Zatce</name>
+    <ele>224</ele>
+  </wpt>
+  <wpt lat="49.346771" lon="13.2635">
+    <name>Zamek Tynec u Janovic nad Uhlavou</name>
+    <ele>514</ele>
+  </wpt>
+  <wpt lat="49.224114" lon="14.421434">
+    <name>Zamek Tyn nad Vltavou</name>
+    <ele>374</ele>
+  </wpt>
+  <wpt lat="50.44548" lon="14.47581">
+    <name>Zamek Slavin - Tupadly</name>
+    <ele>247</ele>
+  </wpt>
+  <wpt lat="49.039362" lon="16.20598">
+    <name>Zamek Tulesice</name>
+    <ele>302</ele>
+  </wpt>
+  <wpt lat="50.284518" lon="13.660959">
+    <name>Zamek Tuchorice</name>
+    <ele>309</ele>
+  </wpt>
+  <wpt lat="49.170833" lon="16.505663">
+    <name>Zamek Troubsko</name>
+    <ele>277</ele>
+  </wpt>
+  <wpt lat="49.290686" lon="14.805476">
+    <name>Zamek Tucapy u Sobeslavi</name>
+    <ele>448</ele>
+  </wpt>
+  <wpt lat="49.543701" lon="17.426814">
+    <name>Zamek Trsice</name>
+    <ele>286</ele>
+  </wpt>
+  <wpt lat="49.823794" lon="13.05889">
+    <name>Zamek Trpisty</name>
+    <ele>449</ele>
+  </wpt>
+  <wpt lat="49.915141" lon="14.358516">
+    <name>Zamek Trnova u Jiloviste</name>
+    <ele>341</ele>
+  </wpt>
+  <wpt lat="50.458474" lon="13.898995">
+    <name>Zamek Trebivlice</name>
+    <ele>275</ele>
+  </wpt>
+  <wpt lat="50.642438" lon="13.991625">
+    <name>Zamek Trmice</name>
+    <ele>152</ele>
+  </wpt>
+  <wpt lat="49.420702" lon="12.845823">
+    <name>Zamek Trhanov</name>
+    <ele>461</ele>
+  </wpt>
+  <wpt lat="49.863938" lon="15.583201">
+    <name>Zamek Tremosnice nad Doubravou</name>
+    <ele>312</ele>
+  </wpt>
+  <wpt lat="49.650488" lon="14.36189">
+    <name>Zamek Trebnice</name>
+    <ele>401</ele>
+  </wpt>
+  <wpt lat="49.003172" lon="14.769504">
+    <name>Zamek Trebon</name>
+    <ele>442</ele>
+  </wpt>
+  <wpt lat="49.43024" lon="17.29147">
+    <name>Zamek Tovacov</name>
+    <ele>212</ele>
+  </wpt>
+  <wpt lat="50.059756" lon="12.983727">
+    <name>Zamek Touzim</name>
+    <ele>615</ele>
+  </wpt>
+  <wpt lat="49.596369" lon="13.989631">
+    <name>Zamek Tochovice</name>
+    <ele>495</ele>
+  </wpt>
+  <wpt lat="49.903978" lon="14.035548">
+    <name>Zamek Tman</name>
+    <ele>353</ele>
+  </wpt>
+  <wpt lat="49.253863" lon="17.495909">
+    <name>Zamek Tlumacov na Morave</name>
+    <ele>196</ele>
+  </wpt>
+  <wpt lat="49.03973" lon="16.77161">
+    <name>Zamek Tesany</name>
+    <ele>214</ele>
+  </wpt>
+  <wpt lat="49.404848" lon="13.198951">
+    <name>Zamek Tetetice - Bezdekov</name>
+    <ele>564</ele>
+  </wpt>
+  <wpt lat="49.893628" lon="13.701946">
+    <name>Zamek Teresov</name>
+    <ele>427</ele>
+  </wpt>
+  <wpt lat="50.594805" lon="16.169473">
+    <name>Zamek Teplice nad Metuji - zamecek</name>
+    <ele>478</ele>
+  </wpt>
+  <wpt lat="49.185263" lon="15.451333">
+    <name>Zamek Telc</name>
+    <ele>524</ele>
+  </wpt>
+  <wpt lat="49.509504" lon="14.927784">
+    <name>Zamek Techobuz</name>
+    <ele>554</ele>
+  </wpt>
+  <wpt lat="49.231661" lon="13.759853">
+    <name>Zamek Tazovice</name>
+    <ele>478</ele>
+  </wpt>
+  <wpt lat="49.032956" lon="16.10732">
+    <name>Zamek Tavikovice</name>
+    <ele>352</ele>
+  </wpt>
+  <wpt lat="49.867658" lon="16.698001">
+    <name>Zamek Tatenice</name>
+    <ele>355</ele>
+  </wpt>
+  <wpt lat="49.794962" lon="12.631281">
+    <name>Zamek Tachov</name>
+    <ele>493</ele>
+  </wpt>
+  <wpt lat="49.964373" lon="16.971859">
+    <name>Zamek Sumperk</name>
+    <ele>329</ele>
+  </wpt>
+  <wpt lat="49.893121" lon="13.620836">
+    <name>Zamek Svinna U Hlohovic</name>
+    <ele>450</ele>
+  </wpt>
+  <wpt lat="49.893283" lon="14.183706">
+    <name>Zamek Svinare</name>
+    <ele>276</ele>
+  </wpt>
+  <wpt lat="50.573683" lon="15.055585">
+    <name>Zamek Svijany</name>
+    <ele>281</ele>
+  </wpt>
+  <wpt lat="49.66704" lon="15.40788">
+    <name>Zamek Svetla nad Sazavou</name>
+    <ele>396</ele>
+  </wpt>
+  <wpt lat="50.57732" lon="13.812571">
+    <name>Zamek Svetec</name>
+    <ele>208</ele>
+  </wpt>
+  <wpt lat="50.530295" lon="14.432215">
+    <name>Zamek Sukorady</name>
+    <ele>249</ele>
+  </wpt>
+  <wpt lat="49.786396" lon="14.30865">
+    <name>Zamek Sudovice</name>
+    <ele>356</ele>
+  </wpt>
+  <wpt lat="49.290666" lon="14.559243">
+    <name>Zamek Cernice - Sudomerice u Bechyne</name>
+    <ele>482</ele>
+  </wpt>
+  <wpt lat="49.893824" lon="14.057031">
+    <name>Zamek Suchomasty</name>
+    <ele>358</ele>
+  </wpt>
+  <wpt lat="49.700756" lon="14.497371">
+    <name>Zamek Suchdol u Prosecnice</name>
+    <ele>445</ele>
+  </wpt>
+  <wpt lat="50.631601" lon="14.42797">
+    <name>Zamek Stvolinky</name>
+    <ele>277</ele>
+  </wpt>
+  <wpt lat="50.547293" lon="15.560226">
+    <name>Zamek Studenec</name>
+    <ele>530</ele>
+  </wpt>
+  <wpt lat="49.185592" lon="15.286372">
+    <name>Zamek Studena</name>
+    <ele>627</ele>
+  </wpt>
+  <wpt lat="50.325948" lon="13.649624">
+    <name>Zamek Strkovice</name>
+    <ele>196</ele>
+  </wpt>
+  <wpt lat="49.144936" lon="15.165529">
+    <name>Zamek Rozkos - Strizovice</name>
+    <ele>538</ele>
+  </wpt>
+  <wpt lat="49.78783" lon="14.77672">
+    <name>Zamek Strizkov u Brenovic</name>
+    <ele>475</ele>
+  </wpt>
+  <wpt lat="49.142582" lon="17.209159">
+    <name>Zamek Strilky</name>
+    <ele>349</ele>
+  </wpt>
+  <wpt lat="49.266922" lon="13.853776">
+    <name>Zamek Strela</name>
+    <ele>432</ele>
+  </wpt>
+  <wpt lat="50.70549" lon="14.80002">
+    <name>Zamek Straz pod Ralskem</name>
+    <ele>343</ele>
+  </wpt>
+  <wpt lat="49.378124" lon="15.925141">
+    <name>Zamek Stranecka Zhor</name>
+    <ele>491</ele>
+  </wpt>
+  <wpt lat="49.502972" lon="15.589078">
+    <name>Zamek Stoky</name>
+    <ele>521</ele>
+  </wpt>
+  <wpt lat="50.215179" lon="15.748854">
+    <name>Zamek Stezery</name>
+    <ele>257</ele>
+  </wpt>
+  <wpt lat="49.98041" lon="17.78814">
+    <name>Zamek Stemplovec</name>
+    <ele>314</ele>
+  </wpt>
+  <wpt lat="50.32348" lon="13.62376">
+    <name>Zamek Steknik</name>
+    <ele>211</ele>
+  </wpt>
+  <wpt lat="49.26768" lon="14.003467">
+    <name>Zamek Steken</name>
+    <ele>411</ele>
+  </wpt>
+  <wpt lat="50.057435" lon="13.112529">
+    <name>Zamek Stedra</name>
+    <ele>587</ele>
+  </wpt>
+  <wpt lat="49.257285" lon="13.766193">
+    <name>Zamek Stechovice</name>
+    <ele>435</ele>
+  </wpt>
+  <wpt lat="49.93638" lon="17.80786">
+    <name>Zamek Steborice</name>
+    <ele>311</ele>
+  </wpt>
+  <wpt lat="49.575445" lon="17.964238">
+    <name>Zamek Stary Jicin</name>
+    <ele>343</ele>
+  </wpt>
+  <wpt lat="50.023928" lon="12.390461">
+    <name>Zamek Stary Hroznatov</name>
+    <ele>474</ele>
+  </wpt>
+  <wpt lat="49.526325" lon="13.750183">
+    <name>Zamek Stary Smolivec</name>
+    <ele>540</ele>
+  </wpt>
+  <wpt lat="49.578112" lon="14.004484">
+    <name>Zamek Starosedlsky Hradek</name>
+    <ele>476</ele>
+  </wpt>
+  <wpt lat="50.533478" lon="16.159574">
+    <name>Zamek Starkov</name>
+    <ele>431</ele>
+  </wpt>
+  <wpt lat="50.183165" lon="12.714671">
+    <name>Zamek Stare Sedlo u Sokolova</name>
+    <ele>413</ele>
+  </wpt>
+  <wpt lat="48.997412" lon="15.253519">
+    <name>Zamek Stare Mesto pod Landstejnem</name>
+    <ele>546</ele>
+  </wpt>
+  <wpt lat="49.269915" lon="14.074173">
+    <name>Zamek Kestrany</name>
+    <ele>379</ele>
+  </wpt>
+  <wpt lat="49.011089" lon="15.452273">
+    <name>Zamek Stare Hobzi</name>
+    <ele>529</ele>
+  </wpt>
+  <wpt lat="49.727869" lon="18.188454">
+    <name>Zamek Stara Ves nad Ondrejnici</name>
+    <ele>236</ele>
+  </wpt>
+  <wpt lat="50.242" lon="14.79369">
+    <name>Zamek Bon Repos - Stara Lysa - Cihadla</name>
+    <ele>244</ele>
+  </wpt>
+  <wpt lat="49.677221" lon="13.504001">
+    <name>Zamek Stahlavy</name>
+    <ele>348</ele>
+  </wpt>
+  <wpt lat="49.879403" lon="17.818087">
+    <name>Zamek Stablovice</name>
+    <ele>333</ele>
+  </wpt>
+  <wpt lat="49.998064" lon="17.664616">
+    <name>Zamek Sosnova</name>
+    <ele>404</ele>
+  </wpt>
+  <wpt lat="49.704484" lon="17.720961">
+    <name>Zamek Spalov</name>
+    <ele>559</ele>
+  </wpt>
+  <wpt lat="49.614841" lon="13.60639">
+    <name>Zamek Spalene Porici</name>
+    <ele>424</ele>
+  </wpt>
+  <wpt lat="49.728183" lon="15.054919">
+    <name>Zamek Soutice</name>
+    <ele>378</ele>
+  </wpt>
+  <wpt lat="49.119055" lon="16.726533">
+    <name>Zamek Sokolnice</name>
+    <ele>212</ele>
+  </wpt>
+  <wpt lat="50.017755" lon="17.080671">
+    <name>Zamek Sobotin</name>
+    <ele>428</ele>
+  </wpt>
+  <wpt lat="50.646347" lon="15.195831">
+    <name>Zamek Mala Skala</name>
+    <ele>324</ele>
+  </wpt>
+  <wpt lat="49.621778" lon="14.136019">
+    <name>Zamek Smolotely</name>
+    <ele>446</ele>
+  </wpt>
+  <wpt lat="50.373425" lon="15.517281">
+    <name>Zamek Sobcice</name>
+    <ele>260</ele>
+  </wpt>
+  <wpt lat="50.503617" lon="14.390541">
+    <name>Zamek Snedovice</name>
+    <ele>223</ele>
+  </wpt>
+  <wpt lat="49.903514" lon="18.073067">
+    <name>Zamek Smolkov</name>
+    <ele>234</ele>
+  </wpt>
+  <wpt lat="50.299408" lon="15.871083">
+    <name>Zamek Smirice</name>
+    <ele>249</ele>
+  </wpt>
+  <wpt lat="49.435309" lon="14.080832">
+    <name>Zamek Karlov - Smetanova Lhota</name>
+    <ele>415</ele>
+  </wpt>
+  <wpt lat="50.292811" lon="15.479925">
+    <name>Zamek Smidary</name>
+    <ele>239</ele>
+  </wpt>
+  <wpt lat="50.18859" lon="14.03664">
+    <name>Zamek Smecno</name>
+    <ele>381</ele>
+  </wpt>
+  <wpt lat="50.257355" lon="15.498291">
+    <name>Zamek Sloupno nad Cidlinou</name>
+    <ele>235</ele>
+  </wpt>
+  <wpt lat="50.73976" lon="14.58834">
+    <name>Zamek Sloup v Cechach</name>
+    <ele>311</ele>
+  </wpt>
+  <wpt lat="50.310752" lon="17.701869">
+    <name>Zamek Slezske Pavlovice</name>
+    <ele>224</ele>
+  </wpt>
+  <wpt lat="49.919162" lon="15.810929">
+    <name>Zamek Slatinany</name>
+    <ele>281</ele>
+  </wpt>
+  <wpt lat="49.02112" lon="16.01702">
+    <name>Zamek Slatina u Jevisovic</name>
+    <ele>371</ele>
+  </wpt>
+  <wpt lat="50.268568" lon="15.505017">
+    <name>Zamek Skrivany</name>
+    <ele>237</ele>
+  </wpt>
+  <wpt lat="49.811785" lon="14.396703">
+    <name>Zamek Slapy</name>
+    <ele>335</ele>
+  </wpt>
+  <wpt lat="49.999877" lon="13.713536">
+    <name>Zamek Slabce</name>
+    <ele>412</ele>
+  </wpt>
+  <wpt lat="50.19376" lon="13.33915">
+    <name>Zamek Skytaly</name>
+    <ele>426</ele>
+  </wpt>
+  <wpt lat="49.40271" lon="13.94706">
+    <name>Zamek Skvoretice</name>
+    <ele>463</ele>
+  </wpt>
+  <wpt lat="49.646392" lon="14.300634">
+    <name>Zamek Skrysov u Svateho Jana</name>
+    <ele>366</ele>
+  </wpt>
+  <wpt lat="49.84761" lon="15.4927">
+    <name>Zamek Hostacov - Skryje u Golcova Jenikova</name>
+    <ele>301</ele>
+  </wpt>
+  <wpt lat="50.023606" lon="13.764948">
+    <name>Zamek Skrivan</name>
+    <ele>398</ele>
+  </wpt>
+  <wpt lat="49.517759" lon="17.797026">
+    <name>Zamek Skalicka u Hranic</name>
+    <ele>269</ele>
+  </wpt>
+  <wpt lat="48.965191" lon="16.223933">
+    <name>Zamek Skalice u Znojma</name>
+    <ele>233</ele>
+  </wpt>
+  <wpt lat="50.572113" lon="16.138732">
+    <name>Zamek Skaly u Teplic nad Metuji</name>
+    <ele>652</ele>
+  </wpt>
+  <wpt lat="50.425964" lon="14.762768">
+    <name>Zamek Skalsko</name>
+    <ele>313</ele>
+  </wpt>
+  <wpt lat="49.37324" lon="13.94068">
+    <name>Zamek Sedlice u Blatne</name>
+    <ele>518</ele>
+  </wpt>
+  <wpt lat="49.658826" lon="14.453229">
+    <name>Zamek Sedlcany - Cerveny Hradek</name>
+    <ele>373</ele>
+  </wpt>
+  <wpt lat="50.063024" lon="17.480326">
+    <name>Zamek Siroka Niva</name>
+    <ele>442</ele>
+  </wpt>
+  <wpt lat="50.30354" lon="12.604978">
+    <name>Zamek Favorit - Sindelova</name>
+    <ele>617</ele>
+  </wpt>
+  <wpt lat="49.92621" lon="18.27452">
+    <name>Zamek Silherovice</name>
+    <ele>236</ele>
+  </wpt>
+  <wpt lat="50.055137" lon="15.520766">
+    <name>Zamek Semin</name>
+    <ele>213</ele>
+  </wpt>
+  <wpt lat="49.19306" lon="15.61115">
+    <name>Zamek Sedlatice</name>
+    <ele>627</ele>
+  </wpt>
+  <wpt lat="49.54686" lon="16.71523">
+    <name>Zamek Sebetov</name>
+    <ele>422</ele>
+  </wpt>
+  <wpt lat="49.629695" lon="13.43094">
+    <name>Zamek Nebilovy</name>
+    <ele>423</ele>
+  </wpt>
+  <wpt lat="50.41482" lon="16.05253">
+    <name>Zamek Ratiborice u Ceske Skalice</name>
+    <ele>298</ele>
+  </wpt>
+  <wpt lat="49.462705" lon="14.769854">
+    <name>Zamek Ratiborske Hory</name>
+    <ele>505</ele>
+  </wpt>
+  <wpt lat="50.229575" lon="14.184508">
+    <name>Zamek Zvoleneves</name>
+    <ele>223</ele>
+  </wpt>
+  <wpt lat="49.696521" lon="14.434308">
+    <name>Zamek Osecany</name>
+    <ele>344</ele>
+  </wpt>
+  <wpt lat="49.974889" lon="16.875243">
+    <name>Zamek Ruda nad Moravou</name>
+    <ele>331</ele>
+  </wpt>
+  <wpt lat="49.864853" lon="18.351894">
+    <name>Zamek Rychvald</name>
+    <ele>215</ele>
+  </wpt>
+  <wpt lat="48.990027" lon="14.546879">
+    <name>Zamek Lustenek - Rudolfov u Ceskych Budejovic</name>
+    <ele>493</ele>
+  </wpt>
+  <wpt lat="49.478793" lon="15.831009">
+    <name>Zamek Rudolec</name>
+    <ele>637</ele>
+  </wpt>
+  <wpt lat="49.616111" lon="14.066485">
+    <name>Zamek Rtisovice</name>
+    <ele>514</ele>
+  </wpt>
+  <wpt lat="49.62932" lon="12.59632">
+    <name>Zamek Diana - Rozvadov</name>
+    <ele>558</ele>
+  </wpt>
+  <wpt lat="49.90443" lon="15.18868">
+    <name>Zamek Roztez</name>
+    <ele>418</ele>
+  </wpt>
+  <wpt lat="49.674965" lon="15.632775">
+    <name>Zamek Rozsochatec</name>
+    <ele>497</ele>
+  </wpt>
+  <wpt lat="50.30778" lon="15.171356">
+    <name>Zamek Rozdalovice</name>
+    <ele>228</ele>
+  </wpt>
+  <wpt lat="50.42538" lon="14.26146">
+    <name>Zamek Roudnice nad Labem</name>
+    <ele>180</ele>
+  </wpt>
+  <wpt lat="49.18217" lon="16.386221">
+    <name>Zamek Rosice u Brna</name>
+    <ele>343</ele>
+  </wpt>
+  <wpt lat="49.704019" lon="18.61093">
+    <name>Zamek Ropice</name>
+    <ele>303</ele>
+  </wpt>
+  <wpt lat="49.467057" lon="17.392574">
+    <name>Zamek Rokytnice u Prerova</name>
+    <ele>228</ele>
+  </wpt>
+  <wpt lat="49.731315" lon="13.145084">
+    <name>Zamek Rochlov</name>
+    <ele>385</ele>
+  </wpt>
+  <wpt lat="49.896189" lon="14.291933">
+    <name>Zamek Ritka</name>
+    <ele>384</ele>
+  </wpt>
+  <wpt lat="48.85663" lon="14.489258">
+    <name>Zamek Dolni Rimov</name>
+    <ele>469</ele>
+  </wpt>
+  <wpt lat="49.139194" lon="15.366035">
+    <name>Zamek Recice</name>
+    <ele>553</ele>
+  </wpt>
+  <wpt lat="49.510195" lon="14.831032">
+    <name>Zamek Radvanov - Mlada Vozice</name>
+    <ele>585</ele>
+  </wpt>
+  <wpt lat="49.469909" lon="14.056872">
+    <name>Zamek Rakovice</name>
+    <ele>442</ele>
+  </wpt>
+  <wpt lat="49.714724" lon="14.414038">
+    <name>Zamek Radic</name>
+    <ele>302</ele>
+  </wpt>
+  <wpt lat="49.47172" lon="16.08738">
+    <name>Zamek Radesin nad Bobruvkou</name>
+    <ele>535</ele>
+  </wpt>
+  <wpt lat="50.298536" lon="13.285561">
+    <name>Zamek v Radonice u Kadane</name>
+    <ele>331</ele>
+  </wpt>
+  <wpt lat="49.856411" lon="13.604434">
+    <name>Zamek Radnice u Rokycan</name>
+    <ele>389</ele>
+  </wpt>
+  <wpt lat="49.815079" lon="17.770803">
+    <name>Zamek Dubova - Radkov u Vitkova</name>
+    <ele>505</ele>
+  </wpt>
+  <wpt lat="49.275233" lon="16.869261">
+    <name>Zamek Racice</name>
+    <ele>391</ele>
+  </wpt>
+  <wpt lat="49.771687" lon="12.856482">
+    <name>Zamek Oselin</name>
+    <ele>480</ele>
+  </wpt>
+  <wpt lat="49.329933" lon="16.194331">
+    <name>Zamek Osova</name>
+    <ele>515</ele>
+  </wpt>
+  <wpt lat="49.12695" lon="16.33474">
+    <name>Zamek Oslavany</name>
+    <ele>227</ele>
+  </wpt>
+  <wpt lat="49.434636" lon="13.673337">
+    <name>Zamek Oselce</name>
+    <ele>605</ele>
+  </wpt>
+  <wpt lat="49.778819" lon="13.596081">
+    <name>Zamek Osek u Rokycan</name>
+    <ele>408</ele>
+  </wpt>
+  <wpt lat="49.314647" lon="13.964181">
+    <name>Zamek Osek u Strakonic</name>
+    <ele>456</ele>
+  </wpt>
+  <wpt lat="49.36032" lon="15.64962">
+    <name>Zamek Puklice</name>
+    <ele>544</ele>
+  </wpt>
+  <wpt lat="50.513433" lon="14.928443">
+    <name>Zamek Ptyrov</name>
+    <ele>279</ele>
+  </wpt>
+  <wpt lat="49.530129" lon="13.187427">
+    <name>Zamek Ptenin</name>
+    <ele>431</ele>
+  </wpt>
+  <wpt lat="49.509361" lon="16.960228">
+    <name>Zamek Pteni</name>
+    <ele>346</ele>
+  </wpt>
+  <wpt lat="50.000299" lon="14.557032">
+    <name>Zamek Pruhonice</name>
+    <ele>303</ele>
+  </wpt>
+  <wpt lat="49.11856" lon="16.47296">
+    <name>Zamek Prstice</name>
+    <ele>299</ele>
+  </wpt>
+  <wpt lat="49.195765" lon="14.217584">
+    <name>Zamek Protivin</name>
+    <ele>395</ele>
+  </wpt>
+  <wpt lat="49.407633" lon="15.128626">
+    <name>Zamek Prosec - Oboriste</name>
+    <ele>584</ele>
+  </wpt>
+  <wpt lat="49.443829" lon="15.045772">
+    <name>Zamek Prosec u Posne</name>
+    <ele>588</ele>
+  </wpt>
+  <wpt lat="49.499328" lon="13.004373">
+    <name>Zamek Privozec</name>
+    <ele>390</ele>
+  </wpt>
+  <wpt lat="49.56048" lon="13.33938">
+    <name>Zamek Prichovice u Prestic</name>
+    <ele>362</ele>
+  </wpt>
+  <wpt lat="49.574777" lon="15.741056">
+    <name>Zamek Pribyslav</name>
+    <ele>482</ele>
+  </wpt>
+  <wpt lat="49.390178" lon="17.482043">
+    <name>Zamek Prestavlky u Prerova</name>
+    <ele>272</ele>
+  </wpt>
+  <wpt lat="49.60017" lon="13.244717">
+    <name>Zamek Prestavlky u Plzne</name>
+    <ele>382</ele>
+  </wpt>
+  <wpt lat="49.577629" lon="14.537672">
+    <name>Zamek Prcice</name>
+    <ele>409</ele>
+  </wpt>
+  <wpt lat="49.91462" lon="13.66023">
+    <name>Zamek Prasny Ujezd</name>
+    <ele>449</ele>
+  </wpt>
+  <wpt lat="48.939708" lon="16.628853">
+    <name>Zamek Pouzdrany</name>
+    <ele>178</ele>
+  </wpt>
+  <wpt lat="49.63644" lon="17.65249">
+    <name>Zamek Potstat-mesto</name>
+    <ele>498</ele>
+  </wpt>
+  <wpt lat="50.359025" lon="13.701491">
+    <name>Zamek Postoloprty</name>
+    <ele>197</ele>
+  </wpt>
+  <wpt lat="49.33955" lon="15.647514">
+    <name>Zamek Priseka</name>
+    <ele>583</ele>
+  </wpt>
+  <wpt lat="49.320851" lon="17.612643">
+    <name>Zamek Prilepy u Holesova</name>
+    <ele>284</ele>
+  </wpt>
+  <wpt lat="49.212003" lon="15.179236">
+    <name>Zamek Popelin</name>
+    <ele>576</ele>
+  </wpt>
+  <wpt lat="49.487426" lon="15.714248">
+    <name>Zamek Polna</name>
+    <ele>487</ele>
+  </wpt>
+  <wpt lat="48.96555" lon="15.62787">
+    <name>Zamek Police u Jemnice</name>
+    <ele>455</ele>
+  </wpt>
+  <wpt lat="49.414941" lon="13.779169">
+    <name>Zamek Pole</name>
+    <ele>486</ele>
+  </wpt>
+  <wpt lat="50.338833" lon="13.354729">
+    <name>Zamek Polaky</name>
+    <ele>326</ele>
+  </wpt>
+  <wpt lat="49.175704" lon="17.53664">
+    <name>Zamek Pohorelice u Napajedel</name>
+    <ele>269</ele>
+  </wpt>
+  <wpt lat="49.603477" lon="15.650257">
+    <name>Zamek Pohled</name>
+    <ele>436</ele>
+  </wpt>
+  <wpt lat="49.941018" lon="13.703132">
+    <name>Zamek Podmokly u Berouna</name>
+    <ele>412</ele>
+  </wpt>
+  <wpt lat="49.216893" lon="15.872995">
+    <name>Zamek Trebic - Podklasteri</name>
+    <ele>422</ele>
+  </wpt>
+  <wpt lat="50.426857" lon="15.322341">
+    <name>Zamek Voksice - Podhradi u Jicina</name>
+    <ele>283</ele>
+  </wpt>
+  <wpt lat="49.936126" lon="15.536762">
+    <name>Zamek Podhorany u Ronova</name>
+    <ele>308</ele>
+  </wpt>
+  <wpt lat="50.262385" lon="16.212734">
+    <name>Zamek Skalka - Podbrezi</name>
+    <ele>336</ele>
+  </wpt>
+  <wpt lat="49.777255" lon="13.121203">
+    <name>Zamek Pnovany</name>
+    <ele>422</ele>
+  </wpt>
+  <wpt lat="49.46448" lon="17.01429">
+    <name>Zamek Plumlov</name>
+    <ele>319</ele>
+  </wpt>
+  <wpt lat="49.224263" lon="14.89263">
+    <name>Zamek Pluhuv Zdar</name>
+    <ele>489</ele>
+  </wpt>
+  <wpt lat="50.55988" lon="14.20018">
+    <name>Zamek Ploskovice</name>
+    <ele>238</ele>
+  </wpt>
+  <wpt lat="48.929486" lon="16.0807">
+    <name>Zamek Plavec</name>
+    <ele>247</ele>
+  </wpt>
+  <wpt lat="49.390321" lon="13.476063">
+    <name>Zamek Planice</name>
+    <ele>557</ele>
+  </wpt>
+  <wpt lat="49.869748" lon="12.733677">
+    <name>Zamek Plana u Marianskych Lazni</name>
+    <ele>525</ele>
+  </wpt>
+  <wpt lat="48.963901" lon="15.462598">
+    <name>Zamek Pisecne u Slavonic</name>
+    <ele>441</ele>
+  </wpt>
+  <wpt lat="49.221853" lon="13.439789">
+    <name>Zamek Knezice Mecin - Petrovice u Susice</name>
+    <ele>586</ele>
+  </wpt>
+  <wpt lat="49.554786" lon="14.338223">
+    <name>Zamek Petrovice u Sedlcan</name>
+    <ele>458</ele>
+  </wpt>
+  <wpt lat="50.067116" lon="13.636002">
+    <name>Zamek Petrovice u Rakovnika</name>
+    <ele>395</ele>
+  </wpt>
+  <wpt lat="50.126249" lon="13.442961">
+    <name>Zamek Petrohrad</name>
+    <ele>378</ele>
+  </wpt>
+  <wpt lat="49.5684" lon="15.55753">
+    <name>Zamek Petrkov</name>
+    <ele>485</ele>
+  </wpt>
+  <wpt lat="50.320714" lon="13.347446">
+    <name>Zamek Petipsy</name>
+    <ele>282</ele>
+  </wpt>
+  <wpt lat="49.47135" lon="17.556382">
+    <name>Zamek Pavlovice u Prerova</name>
+    <ele>307</ele>
+  </wpt>
+  <wpt lat="49.3987" lon="15.243912">
+    <name>Zamek Pavlov u Rynarce</name>
+    <ele>529</ele>
+  </wpt>
+  <wpt lat="50.380547" lon="13.936132">
+    <name>Zamek Patek u Loun</name>
+    <ele>175</ele>
+  </wpt>
+  <wpt lat="49.731771" lon="18.293601">
+    <name>Zamek Paskov</name>
+    <ele>259</ele>
+  </wpt>
+  <wpt lat="49.25763" lon="17.16904">
+    <name>Zamek Paclavice</name>
+    <ele>274</ele>
+  </wpt>
+  <wpt lat="49.448161" lon="13.335411">
+    <name>Zamek Otin u Tocniku</name>
+    <ele>467</ele>
+  </wpt>
+  <wpt lat="49.512616" lon="13.046024">
+    <name>Zamek Osvracin</name>
+    <ele>376</ele>
+  </wpt>
+  <wpt lat="49.6911" lon="15.29811">
+    <name>Zamek Ostrov u Ledce n. S</name>
+    <ele>398</ele>
+  </wpt>
+  <wpt lat="48.881215" lon="14.600771">
+    <name>Zamek Ostrolovsky Ujezd</name>
+    <ele>483</ele>
+  </wpt>
+  <wpt lat="49.03088" lon="17.302223">
+    <name>Zamek Orechov u Uherskeho Hradiste</name>
+    <ele>261</ele>
+  </wpt>
+  <wpt lat="49.395324" lon="14.483213">
+    <name>Zamek Oparany</name>
+    <ele>480</ele>
+  </wpt>
+  <wpt lat="49.42252" lon="14.519482">
+    <name>Zamek Oltyne</name>
+    <ele>489</ele>
+  </wpt>
+  <wpt lat="50.129841" lon="13.696973">
+    <name>Zamek Olesna u Rakovnika</name>
+    <ele>357</ele>
+  </wpt>
+  <wpt lat="49.991138" lon="17.963653">
+    <name>Zamek Oldrisov</name>
+    <ele>282</ele>
+  </wpt>
+  <wpt lat="49.242794" lon="15.766019">
+    <name>Zamek Okrisky</name>
+    <ele>480</ele>
+  </wpt>
+  <wpt lat="50.314336" lon="15.525544">
+    <name>Zamek Podlesi - Ohnistany</name>
+    <ele>268</ele>
+  </wpt>
+  <wpt lat="50.297013" lon="14.478325">
+    <name>Zamek Obristvi</name>
+    <ele>167</ele>
+  </wpt>
+  <wpt lat="49.393575" lon="13.374213">
+    <name>Zamek Obytce</name>
+    <ele>478</ele>
+  </wpt>
+  <wpt lat="49.442496" lon="14.882891">
+    <name>Zamek Oblajovice</name>
+    <ele>654</ele>
+  </wpt>
+  <wpt lat="49.383581" lon="15.364554">
+    <name>Zamek Novy Rychnov</name>
+    <ele>603</ele>
+  </wpt>
+  <wpt lat="49.719638" lon="15.782595">
+    <name>Zamek Novy Studenec</name>
+    <ele>507</ele>
+  </wpt>
+  <wpt lat="49.93424" lon="17.772714">
+    <name>Zamek Steborice - Novy Dvur u Opavy</name>
+    <ele>338</ele>
+  </wpt>
+  <wpt lat="49.519166" lon="15.904919">
+    <name>Zamek Nove Veseli</name>
+    <ele>558</ele>
+  </wpt>
+  <wpt lat="49.018112" lon="15.7723">
+    <name>Zamek Nove Syrovice</name>
+    <ele>445</ele>
+  </wpt>
+  <wpt lat="49.85267" lon="16.1465">
+    <name>Zamek Nove Hrady u Skutce</name>
+    <ele>394</ele>
+  </wpt>
+  <wpt lat="49.356548" lon="14.093455">
+    <name>Zamek Cizova</name>
+    <ele>444</ele>
+  </wpt>
+  <wpt lat="49.754692" lon="15.644363">
+    <name>Zamek Nova Ves u Chotebore</name>
+    <ele>435</ele>
+  </wpt>
+  <wpt lat="49.239518" lon="15.073484">
+    <name>Zamek Nova Vcelnice</name>
+    <ele>503</ele>
+  </wpt>
+  <wpt lat="49.692869" lon="18.069124">
+    <name>Zamek Nova Horka</name>
+    <ele>245</ele>
+  </wpt>
+  <wpt lat="49.478" lon="14.33316">
+    <name>Zamek NEZOVICE</name>
+    <ele>550</ele>
+  </wpt>
+  <wpt lat="49.019656" lon="17.753898">
+    <name>Zamek Nezdenice</name>
+    <ele>243</ele>
+  </wpt>
+  <wpt lat="49.019727" lon="15.104495">
+    <name>Zamek Nova Bystrice</name>
+    <ele>591</ele>
+  </wpt>
+  <wpt lat="49.326296" lon="17.175901">
+    <name>Zamek Nezamyslice nad Hanou</name>
+    <ele>215</ele>
+  </wpt>
+  <wpt lat="49.194558" lon="17.080197">
+    <name>Zamek Nove Hvezdlice</name>
+    <ele>310</ele>
+  </wpt>
+  <wpt lat="49.152154" lon="17.091868">
+    <name>Zamek Nove Zamky Nesovice</name>
+    <ele>270</ele>
+  </wpt>
+  <wpt lat="50.217924" lon="13.312199">
+    <name>Zamek Nepomysl</name>
+    <ele>429</ele>
+  </wpt>
+  <wpt lat="49.51371" lon="14.69151">
+    <name>Zamek Nemysl</name>
+    <ele>513</ele>
+  </wpt>
+  <wpt lat="49.194198" lon="13.801089">
+    <name>Zamek Nemcice u Volyne</name>
+    <ele>554</ele>
+  </wpt>
+  <wpt lat="50.260758" lon="14.301443">
+    <name>Zamek Nelahozeves</name>
+    <ele>194</ele>
+  </wpt>
+  <wpt lat="49.857859" lon="13.256365">
+    <name>Zamek Nekmir</name>
+    <ele>460</ele>
+  </wpt>
+  <wpt lat="49.74324" lon="15.60357">
+    <name>Zamek Nejepin</name>
+    <ele>535</ele>
+  </wpt>
+  <wpt lat="49.655754" lon="13.032815">
+    <name>Zamek Nedrazice</name>
+    <ele>431</ele>
+  </wpt>
+  <wpt lat="49.959135" lon="13.159293">
+    <name>Zamek Nectiny</name>
+    <ele>544</ele>
+  </wpt>
+  <wpt lat="49.106628" lon="18.050066">
+    <name>Zamek Navojna</name>
+    <ele>376</ele>
+  </wpt>
+  <wpt lat="49.845013" lon="15.803068">
+    <name>Zamek Nasavrky</name>
+    <ele>504</ele>
+  </wpt>
+  <wpt lat="49.33215" lon="13.54959">
+    <name>Zamek Nalzovy - Nalzovske Hory</name>
+    <ele>505</ele>
+  </wpt>
+  <wpt lat="49.69734" lon="14.371594">
+    <name>Zamek Nalzovice</name>
+    <ele>347</ele>
+  </wpt>
+  <wpt lat="49.485833" lon="12.989722">
+    <name>Zamek Nahosice</name>
+    <ele>390</ele>
+  </wpt>
+  <wpt lat="49.502075" lon="14.476917">
+    <name>Zamek Nadejkov</name>
+    <ele>548</ele>
+  </wpt>
+  <wpt lat="49.102747" lon="15.982958">
+    <name>Zamek Mysliborice</name>
+    <ele>490</ele>
+  </wpt>
+  <wpt lat="50.31232" lon="15.56086">
+    <name>Zamek Mysteves</name>
+    <ele>259</ele>
+  </wpt>
+  <wpt lat="50.669411" lon="13.769019">
+    <name>Zamek Dvouhradi - Mstisov</name>
+    <ele>335</ele>
+  </wpt>
+  <wpt lat="50.113013" lon="12.489814">
+    <name>Zamek Mostov</name>
+    <ele>424</ele>
+  </wpt>
+  <wpt lat="50.205473" lon="13.901926">
+    <name>Zamek Msec</name>
+    <ele>445</ele>
+  </wpt>
+  <wpt lat="48.72235" lon="14.51534">
+    <name>Zamek Mostky</name>
+    <ele>580</ele>
+  </wpt>
+  <wpt lat="49.247128" lon="17.208682">
+    <name>Zamek Morkovice</name>
+    <ele>297</ele>
+  </wpt>
+  <wpt lat="49.329766" lon="17.198339">
+    <name>Zamek Morice</name>
+    <ele>206</ele>
+  </wpt>
+  <wpt lat="49.04889" lon="16.30666">
+    <name>Zamek Moravsky Krumlov</name>
+    <ele>260</ele>
+  </wpt>
+  <wpt lat="49.051789" lon="15.808758">
+    <name>Zamek Moravske Budejovice</name>
+    <ele>470</ele>
+  </wpt>
+  <wpt lat="49.43973" lon="16.142702">
+    <name>Zamek Moravec</name>
+    <ele>557</ele>
+  </wpt>
+  <wpt lat="49.844303" lon="15.542497">
+    <name>Zamek Moravany - Ronov nad Doubravou</name>
+    <ele>320</ele>
+  </wpt>
+  <wpt lat="49.275648" lon="13.455238">
+    <name>Zamek Mokrosuky</name>
+    <ele>532</ele>
+  </wpt>
+  <wpt lat="49.360616" lon="13.367883">
+    <name>Zamek Novy Cestin - Mochtin</name>
+    <ele>459</ele>
+  </wpt>
+  <wpt lat="49.314258" lon="13.405315">
+    <name>Zamek Mlazovy</name>
+    <ele>579</ele>
+  </wpt>
+  <wpt lat="50.484167" lon="15.233858">
+    <name>Zamek Mladejov v Cechach</name>
+    <ele>301</ele>
+  </wpt>
+  <wpt lat="49.908777" lon="17.712839">
+    <name>Zamek Mladecko</name>
+    <ele>384</ele>
+  </wpt>
+  <wpt lat="49.721367" lon="17.028644">
+    <name>Zamek Mladec</name>
+    <ele>259</ele>
+  </wpt>
+  <wpt lat="49.533512" lon="14.809393">
+    <name>Zamek Mlada Vozice</name>
+    <ele>457</ele>
+  </wpt>
+  <wpt lat="49.44152" lon="16.21849">
+    <name>Zamek Mitrov</name>
+    <ele>499</ele>
+  </wpt>
+  <wpt lat="50.504745" lon="13.781591">
+    <name>Zamek Mirosovice</name>
+    <ele>337</ele>
+  </wpt>
+  <wpt lat="49.688841" lon="13.65954">
+    <name>Zamek Mirosov</name>
+    <ele>458</ele>
+  </wpt>
+  <wpt lat="48.946446" lon="16.313602">
+    <name>Zamek Miroslav</name>
+    <ele>255</ele>
+  </wpt>
+  <wpt lat="48.97767" lon="16.319247">
+    <name>Zamek Miroslavske Kninice</name>
+    <ele>304</ele>
+  </wpt>
+  <wpt lat="50.37875" lon="15.392891">
+    <name>Zamek Miliceves</name>
+    <ele>270</ele>
+  </wpt>
+  <wpt lat="49.482212" lon="13.402924">
+    <name>Zamek Mecin</name>
+    <ele>485</ele>
+  </wpt>
+  <wpt lat="49.440862" lon="13.370884">
+    <name>Zamek Mecholupy u Klatov</name>
+    <ele>413</ele>
+  </wpt>
+  <wpt lat="50.299229" lon="15.076845">
+    <name>Zamek Mcely</name>
+    <ele>266</ele>
+  </wpt>
+  <wpt lat="50.02609" lon="12.668016">
+    <name>Zamek Kladska - Marianske Lazne</name>
+    <ele>823</ele>
+  </wpt>
+  <wpt lat="49.991438" lon="13.232313">
+    <name>Zamek Manetin</name>
+    <ele>412</ele>
+  </wpt>
+  <wpt lat="49.289917" lon="13.377928">
+    <name>Zamek Malonice</name>
+    <ele>608</ele>
+  </wpt>
+  <wpt lat="49.770916" lon="13.302597">
+    <name>Zamek Malesice</name>
+    <ele>338</ele>
+  </wpt>
+  <wpt lat="49.770711" lon="15.678933">
+    <name>Zamek Malec u Chotebore</name>
+    <ele>397</ele>
+  </wpt>
+  <wpt lat="49.226033" lon="13.677462">
+    <name>Zamek Macice</name>
+    <ele>574</ele>
+  </wpt>
+  <wpt lat="49.494819" lon="17.901019">
+    <name>Zamek Choryne</name>
+    <ele>283</ele>
+  </wpt>
+  <wpt lat="49.82939" lon="13.18384">
+    <name>Zamek Listany</name>
+    <ele>459</ele>
+  </wpt>
+  <wpt lat="49.307258" lon="13.15308">
+    <name>Zamek Bystrice nad Uhlavou</name>
+    <ele>460</ele>
+  </wpt>
+  <wpt lat="49.614094" lon="15.413192">
+    <name>Zamek Lipnice nad Sazavou</name>
+    <ele>598</ele>
+  </wpt>
+  <wpt lat="49.371564" lon="15.701892">
+    <name>Zamek Luka nad Jihlavou</name>
+    <ele>448</ele>
+  </wpt>
+  <wpt lat="49.228249" lon="14.794308">
+    <name>Zamek Lzin</name>
+    <ele>448</ele>
+  </wpt>
+  <wpt lat="50.77722" lon="14.78778">
+    <name>Zamek Lemberk - Lvova</name>
+    <ele>357</ele>
+  </wpt>
+  <wpt lat="49.546877" lon="13.317702">
+    <name>Zamek Luzany u Prestic</name>
+    <ele>363</ele>
+  </wpt>
+  <wpt lat="49.889837" lon="15.837899">
+    <name>Zamek Lukavice</name>
+    <ele>315</ele>
+  </wpt>
+  <wpt lat="49.563225" lon="14.984429">
+    <name>Zamek Lukavec u Pacova</name>
+    <ele>610</ele>
+  </wpt>
+  <wpt lat="49.096517" lon="17.747505">
+    <name>Zamek Luhacovice</name>
+    <ele>248</ele>
+  </wpt>
+  <wpt lat="49.813319" lon="13.144536">
+    <name>Zamek Luhov u Listan</name>
+    <ele>422</ele>
+  </wpt>
+  <wpt lat="50.514629" lon="14.053394">
+    <name>Zamek Lovosice</name>
+    <ele>153</ele>
+  </wpt>
+  <wpt lat="49.9954" lon="17.781103">
+    <name>Zamek Lodenice</name>
+    <ele>308</ele>
+  </wpt>
+  <wpt lat="49.40445" lon="16.415903">
+    <name>Zamek Lomnice u Tisnova</name>
+    <ele>401</ele>
+  </wpt>
+  <wpt lat="49.851432" lon="13.979343">
+    <name>Zamek Lochovice</name>
+    <ele>310</ele>
+  </wpt>
+  <wpt lat="50.251681" lon="14.541394">
+    <name>Zamek Lobkovice</name>
+    <ele>174</ele>
+  </wpt>
+  <wpt lat="49.457221" lon="13.787027">
+    <name>Zamek Lnare</name>
+    <ele>471</ele>
+  </wpt>
+  <wpt lat="49.903781" lon="17.747721">
+    <name>Zamek Litultovice</name>
+    <ele>326</ele>
+  </wpt>
+  <wpt lat="49.068039" lon="15.766033">
+    <name>Zamek Litohor</name>
+    <ele>475</ele>
+  </wpt>
+  <wpt lat="49.201625" lon="17.206338">
+    <name>Zamek Litencice</name>
+    <ele>355</ele>
+  </wpt>
+  <wpt lat="49.904938" lon="14.149661">
+    <name>Zamek Liten</name>
+    <ele>322</ele>
+  </wpt>
+  <wpt lat="50.337603" lon="15.55999">
+    <name>Zamek Liskovice u Ostromere</name>
+    <ele>273</ele>
+  </wpt>
+  <wpt lat="51.013132" lon="14.358901">
+    <name>Zamek Lipova u Sluknova</name>
+    <ele>0</ele>
+  </wpt>
+  <wpt lat="50.278447" lon="13.62482">
+    <name>Zamek Lickov</name>
+    <ele>311</ele>
+  </wpt>
+  <wpt lat="50.13883" lon="17.61476">
+    <name>Zamek Linhartovy</name>
+    <ele>364</ele>
+  </wpt>
+  <wpt lat="50.311748" lon="14.586489">
+    <name>Zamek Liblice</name>
+    <ele>194</ele>
+  </wpt>
+  <wpt lat="50.405179" lon="14.043713">
+    <name>Zamek Libochovice</name>
+    <ele>174</ele>
+  </wpt>
+  <wpt lat="49.916422" lon="13.544281">
+    <name>Zamek Liblin</name>
+    <ele>309</ele>
+  </wpt>
+  <wpt lat="49.375425" lon="15.191433">
+    <name>Zamek Libkova Voda</name>
+    <ele>585</ele>
+  </wpt>
+  <wpt lat="49.744715" lon="15.702653">
+    <name>Zamek Libice nad Doubravou</name>
+    <ele>424</ele>
+  </wpt>
+  <wpt lat="50.767983" lon="15.06048">
+    <name>Zamek Liberec</name>
+    <ele>382</ele>
+  </wpt>
+  <wpt lat="50.569853" lon="14.288904">
+    <name>Zamek Libesice u Litomeric</name>
+    <ele>257</ele>
+  </wpt>
+  <wpt lat="49.111436" lon="14.183174">
+    <name>Zamek Libejovice - novy zamek</name>
+    <ele>477</ele>
+  </wpt>
+  <wpt lat="50.313009" lon="13.384766">
+    <name>Zamek Libedice</name>
+    <ele>263</ele>
+  </wpt>
+  <wpt lat="50.147491" lon="15.338388">
+    <name>Zamek Knezicky</name>
+    <ele>270</ele>
+  </wpt>
+  <wpt lat="50.126631" lon="12.233221">
+    <name>Zamek Liba</name>
+    <ele>516</ele>
+  </wpt>
+  <wpt lat="50.408354" lon="14.445284">
+    <name>Zamek Libechov</name>
+    <ele>162</ele>
+  </wpt>
+  <wpt lat="50.449885" lon="13.837076">
+    <name>Zamek Libceves</name>
+    <ele>313</ele>
+  </wpt>
+  <wpt lat="49.481573" lon="16.629293">
+    <name>Zamek Lhota Rapotina</name>
+    <ele>443</ele>
+  </wpt>
+  <wpt lat="49.54272" lon="16.57497">
+    <name>Zamek Letovice</name>
+    <ele>377</ele>
+  </wpt>
+  <wpt lat="49.108012" lon="15.755659">
+    <name>Zamek Lesonice</name>
+    <ele>525</ele>
+  </wpt>
+  <wpt lat="49.2651" lon="16.30905">
+    <name>Zamek Lesni Hluboke</name>
+    <ele>511</ele>
+  </wpt>
+  <wpt lat="49.813056" lon="15.4785">
+    <name>Zamek Golcuv Jenikov</name>
+    <ele>396</ele>
+  </wpt>
+  <wpt lat="49.584111" lon="17.000992">
+    <name>Zamek Laskov</name>
+    <ele>312</ele>
+  </wpt>
+  <wpt lat="49.561325" lon="16.075622">
+    <name>Zamek Nove Mesto na Morave</name>
+    <ele>599</ele>
+  </wpt>
+  <wpt lat="49.805695" lon="13.857997">
+    <name>Zamek Komarov u Horovic</name>
+    <ele>399</ele>
+  </wpt>
+  <wpt lat="49.874547" lon="16.844572">
+    <name>Zamek tvrz Nemile Zabreh</name>
+    <ele>346</ele>
+  </wpt>
+  <wpt lat="50.414594" lon="15.98032">
+    <name>Zamek Chvalkovice v Cechach</name>
+    <ele>320</ele>
+  </wpt>
+  <wpt lat="49.319519" lon="17.115558">
+    <name>Zamek Chvalkovice na Hane</name>
+    <ele>219</ele>
+  </wpt>
+  <wpt lat="49.46833" lon="13.17425">
+    <name>Zamek Chudenice</name>
+    <ele>502</ele>
+  </wpt>
+  <wpt lat="49.355421" lon="17.365185">
+    <name>Zamek Chropyne</name>
+    <ele>198</ele>
+  </wpt>
+  <wpt lat="49.972411" lon="13.647328">
+    <name>Zamek Chric</name>
+    <ele>382</ele>
+  </wpt>
+  <wpt lat="49.322009" lon="14.28918">
+    <name>Zamek Chrestovice</name>
+    <ele>401</ele>
+  </wpt>
+  <wpt lat="49.847745" lon="13.155626">
+    <name>Zamek Chrancovice</name>
+    <ele>500</ele>
+  </wpt>
+  <wpt lat="49.33295" lon="14.837723">
+    <name>Zamek Choustnik</name>
+    <ele>559</ele>
+  </wpt>
+  <wpt lat="50.308985" lon="15.475265">
+    <name>Zamek Chotelice</name>
+    <ele>247</ele>
+  </wpt>
+  <wpt lat="49.505859" lon="13.022148">
+    <name>Zamek Chotimer u Blizejova</name>
+    <ele>377</ele>
+  </wpt>
+  <wpt lat="50.460892" lon="13.416972">
+    <name>Zamek Chomutov</name>
+    <ele>340</ele>
+  </wpt>
+  <wpt lat="49.548504" lon="13.518305">
+    <name>Zamek Chocenice u Blovic</name>
+    <ele>451</ele>
+  </wpt>
+  <wpt lat="49.891046" lon="12.728001">
+    <name>Zamek Chodova Plana - novy zamek</name>
+    <ele>542</ele>
+  </wpt>
+  <wpt lat="50.288414" lon="14.452589">
+    <name>Zamek Chlumin</name>
+    <ele>169</ele>
+  </wpt>
+  <wpt lat="50.158858" lon="15.451306">
+    <name>Zamek Chlumec nad Cidlinou</name>
+    <ele>259</ele>
+  </wpt>
+  <wpt lat="49.174559" lon="17.260075">
+    <name>Zamek Cetechovice</name>
+    <ele>324</ele>
+  </wpt>
+  <wpt lat="49.166556" lon="13.803801">
+    <name>Zamek Cestice</name>
+    <ele>560</ele>
+  </wpt>
+  <wpt lat="49.066754" lon="15.326937">
+    <name>Zamek Cesky Rudolec</name>
+    <ele>510</ele>
+  </wpt>
+  <wpt lat="50.662808" lon="14.994468">
+    <name>Zamek Cesky Dub</name>
+    <ele>328</ele>
+  </wpt>
+  <wpt lat="48.859404" lon="16.260086">
+    <name>Zamek Samota - Ceske Kridlovice</name>
+    <ele>195</ele>
+  </wpt>
+  <wpt lat="50.684011" lon="14.539104">
+    <name>Zamek Ceska Lipa</name>
+    <ele>253</ele>
+  </wpt>
+  <wpt lat="50.798483" lon="14.416627">
+    <name>Zamek Ceska Kamenice</name>
+    <ele>310</ele>
+  </wpt>
+  <wpt lat="50.512251" lon="13.443916">
+    <name>Zamek Cerveny Hradek - Jirkov</name>
+    <ele>399</ele>
+  </wpt>
+  <wpt lat="49.501019" lon="13.295063">
+    <name>Zamek Cervene Porici</name>
+    <ele>373</ele>
+  </wpt>
+  <wpt lat="49.510307" lon="15.178431">
+    <name>Zamek Cervena Recice</name>
+    <ele>457</ele>
+  </wpt>
+  <wpt lat="49.423421" lon="15.861554">
+    <name>Zamek Cerna</name>
+    <ele>535</ele>
+  </wpt>
+  <wpt lat="49.418692" lon="14.056903">
+    <name>Zamek Cerhonice</name>
+    <ele>450</ele>
+  </wpt>
+  <wpt lat="50.33443" lon="15.724226">
+    <name>Zamek Cerekvice nad Bystrici</name>
+    <ele>287</ele>
+  </wpt>
+  <wpt lat="49.799696" lon="13.251507">
+    <name>Zamek Ceminy</name>
+    <ele>359</ele>
+  </wpt>
+  <wpt lat="49.732209" lon="14.327876">
+    <name>Zamek Celina</name>
+    <ele>348</ele>
+  </wpt>
+  <wpt lat="49.756656" lon="12.674693">
+    <name>Zamek Castkov u Tachova</name>
+    <ele>509</ele>
+  </wpt>
+  <wpt lat="50.152023" lon="14.521715">
+    <name>Zamek Cakovice</name>
+    <ele>251</ele>
+  </wpt>
+  <wpt lat="48.975669" lon="17.263571">
+    <name>Zamek Bzenec</name>
+    <ele>198</ele>
+  </wpt>
+  <wpt lat="49.401233" lon="17.67289">
+    <name>Zamek Bystrice pod Hostynem</name>
+    <ele>323</ele>
+  </wpt>
+  <wpt lat="49.629564" lon="16.35124">
+    <name>Zamek Bystre u Policky</name>
+    <ele>613</ele>
+  </wpt>
+  <wpt lat="49.797096" lon="13.532743">
+    <name>Zamek Busovice</name>
+    <ele>378</ele>
+  </wpt>
+  <wpt lat="49.573171" lon="14.103184">
+    <name>Zamek Bukovany</name>
+    <ele>513</ele>
+  </wpt>
+  <wpt lat="49.755194" lon="14.065165">
+    <name>Zamek Bukova u Pribrame</name>
+    <ele>494</ele>
+  </wpt>
+  <wpt lat="49.052365" lon="15.661981">
+    <name>Zamek Budkov</name>
+    <ele>507</ele>
+  </wpt>
+  <wpt lat="49.294848" lon="14.838784">
+    <name>Zamek Budislav</name>
+    <ele>460</ele>
+  </wpt>
+  <wpt lat="49.085944" lon="15.589087">
+    <name>Zamek Budec</name>
+    <ele>488</ele>
+  </wpt>
+  <wpt lat="49.3068" lon="15.674476">
+    <name>Zamek Brtnice</name>
+    <ele>544</ele>
+  </wpt>
+  <wpt lat="49.369503" lon="17.082206">
+    <name>Zamek Brodek u Prostejova</name>
+    <ele>252</ele>
+  </wpt>
+  <wpt lat="50.475171" lon="14.44074">
+    <name>Zamek Brocno</name>
+    <ele>308</ele>
+  </wpt>
+  <wpt lat="50.479886" lon="14.145953">
+    <name>Zamek Brnany</name>
+    <ele>154</ele>
+  </wpt>
+  <wpt lat="49.326853" lon="14.015141">
+    <name>Zamek Brloh u Drhovle</name>
+    <ele>420</ele>
+  </wpt>
+  <wpt lat="49.557546" lon="13.956044">
+    <name>Zamek Breznice</name>
+    <ele>471</ele>
+  </wpt>
+  <wpt lat="49.757514" lon="18.081483">
+    <name>Zamek Bravantice</name>
+    <ele>247</ele>
+  </wpt>
+  <wpt lat="50.062448" lon="17.624668">
+    <name>Zamek Brantice</name>
+    <ele>345</ele>
+  </wpt>
+  <wpt lat="49.460299" lon="17.892768">
+    <name>Zamek Branky</name>
+    <ele>327</ele>
+  </wpt>
+  <wpt lat="48.960013" lon="16.428606">
+    <name>Zamek Branisovice</name>
+    <ele>202</ele>
+  </wpt>
+  <wpt lat="48.898137" lon="14.642128">
+    <name>Zamek Borovany</name>
+    <ele>521</ele>
+  </wpt>
+  <wpt lat="49.581169" lon="16.67039">
+    <name>Zamek Borotin u Boskovic</name>
+    <ele>441</ele>
+  </wpt>
+  <wpt lat="49.709852" lon="12.777293">
+    <name>Zamek Bor u Tachova</name>
+    <ele>482</ele>
+  </wpt>
+  <wpt lat="49.611301" lon="14.501793">
+    <name>Zamek Bolechovice</name>
+    <ele>436</ele>
+  </wpt>
+  <wpt lat="49.952353" lon="18.081388">
+    <name>Zamek Bolatice</name>
+    <ele>254</ele>
+  </wpt>
+  <wpt lat="48.991573" lon="16.358451">
+    <name>Zamek Bohutice</name>
+    <ele>266</ele>
+  </wpt>
+  <wpt lat="49.2152" lon="17.03085">
+    <name>Zamek Bohdalice</name>
+    <ele>323</ele>
+  </wpt>
+  <wpt lat="49.763786" lon="18.443056">
+    <name>Zamek Bludovice</name>
+    <ele>278</ele>
+  </wpt>
+  <wpt lat="49.940569" lon="16.928698">
+    <name>Zamek Bludov</name>
+    <ele>305</ele>
+  </wpt>
+  <wpt lat="50.510901" lon="13.360039">
+    <name>Zamek Blatno u Chomutova</name>
+    <ele>662</ele>
+  </wpt>
+  <wpt lat="50.236777" lon="14.119612">
+    <name>Zamek Blahotice</name>
+    <ele>244</ele>
+  </wpt>
+  <wpt lat="49.646747" lon="16.756486">
+    <name>Zamek Biskupice u Jevicka</name>
+    <ele>359</ele>
+  </wpt>
+  <wpt lat="49.098606" lon="17.549558">
+    <name>Zamek Bilovice u Uh. Hradiste</name>
+    <ele>197</ele>
+  </wpt>
+  <wpt lat="49.755518" lon="18.016187">
+    <name>Zamek Bilovec - mesto</name>
+    <ele>279</ele>
+  </wpt>
+  <wpt lat="50.548706" lon="13.776435">
+    <name>Zamek Bilina</name>
+    <ele>211</ele>
+  </wpt>
+  <wpt lat="50.260979" lon="13.910962">
+    <name>Zamek Bilichov</name>
+    <ele>393</ele>
+  </wpt>
+  <wpt lat="50.391196" lon="15.728805">
+    <name>Zamek Bile Policany</name>
+    <ele>306</ele>
+  </wpt>
+  <wpt lat="50.440452" lon="16.893962">
+    <name>Zamek Bila Voda u Javornika</name>
+    <ele>376</ele>
+  </wpt>
+  <wpt lat="49.709523" lon="16.976608">
+    <name>Zamek Bila Lhota</name>
+    <ele>296</ele>
+  </wpt>
+  <wpt lat="49.735138" lon="15.740525">
+    <name>Zamek Stepanov - Bezdekov</name>
+    <ele>460</ele>
+  </wpt>
+  <wpt lat="49.836887" lon="15.594876">
+    <name>Zamek Bestvina</name>
+    <ele>336</ele>
+  </wpt>
+  <wpt lat="50.742429" lon="14.310983">
+    <name>Zamek Benesov nad Ploucnici</name>
+    <ele>223</ele>
+  </wpt>
+  <wpt lat="49.591279" lon="12.715338">
+    <name>Zamek Bela nad Radbuzou</name>
+    <ele>444</ele>
+  </wpt>
+  <wpt lat="49.343941" lon="13.159748">
+    <name>Zamek Beharov</name>
+    <ele>496</ele>
+  </wpt>
+  <wpt lat="49.291506" lon="14.468071">
+    <name>Zamek Bechyne</name>
+    <ele>410</ele>
+  </wpt>
+  <wpt lat="49.315641" lon="15.394859">
+    <name>Zamek Batelov - stary zamek</name>
+    <ele>553</ele>
+  </wpt>
+  <wpt lat="49.671309" lon="18.050563">
+    <name>Zamek Bartosovice</name>
+    <ele>244</ele>
+  </wpt>
+  <wpt lat="50.201979" lon="15.568995">
+    <name>Zamek Barchov</name>
+    <ele>253</ele>
+  </wpt>
+  <wpt lat="49.733274" lon="15.461904">
+    <name>Zamek Backov</name>
+    <ele>501</ele>
+  </wpt>
+  <wpt lat="50.029482" lon="15.095549">
+    <name>Zamek Chocenice (KO)</name>
+    <ele>268</ele>
+  </wpt>
+  <wpt lat="49.305157" lon="17.095533">
+    <name>Zamek Ivanovice na Hane</name>
+    <ele>228</ele>
+  </wpt>
+  <wpt lat="49.530224" lon="17.869542">
+    <name>Zamek Hustopece nad Becvou</name>
+    <ele>274</ele>
+  </wpt>
+  <wpt lat="48.83259" lon="16.402304">
+    <name>Zamek Hrusovany nad Jevisovkou</name>
+    <ele>198</ele>
+  </wpt>
+  <wpt lat="49.092389" lon="16.307107">
+    <name>Zamek Hrubsice</name>
+    <ele>227</ele>
+  </wpt>
+  <wpt lat="49.446353" lon="17.193216">
+    <name>Zamek Hrubcice</name>
+    <ele>210</ele>
+  </wpt>
+  <wpt lat="49.108359" lon="16.056449">
+    <name>Zamek Hrotovice</name>
+    <ele>424</ele>
+  </wpt>
+  <wpt lat="49.686047" lon="14.276774">
+    <name>Zamek Hrimezdice</name>
+    <ele>320</ele>
+  </wpt>
+  <wpt lat="49.983961" lon="13.753465">
+    <name>Zamek Hrebecniky</name>
+    <ele>390</ele>
+  </wpt>
+  <wpt lat="49.017486" lon="15.897882">
+    <name>Zamek Hostim</name>
+    <ele>393</ele>
+  </wpt>
+  <wpt lat="49.207814" lon="17.237206">
+    <name>Zamek Hostice u Litencic</name>
+    <ele>319</ele>
+  </wpt>
+  <wpt lat="50.112769" lon="17.597078">
+    <name>Zamek Hostalkovy</name>
+    <ele>407</ele>
+  </wpt>
+  <wpt lat="49.354533" lon="17.866089">
+    <name>Zamek Hostalkova</name>
+    <ele>390</ele>
+  </wpt>
+  <wpt lat="50.306339" lon="14.172731">
+    <name>Zamek Hospozin</name>
+    <ele>199</ele>
+  </wpt>
+  <wpt lat="49.514248" lon="14.051585">
+    <name>Zamek Horosedly</name>
+    <ele>448</ele>
+  </wpt>
+  <wpt lat="49.691962" lon="18.503879">
+    <name>Zamek Horni Tosanovice</name>
+    <ele>368</ele>
+  </wpt>
+  <wpt lat="49.752527" lon="18.491833">
+    <name>Zamek Horni Terlicko</name>
+    <ele>283</ele>
+  </wpt>
+  <wpt lat="50.704892" lon="14.40578">
+    <name>Zamek Horni Police</name>
+    <ele>242</ele>
+  </wpt>
+  <wpt lat="50.276146" lon="15.78585">
+    <name>Zamek Nedeliste</name>
+    <ele>275</ele>
+  </wpt>
+  <wpt lat="49.412294" lon="17.465951">
+    <name>Zamek Horni Mostenice</name>
+    <ele>219</ele>
+  </wpt>
+  <wpt lat="48.950074" lon="16.161649">
+    <name>Zamek Horni Dunajovice</name>
+    <ele>235</ele>
+  </wpt>
+  <wpt lat="49.318883" lon="15.330681">
+    <name>Zamek Horni Cerekev</name>
+    <ele>584</ele>
+  </wpt>
+  <wpt lat="50.358705" lon="14.347328">
+    <name>Zamek Horni Berkovice</name>
+    <ele>222</ele>
+  </wpt>
+  <wpt lat="50.31009" lon="15.765469">
+    <name>Zamek Horineves</name>
+    <ele>276</ele>
+  </wpt>
+  <wpt lat="50.345609" lon="14.463317">
+    <name>Zamek Horin</name>
+    <ele>170</ele>
+  </wpt>
+  <wpt lat="49.321593" lon="13.698891">
+    <name>Zamek Horazdovice</name>
+    <ele>428</ele>
+  </wpt>
+  <wpt lat="49.812212" lon="15.644168">
+    <name>Zamek Hojesin</name>
+    <ele>520</ele>
+  </wpt>
+  <wpt lat="49.684198" lon="18.541982">
+    <name>Zamek Hnojnik</name>
+    <ele>374</ele>
+  </wpt>
+  <wpt lat="50.265213" lon="15.404044">
+    <name>Zamek Hlusice</name>
+    <ele>254</ele>
+  </wpt>
+  <wpt lat="49.540817" lon="16.997677">
+    <name>Zamek Hluchov</name>
+    <ele>327</ele>
+  </wpt>
+  <wpt lat="49.924913" lon="17.728648">
+    <name>Zamek Hlavnice</name>
+    <ele>394</ele>
+  </wpt>
+  <wpt lat="49.945314" lon="15.669022">
+    <name>Zamek Hermanuv Mestec</name>
+    <ele>286</ele>
+  </wpt>
+  <wpt lat="49.096667" lon="14.854741">
+    <name>Zamek Jemcina</name>
+    <ele>439</ele>
+  </wpt>
+  <wpt lat="49.681404" lon="17.045286">
+    <name>Zamek Hanovice</name>
+    <ele>257</ele>
+  </wpt>
+  <wpt lat="49.446917" lon="13.83647">
+    <name>Zamek Hajany</name>
+    <ele>456</ele>
+  </wpt>
+  <wpt lat="49.755544" lon="15.486328">
+    <name>Zamek Habry</name>
+    <ele>467</ele>
+  </wpt>
+  <wpt lat="49.712281" lon="17.907191">
+    <name>Zamek Fulnek</name>
+    <ele>343</ele>
+  </wpt>
+  <wpt lat="49.685637" lon="18.346489">
+    <name>Zamek Frydek</name>
+    <ele>324</ele>
+  </wpt>
+  <wpt lat="50.597559" lon="15.692029">
+    <name>Zamek Fort</name>
+    <ele>445</ele>
+  </wpt>
+  <wpt lat="50.528218" lon="14.249475">
+    <name>Zamek Encovany</name>
+    <ele>215</ele>
+  </wpt>
+  <wpt lat="48.846007" lon="16.114368">
+    <name>Zamek Dyje</name>
+    <ele>213</ele>
+  </wpt>
+  <wpt lat="50.548597" lon="14.544801">
+    <name>Zamek Novy Berstejn</name>
+    <ele>299</ele>
+  </wpt>
+  <wpt lat="49.107898" lon="14.011426">
+    <name>Zamek Dub u Prachatic</name>
+    <ele>478</ele>
+  </wpt>
+  <wpt lat="48.856503" lon="16.489012">
+    <name>Zamek Drnholec</name>
+    <ele>188</ele>
+  </wpt>
+  <wpt lat="49.144617" lon="14.349598">
+    <name>Zamek Driten</name>
+    <ele>443</ele>
+  </wpt>
+  <wpt lat="49.29266" lon="17.234305">
+    <name>Zamek Drinov u Kromerize</name>
+    <ele>310</ele>
+  </wpt>
+  <wpt lat="49.305217" lon="14.381768">
+    <name>Zamek Drazic</name>
+    <ele>458</ele>
+  </wpt>
+  <wpt lat="49.520396" lon="13.959999">
+    <name>Zamek Drahenice</name>
+    <ele>501</ele>
+  </wpt>
+  <wpt lat="49.860557" lon="18.479831">
+    <name>Zamek Doubrava</name>
+    <ele>227</ele>
+  </wpt>
+  <wpt lat="50.211059" lon="12.825206">
+    <name>Zamek Doubi u Karlovych Varu</name>
+    <ele>388</ele>
+  </wpt>
+  <wpt lat="50.393204" lon="15.108595">
+    <name>Zamek Domousnice</name>
+    <ele>306</ele>
+  </wpt>
+  <wpt lat="50.232601" lon="13.728766">
+    <name>Zamek Domousice</name>
+    <ele>412</ele>
+  </wpt>
+  <wpt lat="49.529409" lon="16.235709">
+    <name>Zamek Domaninek</name>
+    <ele>552</ele>
+  </wpt>
+  <wpt lat="49.500424" lon="14.062818">
+    <name>Zamek Dolni Nerestce</name>
+    <ele>438</ele>
+  </wpt>
+  <wpt lat="49.600946" lon="13.345654">
+    <name>Zamek Dolni Lukavice</name>
+    <ele>352</ele>
+  </wpt>
+  <wpt lat="49.661186" lon="15.603858">
+    <name>Zamek Dolni Krupa u Havl. Brodu</name>
+    <ele>474</ele>
+  </wpt>
+  <wpt lat="49.067218" lon="16.47223">
+    <name>Zamek Dolni Kounice</name>
+    <ele>236</ele>
+  </wpt>
+  <wpt lat="50.392804" lon="14.454821">
+    <name>Zamek Dolni Berkovice</name>
+    <ele>167</ele>
+  </wpt>
+  <wpt lat="49.916761" lon="18.115774">
+    <name>Zamek Dolni Benesov</name>
+    <ele>233</ele>
+  </wpt>
+  <wpt lat="50.619783" lon="16.11127">
+    <name>Zamek Dolni Adrspach</name>
+    <ele>537</ele>
+  </wpt>
+  <wpt lat="49.188285" lon="13.428219">
+    <name>Zamek Dolejsi Tesov</name>
+    <ele>734</ele>
+  </wpt>
+  <wpt lat="49.181554" lon="13.474279">
+    <name>Zamek Dolejsi Krusec</name>
+    <ele>639</ele>
+  </wpt>
+  <wpt lat="50.565048" lon="14.652629">
+    <name>Zamek Doksy u Machova jezera</name>
+    <ele>284</ele>
+  </wpt>
+  <wpt lat="50.45513" lon="14.158982">
+    <name>Zamek Doksany</name>
+    <ele>167</ele>
+  </wpt>
+  <wpt lat="49.358421" lon="17.135409">
+    <name>Zamek Dobromilice</name>
+    <ele>225</ele>
+  </wpt>
+  <wpt lat="49.7819" lon="14.179154">
+    <name>Zamek Dobris</name>
+    <ele>372</ele>
+  </wpt>
+  <wpt lat="50.150791" lon="15.642364">
+    <name>Zamek Dobrenice</name>
+    <ele>262</ele>
+  </wpt>
+  <wpt lat="49.719569" lon="14.117055">
+    <name>Zamek Dlouha Lhota u Dobrise</name>
+    <ele>439</ele>
+  </wpt>
+  <wpt lat="50.245776" lon="17.635417">
+    <name>Zamek Divci hrad</name>
+    <ele>307</ele>
+  </wpt>
+  <wpt lat="49.084536" lon="17.91346">
+    <name>Zamek Divnice</name>
+    <ele>364</ele>
+  </wpt>
+  <wpt lat="49.241892" lon="14.844356">
+    <name>Zamek Dirna</name>
+    <ele>477</ele>
+  </wpt>
+  <wpt lat="50.368133" lon="15.172867">
+    <name>Zamek Detenice</name>
+    <ele>233</ele>
+  </wpt>
+  <wpt lat="49.894817" lon="17.674046">
+    <name>Zamek Destne</name>
+    <ele>406</ele>
+  </wpt>
+  <wpt lat="49.127321" lon="16.07888">
+    <name>Zamek Dalesice</name>
+    <ele>405</ele>
+  </wpt>
+  <wpt lat="50.778899" lon="14.209442">
+    <name>Zamek Decin</name>
+    <ele>154</ele>
+  </wpt>
+  <wpt lat="49.079616" lon="15.431491">
+    <name>Zamek Dacice - novy zamek</name>
+    <ele>485</ele>
+  </wpt>
+  <wpt lat="48.990959" lon="16.514656">
+    <name>Zamek Cvrcovice u Pohorelic</name>
+    <ele>185</ele>
+  </wpt>
+  <wpt lat="49.115774" lon="13.83091">
+    <name>Zamek Ckyne</name>
+    <ele>532</ele>
+  </wpt>
+  <wpt lat="50.485065" lon="14.026878">
+    <name>Zamek Cizkovice</name>
+    <ele>178</ele>
+  </wpt>
+  <wpt lat="49.63176" lon="14.716311">
+    <name>Zamek Vlckovice</name>
+    <ele>578</ele>
+  </wpt>
+  <wpt lat="50.370472" lon="13.436015">
+    <name>Zamek Vicice</name>
+    <ele>232</ele>
+  </wpt>
+  <wpt lat="50.81396" lon="15.15822">
+    <name>zamek Nova Louka - Bedrichov</name>
+    <ele>781</ele>
+  </wpt>
+  <wpt lat="49.747159" lon="14.018068">
+    <name>Zamek Hlubos</name>
+    <ele>474</ele>
+  </wpt>
+  <wpt lat="49.467433" lon="14.065325">
+    <name>Zamek Cimelice</name>
+    <ele>438</ele>
+  </wpt>
+  <wpt lat="50.330877" lon="13.811067">
+    <name>Zamek Citoliby</name>
+    <ele>242</ele>
+  </wpt>
+  <wpt lat="49.465364" lon="17.326828">
+    <name>Zamek Citov</name>
+    <ele>202</ele>
+  </wpt>
+  <wpt lat="49.485044" lon="16.659784">
+    <name>Zamek Boskovice</name>
+    <ele>415</ele>
+  </wpt>
+  <wpt lat="49.36159" lon="15.15899">
+    <name>Zamek Bozejov</name>
+    <ele>595</ele>
+  </wpt>
+  <wpt lat="49.12101" lon="17.58464">
+    <name>Zamek Brezolupy</name>
+    <ele>210</ele>
+  </wpt>
+  <wpt lat="49.075852" lon="15.531594">
+    <name>Zamek Budiskovice</name>
+    <ele>519</ele>
+  </wpt>
+  <wpt lat="49.275456" lon="16.012679">
+    <name>Zamek Budisov</name>
+    <ele>469</ele>
+  </wpt>
+  <wpt lat="50.40478" lon="14.12356">
+    <name>Zamek Budyne nad Ohri</name>
+    <ele>167</ele>
+  </wpt>
+  <wpt lat="50.06466" lon="15.27658">
+    <name>Zamek Bychory</name>
+    <ele>228</ele>
+  </wpt>
+  <wpt lat="50.78137" lon="14.15593">
+    <name>Zamek Bynov</name>
+    <ele>179</ele>
+  </wpt>
+  <wpt lat="50.82376" lon="14.26459">
+    <name>Zamek Bynovec</name>
+    <ele>385</ele>
+  </wpt>
+  <wpt lat="49.182578" lon="14.542859">
+    <name>Zamek Bzi u Dolniho Bukovska</name>
+    <ele>494</ele>
+  </wpt>
+  <wpt lat="49.157988" lon="15.804013">
+    <name>Zamek Sadek - Caslavice</name>
+    <ele>573</ele>
+  </wpt>
+  <wpt lat="49.58482" lon="13.02102">
+    <name>zamek Cecovice u Bukovce</name>
+    <ele>405</ele>
+  </wpt>
+  <wpt lat="49.97928" lon="15.20749">
+    <name>Zamek Cervene Pecky</name>
+    <ele>295</ele>
+  </wpt>
+  <wpt lat="49.19079" lon="15.16546">
+    <name>Zamek Ceska Olesna</name>
+    <ele>563</ele>
+  </wpt>
+  <wpt lat="48.95997" lon="14.9317">
+    <name>Zamek Chlum u Trebone</name>
+    <ele>468</ele>
+  </wpt>
+  <wpt lat="49.98603" lon="15.61929">
+    <name>Zamek Choltice</name>
+    <ele>249</ele>
+  </wpt>
+  <wpt lat="49.72528" lon="15.6744">
+    <name>Zamek Chotebor</name>
+    <ele>500</ele>
+  </wpt>
+  <wpt lat="49.76922" lon="18.5697">
+    <name>Zamek Chotebuz</name>
+    <ele>347</ele>
+  </wpt>
+  <wpt lat="49.47882" lon="14.682">
+    <name>Zamek Chotoviny</name>
+    <ele>540</ele>
+  </wpt>
+  <wpt lat="49.68715" lon="17.03139">
+    <name>Zamek Chudobin</name>
+    <ele>268</ele>
+  </wpt>
+  <wpt lat="49.181727" lon="17.096922">
+    <name>Zamek Komorov - Chvalkovice</name>
+    <ele>299</ele>
+  </wpt>
+  <wpt lat="48.84603" lon="14.23006">
+    <name>Zamek Cerveny Dvur - Chvalsiny</name>
+    <ele>555</ele>
+  </wpt>
+  <wpt lat="50.10585" lon="13.24659">
+    <name>Zamek Chyse</name>
+    <ele>471</ele>
+  </wpt>
+  <wpt lat="49.4403" lon="15.11952">
+    <name>Zamek Cizkov</name>
+    <ele>607</ele>
+  </wpt>
+  <wpt lat="50.14901" lon="14.56408">
+    <name>Zamek Ctenice</name>
+    <ele>248</ele>
+  </wpt>
+  <wpt lat="50.137457" lon="12.578281">
+    <name>Zamek Chlumek - Dasnice</name>
+    <ele>442</ele>
+  </wpt>
+  <wpt lat="49.406754" lon="13.676805">
+    <name>Zamek Defurovy Lazany</name>
+    <ele>539</ele>
+  </wpt>
+  <wpt lat="48.990276" lon="16.786778">
+    <name>Zamek Divaky</name>
+    <ele>236</ele>
+  </wpt>
+  <wpt lat="49.926" lon="14.27473">
+    <name>Zamek Dobrichovice</name>
+    <ele>204</ele>
+  </wpt>
+  <wpt lat="50.36702" lon="14.96367">
+    <name>Zamek Dobrovice</name>
+    <ele>246</ele>
+  </wpt>
+  <wpt lat="49.821444" lon="17.196159">
+    <name>Zamek Horni Dlouha Loucka</name>
+    <ele>287</ele>
+  </wpt>
+  <wpt lat="49.453992" lon="16.53425">
+    <name>Zamek Lysice</name>
+    <ele>396</ele>
+  </wpt>
+  <wpt lat="49.817569" lon="17.187962">
+    <name>Zamek Dlouha Loucka</name>
+    <ele>275</ele>
+  </wpt>
+  <wpt lat="49.96254" lon="14.45706">
+    <name>Zamek Dolni Brezany</name>
+    <ele>340</ele>
+  </wpt>
+  <wpt lat="49.47551" lon="16.20865">
+    <name>Zamek Dolni Rozinka</name>
+    <ele>507</ele>
+  </wpt>
+  <wpt lat="49.35177" lon="17.15956">
+    <name>Zamek Doloplazy</name>
+    <ele>217</ele>
+  </wpt>
+  <wpt lat="49.42918" lon="17.59244">
+    <name>Zamek Drevohostice</name>
+    <ele>241</ele>
+  </wpt>
+  <wpt lat="49.33769" lon="14.04832">
+    <name>Zamek Drhovle</name>
+    <ele>475</ele>
+  </wpt>
+  <wpt lat="49.08172" lon="16.19425">
+    <name>Zamek Dukovany</name>
+    <ele>360</ele>
+  </wpt>
+  <wpt lat="50.915719" lon="15.083884">
+    <name>Zamek Frydlant v Cechach</name>
+    <ele>337</ele>
+  </wpt>
+  <wpt lat="49.22984" lon="16.87618">
+    <name>Zamek Habrovany</name>
+    <ele>320</ele>
+  </wpt>
+  <wpt lat="49.889487" lon="12.606755">
+    <name>Zamek Broumov u Zadniho Chodova</name>
+    <ele>575</ele>
+  </wpt>
+  <wpt lat="50.008876" lon="13.3349">
+    <name>Zamek Cerna Hat</name>
+    <ele>517</ele>
+  </wpt>
+  <wpt lat="50.289381" lon="12.819853">
+    <name>Zamek Depoltovice</name>
+    <ele>478</ele>
+  </wpt>
+  <wpt lat="49.5309" lon="15.45372">
+    <name>Zamek Heralec</name>
+    <ele>579</ele>
+  </wpt>
+  <wpt lat="48.8469" lon="17.12722">
+    <name>Zamek Hodonin - Zamecek</name>
+    <ele>168</ele>
+  </wpt>
+  <wpt lat="50.370092" lon="15.636236">
+    <name>Zamek Horice v Podkrkonosi</name>
+    <ele>327</ele>
+  </wpt>
+  <wpt lat="50.3762" lon="15.57769">
+    <name>Zamek Holovousy v Podkrkonosi</name>
+    <ele>317</ele>
+  </wpt>
+  <wpt lat="50.704638" lon="14.503229">
+    <name>Zamek Horni Libchava</name>
+    <ele>265</ele>
+  </wpt>
+  <wpt lat="50.6082" lon="15.56929">
+    <name>Zamek Horni Branna</name>
+    <ele>468</ele>
+  </wpt>
+  <wpt lat="50.26264" lon="12.39292">
+    <name>Zamek Horni Luby</name>
+    <ele>574</ele>
+  </wpt>
+  <wpt lat="50.662253" lon="15.818664">
+    <name>Zamek Horni Marsov</name>
+    <ele>589</ele>
+  </wpt>
+  <wpt lat="50.08021" lon="14.25504">
+    <name>Zamek Hostivice</name>
+    <ele>347</ele>
+  </wpt>
+  <wpt lat="49.55956" lon="12.76747">
+    <name>Zamek Hostoun u Horsovskeho Tyna</name>
+    <ele>458</ele>
+  </wpt>
+  <wpt lat="49.86735" lon="14.40978">
+    <name>Zamek Hradistko pod Mednikem</name>
+    <ele>282</ele>
+  </wpt>
+  <wpt lat="49.55018" lon="17.73454">
+    <name>Zamek Hranice</name>
+    <ele>255</ele>
+  </wpt>
+  <wpt lat="49.74998" lon="15.68331">
+    <name>Zamek Hranice u Malce</name>
+    <ele>409</ele>
+  </wpt>
+  <wpt lat="49.95782" lon="15.90884">
+    <name>Zamek Hrochuv Tynec</name>
+    <ele>251</ele>
+  </wpt>
+  <wpt lat="50.763404" lon="14.753339">
+    <name>Zamek Novy Falkenburk - Jablonne v Podjestedi</name>
+    <ele>312</ele>
+  </wpt>
+  <wpt lat="49.429106" lon="15.719441">
+    <name>Zamek Jamne u Jihlavy</name>
+    <ele>530</ele>
+  </wpt>
+  <wpt lat="49.833576" lon="16.407257">
+    <name>Zamek Mendryka - Janov u Litomysle</name>
+    <ele>502</ele>
+  </wpt>
+  <wpt lat="49.627074" lon="16.754145">
+    <name>Zamek Jaromerice</name>
+    <ele>384</ele>
+  </wpt>
+  <wpt lat="49.093814" lon="15.892217">
+    <name>Zamek Jaromerice nad Rokytnou</name>
+    <ele>430</ele>
+  </wpt>
+  <wpt lat="48.75866" lon="16.23482">
+    <name>Zamek Jaroslavice</name>
+    <ele>217</ele>
+  </wpt>
+  <wpt lat="49.01744" lon="15.57177">
+    <name>Zamek Jemnice</name>
+    <ele>491</ele>
+  </wpt>
+  <wpt lat="50.136686" lon="12.948125">
+    <name>Zamek Javorna - Bochov</name>
+    <ele>686</ele>
+  </wpt>
+  <wpt lat="49.610285" lon="16.86261">
+    <name>Zamek Jesenec</name>
+    <ele>496</ele>
+  </wpt>
+  <wpt lat="50.341485" lon="15.681977">
+    <name>Zamek Jerice</name>
+    <ele>282</ele>
+  </wpt>
+  <wpt lat="49.618265" lon="17.911255">
+    <name>Zamek Jesenik nad Odrou</name>
+    <ele>264</ele>
+  </wpt>
+  <wpt lat="50.658767" lon="15.337592">
+    <name>Zamek Jesenny</name>
+    <ele>442</ele>
+  </wpt>
+  <wpt lat="49.551429" lon="14.526887">
+    <name>Zamek Jetrichovice</name>
+    <ele>460</ele>
+  </wpt>
+  <wpt lat="49.631526" lon="16.708506">
+    <name>Zamek Jevicko predmesti</name>
+    <ele>368</ele>
+  </wpt>
+  <wpt lat="50.0216" lon="13.3288">
+    <name>Zamek Kalec</name>
+    <ele>528</ele>
+  </wpt>
+  <wpt lat="48.9907" lon="15.9882">
+    <name>Zamek Stary zamek Jevisovice</name>
+    <ele>354</ele>
+  </wpt>
+  <wpt lat="48.983378" lon="15.994036">
+    <name>Zamek Jevisovice</name>
+    <ele>362</ele>
+  </wpt>
+  <wpt lat="49.492208" lon="13.22947">
+    <name>Zamek Jezovy</name>
+    <ele>456</ele>
+  </wpt>
+  <wpt lat="50.43645" lon="15.3519">
+    <name>Zamek Jicin</name>
+    <ele>288</ele>
+  </wpt>
+  <wpt lat="50.373055" lon="15.342381">
+    <name>Zamek Jicineves</name>
+    <ele>263</ele>
+  </wpt>
+  <wpt lat="50.610267" lon="15.504384">
+    <name>Zamek Jilemnice</name>
+    <ele>476</ele>
+  </wpt>
+  <wpt lat="49.637348" lon="16.224035">
+    <name>Zamek Jimramov</name>
+    <ele>501</ele>
+  </wpt>
+  <wpt lat="49.788547" lon="13.977845">
+    <name>Zamek Jince</name>
+    <ele>379</ele>
+  </wpt>
+  <wpt lat="50.252183" lon="17.536329">
+    <name>Zamek Jindrichov</name>
+    <ele>346</ele>
+  </wpt>
+  <wpt lat="49.297252" lon="13.393656">
+    <name>Zamek Kolinec - Jindrichovice</name>
+    <ele>565</ele>
+  </wpt>
+  <wpt lat="50.282842" lon="12.607169">
+    <name>Zamek Jindrichovice u Sokolova</name>
+    <ele>671</ele>
+  </wpt>
+  <wpt lat="49.142077" lon="15.000795">
+    <name>Zamek Jindrichuv Hradec</name>
+    <ele>470</ele>
+  </wpt>
+  <wpt lat="49.226682" lon="16.192719">
+    <name>Zamek Senvald - Jinosov</name>
+    <ele>477</ele>
+  </wpt>
+  <wpt lat="48.91888" lon="16.39333">
+    <name>Zamek Jirice u Miroslavi</name>
+    <ele>199</ele>
+  </wpt>
+  <wpt lat="49.479383" lon="14.531999">
+    <name>Zamek Jistebnice</name>
+    <ele>599</ele>
+  </wpt>
+  <wpt lat="50.148475" lon="12.506009">
+    <name>Zamek Kacerov u Kynsperka</name>
+    <ele>437</ele>
+  </wpt>
+  <wpt lat="50.575121" lon="13.331158">
+    <name>Zamek Kalek</name>
+    <ele>737</ele>
+  </wpt>
+  <wpt lat="49.302607" lon="15.078888">
+    <name>Zamek Kamenice nad Lipou</name>
+    <ele>566</ele>
+  </wpt>
+  <wpt lat="49.506295" lon="14.588664">
+    <name>Zamek Kamenna Lhota u Borotina</name>
+    <ele>588</ele>
+  </wpt>
+  <wpt lat="49.475581" lon="13.073425">
+    <name>Zamek Kanice u Domazlic</name>
+    <ele>447</ele>
+  </wpt>
+  <wpt lat="49.185569" lon="14.855524">
+    <name>Zamek Kardasova Recice</name>
+    <ele>446</ele>
+  </wpt>
+  <wpt lat="49.853457" lon="18.541008">
+    <name>Zamek Karvina - Frystat</name>
+    <ele>235</ele>
+  </wpt>
+  <wpt lat="50.265061" lon="13.429078">
+    <name>Zamek Kastice</name>
+    <ele>279</ele>
+  </wpt>
+  <wpt lat="49.154669" lon="16.162647">
+    <name>Zamek Vlci Kopec - Kladeruby nad Oslavou</name>
+    <ele>415</ele>
+  </wpt>
+  <wpt lat="49.809378" lon="15.528896">
+    <name>Zamek Klaster u  Vilemova</name>
+    <ele>355</ele>
+  </wpt>
+  <wpt lat="49.786605" lon="18.130226">
+    <name>Zamek Klimkovice</name>
+    <ele>261</ele>
+  </wpt>
+  <wpt lat="49.2289" lon="17.77378">
+    <name>Zamek Klecuvka</name>
+    <ele>352</ele>
+  </wpt>
+  <wpt lat="50.384132" lon="13.173667">
+    <name>Zamek Klasterec nad Ohri</name>
+    <ele>307</ele>
+  </wpt>
+  <wpt lat="48.995893" lon="16.857772">
+    <name>Zamek Klobouky u Brna</name>
+    <ele>231</ele>
+  </wpt>
+  <wpt lat="49.803677" lon="15.672668">
+    <name>Zamek Klokocov</name>
+    <ele>533</ele>
+  </wpt>
+  <wpt lat="49.266293" lon="15.671587">
+    <name>Zamek Knezice u Trebice</name>
+    <ele>553</ele>
+  </wpt>
+  <wpt lat="49.755823" lon="17.719926">
+    <name>Zamek Klokocov u Vitkova</name>
+    <ele>563</ele>
+  </wpt>
+  <wpt lat="49.09427" lon="15.60732">
+    <name>Zamek Kninice</name>
+    <ele>505</ele>
+  </wpt>
+  <wpt lat="49.68839" lon="14.3993">
+    <name>Zamek Knovice</name>
+    <ele>364</ele>
+  </wpt>
+  <wpt lat="50.33916" lon="17.120895">
+    <name>Zamek Kobyla</name>
+    <ele>301</ele>
+  </wpt>
+  <wpt lat="50.196616" lon="14.222546">
+    <name>Zamek Kolec</name>
+    <ele>251</ele>
+  </wpt>
+  <wpt lat="50.139042" lon="13.610083">
+    <name>Zamek Kolesovice</name>
+    <ele>380</ele>
+  </wpt>
+  <wpt lat="49.252149" lon="14.419011">
+    <name>Zamek Kolodeje nad Luznici</name>
+    <ele>360</ele>
+  </wpt>
+  <wpt lat="48.877798" lon="14.545261">
+    <name>Zamek Komarice</name>
+    <ele>464</ele>
+  </wpt>
+  <wpt lat="50.33039" lon="15.27208">
+    <name>Zamek Kopidlno</name>
+    <ele>232</ele>
+  </wpt>
+  <wpt lat="49.851738" lon="12.841603">
+    <name>Zamek Koren</name>
+    <ele>550</ele>
+  </wpt>
+  <wpt lat="49.64241" lon="15.69812">
+    <name>Zamek Ceska Bela</name>
+    <ele>507</ele>
+  </wpt>
+  <wpt lat="50.304511" lon="13.604363">
+    <name>Zamek Dobricany</name>
+    <ele>235</ele>
+  </wpt>
+  <wpt lat="49.104002" lon="17.163325">
+    <name>Zamek Korycany</name>
+    <ele>307</ele>
+  </wpt>
+  <wpt lat="50.31804" lon="14.666428">
+    <name>Zamek Kosatky</name>
+    <ele>215</ele>
+  </wpt>
+  <wpt lat="49.557218" lon="15.111652">
+    <name>Zamek Kosetice - stary zamek</name>
+    <ele>531</ele>
+  </wpt>
+  <wpt lat="49.653791" lon="14.473221">
+    <name>Zamek Kosova Hora</name>
+    <ele>382</ele>
+  </wpt>
+  <wpt lat="49.995886" lon="13.895097">
+    <name>Zamek Leontynsky zamek - Roztoky</name>
+    <ele>457</ele>
+  </wpt>
+  <wpt lat="50.561936" lon="13.871736">
+    <name>Zamek Kostomlaty pod Milesovkou</name>
+    <ele>420</ele>
+  </wpt>
+  <wpt lat="49.407503" lon="13.001454">
+    <name>Zamek Kout na Sumave</name>
+    <ele>435</ele>
+  </wpt>
+  <wpt lat="49.314496" lon="17.291133">
+    <name>Zamek Kovalovice u Kojetina</name>
+    <ele>267</ele>
+  </wpt>
+  <wpt lat="49.59779" lon="16.988559">
+    <name>Zamek Krakovec -Laskov</name>
+    <ele>354</ele>
+  </wpt>
+  <wpt lat="49.478465" lon="17.968289">
+    <name>Zamek Krasno nad Becvou</name>
+    <ele>297</ele>
+  </wpt>
+  <wpt lat="50.25183" lon="13.36996">
+    <name>Zamek Krasny Dvur</name>
+    <ele>308</ele>
+  </wpt>
+  <wpt lat="50.766497" lon="13.937627">
+    <name>Zamek Krasny Les - Petrovice</name>
+    <ele>632</ele>
+  </wpt>
+  <wpt lat="49.115465" lon="15.613774">
+    <name>Zamek Krasonice</name>
+    <ele>558</ele>
+  </wpt>
+  <wpt lat="50.169052" lon="15.609968">
+    <name>Zamek Kratonohy</name>
+    <ele>233</ele>
+  </wpt>
+  <wpt lat="49.928736" lon="17.999149">
+    <name>Zamek Kravare ve Slezsku</name>
+    <ele>239</ele>
+  </wpt>
+  <wpt lat="48.91831" lon="15.984609">
+    <name>Zamek Kravsko</name>
+    <ele>345</ele>
+  </wpt>
+  <wpt lat="50.59864" lon="13.821968">
+    <name>Zamek Kremyz</name>
+    <ele>262</ele>
+  </wpt>
+  <wpt lat="50.604081" lon="13.813947">
+    <name>Zamek Tuchlov</name>
+    <ele>243</ele>
+  </wpt>
+  <wpt lat="49.563" lon="16.50115">
+    <name>Zamek Kretin</name>
+    <ele>404</ele>
+  </wpt>
+  <wpt lat="49.101025" lon="16.017646">
+    <name>Zamek Krhov u Hrotovic</name>
+    <ele>442</ele>
+  </wpt>
+  <wpt lat="49.758432" lon="13.306379">
+    <name>Zamek Krimice</name>
+    <ele>325</ele>
+  </wpt>
+  <wpt lat="49.391064" lon="16.111489">
+    <name>Zamek Krizanov</name>
+    <ele>541</ele>
+  </wpt>
+  <wpt lat="50.089416" lon="17.700721">
+    <name>Zamek Krnov-Horni Predmesti</name>
+    <ele>320</ele>
+  </wpt>
+  <wpt lat="49.30029" lon="17.39335">
+    <name>Zamek Kromeriz</name>
+    <ele>212</ele>
+  </wpt>
+  <wpt lat="49.297093" lon="16.742099">
+    <name>Zamek Krtiny</name>
+    <ele>423</ele>
+  </wpt>
+  <wpt lat="49.843678" lon="13.094343">
+    <name>Zamek Krukanice</name>
+    <ele>485</ele>
+  </wpt>
+  <wpt lat="50.397634" lon="15.889373">
+    <name>Zamek Kuks</name>
+    <ele>307</ele>
+  </wpt>
+  <wpt lat="49.549908" lon="17.037604">
+    <name>Zamek Cechy pod Kosirem</name>
+    <ele>276</ele>
+  </wpt>
+  <wpt lat="49.642586" lon="17.990108">
+    <name>Zamek Kunin</name>
+    <ele>251</ele>
+  </wpt>
+  <wpt lat="49.502565" lon="16.510956">
+    <name>Zamek Kunstat na Morave</name>
+    <ele>470</ele>
+  </wpt>
+  <wpt lat="49.296383" lon="16.525095">
+    <name>Zamek Kurim</name>
+    <ele>296</ele>
+  </wpt>
+  <wpt lat="49.04192" lon="16.49124">
+    <name>Zamek Kuparovice</name>
+    <ele>196</ele>
+  </wpt>
+  <wpt lat="49.576592" lon="15.506098">
+    <name>Zamek Kvasetice u Kvetinova</name>
+    <ele>486</ele>
+  </wpt>
+  <wpt lat="50.206904" lon="16.250553">
+    <name>Zamek Kvasiny</name>
+    <ele>351</ele>
+  </wpt>
+  <wpt lat="49.243119" lon="17.473849">
+    <name>Zamek Kvasice</name>
+    <ele>199</ele>
+  </wpt>
+  <wpt lat="49.418723" lon="14.304791">
+    <name>Zamek Kvetov</name>
+    <ele>523</ele>
+  </wpt>
+  <wpt lat="49.009286" lon="17.128569">
+    <name>Zamek Kyjov</name>
+    <ele>199</ele>
+  </wpt>
+  <wpt lat="49.831875" lon="18.044901">
+    <name>Zamek Kyjovice ve Slezsku</name>
+    <ele>383</ele>
+  </wpt>
+  <wpt lat="50.123835" lon="13.956214">
+    <name>Zamek Lany</name>
+    <ele>426</ele>
+  </wpt>
+  <wpt lat="49.555877" lon="15.112271">
+    <name>Zamek Kosetice - novy zamek</name>
+    <ele>523</ele>
+  </wpt>
+  <wpt lat="48.959533" lon="17.13794">
+    <name>Zamek Milotice u Kyjova</name>
+    <ele>186</ele>
+  </wpt>
+  <wpt lat="49.362848" lon="13.882178">
+    <name>Zamek Lazany u Doubravice</name>
+    <ele>505</ele>
+  </wpt>
+  <wpt lat="49.365828" lon="13.843063">
+    <name>Zamek Bratronice</name>
+    <ele>539</ele>
+  </wpt>
+  <wpt lat="49.375678" lon="13.885193">
+    <name>Zamek Cekanice</name>
+    <ele>509</ele>
+  </wpt>
+  <wpt lat="50.42896" lon="15.58087">
+    <name>Zamek Lazne Belohrad</name>
+    <ele>304</ele>
+  </wpt>
+  <wpt lat="49.116879" lon="13.853236">
+    <name>Zamek Lcovice</name>
+    <ele>586</ele>
+  </wpt>
+  <wpt lat="49.75344" lon="12.535266">
+    <name>Zamek Lesna u Tachova</name>
+    <ele>675</ele>
+  </wpt>
+  <wpt lat="49.03456" lon="17.8007">
+    <name>Zamek Bojkovice - Novy Svetlov</name>
+    <ele>326</ele>
+  </wpt>
+  <wpt lat="49.534562" lon="12.912474">
+    <name>Zamek Annaburg</name>
+    <ele>383</ele>
+  </wpt>
+  <wpt lat="49.685128" lon="13.031449">
+    <name>Zamek Alfredov - Kostelec u Stribra</name>
+    <ele>447</ele>
+  </wpt>
+  <wpt lat="49.264525" lon="15.629393">
+    <name>Zamek Aleje - Stonarov</name>
+    <ele>639</ele>
+  </wpt>
+  <wpt lat="49.459236" lon="14.02775">
+    <name>Zamek BOUDY</name>
+    <ele>573</ele>
+  </wpt>
+  <wpt lat="50.000861" lon="16.290174">
+    <name>Zamek BRANDYS NAD ORLICI</name>
+    <ele>328</ele>
+  </wpt>
+  <wpt lat="49.20431" lon="16.69764">
+    <name>Zamek BELCREDI</name>
+    <ele>304</ele>
+  </wpt>
+  <wpt lat="49.60649" lon="15.06987">
+    <name>Zamek CERNICI</name>
+    <ele>509</ele>
+  </wpt>
+  <wpt lat="49.94329" lon="14.60779">
+    <name>Zamek CHOMUTOVICE U DOBREJ</name>
+    <ele>465</ele>
+  </wpt>
+  <wpt lat="49.15579" lon="13.75223">
+    <name>Zamek DOBRS</name>
+    <ele>709</ele>
+  </wpt>
+  <wpt lat="50.1646" lon="12.51031">
+    <name>Zamek DOLNI CASTKOV</name>
+    <ele>502</ele>
+  </wpt>
+  <wpt lat="49.21446" lon="13.48749">
+    <name>Zamek DOLNI STANKOV</name>
+    <ele>502</ele>
+  </wpt>
+  <wpt lat="49.17676" lon="13.82984">
+    <name>Zamek DOUBRAVICE U VOLYNE</name>
+    <ele>486</ele>
+  </wpt>
+  <wpt lat="49.84802" lon="14.0828">
+    <name>Zamek LAZOVICE</name>
+    <ele>351</ele>
+  </wpt>
+  <wpt lat="50.68034" lon="15.32089">
+    <name>Zamek LHOTKA U ZLATE OLESN</name>
+    <ele>451</ele>
+  </wpt>
+  <wpt lat="49.48399" lon="13.04551">
+    <name>Zamek LSTENI NAD ZUBRINOU</name>
+    <ele>397</ele>
+  </wpt>
+  <wpt lat="49.5848" lon="14.50341">
+    <name>Zamek MESETICE</name>
+    <ele>414</ele>
+  </wpt>
+  <wpt lat="49.23525" lon="13.39938">
+    <name>Zamek MILINOV</name>
+    <ele>688</ele>
+  </wpt>
+  <wpt lat="49.5957" lon="18.00638">
+    <name>Zamek NOVY JICIN-DOLNI PRE</name>
+    <ele>275</ele>
+  </wpt>
+  <wpt lat="50.13422" lon="12.2861">
+    <name>Zamek OSTROH</name>
+    <ele>505</ele>
+  </wpt>
+  <wpt lat="49.75498" lon="12.47263">
+    <name>Zamek PAVLUV STUDENECI</name>
+    <ele>741</ele>
+  </wpt>
+  <wpt lat="50.25786" lon="12.20764">
+    <name>Zamek PODHRADI</name>
+    <ele>580</ele>
+  </wpt>
+  <wpt lat="49.22448" lon="17.98611">
+    <name>Zamek POZDECHOV</name>
+    <ele>502</ele>
+  </wpt>
+  <wpt lat="49.55529" lon="13.01869">
+    <name>Zamek PUCLICE</name>
+    <ele>404</ele>
+  </wpt>
+  <wpt lat="48.82844" lon="16.35737">
+    <name>Zamek SANOV NAD JEVISOVKOU</name>
+    <ele>187</ele>
+  </wpt>
+  <wpt lat="49.6219" lon="18.22038">
+    <name>Zamek SKLENOV</name>
+    <ele>336</ele>
+  </wpt>
+  <wpt lat="50.31573" lon="14.10325">
+    <name>Zamek SLAPANICE V CECHACH</name>
+    <ele>222</ele>
+  </wpt>
+  <wpt lat="49.2734" lon="17.71733">
+    <name>Zamek STIPA</name>
+    <ele>306</ele>
+  </wpt>
+  <wpt lat="50.02082" lon="13.98338">
+    <name>Zamek SYKORICE</name>
+    <ele>365</ele>
+  </wpt>
+  <wpt lat="49.1936" lon="14.44626">
+    <name>Zamek TRITIM</name>
+    <ele>369</ele>
+  </wpt>
+  <wpt lat="50.04614" lon="14.84708">
+    <name>Zamek TUCHORAZ</name>
+    <ele>277</ele>
+  </wpt>
+  <wpt lat="50.16008" lon="13.31582">
+    <name>Zamek VESCE U DRAHONIC</name>
+    <ele>392</ele>
+  </wpt>
+  <wpt lat="50.514" lon="15.738">
+    <name>Zamek VESTREV</name>
+    <ele>378</ele>
+  </wpt>
+  <wpt lat="49.13685" lon="16.65283">
+    <name>Zamek VEVERI - BRNO (USTAV</name>
+    <ele>197</ele>
+  </wpt>
+  <wpt lat="49.62767" lon="14.52532">
+    <name>Zamek VYSOKA U KOSOVY HORY</name>
+    <ele>516</ele>
+  </wpt>
+</gpx>

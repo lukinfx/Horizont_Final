@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Xml;
 using HorizontLib.Domain.Enums;
 using HorizontLib.Domain.Models;
+using System.Globalization;
 
 namespace HorizontLib.Utilities
 {
@@ -45,17 +46,12 @@ namespace HorizontLib.Utilities
                     var wikipediaElement = xelement["wikipedia"];
                     string wikipedia = wikipediaElement == null ? "" : wikipediaElement.InnerText;
 
-                    //TODO: Resolve problem with decimal separator
-                    lat = lat.Replace(".", ",");
-                    lon = lon.Replace(".", ",");
-                    ele = ele.Replace(".", ",");
-
                     Poi poi = new Poi
                     {
                         Name = name,
-                        Longitude = Convert.ToDouble(lon),
-                        Latitude = Convert.ToDouble(lat),
-                        Altitude = String.IsNullOrEmpty(ele) ? 0 : Convert.ToDouble(ele),
+                        Longitude = double.Parse(lon, CultureInfo.InvariantCulture),
+                        Latitude = double.Parse(lat, CultureInfo.InvariantCulture),
+                        Altitude = String.IsNullOrEmpty(ele) ? 0 : double.Parse(ele, CultureInfo.InvariantCulture),
                         Category = category,
                         Source = source
                     };
