@@ -3,6 +3,8 @@ using HorizontApp.DataAccess;
 using HorizontLib.Domain.ViewModel;
 using HorizontApp.Utilities;
 using HorizontLib.Domain.Models;
+using System.Collections.Generic;
+using HorizonLib.Domain.Models;
 
 namespace HorizontApp.AppContext
 {
@@ -34,6 +36,8 @@ namespace HorizontApp.AppContext
             }
         }
 
+        public List<ProfileLine> ListOfProfileLines { get; set; }
+        
         public void ToggleCompassPaused()
         {
             CompassPaused = !CompassPaused;

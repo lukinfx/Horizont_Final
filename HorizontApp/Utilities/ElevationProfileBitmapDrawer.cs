@@ -6,6 +6,8 @@ using HorizontApp.AppContext;
 using HorizontLib.Domain.Models;
 using HorizontLib.Domain.ViewModel;
 using HorizontLib.Utilities;
+using HorizonLib.Domain.Models;
+using System.Collections.Generic;
 
 namespace HorizontApp.Utilities
 {
@@ -36,33 +38,16 @@ namespace HorizontApp.Utilities
 
         public void GenerateElevationProfileBitmap(ElevationProfileData epd, double displayWidth, double displayHeight)
         {
-            var imageInfo = new SKImageInfo(width: Convert.ToInt32(displayWidth * (360 / _adjustedViewAngleHorizontal)), height: Convert.ToInt32(displayHeight), colorType: SKColorType.Rgba8888, alphaType: SKAlphaType.Premul);
-            var surface = SKSurface.Create(imageInfo);
-            var canvas = surface.Canvas;
-            
-
-            
-
-            //canvas.Clear(SKColors.White);
-
-            if (epd == null)
-            {
-                canvas.DrawLine(0, imageInfo.Height / (float)2.0, imageInfo.Width, imageInfo.Height / (float)2.0, _paint);
-                return;
-            }
-
-
-            double maxDist = 0;
-            foreach(var ed in epd.GetData())
+            /*foreach(var ed in epd.GetData())
             {
                 var edMaxDist = ed.GetPoints().Max(p => p.Distance.Value);
                 if (edMaxDist > maxDist)
                 {
                     maxDist = edMaxDist;
                 }
-            }
+            }*/
 
-            var data = epd.GetData();
+            List<ProfileLine> listOfLines = new List<ProfileLine>();
             for (ushort i = 0; i < 360; i++)
             {
                 var thisAngle = epd.GetData(i);
@@ -78,30 +63,19 @@ namespace HorizontApp.Utilities
                             {
                                 if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value) <= point.Distance.Value / 12)
                                 {
-                                    var y1 = GetYLocation(point.VerticalViewAngle.Value, imageInfo.Height, _adjustedViewAngleVertical);
-                                    var x1 = GetXLocation(point.Bearing.Value, imageInfo.Width);
+                                    var y1 = GetYLocation(point.VerticalViewAngle.Value, displayHeight, _adjustedViewAngleVertical);
+                                    var x1 = (float)point.Bearing.Value;
 
-                                    var y2 = GetYLocation(otherPoint.VerticalViewAngle.Value, imageInfo.Height, _adjustedViewAngleVertical);
-                                    var x2 = GetXLocation(otherPoint.Bearing.Value, imageInfo.Width);
-
-
-                                    _paint.Color = SKColor.FromHsl(60, 100, (float) (50.0 - (point.Distance.Value / maxDist) / 2 * 50));
-                                    if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) < 100)
-                                        canvas.DrawLine(x1, y1, x2, y2, _paint);
-
+                                    var y2 = GetYLocation(otherPoint.VerticalViewAngle.Value, displayHeight, _adjustedViewAngleVertical);
+                                    var x2 = (float)otherPoint.Bearing.Value;
+                                    listOfLines.Add(new ProfileLine { x1 = x1, x2 = x2, y1 = y1, y2 = y2, distance = point.Distance.Value });
                                 }
                             }
                         }
                     }
                 }
             }
-
-            using (SKImage image = surface.Snapshot())
-            {
-                var profileImageData = image.Encode();
-                var profileImageDataAsArray = profileImageData.ToArray();
-                _elevationProfileBitmap = BitmapFactory.DecodeByteArray(profileImageDataAsArray, 0, profileImageDataAsArray.Length);
-            }
+            _context.ListOfProfileLines = listOfLines;
         }
 
         private float GetXLocation(double bearing, double canvasWidth)
@@ -117,6 +91,22 @@ namespace HorizontApp.Utilities
 
         public void PaintElevationProfileBitmap(Canvas canvas, double heading)
         {
+            if (_context.ListOfProfileLines != null)
+            {
+                Paint paint = new Paint();
+
+                foreach (var line in _context.ListOfProfileLines)
+                {
+                    paint.SetARGB((int)(255 - ((line.distance / 1000) / _context.Settings.MaxDistance) / 2 * 400), 255, 255, 100 );
+                    paint.StrokeWidth = 3; 
+                    var x1 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.x1, canvas.Width, _adjustedViewAngleHorizontal);
+                    var x2 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.x2, canvas.Width, _adjustedViewAngleHorizontal);
+                    if (x1.HasValue && x2.HasValue)
+                        canvas.DrawLine(x1.Value, line.y1, x2.Value, line.y2, paint);
+                }
+            }
+            
+            /*
             if (_elevationProfileBitmap != null)
             {
                 float offset = (float)(_elevationProfileBitmap.Width * (heading - _adjustedViewAngleHorizontal / 2) / 360);
@@ -129,7 +119,7 @@ namespace HorizontApp.Utilities
                 {
                     canvas.DrawBitmap(_elevationProfileBitmap, -offset - _elevationProfileBitmap.Width, (float)0, null);
                 }
-            }
+            }*/
         }
     }
 }

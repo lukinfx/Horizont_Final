@@ -3,6 +3,8 @@ using HorizontApp.Utilities;
 using HorizontApp.DataAccess;
 using HorizontLib.Domain.ViewModel;
 using HorizontLib.Domain.Models;
+using System.Collections.Generic;
+using HorizonLib.Domain.Models;
 
 namespace HorizontApp.AppContext
 {
@@ -25,5 +27,6 @@ namespace HorizontApp.AppContext
         PoiDatabase Database { get; }
         void ToggleCompassPaused();
         void ReloadData();
+        List<ProfileLine> ListOfProfileLines { get; set; }
     }
 }

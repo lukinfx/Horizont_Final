@@ -137,18 +137,6 @@ namespace HorizontApp.Views
             PaintElevationProfileBitmap(canvas);
 
             PaintVisiblePois(canvas);
-
-            PaintHorizonLine(canvas);
-        }
-         
-        private void PaintHorizonLine(Canvas canvas)
-        {
-            float startX = 0;
-            float startY = (float) ((canvas.Height / 2) + _leftTiltCorrector);
-
-            float endX = canvas.Width;
-            float endY = (float) ((canvas.Height / 2) + _rightTiltCorrector);
-            canvas.DrawLine(startX, startY, endX, endY, _paint);
         }
 
         private void PaintVisiblePois(Canvas canvas)
