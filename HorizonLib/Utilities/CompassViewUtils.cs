@@ -36,7 +36,8 @@ namespace HorizontLib.Utilities
             float XCoord;
             if (bearing < 0) bearing = 360 + bearing;
             double diff = GetAngleDiff(bearing, heading);
-            if (Math.Abs(diff) < cameraViewAngle / 2)
+            // +2 due to the edge of the screen and rounding bearing
+            if (Math.Abs(diff) < (cameraViewAngle + 2) / 2)
             {
                 XCoord = ((float)diff/ (cameraViewAngle / 2)) * canvasWidth/2 + canvasWidth / 2;
                 return XCoord;
