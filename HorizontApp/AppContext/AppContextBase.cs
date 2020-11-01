@@ -13,7 +13,21 @@ namespace HorizontApp.AppContext
         public event DataChangedEventHandler DataChanged;
 
         public Settings Settings { get; private set; }
-        public ElevationProfileData ElevationProfileData { get; set; }
+
+        private ElevationProfileData _elevationProfileData;
+        public ElevationProfileData ElevationProfileData
+        {
+            get
+            {
+                return _elevationProfileData;
+            }
+            set
+            {
+                _elevationProfileData = value;
+                var args = new DataChangedEventArgs() { PoiData = PoiData };
+                DataChanged?.Invoke(this, args);
+            }
+        }
 
         public bool CompassPaused { get; set; }
         

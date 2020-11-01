@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using HorizontLib.Domain.Models;
+using HorizontLib.Domain.ViewModel;
 
 namespace HorizontLib.Utilities
 {
@@ -49,12 +51,38 @@ namespace HorizontLib.Utilities
             return YCoordFloat;
         }
 
+        public static double GetPoiViewAngle(double distance, double altitudeDifference)
+        {
+            return GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance));
+        }
+
         public static float GetYLocationOnScreen(double distance, double altitudeDifference, double canvasHeight, double cameraViewAngle)
         {
-            return GetYLocationOnScreen(GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance)), canvasHeight, cameraViewAngle);
+            return GetYLocationOnScreen(GetPoiViewAngle(distance, altitudeDifference), canvasHeight, cameraViewAngle);
         }
-        
-        
+
+        public static bool IsPoiVisible(PoiViewItem item, ElevationProfileData elevationProfileData)
+        {
+            if (elevationProfileData == null)
+                return true;
+
+            var leftPoints = elevationProfileData.GetData((int) item.Bearing);
+            var rightPoints = elevationProfileData.GetData((int)GpsUtils.Normalize360(item.Bearing + 1));
+
+            var itemViewAngle = GetPoiViewAngle(item.Distance, item.AltitudeDifference);
+            
+            //increase itemViewAngle by 1 dg, becuase the POI might a little bit behind elevation map
+            //...especially when looking to the top from the valley
+            itemViewAngle+=1;
+
+            if (leftPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle))
+                return false;
+            if (rightPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle))
+                return false;
+
+            return true;
+        }
+
         public static float GetYLocationOnScreen(double distance, double altitudeDifference, double canvasHeight, double cameraViewAngle, float XLocation, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
         {
             var verticalAngle = GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance));

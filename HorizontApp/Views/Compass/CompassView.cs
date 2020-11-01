@@ -57,6 +57,12 @@ namespace HorizontApp.Views
             _compassViewFilter.Reset();
             foreach (var item in list)
             {
+                if (!CompassViewUtils.IsPoiVisible(item, _context.ElevationProfileData))
+                {
+                    item.Visibility = false;
+                    continue;
+                }
+
                 item.Visibility = _compassViewFilter.Filter(item, minAngleDiff);
             }
             Invalidate();
