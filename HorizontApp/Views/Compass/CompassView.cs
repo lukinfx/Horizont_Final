@@ -198,7 +198,7 @@ namespace HorizontApp.Views
 
         private void PaintElevationProfileBitmap(Canvas canvas)
         {
-            elevationProfileBitmapDrawer.PaintElevationProfileBitmap(canvas, Heading);
+            elevationProfileBitmapDrawer.PaintElevationProfileBitmap(canvas, Heading, _leftTiltCorrector, _rightTiltCorrector);
         }
     }
 }

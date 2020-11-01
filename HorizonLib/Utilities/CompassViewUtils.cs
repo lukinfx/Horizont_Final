@@ -65,6 +65,12 @@ namespace HorizontLib.Utilities
             return YCoordFloat;
         }
 
+        public static float GetYLocationOnScreen(float YLocation, float XLocation, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
+        {
+            double YDifference = leftTiltCorrector + XLocation * (rightTiltCorrector - leftTiltCorrector) / canvasWidth;
+            var YCoordFloat = (float)(YLocation + YDifference);
+            return YCoordFloat;
+        }
 
         /// <summary>
         /// Returns angular difference defined by moveX translation

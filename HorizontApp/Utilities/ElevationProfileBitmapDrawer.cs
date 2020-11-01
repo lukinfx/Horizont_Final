@@ -89,7 +89,7 @@ namespace HorizontApp.Utilities
             return CompassViewUtils.GetYLocationOnScreen(verticalAngle, canvasHeight, viewAngleVertical);
         }
 
-        public void PaintElevationProfileBitmap(Canvas canvas, double heading)
+        public void PaintElevationProfileBitmap(Canvas canvas, double heading, double leftTiltCorrector, double rightTiltCorrector)
         {
             if (_context.ListOfProfileLines != null)
             {
@@ -102,7 +102,21 @@ namespace HorizontApp.Utilities
                     var x1 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.x1, canvas.Width, _adjustedViewAngleHorizontal);
                     var x2 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.x2, canvas.Width, _adjustedViewAngleHorizontal);
                     if (x1.HasValue && x2.HasValue)
-                        canvas.DrawLine(x1.Value, line.y1, x2.Value, line.y2, paint);
+                    {
+                        if (leftTiltCorrector == 0 && rightTiltCorrector == 0)
+                        {
+                            canvas.DrawLine(x1.Value, line.y1, x2.Value, line.y2, paint);
+                        }
+                        else
+                        {
+                            var y1 = CompassViewUtils.GetYLocationOnScreen(line.y1, x1.Value, leftTiltCorrector, rightTiltCorrector, canvas.Width);
+                            var y2 = CompassViewUtils.GetYLocationOnScreen(line.y2, x2.Value, leftTiltCorrector, rightTiltCorrector, canvas.Width);
+
+                            canvas.DrawLine(x1.Value, y1, x2.Value, y2, paint);
+                        }
+                       
+                    }
+
                 }
             }
             
