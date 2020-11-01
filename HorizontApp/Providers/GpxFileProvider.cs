@@ -6,7 +6,7 @@ namespace HorizontApp.Providers
     {
 
         private static readonly string WebsiteUrl = "http://krvaveoleje.cz/horizont/";
-        private static readonly string IndexFile = "poi-index.json";
+        private static readonly string IndexFile = "horizon-index.json";
 
         public static string GetIndexUrl()
         {

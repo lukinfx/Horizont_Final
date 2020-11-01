@@ -1,0 +1,240 @@
+[
+	{
+		"Country":"CZE",
+		"ElevationMap": 
+		{
+			"Id": "2badc997-7179-4552-852f-f2ee157834cc",
+			"Tiles":
+			[
+				{
+					"Longitude":"12",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"13",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"14",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"15",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"16",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"17",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"18",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"12",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"13",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"14",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"15",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"16",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"17",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"18",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"12",
+					"Latitude":"50"
+				},
+				{
+					"Longitude":"13",
+					"Latitude":"50"
+				},
+				{
+					"Longitude":"14",
+					"Latitude":"50"
+				},
+				{
+					"Longitude":"15",
+					"Latitude":"50"
+				},
+				{
+					"Longitude":"16",
+					"Latitude":"50"
+				},
+				{
+					"Longitude":"17",
+					"Latitude":"50"
+				},
+				{
+					"Longitude":"18",
+					"Latitude":"50"
+				}
+			]
+		},
+		"PoiData": 
+		[
+			{
+				"Id":"948268dd-71a7-4696-bb8c-dafdad5e4872",
+				"Description": "All mountains in the Czech Republic (from openstreetmap.org)",
+				"Url": "czech-republic-mountains.gpx",
+				"Category": "Mountains"
+			},
+			{
+				"Id":"6415ba5e-2c02-47e6-9f0e-d14b1f099c46",
+				"Description": "All transmitters in the Czech Republic (from openstreetmap.org)",
+				"Url": "czech-republic-transmitters.gpx",
+				"Category": "Transmitters"
+			},
+			{
+				"Id":"4fb8a6da-3693-47bb-bc79-6622c615bf7e",
+				"Description": "All view towers in the Czech Republic  (from openstreetmap.org)",
+				"Url": "czech-republic-viewtowers.gpx",
+				"Category": "ViewTowers"
+			},
+			{
+				"Id":"5818de17-160e-4382-a839-1a54b4f08f2d",
+				"Description": "All lakes, dams and ponds in the Czech Republic",
+				"Url": "cze-lakes.gpx",
+				"Category": "Lakes"
+			},
+			{
+				"Id":"9693f0af-02b9-4966-bb40-02dc82908086",
+				"Description": "All castles in the Czech Republic",
+				"Url": "cze-castles.gpx",
+				"Category": "Castles"
+			},
+			{
+				"Id":"54c97f51-2c2c-4976-89d4-5854ff9daa35",
+				"Description": "All churches and catherdrals in the Czech Republic",
+				"Url": "cze-churches.gpx",
+				"Category": "Churches"
+			},
+			{
+				"Id":"548a4c51-f378-49a9-aa80-6c23cc75fe4c",
+				"Description": "All palaces in the Czech Republic",
+				"Url": "cze-palaces.gpx",
+				"Category": "Palaces"
+			},
+			{
+				"Id":"eb5f0135-2d83-4a13-9de6-2ac90ef6c26c",
+				"Description": "All ruins in the Czech Republic",
+				"Url": "cze-ruins.gpx",
+				"Category": "Ruins"
+			}
+		]
+	},
+	{
+		"Country":"SVK",
+		"PoiData": 
+		[
+			{
+				"Id":"a936b146-ab96-451f-b24b-f270c8373ead",
+				"Description": "All mountains in Slovakia (from openstreetmap.org)",
+				"Url": "slovakia-mountains.gpx",
+				"Category": "Mountains"
+			},
+			{
+				"Id":"951431fc-b4f7-4e8d-b24d-b55848c4fbf4",
+				"Description": "All transmitters in Slovakia (from openstreetmap.org)",
+				"Url": "slovakia-transmitters.gpx",
+				"Category": "Transmitters"
+			},
+			{
+				"Id":"b6e75930-9044-418a-8c27-50eeb1faae34",
+				"Description": "All view towers in Slovakia (from openstreetmap.org)",
+				"Url": "slovakia-viewtowers.gpx",
+				"Category": "ViewTowers"
+			},
+			{
+				"Id":"b6e75930-9044-418a-8c27-50eeb1faae35",
+				"Description": "Some error in download",
+				"Url": "slovakia-error.gpx",
+				"Category": "Lakes"
+			}
+		],
+		"ElevationMap": 
+		{
+			"Id":"e37ef7ae-4adb-46b1-b63d-72ad4e2624d1",
+			"ElevationMapTile":
+			[
+				{
+					"Longitude":"18",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"19",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"20",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"21",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"22",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"23",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"24",
+					"Latitude":"48"
+				},
+				{
+					"Longitude":"18",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"19",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"20",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"21",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"22",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"23",
+					"Latitude":"49"
+				},
+				{
+					"Longitude":"24",
+					"Latitude":"49"
+				}
+			]
+		}
+	}
+]

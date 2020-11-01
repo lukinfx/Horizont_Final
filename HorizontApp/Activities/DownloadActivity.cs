@@ -63,14 +63,36 @@ namespace HorizontApp.Activities
 
             //fetch list of item from internet
             var json = GpxFileProvider.GetFile(GpxFileProvider.GetIndexUrl());
-            var itemsToDownload = JsonConvert.DeserializeObject<List<PoisToDownload>>(json);
+            var horizonIndex = JsonConvert.DeserializeObject<HorizonIndex>(json);
+
 
             //combine those two lists together
-            foreach (var item in itemsToDownload)
+            foreach (var country in horizonIndex)
             {
-                if (!_downloadItems.Any(x => x.Id == item.Id))
+                foreach (var item in country.PoiData)
                 {
-                    _downloadItems.Add(item);
+                    if (!_downloadItems.Any(x => x.Id == item.Id))
+                    {
+                        _downloadItems.Add(new PoisToDownload()
+                        {
+                            Id = item.Id,
+                            Description = item.Description,
+                            Category = item.Category,
+                            Url = item.Url,
+                            Country = country.Country,
+                        });
+                    }
+                }
+
+                if (!_downloadItems.Any(x => x.Id == country.ElevationMap.Id))
+                {
+                    _downloadItems.Add(new PoisToDownload()
+                    {
+                        Id = country.ElevationMap.Id,
+                        Description = "Elevation data",
+                        Category = PoiCategory.ElevationData,
+                        Country = country.Country,
+                    });
                 }
             }
 
@@ -133,13 +155,27 @@ namespace HorizontApp.Activities
         private void OnDownloadListItemClicked(object sender, AdapterView.ItemClickEventArgs e)
         {
             PoisToDownload item = _items[e.Position];
-            if (item.DownloadDate == null)
+            if (item.Category == PoiCategory.ElevationData)
             {
-                DownloadFromInternet(item);
+                if (item.DownloadDate == null)
+                {
+                    DownloadElevationDataFromInternet(item);
+                }
+                else
+                {
+                    DeleteElevationDataFromInternet(item);
+                }
             }
             else
             {
-                DeleteFromInternet(item);
+                if (item.DownloadDate == null)
+                {
+                    DownloadPoiDataFromInternet(item);
+                }
+                else
+                {
+                    DeletePoiDataFromInternet(item);
+                }
             }
             _downloadItemAdapter.NotifyDataSetChanged();
         }
@@ -157,11 +193,11 @@ namespace HorizontApp.Activities
         private void OnCountrySelected(int position)
         {
             PoiCountry country = _countries[position];
-            _items = _downloadItems.Where(x => x.Country == country).ToList();
+            _items = _downloadItems.Where(x => x.Country == country).OrderBy(x => x.Category).ToList();
             _downloadItemAdapter.SetItems(_items);
         }
 
-        private void DownloadFromInternet(PoisToDownload source)
+        private void DownloadPoiDataFromInternet(PoisToDownload source)
         {
             try
             {
@@ -213,7 +249,7 @@ namespace HorizontApp.Activities
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        PopupHelper.ErrorDialog(this, "Error", $"Error when loading data. {message}");
+                        PopupHelper.ErrorDialog(this, "Error", $"Error when downloading POI data. {message}");
                     });
                 };
 
@@ -221,11 +257,11 @@ namespace HorizontApp.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when loading data. {ex.Message}");
+                PopupHelper.ErrorDialog(this, "Error", $"Error when downloading POI data. {ex.Message}");
             }
         }
 
-        private void DeleteFromInternet(PoisToDownload source)
+        private void DeletePoiDataFromInternet(PoisToDownload source)
         {
             try
             {
@@ -234,11 +270,45 @@ namespace HorizontApp.Activities
                 source.DownloadDate = null;
                 Database.DeleteItem(source);
 
-                PopupHelper.InfoDialog(this, "Information", $"Items removed from database.");
+                PopupHelper.InfoDialog(this, "Information", $"POI items removed from database.");
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when removing data. {ex.Message}");
+                PopupHelper.ErrorDialog(this, "Error", $"Error when removing POI data. {ex.Message}");
+            }
+        }
+
+        private void DownloadElevationDataFromInternet(PoisToDownload source)
+        {
+            try
+            {
+                var ec = new PoiFileImport(source);
+
+                source.DownloadDate = DateTime.Now;
+                Database.InsertItem(source);
+
+                PopupHelper.InfoDialog(this, "Information", $"Elevation data were dowvloaded.");
+                _downloadItemAdapter.NotifyDataSetChanged();
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, "Error", $"Error when downloading elevation data. {ex.Message}");
+            }
+        }
+
+        private void DeleteElevationDataFromInternet(PoisToDownload source)
+        {
+            try
+            {
+                //TODO: ### Delete Tiles
+                source.DownloadDate = null;
+                Database.DeleteItem(source);
+
+                PopupHelper.InfoDialog(this, "Information", $"Elevation data deleted.");
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, "Error", $"Error when deleting elevation data. {ex.Message}");
             }
         }
     }

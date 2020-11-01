@@ -10,5 +10,6 @@
         ViewTowers = 6,
         Transmitters = 7,
         Churches = 8,
+        ElevationData = 100,
     }
 }
