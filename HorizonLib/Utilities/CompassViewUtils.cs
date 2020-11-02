@@ -76,9 +76,9 @@ namespace HorizontLib.Utilities
             //...especially when looking to the top from the valley
             itemViewAngle+=1;
 
-            if (leftPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle))
+            if (leftPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle && p.Distance < item.Distance))
                 return false;
-            if (rightPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle))
+            if (rightPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle && p.Distance < item.Distance))
                 return false;
 
             return true;
