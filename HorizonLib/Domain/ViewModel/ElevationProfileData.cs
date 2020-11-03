@@ -6,7 +6,7 @@ namespace HorizontLib.Domain.ViewModel
 {
     public class ElevationProfileData
     {
-        private List<ElevationData> elevationData = new List<ElevationData>();
+        public List<ElevationData> elevationData = new List<ElevationData>();
         public string ErrorMessage { get; set; }
 
         public ElevationProfileData(string errMsg)

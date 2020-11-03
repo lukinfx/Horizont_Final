@@ -21,6 +21,7 @@ using HorizontApp.Utilities;
 using HorizontApp.Views;
 using HorizontLib.Domain.Enums;
 using HorizontLib.Domain.Models;
+using HorizontLib.Domain.ViewModel;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms.Platform.Android;
@@ -104,6 +105,7 @@ namespace HorizontApp.Activities
             _context.Settings.MaxDistance = Convert.ToInt32(photodata.MaxDistance);
             _context.Settings.MinAltitute = Convert.ToInt32(photodata.MinAltitude);
 
+            
             _filterText = FindViewById<TextView>(Resource.Id.textView1);
 
             _headingTextView = FindViewById<TextView>(Resource.Id.editText1);
@@ -134,11 +136,19 @@ namespace HorizontApp.Activities
             _tiltCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonTiltCorrector);
             _tiltCorrectorButton.SetOnClickListener(this);
             
+            
 
             photoView = FindViewById<ImageView>(Resource.Id.photoView);
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.Initialize(_context);
+            
+            if (photodata.LeftTiltCorrector.HasValue && photodata.RightTiltCorrector.HasValue)
+            {
+                _compassView.OnScroll((float)-photodata.LeftTiltCorrector.Value, true);
+                _compassView.OnScroll((float)-photodata.RightTiltCorrector.Value, false);
+            
+            }
 
             var photoLayout = FindViewById<AbsoluteLayout>(Resource.Id.photoLayout);
 
@@ -339,6 +349,11 @@ namespace HorizontApp.Activities
                     }
                 case Resource.Id.menuButton:
                     {
+                        photodata.LeftTiltCorrector = _compassView.GetTiltSettings().Item1;
+                        photodata.RightTiltCorrector = _compassView.GetTiltSettings().Item2;
+                        photodata.Heading = _compassView.Heading + _compassView.HeadingCorrector;
+                        photodata.JsonElevationProfileData = JsonConvert.SerializeObject(_context.ElevationProfileData);
+                        Database.UpdateItem(photodata);
                         Finish();
                         break;
                     }
@@ -361,33 +376,42 @@ namespace HorizontApp.Activities
         {
             try
             {
-                if (!GpsUtils.HasAltitude(_context.MyLocation))
+                if (photodata.JsonElevationProfileData != null)
                 {
-                    PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
-                    return;
-                }
-
-                var ec = new ElevationCalculation(_context.MyLocation, _distanceSeekBar.Progress);
-
-                var size = ec.GetSizeToDownload();
-                if (size == 0)
+                    _context.ElevationProfileData = JsonConvert.DeserializeObject<ElevationProfileData>(photodata.JsonElevationProfileData);
+                    RefreshElevationProfile();
+                } 
+                else
                 {
-                    StartDownloadAndCalculate(ec);
-                    return;
+                    if (!GpsUtils.HasAltitude(_context.MyLocation))
+                    {
+                        PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
+                        return;
+                    }
+
+                    var ec = new ElevationCalculation(_context.MyLocation, _distanceSeekBar.Progress);
+
+                    var size = ec.GetSizeToDownload();
+                    if (size == 0)
+                    {
+                        StartDownloadAndCalculate(ec);
+                        return;
+                    }
+
+                    using (var builder = new AlertDialog.Builder(this))
+                    {
+                        builder.SetTitle("Question");
+                        builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount of downloaded data. \r\n\r\nDo you really want to continue?");
+                        builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
+                        builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
+                        builder.SetNegativeButton("Cancel", (senderAlert, args) => { });
+
+                        var myCustomDialog = builder.Create();
+
+                        myCustomDialog.Show();
+                    }
                 }
-
-                using (var builder = new AlertDialog.Builder(this))
-                {
-                    builder.SetTitle("Question");
-                    builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount downloaded data. \r\n\r\nDo you really want to continue?");
-                    builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
-                    builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
-                    builder.SetNegativeButton("Cancel", (senderAlert, args) => { });
-
-                    var myCustomDialog = builder.Create();
-
-                    myCustomDialog.Show();
-                }
+                
             }
             catch (Exception ex)
             {

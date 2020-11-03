@@ -23,7 +23,7 @@ namespace HorizontApp.Views
         private IAppContext _context { get; set; }
         public double Heading { get; set; }
         private Paint _paint;
-        private static double _headingCorrector = 0;
+        private double _headingCorrector = 0;
         private ElevationProfileData _elevationProfile;
         private double _leftTiltCorrector = 0;
         private double _rightTiltCorrector = 0;
@@ -84,13 +84,11 @@ namespace HorizontApp.Views
             {
                 HeadingCorrector = 0;
             }
-            
         }
 
         public void Initialize(IAppContext context)
         {
             _context = context;
-
             _context.Settings.SettingsChanged += OnSettingsChanged;
 
             elevationProfileBitmapDrawer = new ElevationProfileBitmapDrawer(_context);
@@ -206,5 +204,10 @@ namespace HorizontApp.Views
         {
             elevationProfileBitmapDrawer.PaintElevationProfileBitmap(canvas, Heading, _leftTiltCorrector, _rightTiltCorrector);
         }
+
+        public (double, double) GetTiltSettings()
+        {
+            return (_leftTiltCorrector, _rightTiltCorrector);
+        }
     }
-}
+} 

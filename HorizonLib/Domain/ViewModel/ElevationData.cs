@@ -6,7 +6,7 @@ namespace HorizontLib.Domain.ViewModel
 {
     public class ElevationData
     {
-        private List<GpsLocation> displayedPoints = new List<GpsLocation>();
+        public List<GpsLocation> displayedPoints = new List<GpsLocation>();
         public ushort Angle { get; private set; }
 
         public ElevationData(ushort angle)

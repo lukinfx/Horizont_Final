@@ -1,4 +1,6 @@
 ﻿using HorizontLib.Domain.Models;
+using HorizontLib.Domain.ViewModel;
+using HorizontLib.Utilities;
 using SQLite;
 using System;
 
@@ -23,6 +25,9 @@ namespace HorizontLib.Domain.Models
         public double MinAltitude{ get; set; }
         public double MaxDistance { get; set; }
         public bool Favourie { get; set; }
+        public double? RightTiltCorrector { get; set; }
+        public double? LeftTiltCorrector { get; set; }
+        public string JsonElevationProfileData { get; set; }
 
         public PhotoData()
         {
