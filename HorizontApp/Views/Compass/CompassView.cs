@@ -76,14 +76,6 @@ namespace HorizontApp.Views
         public void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
             InitializeViewDrawer();
-            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
-            {
-                HeadingCorrector = -90;
-            }
-            else
-            {
-                HeadingCorrector = 0;
-            }
         }
 
         public void Initialize(IAppContext context)

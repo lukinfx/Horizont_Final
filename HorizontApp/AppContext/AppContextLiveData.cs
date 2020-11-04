@@ -77,6 +77,10 @@ namespace HorizontApp.AppContext
                 {
                     HeadingStabilizator.AddValue(CompassProvider.Heading);
                     Heading = HeadingStabilizator.GetHeading();
+                    if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+                    {
+                        Heading = Heading - 90;
+                    }
                 }
             });
         }
