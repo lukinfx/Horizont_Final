@@ -55,6 +55,12 @@ namespace HorizontLib.Providers
             return File.Exists(filePath);
         }
 
+        internal static void Remove(int lat, int lon)
+        {
+            var filePath = GetElevationFilePath(lat, lon);
+            File.Delete(filePath);
+        }
+
         public static int GetFileSize()
         {
             return ELEVATION_FILE_SIZE;

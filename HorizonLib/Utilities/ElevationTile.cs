@@ -52,6 +52,19 @@ namespace HorizontLib.Utilities
             }
         }
 
+        public bool Remove()
+        {
+            try
+            {
+                ElevationFileProvider.Remove((int)StartLocation.Latitude, (int)StartLocation.Longitude);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = $"File delete error ({ex.Message})";
+                return false;
+            }
+        }
         public IEnumerator<GpsLocation> GetEnumerator()
         {
             if (_elevationData == null)

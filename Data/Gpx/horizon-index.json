@@ -1,97 +1,6 @@
 [
 	{
 		"Country":"CZE",
-		"ElevationMap": 
-		{
-			"Id": "2badc997-7179-4552-852f-f2ee157834cc",
-			"Tiles":
-			[
-				{
-					"Longitude":"12",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"13",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"14",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"15",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"16",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"17",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"18",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"12",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"13",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"14",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"15",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"16",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"17",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"18",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"12",
-					"Latitude":"50"
-				},
-				{
-					"Longitude":"13",
-					"Latitude":"50"
-				},
-				{
-					"Longitude":"14",
-					"Latitude":"50"
-				},
-				{
-					"Longitude":"15",
-					"Latitude":"50"
-				},
-				{
-					"Longitude":"16",
-					"Latitude":"50"
-				},
-				{
-					"Longitude":"17",
-					"Latitude":"50"
-				},
-				{
-					"Longitude":"18",
-					"Latitude":"50"
-				}
-			]
-		},
 		"PoiData": 
 		[
 			{
@@ -141,6 +50,12 @@
 				"Description": "All ruins in the Czech Republic",
 				"Url": "cze-ruins.gpx",
 				"Category": "Ruins"
+			},
+			{
+				"Id":"2badc997-7179-4552-852f-f2ee157834cc",
+				"Description": "Elevation map data",
+				"Url": "czech-republic-elevation.tlx",
+				"Category": "ElevationData"
 			}
 		]
 	},
@@ -171,70 +86,13 @@
 				"Description": "Some error in download",
 				"Url": "slovakia-error.gpx",
 				"Category": "Lakes"
+			},
+			{
+				"Id":"e37ef7ae-4adb-46b1-b63d-72ad4e2624d1",
+				"Description": "Elevation map data",
+				"Url": "slovakia-elevation.tlx",
+				"Category": "ElevationData"
 			}
-		],
-		"ElevationMap": 
-		{
-			"Id":"e37ef7ae-4adb-46b1-b63d-72ad4e2624d1",
-			"ElevationMapTile":
-			[
-				{
-					"Longitude":"18",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"19",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"20",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"21",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"22",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"23",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"24",
-					"Latitude":"48"
-				},
-				{
-					"Longitude":"18",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"19",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"20",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"21",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"22",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"23",
-					"Latitude":"49"
-				},
-				{
-					"Longitude":"24",
-					"Latitude":"49"
-				}
-			]
-		}
+		]
 	}
 ]

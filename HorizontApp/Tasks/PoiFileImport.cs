@@ -39,26 +39,26 @@ namespace HorizontApp.Tasks
         {
             base.OnPostExecute(result);
             System.Console.WriteLine("Finished");
-            OnFinishedAction(result);
+            OnFinishedAction?.Invoke(result);
         }
 
         protected override PoiList RunInBackground(params string[] @url)
         {
             try
             {
-                OnStageChange("Downloading data", 1);
+                OnStageChange?.Invoke("Downloading data", 1);
                 var file = GpxFileProvider.GetFile(GpxFileProvider.GetUrl(url[0]));
-                OnProgressChange(1);
+                OnProgressChange?.Invoke(1);
 
                 var listOfPoi = GpxFileParser.Parse(file, _source.Category, _source.Id,
-                    x => OnStageChange("Parsing data", x),
-                    x => OnProgressChange(x));
+                    x => OnStageChange?.Invoke("Parsing data", x),
+                    x => OnProgressChange?.Invoke(x));
 
                 return listOfPoi;
             }
             catch (Exception ex)
             {
-                OnError(ExceptionHelper.Exception2ErrorMessage(ex));
+                OnError?.Invoke(ExceptionHelper.Exception2ErrorMessage(ex));
                 return new PoiList();
             }
         }

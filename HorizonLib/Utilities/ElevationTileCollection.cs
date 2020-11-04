@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
+using HorizonLib.Domain.Models;
 using HorizontLib.Domain.Models;
 using HorizontLib.Providers;
 using HorizontLib.Utilities;
@@ -88,6 +87,14 @@ namespace HorizonLib.Utilities
             }
         }
 
+        public ElevationTileCollection(ElevationMap elevationMap)
+        {
+            foreach  (var item in elevationMap.Tiles)
+            {
+                _elevationTiles.Add(new ElevationTile(new GpsLocation(item.Longitude, item.Latitude, 0)));
+            }
+        }
+
         public IEnumerable<ElevationTile> AsEnumerable()
         {
             return _elevationTiles;
@@ -124,6 +131,15 @@ namespace HorizonLib.Utilities
             return isOk;
         }
 
+        public bool Remove()
+        {
+            foreach (var et in _elevationTiles)
+            {
+                et.Remove();
+            }
+
+            return true;
+        }
         public string GetErrorList()
         {
             string errorsAsString = "";

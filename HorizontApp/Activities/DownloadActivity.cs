@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using Xamarin.Essentials;
 using static Android.Views.View;
 using System.Threading;
+using HorizonLib.Utilities;
 
 namespace HorizontApp.Activities
 {
@@ -28,6 +29,7 @@ namespace HorizontApp.Activities
         private Spinner _downloadCountrySpinner;
         private DownloadItemAdapter _downloadItemAdapter;
 
+        private HorizonIndex _horizonIndex;
         private List<PoisToDownload> _downloadItems;
         private List<PoisToDownload> _items;
         private List<PoiCountry> _countries;
@@ -63,11 +65,10 @@ namespace HorizontApp.Activities
 
             //fetch list of item from internet
             var json = GpxFileProvider.GetFile(GpxFileProvider.GetIndexUrl());
-            var horizonIndex = JsonConvert.DeserializeObject<HorizonIndex>(json);
-
+            _horizonIndex = JsonConvert.DeserializeObject<HorizonIndex>(json);
 
             //combine those two lists together
-            foreach (var country in horizonIndex)
+            foreach (var country in _horizonIndex)
             {
                 foreach (var item in country.PoiData)
                 {
@@ -82,17 +83,6 @@ namespace HorizontApp.Activities
                             Country = country.Country,
                         });
                     }
-                }
-
-                if (!_downloadItems.Any(x => x.Id == country.ElevationMap.Id))
-                {
-                    _downloadItems.Add(new PoisToDownload()
-                    {
-                        Id = country.ElevationMap.Id,
-                        Description = "Elevation data",
-                        Category = PoiCategory.ElevationData,
-                        Country = country.Country,
-                    });
                 }
             }
 
@@ -282,13 +272,55 @@ namespace HorizontApp.Activities
         {
             try
             {
-                var ec = new PoiFileImport(source);
+                var ec = new ElevationDataImport(source);
 
-                source.DownloadDate = DateTime.Now;
-                Database.InsertItem(source);
+                var lastProgressUpdate = System.Environment.TickCount;
 
-                PopupHelper.InfoDialog(this, "Information", $"Elevation data were dowvloaded.");
-                _downloadItemAdapter.NotifyDataSetChanged();
+                var pd = new ProgressDialog(this);
+                pd.SetMessage("Loading data. Please Wait.");
+                pd.SetCancelable(false);
+                pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
+                pd.Show();
+
+                ec.OnFinishedAction = (result) =>
+                {
+                    pd.Hide();
+                    if (result == true)
+                    {
+                        source.DownloadDate = DateTime.Now;
+                        Database.InsertItem(source);
+
+                        PopupHelper.InfoDialog(this, "Information", $"Elevation data were downloaded.");
+                        _downloadItemAdapter.NotifyDataSetChanged();
+                    }
+                };
+                ec.OnStageChange = (text, max) =>
+                {
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        pd.SetMessage(text);
+                        pd.Max = max;
+                    });
+                };
+                ec.OnProgressChange = (progress) =>
+                {
+                    var tickCount = System.Environment.TickCount;
+                    if (tickCount - lastProgressUpdate > 100)
+                    {
+                        MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
+                        Thread.Sleep(50);
+                        lastProgressUpdate = tickCount;
+                    }
+                };
+                ec.OnError = (message) =>
+                {
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        PopupHelper.ErrorDialog(this, "Error", $"Error when downloading elevation data. {message}");
+                    });
+                };
+
+                ec.Execute(ElevationDataImport.COMMAND_DOWNLOAD);
             }
             catch (Exception ex)
             {
@@ -300,11 +332,42 @@ namespace HorizontApp.Activities
         {
             try
             {
-                //TODO: ### Delete Tiles
-                source.DownloadDate = null;
-                Database.DeleteItem(source);
+                var ec = new ElevationDataImport(source);
 
-                PopupHelper.InfoDialog(this, "Information", $"Elevation data deleted.");
+                var pd = new ProgressDialog(this);
+                pd.SetMessage("Removing data. Please Wait.");
+                pd.SetCancelable(false);
+                pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
+                pd.Show();
+
+                ec.OnFinishedAction = (result) =>
+                {
+                    pd.Hide();
+                    if (result == true)
+                    {
+                        source.DownloadDate = null;
+                        Database.DeleteItem(source);
+
+                        PopupHelper.InfoDialog(this, "Information", $"Elevation data deleted."); 
+                    }
+                };
+                ec.OnStageChange = (text, max) =>
+                {
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        pd.SetMessage(text);
+                        pd.Max = max;
+                    });
+                };
+                ec.OnError = (message) =>
+                {
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        PopupHelper.ErrorDialog(this, "Error", $"Error when downloading elevation data. {message}");
+                    });
+                };
+
+                ec.Execute(ElevationDataImport.COMMAND_REMOVE);
             }
             catch (Exception ex)
             {
