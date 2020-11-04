@@ -379,39 +379,40 @@ namespace HorizontApp.Activities
                 if (photodata.JsonElevationProfileData != null)
                 {
                     _context.ElevationProfileData = JsonConvert.DeserializeObject<ElevationProfileData>(photodata.JsonElevationProfileData);
-                    RefreshElevationProfile();
+                    if (_context.ElevationProfileData != null)
+                    {
+                        RefreshElevationProfile();
+                        return;
+                    }
                 } 
-                else
+
+                if (!GpsUtils.HasAltitude(_context.MyLocation))
                 {
-                    if (!GpsUtils.HasAltitude(_context.MyLocation))
-                    {
-                        PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
-                        return;
-                    }
-
-                    var ec = new ElevationCalculation(_context.MyLocation, _distanceSeekBar.Progress);
-
-                    var size = ec.GetSizeToDownload();
-                    if (size == 0)
-                    {
-                        StartDownloadAndCalculate(ec);
-                        return;
-                    }
-
-                    using (var builder = new AlertDialog.Builder(this))
-                    {
-                        builder.SetTitle("Question");
-                        builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount of downloaded data. \r\n\r\nDo you really want to continue?");
-                        builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
-                        builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
-                        builder.SetNegativeButton("Cancel", (senderAlert, args) => { });
-
-                        var myCustomDialog = builder.Create();
-
-                        myCustomDialog.Show();
-                    }
+                    PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
+                    return;
                 }
-                
+
+                var ec = new ElevationCalculation(_context.MyLocation, _distanceSeekBar.Progress);
+
+                var size = ec.GetSizeToDownload();
+                if (size == 0)
+                {
+                    StartDownloadAndCalculate(ec);
+                    return;
+                }
+
+                using (var builder = new AlertDialog.Builder(this))
+                {
+                    builder.SetTitle("Question");
+                    builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount of downloaded data. \r\n\r\nDo you really want to continue?");
+                    builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
+                    builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
+                    builder.SetNegativeButton("Cancel", (senderAlert, args) => { });
+
+                    var myCustomDialog = builder.Create();
+
+                    myCustomDialog.Show();
+                }
             }
             catch (Exception ex)
             {
