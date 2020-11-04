@@ -351,7 +351,7 @@ namespace HorizontApp.Activities
                     {
                         photodata.LeftTiltCorrector = _compassView.GetTiltSettings().Item1;
                         photodata.RightTiltCorrector = _compassView.GetTiltSettings().Item2;
-                        photodata.Heading = _compassView.Heading + _compassView.HeadingCorrector;
+                        photodata.Heading = _compassView.Heading;
                         photodata.JsonElevationProfileData = JsonConvert.SerializeObject(_context.ElevationProfileData);
                         Database.UpdateItem(photodata);
                         Finish();
