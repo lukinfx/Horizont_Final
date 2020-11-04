@@ -117,12 +117,9 @@ namespace HorizontApp.Activities
             base.OnActivityResult(requestCode, resultCode, data);
             if (requestCode == PoiListActivity.REQUEST_SHOW_POI_LIST)
             {
-                if (resultCode == Result.Ok)
+                if (resultCode == (Result) PoiListActivity.RESULT_OK_AND_CLOSE_PARENT)
                 {
-                }
-                else if (resultCode == Result.Canceled)
-                {
-                    SetResult(Result.Canceled);
+                    SetResult(Result.Ok);
                     Finish();
                 }
             }

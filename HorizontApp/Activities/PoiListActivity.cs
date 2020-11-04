@@ -23,6 +23,11 @@ namespace HorizontApp.Views.ListOfPoiView
     {
         public static int REQUEST_SHOW_POI_LIST = 0;
 
+        public static Result RESULT_CANCELED { get { return Result.Canceled; } }
+        public static Result RESULT_OK { get { return Result.Ok; } }
+        public static Result RESULT_OK_AND_CLOSE_PARENT { get { return (Result)2; } }
+
+
         private ListView _listViewPoi;
         private Spinner _spinnerSelection;
         private EditText _editTextSearch;
@@ -240,28 +245,28 @@ namespace HorizontApp.Views.ListOfPoiView
             base.OnActivityResult(requestCode, resultCode, data);
             if (requestCode == EditActivity.REQUEST_ADD_POI)
             {
-                if (resultCode == Result.Ok)
+                if (resultCode == EditActivity.RESULT_OK)
                 {
                     _adapter = new ListViewAdapter(this, _items, this);
                     _listViewPoi.Adapter = _adapter;
                 }
-                else if (resultCode == Result.Canceled)
+                if (resultCode == EditActivity.RESULT_OK_AND_CLOSE_PARENT)
                 {
-                    SetResult(Result.Canceled);
+                    SetResult(RESULT_OK_AND_CLOSE_PARENT);
                     Finish();
                 }
             }
 
             if (requestCode == EditActivity.REQUEST_EDIT_POI)
             {
-                if (resultCode == Result.Ok)
+                if (resultCode == EditActivity.RESULT_OK)
                 {
                     _adapter = new ListViewAdapter(this, _items, this);
                     _listViewPoi.Adapter = _adapter;
                 }
-                else if (resultCode == Result.Canceled)
+                if (resultCode == EditActivity.RESULT_OK_AND_CLOSE_PARENT)
                 {
-                    SetResult(Result.Canceled);
+                    SetResult(RESULT_OK_AND_CLOSE_PARENT);
                     Finish();
                 }
             }

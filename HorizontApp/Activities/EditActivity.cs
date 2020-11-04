@@ -21,7 +21,10 @@ namespace HorizontApp.Activities
     {
         public static int REQUEST_ADD_POI = 0;
         public static int REQUEST_EDIT_POI = 1;
-        
+
+        public static Result RESULT_CANCELED { get { return Result.Canceled; } }
+        public static Result RESULT_OK { get { return Result.Ok; } }
+        public static Result RESULT_OK_AND_CLOSE_PARENT { get { return (Result)2; } }
 
         private EditText _editTextName;
         private EditText _editTextLatitude;
@@ -134,7 +137,7 @@ namespace HorizontApp.Activities
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    SetResult(Result.Ok);
+                    SetResult(RESULT_OK);
                     Finish();
                     break;
                 case Resource.Id.menu_save:
@@ -155,7 +158,7 @@ namespace HorizontApp.Activities
                             Context.Database.UpdateItem(_item);
                         }
 
-                        SetResult(Result.Ok);
+                        SetResult(RESULT_OK);
                         Finish();
                     }
                     else
@@ -236,7 +239,7 @@ namespace HorizontApp.Activities
                     {
                         AppContextLiveData.Instance.Settings.ManualLocation = manualLocation;
 
-                        SetResult(Result.Canceled);
+                        SetResult(RESULT_OK_AND_CLOSE_PARENT);
                         Finish();
                     });
                     alert.SetNegativeButton("No", (senderAlert, args) => { });
