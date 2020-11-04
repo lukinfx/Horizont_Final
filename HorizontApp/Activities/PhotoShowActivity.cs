@@ -48,10 +48,9 @@ namespace HorizontApp.Activities
 
         private ImageButton _favouriteButton;
         private ImageButton _displayTerrainButton;
-        private ImageButton _refreshCorrectorButton;
         private ImageButton _tiltCorrectorButton;
 
-        private bool _tiltCorrectorOn = false;
+        private bool _editingOn = false;
 
         private SeekBar _distanceSeekBar;
         private SeekBar _heightSeekBar;
@@ -120,9 +119,6 @@ namespace HorizontApp.Activities
 
             _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
             _displayTerrainButton.SetOnClickListener(this);
-
-            _refreshCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
-            _refreshCorrectorButton.SetOnClickListener(this);
 
             _favouriteButton = FindViewById<ImageButton>(Resource.Id.favouriteFilterButton);
             _favouriteButton.SetOnClickListener(this);
@@ -290,23 +286,21 @@ namespace HorizontApp.Activities
 
         public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
         {
-            if (_tiltCorrectorOn)
+            if (_editingOn)
             {
-                bool isLeft;
-                if (e1.RawX < Resources.DisplayMetrics.WidthPixels / 3)
+                if (e1.RawX < Resources.DisplayMetrics.WidthPixels / 7)
                 {
-                    isLeft = true;
-                    _compassView.OnScroll(distanceY, isLeft);
+                    _compassView.OnScroll(distanceY, true);
                 }
-                if (e1.RawX > (2 * Resources.DisplayMetrics.WidthPixels / 3))
+                else if (e1.RawX > Resources.DisplayMetrics.WidthPixels - Resources.DisplayMetrics.WidthPixels / 7)
                 {
-
-                    isLeft = false;
-                    _compassView.OnScroll(distanceY, isLeft);
+                    _compassView.OnScroll(distanceY, false);
+                }
+                else if (e1.RawY < 0.75 * Resources.DisplayMetrics.HeightPixels)
+                {
+                    _compassView.OnScroll(distanceX);
                 }
             }
-            if (!_tiltCorrectorOn && e1.RawY < Resources.DisplayMetrics.HeightPixels / 2)
-                _compassView.OnScroll(distanceX);
             return false;
         }
 
@@ -359,10 +353,10 @@ namespace HorizontApp.Activities
                     }
                 case Resource.Id.buttonTiltCorrector:
                     {
-                        _tiltCorrectorOn = !_tiltCorrectorOn;
-                        if (_tiltCorrectorOn)
+                        _editingOn = !_editingOn;
+                        if (_editingOn)
                             _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_lock_unlocked);
-                        else if (!_tiltCorrectorOn)
+                        else if (!_editingOn)
                             _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_lock_locked);
                         break;
                     }
