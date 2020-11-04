@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:id="@+id/linearLayoutSelectCategory">
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+      <TextView
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Edit name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF"
+        android:background="#E0404040"
+        />
+
+      <GridLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:rowCount="2"
+          android:columnCount="4"
+          android:background="#E0808080"
+          android:orientation="horizontal">
+      
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextName"/>
+                
+        </GridLayout>
+        <LinearLayout android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_horizontal"
+                  android:background="#E0404040">
+            <Button android:text="Save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" 
+                    android:id="@+id/buttonSave" />
+            <Button android:text="Close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" 
+                    android:id="@+id/buttonClose" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

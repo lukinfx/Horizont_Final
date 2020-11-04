@@ -12,7 +12,7 @@ namespace HorizontApp.Utilities
     public interface IPhotoActionListener
     {
         void OnPhotoDelete(int position);
-
+        void OnTagEdit(int position);
         void OnPhotoEdit(int position);
     }
 
@@ -65,6 +65,10 @@ namespace HorizontApp.Utilities
             deleteButton.SetOnClickListener(this);
             deleteButton.Tag = position;
 
+            var editButton = view.FindViewById<ImageButton>(Resource.Id.photoEditButton);
+            editButton.SetOnClickListener(this);
+            editButton.Tag = position;
+
             var path = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), item.PhotoFileName);
 
             
@@ -93,6 +97,9 @@ namespace HorizontApp.Utilities
 
                 case Resource.Id.linearLayoutItem:
                     mPoiActionListener.OnPhotoEdit(position);
+                    break;
+                case Resource.Id.photoEditButton:
+                    mPoiActionListener.OnTagEdit(position);
                     break;
             }
         }
