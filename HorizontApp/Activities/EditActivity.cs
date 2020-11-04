@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -98,8 +99,8 @@ namespace HorizontApp.Activities
                 _spinnerCategory.SetSelection(_poiCategories.ToList().FindIndex(i => i == _item.Category));
                 _editTextName.Text = _item.Name;
                 _editTextAltitude.Text = $"{_item.Altitude:F0}";
-                _editTextLongitude.Text = $"{_item.Longitude:F7}";
-                _editTextLatitude.Text = $"{_item.Latitude:F7}";
+                _editTextLongitude.Text = $"{_item.Longitude:F7}".Replace(",", ".");
+                _editTextLatitude.Text = $"{_item.Latitude:F7}".Replace(",", ".");
 
                 _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_item.Category));
             }
@@ -141,9 +142,9 @@ namespace HorizontApp.Activities
 
                     if (IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
                     {
-                        _item.Latitude = Convert.ToDouble(_editTextLatitude.Text);
-                        _item.Longitude = Convert.ToDouble(_editTextLongitude.Text);
-                        _item.Altitude = Convert.ToDouble(_editTextAltitude.Text);
+                        _item.Latitude = double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture);
+                        _item.Longitude = double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture);
+                        _item.Altitude = double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture);
                         _item.Category = _category;
                         if (_id == -1)
                         {
@@ -170,12 +171,12 @@ namespace HorizontApp.Activities
                         {
                             string ClipBoardText = GetClipBoardInput().Result;
 
-                            if (ClipBoardText == null) ; //nepodarilo se ziskat text, je ptreba osetrit?
+                            if (ClipBoardText == null) ; //nepodarilo se ziskat text, je potreba osetrit?
 
                             GpsLocation location = Parser(ClipBoardText);
-                            _editTextAltitude.Text = String.Format("{0,5:#}", location.Altitude);
-                            _editTextLongitude.Text = String.Format("{0,3:#.00000000}", location.Longitude);
-                            _editTextLatitude.Text = String.Format("{0,3:#.00000000}", location.Latitude);
+                            _editTextAltitude.Text = $"{location.Altitude:F0}";
+                            _editTextLongitude.Text = $"{location.Longitude:F7}".Replace(",", ".");
+                            _editTextLatitude.Text = $"{location.Latitude:F7}".Replace(",", ".");
                         }
 
                         catch (Exception ex)
@@ -204,7 +205,7 @@ namespace HorizontApp.Activities
             {
                 case Resource.Id.buttonMap:
                     {
-                        var location = new Location(Convert.ToDouble(_editTextLatitude.Text), Convert.ToDouble(_editTextLongitude.Text));
+                        var location = new Location(double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture), double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture));
                         Map.OpenAsync(location);
                         break;
                     }
@@ -225,9 +226,9 @@ namespace HorizontApp.Activities
                 {
                     var manualLocation = new GpsLocation()
                     {
-                        Latitude = Convert.ToDouble(_editTextLatitude.Text),
-                        Longitude = Convert.ToDouble(_editTextLongitude.Text),
-                        Altitude = Convert.ToDouble(_editTextAltitude.Text)
+                        Latitude = double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture),
+                        Longitude = double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture),
+                        Altitude = double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture)
                     };
 
                     AlertDialog.Builder alert = new AlertDialog.Builder(this);
