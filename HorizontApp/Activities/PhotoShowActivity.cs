@@ -56,6 +56,8 @@ namespace HorizontApp.Activities
         private SeekBar _heightSeekBar;
         private PhotoData photodata;
 
+        private Bitmap dstBmp;
+
         private PoiDatabase _database;
         private PoiDatabase Database
         {
@@ -200,22 +202,22 @@ namespace HorizontApp.Activities
                     }
                     var a = ImageResizer.ResizeImageAndroid(b, (float)photoView.Width, (float)photoView.Height, 100);
                     var bmp = BitmapFactory.DecodeByteArray(a, 0, a.Length);
-
-                    Bitmap dstBmp;
+                    Bitmap bitmap;
                     if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
                     {
-                        dstBmp = Bitmap.CreateBitmap(bmp,
+                        bitmap = Bitmap.CreateBitmap(bmp,
                             Convert.ToInt32(bmp.Width - photoView.Width) / 2, 0,
                             Convert.ToInt32(photoView.Width),
                             Convert.ToInt32(photoView.Height));
                     }
                     else
                     {
-                        dstBmp = Bitmap.CreateBitmap(bmp,
+                        bitmap = Bitmap.CreateBitmap(bmp,
                             0, Convert.ToInt32(bmp.Height - photoView.Height) / 2,
                             Convert.ToInt32(photoView.Width),
                             Convert.ToInt32(photoView.Height));
                     }
+                    dstBmp = bitmap;
 
 
                     MainThread.BeginInvokeOnMainThread(() => { photoView.SetImageBitmap(dstBmp); });
@@ -337,8 +339,16 @@ namespace HorizontApp.Activities
                     }
                 case Resource.Id.buttonCategorySelect:
                     {
-                        var dialog = new PoiFilterDialog(this, _context);
-                        dialog.Show();
+                        /*var dialog = new PoiFilterDialog(this, _context);
+                        dialog.Show();*/
+                        Canvas canvas = new Canvas(dstBmp);
+                        _compassView.Draw(canvas);
+                        var photoname = "export" + photodata.PhotoFileName;
+                        var filename = System.IO.Path.Combine(ImageSaver.GetPublicPhotosFileFolder(), photoname);
+                        var stream = new FileStream(filename, FileMode.CreateNew);
+                        dstBmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+
+                        Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
                         break;
                     }
                 case Resource.Id.menuButton:

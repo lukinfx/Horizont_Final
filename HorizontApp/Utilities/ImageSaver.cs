@@ -52,6 +52,21 @@ namespace HorizontApp.Utilities
             return path;
         }
 
+        public static string GetPublicPhotosFileFolder()
+        {
+            string path = System.IO.Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, "Horizon");
+
+            if (File.Exists(path))
+            {
+                return path;
+            }
+            else
+            {
+                Directory.CreateDirectory(path);
+            }
+            return path;
+        }
+
         public void Run()
         {
             ByteBuffer buffer = _Image.GetPlanes()[0].Buffer;
