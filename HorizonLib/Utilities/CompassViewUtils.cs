@@ -74,7 +74,7 @@ namespace HorizontLib.Utilities
             
             //increase itemViewAngle by 1 dg, becuase the POI might a little bit behind elevation map
             //...especially when looking to the top from the valley
-            itemViewAngle+=1;
+            itemViewAngle+=0.5;
 
             if (leftPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle && p.Distance < item.Distance))
                 return false;
