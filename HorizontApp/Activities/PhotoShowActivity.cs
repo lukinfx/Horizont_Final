@@ -9,6 +9,7 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.Icu.Text;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -217,10 +218,10 @@ namespace HorizontApp.Activities
                             Convert.ToInt32(photoView.Width),
                             Convert.ToInt32(photoView.Height));
                     }
-                    dstBmp = bitmap;
+                    dstBmp = Bitmap.CreateBitmap(bitmap);
 
 
-                    MainThread.BeginInvokeOnMainThread(() => { photoView.SetImageBitmap(dstBmp); });
+                    MainThread.BeginInvokeOnMainThread(() => { photoView.SetImageBitmap(bitmap); });
 
                 }
             }
@@ -345,10 +346,30 @@ namespace HorizontApp.Activities
                         _compassView.Draw(canvas);
                         var photoname = "export" + photodata.PhotoFileName;
                         var filename = System.IO.Path.Combine(ImageSaver.GetPublicPhotosFileFolder(), photoname);
-                        var stream = new FileStream(filename, FileMode.CreateNew);
-                        dstBmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
 
-                        Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
+                        if (File.Exists(filename))
+                        {
+                            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                            alert.SetPositiveButton("Yes", (senderAlert, args) =>
+                            {
+                                File.Delete(filename);
+                                var stream = new FileStream(filename, FileMode.CreateNew);
+                                dstBmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+                                Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
+                            });
+                            alert.SetNegativeButton("No", (senderAlert, args) => 
+                            {
+                                
+                            });
+                            alert.SetMessage($"This photo already exists. Do you want to rewrite it?");
+                            var answer = alert.Show();
+                        }
+                        else
+                        {
+                            var stream = new FileStream(filename, FileMode.CreateNew);
+                            dstBmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+                            Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
+                        }
                         break;
                     }
                 case Resource.Id.menuButton:
