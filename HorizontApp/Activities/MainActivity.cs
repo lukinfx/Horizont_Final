@@ -86,7 +86,8 @@ namespace HorizontApp
 
             if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) != Permission.Granted ||
                 ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != Permission.Granted ||
-                ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) != Permission.Granted )
+                ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) != Permission.Granted ||
+                ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) != Permission.Granted)
             {
                 RequestGPSLocationPermissions();
             }
@@ -306,11 +307,18 @@ namespace HorizontApp
             //From: https://docs.microsoft.com/cs-cz/xamarin/android/app-fundamentals/permissions
             //Sample app: https://github.com/xamarin/monodroid-samples/tree/master/android-m/RuntimePermissions
 
-            var requiredPermissions = new String[] { Manifest.Permission.AccessFineLocation, Manifest.Permission.Camera, Manifest.Permission.ReadExternalStorage };
+            var requiredPermissions = new String[]
+            {
+                Manifest.Permission.AccessFineLocation, 
+                Manifest.Permission.Camera, 
+                Manifest.Permission.ReadExternalStorage,
+                Manifest.Permission.WriteExternalStorage
+            };
 
             if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation) ||
                 ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera) ||
-                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage) )
+                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage) ||
+                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.WriteExternalStorage))
             {
                 Snackbar.Make(_mainLayout, "Internal storage, location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
                     .SetAction("OK", new Action<View>(delegate (View obj) 
