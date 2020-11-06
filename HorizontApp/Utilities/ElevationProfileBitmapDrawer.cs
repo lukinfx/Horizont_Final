@@ -97,7 +97,16 @@ namespace HorizontApp.Utilities
 
                 foreach (var line in _context.ListOfProfileLines)
                 {
-                    paint.SetARGB((int)(255 - ((line.distance / 1000) / _context.Settings.MaxDistance) / 2 * 400), 255, 255, 100 );
+                    double alpha;
+                    if (line.distance / 1000 > _context.Settings.MaxDistance)
+                    {
+                        alpha = 0;
+                    }
+                    else
+                    {
+                        alpha = 255 - ((line.distance / 1000) / _context.Settings.MaxDistance) / 2 * 400;
+                    }
+                    paint.SetARGB((int)alpha, 255, 255, 100 );
                     paint.StrokeWidth = 3; 
                     var x1 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.x1, canvas.Width, _adjustedViewAngleHorizontal);
                     var x2 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.x2, canvas.Width, _adjustedViewAngleHorizontal);
