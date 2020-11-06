@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Timers;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Graphics;
-using Android.Graphics.Drawables;
-using Android.Icu.Text;
 using Android.OS;
-using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -24,9 +14,12 @@ using HorizontLib.Domain.Enums;
 using HorizontLib.Domain.Models;
 using HorizontLib.Domain.ViewModel;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
+using System.Timers;
 using Xamarin.Essentials;
-using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms.Xaml;
 using static Android.Views.View;
 
 namespace HorizontApp.Activities
@@ -131,6 +124,9 @@ namespace HorizontApp.Activities
 
             var _backButton = FindViewById<ImageButton>(Resource.Id.menuButton);
             _backButton.SetOnClickListener(this);
+
+            var _saveToDeviceButton = FindViewById<ImageButton>(Resource.Id.buttonSaveToDevice);
+            _saveToDeviceButton.SetOnClickListener(this);
 
             _tiltCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonTiltCorrector);
             _tiltCorrectorButton.SetOnClickListener(this);
@@ -340,36 +336,9 @@ namespace HorizontApp.Activities
                     }
                 case Resource.Id.buttonCategorySelect:
                     {
-                        /*var dialog = new PoiFilterDialog(this, _context);
-                        dialog.Show();*/
-                        Canvas canvas = new Canvas(dstBmp);
-                        _compassView.Draw(canvas);
-                        var photoname = "export" + photodata.PhotoFileName;
-                        var filename = System.IO.Path.Combine(ImageSaver.GetPublicPhotosFileFolder(), photoname);
-
-                        if (File.Exists(filename))
-                        {
-                            AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                            alert.SetPositiveButton("Yes", (senderAlert, args) =>
-                            {
-                                File.Delete(filename);
-                                var stream = new FileStream(filename, FileMode.CreateNew);
-                                dstBmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
-                                Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
-                            });
-                            alert.SetNegativeButton("No", (senderAlert, args) => 
-                            {
-                                
-                            });
-                            alert.SetMessage($"This photo already exists. Do you want to rewrite it?");
-                            var answer = alert.Show();
-                        }
-                        else
-                        {
-                            var stream = new FileStream(filename, FileMode.CreateNew);
-                            dstBmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
-                            Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
-                        }
+                        var dialog = new PoiFilterDialog(this, _context);
+                        dialog.Show();
+                       
                         break;
                     }
                 case Resource.Id.menuButton:
@@ -391,6 +360,41 @@ namespace HorizontApp.Activities
                             _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_lock_locked);
                         break;
                     }
+                case Resource.Id.buttonSaveToDevice:
+                    var bmp = Bitmap.CreateBitmap(dstBmp);
+                    Canvas canvas = new Canvas(bmp);
+                    _compassView.Draw(canvas);
+                    var photoname = "export" +
+                        "" + photodata.PhotoFileName;
+                    var filename = System.IO.Path.Combine(ImageSaver.GetPublicPhotosFileFolder(), photoname);
+
+                    if (File.Exists(filename))
+                    {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                        alert.SetPositiveButton("Yes", (senderAlert, args) =>
+                        {
+                            File.Delete(filename);
+                            var stream = new FileStream(filename, FileMode.CreateNew);
+                            bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+                            Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
+                            PopupHelper.InfoDialog(this, "Information", $"Photo saved.");
+                        });
+                        alert.SetNegativeButton("No", (senderAlert, args) =>
+                        {
+
+                        });
+                        alert.SetMessage($"This photo already exists. Do you want to rewrite it?");
+                        var answer = alert.Show();
+                    }
+                    else
+                    {
+                        var stream = new FileStream(filename, FileMode.CreateNew);
+                        dstBmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+                        Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
+                        PopupHelper.InfoDialog(this, "Information", $"Photo saved.");
+                    }
+
+                    break;
             }
 
 
