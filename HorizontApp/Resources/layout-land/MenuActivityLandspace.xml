@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_landscape">
     <ImageView
-        android:src="@drawable/logo"
+        android:src="@drawable/logo_horizon5"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:padding="20dp"

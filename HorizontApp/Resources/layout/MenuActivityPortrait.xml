@@ -8,7 +8,7 @@
       android:layout_width="match_parent"
       android:layout_height="60dp"/>
   <ImageView
-      android:src="@drawable/logo"
+      android:src="@drawable/logo_horizon5"
       android:layout_width="match_parent"
       android:layout_height="250dp"
       android:padding="10dp"
