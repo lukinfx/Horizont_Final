@@ -18,9 +18,9 @@ namespace HorizontApp.Activities
     [Activity(Label = "EditTagDialog")]
     public class EditTagDialog : Dialog, IOnClickListener
     {
-        EditText editTagEditText;
-        PhotoData photodata;
-
+        private EditText _editTagEditText;
+        private PhotoData _photodata;
+        private Action<Result> _onFinished;
         private PoiDatabase _database;
         private PoiDatabase Database
         {
@@ -36,7 +36,7 @@ namespace HorizontApp.Activities
 
         public EditTagDialog(Context context, PhotoData item) : base(context)
         {
-            photodata = item;
+            _photodata = item;
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -44,8 +44,8 @@ namespace HorizontApp.Activities
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.EditTagLayout);
 
-            editTagEditText = FindViewById<EditText>(Resource.Id.editTextName);
-            editTagEditText.Text = photodata.Tag;
+            _editTagEditText = FindViewById<EditText>(Resource.Id.editTextName);
+            _editTagEditText.Text = _photodata.Tag;
 
             var buttonSave = FindViewById<Button>(Resource.Id.buttonSave);
             buttonSave.SetOnClickListener(this);
@@ -60,18 +60,26 @@ namespace HorizontApp.Activities
                 switch (v.Id)
                 {
                     case Resource.Id.buttonSave:
-                        photodata.Tag = editTagEditText.Text;
-                        Database.UpdateItem(photodata);
+                        _photodata.Tag = _editTagEditText.Text;
+                        Database.UpdateItem(_photodata);
+                        _onFinished?.Invoke(Result.Ok);
                         Hide();
                         Dismiss();
                         break;
                     case Resource.Id.buttonClose:
+                        _onFinished?.Invoke(Result.Canceled);
                         Hide();
                         Dismiss();
                         break;
                 }
             }
             catch { }
+        }
+
+        public void Show(Action<Result> onFinished)
+        {
+            _onFinished = onFinished;
+            Show();
         }
     }
 }

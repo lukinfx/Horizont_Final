@@ -91,11 +91,18 @@ namespace HorizontApp.Activities
         {
             OnPhotoShow(position);
         }
+
         public void OnTagEdit(int position)
         {   
             PhotoData item = photoList[position];
             var dialog = new EditTagDialog(this, item);
-            dialog.Show(); 
+            dialog.Show(r =>
+            {
+                if (r == Result.Ok)
+                {
+                    _adapter.NotifyDataSetChanged();
+                }
+            }); 
             //dialog.OnActionModeFinished(OnTagEditFinished);
         }
         /*private void OnTagEditFinished(ActionMode am)
