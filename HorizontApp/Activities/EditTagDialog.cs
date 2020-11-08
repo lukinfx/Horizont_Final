@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using HorizontApp.DataAccess;
+using HorizontApp.Utilities;
 using HorizontLib.Domain.Models;
 using static Android.Views.View;
 
@@ -73,7 +74,10 @@ namespace HorizontApp.Activities
                         break;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(Context, "Error", ex.Message);
+            }
         }
 
         public void Show(Action<Result> onFinished)
