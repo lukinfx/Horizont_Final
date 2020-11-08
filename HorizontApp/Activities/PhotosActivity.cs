@@ -52,7 +52,7 @@ namespace HorizontApp.Activities
         void OnPhotoShow(int position)
         {
             Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
-            showIntent.PutExtra("ID", photoList[position].Id);
+            showIntent.PutExtra("ID", _adapter[position].Id);
 
             StartActivity(showIntent);
         }
@@ -73,11 +73,9 @@ namespace HorizontApp.Activities
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.SetPositiveButton("Yes", (senderAlert, args) =>
             {
-                PhotoData item = photoList[position];
+                PhotoData item = _adapter[position];
                 Context.Database.DeleteItem(item);
-                photoList.Remove(item);
-                _adapter = new PhotosItemAdapter(this, photoList, this);
-                _photosListView.Adapter = _adapter;
+                _adapter.RemoveAt(position);
             });
             alert.SetNegativeButton("No", (senderAlert, args) => { });
             alert.SetMessage("Are you sure you want to delete this Photo?");
@@ -94,7 +92,7 @@ namespace HorizontApp.Activities
 
         public void OnTagEdit(int position)
         {   
-            PhotoData item = photoList[position];
+            PhotoData item = _adapter[position];
             var dialog = new EditTagDialog(this, item);
             dialog.Show(r =>
             {
@@ -103,12 +101,6 @@ namespace HorizontApp.Activities
                     _adapter.NotifyDataSetChanged();
                 }
             }); 
-            //dialog.OnActionModeFinished(OnTagEditFinished);
         }
-        /*private void OnTagEditFinished(ActionMode am)
-        {
-            photoList = Context.Database.GetPhotoDataItems().ToList();
-            _adapter = new PhotosItemAdapter(this, photoList, this);
-        }*/
     }
 }

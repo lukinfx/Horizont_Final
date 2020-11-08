@@ -8,7 +8,7 @@ namespace HorizontLib.Domain.ViewModel
         public double Bearing;
         public double Distance;
         public bool Visibility = true;
-        public float AltitudeDifference { get; internal set; }
+        public float AltitudeDifference { get; set; }
 
         public GpsLocation GpsLocation
         {

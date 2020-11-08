@@ -45,6 +45,18 @@ namespace HorizontApp.Utilities
             get { return list[index]; }
         }
 
+        public void RemoveAt(int index)
+        {
+            list.RemoveAt(index);
+            NotifyDataSetChanged();
+        }
+
+        public void Add(PoiViewItem item)
+        {
+            list.Insert(0,item);
+            NotifyDataSetChanged();
+        }
+
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View view = convertView;

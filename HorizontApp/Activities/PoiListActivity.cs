@@ -15,6 +15,7 @@ using HorizontApp.AppContext;
 using HorizontLib.Domain.Models;
 using HorizontLib.Domain.ViewModel;
 using HorizontApp.Utilities;
+using HorizontLib.Utilities;
 
 namespace HorizontApp.Views.ListOfPoiView
 {
@@ -34,7 +35,6 @@ namespace HorizontApp.Views.ListOfPoiView
 
         private ListViewAdapter _adapter;
         private GpsLocation _location = new GpsLocation();
-        private List<PoiViewItem> _items;
         private Timer _searchTimer = new Timer();
         private String[] _listOfSelections = new String[] { "Visible points", "My points", "Find by name"};
         private double _maxDistance; 
@@ -79,7 +79,7 @@ namespace HorizontApp.Views.ListOfPoiView
         {
             _listViewPoi = FindViewById<ListView>(Resource.Id.listViewPoi);
 
-            _items = Context.PoiData;
+            List<PoiViewItem> _items = Context.PoiData;
             _items = _items.OrderBy(i => i.Distance).ToList();
             _adapter = new ListViewAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;
@@ -131,7 +131,7 @@ namespace HorizontApp.Views.ListOfPoiView
 
         private void _selectByDistance()
         {
-            _items = Context.PoiData;
+            List<PoiViewItem> _items = Context.PoiData;
             _items = _items.OrderBy(i => i.Distance).ToList();
             _adapter = new ListViewAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;
@@ -142,7 +142,7 @@ namespace HorizontApp.Views.ListOfPoiView
         {
             var poiList = Context.Database.GetMyItems();
 
-            _items = new PoiViewItemList(poiList, _location);
+            List<PoiViewItem> _items = new PoiViewItemList(poiList, _location);
             _items = _items.OrderBy(i => i.Distance).ToList();
             _adapter = new ListViewAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;
@@ -153,7 +153,7 @@ namespace HorizontApp.Views.ListOfPoiView
         {
             var poiList = Context.Database.FindItems(_editTextSearch.Text);
 
-            _items = new PoiViewItemList(poiList, _location);
+            List<PoiViewItem> _items = new PoiViewItemList(poiList, _location);
             _items = _items.OrderBy(i => i.Distance).ToList();
             _adapter = new ListViewAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;
@@ -197,11 +197,9 @@ namespace HorizontApp.Views.ListOfPoiView
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.SetPositiveButton("Yes", (senderAlert, args) =>
             {
-                PoiViewItem item = _items[position];
+                PoiViewItem item = _adapter[position];
                 Context.Database.DeleteItemAsync(item.Poi);
-                _items.Remove(item);
-                _adapter = new ListViewAdapter(this, _items, this);
-                _listViewPoi.Adapter = _adapter;
+                _adapter.RemoveAt(position);
             });
             alert.SetNegativeButton("No", (senderAlert, args) => { });
             alert.SetMessage("Are you sure you want to delete this item?");
@@ -213,31 +211,24 @@ namespace HorizontApp.Views.ListOfPoiView
 
         public void OnPoiEdit(int position)
         {
-            PoiViewItem item = _items[position];
+            PoiViewItem item = _adapter[position];
             Intent editActivityIntent = new Intent(this, typeof(EditActivity));
             editActivityIntent.PutExtra("Id", item.Poi.Id);
             StartActivityForResult(editActivityIntent, EditActivity.REQUEST_EDIT_POI);
-
-            /*_adapter = new ListViewAdapter(this, _items, this);
-            _listViewPoi.Adapter = _adapter;*/
         }
 
         public void OnPoiAdd()
         {
             Intent editActivityIntent = new Intent(this, typeof(EditActivity));
             StartActivityForResult(editActivityIntent, EditActivity.REQUEST_ADD_POI);
-
-            _adapter = new ListViewAdapter(this, _items, this);
-            _listViewPoi.Adapter = _adapter;
         }
-
 
         public void OnPoiLike(int position)
         {
-            PoiViewItem item = _items[position];
+            PoiViewItem item = _adapter[position];
             item.Poi.Favorite = !item.Poi.Favorite;
             _adapter.NotifyDataSetChanged();
-            Context.Database.UpdateItemAsync(item.Poi);    
+            Context.Database.UpdateItemAsync(item.Poi);
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
@@ -247,8 +238,14 @@ namespace HorizontApp.Views.ListOfPoiView
             {
                 if (resultCode == EditActivity.RESULT_OK)
                 {
-                    _adapter = new ListViewAdapter(this, _items, this);
-                    _listViewPoi.Adapter = _adapter;
+                    var id = data.GetLongExtra("Id", 0);
+                    var item = Context.Database.GetItem(id);
+
+                    var poiViewItem = new PoiViewItem(item);
+                    poiViewItem.Bearing = Utilities.GpsUtils.QuickBearing(Context.MyLocation, poiViewItem.GpsLocation);
+                    poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(Context.MyLocation, poiViewItem.GpsLocation);
+                    poiViewItem.Distance = Utilities.GpsUtils.QuickDistance(Context.MyLocation, poiViewItem.GpsLocation);
+                    _adapter.Add(poiViewItem);
                 }
                 if (resultCode == EditActivity.RESULT_OK_AND_CLOSE_PARENT)
                 {
@@ -261,8 +258,7 @@ namespace HorizontApp.Views.ListOfPoiView
             {
                 if (resultCode == EditActivity.RESULT_OK)
                 {
-                    _adapter = new ListViewAdapter(this, _items, this);
-                    _listViewPoi.Adapter = _adapter;
+                    _adapter.NotifyDataSetChanged();
                 }
                 if (resultCode == EditActivity.RESULT_OK_AND_CLOSE_PARENT)
                 {

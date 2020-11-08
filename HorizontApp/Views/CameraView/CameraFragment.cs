@@ -611,26 +611,35 @@ namespace HorizontApp.Views.Camera
                 {
                     return;
                 }
+
                 // This is the CaptureRequest.Builder that we use to take a picture.
-                if(stillCaptureBuilder == null)
+                if (stillCaptureBuilder == null)
                     stillCaptureBuilder = mCameraDevice.CreateCaptureRequest(CameraTemplate.StillCapture);
 
                 stillCaptureBuilder.AddTarget(mImageReader.Surface);
 
                 // Use the same AE and AF modes as the preview.
-                stillCaptureBuilder.Set(CaptureRequest.ControlAfMode, (int)ControlAFMode.ContinuousPicture);
+                stillCaptureBuilder.Set(CaptureRequest.ControlAfMode, (int) ControlAFMode.ContinuousPicture);
                 SetAutoFlash(stillCaptureBuilder);
 
                 // Orientation
-                int rotation = (int)activity.WindowManager.DefaultDisplay.Rotation;
+                int rotation = (int) activity.WindowManager.DefaultDisplay.Rotation;
                 stillCaptureBuilder.Set(CaptureRequest.JpegOrientation, GetOrientation(rotation));
 
                 mCaptureSession.StopRepeating();
                 mCaptureSession.Capture(stillCaptureBuilder.Build(), new CameraCaptureStillPictureSessionCallback(this), null);
             }
-            catch (CameraAccessException e)
+            catch (CameraAccessException ex)
             {
-                e.PrintStackTrace();
+                ex.PrintStackTrace();
+            }
+            catch (Java.Lang.Exception ex)
+            {
+                ex.PrintStackTrace();
+            }
+            catch (System.Exception ex)
+            {
+                //TODO: Handle exception
             }
         }
 

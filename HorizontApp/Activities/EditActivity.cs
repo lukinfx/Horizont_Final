@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -137,7 +138,7 @@ namespace HorizontApp.Activities
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    SetResult(RESULT_OK);
+                    SetResult(RESULT_CANCELED);
                     Finish();
                     break;
                 case Resource.Id.menu_save:
@@ -158,7 +159,9 @@ namespace HorizontApp.Activities
                             Context.Database.UpdateItem(_item);
                         }
 
-                        SetResult(RESULT_OK);
+                        var resultIntent = new Intent();
+                        resultIntent.PutExtra("Id", _item.Id);
+                        SetResult(RESULT_OK, resultIntent);
                         Finish();
                     }
                     else
@@ -259,8 +262,8 @@ namespace HorizontApp.Activities
 
         private bool IsGPSLocation(string lat, string lon, string alt)
         {
-            if (Regex.IsMatch(lat, @"[0-9]{0,3}\,[0-9]{0,9}")
-                && Regex.IsMatch(lon, @"[0-9]{0,3}\,[0-9]{0,9}")
+            if (Regex.IsMatch(lat, @"[0-9]{0,3}\.[0-9]{0,9}")
+                && Regex.IsMatch(lon, @"[0-9]{0,3}\.[0-9]{0,9}")
                 && Regex.IsMatch(alt, @"[0-9]{0,5}"))
                 { return true; }
             else return false;
