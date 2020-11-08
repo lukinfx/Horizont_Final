@@ -28,5 +28,8 @@ namespace HorizontApp.AppContext
         void ToggleCompassPaused();
         void ReloadData();
         List<ProfileLine> ListOfProfileLines { get; set; }
+
+        void Pause();
+        void Resume();
     }
 }

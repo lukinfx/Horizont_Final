@@ -94,5 +94,13 @@ namespace HorizontApp.AppContext
         {
             //TODO: logging
         }
+
+        public virtual void Pause()
+        {
+        }
+
+        public virtual void Resume()
+        {
+        }
     }
 }

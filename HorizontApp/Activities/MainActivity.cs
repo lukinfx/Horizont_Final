@@ -113,6 +113,19 @@ namespace HorizontApp
 
         }
 
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            Context.Pause();
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            Context.Resume();
+        }
+
         protected override void OnSaveInstanceState(Bundle bundle)
         {
             base.OnSaveInstanceState(bundle);

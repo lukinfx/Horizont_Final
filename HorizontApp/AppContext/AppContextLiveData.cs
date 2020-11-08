@@ -120,5 +120,22 @@ namespace HorizontApp.AppContext
 
             return needRefresh;
         }
+
+        public override void Pause()
+        {
+            base.Pause();
+
+            _compassTimer.Stop();
+            _locationTimer.Stop();
+        }
+
+        public override void Resume()
+        {
+            base.Resume();
+
+            _compassTimer.Start();
+            _locationTimer.Start();
+        }
+
     }
 }
