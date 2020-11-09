@@ -44,7 +44,7 @@ namespace HorizontApp.Activities
             _photosListView = FindViewById<ListView>(Resource.Id.listViewPhotos);
 
             photoList = Context.Database.GetPhotoDataItems().ToList();
-            _adapter = new PhotosItemAdapter(this, photoList, this);
+            _adapter = new PhotosItemAdapter(this, photoList.OrderByDescending(i => i.Datetime), this);
 
             _photosListView.Adapter = _adapter;
         }
