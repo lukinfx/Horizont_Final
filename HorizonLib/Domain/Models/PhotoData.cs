@@ -28,6 +28,7 @@ namespace HorizontLib.Domain.Models
         public double? RightTiltCorrector { get; set; }
         public double? LeftTiltCorrector { get; set; }
         public string JsonElevationProfileData { get; set; }
+        public double MaxElevationProfileDataDistance { get; set; }
 
         public PhotoData()
         {

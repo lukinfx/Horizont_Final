@@ -27,6 +27,7 @@ using HorizontApp.Activities;
 using HorizontLib.Domain.Enums;
 using HorizontApp.Tasks;
 using HorizontApp.AppContext;
+using SQLitePCL;
 
 namespace HorizontApp
 {
@@ -57,6 +58,7 @@ namespace HorizontApp
         
         private CameraFragment _cameraFragment;
 
+        private bool _displayTerrain = false;
         private static bool _firstStart = true;
         //Timers
         private Timer _refreshTimer = new Timer();
@@ -275,7 +277,7 @@ namespace HorizontApp
                         }
                     case Resource.Id.buttonDisplayTerrain:
                         {
-                            GenerateElevationProfile();
+                            HandleDisplayTarrainButtonClicked();
                             break;
                         }
                     case Resource.Id.buttonRecord:
@@ -349,6 +351,15 @@ namespace HorizontApp
         #endregion Request Permissions
 
         #region Elevation Profile Calculation
+
+
+
+        private void HandleDisplayTarrainButtonClicked()
+        {
+            _displayTerrain = !_displayTerrain;
+            GenerateElevationProfile();
+            Context.ElevationProfileDataDistance = Context.Settings.MaxDistance;
+        }
 
         private void GenerateElevationProfile()
         {

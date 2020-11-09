@@ -31,5 +31,6 @@ namespace HorizontApp.AppContext
 
         void Pause();
         void Resume();
+        double? ElevationProfileDataDistance { get; set; }
     }
 }

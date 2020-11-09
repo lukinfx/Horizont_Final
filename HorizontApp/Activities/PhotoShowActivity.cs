@@ -279,7 +279,14 @@ namespace HorizontApp.Activities
             _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
             _filterText.Visibility = ViewStates.Visible;
 
+            /*if (photodata.MaxElevationProfileDataDistance < _distanceSeekBar.Progress)
+            {
+                GenerateElevationProfile();  
+            }*/
+
             _context.Settings.MaxDistance = _distanceSeekBar.Progress;
+
+
         }
 
 

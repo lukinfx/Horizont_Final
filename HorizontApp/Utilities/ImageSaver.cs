@@ -111,9 +111,12 @@ namespace HorizontApp.Utilities
                         MaxDistance = _context.Settings.MaxDistance,
                         Favourie = _context.Settings.Favourite
                     };
-                    if (_context.ElevationProfileData != null)
+                    if (_context.ElevationProfileData != null && _context.ElevationProfileDataDistance.HasValue)
+                    {
+                        photodata.MaxElevationProfileDataDistance = _context.ElevationProfileDataDistance.Value;
                         photodata.JsonElevationProfileData = JsonConvert.SerializeObject(_context.ElevationProfileData);
-                    photoDatabase.InsertItem(photodata) ; 
+                    }
+                    photoDatabase.InsertItem(photodata); 
                 }
             }
         }

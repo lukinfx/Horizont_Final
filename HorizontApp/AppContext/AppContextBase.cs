@@ -51,7 +51,8 @@ namespace HorizontApp.AppContext
         }
 
         public List<ProfileLine> ListOfProfileLines { get; set; }
-        
+        public double? ElevationProfileDataDistance { get; set; }
+
         public void ToggleCompassPaused()
         {
             CompassPaused = !CompassPaused;
