@@ -41,14 +41,16 @@
                   android:layout_height="wrap_content"
                   android:gravity="center_horizontal"
                   android:background="#E0404040">
-            <Button android:text="Save"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" 
-                    android:id="@+id/buttonSave" />
-            <Button android:text="Close"
+            <ImageButton 
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" 
                     android:id="@+id/buttonClose" />
+            <ImageButton 
+                    android:src="@android:drawable/ic_menu_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" 
+                    android:id="@+id/buttonSave" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
