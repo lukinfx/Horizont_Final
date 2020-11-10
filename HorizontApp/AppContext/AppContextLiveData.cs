@@ -21,13 +21,19 @@ namespace HorizontApp.AppContext
         private Timer _compassTimer;
         private Timer _locationTimer;
 
+        private static object synchLock = new object();
+
         public static IAppContext Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new AppContextLiveData();
+                    lock (synchLock)
+                    {
+                        if (_instance == null)
+                            _instance = new AppContextLiveData();
+                    }
                 }
 
                 return _instance;
@@ -94,31 +100,39 @@ namespace HorizontApp.AppContext
 
         private async Task<bool> UpdateMyLocation()
         {
-            var newLocation = await GpsLocationProvider.GetLocationAsync();
-
-            if (newLocation == null)
-                return false;
-
-            var distance = Utilities.GpsUtils.Distance(myLocation, newLocation);
-            if (distance < 100 && Math.Abs(myLocation.Altitude - newLocation.Altitude) < 50)
-                return false;
-
-            bool needRefresh = false;
-            if (distance > 100)
+            try
             {
-                myLocation.Latitude = newLocation.Latitude;
-                myLocation.Longitude = newLocation.Longitude;
-                needRefresh = true;
-            }
+                var newLocation = await GpsLocationProvider.GetLocationAsync();
 
-            //keep old location if new location has no altitude
-            if (!Utilities.GpsUtils.HasAltitude(myLocation) || Utilities.GpsUtils.HasAltitude(newLocation))
+                if (newLocation == null)
+                    return false;
+
+                var distance = Utilities.GpsUtils.Distance(myLocation, newLocation);
+                if (distance < 100 && Math.Abs(myLocation.Altitude - newLocation.Altitude) < 30)
+                    return false;
+
+                bool needRefresh = false;
+                if (distance > 100)
+                {
+                    myLocation.Latitude = newLocation.Latitude;
+                    myLocation.Longitude = newLocation.Longitude;
+                    needRefresh = true;
+                }
+
+                //keep old location if new location has no altitude
+                if (!Utilities.GpsUtils.HasAltitude(myLocation) || Utilities.GpsUtils.HasAltitude(newLocation))
+                {
+                    myLocation.Altitude = newLocation.Altitude;
+                    needRefresh = true;
+                }
+
+                return needRefresh;
+            }
+            catch (Exception ex)
             {
-                myLocation.Altitude = newLocation.Altitude;
-                needRefresh = true;
+                LogError("Location update error", ex);
+                return false;
             }
-
-            return needRefresh;
         }
 
         public override void Pause()

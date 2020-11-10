@@ -91,7 +91,7 @@ namespace HorizontApp.AppContext
             ReloadData();
         }
 
-        private void LogError(string v, Exception ex)
+        protected void LogError(string v, Exception ex)
         {
             //TODO: logging
         }

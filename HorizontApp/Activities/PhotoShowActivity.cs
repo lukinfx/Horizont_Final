@@ -19,8 +19,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Timers;
+using HorizontLib.Utilities;
 using Xamarin.Essentials;
 using static Android.Views.View;
+using GpsUtils = HorizontApp.Utilities.GpsUtils;
 
 namespace HorizontApp.Activities
 {
@@ -84,13 +86,24 @@ namespace HorizontApp.Activities
 
             _gestureDetector = new GestureDetector(this);
 
-            _context = new AppContextStaticData(
-                new GpsLocation(
-                        photodata.Longitude,
-                        photodata.Latitude,
-                        photodata.Altitude),
-                heading
-                );
+            var loc = new GpsLocation(
+                photodata.Longitude,
+                photodata.Latitude,
+                photodata.Altitude);
+
+            if (AppContextLiveData.Instance.Settings.AltitudeFromElevationMap)
+            {
+                var elevationTile = new ElevationTile(loc);
+                if (elevationTile.Exists())
+                {
+                    if (elevationTile.LoadFromZip())
+                    {
+                        loc.Altitude = elevationTile.GetElevation(loc); 
+                    }
+                }
+            }
+
+            _context = new AppContextStaticData(loc, heading);
 
             _context.DataChanged += OnDataChanged;
             _context.Settings.LoadData(this);

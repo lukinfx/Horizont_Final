@@ -294,7 +294,7 @@ namespace HorizontApp
                     case Resource.Id.buttonResetCorrector:
                     {
                         _compassView.HeadingCorrector = 0;
-                        Context.Settings.ManualLocation = null;
+                        Context.Settings.IsManualLocation = false;
                         break;
                     }
                 }

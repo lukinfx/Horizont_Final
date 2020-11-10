@@ -1,6 +1,7 @@
 ﻿using System;
 using HorizontApp.AppContext;
 using HorizontLib.Domain.Models;
+using HorizontLib.Utilities;
 using Xamarin.Essentials;
 
 namespace HorizontApp.Providers
@@ -8,6 +9,7 @@ namespace HorizontApp.Providers
     public class GpsLocationProvider
     {
         private GpsLocation currentLocation;
+        private ElevationTile _elevationTile;
         public GpsLocation CurrentLocation { get { return currentLocation; } }
 
         public GpsLocationProvider()
@@ -24,11 +26,9 @@ namespace HorizontApp.Providers
         {
             try
             {
-                var manualLocation = AppContextLiveData.Instance.Settings.ManualLocation;
-
-                if (manualLocation != null)
+                if (AppContextLiveData.Instance.Settings.IsManualLocation)
                 {
-                    return manualLocation;
+                    return AppContextLiveData.Instance.Settings.ManualLocation;
                 }
 
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium);
@@ -39,21 +39,31 @@ namespace HorizontApp.Providers
                     currentLocation.Latitude = location.Latitude;
                     currentLocation.Longitude = location.Longitude;
                     currentLocation.Altitude = location.Altitude.Value;
+
+                    if (AppContextLiveData.Instance.Settings.AltitudeFromElevationMap)
+                    {
+                        if (_elevationTile == null || !_elevationTile.HasElevation(currentLocation))
+                        {
+                            _elevationTile = null;
+                            var et = new ElevationTile(currentLocation);
+                            if (et.Exists())
+                            {
+                                if (et.LoadFromZip())
+                                {
+                                    _elevationTile = et;
+                                }
+                            }
+                        }
+
+                        if (_elevationTile != null)
+                        {
+                            currentLocation.Altitude = _elevationTile.GetElevation(currentLocation);
+                        }
+                    }
+
                     return currentLocation;
                 }
                 return null;
-
-                //Celadna-Pstruzi
-                /*currentLocation.Latitude = 49.5651525;
-                currentLocation.Longitude = 18.3406403;
-                currentLocation.Altitude = 430;
-                return currentLocation;*/
-
-                //Svarna hanka
-                /*currentLocation.Latitude = 49.4894558;
-                currentLocation.Longitude = 18.4914856;
-                currentLocation.Altitude = 830;
-                return currentLocation;*/
             }
             catch (FeatureNotSupportedException ex)
             {

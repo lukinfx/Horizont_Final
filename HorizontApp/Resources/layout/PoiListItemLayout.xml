@@ -49,6 +49,7 @@
   <ImageButton
       android:src="@drawable/f_heart_empty"
       android:layout_width="30dp"
+      android:scaleType="fitCenter"
       android:layout_height="match_parent"
       android:id="@+id/PoiLikeButton"
       android:layout_weight="0"
@@ -56,6 +57,7 @@
   <ImageButton
       android:src="@android:drawable/ic_menu_delete"
       android:layout_width="40dp"
+      android:scaleType="fitCenter"
       android:layout_height="match_parent"
       android:id="@+id/PoiDeleteButton" 
       android:layout_weight="0"

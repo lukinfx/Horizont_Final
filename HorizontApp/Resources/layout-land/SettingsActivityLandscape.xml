@@ -7,7 +7,7 @@
         
   <include
     android:id="@+id/toolbar"
-    layout="@layout/photosActivityToolbar" />
+    layout="@layout/settingsActivityToolbar" />
 
   <LinearLayout
     android:orientation="vertical"

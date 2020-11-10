@@ -162,11 +162,25 @@ namespace HorizontApp.Utilities
             set { _maxDistance = value; RestartTimer(); }
         }
 
+        private bool _isManualLocation;
+        public bool IsManualLocation
+        {
+            get { return _isManualLocation; }
+            set { _isManualLocation = value; NotifySettingsChanged(); }
+        }
+
         private GpsLocation _manualLocation;
         public GpsLocation ManualLocation
         {
             get { return _manualLocation; }
             set { _manualLocation = value; NotifySettingsChanged(); }
+        }
+
+        private bool _altitudeFromElevationMap;
+        public bool AltitudeFromElevationMap
+        {
+            get { return _altitudeFromElevationMap; }
+            set { _altitudeFromElevationMap = value; NotifySettingsChanged(); }
         }
 
         public void NotifySettingsChanged()
@@ -195,6 +209,8 @@ namespace HorizontApp.Utilities
 
             correctionViewAngleHorizontal = prefs.GetFloat("CorrectionViewAngleHorizontal", 0);
             correctionViewAngleVertical = prefs.GetFloat("CorrectionViewAngleVertical", 0);
+
+            _altitudeFromElevationMap = prefs.GetBoolean("AltitudeFromElevationMap", false);
         }
 
         public void SaveData()
@@ -217,6 +233,7 @@ namespace HorizontApp.Utilities
                 editor.PutFloat("CorrectionViewAngleHorizontal", correctionViewAngleHorizontal);
                 editor.PutFloat("CorrectionViewAngleVertical", correctionViewAngleVertical);
 
+                editor.PutBoolean("AltitudeFromElevationMap", _altitudeFromElevationMap); 
                 editor.Apply();
             }
         }

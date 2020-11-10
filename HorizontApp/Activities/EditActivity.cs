@@ -241,7 +241,7 @@ namespace HorizontApp.Activities
                     alert.SetPositiveButton("Yes", (senderAlert, args) =>
                     {
                         AppContextLiveData.Instance.Settings.ManualLocation = manualLocation;
-
+                        AppContextLiveData.Instance.Settings.IsManualLocation = true;
                         SetResult(RESULT_OK_AND_CLOSE_PARENT);
                         Finish();
                     });

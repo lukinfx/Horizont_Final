@@ -1,23 +1,42 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using System.Timers;
 using Android.App;
 using Android.OS;
+using Android.Text;
 using Android.Widget;
 using Android.Views;
 using static Android.Views.View;
 using HorizontApp.Utilities;
 using Xamarin.Essentials;
 using HorizontApp.AppContext;
+using HorizontLib.Domain.Models;
 using HorizontLib.Domain.ViewModel;
+using Java.Lang;
 
 namespace HorizontApp.Activities
 {
     [Activity(Label = "SettingsActivity")]
     public class SettingsActivity : Activity, IOnClickListener
     {
+        public static Result RESULT_CANCELED { get { return Result.Canceled; } }
+        public static Result RESULT_OK { get { return Result.Ok; } }
+        public static Result RESULT_OK_AND_CLOSE_PARENT { get { return (Result)2; } }
+
+
         private Settings _settings { get { return AppContextLiveData.Instance.Settings; } }
 
         private Switch _switchManualViewAngle;
+        private Switch _switchManualGpsLocation;
+        private Switch _switchAltitudeFromElevationMap;
+
+        private EditText _editTextLatitude;
+        private EditText _editTextLongitude;
+        private EditText _editTextAltitude;
+        private TextView _textViewLatitude;
+        private TextView _textViewLongitude;
+        private TextView _textViewAltitude;
+
         private TextView _textViewAngleHorizontal;
         private SeekBar _seekBarCorrectionViewAngleHorizontal;
         private TextView _textViewAngleVertical;
@@ -25,8 +44,8 @@ namespace HorizontApp.Activities
         private Spinner _spinnerAppStyle;
         private Button _resetButton;
         private AppStyles[] _listOfAppStyles = new AppStyles[] {AppStyles.EachPoiSeparate, AppStyles.FullScreenRectangle, AppStyles.Simple, AppStyles.SimpleWithDistance, AppStyles.SimpleWithHeight};
-        private Timer _changeFilterTimer = new Timer();
 
+        private bool _isDirty = false;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -58,7 +77,6 @@ namespace HorizontApp.Activities
             _resetButton = FindViewById<Button>(Resource.Id.reset);
             _resetButton.SetOnClickListener(this);
 
-            _spinnerAppStyle.ItemSelected += new System.EventHandler<AdapterView.ItemSelectedEventArgs>(appStyle_ItemSelected);
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfAppStyles.ToList());
             _spinnerAppStyle.Adapter = adapter;
             _spinnerAppStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == _settings.AppStyle));
@@ -77,75 +95,44 @@ namespace HorizontApp.Activities
             _textViewAngleHorizontal.Text = GetViewAngleText(_settings.IsViewAngleCorrection, _settings.CorrectionViewAngleHorizontal, _settings.AutomaticViewAngleHorizontal);
             _textViewAngleVertical.Text = GetViewAngleText(_settings.IsViewAngleCorrection, _settings.CorrectionViewAngleVertical, _settings.AutomaticViewAngleVertical);
 
-            _changeFilterTimer.Enabled = false;
-            _changeFilterTimer.Interval = 3000;
-            _changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;
-            _changeFilterTimer.AutoReset = false;
+            _switchManualGpsLocation = FindViewById<Switch>(Resource.Id.switchManualGpsLocation);
+            _switchManualGpsLocation.Checked = (_settings.ManualLocation != null);
+            _switchManualGpsLocation.SetOnClickListener(this);
+
+            _textViewLatitude = FindViewById<TextView>(Resource.Id.latitudeTitle);
+            _textViewLongitude = FindViewById<TextView>(Resource.Id.longitudeTitle);
+            _textViewAltitude = FindViewById<TextView>(Resource.Id.altitudeTitle);
+            _editTextLatitude = FindViewById<EditText>(Resource.Id.editTextLatitude);
+            _editTextLongitude = FindViewById<EditText>(Resource.Id.editTextLongitude);
+            _editTextAltitude = FindViewById<EditText>(Resource.Id.editTextAltitude);
+            _editTextLatitude.TextChanged += ManualGpsLocationChanged;
+
+            EnableOrDisableGpsLocationInputs(_settings.IsManualLocation);
+            InitializeGpsLocationInputs(_settings.IsManualLocation ? _settings.ManualLocation : AppContextLiveData.Instance.MyLocation);
+
+            _switchAltitudeFromElevationMap = FindViewById<Switch>(Resource.Id.switchAltitudeFromElevationMap);
+            _switchAltitudeFromElevationMap.Checked = _settings.AltitudeFromElevationMap;
+            _switchAltitudeFromElevationMap.SetOnClickListener(this);
+
+            _isDirty = false;
         }
 
-        private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+        public override void OnBackPressed()
         {
-            if (_settings.IsViewAngleCorrection)
-            {
-                var viewAngleHorizontal = _seekBarCorrectionViewAngleHorizontal.Progress / (float) 10.0;
-                _textViewAngleHorizontal.Text = GetViewAngleText(_settings.IsViewAngleCorrection, viewAngleHorizontal, _settings.AutomaticViewAngleHorizontal);
-
-                var viewAngleVertical = _seekBarCorrectionViewAngleVertical.Progress / (float)10.0;
-                _textViewAngleVertical.Text = GetViewAngleText(_settings.IsViewAngleCorrection, viewAngleVertical, _settings.AutomaticViewAngleVertical);
-
-                _changeFilterTimer.Stop();
-                _changeFilterTimer.Start();
-            }
+            OnClose();
         }
 
-        private void appStyle_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            _settings.AppStyle = _listOfAppStyles[e.Position];
+            MenuInflater.Inflate(Resource.Menu.SettingsActivityMenu, menu);
+            return base.OnCreateOptionsMenu(menu);
         }
 
-        public void OnClick(View v)
+        public override bool OnPrepareOptionsMenu(IMenu menu)
         {
-            switch (v.Id)
-            {
-                case Resource.Id.reset:
-                    _seekBarCorrectionViewAngleHorizontal.Progress = 0;
-                    _seekBarCorrectionViewAngleVertical.Progress = 0;
-                    break;
-
-                case Resource.Id.switchManualViewAngle:
-                    _settings.IsViewAngleCorrection = _switchManualViewAngle.Checked;
-
-                    _textViewAngleHorizontal.Text = GetViewAngleText(_settings.IsViewAngleCorrection, _settings.CorrectionViewAngleHorizontal, _settings.AutomaticViewAngleHorizontal);
-                    _seekBarCorrectionViewAngleHorizontal.Enabled = _settings.IsViewAngleCorrection;
-                    
-                    _seekBarCorrectionViewAngleHorizontal.Progress = (int)((_settings.IsViewAngleCorrection?_settings.CorrectionViewAngleHorizontal:0) * 10);
-
-                    _textViewAngleVertical.Text = GetViewAngleText(_settings.IsViewAngleCorrection, _settings.CorrectionViewAngleVertical, _settings.AutomaticViewAngleVertical);
-                    _seekBarCorrectionViewAngleVertical.Enabled = _settings.IsViewAngleCorrection;
-                    _seekBarCorrectionViewAngleVertical.Progress = (int)((_settings.IsViewAngleCorrection?_settings.CorrectionViewAngleVertical:0) * 10);
-                    break;
-            }
-        }
-
-        private string GetViewAngleText(bool manual, float? correctionViewAngle, float? automaticViewAngle)
-        {
-            var viewAngle = manual ? automaticViewAngle + correctionViewAngle : automaticViewAngle;
-            var correction = manual ? correctionViewAngle : 0;
-            return $"Correction: {correction:0.0}   View angle: {viewAngle:0.0} ()";
-        }
-
-        private async void OnChangeFilterTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            _changeFilterTimer.Stop();
-            if (_settings.IsViewAngleCorrection)
-            {
-                var viewAngleHorizontal = _seekBarCorrectionViewAngleHorizontal.Progress / (float) 10.0;
-                _settings.CorrectionViewAngleHorizontal = viewAngleHorizontal;
-
-
-                var viewAngleVertical = _seekBarCorrectionViewAngleVertical.Progress / (float) 10.0;
-                _settings.CorrectionViewAngleVertical = viewAngleVertical;
-            }
+            var menuItem = menu.GetItem(0);
+            menuItem.SetVisible(_isDirty);
+            return base.OnPrepareOptionsMenu(menu);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -153,10 +140,173 @@ namespace HorizontApp.Activities
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    Finish();
+                    OnClose();
+                    break;
+                case Resource.Id.menu_save:
+                    OnSave();
                     break;
             }
+
             return base.OnOptionsItemSelected(item);
+        }
+
+        private bool IsDirty()
+        {
+            if (_isDirty)
+                return true;
+
+            return false;
+        }
+
+        private void OnClose()
+        {
+            if (IsDirty())
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetPositiveButton("Yes", (senderAlert, args) =>
+                {
+                    SetResult(RESULT_CANCELED);
+                    Finish();
+                });
+                alert.SetNegativeButton("No", (senderAlert, args) =>
+                {
+                });
+                alert.SetMessage($"Do you want to discard all you changes?");
+                var answer = alert.Show();
+            }
+            else
+            {
+                SetResult(RESULT_CANCELED);
+                Finish();
+            }
+        }
+
+        private void OnSave()
+        {
+            try
+            {
+                //Compass view style
+                _settings.AppStyle = _listOfAppStyles[_spinnerAppStyle.SelectedItemPosition];
+
+                //View angle correction
+                _settings.IsViewAngleCorrection = _switchManualViewAngle.Checked;
+
+                if (_switchManualViewAngle.Checked)
+                {
+                    var viewAngleHorizontal = _seekBarCorrectionViewAngleHorizontal.Progress / (float)10.0;
+                    _settings.CorrectionViewAngleHorizontal = viewAngleHorizontal;
+
+                    var viewAngleVertical = _seekBarCorrectionViewAngleVertical.Progress / (float)10.0;
+                    _settings.CorrectionViewAngleVertical = viewAngleVertical;
+                }
+
+                //Manual GPS location
+                if (_switchManualGpsLocation.Checked)
+                {
+                    var loc = new GpsLocation(
+                        double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture),
+                        double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture),
+                        double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture));
+                    _settings.ManualLocation = loc;
+                    _settings.IsManualLocation = true;
+                }
+                else
+                {
+                    _settings.IsManualLocation = false;
+                }
+
+                //Altitude from elevation map
+                _settings.AltitudeFromElevationMap = _switchAltitudeFromElevationMap.Checked;
+            }
+            catch(Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, "Error", "Error when saving settings. " + ex.Message);
+            }
+
+            SetResult(RESULT_OK);
+            Finish();
+        }
+
+        private void SetDirty()
+        {
+            _isDirty = true;
+            InvalidateOptionsMenu();
+        }
+
+        private void ManualGpsLocationChanged(object sender, TextChangedEventArgs e)
+        {
+            SetDirty();
+        }
+
+        private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+        {
+            if (_settings.IsViewAngleCorrection)
+            {
+                SetDirty();
+
+                var viewAngleHorizontal = _seekBarCorrectionViewAngleHorizontal.Progress / (float) 10.0;
+                _textViewAngleHorizontal.Text = GetViewAngleText(_settings.IsViewAngleCorrection, viewAngleHorizontal, _settings.AutomaticViewAngleHorizontal);
+
+                var viewAngleVertical = _seekBarCorrectionViewAngleVertical.Progress / (float)10.0;
+                _textViewAngleVertical.Text = GetViewAngleText(_settings.IsViewAngleCorrection, viewAngleVertical, _settings.AutomaticViewAngleVertical);
+            }
+        }
+
+        public void OnClick(View v)
+        {
+            switch (v.Id)
+            {
+                case Resource.Id.reset:
+                    SetDirty();
+                    _seekBarCorrectionViewAngleHorizontal.Progress = 0;
+                    _seekBarCorrectionViewAngleVertical.Progress = 0;
+                    break;
+
+                case Resource.Id.switchManualViewAngle:
+                    SetDirty();
+                    _textViewAngleHorizontal.Text = GetViewAngleText(
+                        _switchManualViewAngle.Checked, 
+                        _seekBarCorrectionViewAngleHorizontal.Progress / (float)10.0, 
+                        _settings.AutomaticViewAngleHorizontal);
+                    _textViewAngleVertical.Text = GetViewAngleText(
+                        _switchManualViewAngle.Checked, 
+                        _seekBarCorrectionViewAngleVertical.Progress / (float)10.0, 
+                        _settings.AutomaticViewAngleVertical);
+                    _seekBarCorrectionViewAngleHorizontal.Enabled = _switchManualViewAngle.Checked;
+                    _seekBarCorrectionViewAngleVertical.Enabled = _switchManualViewAngle.Checked;
+                    break;
+                case Resource.Id.switchManualGpsLocation:
+                    SetDirty();
+                    EnableOrDisableGpsLocationInputs(_switchManualGpsLocation.Checked);
+                    break;
+                case Resource.Id.switchAltitudeFromElevationMap:
+                    SetDirty();
+                    break;
+            }
+        }
+
+        private void InitializeGpsLocationInputs(GpsLocation loc)
+        {
+            _editTextAltitude.Text = $"{loc.Altitude:F0}";
+            _editTextLongitude.Text = $"{loc.Longitude:F7}".Replace(",", ".");
+            _editTextLatitude.Text = $"{loc.Latitude:F7}".Replace(",", ".");
+        }
+
+        private void EnableOrDisableGpsLocationInputs(bool enabled)
+        {
+            _editTextLongitude.Enabled = enabled;
+            _editTextLatitude.Enabled = enabled;
+            _editTextAltitude.Enabled = enabled;
+            _textViewLongitude.Enabled = enabled;
+            _textViewLatitude.Enabled = enabled;
+            _textViewAltitude.Enabled = enabled;
+        }
+
+        private string GetViewAngleText(bool manual, float? correctionViewAngle, float? automaticViewAngle)
+        {
+            var viewAngle = manual ? automaticViewAngle + correctionViewAngle : automaticViewAngle;
+            var correction = manual ? correctionViewAngle : 0;
+            return $"Correction: {correction:0.0}   View angle: {viewAngle:0.0} ()";
         }
     }
 }

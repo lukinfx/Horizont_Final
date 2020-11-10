@@ -58,20 +58,23 @@
         android:id="@+id/linearLayout2">
         <ImageButton
           android:src="@android:drawable/ic_menu_edit"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
+          android:scaleType="fitCenter"
+          android:layout_width="40dp"
+          android:layout_height="match_parent"
           android:id="@+id/photoEditButton"
           android:background="#00000000"/>
         <ImageButton
           android:src="@drawable/f_heart_empty"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
+          android:scaleType="fitCenter"
+          android:layout_width="30dp"
+          android:layout_height="match_parent"
           android:id="@+id/favouriteButton"
           android:background="#00000000"/>
         <ImageButton
           android:src="@android:drawable/ic_menu_delete"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
+          android:scaleType="fitCenter"
+          android:layout_width="40dp"
+          android:layout_height="match_parent"
           android:id="@+id/photoDeleteButton"
           android:background="#00000000"/>
     </LinearLayout>
