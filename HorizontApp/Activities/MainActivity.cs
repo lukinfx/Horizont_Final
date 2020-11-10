@@ -60,6 +60,8 @@ namespace HorizontApp
 
         private bool _displayTerrain = false;
         private static bool _firstStart = true;
+
+        private bool _elevationProfileBeingGenerated = false;
         //Timers
         private Timer _refreshTimer = new Timer();
 
@@ -429,6 +431,7 @@ namespace HorizontApp
                 }
 
                 Context.ElevationProfileData = result;
+                _elevationProfileBeingGenerated = false;
                 RefreshElevationProfile();
             };
             ec.OnStageChange = (text, max) =>
@@ -535,6 +538,14 @@ namespace HorizontApp
                     $"Lat:{Context.MyLocation.Latitude:F7} Lon:{Context.MyLocation.Longitude:F7} Alt:{Context.MyLocation.Altitude:F0}":"No GPS location";
 
                 _compassView.SetPoiViewItemList(e.PoiData);
+
+                if (Context.Settings.AutoElevationProfile)
+                {
+                    if (GpsUtils.HasAltitude(Context.MyLocation) && Context.ElevationProfileData == null && _elevationProfileBeingGenerated == false)
+                    {
+                        GenerateElevationProfile();
+                    }
+                }
             });
         }
 

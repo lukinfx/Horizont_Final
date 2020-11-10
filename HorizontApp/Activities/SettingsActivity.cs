@@ -29,6 +29,7 @@ namespace HorizontApp.Activities
         private Switch _switchManualViewAngle;
         private Switch _switchManualGpsLocation;
         private Switch _switchAltitudeFromElevationMap;
+        private Switch _switchAutoElevationProfile;
 
         private EditText _editTextLatitude;
         private EditText _editTextLongitude;
@@ -113,6 +114,10 @@ namespace HorizontApp.Activities
             _switchAltitudeFromElevationMap = FindViewById<Switch>(Resource.Id.switchAltitudeFromElevationMap);
             _switchAltitudeFromElevationMap.Checked = _settings.AltitudeFromElevationMap;
             _switchAltitudeFromElevationMap.SetOnClickListener(this);
+
+            _switchAutoElevationProfile = FindViewById<Switch>(Resource.Id.switchAutoElevationProfile);
+            _switchAutoElevationProfile.Checked = _settings.AutoElevationProfile;
+            _switchAutoElevationProfile.SetOnClickListener(this);
 
             _isDirty = false;
         }
@@ -215,6 +220,9 @@ namespace HorizontApp.Activities
                     _settings.IsManualLocation = false;
                 }
 
+                //Auto elevation profile
+                _settings.AutoElevationProfile = _switchAutoElevationProfile.Checked;
+
                 //Altitude from elevation map
                 _settings.AltitudeFromElevationMap = _switchAltitudeFromElevationMap.Checked;
             }
@@ -280,6 +288,9 @@ namespace HorizontApp.Activities
                     EnableOrDisableGpsLocationInputs(_switchManualGpsLocation.Checked);
                     break;
                 case Resource.Id.switchAltitudeFromElevationMap:
+                    SetDirty();
+                    break;
+                case Resource.Id.switchAutoElevationProfile:
                     SetDirty();
                     break;
             }

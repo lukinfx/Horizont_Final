@@ -173,15 +173,29 @@ namespace HorizontApp.Activities
 
             //System.Threading.Tasks.Task.Run(() => {LoadImage(fileName); });
 
-            var delayedAction = new System.Threading.Timer(
-                o => { LoadImage(photodata.PhotoFileName); },
-                null, 
-                TimeSpan.FromSeconds(0.1), 
-                TimeSpan.FromMilliseconds(-1));
+            var delayedAction = new System.Threading.Timer(o => { LoadImageAndProfile(); },
+                null, TimeSpan.FromSeconds(0.1), TimeSpan.FromMilliseconds(-1));
 
             System.Threading.Tasks.Task.Run(() => { _context.ReloadData(); });
 
             InitializeRefreshTimer();
+        }
+
+        private void LoadImageAndProfile()
+        {
+            LoadImage(photodata.PhotoFileName);
+
+            if (AppContextLiveData.Instance.Settings.AutoElevationProfile)
+            {
+                if (photodata.JsonElevationProfileData != null)
+                {
+                    _context.ElevationProfileData = JsonConvert.DeserializeObject<ElevationProfileData>(photodata.JsonElevationProfileData);
+                    if (_context.ElevationProfileData != null)
+                    {
+                        RefreshElevationProfile();
+                    }
+                }
+            }
         }
 
         private void InitializeRefreshTimer()

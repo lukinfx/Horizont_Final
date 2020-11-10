@@ -183,6 +183,13 @@ namespace HorizontApp.Utilities
             set { _altitudeFromElevationMap = value; NotifySettingsChanged(); }
         }
 
+        private bool _autoElevationProfile;
+        public bool AutoElevationProfile
+        {
+            get { return _autoElevationProfile; }
+            set { _autoElevationProfile = value; NotifySettingsChanged(); }
+        }
+
         public void NotifySettingsChanged()
         {
             var args = new SettingsChangedEventArgs();
@@ -211,6 +218,7 @@ namespace HorizontApp.Utilities
             correctionViewAngleVertical = prefs.GetFloat("CorrectionViewAngleVertical", 0);
 
             _altitudeFromElevationMap = prefs.GetBoolean("AltitudeFromElevationMap", false);
+            _autoElevationProfile = prefs.GetBoolean("AutoElevationProfile", false);
         }
 
         public void SaveData()
@@ -233,7 +241,9 @@ namespace HorizontApp.Utilities
                 editor.PutFloat("CorrectionViewAngleHorizontal", correctionViewAngleHorizontal);
                 editor.PutFloat("CorrectionViewAngleVertical", correctionViewAngleVertical);
 
-                editor.PutBoolean("AltitudeFromElevationMap", _altitudeFromElevationMap); 
+                editor.PutBoolean("AltitudeFromElevationMap", _altitudeFromElevationMap);
+                editor.PutBoolean("AutoElevationProfile", _autoElevationProfile);
+
                 editor.Apply();
             }
         }
