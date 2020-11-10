@@ -114,6 +114,7 @@ namespace HorizontApp.Views.ListOfPoiView
             _searchTimer.Stop();
             MainThread.BeginInvokeOnMainThread(() =>
             {
+
                 _selectByName();
             });
         }

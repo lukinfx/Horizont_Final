@@ -100,7 +100,6 @@ namespace HorizontApp.Activities
             _context.Settings.MaxDistance = Convert.ToInt32(photodata.MaxDistance);
             _context.Settings.MinAltitute = Convert.ToInt32(photodata.MinAltitude);
 
-            
             _filterText = FindViewById<TextView>(Resource.Id.textView1);
 
             _headingTextView = FindViewById<TextView>(Resource.Id.editText1);

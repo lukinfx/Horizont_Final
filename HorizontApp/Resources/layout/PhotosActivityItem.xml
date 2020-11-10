@@ -35,7 +35,7 @@
             android:typeface="sans"
             android:singleLine="true"
             android:ellipsize="end"
-            android:maxWidth="200dp"
+            android:maxWidth="170dp"
             android:text="gukjgagglhgi;hkbvcxghjhjjhgikhbdfbsiyv"/>
         <TextView
             android:id="@+id/textViewLocation"
@@ -61,6 +61,12 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:id="@+id/photoEditButton"
+          android:background="#00000000"/>
+        <ImageButton
+          android:src="@drawable/f_heart_empty"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/favouriteButton"
           android:background="#00000000"/>
         <ImageButton
           android:src="@android:drawable/ic_menu_delete"

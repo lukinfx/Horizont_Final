@@ -24,11 +24,25 @@ namespace HorizontLib.Domain.Models
         public double ViewAngleVertical { get; set; }
         public double MinAltitude{ get; set; }
         public double MaxDistance { get; set; }
-        public bool Favourie { get; set; }
         public double? RightTiltCorrector { get; set; }
         public double? LeftTiltCorrector { get; set; }
         public string JsonElevationProfileData { get; set; }
         public double MaxElevationProfileDataDistance { get; set; }
+        public bool FavouriteFilter = false;
+
+        private bool _favourite = false;
+
+        public bool Favourite 
+        { 
+            get
+            {
+                return _favourite;
+            }
+            set
+            {
+                _favourite = value;
+            } 
+        }
 
         public PhotoData()
         {

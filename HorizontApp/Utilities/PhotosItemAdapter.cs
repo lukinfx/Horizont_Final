@@ -14,6 +14,7 @@ namespace HorizontApp.Utilities
         void OnPhotoDelete(int position);
         void OnTagEdit(int position);
         void OnPhotoEdit(int position);
+        void OnFavouriteEdit(int position);
     }
 
     [Activity(Label = "PhotosItemAdapter")]
@@ -74,6 +75,15 @@ namespace HorizontApp.Utilities
             editButton.SetOnClickListener(this);
             editButton.Tag = position;
 
+            var favouriteButton = view.FindViewById<ImageButton>(Resource.Id.favouriteButton);
+            favouriteButton.SetOnClickListener(this);
+            favouriteButton.Tag = position;
+
+            if (item.Favourite)
+                favouriteButton.SetImageResource(Resource.Drawable.f_heart_solid);
+            else
+                favouriteButton.SetImageResource(Resource.Drawable.f_heart_empty);
+
             var path = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), item.PhotoFileName);
 
             
@@ -105,6 +115,9 @@ namespace HorizontApp.Utilities
                     break;
                 case Resource.Id.photoEditButton:
                     mPoiActionListener.OnTagEdit(position);
+                    break;
+                case Resource.Id.favouriteButton:
+                    mPoiActionListener.OnFavouriteEdit(position);
                     break;
             }
         }

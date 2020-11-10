@@ -21,6 +21,8 @@ namespace HorizontApp.Activities
         private List<PhotoData> photoList;
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
+        private bool _showFavouritePhotosBool = false;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -41,12 +43,19 @@ namespace HorizontApp.Activities
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetDisplayShowTitleEnabled(false);
 
+
             _photosListView = FindViewById<ListView>(Resource.Id.listViewPhotos);
 
             photoList = Context.Database.GetPhotoDataItems().ToList();
             _adapter = new PhotosItemAdapter(this, photoList.OrderByDescending(i => i.Datetime), this);
 
             _photosListView.Adapter = _adapter;
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.PhotosActivityMenu, menu);
+            return base.OnCreateOptionsMenu(menu);
         }
 
         void OnPhotoShow(int position)
@@ -64,8 +73,28 @@ namespace HorizontApp.Activities
                 case Android.Resource.Id.Home:
                     Finish();
                     break;
+                case Resource.Id.menu_favourite:
+                    _showFavouritePhotosBool = !_showFavouritePhotosBool;
+                    if (_showFavouritePhotosBool)
+                    {
+                        _showFavouritePhotos();
+                    }
+                    else
+                    {
+                        _showAllPhotos();
+                    }
+                    InvalidateOptionsMenu();
+                    break;
             }
             return base.OnOptionsItemSelected(item);
+        }
+
+        public override bool OnPrepareOptionsMenu(IMenu menu)
+        {
+            var buttonFavourite = menu.GetItem(0);
+            buttonFavourite.SetIcon(_showFavouritePhotosBool ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
+            
+            return base.OnPrepareOptionsMenu(menu);
         }
 
         public void OnPhotoDelete(int position)
@@ -81,13 +110,21 @@ namespace HorizontApp.Activities
             alert.SetMessage("Are you sure you want to delete this Photo?");
             var answer = alert.Show();
 
-
             _adapter.NotifyDataSetChanged();
         }
 
         public void OnPhotoEdit(int position)
         {
             OnPhotoShow(position);
+        }
+
+        public void OnFavouriteEdit(int position)
+        {
+            PhotoData item = _adapter[position];
+            item.Favourite = !item.Favourite;
+            Context.Database.UpdateItem(item);
+
+            _adapter.NotifyDataSetChanged();
         }
 
         public void OnTagEdit(int position)
@@ -101,6 +138,18 @@ namespace HorizontApp.Activities
                     _adapter.NotifyDataSetChanged();
                 }
             }); 
+        }
+
+        private void _showFavouritePhotos()
+        {
+            _adapter = new PhotosItemAdapter(this, photoList.OrderByDescending(i => i.Datetime).Where(i => i.Favourite), this);
+            _photosListView.Adapter = _adapter;
+        }
+
+        private void _showAllPhotos()
+        {
+            _adapter = new PhotosItemAdapter(this, photoList.OrderByDescending(i => i.Datetime), this);
+            _photosListView.Adapter = _adapter;
         }
     }
 }
