@@ -15,14 +15,12 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"/>
 
-    <RelativeLayout 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="50dp"
-        android:minWidth="30dp"
-        android:orientation="horizontal"
-        android:id="@+id/ListItemRelativeLayout">
-        
+    <LinearLayout 
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:orientation="vertical">
+
         <TextView
             android:id="@+id/textViewDate"
             android:layout_width="wrap_content"
@@ -35,7 +33,6 @@
             android:typeface="sans"
             android:singleLine="true"
             android:ellipsize="end"
-            android:maxWidth="170dp"
             android:text="gukjgagglhgi;hkbvcxghjhjjhgikhbdfbsiyv"/>
         <TextView
             android:id="@+id/textViewLocation"
@@ -46,36 +43,32 @@
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:textColor="#000000"
-            android:textSize="11sp" />
-    </RelativeLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="right"
-        android:id="@+id/linearLayout2">
-        <ImageButton
-          android:src="@android:drawable/ic_menu_edit"
-          android:scaleType="fitCenter"
-          android:layout_width="40dp"
-          android:layout_height="match_parent"
-          android:id="@+id/photoEditButton"
-          android:background="#00000000"/>
-        <ImageButton
-          android:src="@drawable/f_heart_empty"
-          android:scaleType="fitCenter"
-          android:layout_width="30dp"
-          android:layout_height="match_parent"
-          android:id="@+id/favouriteButton"
-          android:background="#00000000"/>
-        <ImageButton
-          android:src="@android:drawable/ic_menu_delete"
-          android:scaleType="fitCenter"
-          android:layout_width="40dp"
-          android:layout_height="match_parent"
-          android:id="@+id/photoDeleteButton"
-          android:background="#00000000"/>
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="11sp" 
+            android:text="gukjgagglhgi;hkbvcxghjhjjhgikhbdfbsiyv"/>
     </LinearLayout>
+    
+    <ImageButton
+      android:src="@android:drawable/ic_menu_edit"
+      android:scaleType="fitCenter"
+      android:layout_width="40dp"
+      android:layout_height="match_parent"
+      android:id="@+id/photoEditButton"
+      android:background="#00000000"/>
+    <ImageButton
+      android:src="@drawable/f_heart_empty"
+      android:scaleType="fitCenter"
+      android:layout_width="30dp"
+      android:layout_height="match_parent"
+      android:id="@+id/favouriteButton"
+      android:background="#00000000"/>
+    <ImageButton
+      android:src="@android:drawable/ic_menu_delete"
+      android:scaleType="fitCenter"
+      android:layout_width="40dp"
+      android:layout_height="match_parent"
+      android:id="@+id/photoDeleteButton"
+      android:background="#00000000"/>
+
 </LinearLayout>
