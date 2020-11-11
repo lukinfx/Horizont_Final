@@ -255,10 +255,10 @@ namespace HorizontApp
                             Context.ToggleCompassPaused();
                             if (Context.CompassPaused)
                             {
-                                if (_cameraFragment != null)
+                                /*if (_cameraFragment != null)
                                 {
                                     _cameraFragment.StopPreview();
-                                }
+                                }*/
 
                                 _recordButton.Enabled = false;
                                 _recordButton.Visibility = ViewStates.Invisible;
