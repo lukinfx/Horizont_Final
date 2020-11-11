@@ -284,7 +284,11 @@ namespace HorizontApp
                         }
                     case Resource.Id.buttonRecord:
                         {
+                            _recordButton.SetImageResource(Resource.Drawable.ic_photo2);
                             _cameraFragment.TakePicture(Context);
+                            Timer timer = new Timer(500);
+                            timer.Elapsed += OnTakePictureTimerElapsed;
+                            timer.Enabled = true;
                             break;
                         }
                     case Resource.Id.buttonCategorySelect:
@@ -465,6 +469,11 @@ namespace HorizontApp
             {
                 //ReloadData(favourite);
             }
+        }
+
+        private void OnTakePictureTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            _recordButton.SetImageResource(Resource.Drawable.ic_photo1);
         }
 
         private void OnRefreshTimerElapsed(object sender, ElapsedEventArgs e)

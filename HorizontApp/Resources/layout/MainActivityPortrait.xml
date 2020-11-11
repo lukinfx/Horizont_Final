@@ -39,6 +39,18 @@
           android:layout_height="match_parent"
           android:gravity="bottom">
 
+          <ImageButton
+            android:src="@drawable/ic_photo1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:background="#00000000"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="20dp"
+            android:padding="0dp"
+            android:id="@+id/buttonRecord" />
+
           <include
             android:id="@+id/mainActivitySeekBars"
             layout="@layout/MainActivitySeekBars" 
