@@ -443,6 +443,8 @@ namespace HorizontApp
 
                 Context.ElevationProfileData = result;
                 _elevationProfileBeingGenerated = false;
+                Context.ElevationProfileDataDistance = Context.Settings.MaxDistance;
+
                 RefreshElevationProfile();
             };
             ec.OnStageChange = (text, max) =>

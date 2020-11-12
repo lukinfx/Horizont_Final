@@ -127,6 +127,7 @@ namespace HorizontApp.AppContext
         {
             base.Resume();
 
+            _compassProvider.Start();
             _locationTimer.Start();
         }
 
