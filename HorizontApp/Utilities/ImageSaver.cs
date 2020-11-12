@@ -109,7 +109,7 @@ namespace HorizontApp.Utilities
                         ViewAngleHorizontal = _context.Settings.ViewAngleHorizontal,
                         MinAltitude = _context.Settings.MinAltitute,
                         MaxDistance = _context.Settings.MaxDistance,
-                        FavouriteFilter = _context.Settings.Favourite
+                        FavouriteFilter = _context.Settings.ShowFavoritesOnly
                     };
                     if (_context.ElevationProfileData != null && _context.ElevationProfileDataDistance.HasValue)
                     {

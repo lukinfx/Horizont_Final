@@ -1,26 +1,34 @@
-﻿using System;
+﻿using HorizontApp.Utilities;
+using Javax.Security.Auth;
+using System;
 using Xamarin.Essentials;
 
 namespace HorizontApp.Providers
 {
     public class CompassProvider
     {
-        private double heading;
         SensorSpeed speed = SensorSpeed.UI;
-       
+
+
+        private HeadingStabilizator _headingStabilizator = new HeadingStabilizator();
+
         public CompassProvider()
         {
             // Register for reading changes, be sure to unsubscribe when finished
             Xamarin.Essentials.Compass.ReadingChanged += Compass_ReadingChanged;
         }
 
-        public double Heading { get { return heading; } }
+        public double Heading { get ; private set; }
 
         void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
         {
             var data = e.Reading;
-            heading = (90 + data.HeadingMagneticNorth) % 360;
+            var tmpHeading = (90 + data.HeadingMagneticNorth) % 360;
+
+            _headingStabilizator.AddValue(tmpHeading);
             // Process Heading Magnetic North
+
+            Heading = _headingStabilizator.GetHeading();
         }
 
         public void Start()
@@ -30,7 +38,7 @@ namespace HorizontApp.Providers
                 if (Compass.IsMonitoring)
                     return;
 
-                Compass.Start(speed);
+                Compass.Start(speed, applyLowPassFilter: true);
             }
             catch (FeatureNotSupportedException ex)
             {

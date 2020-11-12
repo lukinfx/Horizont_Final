@@ -178,6 +178,7 @@ namespace HorizontApp
 
             _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
             _displayTerrainButton.SetOnClickListener(this);
+            //_displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? 0 : 1);
 
             _refreshCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
             _refreshCorrectorButton.SetOnClickListener(this);
@@ -219,7 +220,7 @@ namespace HorizontApp
 
         private void InitializeRefreshTimer()
         {
-            _refreshTimer.Interval = 100;
+            _refreshTimer.Interval = 33;
             _refreshTimer.Elapsed += OnRefreshTimerElapsed;
             _refreshTimer.Enabled = true;
         }
@@ -244,7 +245,7 @@ namespace HorizontApp
                     case Resource.Id.favouriteFilterButton:
                         {
                             Context.Settings.ToggleFavourite(); ;
-                            if (Context.Settings.Favourite)
+                            if (Context.Settings.ShowFavoritesOnly)
                                 _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
                             else
                                 _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);

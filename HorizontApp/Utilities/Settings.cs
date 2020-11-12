@@ -141,11 +141,11 @@ namespace HorizontApp.Utilities
             }
         }
 
-        private bool _favourite;
-        public bool Favourite
+        private bool _showFavoritesOnly;
+        public bool ShowFavoritesOnly
         {
-            get { return _favourite; }
-            private set { _favourite = value; NotifySettingsChanged(); }
+            get { return _showFavoritesOnly; }
+            private set { _showFavoritesOnly = value; NotifySettingsChanged(); }
         }
 
         private int _minAltitute;
@@ -190,6 +190,14 @@ namespace HorizontApp.Utilities
             set { _autoElevationProfile = value; NotifySettingsChanged(); }
         }
 
+
+        private bool _showElevationProfile;
+        public bool ShowElevationProfile
+        {
+            get { return _showElevationProfile; }
+            set { _showElevationProfile = value; NotifySettingsChanged(); }
+        }
+
         public void NotifySettingsChanged()
         {
             var args = new SettingsChangedEventArgs();
@@ -219,6 +227,9 @@ namespace HorizontApp.Utilities
 
             _altitudeFromElevationMap = prefs.GetBoolean("AltitudeFromElevationMap", false);
             _autoElevationProfile = prefs.GetBoolean("AutoElevationProfile", false);
+
+            ShowElevationProfile = AutoElevationProfile;
+            ShowFavoritesOnly = false;
         }
 
         public void SaveData()
@@ -267,7 +278,7 @@ namespace HorizontApp.Utilities
 
         public void ToggleFavourite()
         {
-            Favourite = !Favourite;
+            ShowFavoritesOnly = !ShowFavoritesOnly;
         }
 
         private void RestartTimer()

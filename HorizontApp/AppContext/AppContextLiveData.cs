@@ -12,8 +12,8 @@ namespace HorizontApp.AppContext
     {
         private static AppContextLiveData _instance;
 
-        private GpsLocationProvider GpsLocationProvider { get; set; }
-        private CompassProvider CompassProvider { get; set; }
+        private GpsLocationProvider _locationProvider { get; set; }
+        private CompassProvider _compassProvider { get; set; }
 
         //TODO:Move _headingStabilizator to _compassProvider class
         private HeadingStabilizator HeadingStabilizator { get; set; }
@@ -22,6 +22,8 @@ namespace HorizontApp.AppContext
         private Timer _locationTimer;
 
         private static object synchLock = new object();
+
+        public override double Heading { get { return _compassProvider.Heading; } }
 
         public static IAppContext Instance
         {
@@ -42,15 +44,10 @@ namespace HorizontApp.AppContext
 
         private AppContextLiveData()
         {
-            GpsLocationProvider = new GpsLocationProvider();
-            CompassProvider = new CompassProvider();
-            HeadingStabilizator = new HeadingStabilizator();
+            _locationProvider = new GpsLocationProvider();
+            _compassProvider = new CompassProvider();
 
-            _compassTimer = new Timer();
             _locationTimer = new Timer();
-
-            _compassTimer.Interval = 100;
-            _compassTimer.Elapsed += OnCompassTimerElapsed;
 
             _locationTimer.Interval = 3000;
             _locationTimer.Elapsed += OnLocationTimerElapsed;
@@ -58,10 +55,9 @@ namespace HorizontApp.AppContext
 
         public override void Start()
         {
-            CompassProvider.Start();
-            GpsLocationProvider.Start();
+            _compassProvider.Start();
+            _locationProvider.Start();
 
-            _compassTimer.Enabled = true;
             _locationTimer.Enabled = true;
         }
 
@@ -75,22 +71,6 @@ namespace HorizontApp.AppContext
             }
         }
 
-        private void OnCompassTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                if (!CompassPaused)
-                {
-                    HeadingStabilizator.AddValue(CompassProvider.Heading);
-                    Heading = HeadingStabilizator.GetHeading();
-                    if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
-                    {
-                        Heading = Heading - 90;
-                    }
-                }
-            });
-        }
-
         protected override void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
             base.OnSettingsChanged(sender, e);
@@ -102,7 +82,7 @@ namespace HorizontApp.AppContext
         {
             try
             {
-                var newLocation = await GpsLocationProvider.GetLocationAsync();
+                var newLocation = await _locationProvider.GetLocationAsync();
 
                 if (newLocation == null)
                     return false;
@@ -139,7 +119,7 @@ namespace HorizontApp.AppContext
         {
             base.Pause();
 
-            _compassTimer.Stop();
+            _compassProvider.Stop();
             _locationTimer.Stop();
         }
 
@@ -147,7 +127,6 @@ namespace HorizontApp.AppContext
         {
             base.Resume();
 
-            _compassTimer.Start();
             _locationTimer.Start();
         }
 

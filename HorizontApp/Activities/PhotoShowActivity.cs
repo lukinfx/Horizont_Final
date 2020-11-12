@@ -361,7 +361,7 @@ namespace HorizontApp.Activities
                 case Resource.Id.favouriteFilterButton:
                     {
                         _context.Settings.ToggleFavourite(); ;
-                        if (_context.Settings.Favourite)
+                        if (_context.Settings.ShowFavoritesOnly)
                             _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
                         else
                             _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
