@@ -10,19 +10,20 @@ namespace HorizontApp.Tasks
 {
     public class ElevationCalculation : AsyncTask<GpsLocation, string, ElevationProfileData>
     {
-        private GpsLocation _myLocation;
-        private int _visibility;
         private ElevationTileCollection _elevationTileCollection;
+
+        public GpsLocation MyLocation { get; private set; }
+        public int MaxDistance { get; private set; }
 
         public Action<ElevationProfileData> OnFinishedAction;
         public Action<string, int> OnStageChange;
         public Action<int> OnProgressChange;
 
-        public ElevationCalculation(GpsLocation myLocation, int visibility)
+        public ElevationCalculation(GpsLocation myLocation, int maxDistance)
         {
-            _myLocation = myLocation;
-            _visibility = visibility;
-            _elevationTileCollection = new ElevationTileCollection(_myLocation, (int)_visibility);
+            MyLocation = myLocation;
+            MaxDistance = maxDistance;
+            _elevationTileCollection = new ElevationTileCollection(MyLocation, (int)MaxDistance);
         }
 
         public int GetSizeToDownload()
@@ -61,11 +62,11 @@ namespace HorizontApp.Tasks
 
                 OnStageChange("Preparing elevation data.", 360);
                 ElevationDataGenerator ep = new ElevationDataGenerator();
-                ep.Generate(_myLocation, _elevationTileCollection, progress => { OnProgressChange?.Invoke(progress); });
+                ep.Generate(MyLocation, _elevationTileCollection, progress => { OnProgressChange?.Invoke(progress); });
 
                 OnStageChange("Processing elevation data.", 360);
                 ElevationProfile ep2 = new ElevationProfile();
-                ep2.GenerateElevationProfile3(_myLocation, _visibility, ep.GetProfile(), progress => { OnProgressChange?.Invoke(progress); });
+                ep2.GenerateElevationProfile3(MyLocation, MaxDistance, ep.GetProfile(), progress => { OnProgressChange?.Invoke(progress); });
                 var epd  = ep2.GetProfile();
 
                 if (!downloadingOk || !readingOk)

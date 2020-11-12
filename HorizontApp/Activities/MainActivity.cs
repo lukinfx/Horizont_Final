@@ -58,7 +58,6 @@ namespace HorizontApp
         
         private CameraFragment _cameraFragment;
 
-        private bool _displayTerrain = false;
         private static bool _firstStart = true;
 
         private bool _elevationProfileBeingGenerated = false;
@@ -178,7 +177,7 @@ namespace HorizontApp
 
             _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
             _displayTerrainButton.SetOnClickListener(this);
-            //_displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? 0 : 1);
+            _displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
 
             _refreshCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
             _refreshCorrectorButton.SetOnClickListener(this);
@@ -363,9 +362,14 @@ namespace HorizontApp
 
         private void HandleDisplayTarrainButtonClicked()
         {
-            _displayTerrain = !_displayTerrain;
-            GenerateElevationProfile();
-            Context.ElevationProfileDataDistance = Context.Settings.MaxDistance;
+            Context.Settings.ShowElevationProfile = !Context.Settings.ShowElevationProfile;
+            if (Context.Settings.ShowElevationProfile && (Context.ElevationProfileData == null || Context.ElevationProfileDataDistance < Context.Settings.MaxDistance) && _elevationProfileBeingGenerated == false)
+            {
+                GenerateElevationProfile();
+            }
+            _displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
+
+            //Context.ElevationProfileDataDistance = Context.Settings.MaxDistance;
         }
 
         private void GenerateElevationProfile()
@@ -409,6 +413,7 @@ namespace HorizontApp
         {
             try
             {
+                Context.ElevationProfileDataDistance = ec.MaxDistance;
                 StartDownloadAndCalculate(ec);
             }
             catch (Exception ex)
@@ -419,6 +424,7 @@ namespace HorizontApp
 
         private void StartDownloadAndCalculate(ElevationCalculation ec)
         {
+            _elevationProfileBeingGenerated = true;
             var lastProgressUpdate = System.Environment.TickCount;
 
             var pd = new ProgressDialog(this);
@@ -549,9 +555,9 @@ namespace HorizontApp
 
                 _compassView.SetPoiViewItemList(e.PoiData);
 
-                if (Context.Settings.AutoElevationProfile)
+                if (Context.Settings.ShowElevationProfile)
                 {
-                    if (GpsUtils.HasAltitude(Context.MyLocation) && Context.ElevationProfileData == null && _elevationProfileBeingGenerated == false)
+                    if (GpsUtils.HasAltitude(Context.MyLocation) && (Context.ElevationProfileData == null || Context.ElevationProfileDataDistance < Context.Settings.MaxDistance) && _elevationProfileBeingGenerated == false)
                     {
                         GenerateElevationProfile();
                     }

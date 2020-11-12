@@ -130,7 +130,8 @@ namespace HorizontApp.Views
         {
             compassViewDrawer.OnDrawBackground(canvas);
 
-            PaintElevationProfileBitmap(canvas);
+            if (_context.Settings.ShowElevationProfile)
+                PaintElevationProfileBitmap(canvas);
 
             PaintVisiblePois(canvas);
         }
