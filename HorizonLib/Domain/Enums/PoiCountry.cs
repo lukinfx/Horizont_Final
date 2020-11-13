@@ -18,6 +18,7 @@
         SVN,
         ESP,
         CHE,
+        BEL,
         BIH
     }
 }

@@ -91,7 +91,7 @@ namespace GpxAltitudeFixer
             doc.Save(@"c:\Src\Xamarin\Horizon\Data\Gpx\svk-mountains2.gpx");
         }
 
-        static void FixMissingElevation(string fileName)
+        static void FixMissingElevation(string srcFile)
         {
             /*var etc = new ElevationTileCollection(_myLocation, (int)_visibility);
             var d = etc.GetSizeToDownload();
@@ -99,8 +99,11 @@ namespace GpxAltitudeFixer
             etc.Read(progress => { });
             profileGenerator.Generate(_myLocation, etc, progress => { });*/
 
-            var srcFile = $@"c:\Src\Xamarin\Horizon\Data\Gpx\CZE\original\{fileName}";
-            string xmlFileContext = File.ReadAllText(srcFile+".gpx");
+            var dstFile = srcFile.ToLower().Replace(".gpx", "_fe.gpx");
+            Console.WriteLine($"Source File: {srcFile}");
+            Console.WriteLine($"Destination File: {dstFile}");
+
+            string xmlFileContext = File.ReadAllText(srcFile);
             var poiList = HorizontLib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, new Guid());
 
             //foreach (var group in poiList.GroupBy(x => ((int)x.Longitude*10000)+(int)x.Latitude))
@@ -179,11 +182,11 @@ namespace GpxAltitudeFixer
                 }
             }
 
-            doc.Save(srcFile + "2.gpx");
+            doc.Save(dstFile);
         }
         static void Main(string[] args)
         {
-            FixMissingElevation("czech-republic-transmitters"); 
+            FixMissingElevation(args[0]); 
             //FixMissingElevation("cze-churches");
             //FixMissingElevation("cze-lakes");
             //FixMissingElevation("cze-palaces");
