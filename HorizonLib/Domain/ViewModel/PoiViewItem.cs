@@ -1,4 +1,5 @@
-﻿using HorizontLib.Domain.Models;
+﻿using HorizonLib.Domain.Enums;
+using HorizontLib.Domain.Models;
 
 namespace HorizontLib.Domain.ViewModel
 {
@@ -7,7 +8,7 @@ namespace HorizontLib.Domain.ViewModel
         public Poi Poi;
         public double Bearing;
         public double Distance;
-        public bool Visibility = true;
+        public Visibility Visibility;
         public float AltitudeDifference { get; set; }
 
         public GpsLocation GpsLocation

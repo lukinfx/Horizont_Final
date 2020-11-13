@@ -6,30 +6,47 @@ namespace HorizontApp.Views.Compass
 {
     public class CompassViewDrawer
     {
-        protected Paint paint;
+        protected Paint paintVisible;
+        protected Paint paintPartialyVisible;
         protected Paint paintRect;
+        protected Paint paintRectPartialyVisible;
         protected Paint textpaint;
-
+        protected Paint textpaintPartialyVisible;
         protected float adjustedViewAngleHorizontal;
         protected float adjustedViewAngleVertical;
 
         public CompassViewDrawer()
         {
-            paint = new Paint();
-            paint.SetARGB(255, 200, 255, 0);
-            paint.SetStyle(Paint.Style.FillAndStroke);
-            paint.StrokeWidth = 4;
+            paintVisible = new Paint();
+            paintVisible.SetARGB(255, 200, 255, 0);
+            paintVisible.SetStyle(Paint.Style.FillAndStroke);
+            paintVisible.StrokeWidth = 4;
+
+            paintPartialyVisible = new Paint();
+            paintPartialyVisible.SetARGB(120, 200, 255, 0);
+            paintPartialyVisible.SetStyle(Paint.Style.FillAndStroke);
+            paintPartialyVisible.StrokeWidth = 4;
 
             paintRect = new Paint();
             paintRect.SetARGB(150, 0, 0, 0);
             paintRect.SetStyle(Paint.Style.FillAndStroke);
             paintRect.StrokeWidth = 4;
 
+            paintRectPartialyVisible = new Paint();
+            paintRectPartialyVisible.SetARGB(75, 0, 0, 0);
+            paintRectPartialyVisible.SetStyle(Paint.Style.FillAndStroke);
+            paintRectPartialyVisible.StrokeWidth = 4;
+
             textpaint = new Paint();
             textpaint.SetARGB(255, 200, 255, 0);
             textpaint.TextSize = 36;
             Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
             textpaint.SetTypeface(normal);
+
+            textpaintPartialyVisible = new Paint();
+            textpaintPartialyVisible.SetARGB(120, 200, 255, 0);
+            textpaintPartialyVisible.TextSize = 36;
+            textpaintPartialyVisible.SetTypeface(normal);
         }
 
         public virtual void Initialize(float viewAngleHorizontal, float viewAngleVertical)

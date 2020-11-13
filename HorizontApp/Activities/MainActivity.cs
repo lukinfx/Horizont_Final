@@ -368,8 +368,6 @@ namespace HorizontApp
                 GenerateElevationProfile();
             }
             _displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
-
-            //Context.ElevationProfileDataDistance = Context.Settings.MaxDistance;
         }
 
         private void GenerateElevationProfile()

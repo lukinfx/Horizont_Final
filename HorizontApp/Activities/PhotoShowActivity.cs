@@ -48,6 +48,8 @@ namespace HorizontApp.Activities
 
         private bool _editingOn = false;
 
+        private bool _elevationProfileBeingGenerated = false;
+
         private SeekBar _distanceSeekBar;
         private SeekBar _heightSeekBar;
         private PhotoData photodata;
@@ -355,7 +357,7 @@ namespace HorizontApp.Activities
             switch (v.Id)
             {
                 case Resource.Id.buttonDisplayTerrain:
-                    GenerateElevationProfile();
+                    HandleDisplayTarrainButtonClicked();
                     break;
 
                 case Resource.Id.favouriteFilterButton:
@@ -434,6 +436,16 @@ namespace HorizontApp.Activities
         }
 
         #region ElevationProfile
+        private void HandleDisplayTarrainButtonClicked()
+        {
+            _context.Settings.ShowElevationProfile = !_context.Settings.ShowElevationProfile;
+            if (_context.Settings.ShowElevationProfile && (_context.ElevationProfileData == null || _context.ElevationProfileDataDistance < _context.Settings.MaxDistance) && _elevationProfileBeingGenerated == false)
+            {
+                GenerateElevationProfile();
+            }
+            _displayTerrainButton.SetImageResource(_context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
+        }
+
         private void GenerateElevationProfile()
         {
             try
@@ -484,6 +496,7 @@ namespace HorizontApp.Activities
 
         private void StartDownloadAndCalculate(ElevationCalculation ec)
         {
+            _elevationProfileBeingGenerated = true;
             var lastProgressUpdate = System.Environment.TickCount;
 
             var pd = new ProgressDialog(this);
@@ -501,6 +514,7 @@ namespace HorizontApp.Activities
                 }
 
                 _context.ElevationProfileData = result;
+                _elevationProfileBeingGenerated = false;
                 RefreshElevationProfile();
             };
             ec.OnStageChange = (text, max) =>

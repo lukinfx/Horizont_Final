@@ -57,13 +57,17 @@ namespace HorizontApp.Views
             _compassViewFilter.Reset();
             foreach (var item in list)
             {
-                if (!CompassViewUtils.IsPoiVisible(item, _context.ElevationProfileData))
+                item.Visibility = CompassViewUtils.IsPoiVisible(item, _context.ElevationProfileData);
+
+                if (item.Visibility == HorizonLib.Domain.Enums.Visibility.Invisible)
                 {
-                    item.Visibility = false;
                     continue;
                 }
 
-                item.Visibility = _compassViewFilter.Filter(item, minAngleDiff);
+                if (_compassViewFilter.IsOverlapping(item, minAngleDiff))
+                {
+                    item.Visibility = HorizonLib.Domain.Enums.Visibility.Invisible;
+                }
             }
             Invalidate();
         }
@@ -144,9 +148,9 @@ namespace HorizontApp.Views
             {
                 foreach (var item in list)
                 {
-                    if (item.Visibility && (_leftTiltCorrector != 0 || _rightTiltCorrector != 0))
+                    if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible && (_leftTiltCorrector != 0 || _rightTiltCorrector != 0))
                         compassViewDrawer.DrawItem(canvas, item, (float)Heading, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
-                    else if (item.Visibility)
+                    else if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible)
                         compassViewDrawer.DrawItem(canvas, item, (float)Heading);
                 }
             }

@@ -70,6 +70,7 @@ namespace HorizontApp.Activities
             ActionBar.SetDisplayShowTitleEnabled(false);
 
             _spinnerAppStyle = FindViewById<Spinner>(Resource.Id.spinnerAppStyle);
+
             _switchManualViewAngle = FindViewById<Switch>(Resource.Id.switchManualViewAngle);
             _seekBarCorrectionViewAngleHorizontal = FindViewById<SeekBar>(Resource.Id.seekBarCorrectionViewAngleHorizontal);
             _textViewAngleHorizontal = FindViewById<TextView>(Resource.Id.textViewAngleHorizontal);
@@ -81,6 +82,7 @@ namespace HorizontApp.Activities
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfAppStyles.ToList());
             _spinnerAppStyle.Adapter = adapter;
             _spinnerAppStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == _settings.AppStyle));
+            _spinnerAppStyle.ItemSelected += (sender, args) => { SetDirty(); };
 
             _switchManualViewAngle.Checked = _settings.IsViewAngleCorrection;
             _switchManualViewAngle.SetOnClickListener(this);

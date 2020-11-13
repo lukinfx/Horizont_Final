@@ -13,18 +13,24 @@ namespace HorizontApp.Views.Compass
             return Math.Abs(CompassViewUtils.GetAngleDiff(item1, item2)) < minDiff;
         }
 
-        public bool Filter(PoiViewItem item, double minDiff)
+        /// <summary>
+        /// Filter items
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="minDiff"></param>
+        /// <returns>returns true if items are overlapping</returns>
+        public bool IsOverlapping(PoiViewItem item, double minDiff)
         {
             foreach (var heading in _headings)
             {
                 if (IsOverlapping(heading.Bearing, item.Bearing, minDiff))
                 {
-                    return false;
+                    return true;
                 }
             }
 
             _headings.Add(item);
-            return true;
+            return false;
         }
 
         public void Reset()

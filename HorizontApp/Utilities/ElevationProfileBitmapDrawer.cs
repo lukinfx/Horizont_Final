@@ -95,6 +95,7 @@ namespace HorizontApp.Utilities
             {
                 Paint paint = new Paint();
                 Paint paint2 = new Paint();
+                float offset = 5;
 
                 foreach (var line in _context.ListOfProfileLines)
                 {
@@ -108,26 +109,26 @@ namespace HorizontApp.Utilities
                         alpha = 255 - ((line.distance / 1000) / _context.Settings.MaxDistance) / 2 * 400;
                     }
                     paint.SetARGB((int)alpha, 255, 255, 100 );
-                    paint.StrokeWidth = 2;
+                    paint.StrokeWidth = 5;
 
                     paint2.SetARGB((int)alpha, 50, 50, 0);
-                    paint2.StrokeWidth = 2;
+                    paint2.StrokeWidth = 5;
                     var x1 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.x1, canvas.Width, _adjustedViewAngleHorizontal);
                     var x2 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.x2, canvas.Width, _adjustedViewAngleHorizontal);
                     if (x1.HasValue && x2.HasValue)
                     {
                         if (leftTiltCorrector == 0 && rightTiltCorrector == 0)
                         {
-                            canvas.DrawLine(x1.Value, line.y1, x2.Value, line.y2, paint);
-                            canvas.DrawLine(x1.Value, line.y1 - 2, x2.Value, line.y2 - 2, paint2);
+                            //canvas.DrawLine(x1.Value, line.y1, x2.Value, line.y2, paint);
+                            canvas.DrawLine(x1.Value, line.y1 - offset, x2.Value, line.y2 - offset, paint2);
                         }
                         else
                         {
                             var y1 = CompassViewUtils.GetYLocationOnScreen(line.y1, x1.Value, leftTiltCorrector, rightTiltCorrector, canvas.Width);
                             var y2 = CompassViewUtils.GetYLocationOnScreen(line.y2, x2.Value, leftTiltCorrector, rightTiltCorrector, canvas.Width);
 
-                            canvas.DrawLine(x1.Value, y1, x2.Value, y2, paint);
-                            canvas.DrawLine(x1.Value, y1-2, x2.Value, y2-2, paint2);
+                            //canvas.DrawLine(x1.Value, y1, x2.Value, y2, paint);
+                            canvas.DrawLine(x1.Value, y1- offset, x2.Value, y2- offset, paint2);
                         }
                        
                     }

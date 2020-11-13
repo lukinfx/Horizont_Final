@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using HorizonLib.Domain.Enums;
 using HorizontLib.Domain.Models;
 using HorizontLib.Domain.ViewModel;
 
@@ -62,26 +63,37 @@ namespace HorizontLib.Utilities
             return GetYLocationOnScreen(GetPoiViewAngle(distance, altitudeDifference), canvasHeight, cameraViewAngle);
         }
 
-        public static bool IsPoiVisible(PoiViewItem item, ElevationProfileData elevationProfileData)
+        public static Visibility IsPoiVisible (PoiViewItem item, ElevationProfileData elevationProfileData)
         {
             if (elevationProfileData == null)
-                return true;
+                return Visibility.Visible;
 
             var leftPoints = elevationProfileData.GetData((int) item.Bearing);
             var rightPoints = elevationProfileData.GetData((int)GpsUtils.Normalize360(item.Bearing + 1));
 
             var itemViewAngle = GetPoiViewAngle(item.Distance, item.AltitudeDifference);
-            
-            //increase itemViewAngle by 1 dg, becuase the POI might a little bit behind elevation map
-            //...especially when looking to the top from the valley
-            itemViewAngle+=0.5;
 
-            if (leftPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle && p.Distance < item.Distance))
-                return false;
-            if (rightPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle && p.Distance < item.Distance))
-                return false;
 
-            return true;
+            if (leftPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle + 0 && p.Distance < item.Distance))
+                if (leftPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle + 2 && p.Distance < item.Distance))
+                {
+                    return Visibility.Invisible;
+                }
+                else
+                {
+                    return Visibility.PartialyVisible;
+                }
+            if (rightPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle + 0 && p.Distance < item.Distance))
+                if (rightPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle + 2 && p.Distance < item.Distance))
+                {
+                    return Visibility.Invisible;
+                }
+                else
+                {
+                    return Visibility.PartialyVisible;
+                }
+
+            return Visibility.Visible;
         }
 
         public static float GetYLocationOnScreen(double distance, double altitudeDifference, double canvasHeight, double cameraViewAngle, float XLocation, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
