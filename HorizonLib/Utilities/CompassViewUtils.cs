@@ -73,27 +73,18 @@ namespace HorizontLib.Utilities
 
             var itemViewAngle = GetPoiViewAngle(item.Distance, item.AltitudeDifference);
 
+            var maxLeft = leftPoints.GetPoints().Where(p => p.Distance < item.Distance).Max(p => p.VerticalViewAngle) ?? -100;
+            var maxRight = rightPoints.GetPoints().Where(p => p.Distance < item.Distance).Max(p => p.VerticalViewAngle) ?? -100;;
+            var maxViewAngle = Math.Max(maxLeft, maxRight);
 
-            if (leftPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle + 0 && p.Distance < item.Distance))
-                if (leftPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle + 2 && p.Distance < item.Distance))
-                {
-                    return Visibility.Invisible;
-                }
-                else
-                {
-                    return Visibility.PartialyVisible;
-                }
-            if (rightPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle + 0 && p.Distance < item.Distance))
-                if (rightPoints.GetPoints().Any(p => p.VerticalViewAngle > itemViewAngle + 2 && p.Distance < item.Distance))
-                {
-                    return Visibility.Invisible;
-                }
-                else
-                {
-                    return Visibility.PartialyVisible;
-                }
+            var viewAngleDiff = itemViewAngle - maxViewAngle;
 
-            return Visibility.Visible;
+            if (viewAngleDiff > -0.5)
+                return Visibility.Visible;
+            if (viewAngleDiff > -2.0)
+                return Visibility.PartialyVisible;
+
+            return Visibility.Invisible;
         }
 
         public static float GetYLocationOnScreen(double distance, double altitudeDifference, double canvasHeight, double cameraViewAngle, float XLocation, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
