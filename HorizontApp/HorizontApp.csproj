@@ -101,6 +101,7 @@
     <Compile Include="AppContext\AppContextBase.cs" />
     <Compile Include="AppContext\IAppContext.cs" />
     <Compile Include="Tasks\PoiFileImport.cs" />
+    <Compile Include="Utilities\HeadingStabilizator2.cs" />
     <Compile Include="Utilities\ImageResizer.cs" />
     <Compile Include="Utilities\DownloadCountryAdapter.cs" />
     <Compile Include="Utilities\DownloadItemAdapter.cs" />

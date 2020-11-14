@@ -10,13 +10,15 @@ namespace HorizontApp.Providers
         SensorSpeed speed = SensorSpeed.UI;
 
 
-        private HeadingStabilizator _headingStabilizator = new HeadingStabilizator();
+        private HeadingStabilizator2 _headingStabilizator = new HeadingStabilizator2();
 
         public CompassProvider()
         {
             // Register for reading changes, be sure to unsubscribe when finished
             Xamarin.Essentials.Compass.ReadingChanged += Compass_ReadingChanged;
         }
+        
+        public Action<double> OnHeadingChanged;
 
         public double Heading { get ; private set; }
 
