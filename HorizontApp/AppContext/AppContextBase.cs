@@ -11,6 +11,7 @@ namespace HorizontApp.AppContext
     public abstract class AppContextBase : IAppContext
     {
         public event DataChangedEventHandler DataChanged;
+        public event HeadingChangedEventHandler HeadingChanged;
 
         public Settings Settings { get; private set; }
 
@@ -77,13 +78,24 @@ namespace HorizontApp.AppContext
                     PoiData = new PoiViewItemList(poiList, MyLocation, Settings.MaxDistance, Settings.MinAltitute, Settings.ShowFavoritesOnly, Settings.Categories);
                 }
 
-                var args = new DataChangedEventArgs() {PoiData = PoiData};
-                DataChanged?.Invoke(this, args);
+                NotifyDataChanged(PoiData);
             }
             catch (Exception ex)
             {
                 LogError("Error when fetching data.", ex);
             }
+        }
+
+        protected void NotifyDataChanged(PoiViewItemList poiData)
+        {
+            var args = new DataChangedEventArgs() { PoiData = PoiData };
+            DataChanged?.Invoke(this, args);
+        }
+
+        protected void NotifyHeadingChanged(double heading)
+        {
+            var args = new HeadingChangedEventArgs() { Heading = heading };
+            HeadingChanged?.Invoke(this, args);
         }
 
         protected virtual void OnSettingsChanged(object sender, SettingsChangedEventArgs e)

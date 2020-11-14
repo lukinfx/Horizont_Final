@@ -31,6 +31,7 @@ namespace HorizontApp.Providers
             // Process Heading Magnetic North
 
             Heading = _headingStabilizator.GetHeading();
+            OnHeadingChanged?.Invoke(Heading);
         }
 
         public void Start()
@@ -39,7 +40,6 @@ namespace HorizontApp.Providers
             {
                 if (Compass.IsMonitoring)
                     return;
-
                 Compass.Start(speed, applyLowPassFilter: true);
             }
             catch (FeatureNotSupportedException ex)

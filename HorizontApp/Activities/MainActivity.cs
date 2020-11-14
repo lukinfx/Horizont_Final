@@ -61,8 +61,6 @@ namespace HorizontApp
         private static bool _firstStart = true;
 
         private bool _elevationProfileBeingGenerated = false;
-        //Timers
-        private Timer _refreshTimer = new Timer();
 
         private GestureDetector _gestureDetector;
 
@@ -101,9 +99,9 @@ namespace HorizontApp
             }
 
             Context.DataChanged += OnDataChanged;
+            Context.HeadingChanged += OnHeadingChanged;
 
             InitializeUIElements();
-            InitializeRefreshTimer();
 
             if (bundle != null)
             {
@@ -119,7 +117,6 @@ namespace HorizontApp
         protected override void OnPause()
         {
             base.OnPause();
-
             Context.Pause();
         }
 
@@ -136,9 +133,6 @@ namespace HorizontApp
             // Save UI state changes to the savedInstanceState.
             // This bundle will be passed to onCreate if the process is
             // killed and restarted.
-
-            //_refreshTimer.Elapsed -= OnRefreshTimerElapsed;
-            //_locationTimer.Elapsed -= OnLocationTimerElapsed;
         }
 
         private void InitializeUIElements()
@@ -215,13 +209,6 @@ namespace HorizontApp
         {
             _cameraFragment = CameraFragment.NewInstance();
             FragmentManager.BeginTransaction().Replace(Resource.Id.container, _cameraFragment).Commit();
-        }
-
-        private void InitializeRefreshTimer()
-        {
-            _refreshTimer.Interval = 33;
-            _refreshTimer.Elapsed += OnRefreshTimerElapsed;
-            _refreshTimer.Enabled = true;
         }
 
         public async void OnClick(Android.Views.View v)
@@ -483,17 +470,8 @@ namespace HorizontApp
             _recordButton.SetImageResource(Resource.Drawable.ic_photo1);
         }
 
-        private void OnRefreshTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                RefreshHeading();
-            });
-        }
-
         private void RefreshHeading()
         {
-            _compassView.Heading = Context.Heading + _compassView.HeadingCorrector;
             if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
                 _headingEditText.Text = $"{Math.Round(Context.Heading, 0):F0}°+{_compassView.HeadingCorrector + 90:F0} | ";
@@ -542,6 +520,14 @@ namespace HorizontApp
         {
             _gestureDetector.OnTouchEvent(e);
             return false;
+        }
+
+        public void OnHeadingChanged(object sender, HeadingChangedEventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                RefreshHeading();
+            });
         }
 
         public void OnDataChanged(object sender, DataChangedEventArgs e)

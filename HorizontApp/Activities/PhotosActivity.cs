@@ -10,6 +10,8 @@ using Android.Content;
 using System.Collections.Generic;
 using HorizontLib.Domain.Models;
 using System.Linq;
+using Android.Runtime;
+using HorizontApp.Views.ListOfPoiView;
 
 namespace HorizontApp.Activities
 {
@@ -63,7 +65,7 @@ namespace HorizontApp.Activities
             Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
             showIntent.PutExtra("ID", _adapter[position].Id);
 
-            StartActivity(showIntent);
+            StartActivityForResult(showIntent, PhotoShowActivity.REQUEST_SHOW_PHOTO);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -138,6 +140,22 @@ namespace HorizontApp.Activities
                     _adapter.NotifyDataSetChanged();
                 }
             }); 
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (requestCode == PhotoShowActivity.REQUEST_SHOW_PHOTO)
+            {
+                if (data != null)
+                {
+                    var id = data.GetLongExtra("Id", -1);
+                    var item = Context.Database.GetPhotoDataItem(id);
+                    var photoItem = photoList.Single(p => p.Id == id);
+                    photoItem.Heading = item.Heading;
+                    _adapter.NotifyDataSetChanged();
+                }
+            }
         }
 
         private void _showFavouritePhotos()

@@ -21,7 +21,7 @@ namespace HorizontApp.Views
         private static IOrderedEnumerable<PoiViewItem> list;
         private CompassViewFilter _compassViewFilter = new CompassViewFilter();
         private IAppContext _context { get; set; }
-        public double Heading { get; set; }
+
         private Paint _paint;
         private double _headingCorrector = 0;
         private ElevationProfileData _elevationProfile;
@@ -132,15 +132,17 @@ namespace HorizontApp.Views
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
         {
+            var heading = _context.Heading + HeadingCorrector;
+
             compassViewDrawer.OnDrawBackground(canvas);
 
             if (_context.Settings.ShowElevationProfile)
-                PaintElevationProfileBitmap(canvas);
+                PaintElevationProfileBitmap(canvas, heading);
 
-            PaintVisiblePois(canvas);
+            PaintVisiblePois(canvas, heading);
         }
 
-        private void PaintVisiblePois(Canvas canvas)
+        private void PaintVisiblePois(Canvas canvas, double heading)
         {
             canvas.Rotate(90, 0, 0);
 
@@ -149,9 +151,9 @@ namespace HorizontApp.Views
                 foreach (var item in list)
                 {
                     if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible && (_leftTiltCorrector != 0 || _rightTiltCorrector != 0))
-                        compassViewDrawer.DrawItem(canvas, item, (float)Heading, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
+                        compassViewDrawer.DrawItem(canvas, item, (float)heading, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
                     else if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible)
-                        compassViewDrawer.DrawItem(canvas, item, (float)Heading);
+                        compassViewDrawer.DrawItem(canvas, item, (float)heading);
                 }
             }
             
@@ -175,7 +177,7 @@ namespace HorizontApp.Views
             {
                 _rightTiltCorrector -= distanceY;
             }
-            
+            Invalidate();
         }
 
         public void ResetHeadingCorrector()
@@ -197,9 +199,9 @@ namespace HorizontApp.Views
             elevationProfileBitmapDrawer.GenerateElevationProfileBitmap(_elevationProfile, Width, Height);
         }
 
-        private void PaintElevationProfileBitmap(Canvas canvas)
+        private void PaintElevationProfileBitmap(Canvas canvas, double heading)
         {
-            elevationProfileBitmapDrawer.PaintElevationProfileBitmap(canvas, Heading, _leftTiltCorrector, _rightTiltCorrector);
+            elevationProfileBitmapDrawer.PaintElevationProfileBitmap(canvas, heading, _leftTiltCorrector, _rightTiltCorrector);
         }
 
         public (double, double) GetTiltSettings()

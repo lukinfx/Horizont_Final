@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using System.Timers;
 using HorizontLib.Utilities;
 using Xamarin.Essentials;
 using static Android.Views.View;
@@ -29,6 +28,8 @@ namespace HorizontApp.Activities
     [Activity(Label = "PhotoShowActivity")]
     public class PhotoShowActivity : Activity, GestureDetector.IOnGestureListener, IOnClickListener
     {
+        public static int REQUEST_SHOW_PHOTO = 0;
+
         private static string TAG = "Horizon-PhotoShowActivity";
 
         private IAppContext _context;
@@ -38,8 +39,6 @@ namespace HorizontApp.Activities
         private CompassView _compassView;
         private byte[] _thumbnail;
         private GestureDetector _gestureDetector;
-        private System.Timers.Timer _refreshTimer = new System.Timers.Timer();
-
         private TextView _filterText;
 
         private ImageButton _favouriteButton;
@@ -77,9 +76,7 @@ namespace HorizontApp.Activities
             photodata = Database.GetPhotoDataItem(id);
             _thumbnail = photodata.Thumbnail;
 
-            var heading = photodata.Heading;
-
-            Log.WriteLine(LogPriority.Debug, TAG, $"Heading {heading:F0}");
+            Log.WriteLine(LogPriority.Debug, TAG, $"Heading {photodata.Heading:F0}");
 
             /*if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
@@ -105,7 +102,7 @@ namespace HorizontApp.Activities
                 }
             }
 
-            _context = new AppContextStaticData(loc, heading);
+            _context = new AppContextStaticData(loc, photodata.Heading);
 
             _context.DataChanged += OnDataChanged;
             _context.Settings.LoadData(this);
@@ -151,7 +148,8 @@ namespace HorizontApp.Activities
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.Initialize(_context);
-            
+
+
             if (photodata.LeftTiltCorrector.HasValue && photodata.RightTiltCorrector.HasValue)
             {
                 _compassView.OnScroll((float)-photodata.LeftTiltCorrector.Value, true);
@@ -180,7 +178,6 @@ namespace HorizontApp.Activities
 
             System.Threading.Tasks.Task.Run(() => { _context.ReloadData(); });
 
-            InitializeRefreshTimer();
         }
 
         private void LoadImageAndProfile()
@@ -198,13 +195,6 @@ namespace HorizontApp.Activities
                     }
                 }
             }
-        }
-
-        private void InitializeRefreshTimer()
-        {
-            _refreshTimer.Interval = 100;
-            _refreshTimer.Elapsed += OnRefreshTimerElapsed;
-            _refreshTimer.Enabled = true;
         }
 
         void LoadImage(string fileName)
@@ -269,30 +259,6 @@ namespace HorizontApp.Activities
             });
         }
 
-        private void OnRefreshTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                RefreshHeading();
-            });
-        }
-
-        private void RefreshHeading()
-        {
-            _compassView.Heading = _context.Heading + _compassView.HeadingCorrector;
-            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
-            {
-                //_headingEditText.Text = $"{Math.Round(Context.Heading, 0):F0}°+{_compassView.HeadingCorrector + 90:F0} | ";
-            }
-            else
-            {
-                //_headingEditText.Text = $"{Math.Round(Context.Heading, 0):F0}°+{_compassView.HeadingCorrector:F0} | ";
-            }
-
-            _headingTextView.Text = $"{Math.Round(_context.Heading, 0):F0}°+{_compassView.HeadingCorrector + 90:F0} | ";
-            _compassView.Invalidate();
-        }
-
         private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
             _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
@@ -313,8 +279,6 @@ namespace HorizontApp.Activities
             }*/
 
             _context.Settings.MaxDistance = _distanceSeekBar.Progress;
-
-
         }
 
 
@@ -380,9 +344,13 @@ namespace HorizontApp.Activities
                     {
                         photodata.LeftTiltCorrector = _compassView.GetTiltSettings().Item1;
                         photodata.RightTiltCorrector = _compassView.GetTiltSettings().Item2;
-                        photodata.Heading = _compassView.Heading;
+                        photodata.Heading = _context.Heading + _compassView.HeadingCorrector;
                         photodata.JsonElevationProfileData = JsonConvert.SerializeObject(_context.ElevationProfileData);
                         Database.UpdateItem(photodata);
+
+                        var resultIntent = new Intent();
+                        resultIntent.PutExtra("Id", photodata.Id);
+                        SetResult(Result.Ok, resultIntent);
                         Finish();
                         break;
                     }

@@ -15,10 +15,6 @@ namespace HorizontApp.AppContext
         private GpsLocationProvider _locationProvider { get; set; }
         private CompassProvider _compassProvider { get; set; }
 
-        //TODO:Move _headingStabilizator to _compassProvider class
-        private HeadingStabilizator HeadingStabilizator { get; set; }
-
-        private Timer _compassTimer;
         private Timer _locationTimer;
 
         private static object synchLock = new object();
@@ -51,6 +47,13 @@ namespace HorizontApp.AppContext
 
             _locationTimer.Interval = 3000;
             _locationTimer.Elapsed += OnLocationTimerElapsed;
+
+            _compassProvider.OnHeadingChanged = OnHeadingChanged;
+        }
+
+        public void OnHeadingChanged(double heading)
+        {
+            NotifyHeadingChanged(heading);
         }
 
         public override void Start()
