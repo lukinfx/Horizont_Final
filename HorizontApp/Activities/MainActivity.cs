@@ -381,6 +381,8 @@ namespace HorizontApp
                     return;
                 }
 
+                _elevationProfileBeingGenerated = true;
+
                 var ec = new ElevationCalculation(Context.MyLocation, _distanceSeekBar.Progress);
 
                 var size = ec.GetSizeToDownload();
@@ -396,7 +398,7 @@ namespace HorizontApp
                     builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount downloaded data. \r\n\r\nDo you really want to continue?");
                     builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
                     builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
-                    builder.SetNegativeButton("Cancel", (senderAlert, args) => { });
+                    builder.SetNegativeButton("Cancel", (senderAlert, args) => { _elevationProfileBeingGenerated = false; });
 
                     var myCustomDialog = builder.Create();
 
@@ -424,7 +426,6 @@ namespace HorizontApp
 
         private void StartDownloadAndCalculate(ElevationCalculation ec)
         {
-            _elevationProfileBeingGenerated = true;
             var lastProgressUpdate = System.Environment.TickCount;
 
             var pd = new ProgressDialog(this);
