@@ -9,21 +9,16 @@ namespace HorizontLib.Utilities
     public class ElevationProfile
     {
         private static readonly int MIN_DISTANCE = 300;
-
-        private ElevationProfileData _elevationProfileData = new ElevationProfileData("");
-
-        public ElevationProfile()
-        {
-        }
+        private ElevationProfileData _elevationProfileData;
 
         public ElevationProfileData GetProfile()
         {
-            return _elevationProfileData;
+            return _elevationProfileData ?? throw new SystemException("Elevation profile was not generated yet");
         }
 
         public void GenerateElevationProfile3(GpsLocation myLocation, double visibility, ElevationProfileData elevationData, Action<int> onProgressChange)
         {
-            _elevationProfileData.Clear();
+            _elevationProfileData = new ElevationProfileData(myLocation, visibility);
 
             int progress = 0;
 

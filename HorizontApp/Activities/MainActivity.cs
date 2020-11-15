@@ -124,6 +124,8 @@ namespace HorizontApp
         {
             base.OnResume();
             Context.Resume();
+
+            CheckAndReloadElevationProfile();
         }
 
         protected override void OnSaveInstanceState(Bundle bundle)
@@ -345,16 +347,29 @@ namespace HorizontApp
 
         #region Elevation Profile Calculation
 
-
-
         private void HandleDisplayTarrainButtonClicked()
         {
             Context.Settings.ShowElevationProfile = !Context.Settings.ShowElevationProfile;
-            if (Context.Settings.ShowElevationProfile && (Context.ElevationProfileData == null || Context.ElevationProfileDataDistance < Context.Settings.MaxDistance) && _elevationProfileBeingGenerated == false)
-            {
-                GenerateElevationProfile();
-            }
             _displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
+
+            CheckAndReloadElevationProfile();
+        }
+
+        private void CheckAndReloadElevationProfile()
+        {
+            if (Context.Settings.ShowElevationProfile)
+            {
+                if (GpsUtils.HasAltitude(Context.MyLocation))
+                {
+                    if (_elevationProfileBeingGenerated == false)
+                    {
+                        if (Context.ElevationProfileData == null || !Context.ElevationProfileData.IsValid(Context.MyLocation, Context.Settings.MaxDistance))
+                        {
+                            GenerateElevationProfile();
+                        }
+                    }
+                }
+            }
         }
 
         private void GenerateElevationProfile()
@@ -541,13 +556,7 @@ namespace HorizontApp
 
                 _compassView.SetPoiViewItemList(e.PoiData);
 
-                if (Context.Settings.ShowElevationProfile)
-                {
-                    if (GpsUtils.HasAltitude(Context.MyLocation) && (Context.ElevationProfileData == null || Context.ElevationProfileDataDistance < Context.Settings.MaxDistance) && _elevationProfileBeingGenerated == false)
-                    {
-                        GenerateElevationProfile();
-                    }
-                }
+                CheckAndReloadElevationProfile();
             });
         }
 
