@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using HorizontLib.Domain.Models;
+using HorizonLib.Utilities;
 using HorizontApp.Utilities;
 using SQLite;
 
@@ -165,7 +166,9 @@ namespace HorizontApp.DataAccess
 
         public IEnumerable<Poi> FindItems(string name)
         {
-            return Database.QueryAsync<Poi>($"SELECT * FROM [Poi] WHERE [Name] LIKE '%{name}%'").Result;
+            var nameNoAccent = name.RemoveDiacritics().ToLower();
+
+            return Database.QueryAsync<Poi>($"SELECT * FROM [Poi] WHERE LOWER([NameNoAccent]) LIKE '%{nameNoAccent}%'").Result;
         }
 
         public async Task<Poi> GetItemAsync(long id)
@@ -182,6 +185,8 @@ namespace HorizontApp.DataAccess
 
         public int InsertItemAsync(Poi item)
         {
+            item.NameNoAccent = item.Name.RemoveDiacritics().ToLower();
+
             var task = Database.InsertAsync(item);
             task.Wait();
             return task.Result;
@@ -196,6 +201,11 @@ namespace HorizontApp.DataAccess
 
         public int InsertAll(IEnumerable<Poi> items)
         {
+            foreach (var item in items)
+            {
+                item.NameNoAccent = item.Name.RemoveDiacritics().ToLower();
+            }
+
             var task = Database.InsertAllAsync(items);
             task.Wait();
             return task.Result;
@@ -203,10 +213,14 @@ namespace HorizontApp.DataAccess
 
         public async Task<int> UpdateItemAsync(Poi item)
         {
+            item.NameNoAccent = item.Name.RemoveDiacritics().ToLower();
+
             return await Database.UpdateAsync(item);
         }
         public int UpdateItem(Poi item)
         {
+            item.NameNoAccent = item.Name.RemoveDiacritics().ToLower();
+
             var task = Database.UpdateAsync(item);
             task.Wait();
             return task.Result;

@@ -15,6 +15,7 @@ namespace HorizontLib.Domain.Models
 
         public PoiCategory Category { get; set; }
         public string Name { get; set; }
+        public string NameNoAccent { get; set; }
 
         //public GpsLocation GpsLocation { get; set; }
         public double Longitude { get; set; }
