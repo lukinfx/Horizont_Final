@@ -79,6 +79,7 @@ namespace HorizontApp.AppContext
             base.OnSettingsChanged(sender, e);
 
             Settings.SaveData();
+            NotifyDataChanged();
         }
 
         private async Task<bool> UpdateMyLocation()

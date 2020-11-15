@@ -72,13 +72,7 @@ namespace HorizontApp.AppContext
         {
             try
             {
-                if (GpsUtils.HasLocation(MyLocation))
-                {
-                    var poiList = Database.GetItems(MyLocation, Settings.MaxDistance);
-                    PoiData = new PoiViewItemList(poiList, MyLocation, Settings.MaxDistance, Settings.MinAltitute, Settings.ShowFavoritesOnly, Settings.Categories);
-                }
-
-                NotifyDataChanged(PoiData);
+                NotifyDataChanged();
             }
             catch (Exception ex)
             {
@@ -86,8 +80,21 @@ namespace HorizontApp.AppContext
             }
         }
 
-        protected void NotifyDataChanged(PoiViewItemList poiData)
+        protected void NotifyDataChanged(PoiViewItemList poiData = null)
         {
+            if (poiData is null)
+            {
+                if (GpsUtils.HasLocation(MyLocation))
+                {
+                    var poiList = Database.GetItems(MyLocation, Settings.MaxDistance);
+                    PoiData = new PoiViewItemList(poiList, MyLocation, Settings.MaxDistance, Settings.MinAltitute, Settings.ShowFavoritesOnly, Settings.Categories);
+                }
+            }
+            else
+            {
+                PoiData = poiData;
+            }
+
             var args = new DataChangedEventArgs() { PoiData = PoiData };
             DataChanged?.Invoke(this, args);
         }
