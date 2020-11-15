@@ -82,7 +82,7 @@ namespace HorizontApp.Activities
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfAppStyles.ToList());
             _spinnerAppStyle.Adapter = adapter;
             _spinnerAppStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == _settings.AppStyle));
-            _spinnerAppStyle.ItemSelected += (sender, args) => { SetDirty(); };
+            _spinnerAppStyle.ItemSelected += (sender, args) => { InvalidateOptionsMenu(); };
 
             _switchManualViewAngle.Checked = _settings.IsViewAngleCorrection;
             _switchManualViewAngle.SetOnClickListener(this);
@@ -120,7 +120,11 @@ namespace HorizontApp.Activities
             _switchAutoElevationProfile = FindViewById<Switch>(Resource.Id.switchAutoElevationProfile);
             _switchAutoElevationProfile.Checked = _settings.AutoElevationProfile;
             _switchAutoElevationProfile.SetOnClickListener(this);
+        }
 
+        protected override void OnStart()
+        {
+            base.OnStart();
             _isDirty = false;
         }
 
@@ -138,7 +142,7 @@ namespace HorizontApp.Activities
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
             var menuItem = menu.GetItem(0);
-            menuItem.SetVisible(_isDirty);
+            menuItem.SetVisible(IsDirty());
             return base.OnPrepareOptionsMenu(menu);
         }
 
@@ -160,6 +164,9 @@ namespace HorizontApp.Activities
         private bool IsDirty()
         {
             if (_isDirty)
+                return true;
+
+            if (_settings.AppStyle != _listOfAppStyles[_spinnerAppStyle.SelectedItemPosition])
                 return true;
 
             return false;
