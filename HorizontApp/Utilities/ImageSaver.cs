@@ -114,7 +114,7 @@ namespace HorizontApp.Utilities
                     if (_context.ElevationProfileData != null && _context.ElevationProfileDataDistance.HasValue)
                     {
                         photodata.MaxElevationProfileDataDistance = _context.ElevationProfileDataDistance.Value;
-                        photodata.JsonElevationProfileData = JsonConvert.SerializeObject(_context.ElevationProfileData);
+                        photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
                     }
                     photoDatabase.InsertItem(photodata); 
                 }

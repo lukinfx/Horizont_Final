@@ -188,7 +188,7 @@ namespace HorizontApp.Activities
             {
                 if (photodata.JsonElevationProfileData != null)
                 {
-                    _context.ElevationProfileData = JsonConvert.DeserializeObject<ElevationProfileData>(photodata.JsonElevationProfileData);
+                    _context.ElevationProfileData = ElevationProfileData.Deserialize(photodata.JsonElevationProfileData);
                     if (_context.ElevationProfileData != null)
                     {
                         RefreshElevationProfile();
@@ -345,7 +345,7 @@ namespace HorizontApp.Activities
                         photodata.LeftTiltCorrector = _compassView.GetTiltSettings().Item1;
                         photodata.RightTiltCorrector = _compassView.GetTiltSettings().Item2;
                         photodata.Heading = _context.Heading + _compassView.HeadingCorrector;
-                        photodata.JsonElevationProfileData = JsonConvert.SerializeObject(_context.ElevationProfileData);
+                        photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
                         Database.UpdateItem(photodata);
 
                         var resultIntent = new Intent();

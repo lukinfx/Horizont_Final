@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using HorizontLib.Domain.Models;
 using HorizontLib.Utilities;
+using Newtonsoft.Json;
 
 namespace HorizontLib.Domain.ViewModel
 {
@@ -24,15 +25,27 @@ namespace HorizontLib.Domain.ViewModel
             ErrorMessage = errMsg;
         }
 
+        private ElevationProfileData()
+        {
+            //this constructor is only for Deserialize method
+        }
+
         public void Add(ElevationData ed)
         {
             elevationData.Add(ed);
         }
 
-        public void Clear()
+        public static ElevationProfileData Deserialize(string serializedData)
         {
-            elevationData.Clear();
+            return JsonConvert.DeserializeObject<ElevationProfileData>(serializedData);
         }
+
+        public string Serialize()
+        {
+            var epd = new ElevationProfileData();
+            return JsonConvert.SerializeObject(this);
+        }
+
 
         public List<ElevationData> GetData()
         {
