@@ -366,7 +366,10 @@ namespace HorizontApp.Activities
                 case Resource.Id.buttonSaveToDevice:
                     var bmp = Bitmap.CreateBitmap(dstBmp);
                     Canvas canvas = new Canvas(bmp);
+                    var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo100px);
+                    
                     _compassView.Draw(canvas);
+                    canvas.DrawBitmap(logoBmp, canvas.Width - logoBmp.Width - 40, canvas.Height - logoBmp.Height - 40, null );
                     var photoname = "export" +
                         "" + photodata.PhotoFileName;
                     var filename = System.IO.Path.Combine(ImageSaver.GetPublicPhotosFileFolder(), photoname);
@@ -392,7 +395,7 @@ namespace HorizontApp.Activities
                     else
                     {
                         var stream = new FileStream(filename, FileMode.CreateNew);
-                        dstBmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+                        bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
                         Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
                         PopupHelper.InfoDialog(this, "Information", $"Photo saved.");
                     }

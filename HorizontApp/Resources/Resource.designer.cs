@@ -8587,85 +8587,88 @@ namespace HorizontApp
 			public const int i_settings_black = 2131230861;
 			
 			// aapt resource value: 0x7F0800B4
-			public const int logo_horizon5 = 2131230900;
+			public const int logo100px = 2131230900;
 			
 			// aapt resource value: 0x7F0800B5
-			public const int logo_jaxa = 2131230901;
+			public const int logo_horizon5 = 2131230901;
 			
 			// aapt resource value: 0x7F0800B6
-			public const int logo_osm = 2131230902;
+			public const int logo_jaxa = 2131230902;
 			
 			// aapt resource value: 0x7F0800B7
-			public const int logo_osm_2a = 2131230903;
+			public const int logo_osm = 2131230903;
 			
 			// aapt resource value: 0x7F0800B8
-			public const int logo_osm_2b = 2131230904;
+			public const int logo_osm_2a = 2131230904;
 			
 			// aapt resource value: 0x7F0800B9
-			public const int logo_osm_2c = 2131230905;
+			public const int logo_osm_2b = 2131230905;
 			
 			// aapt resource value: 0x7F0800BA
-			public const int map_icon = 2131230906;
+			public const int logo_osm_2c = 2131230906;
 			
 			// aapt resource value: 0x7F0800BB
-			public const int map_icon2 = 2131230907;
+			public const int map_icon = 2131230907;
 			
 			// aapt resource value: 0x7F0800BC
-			public const int mtrl_snackbar_background = 2131230908;
+			public const int map_icon2 = 2131230908;
 			
 			// aapt resource value: 0x7F0800BD
-			public const int mtrl_tabs_default_indicator = 2131230909;
+			public const int mtrl_snackbar_background = 2131230909;
 			
 			// aapt resource value: 0x7F0800BE
-			public const int navigation_empty_icon = 2131230910;
+			public const int mtrl_tabs_default_indicator = 2131230910;
 			
 			// aapt resource value: 0x7F0800BF
-			public const int notification_action_background = 2131230911;
+			public const int navigation_empty_icon = 2131230911;
 			
 			// aapt resource value: 0x7F0800C0
-			public const int notification_bg = 2131230912;
+			public const int notification_action_background = 2131230912;
 			
 			// aapt resource value: 0x7F0800C1
-			public const int notification_bg_low = 2131230913;
+			public const int notification_bg = 2131230913;
 			
 			// aapt resource value: 0x7F0800C2
-			public const int notification_bg_low_normal = 2131230914;
+			public const int notification_bg_low = 2131230914;
 			
 			// aapt resource value: 0x7F0800C3
-			public const int notification_bg_low_pressed = 2131230915;
+			public const int notification_bg_low_normal = 2131230915;
 			
 			// aapt resource value: 0x7F0800C4
-			public const int notification_bg_normal = 2131230916;
+			public const int notification_bg_low_pressed = 2131230916;
 			
 			// aapt resource value: 0x7F0800C5
-			public const int notification_bg_normal_pressed = 2131230917;
+			public const int notification_bg_normal = 2131230917;
 			
 			// aapt resource value: 0x7F0800C6
-			public const int notification_icon_background = 2131230918;
+			public const int notification_bg_normal_pressed = 2131230918;
 			
 			// aapt resource value: 0x7F0800C7
-			public const int notification_template_icon_bg = 2131230919;
+			public const int notification_icon_background = 2131230919;
 			
 			// aapt resource value: 0x7F0800C8
-			public const int notification_template_icon_low_bg = 2131230920;
+			public const int notification_template_icon_bg = 2131230920;
 			
 			// aapt resource value: 0x7F0800C9
-			public const int notification_tile_bg = 2131230921;
+			public const int notification_template_icon_low_bg = 2131230921;
 			
 			// aapt resource value: 0x7F0800CA
-			public const int notify_panel_notification_icon_bg = 2131230922;
+			public const int notification_tile_bg = 2131230922;
 			
 			// aapt resource value: 0x7F0800CB
-			public const int paste = 2131230923;
+			public const int notify_panel_notification_icon_bg = 2131230923;
 			
 			// aapt resource value: 0x7F0800CC
-			public const int tooltip_frame_dark = 2131230924;
+			public const int paste = 2131230924;
 			
 			// aapt resource value: 0x7F0800CD
-			public const int tooltip_frame_light = 2131230925;
+			public const int tooltip_frame_dark = 2131230925;
 			
 			// aapt resource value: 0x7F0800CE
-			public const int wikipedia_logo = 2131230926;
+			public const int tooltip_frame_light = 2131230926;
+			
+			// aapt resource value: 0x7F0800CF
+			public const int wikipedia_logo = 2131230927;
 			
 			static Drawable()
 			{
