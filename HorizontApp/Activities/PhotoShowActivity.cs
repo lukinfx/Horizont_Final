@@ -22,6 +22,7 @@ using HorizontLib.Utilities;
 using Xamarin.Essentials;
 using static Android.Views.View;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
+using System.Threading.Tasks;
 
 namespace HorizontApp.Activities
 {
@@ -138,6 +139,9 @@ namespace HorizontApp.Activities
 
             var _saveToDeviceButton = FindViewById<ImageButton>(Resource.Id.buttonSaveToDevice);
             _saveToDeviceButton.SetOnClickListener(this);
+
+            var _shareButton = FindViewById<ImageButton>(Resource.Id.buttonShare);
+            _shareButton.SetOnClickListener(this);
 
             _tiltCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonTiltCorrector);
             _tiltCorrectorButton.SetOnClickListener(this);
@@ -364,48 +368,84 @@ namespace HorizontApp.Activities
                         break;
                     }
                 case Resource.Id.buttonSaveToDevice:
-                    var bmp = Bitmap.CreateBitmap(dstBmp);
-                    Canvas canvas = new Canvas(bmp);
-                    var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo100px);
-                    
-                    _compassView.Draw(canvas);
-                    canvas.DrawBitmap(logoBmp, canvas.Width - logoBmp.Width - 40, canvas.Height - logoBmp.Height - 40, null );
-                    var photoname = "export" +
-                        "" + photodata.PhotoFileName;
-                    var filename = System.IO.Path.Combine(ImageSaver.GetPublicPhotosFileFolder(), photoname);
 
-                    if (File.Exists(filename))
-                    {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                        alert.SetPositiveButton("Yes", (senderAlert, args) =>
-                        {
-                            File.Delete(filename);
-                            var stream = new FileStream(filename, FileMode.CreateNew);
-                            bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
-                            Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
-                            PopupHelper.InfoDialog(this, "Information", $"Photo saved.");
-                        });
-                        alert.SetNegativeButton("No", (senderAlert, args) =>
-                        {
+                    _handleButtonSaveClicked();
+                    break;
+                case Resource.Id.buttonShare:
 
-                        });
-                        alert.SetMessage($"This photo already exists. Do you want to rewrite it?");
-                        var answer = alert.Show();
-                    }
-                    else
-                    {
-                        var stream = new FileStream(filename, FileMode.CreateNew);
-                        bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
-                        Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
-                        PopupHelper.InfoDialog(this, "Information", $"Photo saved.");
-                    }
-
+                    _handleButtonShareClicked();
                     break;
             }
 
 
         }
 
+        private void _handleButtonSaveClicked()
+        {
+            var bmp = Bitmap.CreateBitmap(dstBmp);
+            Canvas canvas = new Canvas(bmp);
+            var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo100px);
+
+            _compassView.Draw(canvas);
+            canvas.DrawBitmap(logoBmp, canvas.Width - logoBmp.Width - 40, canvas.Height - logoBmp.Height - 40, null);
+            var photoname = "export" +
+                "" + photodata.PhotoFileName;
+            var filename = System.IO.Path.Combine(ImageSaver.GetPublicPhotosFileFolder(), photoname);
+
+            if (File.Exists(filename))
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetPositiveButton("Yes", (senderAlert, args) =>
+                {
+                    File.Delete(filename);
+                    var stream = new FileStream(filename, FileMode.CreateNew);
+                    bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+                    Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
+                    PopupHelper.InfoDialog(this, "Information", $"Photo saved.");
+                });
+                alert.SetNegativeButton("No", (senderAlert, args) =>
+                {
+
+                });
+                alert.SetMessage($"This photo already exists. Do you want to rewrite it?");
+                var answer = alert.Show();
+            }
+            else
+            {
+                var stream = new FileStream(filename, FileMode.CreateNew);
+                bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+                Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
+                PopupHelper.InfoDialog(this, "Information", $"Photo saved.");
+            }
+        }
+
+        private void _handleButtonShareClicked()
+        {
+            var bmp = Bitmap.CreateBitmap(dstBmp);
+            Canvas canvas = new Canvas(bmp);
+            var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo100px);
+
+            _compassView.Draw(canvas);
+            canvas.DrawBitmap(logoBmp, canvas.Width - logoBmp.Width - 40, canvas.Height - logoBmp.Height - 40, null);
+
+            var filename = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), "tmpHorizon.jpg");
+
+            if (File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
+
+            var stream = new FileStream(filename, FileMode.CreateNew);
+
+            bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+            Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
+
+            var result = Share.RequestAsync(new ShareFileRequest
+            {
+                Title = Title,
+                File = new ShareFile(filename)
+            });
+        }
         #region ElevationProfile
         private void HandleDisplayTarrainButtonClicked()
         {
