@@ -57,6 +57,15 @@ namespace HorizontApp.AppContext
         public void ToggleCompassPaused()
         {
             CompassPaused = !CompassPaused;
+
+            if (CompassPaused)
+            {
+                Pause();
+            }
+            else
+            {
+                Resume();
+            }
         }
 
         protected AppContextBase()

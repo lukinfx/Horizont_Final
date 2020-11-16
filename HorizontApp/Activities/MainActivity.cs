@@ -244,22 +244,12 @@ namespace HorizontApp
                             Context.ToggleCompassPaused();
                             if (Context.CompassPaused)
                             {
-                                /*if (_cameraFragment != null)
-                                {
-                                    _cameraFragment.StopPreview();
-                                }*/
-
                                 _recordButton.Enabled = false;
                                 _recordButton.Visibility = ViewStates.Invisible;
                                 _pauseButton.SetImageResource(Resource.Drawable.ic_pause_on);
                             }
                             else
                             {
-                                if (_cameraFragment != null)
-                                {
-                                    _cameraFragment.StartPreview();
-                                }
-
                                 _recordButton.Enabled = true;
                                 _recordButton.Visibility = ViewStates.Visible;
                                 _pauseButton.SetImageResource(Resource.Drawable.ic_pause);
