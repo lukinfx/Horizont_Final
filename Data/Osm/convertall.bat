@@ -1,0 +1,1 @@
+call convert.bat pbf_files\poland
