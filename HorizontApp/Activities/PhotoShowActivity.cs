@@ -239,13 +239,15 @@ namespace HorizontApp.Activities
                             Convert.ToInt32(photoView.Height));
                     }
                     dstBmp = Bitmap.CreateBitmap(bitmap);*/
-                    dstBmp = bmp;
+                    
 
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
                         photoView.SetScaleType(ImageView.ScaleType.CenterCrop);
                         photoView.SetImageBitmap(bmp);
                     });
+
+                    dstBmp = bmp.Copy(Bitmap.Config.Argb8888, true);
 
                 }
             }
@@ -355,7 +357,8 @@ namespace HorizontApp.Activities
                         photodata.LeftTiltCorrector = _compassView.GetTiltSettings().Item1;
                         photodata.RightTiltCorrector = _compassView.GetTiltSettings().Item2;
                         photodata.Heading = _context.Heading + _compassView.HeadingCorrector;
-                        photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
+                        if (_context.ElevationProfileData != null)
+                            photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
                         Database.UpdateItem(photodata);
 
                         var resultIntent = new Intent();
