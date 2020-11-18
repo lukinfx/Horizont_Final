@@ -599,8 +599,6 @@ namespace HorizontApp.Views.Camera
             }
         }
 
-        private CaptureRequest.Builder stillCaptureBuilder;
-
         // Capture a still picture. This method should be called when we get a response in
         // {@link #mCaptureCallback} from both {@link #lockFocus()}.
         public void CaptureStillPicture()
@@ -614,8 +612,7 @@ namespace HorizontApp.Views.Camera
                 }
 
                 // This is the CaptureRequest.Builder that we use to take a picture.
-                if (stillCaptureBuilder == null)
-                    stillCaptureBuilder = mCameraDevice.CreateCaptureRequest(CameraTemplate.StillCapture);
+                var stillCaptureBuilder = mCameraDevice.CreateCaptureRequest(CameraTemplate.StillCapture);
 
                 stillCaptureBuilder.AddTarget(mImageReader.Surface);
 
