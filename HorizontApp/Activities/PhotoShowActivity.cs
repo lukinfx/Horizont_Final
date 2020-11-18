@@ -219,7 +219,9 @@ namespace HorizontApp.Activities
                     {
                         b = br.ReadBytes((int)fs.Length);
                     }
-                    var a = ImageResizer.ResizeImageAndroid(b, (float)photoView.Width, (float)photoView.Height, 100);
+                    var bmp = BitmapFactory.DecodeByteArray(b, 0, b.Length);
+
+                    /*var a = ImageResizer.ResizeImageAndroid(b, (float)photoView.Width, (float)photoView.Height, 100);
                     var bmp = BitmapFactory.DecodeByteArray(a, 0, a.Length);
                     Bitmap bitmap;
                     if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
@@ -236,10 +238,14 @@ namespace HorizontApp.Activities
                             Convert.ToInt32(photoView.Width),
                             Convert.ToInt32(photoView.Height));
                     }
-                    dstBmp = Bitmap.CreateBitmap(bitmap);
+                    dstBmp = Bitmap.CreateBitmap(bitmap);*/
+                    dstBmp = bmp;
 
-
-                    MainThread.BeginInvokeOnMainThread(() => { photoView.SetImageBitmap(bitmap); });
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        photoView.SetScaleType(ImageView.ScaleType.CenterCrop);
+                        photoView.SetImageBitmap(bmp);
+                    });
 
                 }
             }
