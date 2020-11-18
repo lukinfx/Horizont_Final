@@ -500,6 +500,7 @@ namespace HorizontApp.Views.Camera
                 
                 // We set up a CaptureRequest.Builder with the output Surface.
                 mPreviewRequestBuilder = mCameraDevice.CreateCaptureRequest(CameraTemplate.Preview);
+                DisableFlash(mPreviewRequestBuilder);
                 mPreviewRequestBuilder.AddTarget(mSurface);
 
                 // Here, we create a CameraCaptureSession for camera preview.
@@ -620,7 +621,9 @@ namespace HorizontApp.Views.Camera
 
                 // Use the same AE and AF modes as the preview.
                 stillCaptureBuilder.Set(CaptureRequest.ControlAfMode, (int) ControlAFMode.ContinuousPicture);
-                SetAutoFlash(stillCaptureBuilder);
+                
+                //Disable flash
+                DisableFlash(stillCaptureBuilder);
 
                 // Orientation
                 int rotation = (int) activity.WindowManager.DefaultDisplay.Rotation;
@@ -661,7 +664,7 @@ namespace HorizontApp.Views.Camera
             {
                 // Reset the auto-focus trigger
                 mPreviewRequestBuilder.Set(CaptureRequest.ControlAfTrigger, (int)ControlAFTrigger.Cancel);
-                SetAutoFlash(mPreviewRequestBuilder);
+
                 mCaptureSession.Capture(mPreviewRequestBuilder.Build(), mCaptureCallback,
                         mBackgroundHandler);
                 // After this, the camera will go back to the normal state of preview.
@@ -675,11 +678,12 @@ namespace HorizontApp.Views.Camera
             }
         }
 
-        public void SetAutoFlash(CaptureRequest.Builder requestBuilder)
+        public void DisableFlash(CaptureRequest.Builder requestBuilder)
         {
             if (mFlashSupported)
             {
-                requestBuilder.Set(CaptureRequest.ControlAeMode, (int)ControlAEMode.OnAutoFlash);
+                requestBuilder.Set(CaptureRequest.ControlAeMode, (int)ControlAEMode.Off);
+                requestBuilder.Set(CaptureRequest.FlashMode, (int)FlashMode.Off);
             }
         }
 
