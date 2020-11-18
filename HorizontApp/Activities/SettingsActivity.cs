@@ -13,6 +13,9 @@ using HorizontApp.AppContext;
 using HorizontLib.Domain.Models;
 using HorizontLib.Domain.ViewModel;
 using Java.Lang;
+using HorizontApp.Views.Camera;
+using System.Collections.Generic;
+using Android.Util;
 
 namespace HorizontApp.Activities
 {
@@ -43,10 +46,13 @@ namespace HorizontApp.Activities
         private TextView _textViewAngleVertical;
         private SeekBar _seekBarCorrectionViewAngleVertical;
         private Spinner _spinnerAppStyle;
+        private Spinner _spinnerPhotoResolution;
         private Button _resetButton;
         private AppStyles[] _listOfAppStyles = new AppStyles[] {AppStyles.EachPoiSeparate, AppStyles.FullScreenRectangle, AppStyles.Simple, AppStyles.SimpleWithDistance, AppStyles.SimpleWithHeight};
 
         private bool _isDirty = false;
+        private List<Size> _listOfCameraResolutions;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -70,6 +76,7 @@ namespace HorizontApp.Activities
             ActionBar.SetDisplayShowTitleEnabled(false);
 
             _spinnerAppStyle = FindViewById<Spinner>(Resource.Id.spinnerAppStyle);
+            _spinnerPhotoResolution = FindViewById<Spinner>(Resource.Id.spinnerResolution);
 
             _switchManualViewAngle = FindViewById<Switch>(Resource.Id.switchManualViewAngle);
             _seekBarCorrectionViewAngleHorizontal = FindViewById<SeekBar>(Resource.Id.seekBarCorrectionViewAngleHorizontal);
@@ -83,6 +90,14 @@ namespace HorizontApp.Activities
             _spinnerAppStyle.Adapter = adapter;
             _spinnerAppStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == _settings.AppStyle));
             _spinnerAppStyle.ItemSelected += (sender, args) => { InvalidateOptionsMenu(); };
+
+
+            _listOfCameraResolutions = CameraFragment.GetCameraResolutions(_settings.CameraId).ToList();
+            var adapterPhotoResolution = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfCameraResolutions);
+            _spinnerPhotoResolution.Adapter = adapterPhotoResolution;
+            var resolutionIdx = _listOfCameraResolutions.FindIndex(i => i.Equals(_settings.cameraResolutionSelected));
+            _spinnerPhotoResolution.SetSelection(resolutionIdx);
+            _spinnerPhotoResolution.ItemSelected += (sender, args) => { InvalidateOptionsMenu(); };
 
             _switchManualViewAngle.Checked = _settings.IsViewAngleCorrection;
             _switchManualViewAngle.SetOnClickListener(this);
@@ -166,7 +181,7 @@ namespace HorizontApp.Activities
             if (_isDirty)
                 return true;
 
-            if (_settings.AppStyle != _listOfAppStyles[_spinnerAppStyle.SelectedItemPosition])
+            if (_settings.AppStyle != _listOfAppStyles[_spinnerAppStyle.SelectedItemPosition] || _settings.cameraResolutionSelected != _listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition])
                 return true;
 
             return false;
@@ -234,6 +249,7 @@ namespace HorizontApp.Activities
 
                 //Altitude from elevation map
                 _settings.AltitudeFromElevationMap = _switchAltitudeFromElevationMap.Checked;
+                _settings.cameraResolutionSelected = _listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition];
             }
             catch(Exception ex)
             {

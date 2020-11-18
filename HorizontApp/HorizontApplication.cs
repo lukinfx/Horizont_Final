@@ -15,7 +15,7 @@ namespace HorizontApp
         public override void OnCreate()
         {
             base.OnCreate();
-            AppContextLiveData.Instance.Settings.LoadData(this);
+            AppContextLiveData.Instance.Initialize(Context);
         }
     }
 }

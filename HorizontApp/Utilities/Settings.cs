@@ -8,6 +8,7 @@ using Xamarin.Essentials;
 using HorizontLib.Domain.Enums;
 using HorizontLib.Domain.Models;
 using HorizontLib.Domain.ViewModel;
+using Android.Util;
 
 namespace HorizontApp.Utilities
 {
@@ -21,6 +22,10 @@ namespace HorizontApp.Utilities
         private Context mContext;
 
         private Timer _changeFilterTimer = new Timer();
+
+        public Size[] cameraResolutionList;
+
+        public Size cameraResolutionSelected { get; set; }
 
         public Settings()
         {
@@ -198,6 +203,8 @@ namespace HorizontApp.Utilities
             set { _showElevationProfile = value; NotifySettingsChanged(); }
         }
 
+        public string CameraId { get; set; }
+
         public void NotifySettingsChanged()
         {
             var args = new SettingsChangedEventArgs();
@@ -228,6 +235,9 @@ namespace HorizontApp.Utilities
             _altitudeFromElevationMap = prefs.GetBoolean("AltitudeFromElevationMap", false);
             _autoElevationProfile = prefs.GetBoolean("AutoElevationProfile", false);
 
+            cameraResolutionSelected = new Size (prefs.GetInt("CameraResolutionWidth", 0), prefs.GetInt("CameraResolutionHeight", 0));
+            CameraId= prefs.GetString("CameraId", null);
+
             ShowElevationProfile = AutoElevationProfile;
             ShowFavoritesOnly = false;
         }
@@ -255,6 +265,10 @@ namespace HorizontApp.Utilities
                 editor.PutBoolean("AltitudeFromElevationMap", _altitudeFromElevationMap);
                 editor.PutBoolean("AutoElevationProfile", _autoElevationProfile);
 
+                editor.PutInt("CameraResolutionWidth", cameraResolutionSelected.Width);
+                editor.PutInt("CameraResolutionHeight", cameraResolutionSelected.Height);
+                editor.PutString("CameraId", CameraId);
+                
                 editor.Apply();
             }
         }

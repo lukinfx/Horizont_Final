@@ -21,6 +21,7 @@ using Math = Java.Lang.Math;
 using Orientation = Android.Content.Res.Orientation;
 using HorizontApp.AppContext;
 using HorizontLib.Domain.Models;
+using HorizontApp.Utilities;
 
 namespace HorizontApp.Views.Camera
 {
@@ -111,6 +112,7 @@ namespace HorizontApp.Views.Camera
 
         // A {@link CameraCaptureSession.CaptureCallback} that handles events related to JPEG capture.
         public CameraCaptureListener mCaptureCallback;
+        private IAppContext _context { get { return AppContextLiveData.Instance; } }
 
         // Shows a {@link Toast} on the UI thread.
         public void ShowToast(string text)
@@ -264,11 +266,13 @@ namespace HorizontApp.Views.Camera
             base.OnPause();
         }
 
-        // Sets up member variables related to camera.
-        private void SetUpCameraOutputs(int width, int height)
+        public static List<string> GetCameras()
         {
-            var activity = Activity;
-            var manager = (CameraManager)activity.GetSystemService(Context.CameraService);
+            var ctx = Application.Context;
+            var manager = (CameraManager)ctx.GetSystemService(Context.CameraService);
+
+            var result = new List<string>();
+
             try
             {
                 for (var i = 0; i < manager.GetCameraIdList().Length; i++)
@@ -283,104 +287,134 @@ namespace HorizontApp.Views.Camera
                         continue;
                     }
 
-                    var map = (StreamConfigurationMap)characteristics.Get(CameraCharacteristics.ScalerStreamConfigurationMap);
-                    if (map == null)
-                    {
-                        continue;
-                    }
-
-                    // For still image captures, we use the largest available size.
-                    Size largest = (Size)Collections.Max(Arrays.AsList(map.GetOutputSizes((int)ImageFormatType.Jpeg)),
-                        new CompareSizesByArea());
-                    mImageReader = ImageReader.NewInstance(largest.Width, largest.Height, ImageFormatType.Jpeg, /*maxImages*/2);
-                    mImageReader.SetOnImageAvailableListener(mOnImageAvailableListener, mBackgroundHandler);
-
-                    // Find out if we need to swap dimension to get the preview size relative to sensor
-                    // coordinate.
-                    var displayRotation = activity.WindowManager.DefaultDisplay.Rotation;
-                    //noinspection ConstantConditions
-                    mSensorOrientation = (int)characteristics.Get(CameraCharacteristics.SensorOrientation);
-                    bool swappedDimensions = false;
-                    switch (displayRotation)
-                    {
-                        case SurfaceOrientation.Rotation0:
-                        case SurfaceOrientation.Rotation180:
-                            if (mSensorOrientation == 90 || mSensorOrientation == 270)
-                            {
-                                swappedDimensions = true;
-                            }
-                            break;
-                        case SurfaceOrientation.Rotation90:
-                        case SurfaceOrientation.Rotation270:
-                            if (mSensorOrientation == 0 || mSensorOrientation == 180)
-                            {
-                                swappedDimensions = true;
-                            }
-                            break;
-                        default:
-                            Log.Error(TAG, "Display rotation is invalid: " + displayRotation);
-                            break;
-                    }
-
-                    Point displaySize = new Point();
-                    activity.WindowManager.DefaultDisplay.GetSize(displaySize);
-                    var rotatedPreviewWidth = width;
-                    var rotatedPreviewHeight = height;
-                    var maxPreviewWidth = displaySize.X;
-                    var maxPreviewHeight = displaySize.Y;
-
-                    if (swappedDimensions)
-                    {
-                        rotatedPreviewWidth = height;
-                        rotatedPreviewHeight = width;
-                        maxPreviewWidth = displaySize.Y;
-                        maxPreviewHeight = displaySize.X;
-                    }
-
-                    if (maxPreviewWidth > MAX_PREVIEW_WIDTH)
-                    {
-                        maxPreviewWidth = MAX_PREVIEW_WIDTH;
-                    }
-
-                    if (maxPreviewHeight > MAX_PREVIEW_HEIGHT)
-                    {
-                        maxPreviewHeight = MAX_PREVIEW_HEIGHT;
-                    }
-
-                    // Danger, W.R.! Attempting to use too large a preview size could  exceed the camera
-                    // bus' bandwidth limitation, resulting in gorgeous previews but the storage of
-                    // garbage capture data.
-                    mPreviewSize = ChooseOptimalSize(map.GetOutputSizes(Class.FromType(typeof(SurfaceTexture))),
-                        rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth,
-                        maxPreviewHeight, largest);
-
-                    // We fit the aspect ratio of TextureView to the size of preview we picked.
-                    var orientation = Resources.Configuration.Orientation;
-                    if (orientation == Orientation.Landscape)
-                    {
-                        mTextureView.SetAspectRatio(mPreviewSize.Width, mPreviewSize.Height);
-                    }
-                    else
-                    {
-                        mTextureView.SetAspectRatio(mPreviewSize.Height, mPreviewSize.Width);
-                    }
-
-                    // Check if the flash is supported.
-                    var available = (Boolean)characteristics.Get(CameraCharacteristics.FlashInfoAvailable);
-                    if (available == null)
-                    {
-                        mFlashSupported = false;
-                    }
-                    else
-                    {
-                        mFlashSupported = (bool)available;
-                    }
-
-                    FetchCameraViewAngle(cameraId);
-
-                    mCameraId = cameraId;
-                    return;
+                    result.Add(cameraId);
                 }
+            }
+            catch (System.Exception ex)
+            {
+            }
+
+            return result;
+        }
+
+        public static Size[] GetCameraResolutions(string cameraId)
+        {
+            var ctx = Application.Context;
+
+            var manager = (CameraManager)ctx.GetSystemService(Context.CameraService);
+            CameraCharacteristics characteristics = manager.GetCameraCharacteristics(cameraId);
+
+            var map = (StreamConfigurationMap)characteristics.Get(CameraCharacteristics.ScalerStreamConfigurationMap);
+            if (map == null)
+            {
+                return new List<Size>().ToArray();
+            }
+
+            var imageSizes = map.GetOutputSizes((int)ImageFormatType.Jpeg);
+            return imageSizes;
+        }
+
+        // Sets up member variables related to camera.
+        private void SetUpCameraOutputs(int width, int height)
+        {
+            var activity = Activity;
+            var manager = (CameraManager)activity.GetSystemService(Context.CameraService);
+            try
+            {
+                //var cameraId = manager.GetCameraIdList()[i];
+                var cameraId = _context.Settings.CameraId;
+                CameraCharacteristics characteristics = manager.GetCameraCharacteristics(cameraId);
+
+                var map = (StreamConfigurationMap)characteristics.Get(CameraCharacteristics.ScalerStreamConfigurationMap);
+
+                mImageReader = ImageReader.NewInstance(_context.Settings.cameraResolutionSelected.Width, _context.Settings.cameraResolutionSelected.Height, ImageFormatType.Jpeg, /*maxImages*/2);
+                mImageReader.SetOnImageAvailableListener(mOnImageAvailableListener, mBackgroundHandler);
+
+                // Find out if we need to swap dimension to get the preview size relative to sensor
+                // coordinate.
+                var displayRotation = activity.WindowManager.DefaultDisplay.Rotation;
+                //noinspection ConstantConditions
+                mSensorOrientation = (int)characteristics.Get(CameraCharacteristics.SensorOrientation);
+                bool swappedDimensions = false;
+                switch (displayRotation)
+                {
+                    case SurfaceOrientation.Rotation0:
+                    case SurfaceOrientation.Rotation180:
+                        if (mSensorOrientation == 90 || mSensorOrientation == 270)
+                        {
+                            swappedDimensions = true;
+                        }
+                        break;
+                    case SurfaceOrientation.Rotation90:
+                    case SurfaceOrientation.Rotation270:
+                        if (mSensorOrientation == 0 || mSensorOrientation == 180)
+                        {
+                            swappedDimensions = true;
+                        }
+                        break;
+                    default:
+                        Log.Error(TAG, "Display rotation is invalid: " + displayRotation);
+                        break;
+                }
+
+                Point displaySize = new Point();
+                activity.WindowManager.DefaultDisplay.GetSize(displaySize);
+                var rotatedPreviewWidth = width;
+                var rotatedPreviewHeight = height;
+                var maxPreviewWidth = displaySize.X;
+                var maxPreviewHeight = displaySize.Y;
+
+                if (swappedDimensions)
+                {
+                    rotatedPreviewWidth = height;
+                    rotatedPreviewHeight = width;
+                    maxPreviewWidth = displaySize.Y;
+                    maxPreviewHeight = displaySize.X;
+                }
+
+                if (maxPreviewWidth > MAX_PREVIEW_WIDTH)
+                {
+                    maxPreviewWidth = MAX_PREVIEW_WIDTH;
+                }
+
+                if (maxPreviewHeight > MAX_PREVIEW_HEIGHT)
+                {
+                    maxPreviewHeight = MAX_PREVIEW_HEIGHT;
+                }
+
+                // Danger, W.R.! Attempting to use too large a preview size could  exceed the camera
+                // bus' bandwidth limitation, resulting in gorgeous previews but the storage of
+                // garbage capture data.
+                mPreviewSize = ChooseOptimalSize(map?.GetOutputSizes(Class.FromType(typeof(SurfaceTexture))),
+                     rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth,
+                     maxPreviewHeight, _context.Settings.cameraResolutionSelected);
+                
+                // We fit the aspect ratio of TextureView to the size of preview we picked.
+                var orientation = Resources.Configuration.Orientation;
+                if (orientation == Orientation.Landscape)
+                {
+                    mTextureView.SetAspectRatio(mPreviewSize.Width, mPreviewSize.Height);
+                }
+                else
+                {
+                    mTextureView.SetAspectRatio(mPreviewSize.Height, mPreviewSize.Width);
+                }
+
+                // Check if the flash is supported.
+                var available = (Boolean)characteristics.Get(CameraCharacteristics.FlashInfoAvailable);
+                if (available == null)
+                {
+                    mFlashSupported = false;
+                }
+                else
+                {
+                    mFlashSupported = (bool)available;
+                }
+
+                FetchCameraViewAngle(cameraId);
+
+                mCameraId = cameraId;
+                return;
             }
             catch (CameraAccessException e)
             {

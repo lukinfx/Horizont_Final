@@ -18,6 +18,8 @@ namespace HorizontApp.AppContext
 
     public interface IAppContext
     {
+        void Initialize(Android.Content.Context context);
+
         void Start();
 
         event DataChangedEventHandler DataChanged;
@@ -36,6 +38,7 @@ namespace HorizontApp.AppContext
 
         void Pause();
         void Resume();
+
         double? ElevationProfileDataDistance { get; set; }
     }
 }

@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
+using Android.Util;
 using HorizontApp.Providers;
 using HorizontApp.Utilities;
+using HorizontApp.Views.Camera;
 using HorizontLib.Utilities;
+using Java.Util;
 using Xamarin.Essentials;
 
 namespace HorizontApp.AppContext
@@ -15,7 +19,7 @@ namespace HorizontApp.AppContext
         private GpsLocationProvider _locationProvider { get; set; }
         private CompassProvider _compassProvider { get; set; }
 
-        private Timer _locationTimer;
+        private System.Timers.Timer _locationTimer;
 
         private static object synchLock = new object();
 
@@ -43,12 +47,33 @@ namespace HorizontApp.AppContext
             _locationProvider = new GpsLocationProvider();
             _compassProvider = new CompassProvider();
 
-            _locationTimer = new Timer();
+            _locationTimer = new System.Timers.Timer();
 
             _locationTimer.Interval = 3000;
             _locationTimer.Elapsed += OnLocationTimerElapsed;
 
             _compassProvider.OnHeadingChanged = OnHeadingChanged;
+        }
+
+        public override void Initialize(Android.Content.Context context)
+        {
+            base.Initialize(context);
+
+            Settings.LoadData(context);
+
+            if (String.IsNullOrEmpty(Settings.CameraId))
+            {
+                var cameraId = CameraFragment.GetCameras().First();
+                var listOfSizes = CameraFragment.GetCameraResolutions(cameraId);
+
+                Size defaultSize = (Size)Collections.Max(listOfSizes, new CompareSizesByArea());
+
+                Settings.cameraResolutionSelected = defaultSize;
+                Settings.CameraId = cameraId;
+                
+            }
+            Settings.SaveData();
+            
         }
 
         public void OnHeadingChanged(double heading)

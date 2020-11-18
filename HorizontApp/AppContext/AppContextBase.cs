@@ -10,6 +10,10 @@ namespace HorizontApp.AppContext
 {
     public abstract class AppContextBase : IAppContext
     {
+        public virtual void Initialize(Android.Content.Context context)
+        {
+        }
+
         public event DataChangedEventHandler DataChanged;
         public event HeadingChangedEventHandler HeadingChanged;
 
