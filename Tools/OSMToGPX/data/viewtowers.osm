@@ -1,0 +1,2212 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version="0.6" generator="Osmosis 0.48.2">
+  <bounds minlon="12.08477" minlat="48.54292" maxlon="18.86321" maxlat="51.06426" origin="osmconvert 0.8.10"/>
+  <node id="254020192" version="7" timestamp="2019-01-10T09:52:01Z" lat="48.9285368" lon="16.8470656">
+    <tag k="name" v="Rozhledna Kraví Hora"/>
+    <tag k="source" v="bing;survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="Rozhledna na Kraví hoře nad Bořeticemi je veřejnosti volně přístupná od jara 2006. Z vyhlídkového ochozu z výšky 12 m nad zemí je krásný pohled na kraj vinic a na siluetu Pálavských vrchů."/>
+  </node>
+  <node id="260287197" version="8" timestamp="2017-12-03T17:23:05Z" lat="50.4002053" lon="12.781672">
+    <tag k="name" v="Blatenský vrch"/>
+    <tag k="height" v="21"/>
+    <tag k="name:de" v="Erzherzogin-Zita-Aussichtsturm"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q677841"/>
+    <tag k="direction" v="0-360"/>
+    <tag k="wikipedia" v="cs:Blatenský vrch"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="276788166" version="8" timestamp="2017-05-20T18:52:20Z" lat="49.2355036" lon="13.4875055">
+    <tag k="name" v="Svatobor - rozhledna"/>
+    <tag k="height" v="32"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="http://www.rozhlednasvatobor.cz/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q15586269"/>
+    <tag k="wikipedia" v="cs:Svatobor (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="281605665" version="4" timestamp="2017-05-20T18:52:24Z" lat="49.5386195" lon="15.8425105">
+    <tag k="name" v="Rosička"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12049800"/>
+    <tag k="wikipedia" v="cs:Rosička (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="283595849" version="7" timestamp="2016-09-11T15:47:14Z" lat="49.0397519" lon="13.5754283">
+    <tag k="name" v="Jezerní slať"/>
+    <tag k="note" v="vyhlídková věž"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="292941458" version="10" timestamp="2020-07-06T14:21:53Z" lat="50.218935" lon="12.8722517">
+    <tag k="ele" v="556"/>
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Rozhledna Diana"/>
+    <tag k="height" v="40"/>
+    <tag k="name:de" v="Diana Aussichtsturm"/>
+    <tag k="name:en" v="Diana Observation Tower"/>
+    <tag k="note:de" v="Öffnungszeiten: Februar - März: 9:15 - 16:45 April: 9:15 - 17:45 Mai - August: 9:15 - 18:45 September - Oktober: 9:15 - 17:45 November - Dezember: 9:15 - 16:45"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="https://www.karlovyvary.cz/en/diana-observation-tower"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q783890"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="observation" v="landscape"/>
+  </node>
+  <node id="293646374" version="8" timestamp="2015-02-03T18:09:42Z" lat="50.3903416" lon="12.5070143">
+    <tag k="ele" v="917"/>
+    <tag k="fee" v="1 EUR"/>
+    <tag k="name" v="Otto Hermann Böhm Turm"/>
+    <tag k="height" v="31.91"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="building" v="yes"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="Plattform in 26.64 m"/>
+  </node>
+  <node id="307843839" version="4" timestamp="2020-01-19T08:26:36Z" lat="50.2786018" lon="15.7400264">
+    <tag k="name" v="rozhl. Chlum u Hr. Králové"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="332427260" version="14" timestamp="2020-07-15T19:33:32Z" lat="50.998819" lon="14.5897701">
+    <tag k="height" v="22"/>
+    <tag k="razed:name" v="Schlechtebergturm"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="razed:man_made" v="tower"/>
+  </node>
+  <node id="344568960" version="4" timestamp="2016-04-06T08:09:49Z" lat="49.9030711" lon="15.7928268">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="353045765" version="3" timestamp="2011-07-16T19:49:20Z" lat="49.117434" lon="16.4260637">
+    <tag k="name" v="Vladimíra Menšíka na Hlíně"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="building" v="lookout_tower"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="358862721" version="5" timestamp="2018-03-08T10:25:43Z" lat="49.1828514" lon="16.5559756">
+    <tag k="name" v="Kamenný vrch"/>
+    <tag k="access" v="on_request"/>
+    <tag k="height" v="4"/>
+    <tag k="source" v="cuzk:km"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="start_date" v="1928"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="366882460" version="5" timestamp="2020-06-15T11:09:15Z" lat="50.7464967" lon="15.3659944">
+    <tag k="name" v="Štěpánka"/>
+    <tag k="source" v="cs.wikipedia.org"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="388244580" version="4" timestamp="2018-01-06T19:44:38Z" lat="49.3890654" lon="16.7039618">
+    <tag k="ele" v="590"/>
+    <tag k="name" v="rozhledna Podvrší u Veselice"/>
+    <tag k="email" v="info@rozhledna-veselice.cz"/>
+    <tag k="phone" v="+420 725 116 593"/>
+    <tag k="height" v="48.85"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="http://www.rozhledna-veselice.cz/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q1627395"/>
+    <tag k="wikipedia" v="cs:Telekomunikační věž Podvrší u Veselice"/>
+    <tag k="step_count" v="168"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="sorting_name" v="Podvrší u Veselice"/>
+    <tag k="opening_hours" v="May-Jun Fr 14:00-19:00; May-Jun Sa-Su 09:00-19:00; Jul-Aug Mo-Su 09:00-19:00; Sep-Oct Fr 14:00-18:00; Sep-Oct Sa-Su 09:00-18:00"/>
+  </node>
+  <node id="395213733" version="4" timestamp="2017-07-16T19:03:58Z" lat="50.2634156" lon="12.3871912">
+    <tag k="name" v="U Strejců"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="abandoned" v="yes"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="428906417" version="6" timestamp="2019-09-23T14:12:11Z" lat="49.1190549" lon="17.4032852">
+    <tag k="name" v="rozhledna Modrá - Židoviny"/>
+    <tag k="height" v="11"/>
+    <tag k="source" v="survey;bing"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="wood"/>
+  </node>
+  <node id="430582197" version="3" timestamp="2012-10-03T20:30:30Z" lat="49.5581735" lon="16.2790575">
+    <tag k="name" v="Karasín"/>
+    <tag k="source" v="cuzk:km"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="442939540" version="5" timestamp="2017-08-07T08:25:24Z" lat="49.8081185" lon="12.4660688">
+    <tag k="url" v="http://www.baernau.de/?id=82"/>
+    <tag k="name" v="Grenzlandturm"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="443073944" version="5" timestamp="2020-04-16T20:51:16Z" lat="48.8600613" lon="17.3656444">
+    <tag k="name" v="Travičná"/>
+    <tag k="note" v="BTS s rozhlednou"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="462685972" version="1" timestamp="2009-08-12T20:17:48Z" lat="50.6605256" lon="15.7475667">
+    <tag k="height" v="5"/>
+    <tag k="source" v="gps"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="475297685" version="5" timestamp="2019-05-07T18:33:02Z" lat="50.896412" lon="14.2596093">
+    <tag k="fee" v="yes"/>
+    <tag k="name" v="Aussichtsturm Großer Winterberg"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="wheelchair" v="no"/>
+  </node>
+  <node id="485600308" version="4" timestamp="2015-04-07T18:34:27Z" lat="48.8176557" lon="17.4273828">
+    <tag k="name" v="rozhledna Žalostiná"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="503937251" version="5" timestamp="2017-05-20T18:54:45Z" lat="50.8321254" lon="14.4543942">
+    <tag k="name" v="Studenec"/>
+    <tag k="name:de" v="Kaltenberg"/>
+    <tag k="website" v="http://www.rozhlednastudenec.cz/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q1273417"/>
+    <tag k="wikipedia" v="cs:Studenec (Lužické hory)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="540203737" version="13" timestamp="2020-04-10T20:55:48Z" lat="49.9162942" lon="15.780649">
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Rozhledna Bára"/>
+    <tag k="height" v="30"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="https://lesychrudim.cz/rozhledna-bara-ii/o-rozhledne/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q1390657"/>
+    <tag k="wikipedia" v="cs:Rozhledna Bára"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="artist_name" v="ing. arch. Martin Rajniš"/>
+    <tag k="tower:construction" v="treillis"/>
+  </node>
+  <node id="549786017" version="3" timestamp="2018-05-10T06:25:27Z" lat="49.3729885" lon="16.3715298">
+    <tag k="ele" v="464"/>
+    <tag k="name" v="Křivoš"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="582965344" version="1" timestamp="2009-12-07T18:40:10Z" lat="48.9007384" lon="17.3134249">
+    <tag k="name" v="Bílá věž"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="601009657" version="5" timestamp="2020-07-07T05:24:49Z" lat="49.1339416" lon="18.0383799">
+    <tag k="name" v="Rozhledna U Cyrila Bureše"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="alt_name" v="Finiš;Na Finiši"/>
+    <tag k="loc_name" v="Rozhledna na Královci"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="603670990" version="3" timestamp="2011-09-17T17:59:09Z" lat="48.9805703" lon="16.8194641">
+    <tag k="name" v="rozhledna Nedánov"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="610332287" version="9" timestamp="2015-10-21T17:27:53Z" lat="50.4770049" lon="14.651596">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="656071368" version="5" timestamp="2020-04-03T19:58:09Z" lat="49.9601747" lon="16.3739513">
+    <tag k="name" v="Stříbrná krasavice"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12057085"/>
+    <tag k="wikipedia" v="cs:Andrlův Chlum (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="664117301" version="6" timestamp="2013-07-09T18:32:48Z" lat="50.7117922" lon="15.2329544">
+    <tag k="name" v="Rozhledna Černá Studnice"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="664747715" version="4" timestamp="2018-07-16T19:13:32Z" lat="50.0922569" lon="16.2469248">
+    <tag k="name" v="Rozhledna Vrbice"/>
+    <tag k="height" v="30"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="683429368" version="4" timestamp="2020-02-24T13:44:59Z" lat="48.726661" lon="17.0322941">
+    <tag k="name" v="Vtáčia pozorovateľňa"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="wood"/>
+  </node>
+  <node id="692903996" version="7" timestamp="2017-08-28T18:53:21Z" lat="49.3987524" lon="18.3960397">
+    <tag k="name" v="Rozhledna Súkenická"/>
+    <tag k="height" v="27"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12058078"/>
+    <tag k="wikipedia" v="cs:Súkenická"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="708492135" version="2" timestamp="2011-12-18T11:17:40Z" lat="49.2277404" lon="16.1175675">
+    <tag k="ele" v="427.5"/>
+    <tag k="name" v="Rozhledna Ocmanice"/>
+    <tag k="height" v="15.2"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="708844225" version="3" timestamp="2015-07-11T22:51:31Z" lat="50.7804758" lon="14.2711467">
+    <tag k="name" v="Sokolí vrch"/>
+    <tag k="name:de" v="Falkenberg"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="717813253" version="8" timestamp="2020-05-02T16:32:20Z" lat="49.0970392" lon="16.3857073">
+    <tag k="ele" v="310"/>
+    <tag k="name" v="Rozhledna Alfonse Muchy"/>
+    <tag k="height" v="4"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="building" v="lookout_tower"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12049948"/>
+    <tag k="wikipedia" v="cs:Rozhledna Alfonse Muchy"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="765254418" version="3" timestamp="2012-11-01T12:26:23Z" lat="48.86549" lon="14.2832042">
+    <tag k="name" v="Kleť"/>
+    <tag k="height" v="18"/>
+    <tag k="name:de" v="Schöninger"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="765965392" version="3" timestamp="2019-09-27T20:38:30Z" lat="49.3192629" lon="14.4290467">
+    <tag k="name" v="Rozhledna Radětice"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="13.2"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="http://rozhledny.kohl.cz/rozhledna-radetice-u-bechyne"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="772470203" version="4" timestamp="2018-01-26T20:19:14Z" lat="49.4513552" lon="16.5858364">
+    <tag k="name" v="Malý Chlum"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12035130"/>
+    <tag k="direction" v="0-360"/>
+    <tag k="wikipedia" v="cs:Malý Chlum (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="783206744" version="3" timestamp="2016-03-31T19:43:24Z" lat="50.1137248" lon="14.1036376">
+    <tag k="name" v="Kožová hora"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="801957804" version="9" timestamp="2019-01-10T09:52:01Z" lat="48.9053622" lon="16.8337209">
+    <tag k="name" v="Rozhledna Slunečná"/>
+    <tag k="image" v="File:Rozhledna Slunečná 2.jpg"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="importance" v="regional"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="Necelé dva kilometry nad Pavlovicemi stojí od roku 2009 rozhledna Slunečná, která nabízí krásné výhledy. Nejkrásnější je pohled západním směrem, za Velkými Pavlovicemi lze obdivovat monumentální Mušovská jezera a za nimi překrásnou siluetu Pálavy. V blízk"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="803752626" version="4" timestamp="2017-05-10T17:31:06Z" lat="48.9167732" lon="17.7826518">
+    <tag k="ele" v="911"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="22"/>
+    <tag k="name:cs" v="rozhledna Velký Lopeník"/>
+    <tag k="name:sk" v="Rozhľadňa Veľký Lopeník"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="829529480" version="6" timestamp="2019-08-12T20:32:56Z" lat="49.8465178" lon="15.7840803">
+    <tag k="name" v="Boiika"/>
+    <tag k="source" v="gps;cuzk:km;survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="wood"/>
+  </node>
+  <node id="846496354" version="2" timestamp="2011-09-17T17:59:09Z" lat="49.3199008" lon="16.4847">
+    <tag k="name" v="Čebínka"/>
+    <tag k="height" v="30"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="898014229" version="8" timestamp="2019-07-21T21:34:50Z" lat="48.7028016" lon="13.9713446">
+    <tag k="fee" v="yes"/>
+    <tag k="name" v="Moldaublick"/>
+    <tag k="charge" v="2€/person"/>
+    <tag k="height" v="24 m"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q1683872"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="payment:coins" v="yes"/>
+    <tag k="tower:construction" v="lattice"/>
+  </node>
+  <node id="899484995" version="6" timestamp="2020-01-10T20:51:31Z" lat="50.4170509" lon="12.6753708">
+    <tag k="name" v="Aussichtsplattform"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="direction" v="0-360"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="936935713" version="4" timestamp="2020-05-22T18:58:08Z" lat="49.8912223" lon="17.5225957">
+    <tag k="name" v="Rozhledna Velký Roudný"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+    <tag k="description:pl" v="Wieża obserwacyjna, konstrukcja drewniana. 5 poziomów."/>
+    <tag k="tower:construction" v="wood"/>
+  </node>
+  <node id="973958707" version="1" timestamp="2010-11-01T19:29:18Z" lat="49.6257781" lon="12.8120493">
+    <tag k="name" v="Rozhledna Březinka"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="978649518" version="3" timestamp="2013-02-03T19:35:06Z" lat="49.0418661" lon="16.6390484">
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Akátová věž"/>
+    <tag k="height" v="17.7"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="alt_name" v="Výhon"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="996938808" version="2" timestamp="2015-07-30T22:14:08Z" lat="49.8374472" lon="17.2458008">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1072515489" version="3" timestamp="2017-09-10T17:43:37Z" lat="49.9351534" lon="12.6383402">
+    <tag k="name" v="Panský Vrch"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1087986104" version="5" timestamp="2017-05-20T18:56:40Z" lat="49.1902241" lon="13.5691489">
+    <tag k="name" v="Sedlo"/>
+    <tag k="source" v="gpx"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q15980424"/>
+    <tag k="wikipedia" v="cs:Sedlo (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1109602777" version="4" timestamp="2019-01-28T09:25:26Z" lat="49.867709" lon="18.2728302">
+    <tag k="name" v="rozhledna Landek"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1128012646" version="3" timestamp="2014-07-15T08:20:48Z" lat="48.8605329" lon="17.7029633">
+    <tag k="name" v="Jelenec"/>
+    <tag k="source" v="uhul:ortofoto;survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1198997352" version="2" timestamp="2020-02-25T17:13:10Z" lat="49.3150647" lon="18.3349988">
+    <tag k="name" v="Rozhľadňa Stratenec"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1243356039" version="4" timestamp="2019-04-11T13:24:48Z" lat="50.6287559" lon="15.0916628">
+    <tag k="name" v="Arturův hrad"/>
+    <tag k="historic" v="ruins"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1247415378" version="5" timestamp="2018-10-23T10:48:11Z" lat="49.6652926" lon="12.6224256">
+    <tag k="name" v="Milíře u Rozvadova"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1258043700" version="2" timestamp="2017-11-11T20:05:51Z" lat="49.538545" lon="18.3041909">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1277073198" version="2" timestamp="2012-08-14T22:05:43Z" lat="50.7132364" lon="15.1043804">
+    <tag k="ele" v="637"/>
+    <tag k="name" v="Rozhledna na Císařském kameni"/>
+    <tag k="height" v="20"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1281191555" version="5" timestamp="2018-05-06T19:09:00Z" lat="50.5548472" lon="13.9312794">
+    <tag k="name" v="Milešovka rozhledna"/>
+    <tag k="source" v="uhul:ortofoto;survey;cuzk:km"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="building" v="yes"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="otevřeno denně po celý rok / ganzjährig täglich geöffnet (30 kc)"/>
+  </node>
+  <node id="1284286527" version="5" timestamp="2017-04-13T15:47:20Z" lat="49.2796776" lon="16.9377106">
+    <tag k="ele" v="367"/>
+    <tag k="name" v="Chocholík"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="1292002888" version="3" timestamp="2018-02-03T18:02:49Z" lat="50.2161566" lon="16.5126642">
+    <tag k="name" v="Vyhlid. vez Anensky vrch"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1316507099" version="2" timestamp="2011-07-29T12:27:52Z" lat="48.7904082" lon="14.538433">
+    <tag k="name" v="Slabošovka"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1316536357" version="1" timestamp="2011-06-08T20:43:07Z" lat="49.3231514" lon="15.9575339">
+    <tag k="name" v="Rubačka"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1317822230" version="5" timestamp="2019-06-19T09:54:22Z" lat="49.5568699" lon="16.404744">
+    <tag k="name" v="Kopaniny"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12042513"/>
+    <tag k="wikipedia" v="cs:Olešnice (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1317822233" version="3" timestamp="2017-05-20T18:57:11Z" lat="49.5709986" lon="16.4555867">
+    <tag k="name" v="Zelenkův kopec"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q10858009"/>
+    <tag k="wikipedia" v="cs:Zelenkův kopec"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1323174438" version="5" timestamp="2020-05-31T10:52:11Z" lat="49.1382182" lon="13.6534636">
+    <tag k="name" v="Klostermannova Rozhledna"/>
+    <tag k="phone" v="733666495"/>
+    <tag k="height" v="39"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="operator" v="Obec Vacov"/>
+    <tag k="wikipedia" v="cs:Klostermannova rozhledna"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="Nov-Mar Sa-Su 10:00-15:30; Nov-Mar PH 10:00-15:30 open"/>
+    <tag k="payment:coins" v="yes"/>
+    <tag k="payment:debit_cards" v="no"/>
+    <tag k="payment:credit_cards" v="no"/>
+  </node>
+  <node id="1324044021" version="3" timestamp="2014-06-01T12:22:45Z" lat="48.9150991" lon="16.7842037">
+    <tag k="name" v="U Obrázku"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="importance" v="urban"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="1355509559" version="3" timestamp="2016-05-26T13:42:43Z" lat="50.83304" lon="15.2315693">
+    <tag k="name" v="Na Čihadle"/>
+    <tag k="colour" v="brown"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="material" v="wood"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1357927495" version="6" timestamp="2020-03-24T08:54:56Z" lat="49.5907914" lon="16.3410776">
+    <tag k="name" v="Horní les"/>
+    <tag k="access" v="yes"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="operator" v="Eurotel"/>
+    <tag k="wikidata" v="Q55842280"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1359022658" version="5" timestamp="2014-03-24T15:54:18Z" lat="48.96684" lon="13.5921806">
+    <tag k="name" v="Strážní věž Železné opony"/>
+    <tag k="height" v="10"/>
+    <tag k="source" v="survey"/>
+    <tag k="name:cs" v="Strážní věž Železné opony"/>
+    <tag k="name:de" v="ehemal. Wachturm"/>
+    <tag k="note:de" v="ehemal.Grenzwachturm"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1375181844" version="5" timestamp="2019-08-12T20:32:56Z" lat="49.7814977" lon="15.8018111">
+    <tag k="name" v="Zuberský kopec"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="lattice"/>
+  </node>
+  <node id="1396128624" version="4" timestamp="2016-05-05T06:19:20Z" lat="49.8559982" lon="17.8682004">
+    <tag k="name" v="Bezručova vyhlídka"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1401440129" version="3" timestamp="2017-11-26T21:01:06Z" lat="50.0504915" lon="17.7332618">
+    <tag k="ele" v="395"/>
+    <tag k="fee" v="yes"/>
+    <tag k="name" v="Rozhledna Hanse Kudlicha"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="22"/>
+    <tag k="source" v="cuzk:km"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q10856844"/>
+    <tag k="wikipedia" v="cs:Strážiště (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="Apr,Oct Sa,Su 10:00-12:00,13:00-16:00; May-Jun,Sep Sa,Su 09:00-12:00,13:00-17:00; Jul-Aug 09:00-12:00,13:00-18:00"/>
+    <tag k="tower:construction" v="freestanding"/>
+  </node>
+  <node id="1401587606" version="1" timestamp="2011-08-16T21:36:31Z" lat="50.7772887" lon="14.7878768">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1401913361" version="2" timestamp="2019-04-18T12:09:57Z" lat="50.7643612" lon="14.7607201">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1412614932" version="7" timestamp="2020-08-02T10:15:28Z" lat="49.9960058" lon="14.1074252">
+    <tag k="fee" v="10 CZK"/>
+    <tag k="name" v="Rozhledna Lhotka"/>
+    <tag k="height" v="45"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="contact:phone" v="+420 311 691 122;+420 605 163 233"/>
+    <tag k="opening_hours" v="Apr-Jun,Sep,Oct Fr 14:00-17:00; Apr-Jun,Sep,Oct PH,Sa,Su 10:00-17:00; Jul,Aug Tu-Su 10:00-18:00"/>
+  </node>
+  <node id="1431292046" version="3" timestamp="2019-08-25T19:05:43Z" lat="50.889275" lon="15.2718612">
+    <tag k="height" v="20"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="lattice"/>
+  </node>
+  <node id="1457822876" version="2" timestamp="2014-04-27T16:51:35Z" lat="50.429018" lon="12.9545904">
+    <tag k="height" v="31"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1516297813" version="3" timestamp="2017-09-01T09:08:18Z" lat="49.2699959" lon="17.9387752">
+    <tag k="name" v="Vartovna"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1658053213" version="2" timestamp="2015-12-25T23:48:30Z" lat="49.9257118" lon="16.7053789">
+    <tag k="name" v="rozhledna Lázek"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="abandoned" v="yes"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1658266476" version="3" timestamp="2014-10-13T09:35:42Z" lat="49.7691502" lon="14.568405">
+    <tag k="name" v="Neštětická hora"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1665269558" version="2" timestamp="2012-06-10T21:14:47Z" lat="50.0584102" lon="14.0639547">
+    <tag k="name" v="Vysoký vrch"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1706427752" version="2" timestamp="2018-10-02T22:38:37Z" lat="50.1322453" lon="13.4955961">
+    <tag k="ele" v="484"/>
+    <tag k="name" v="Tobiášův vrch"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12059117"/>
+    <tag k="wikipedia" v="cs:Tobiášův vrch (rozhledna)"/>
+    <tag k="start_date" v="1999"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="lattice"/>
+  </node>
+  <node id="1759927786" version="3" timestamp="2018-08-19T09:31:42Z" lat="49.4099139" lon="18.0980108">
+    <tag k="height" v="5"/>
+    <tag k="source" v="survey;gps"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1786627566" version="6" timestamp="2020-08-03T07:24:30Z" lat="48.9015638" lon="13.8367022">
+    <tag k="name" v="Soumarské rašeliniště"/>
+    <tag k="height" v="9"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="wood"/>
+  </node>
+  <node id="1817980656" version="3" timestamp="2017-05-20T19:19:03Z" lat="50.4007818" lon="16.1910848">
+    <tag k="name" v="Jiráskova chata"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q11727229"/>
+    <tag k="wikipedia" v="cs:Jiráskova chata"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1822957699" version="1" timestamp="2012-07-12T13:39:11Z" lat="48.863862" lon="16.7710646">
+    <tag k="name" v="Rozhledna U majáku na Přítlucké hoře"/>
+    <tag k="height" v="26.5"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1826297227" version="3" timestamp="2016-05-28T10:26:44Z" lat="49.8813239" lon="16.4256225">
+    <tag k="name" v="Rozhledna Kozlovský kopec"/>
+    <tag k="height" v="55.5"/>
+    <tag k="source" v="cuzk:km;survey"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1827229170" version="2" timestamp="2012-07-26T21:21:20Z" lat="49.5712859" lon="13.4439725">
+    <tag k="name" v="Rozhledna Kožich"/>
+    <tag k="height" v="20"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1829902055" version="2" timestamp="2012-12-14T17:00:44Z" lat="50.2319898" lon="17.5985017">
+    <tag k="name" v="Strážnice"/>
+    <tag k="access" v="yes"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1834621216" version="2" timestamp="2017-05-20T19:19:05Z" lat="49.9636346" lon="15.636733">
+    <tag k="name" v="Barborka"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12049951"/>
+    <tag k="wikipedia" v="cs:Rozhledna Barborka"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1834621220" version="2" timestamp="2017-05-20T19:19:05Z" lat="49.7801692" lon="15.9797696">
+    <tag k="name" v="Vojtěchovská rozhledna"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q11927268"/>
+    <tag k="wikipedia" v="cs:Vojtěchov (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="1839615001" version="8" timestamp="2019-03-21T11:14:52Z" lat="48.6526726" lon="14.2306532">
+    <tag k="name" v="Stezka korunami stromů Lipno"/>
+    <tag k="height" v="40"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="https://www.stezkakorunamistromu.cz/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="1893332946" version="8" timestamp="2019-03-30T05:53:07Z" lat="50.9661358" lon="14.3199971">
+    <tag k="name" v="rozhledna Tanečnice"/>
+    <tag k="image" v="https://commons.wikimedia.org/wiki/File:Rozhledna_na_Tane%C4%8Dnici.jpg"/>
+    <tag k="name:de" v="Bismarckturm Nixdorf"/>
+    <tag k="network" v="Bismarckturm"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="https://www.bismarcktuerme.de/ebene4/tsch/nixdorf.html"/>
+    <tag k="historic" v="tower"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q866572"/>
+    <tag k="wikipedia" v="de:Bismarckturm (Tanečnice)"/>
+    <tag k="start_date" v="1905"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="website:cs" v="http://www.bismarcktuerme.de/ebene4/tsch/nixdorf_tsch.html"/>
+    <tag k="wikimedia_commons" v="Category:Tanečnice (Šluknovská pahorkatina)"/>
+  </node>
+  <node id="1896139156" version="4" timestamp="2019-06-23T21:12:53Z" lat="50.2537204" lon="15.082863">
+    <tag k="name" v="rozhledna Romanka"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="50"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q14806652"/>
+    <tag k="wikipedia" v="cs:Rozhledna Romanka"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="lattice"/>
+  </node>
+  <node id="1898615314" version="4" timestamp="2016-04-13T18:02:44Z" lat="49.5483972" lon="17.0370184">
+    <tag k="name" v="rozhledna Čechy pod Kosířem"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2137016680" version="6" timestamp="2020-06-08T12:23:24Z" lat="50.4778517" lon="13.5431439">
+    <tag k="ele" v="298"/>
+    <tag k="name" v="Rozhledna Maják"/>
+    <tag k="height" v="7.5"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q15613873"/>
+    <tag k="wikipedia" v="cs:Strupčice (rozhledna)"/>
+    <tag k="start_date" v="2012-07-24"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="freestanding"/>
+  </node>
+  <node id="2137016986" version="2" timestamp="2013-08-11T09:44:26Z" lat="48.8566236" lon="16.4717749">
+    <tag k="name" v="Rozhledna u Křížku"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2137019352" version="6" timestamp="2017-09-06T12:08:53Z" lat="48.9534724" lon="16.7426216">
+    <tag k="name" v="Rozhledna Hustopeče"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12020982"/>
+    <tag k="wikipedia" v="cs:Hustopeče (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2181266700" version="5" timestamp="2016-04-13T09:35:53Z" lat="49.9897097" lon="14.7829986">
+    <tag k="ele" v="430"/>
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Rozhledna Skalka"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="25"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="http://www.rozhlednaskalka.cz/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="start_date" v="201204"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2254466690" version="4" timestamp="2017-04-19T15:02:39Z" lat="50.7781969" lon="15.0916483">
+    <tag k="name" v="Rozhledna Liberecká výšina"/>
+    <tag k="height" v="25"/>
+    <tag k="name:de" v="Liebieg-Warte"/>
+    <tag k="name:en" v="Liebieg Lookout Tower"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2261614247" version="2" timestamp="2016-03-16T08:43:20Z" lat="50.0969542" lon="17.6310069">
+    <tag k="ele" v="553"/>
+    <tag k="name" v="Rozhledna Ježník"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="17.5"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2262512330" version="3" timestamp="2014-03-23T13:00:19Z" lat="50.495208" lon="16.0723312">
+    <tag k="height" v="5"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2275771106" version="1" timestamp="2013-04-21T17:50:21Z" lat="49.3137521" lon="14.0663774">
+    <tag k="name" v="Velký Kamýk"/>
+    <tag k="height" v="65"/>
+    <tag k="source" v="position=gps;bing"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2297167215" version="5" timestamp="2017-05-20T19:19:31Z" lat="48.8594498" lon="17.5230072">
+    <tag k="name" v="rozhledna Drahy"/>
+    <tag k="height" v="20"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="http://www.javornik-ho.cz/rozhledna-drahy/d-1137/p1=1034"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q11826644"/>
+    <tag k="wikipedia" v="cs:Drahy (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2339333863" version="1" timestamp="2013-06-10T15:24:58Z" lat="49.6495741" lon="17.2401251">
+    <tag k="height" v="8"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2377876636" version="1" timestamp="2013-07-08T11:50:36Z" lat="50.736922" lon="14.308437">
+    <tag k="name" v="Ploučnická vyhlídka"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="building" v="yes"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2386969167" version="3" timestamp="2015-09-22T19:23:05Z" lat="50.7103904" lon="14.3142918">
+    <tag k="name" v="rozhledna Kohout"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2386969168" version="3" timestamp="2018-05-27T09:47:30Z" lat="50.6871654" lon="14.3555541">
+    <tag k="name" v="rozhledna Strážný vrch"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2391844911" version="8" timestamp="2020-07-15T11:02:42Z" lat="50.6494299" lon="14.2767509">
+    <tag k="ele" v="616"/>
+    <tag k="name" v="Víťova vyhlídka"/>
+    <tag k="height" v="21"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2395664425" version="2" timestamp="2020-03-25T19:28:40Z" lat="48.8473258" lon="14.0200755">
+    <tag k="ele" v="1237"/>
+    <tag k="name" v="Knížecí stolec"/>
+    <tag k="height" v="10"/>
+    <tag k="source" v="survey"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2397407179" version="2" timestamp="2020-05-03T18:11:34Z" lat="50.0921102" lon="14.5743097">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2401839235" version="2" timestamp="2019-08-13T20:41:40Z" lat="49.462393" lon="18.1587177">
+    <tag k="name" v="Jurkovičova rozhledna"/>
+    <tag k="height" v="31.09"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12027263"/>
+    <tag k="wikipedia" v="cs:Jurkovičova rozhledna"/>
+    <tag k="start_date" v="2012-04-28"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="contact:website" v="http://www.visitroznov.cz/jurkovicova-rozhledna"/>
+    <tag k="wikimedia_commons" v="Category:Jurkovičova rozhledna"/>
+  </node>
+  <node id="2414305024" version="1" timestamp="2013-08-11T09:44:07Z" lat="48.8607177" lon="16.617565">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2414305026" version="1" timestamp="2013-08-11T09:44:07Z" lat="48.8628551" lon="16.6211282">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2415938905" version="1" timestamp="2013-08-12T12:41:28Z" lat="49.1358885" lon="14.0072942">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2419543458" version="1" timestamp="2013-08-15T07:30:17Z" lat="49.2535213" lon="14.0975585">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2421553633" version="1" timestamp="2013-08-17T08:45:16Z" lat="48.9297493" lon="17.7194354">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2424595304" version="2" timestamp="2018-06-02T19:08:31Z" lat="49.6470317" lon="16.511957">
+    <tag k="name" v="Rozhledna Járy Cimrmana"/>
+    <tag k="height" v="20"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2470002949" version="7" timestamp="2018-08-28T23:10:53Z" lat="50.1574301" lon="16.7907712">
+    <tag k="name" v="Wieża widokowa na Trójmorskim Wierchu"/>
+    <tag k="image" v="File:Rozhledna Klepáč.jpg"/>
+    <tag k="height" v="25"/>
+    <tag k="name:cs" v="Rozhledna Klepáč"/>
+    <tag k="name:pl" v="Wieża widokowa na Trójmorskim Wierchu"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="material" v="wood"/>
+    <tag k="wikidata" v="Q19401537"/>
+    <tag k="wikipedia" v="pl:Wieża widokowa na Trójmorskim Wierchu"/>
+    <tag k="start_date" v="2010-05-08"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2491363684" version="5" timestamp="2019-03-21T12:01:03Z" lat="50.1542777" lon="15.8336396">
+    <tag k="name" v="rozhledna Milíř"/>
+    <tag k="note" v="oteviraci doba za dobreho pocasi a v pripade zajmu https://www.turistika.cz/mista/rozhledna-milir/detail"/>
+    <tag k="phone" v="+420607874566"/>
+    <tag k="height" v="31"/>
+    <tag k="website" v="https://www.vysoka-nad-labem.cz/rozhledna-milir"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2494140699" version="4" timestamp="2020-05-15T00:11:12Z" lat="49.802818" lon="13.3415404">
+    <tag k="name" v="Krkavec"/>
+    <tag k="height" v="18"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2510091763" version="3" timestamp="2017-05-20T19:19:58Z" lat="49.5641519" lon="14.3132104">
+    <tag k="name" v="Rozhledna Kuníček"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12049957"/>
+    <tag k="wikipedia" v="cs:Rozhledna Kuníček"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2510191867" version="5" timestamp="2014-05-27T05:55:58Z" lat="49.087634" lon="15.2710108">
+    <tag k="name" v="rozhledna U Jakuba"/>
+    <tag k="height" v="44.4"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2528931760" version="5" timestamp="2019-03-11T08:09:34Z" lat="50.8490529" lon="14.6470302">
+    <tag k="name" v="Aussichtsturm z.Z. im Bau"/>
+    <tag k="access" v="no"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2534682493" version="1" timestamp="2013-11-16T08:42:29Z" lat="49.6787052" lon="18.804559">
+    <tag k="ele" v="995"/>
+    <tag k="url" v="http://www.cantoryje.cz/"/>
+    <tag k="name" v="Rozhledna Velká Čantoryje"/>
+    <tag k="name:cs" v="Rozhledna Velká Čantoryje"/>
+    <tag k="name:pl" v="Wieża widokowa Czantoria Wielka"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2535520074" version="3" timestamp="2019-10-12T22:04:30Z" lat="49.5107463" lon="18.6963933">
+    <tag k="ele" v="944"/>
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Rozhledna Tetřev"/>
+    <tag k="height" v="10"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q10856846"/>
+    <tag k="wikipedia" v="cs:Tetřev (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="Nov-Apr 10:00-15:30; May-Oct 08:00-21:00"/>
+  </node>
+  <node id="2557026141" version="1" timestamp="2013-11-29T13:37:51Z" lat="49.9229398" lon="16.5835706">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2582006039" version="8" timestamp="2020-01-25T22:22:39Z" lat="50.5746074" lon="16.1241036">
+    <tag k="ele" v="786"/>
+    <tag k="name" v="Rozhledna na vrchu Čáp"/>
+    <tag k="natural" v="peak"/>
+    <tag k="website" v="https://broumovsko.cz/cs/rozhledna-na-capu"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q18193617"/>
+    <tag k="wikipedia" v="cs:Rozhledna na vrchu Čáp"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="Rozhledna Čáp je volně přístupná a dostanete se na ní z turistické zelené, jež se prodírá nekonečným labyrintem Teplických skal. Nejbližší silnice je ve vesnici Skály, u zámečku Bischofstein."/>
+    <tag k="tower:construction" v="lattice"/>
+  </node>
+  <node id="2592152616" version="2" timestamp="2020-05-06T21:34:10Z" lat="49.78581" lon="13.547905">
+    <tag k="name" v="vojenská věž"/>
+    <tag k="note" v="příhradový železný stožár s pozičními lampami"/>
+    <tag k="source" v="mavit GPS"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="lattice"/>
+  </node>
+  <node id="2601022035" version="3" timestamp="2019-03-21T11:03:11Z" lat="50.3844476" lon="13.7943447">
+    <tag k="name" v="Frotzelova rozhledna"/>
+    <tag k="phone" v="+420733184750"/>
+    <tag k="website" v="https://www.cervenak-rozhledna.cz/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2604832113" version="4" timestamp="2014-11-15T17:43:48Z" lat="49.3621167" lon="13.1563333">
+    <tag k="name" v="Rozhledna Svatá Markéta"/>
+    <tag k="height" v="25.4"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2604832161" version="2" timestamp="2014-03-23T13:37:09Z" lat="49.3712192" lon="13.0418853">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2613172820" version="4" timestamp="2016-05-30T14:28:19Z" lat="49.1698615" lon="16.623342">
+    <tag k="name" v="Komec"/>
+    <tag k="source" v="bing"/>
+    <tag k="website" v="http://www.komec.cz/sluzby/rozhledna/"/>
+    <tag k="historic" v="yes"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2634007384" version="5" timestamp="2017-10-18T14:02:50Z" lat="50.7514038" lon="15.282356">
+    <tag k="name" v="Tanvaldský Špičák"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2651592789" version="1" timestamp="2014-02-03T09:13:45Z" lat="50.0379743" lon="16.7573128">
+    <tag k="name" v="rozhledna Křížová hora"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2687964499" version="2" timestamp="2014-05-11T18:28:04Z" lat="50.2874048" lon="17.2313619">
+    <tag k="name" v="Hemberk"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2731982841" version="6" timestamp="2019-08-26T16:14:50Z" lat="50.86088" lon="14.2695594">
+    <tag k="ele" v="348"/>
+    <tag k="name" v="Rozhledna Janovský vrch"/>
+    <tag k="note" v="Rozhledna Janovský vrch, výhled na saské stolové hory; fantastic view from tower!"/>
+    <tag k="name:de" v="Aussichtsturm Jonsdorf"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2736518641" version="1" timestamp="2014-03-23T13:27:16Z" lat="49.8666" lon="12.7528079">
+    <tag k="name" v="Bohušův vrch"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2750251390" version="2" timestamp="2017-04-23T16:42:56Z" lat="49.88035" lon="13.4629833">
+    <tag k="name" v="Radost"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2801913442" version="2" timestamp="2016-09-04T18:55:17Z" lat="48.7798431" lon="16.8105003">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="material" v="wood"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2807190842" version="3" timestamp="2019-06-22T14:59:20Z" lat="49.8043309" lon="17.7731189">
+    <tag k="name" v="Hradní věž"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2824692704" version="1" timestamp="2014-04-29T16:10:01Z" lat="50.0880804" lon="14.3987529">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2834662231" version="1" timestamp="2014-05-03T21:14:59Z" lat="49.9949511" lon="16.4540823">
+    <tag k="name" v="rozhledna Lanšperk"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2863342536" version="2" timestamp="2017-06-06T05:34:42Z" lat="49.1947884" lon="18.1324127">
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Čubův kopec"/>
+    <tag k="height" v="16"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q11385387"/>
+    <tag k="wikipedia" v="cs:Čubův kopec (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="2904930607" version="2" timestamp="2019-01-28T09:15:59Z" lat="49.8444154" lon="18.2113067">
+    <tag k="name" v="Vyhlídková věž Hošťálkovice"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2905783849" version="4" timestamp="2019-09-22T13:44:10Z" lat="49.0378198" lon="17.3263983">
+    <tag k="name" v="Rozhledna Floriánka"/>
+    <tag k="height" v="20"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="operator" v="Městys Polešovice"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2926967896" version="2" timestamp="2014-08-05T17:45:56Z" lat="49.0251199" lon="17.8444476">
+    <tag k="name" v="Na Skalce"/>
+    <tag k="source" v="bing"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2933247886" version="2" timestamp="2020-05-16T15:51:57Z" lat="49.0391273" lon="17.3037268">
+    <tag k="name" v="rozhledna Doubí"/>
+    <tag k="source" v="cuzk:km;bing;survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="https://www.obecvazany.cz/obec/zajimavosti/rozhledna/rozhledna-13cs.html"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2933997115" version="3" timestamp="2014-07-06T09:18:05Z" lat="50.6564048" lon="14.9604888">
+    <tag k="name" v="Čihadlo"/>
+    <tag k="source" v="local_knowledge"/>
+    <tag k="tourism" v="attraction"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2939250406" version="5" timestamp="2015-02-21T08:34:02Z" lat="50.3840555" lon="13.2577554">
+    <tag k="name" v="Aussichtsturm Heiliger Berg"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="16"/>
+    <tag k="source" v="http://www.mesto-kadan.eu/Artikel/5056/aussichtsturm-auf-dem-heiligen-berg-svaty-vrch-in-kaaden"/>
+    <tag k="name:cs" v="Rozhledna na Svatém kopečku"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="2958827685" version="1" timestamp="2014-07-11T16:51:30Z" lat="48.975114" lon="17.7813747">
+    <tag k="name" v="Vyhlídková věž Pod Vojanskú"/>
+    <tag k="note" v="volně přístupné"/>
+    <tag k="source" v="Bing"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3017244114" version="1" timestamp="2014-08-14T22:10:28Z" lat="49.8466315" lon="14.1632243">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3027447783" version="4" timestamp="2018-07-20T10:01:09Z" lat="49.0954232" lon="14.7146389">
+    <tag k="name" v="vyhlídková věž Lomnice"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="alt_name" v="pozorovatelna Lomnice;rozhledna Lomnice"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="start_date" v="2002"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3040677240" version="4" timestamp="2016-12-17T19:41:20Z" lat="50.236956" lon="12.5578906">
+    <tag k="name" v="rozhledna Cibulka"/>
+    <tag k="height" v="26.2"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:platforms" v="2"/>
+    <tag k="building:material" v="steel"/>
+    <tag k="tower:construction" v="lattice"/>
+  </node>
+  <node id="3064424393" version="3" timestamp="2017-05-20T19:20:54Z" lat="49.636569" lon="18.4841333">
+    <tag k="name" v="Prašivá"/>
+    <tag k="height" v="15"/>
+    <tag k="source" v="wikipedia"/>
+    <tag k="website" v="http://www.chataprasiva.cz/chata/rozhledna/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12053509"/>
+    <tag k="wikipedia" v="cs:Seznam rozhleden v Moravskoslezském kraji"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="Fr,Su 17:00-17:30; Sa 10:00-10:30"/>
+  </node>
+  <node id="3084413542" version="1" timestamp="2014-09-18T10:16:53Z" lat="49.4551977" lon="17.4507976">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="direction" v="0-360"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description:cs" v="Vyhlídka z věže zámku na komplet celý Přerov"/>
+  </node>
+  <node id="3100758343" version="4" timestamp="2017-06-03T12:45:29Z" lat="49.9620958" lon="16.5959114">
+    <tag k="name" v="Marianka"/>
+    <tag k="height" v="18.8 m"/>
+    <tag k="website" v="http://rozhledny2.webzdarma.cz/marianka.htm"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3151679847" version="2" timestamp="2015-10-18T08:25:16Z" lat="49.1729537" lon="13.2084572">
+    <tag k="name" v="rozhledna Špičák"/>
+    <tag k="height" v="26.5"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3163774788" version="1" timestamp="2014-11-02T22:23:34Z" lat="49.6373628" lon="16.2257409">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3174428490" version="1" timestamp="2014-11-08T09:11:08Z" lat="50.2616109" lon="14.7028735">
+    <tag k="name" v="rozhledna Kostelní Hlavno"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3203452655" version="2" timestamp="2017-04-20T06:27:52Z" lat="50.0864909" lon="17.1394282">
+    <tag k="name" v="Rozhledna na Medvědí hoře"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3209833866" version="1" timestamp="2014-11-28T21:39:56Z" lat="50.1523473" lon="13.3169605">
+    <tag k="name" v="rozhledna Vochlice"/>
+    <tag k="source" v="survey"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="lattice"/>
+  </node>
+  <node id="3226012502" version="3" timestamp="2020-04-07T17:08:44Z" lat="50.4613518" lon="16.166753">
+    <tag k="ele" v="496"/>
+    <tag k="name" v="Na Signálu"/>
+    <tag k="height" v="29"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q20860785"/>
+    <tag k="addr:city" v="Horní Radechová"/>
+    <tag k="architect" v="Ing. Antonín Olšina"/>
+    <tag k="wikipedia" v="cs:Rozhledna na Signálu"/>
+    <tag k="start_date" v="13.12.2014"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="Dřevěná rozhledna s ocelovými prvky na vrchu Signál. "/>
+    <tag k="opening_hours" v="24/7"/>
+    <tag k="tower:construction" v="wood"/>
+  </node>
+  <node id="3312948861" version="2" timestamp="2015-06-28T17:40:46Z" lat="49.5899566" lon="18.1588974">
+    <tag k="name" v="Bezručova vyhlídka"/>
+    <tag k="height" v="13"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3327298714" version="4" timestamp="2016-06-22T07:15:51Z" lat="49.3659227" lon="17.8283742">
+    <tag k="name" v="Rozhledna Maruška"/>
+    <tag k="height" v="16"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3381617383" version="2" timestamp="2015-05-20T17:12:16Z" lat="49.6404929" lon="14.2431254">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3398354512" version="3" timestamp="2017-05-20T19:21:23Z" lat="49.7118609" lon="13.0917782">
+    <tag k="name" v="Heřmanova Huť"/>
+    <tag k="height" v="16"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12019621"/>
+    <tag k="wikipedia" v="cs:Heřmanova Huť (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3411838582" version="3" timestamp="2018-05-09T06:24:21Z" lat="50.6883259" lon="15.7070696">
+    <tag k="ele" v="1207.45"/>
+    <tag k="name" v="rozhledna Hnědý vrch"/>
+    <tag k="height" v="30.8"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12019872"/>
+    <tag k="wikipedia" v="cs:Hnědý vrch (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="Jun-Oct 09:00-16:00"/>
+  </node>
+  <node id="3441462531" version="2" timestamp="2015-04-26T18:51:17Z" lat="49.5713244" lon="18.6738234">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3448018324" version="4" timestamp="2016-03-15T14:33:51Z" lat="48.9249678" lon="17.4280787">
+    <tag k="name" v="Radošov"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="3448762208" version="2" timestamp="2015-06-08T18:58:54Z" lat="48.8583201" lon="17.59342">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="3451626424" version="1" timestamp="2015-04-12T09:00:01Z" lat="49.9942293" lon="14.3974091">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3451626425" version="1" timestamp="2015-04-12T09:00:01Z" lat="49.994387" lon="14.3979502">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3454604687" version="1" timestamp="2015-04-13T20:21:26Z" lat="49.4218204" lon="17.8150413">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3458893592" version="2" timestamp="2016-11-17T14:32:33Z" lat="49.2379996" lon="16.566241">
+    <tag k="amenity" v="hunting_stand"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3474491440" version="2" timestamp="2019-04-23T07:33:42Z" lat="50.2488859" lon="15.9937935">
+    <tag k="name" v="Libníkovická rozhledna"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3474697542" version="2" timestamp="2018-08-12T18:19:40Z" lat="49.8615465" lon="15.1218096">
+    <tag k="name" v="Žandov"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3475173927" version="3" timestamp="2019-10-14T09:08:17Z" lat="50.1206379" lon="14.4167123">
+    <tag k="type" v="observation"/>
+    <tag k="source" v="CZ:IPRPraha:ortofoto"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3480110421" version="1" timestamp="2015-04-26T22:53:37Z" lat="50.6113256" lon="13.6102448">
+    <tag k="ele" v="410"/>
+    <tag k="name" v="Vyhlídka Czedikův gloriet"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3482042418" version="1" timestamp="2015-04-27T18:07:40Z" lat="50.6975957" lon="15.0484495">
+    <tag k="name" v="Rašovka"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3492929032" version="1" timestamp="2015-05-02T09:44:44Z" lat="48.8559897" lon="17.5005781">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3493673677" version="4" timestamp="2019-03-29T21:24:14Z" lat="49.6491044" lon="18.2709452">
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Rozhledna Panorama"/>
+    <tag k="height" v="22.1"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="https://www.beskydyportal.cz/cz/objekt/panorama"/>
+    <tag k="alt_name" v="rozhledna Kabátice"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="3493908784" version="2" timestamp="2020-08-01T09:59:30Z" lat="49.9162571" lon="15.5558749">
+    <tag k="name" v="Rozhledna Na Kopečku"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="freestanding"/>
+  </node>
+  <node id="3499367957" version="1" timestamp="2015-05-05T16:28:43Z" lat="49.7646018" lon="14.3762546">
+    <tag k="name" v="Drtinova rozhledna"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3506000862" version="2" timestamp="2015-05-08T21:22:59Z" lat="49.6616741" lon="17.877321">
+    <tag k="fee" v="no"/>
+    <tag k="name" v="rozhledna Olšová"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="17"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="http://odry.cz/rozhledna-pohor-olsova/ds-13693"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3510131409" version="4" timestamp="2020-08-26T19:32:21Z" lat="50.7421743" lon="15.1296955">
+    <tag k="ele" v="586"/>
+    <tag k="height" v="24"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="name" v="Nad Prosečí"/>
+    <tag k="tower:construction" v="stone"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3510685188" version="2" timestamp="2016-06-04T22:52:16Z" lat="49.4450913" lon="17.955657">
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Rozhledna Jarcová"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="14"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="operator" v="Vilém Bystroň"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="3524142802" version="4" timestamp="2015-05-18T06:35:59Z" lat="50.1442699" lon="17.4508882">
+    <tag k="ele" v="760"/>
+    <tag k="name" v="Rozhledna Na Skalce"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3547533486" version="2" timestamp="2019-09-20T17:37:49Z" lat="50.3673211" lon="12.5100234">
+    <tag k="name" v="Rozhledna Bleiberg"/>
+    <tag k="access" v="permissive"/>
+    <tag k="height" v="16"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3562299425" version="2" timestamp="2015-06-01T00:16:56Z" lat="49.4011767" lon="16.6091631">
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Spešovská rozhledna"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="material" v="wood"/>
+    <tag k="direction" v="0-180"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+    <tag k="description:cs" v="Dřevěná rozhledna - výhled na Malou Hanou, Rájec, Ráječko, Spešov, Blansko a okolí"/>
+  </node>
+  <node id="3577624713" version="4" timestamp="2016-05-23T19:47:19Z" lat="50.1375287" lon="12.7293437">
+    <tag k="ele" v="836"/>
+    <tag k="name" v="rozhledna Krudum"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="25"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:platforms" v="1"/>
+    <tag k="tower:construction" v="lattice"/>
+  </node>
+  <node id="3597342825" version="1" timestamp="2015-06-15T22:14:33Z" lat="49.4001627" lon="14.6712332">
+    <tag k="name" v="Babina"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3607316217" version="2" timestamp="2015-12-19T10:44:19Z" lat="49.6937276" lon="13.2395043">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3627781923" version="1" timestamp="2015-06-30T21:33:16Z" lat="49.6530912" lon="17.2311998">
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Ornitologická pozorovatelna"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="material" v="wood"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="3673796620" version="1" timestamp="2015-07-30T18:04:41Z" lat="50.2454497" lon="13.9184799">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3674896825" version="1" timestamp="2015-07-31T12:51:47Z" lat="49.6438689" lon="15.3181261">
+    <tag k="name" v="Zeměměřická věž Melechov"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3717518639" version="2" timestamp="2015-08-27T21:32:51Z" lat="49.6184119" lon="17.6781652">
+    <tag k="name" v="Pozůstatky rozhledny hraběte Walderode"/>
+    <tag k="ruins" v="tower"/>
+    <tag k="historic" v="ruins"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3732248131" version="3" timestamp="2019-11-27T14:48:24Z" lat="49.3887467" lon="14.64318">
+    <tag k="name" v="Hýlačka"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12021223"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3741418730" version="1" timestamp="2015-09-13T15:20:19Z" lat="49.8192683" lon="18.54118">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3750925656" version="2" timestamp="2015-12-17T08:03:49Z" lat="50.0268376" lon="15.2013714">
+    <tag k="name" v="ROZHLEDNA /lookout tower"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3754680079" version="5" timestamp="2017-12-03T17:23:08Z" lat="50.2559857" lon="13.004394">
+    <tag k="name" v="Bučina rozhledna"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="direction" v="0-360"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3756236997" version="1" timestamp="2015-09-23T19:31:26Z" lat="50.5092133" lon="15.3683818">
+    <tag k="name" v="Rozhledna Tábor"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3808349560" version="3" timestamp="2019-09-23T14:17:22Z" lat="49.1428858" lon="17.3521718">
+    <tag k="name" v="rozhledna Salaš"/>
+    <tag k="height" v="20"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="metal"/>
+  </node>
+  <node id="3811023619" version="4" timestamp="2019-05-26T10:23:22Z" lat="49.4001069" lon="17.7654961">
+    <tag k="name" v="rozhledna Kelčský Javorník"/>
+    <tag k="height" v="35"/>
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3822348620" version="1" timestamp="2015-11-07T09:07:26Z" lat="48.8287637" lon="14.2256231">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3833983358" version="1" timestamp="2015-11-13T10:27:33Z" lat="49.1591047" lon="14.9396225">
+    <tag k="name" v="Rýdův kopec Děbolín"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3854120072" version="3" timestamp="2020-05-25T08:27:12Z" lat="48.7925481" lon="16.8185177">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3870547571" version="1" timestamp="2015-12-01T09:27:01Z" lat="48.9753924" lon="14.4720233">
+    <tag k="name" v="Bílá věž"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3928768587" version="1" timestamp="2016-01-05T14:14:54Z" lat="49.4829879" lon="17.3485761">
+    <tag k="name" v="Rozhledna Brodek"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3957689526" version="5" timestamp="2017-05-10T15:48:55Z" lat="48.8036201" lon="17.5447662">
+    <tag k="ele" v="530"/>
+    <tag k="name" v="Rozhľadňa Poľana"/>
+    <tag k="height" v="20"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="3968676764" version="2" timestamp="2017-01-06T16:00:05Z" lat="49.8808348" lon="12.8004979">
+    <tag k="name" v="Homole"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4064852793" version="7" timestamp="2019-08-25T21:37:19Z" lat="49.8795029" lon="15.5863818">
+    <tag k="ele" v="504"/>
+    <tag k="name" v="Vyhlídka Milada na Lichnici"/>
+    <tag k="height" v="13"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="2 vyhlídkové plošiny"/>
+  </node>
+  <node id="4086257559" version="1" timestamp="2016-03-30T10:01:43Z" lat="49.5591131" lon="14.2379108">
+    <tag k="name" v="Langova rozhledna"/>
+    <tag k="source" v="survey"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4095458046" version="6" timestamp="2016-09-15T12:59:47Z" lat="49.1828591" lon="15.850209">
+    <tag k="ele" v="570"/>
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Pekelný kopec"/>
+    <tag k="height" v="26.5"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="26 metrů vysoká rozhledna nabízí výhled na Třebíč a okolní krajinu. Její ocelová konstrukce je nápaditě obehnána dřevěnými čtverci. Vyhlídková věž má v sobě zakomponován i židovský symbol. Její půdorys připomíná Davidovu hvězdu."/>
+  </node>
+  <node id="4098470921" version="1" timestamp="2016-04-04T22:58:23Z" lat="48.814832" lon="16.7989659">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4127389838" version="1" timestamp="2016-04-17T06:37:01Z" lat="48.767845" lon="16.7369333">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4128480098" version="2" timestamp="2016-07-08T17:29:13Z" lat="49.854443" lon="13.8230973">
+    <tag k="name" v="Třenická hora"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4186886238" version="2" timestamp="2016-05-15T09:07:41Z" lat="48.8478024" lon="14.3271714">
+    <tag k="ele" v="750"/>
+    <tag k="name" v="Granátník"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="wheelchair" v="no"/>
+    <tag k="description" v="Dřevěná rozhledna na svahu kopce Granátník pod Kletí "/>
+  </node>
+  <node id="4217734593" version="2" timestamp="2019-06-12T07:08:25Z" lat="48.7602021" lon="14.0433348">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4220821666" version="3" timestamp="2018-05-05T15:41:50Z" lat="48.7301686" lon="16.7380274">
+    <tag k="name" v="Barfußweg Warte"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4284621842" version="2" timestamp="2016-10-31T10:01:15Z" lat="50.5283576" lon="14.7635139">
+    <tag k="name" v="Vyhlídková věž"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4303334108" version="1" timestamp="2016-07-14T20:30:20Z" lat="50.1513819" lon="17.0107516">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4315819954" version="2" timestamp="2017-05-05T19:19:38Z" lat="50.2039695" lon="12.8466222">
+    <tag k="name" v="Rozhledna Doubská hora"/>
+    <tag k="disused" v="yes"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="observation" v="landscape"/>
+  </node>
+  <node id="4317901992" version="1" timestamp="2016-07-24T07:00:04Z" lat="49.3549455" lon="17.3666684">
+    <tag k="name" v="ornitologická pozorovatelna"/>
+    <tag k="source" v="gps"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4323792354" version="1" timestamp="2016-07-27T18:28:45Z" lat="48.8755298" lon="15.8746723">
+    <tag k="name" v="Pozorovací věž"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4370220744" version="1" timestamp="2016-08-27T19:51:14Z" lat="49.0038927" lon="14.771666">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4382583746" version="1" timestamp="2016-09-03T20:04:57Z" lat="49.2473006" lon="16.5638518">
+    <tag k="name" v="Vyhlídkový posed"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:material" v="wood"/>
+  </node>
+  <node id="4418670552" version="2" timestamp="2019-08-22T12:07:44Z" lat="49.0641098" lon="13.3951135">
+    <tag k="name" v="Poledník"/>
+    <tag k="height" v="37"/>
+    <tag k="source" v="cuzk:km"/>
+    <tag k="name:de" v="Mittagsberg"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="http://www.npsumava.cz/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q20948911"/>
+    <tag k="wikipedia" v="cs:Poledník (rozhledna)"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4423418592" version="1" timestamp="2016-09-29T09:55:33Z" lat="49.3085046" lon="14.1769927">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4434278393" version="3" timestamp="2016-10-06T18:33:34Z" lat="49.3468243" lon="17.1823711">
+    <tag k="name" v="Vyhlídková plošina na kopci Kozlov"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4531832499" version="3" timestamp="2017-04-23T17:02:04Z" lat="50.01415" lon="17.0131315">
+    <tag k="ele" v="624"/>
+    <tag k="name" v="Rozhledna Bukovka"/>
+    <tag k="height" v="21.7"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_date" v="2016-11-26"/>
+    <tag k="year_of_construction" v="2016"/>
+  </node>
+  <node id="4552366096" version="1" timestamp="2016-12-13T13:46:54Z" lat="49.3982371" lon="17.9178166">
+    <tag k="source" v="survey"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="wooden_lattice"/>
+  </node>
+  <node id="4586528521" version="1" timestamp="2017-01-03T07:42:29Z" lat="49.7290932" lon="16.4084865">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4610429289" version="3" timestamp="2018-08-31T08:16:21Z" lat="49.3600857" lon="16.0261833">
+    <tag k="name" v="Rozhledna Fajtův kopec"/>
+    <tag k="name:cs" v="Rozhledna Fajtův kopec"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4634600674" version="3" timestamp="2018-07-19T17:10:00Z" lat="49.9031943" lon="18.1359438">
+    <tag k="ele" v="210"/>
+    <tag k="fee" v="no"/>
+    <tag k="url" v="http://rozhledny.webzdarma.cz/kozmice.htm"/>
+    <tag k="name" v="Ptačí pozorovatelna u Kozmic"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="4.5"/>
+    <tag k="leisure" v="bird_hide"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="building:material" v="wood"/>
+  </node>
+  <node id="4670728281" version="1" timestamp="2017-02-07T08:57:12Z" lat="49.6395443" lon="14.0021019">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4721592454" version="1" timestamp="2017-03-07T07:56:24Z" lat="49.8698238" lon="13.9580342">
+    <tag k="name" v="Zvonička"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4732836169" version="1" timestamp="2017-03-13T20:49:59Z" lat="50.713239" lon="15.1043968">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4786265225" version="1" timestamp="2017-04-10T13:35:59Z" lat="50.3775422" lon="15.6388061">
+    <tag k="name" v="Masarykova věž samostatnosti"/>
+    <tag k="height" v="25"/>
+    <tag k="tourism" v="attraction"/>
+    <tag k="website" v="http://muzeum.horice.org/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="wikidata" v="Q12035986"/>
+    <tag k="wikipedia" v="cs:Masarykova věž samostatnosti (rozhledna)"/>
+    <tag k="source:loc" v="survey"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4795098406" version="1" timestamp="2017-04-15T12:45:10Z" lat="49.5388897" lon="16.9716574">
+    <tag k="name" v="Pozorovatelna zvěře"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4795684128" version="1" timestamp="2017-04-15T19:57:39Z" lat="49.9695261" lon="12.718293">
+    <tag k="access" v="yes"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="building:material" v="wood"/>
+  </node>
+  <node id="4881089022" version="4" timestamp="2018-02-02T17:46:12Z" lat="49.7863035" lon="16.5826376">
+    <tag k="name" v="Strážný vrch"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4914286489" version="2" timestamp="2018-09-02T09:24:16Z" lat="50.3558608" lon="12.8393948">
+    <tag k="name" v="Plešivec"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="10:00-22:00"/>
+    <tag k="contact:website" v="https://hotelplesivec.cz/rozhledna"/>
+  </node>
+  <node id="4939185495" version="1" timestamp="2017-06-27T21:48:42Z" lat="49.9777028" lon="12.7167926">
+    <tag k="name" v="Kamzík"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4946015753" version="1" timestamp="2017-07-01T18:06:53Z" lat="48.8505317" lon="17.3316922">
+    <tag k="height" v="7"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="freestanding"/>
+  </node>
+  <node id="4965886274" version="1" timestamp="2017-07-12T10:56:26Z" lat="49.0799647" lon="15.4344458">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="4999927176" version="2" timestamp="2019-11-09T21:09:45Z" lat="50.2093003" lon="12.8450483">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5010970673" version="1" timestamp="2017-08-03T07:42:52Z" lat="50.090176" lon="14.4440073">
+    <tag k="height" v="10"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5034630508" version="3" timestamp="2019-03-30T06:13:48Z" lat="50.6310699" lon="15.7576521">
+    <tag k="name" v="Stezka korunami stromů Krkonoše"/>
+    <tag k="layer" v="2"/>
+    <tag k="height" v="45"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="https://www.stezkakrkonose.cz/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  <node id="5084479790" version="2" timestamp="2020-05-15T22:22:45Z" lat="49.4071096" lon="12.9242914">
+    <tag k="source" v="survey"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5109547651" version="2" timestamp="2017-09-17T10:36:08Z" lat="50.1222402" lon="17.3442297">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5125317323" version="2" timestamp="2017-09-26T15:50:46Z" lat="49.8108765" lon="18.0931876">
+    <tag k="name" v="Posed s vyhlídkou"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5171152100" version="5" timestamp="2020-03-30T15:25:29Z" lat="49.9350715" lon="18.3412958">
+    <tag k="name" v="Wieża widokowa Graniczne Meandry Odry"/>
+    <tag k="height" v="27"/>
+    <tag k="name:cs" v="Rozhledna Hraniční meandry Odry"/>
+    <tag k="name:en" v="Lookout Tower in the Odra River Meanders Area"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="direction" v="0-360"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="Szlakiem wież i platform widokowych Euroregionu Silesia"/>
+  </node>
+  <node id="5200495068" version="4" timestamp="2020-08-20T19:59:16Z" lat="49.6068243" lon="14.1984273">
+    <tag k="description" v="rozhledna / view tower"/>
+    <tag k="ele" v="489"/>
+    <tag k="email" v="info@rozhlednamilada.cz"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="name" v="Milada"/>
+    <tag k="note" v="entrance fee: 50 Kč"/>
+    <tag k="start_date" v="21 July 2017"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="website" v="https://www.vysokychlumec.eu/turisticke-zajimavosti-v-okoli/rozhledny/rozhledna-milada-vrch-krchov-milesov/"/>
+  </node>
+  <node id="5237283763" version="1" timestamp="2017-11-19T01:08:52Z" lat="49.7963381" lon="12.6122296">
+    <tag k="name" v="Vysoká"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="official_name" v="rozhledna Tachov Vysoká"/>
+  </node>
+  <node id="5314567224" version="1" timestamp="2018-01-01T11:06:23Z" lat="50.0310277" lon="15.1971756">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5363287302" version="2" timestamp="2020-03-25T20:55:05Z" lat="49.2125428" lon="17.2867647">
+    <tag k="ele" v="265"/>
+    <tag k="name" v="rozhledna Lebedov"/>
+    <tag k="height" v="9"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5421949218" version="1" timestamp="2018-02-19T08:09:04Z" lat="50.2332998" lon="14.8904762">
+    <tag k="height" v="4"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5421949222" version="2" timestamp="2018-08-21T13:14:55Z" lat="50.2337503" lon="14.8958174">
+    <tag k="height" v="4"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5596867163" version="1" timestamp="2018-05-04T16:42:32Z" lat="50.2486553" lon="15.874459">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5600092153" version="3" timestamp="2020-04-05T17:03:27Z" lat="50.215767" lon="15.8597633">
+    <tag k="access" v="private"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="Na soukromém pozemku - nepřístupná. Standa Adámek -&gt; Údajně to byla věž na sušení hadic v době, kdy na Slezském předměstí byli ještě dobrovolní hasiči. Nicméně to nemám ověřené."/>
+  </node>
+  <node id="5605218611" version="1" timestamp="2018-05-08T20:11:57Z" lat="49.0785505" lon="17.4445463">
+    <tag k="name" v="Jižní věž kostela"/>
+    <tag k="height" v="43"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5614563852" version="2" timestamp="2020-04-08T00:18:49Z" lat="48.9205484" lon="17.0217922">
+    <tag k="name" v="rozhledna Vyšicko"/>
+    <tag k="height" v="12"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="start_date" v="2018"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="sorting_name" v="Vyšicko"/>
+    <tag k="opening_hours" v="24/7"/>
+    <tag k="tower:construction" v="freestanding"/>
+  </node>
+  <node id="5643151463" version="2" timestamp="2018-05-27T18:05:04Z" lat="49.8163064" lon="17.6810306">
+    <tag k="name" v="Těchanovická vyhlídka"/>
+    <tag k="height" v="11.85"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="website" v="http://www.staretechanovice.cz/informace-o-obci/rozhledna/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="operator" v="Obec Staré Těchanovice"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5666025419" version="6" timestamp="2019-11-20T09:50:08Z" lat="50.0972501" lon="14.5573157">
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Doubravka XIV."/>
+    <tag k="height" v="23.5"/>
+    <tag k="aeroway" v="windsock"/>
+    <tag k="alt_name" v="Doubravka 14"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="material" v="wood"/>
+    <tag k="direction" v="0-359"/>
+    <tag k="start_date" v="2018-06-15"/>
+    <tag k="step_count" v="98"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="artist_name" v="Martin Rajniš"/>
+    <tag k="tower:construction" v="treillis"/>
+  </node>
+  <node id="5749503416" version="1" timestamp="2018-07-09T13:52:54Z" lat="49.9706994" lon="15.2849609">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5794499549" version="1" timestamp="2018-07-29T21:13:47Z" lat="50.9347634" lon="15.0766813">
+    <tag k="name" v="Frýdlantská výšina"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5842382882" version="1" timestamp="2018-08-19T19:38:37Z" lat="50.4549458" lon="15.6945704">
+    <tag k="name" v="Zvičina"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5843932429" version="2" timestamp="2019-09-16T06:47:07Z" lat="49.840124" lon="16.062474">
+    <tag k="name" v="Borůvka"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5860405088" version="1" timestamp="2018-08-27T07:38:33Z" lat="50.190117" lon="15.5309748">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5860408385" version="1" timestamp="2018-08-27T07:42:11Z" lat="50.0712354" lon="15.0647013">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5860408398" version="1" timestamp="2018-08-27T07:42:11Z" lat="50.0702674" lon="15.0631149">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5908161888" version="2" timestamp="2019-09-15T06:48:44Z" lat="50.2343642" lon="12.201316">
+    <tag k="ruins" v="yes"/>
+    <tag k="access" v="no"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="bývalá dřevěná věž místního hobby rádia"/>
+    <tag k="description:de" v="ehemaliger Holzturm der ortsansässigen Hobby-Funker"/>
+  </node>
+  <node id="5953148383" version="1" timestamp="2018-10-04T06:48:03Z" lat="50.2273292" lon="16.2886723">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5967265460" version="1" timestamp="2018-10-08T19:11:31Z" lat="49.4611298" lon="16.8783916">
+    <tag k="building" v="yes"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="5994920671" version="1" timestamp="2018-10-18T08:29:21Z" lat="49.3046129" lon="14.2184376">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6017636062" version="5" timestamp="2020-07-19T14:29:17Z" lat="48.9274334" lon="16.9076574">
+    <tag k="name" v="Stezka nad vinohrady"/>
+    <tag k="tourism" v="yes"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="wheelchair" v="yes"/>
+    <tag k="addr:street" v="U šlechtitelky"/>
+    <tag k="tower:construction" v="tower,_wood_pathway,_steel"/>
+  </node>
+  <node id="6089743647" version="1" timestamp="2018-11-25T11:02:07Z" lat="50.5347939" lon="15.2746396">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="Soukromá stavba. Výška 6 m., materiál modřín, smrk."/>
+  </node>
+  <node id="6165426826" version="2" timestamp="2019-04-27T06:44:46Z" lat="49.9933885" lon="17.652805">
+    <tag k="fee" v="no"/>
+    <tag k="name" v="Rozhledna Sosnová"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="25"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+    <tag k="tower:construction" v="wood"/>
+  </node>
+  <node id="6173093686" version="2" timestamp="2018-12-30T19:30:54Z" lat="50.0451068" lon="15.1370137">
+    <tag k="name" v="Bedřichova vyhlídka"/>
+    <tag k="access" v="yes"/>
+    <tag k="height" v="14"/>
+    <tag k="website" v="https://bedrichovavyhlidka.cz/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="operator" v="Obec Nová Ves I"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="freestanding"/>
+  </node>
+  <node id="6200525520" version="1" timestamp="2019-01-11T09:52:52Z" lat="49.0295861" lon="17.1845503">
+    <tag k="name" v="Rozhledna Johanka u Hýsly"/>
+    <tag k="height" v="11"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6207213306" version="1" timestamp="2019-01-14T08:43:29Z" lat="49.728572" lon="18.4625432">
+    <tag k="name" v="Rozhledna Soběšovice"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6375662553" version="1" timestamp="2019-04-01T11:01:44Z" lat="49.8480448" lon="18.5174172">
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6402213733" version="1" timestamp="2019-04-13T13:36:57Z" lat="48.9524394" lon="16.1041555">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6402287610" version="1" timestamp="2019-04-13T14:21:57Z" lat="49.6833977" lon="14.9245664">
+    <tag k="note" v="nepřístupná / not accessible"/>
+    <tag k="height" v="20"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="lattice_steel"/>
+  </node>
+  <node id="6423902410" version="1" timestamp="2019-04-23T17:06:11Z" lat="50.1704321" lon="16.8989642">
+    <tag k="name" v="Vyhlídková věž"/>
+    <tag k="height" v="35"/>
+    <tag k="website" v="https://rozhlednanakralicaku.cz/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="operator" v="SKI &amp; BIKE BOX Centrum"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="6487723263" version="1" timestamp="2019-05-21T10:31:44Z" lat="49.9223599" lon="16.5741344">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="Hláska_na_Kypuši"/>
+  </node>
+  <node id="6553999603" version="1" timestamp="2019-06-17T21:17:41Z" lat="50.4323417" lon="15.7893672">
+    <tag k="name" v="Vyhlídka na lví výběh"/>
+    <tag k="height" v="5"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="tower"/>
+  </node>
+  <node id="6579788523" version="1" timestamp="2019-06-30T11:55:40Z" lat="49.4933817" lon="18.2679214">
+    <tag k="name" v="Stezka Valaška"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="material" v="wood"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6612737898" version="1" timestamp="2019-07-14T09:00:47Z" lat="49.200859" lon="17.3875393">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6614866196" version="2" timestamp="2020-07-13T17:11:02Z" lat="48.9120531" lon="14.0128564">
+    <tag k="name" v="Křišťanov"/>
+    <tag k="height" v="6"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6654503249" version="1" timestamp="2019-07-28T07:35:55Z" lat="48.7397009" lon="14.5401246">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6711637373" version="1" timestamp="2019-08-15T08:11:38Z" lat="49.2842928" lon="15.9468385">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6757767170" version="1" timestamp="2019-08-29T18:49:55Z" lat="50.2441111" lon="17.1896237">
+    <tag k="name" v="Obří Výhledna"/>
+    <tag k="tourism" v="attraction"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6758665981" version="1" timestamp="2019-08-30T06:27:34Z" lat="49.8031948" lon="17.9841216">
+    <tag k="ele" v="462"/>
+    <tag k="name" v="Rozhledna Slatina"/>
+    <tag k="tourism" v="viewpoint"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="direction" v="0-360"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6904699942" version="2" timestamp="2019-10-26T13:05:28Z" lat="49.1036081" lon="17.4106662">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6925642946" version="1" timestamp="2019-10-28T21:32:13Z" lat="50.3014156" lon="16.3977288">
+    <tag k="height" v="18"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="6958641842" version="5" timestamp="2020-02-21T16:25:30Z" lat="49.1230774" lon="14.1168408">
+    <tag k="name" v="Vyhlídková věž Haniperk - Svobodné Hory"/>
+    <tag k="height" v="24.5"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="operator" v="Město Vodňany"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+  </node>
+  <node id="7073387280" version="1" timestamp="2019-12-20T21:09:28Z" lat="49.7055603" lon="18.5317207">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="7091256024" version="1" timestamp="2019-12-28T19:09:42Z" lat="50.1949568" lon="16.9807512">
+    <tag k="name" v="Dalimilova rozhledna"/>
+    <tag k="height" v="33.5"/>
+    <tag k="website" v="dalimilovarozhledna.cz"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="7149623833" version="1" timestamp="2020-01-21T19:26:26Z" lat="49.8725951" lon="13.6761145">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="7184284590" version="1" timestamp="2020-02-04T13:33:20Z" lat="49.5342067" lon="13.1219449">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="7184284591" version="1" timestamp="2020-02-04T13:33:20Z" lat="49.5874662" lon="13.1877257">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="7256337815" version="1" timestamp="2020-03-01T21:05:34Z" lat="50.274114" lon="14.2579611">
+    <tag k="height" v="4"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="7256337816" version="1" timestamp="2020-03-01T21:05:34Z" lat="50.2728906" lon="14.2509151">
+    <tag k="height" v="4"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="7391711159" version="1" timestamp="2020-04-11T09:42:20Z" lat="50.3426658" lon="15.8943065">
+    <tag k="access" v="no"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="Původně vojenská pozorovatelna. Nyní v dezolátním stavu od vandalů."/>
+  </node>
+  <node id="7398882180" version="1" timestamp="2020-04-13T15:59:54Z" lat="50.5306565" lon="15.3482755">
+    <tag k="name" v="Vyhlídková věž na skokanském můstku"/>
+    <tag k="height" v="28"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="opening_hours" v="24/7"/>
+    <tag k="tower:construction" v="metal"/>
+  </node>
+  <node id="7476573387" version="1" timestamp="2020-05-03T17:31:50Z" lat="50.4866695" lon="16.2298298">
+    <tag k="name" v="Turistická rozhledna Vysoká Srbská"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="steel"/>
+  </node>
+  <node id="7500423503" version="1" timestamp="2020-05-09T09:24:40Z" lat="49.6180775" lon="13.6133767">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+  <node id="7512345353" version="1" timestamp="2020-05-12T20:38:28Z" lat="50.4448165" lon="15.3603683">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="tower"/>
+  </node>
+  <node id="7528595017" version="1" timestamp="2020-05-17T10:39:55Z" lat="50.5634575" lon="16.1444055">
+    <tag k="name" v="Rozhledna Lenka"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="wood"/>
+  </node>
+  <node id="7599874199" version="1" timestamp="2020-06-07T11:47:09Z" lat="50.3784766" lon="16.3174286">
+    <tag k="height" v="30"/>
+    <tag k="website" v="http://www.olesnice.net/volny-cas/rozhledna/"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="description" v="Rozhledna na Feistově kopci. Celková její výška bude 30 metrů, nadzemní část má čtvercový půdorys s osmiúhelníkovou otevřenou vyhlídkovou plošinou, nacházející se v sedmém patře."/>
+  </node>
+  <node id="7694152648" version="1" timestamp="2020-07-08T07:28:53Z" lat="49.1804228" lon="15.4680392">
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="lattice"/>
+  </node>
+  <node id="7776177638" version="1" timestamp="2020-08-01T19:51:28Z" lat="49.5169973" lon="16.5136511">
+    <tag k="name" v="Burianova rozhledna (Milena)"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="stone"/>
+  </node>
+  <node id="7778804464" version="1" timestamp="2020-08-02T18:37:56Z" lat="48.9911755" lon="13.8174514">
+    <tag k="name" v="Boubínská rozhledna"/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+    <tag k="tower:construction" v="wood"/>
+  </node>
+  <node id="7857461610" version="1" timestamp="2020-08-29T20:01:24Z" lat="49.6219704" lon="16.8700069">
+    <tag k="access" v="private"/>
+    <tag k="description" v="V roce 2009 se podařilo vztyčit vidovou hlásku (tzv. &quot;špak - špačkárna&quot;), která byla zakoupena z vojenského objektu u Jihlavy."/>
+    <tag k="man_made" v="tower"/>
+    <tag k="tower:type" v="observation"/>
+  </node>
+</osm>
