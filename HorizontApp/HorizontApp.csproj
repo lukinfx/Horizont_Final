@@ -86,7 +86,6 @@
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="AppContext\AppContextLiveData.cs" />
     <Compile Include="AppContext\AppContextStaticData.cs" />
-    <Compile Include="DataAccess\PhotosDatabase.cs" />
     <Compile Include="DataAccess\PoiDatabase.cs" />
     <Compile Include="HorizontApplication.cs" />
     <Compile Include="Activities\MainActivity.cs" />

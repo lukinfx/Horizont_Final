@@ -92,7 +92,7 @@ namespace HorizontApp.Utilities
                 finally
                 {
                     _Image.Close();
-                    PoiDatabase photoDatabase = new PoiDatabase();
+                    PoiDatabase poiDatabase = new PoiDatabase();
                     string jsonCategories = JsonConvert.SerializeObject(_context.Settings.Categories);
 
                     PhotoData photodata = new PhotoData
@@ -109,14 +109,15 @@ namespace HorizontApp.Utilities
                         ViewAngleHorizontal = _context.Settings.ViewAngleHorizontal,
                         MinAltitude = _context.Settings.MinAltitute,
                         MaxDistance = _context.Settings.MaxDistance,
-                        FavouriteFilter = _context.Settings.ShowFavoritesOnly
+                        FavouriteFilter = _context.Settings.ShowFavoritesOnly,
+                        ShowElevationProfile = _context.Settings.ShowElevationProfile
                     };
                     if (_context.ElevationProfileData != null && _context.ElevationProfileDataDistance.HasValue)
                     {
                         photodata.MaxElevationProfileDataDistance = _context.ElevationProfileDataDistance.Value;
                         photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
                     }
-                    photoDatabase.InsertItem(photodata); 
+                    poiDatabase.InsertItem(photodata); 
                 }
             }
         }

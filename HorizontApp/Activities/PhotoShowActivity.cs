@@ -112,6 +112,7 @@ namespace HorizontApp.Activities
                 AppContextLiveData.Instance.Settings.CameraPictureSize.Width, AppContextLiveData.Instance.Settings.CameraPictureSize.Height);
             _context.Settings.MaxDistance = Convert.ToInt32(photodata.MaxDistance);
             _context.Settings.MinAltitute = Convert.ToInt32(photodata.MinAltitude);
+            _context.Settings.ShowElevationProfile = photodata.ShowElevationProfile;
 
             _filterText = FindViewById<TextView>(Resource.Id.textView1);
 
@@ -181,14 +182,13 @@ namespace HorizontApp.Activities
                 null, TimeSpan.FromSeconds(0.1), TimeSpan.FromMilliseconds(-1));
 
             System.Threading.Tasks.Task.Run(() => { _context.ReloadData(); });
-
         }
 
         private void LoadImageAndProfile()
         {
             LoadImage(photodata.PhotoFileName);
 
-            if (AppContextLiveData.Instance.Settings.AutoElevationProfile)
+            if (_context.Settings.ShowElevationProfile)
             {
                 if (photodata.JsonElevationProfileData != null)
                 {
@@ -357,6 +357,7 @@ namespace HorizontApp.Activities
                         photodata.LeftTiltCorrector = _compassView.GetTiltSettings().Item1;
                         photodata.RightTiltCorrector = _compassView.GetTiltSettings().Item2;
                         photodata.Heading = _context.Heading + _compassView.HeadingCorrector;
+                        photodata.ShowElevationProfile = _context.Settings.ShowElevationProfile;
                         if (_context.ElevationProfileData != null)
                             photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
                         Database.UpdateItem(photodata);
@@ -459,11 +460,26 @@ namespace HorizontApp.Activities
         private void HandleDisplayTarrainButtonClicked()
         {
             _context.Settings.ShowElevationProfile = !_context.Settings.ShowElevationProfile;
-            if (_context.Settings.ShowElevationProfile && (_context.ElevationProfileData == null || _context.ElevationProfileDataDistance < _context.Settings.MaxDistance) && _elevationProfileBeingGenerated == false)
-            {
-                GenerateElevationProfile();
-            }
             _displayTerrainButton.SetImageResource(_context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
+
+            CheckAndReloadElevationProfile();
+        }
+
+        private void CheckAndReloadElevationProfile()
+        {
+            if (_context.Settings.ShowElevationProfile)
+            {
+                if (GpsUtils.HasAltitude(_context.MyLocation))
+                {
+                    if (_elevationProfileBeingGenerated == false)
+                    {
+                        if (_context.ElevationProfileData == null || !_context.ElevationProfileData.IsValid(_context.MyLocation, _context.Settings.MaxDistance))
+                        {
+                            GenerateElevationProfile();
+                        }
+                    }
+                }
+            }
         }
 
         private void GenerateElevationProfile()
