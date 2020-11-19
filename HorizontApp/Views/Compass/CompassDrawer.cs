@@ -1,4 +1,5 @@
 ﻿using Android.Graphics;
+using HorizonLib.Domain.Enums;
 using HorizontLib.Domain.ViewModel;
 using HorizontLib.Utilities;
 
@@ -14,6 +15,7 @@ namespace HorizontApp.Views.Compass
         protected Paint textpaintPartialyVisible;
         protected float adjustedViewAngleHorizontal;
         protected float adjustedViewAngleVertical;
+        protected float multiplier;
 
         public CompassViewDrawer()
         {
@@ -47,12 +49,43 @@ namespace HorizontApp.Views.Compass
             textpaintPartialyVisible.SetARGB(120, 200, 255, 0);
             textpaintPartialyVisible.TextSize = 36;
             textpaintPartialyVisible.SetTypeface(normal);
+
+            multiplier = 1;
         }
 
-        public virtual void Initialize(float viewAngleHorizontal, float viewAngleVertical)
+        protected Paint GetTextPaint(PoiViewItem item)
         {
+            return item.Visibility == Visibility.Visible ? textpaint : textpaintPartialyVisible;
+        }
+
+        protected Paint GetPaint(PoiViewItem item)
+        {
+            return item.Visibility == Visibility.Visible ? paintVisible : paintPartialyVisible;
+        }
+
+        protected Paint GetRectPaint(PoiViewItem item)
+        {
+            return item.Visibility == Visibility.Visible ? paintRect : paintRectPartialyVisible;
+        }
+
+        protected float ToPixels(float dpi)
+        {
+            return multiplier * dpi;
+        }
+
+        public virtual void Initialize(float viewAngleHorizontal, float viewAngleVertical, float multiplier)
+        {
+            this.multiplier = multiplier;
             adjustedViewAngleHorizontal = viewAngleHorizontal;
             adjustedViewAngleVertical = viewAngleVertical;
+
+            paintVisible.StrokeWidth = ToPixels(4);
+            paintPartialyVisible.StrokeWidth = ToPixels(4);
+            paintRect.StrokeWidth = ToPixels(4);
+            paintRectPartialyVisible.StrokeWidth = ToPixels(4);
+
+            textpaint.TextSize = ToPixels(36);
+            textpaintPartialyVisible.TextSize = ToPixels(36);
         }
 
         public virtual double GetMinItemAngleDiff(int canvasWidth) { return 0; }

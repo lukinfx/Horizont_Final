@@ -11,6 +11,7 @@ using HorizontApp.Views.Compass;
 using HorizontApp.AppContext;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
 using System.Runtime.InteropServices.ComTypes;
+using System;
 
 namespace HorizontApp.Views
 {
@@ -40,7 +41,7 @@ namespace HorizontApp.Views
             }
         }
 
-        private CompassViewDrawer compassViewDrawer;
+        private CompassViewDrawer compassViewDrawer = new CompassViewDrawer();
         private ElevationProfileBitmapDrawer elevationProfileBitmapDrawer;
 
 
@@ -79,7 +80,15 @@ namespace HorizontApp.Views
 
         public void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
-            InitializeViewDrawer();
+            InitializeViewDrawer(new Size(this.Width, this.Height));
+        }
+
+        protected override void OnLayout(bool changed, int left, int top, int right, int bottom)
+        {
+            base.OnLayout(changed, left, top, right, bottom);
+
+            var compassViewSize = new Size(this.Width, this.Height);
+            InitializeViewDrawer(compassViewSize);
         }
 
         public void Initialize(IAppContext context)
@@ -92,13 +101,12 @@ namespace HorizontApp.Views
             _paint = new Paint();
             _paint.SetARGB(255, 255, 255, 0);
             _paint.SetStyle(Paint.Style.Stroke);
-            _paint.StrokeWidth = 3; 
-            
-            InitializeViewDrawer();
+            _paint.StrokeWidth = 3;
         }
 
-        private void InitializeViewDrawer()
+        public void InitializeViewDrawer(Size compassViewSize)
         {
+
             switch (_context.Settings.AppStyle)
                 {
                     case AppStyles.EachPoiSeparate:
@@ -120,13 +128,14 @@ namespace HorizontApp.Views
 
             var (adjustedViewAngleHorizontal, adjustedViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
                 _context.Settings.ViewAngleHorizontal, _context.Settings.ViewAngleVertical,
-                new System.Drawing.Size(this.Width, this.Height), 
+                new System.Drawing.Size(compassViewSize.Width, compassViewSize.Height), 
                 _context.Settings.CameraPictureSize);
 
             Log.WriteLine(LogPriority.Debug, TAG, $"ViewAngle: {_context.Settings.ViewAngleHorizontal:F1}/{_context.Settings.ViewAngleVertical:F1}");
             Log.WriteLine(LogPriority.Debug, TAG, $"AdjustedViewAngle: {adjustedViewAngleHorizontal:F1}/{adjustedViewAngleVertical:F1}");
 
-            compassViewDrawer.Initialize(adjustedViewAngleHorizontal, adjustedViewAngleVertical);
+            float multiplier = (float)Math.Sqrt(compassViewSize.Width * compassViewSize.Height / 2000000.0);
+            compassViewDrawer.Initialize(adjustedViewAngleHorizontal, adjustedViewAngleVertical, multiplier);
             elevationProfileBitmapDrawer.Initialize(adjustedViewAngleHorizontal, adjustedViewAngleVertical);
         }
 

@@ -154,7 +154,6 @@ namespace HorizontApp.Activities
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.Initialize(_context);
 
-
             if (photodata.LeftTiltCorrector.HasValue && photodata.RightTiltCorrector.HasValue)
             {
                 _compassView.OnScroll((float)-photodata.LeftTiltCorrector.Value, true);
@@ -396,7 +395,11 @@ namespace HorizontApp.Activities
             Canvas canvas = new Canvas(bmp);
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo100px);
 
-            _compassView.Draw(canvas);
+            var compassView = new CompassView(ApplicationContext, null);
+            compassView.Initialize(_context);
+            compassView.InitializeViewDrawer(new Size(dstBmp.Width, dstBmp.Height));
+            compassView.Draw(canvas);
+
             canvas.DrawBitmap(logoBmp, canvas.Width - logoBmp.Width - 40, canvas.Height - logoBmp.Height - 40, null);
             var photoname = "export" +
                 "" + photodata.PhotoFileName;
@@ -435,7 +438,11 @@ namespace HorizontApp.Activities
             Canvas canvas = new Canvas(bmp);
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo100px);
 
-            _compassView.Draw(canvas);
+            var compassView = new CompassView(ApplicationContext, null);
+            compassView.Initialize(_context);
+            compassView.InitializeViewDrawer(new Size(dstBmp.Width, dstBmp.Height));
+            compassView.Draw(canvas);
+
             canvas.DrawBitmap(logoBmp, canvas.Width - logoBmp.Width - 40, canvas.Height - logoBmp.Height - 40, null);
 
             var filename = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), "tmpHorizon.jpg");

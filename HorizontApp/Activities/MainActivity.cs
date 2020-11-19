@@ -179,6 +179,7 @@ namespace HorizontApp
             _refreshCorrectorButton.SetOnClickListener(this);
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
+            _compassView.Initialize(Context);
 
             _mainLayout = FindViewById(Resource.Id.sample_main_layout);
 
@@ -187,7 +188,6 @@ namespace HorizontApp
         protected override void OnStart()
         {
             base.OnStart();
-            _compassView.Initialize(Context);
 
             Android.Content.Context ctx = this;
             if (_firstStart && !Context.Database.IsAnyDownloadedPois())
