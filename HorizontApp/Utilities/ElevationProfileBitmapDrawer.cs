@@ -63,7 +63,7 @@ namespace HorizontApp.Utilities
                             {
                                 if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value) <= point.Distance.Value / 12)
                                 {
-                                    var y1 = otherPoint.VerticalViewAngle.Value;
+                                    var y1 = point.VerticalViewAngle.Value;
                                     var x1 = (float)point.Bearing.Value;
 
                                     var y2 = otherPoint.VerticalViewAngle.Value;
