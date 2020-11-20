@@ -393,14 +393,16 @@ namespace HorizontApp.Activities
         {
             var bmp = Bitmap.CreateBitmap(dstBmp);
             Canvas canvas = new Canvas(bmp);
-            var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo100px);
+            var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
             compassView.Initialize(_context);
             compassView.InitializeViewDrawer(new Size(dstBmp.Width, dstBmp.Height));
             compassView.Draw(canvas);
 
-            canvas.DrawBitmap(logoBmp, canvas.Width - logoBmp.Width - 40, canvas.Height - logoBmp.Height - 40, null);
+
+            var logoWidth = Convert.ToInt32(0.2 * canvas.Width);
+            canvas.DrawBitmap(logoBmp, new Rect(0, 0, logoBmp.Width, logoBmp.Height), new Rect(canvas.Width - logoWidth, canvas.Height - logoWidth * 2 / 3, canvas.Width, canvas.Height), null);
             var photoname = "export" +
                 "" + photodata.PhotoFileName;
             var filename = System.IO.Path.Combine(ImageSaver.GetPublicPhotosFileFolder(), photoname);
@@ -436,14 +438,16 @@ namespace HorizontApp.Activities
         {
             var bmp = Bitmap.CreateBitmap(dstBmp);
             Canvas canvas = new Canvas(bmp);
-            var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo100px);
+            var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
             compassView.Initialize(_context);
             compassView.InitializeViewDrawer(new Size(dstBmp.Width, dstBmp.Height));
             compassView.Draw(canvas);
 
-            canvas.DrawBitmap(logoBmp, canvas.Width - logoBmp.Width - 40, canvas.Height - logoBmp.Height - 40, null);
+            var logoWidth = Convert.ToInt32(0.2 * canvas.Width);
+            canvas.DrawBitmap(logoBmp, new Rect(0, 0, logoBmp.Width, logoBmp.Height), new Rect(canvas.Width - logoWidth, canvas.Height  - logoWidth * 2 / 3, canvas.Width, canvas.Height), null);
+            //canvas.DrawBitmap(logoBmp, canvas.Width - logoBmp.Width - 40, canvas.Height - logoBmp.Height - 40, null);
 
             var filename = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), "tmpHorizon.jpg");
 
