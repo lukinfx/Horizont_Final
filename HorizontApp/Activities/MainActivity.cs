@@ -244,14 +244,10 @@ namespace HorizontApp
                             Context.ToggleCompassPaused();
                             if (Context.CompassPaused)
                             {
-                                _recordButton.Enabled = false;
-                                _recordButton.Visibility = ViewStates.Invisible;
                                 _pauseButton.SetImageResource(Resource.Drawable.ic_pause_on);
                             }
                             else
                             {
-                                _recordButton.Enabled = true;
-                                _recordButton.Visibility = ViewStates.Visible;
                                 _pauseButton.SetImageResource(Resource.Drawable.ic_pause);
                             }
                             break;
