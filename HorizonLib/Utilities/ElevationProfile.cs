@@ -61,7 +61,7 @@ namespace HorizontLib.Utilities
                     }
 
 
-                    if (Math.Abs(point.Distance.Value - lastPoint.Distance.Value) < 500 || Math.Abs(lastAddedPoint.VerticalViewAngle.Value-point.VerticalViewAngle.Value) < 0.05) 
+                    if (lastPoint.Distance.Value - point.Distance.Value < 500)// || lastAddedPoint.VerticalViewAngle.Value-point.VerticalViewAngle.Value <= 0.00) 
                     {
                         lastPoint = point;
                         continue;

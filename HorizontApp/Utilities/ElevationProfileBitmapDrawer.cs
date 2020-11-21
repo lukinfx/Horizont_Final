@@ -82,7 +82,7 @@ namespace HorizontApp.Utilities
         {
             if (_context.ListOfProfileLines != null)
             {
-                Paint paint = new Paint();
+                //Paint paint = new Paint();
                 Paint paint2 = new Paint();
                 float offset = 5;
 
@@ -97,8 +97,8 @@ namespace HorizontApp.Utilities
                     {
                         alpha = 255 - ((line.distance / 1000) / _context.Settings.MaxDistance) / 2 * 400;
                     }
-                    paint.SetARGB((int)alpha, 255, 255, 100 );
-                    paint.StrokeWidth = 5;
+                    //paint.SetARGB((int)alpha, 255, 255, 100 );
+                    //paint.StrokeWidth = 5;
 
                     paint2.SetARGB((int)alpha, 50, 50, 0);
                     paint2.StrokeWidth = 5;
