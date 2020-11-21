@@ -19,6 +19,7 @@ namespace HorizontApp.Activities
 {
     public class PoiFilterDialog : Dialog, IOnClickListener
     {
+        private PoiCategory[] supportedCategories = new PoiCategory[] { PoiCategory.Historic, PoiCategory.Mountains, PoiCategory.Churches, PoiCategory.Cities, PoiCategory.Lakes, PoiCategory.Other, PoiCategory.Transmitters, PoiCategory.ViewTowers };
         private Dictionary<PoiCategory, ImageButton> _imageButtonCategoryFilter = new Dictionary<PoiCategory, ImageButton>();
         private IAppContext _context;
         public PoiFilterDialog(Context context, IAppContext Context) : base(context)
@@ -52,10 +53,10 @@ namespace HorizontApp.Activities
         {
             InitializeCategoryFilterButton(Resource.Id.imageButtonSelectMountain);
             InitializeCategoryFilterButton(Resource.Id.imageButtonSelectLake);
-            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectCastle);
-            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectPalace);
+            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectCity);
+            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectOther);
             InitializeCategoryFilterButton(Resource.Id.imageButtonSelectTransmitter);
-            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectRuins);
+            InitializeCategoryFilterButton(Resource.Id.imageButtonSelectHistoric);
             InitializeCategoryFilterButton(Resource.Id.imageButtonSelectViewtower);
             InitializeCategoryFilterButton(Resource.Id.imageButtonSelectChurch);
 
@@ -76,10 +77,10 @@ namespace HorizontApp.Activities
                 {
                     case Resource.Id.imageButtonSelectMountain:
                     case Resource.Id.imageButtonSelectLake:
-                    case Resource.Id.imageButtonSelectCastle:
-                    case Resource.Id.imageButtonSelectPalace:
+                    case Resource.Id.imageButtonSelectCity:
+                    case Resource.Id.imageButtonSelectOther:
                     case Resource.Id.imageButtonSelectTransmitter:
-                    case Resource.Id.imageButtonSelectRuins:
+                    case Resource.Id.imageButtonSelectHistoric:
                     case Resource.Id.imageButtonSelectViewtower:
                     case Resource.Id.imageButtonSelectChurch:
                         OnCategoryFilterChanged(v.Id);
@@ -119,8 +120,7 @@ namespace HorizontApp.Activities
 
         private void OnCategoryFilterSelectAll()
         {
-            IEnumerable<PoiCategory> a = (IEnumerable<PoiCategory>)System.Enum.GetValues(typeof(PoiCategory));
-            foreach (var category in a)
+            foreach (var category in supportedCategories)
             {
                 if (_context.Settings.Categories.Contains(category))
                 {
@@ -140,8 +140,11 @@ namespace HorizontApp.Activities
         {
             foreach (var category in _context.Settings.Categories)
             {
-                var imageButton = _imageButtonCategoryFilter[category];
-                imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, false));
+                if (supportedCategories.Contains(category))
+                {
+                    var imageButton = _imageButtonCategoryFilter[category];
+                    imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, false));
+                }
             }
 
             _context.Settings.Categories.Clear();

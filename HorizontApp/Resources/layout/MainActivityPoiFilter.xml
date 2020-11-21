@@ -29,7 +29,16 @@
           android:columnCount="4"
           android:background="#E0808080"
           android:orientation="horizontal">
-      
+                <ImageButton
+                  android:layout_columnWeight="1"
+                  android:src="@drawable/c_mountain"
+                  android:layout_height="60dp"
+                  android:layout_gravity="bottom"
+                  android:adjustViewBounds="true"
+                  android:scaleType="fitCenter"
+                  android:padding="5dp"
+                  android:background="#00000000"
+                  android:id="@+id/imageButtonSelectMountain" />
                 <ImageButton
                   android:src="@drawable/c_castle"
                   android:layout_columnWeight="1"
@@ -39,7 +48,7 @@
                   android:scaleType="fitCenter"
                   android:padding="5dp"
                   android:background="#00000000"
-                  android:id="@+id/imageButtonSelectCastle" />
+                  android:id="@+id/imageButtonSelectHistoric" />
                 <ImageButton
                   android:src="@drawable/c_church"
                   android:layout_columnWeight="1"
@@ -62,34 +71,14 @@
                   android:id="@+id/imageButtonSelectLake" />
                 <ImageButton
                   android:layout_columnWeight="1"
-                  android:src="@drawable/c_mountain"
+                  android:src="@drawable/c_city"
                   android:layout_height="60dp"
                   android:layout_gravity="bottom"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
                   android:padding="5dp"
                   android:background="#00000000"
-                  android:id="@+id/imageButtonSelectMountain" />
-                <ImageButton
-                  android:layout_columnWeight="1"
-                  android:src="@drawable/c_palace"
-                  android:layout_height="60dp"
-                  android:layout_gravity="bottom"
-                  android:adjustViewBounds="true"
-                  android:scaleType="fitCenter"
-                  android:padding="5dp"
-                  android:background="#00000000"
-                  android:id="@+id/imageButtonSelectPalace" />
-                <ImageButton
-                  android:layout_columnWeight="1"
-                  android:src="@drawable/c_ruins"
-                  android:layout_height="60dp"
-                  android:layout_gravity="bottom"
-                  android:adjustViewBounds="true"
-                  android:scaleType="fitCenter"
-                  android:padding="5dp"
-                  android:background="#00000000"
-                  android:id="@+id/imageButtonSelectRuins" /> 
+                  android:id="@+id/imageButtonSelectCity" />
                 <ImageButton
                   android:layout_columnWeight="1"
                   android:src="@drawable/c_transmitter"
@@ -110,6 +99,16 @@
                   android:padding="5dp"
                   android:background="#00000000"
                   android:id="@+id/imageButtonSelectViewtower" />
+                <ImageButton
+                  android:layout_columnWeight="1"
+                  android:src="@drawable/c_other"
+                  android:layout_height="60dp"
+                  android:layout_gravity="bottom"
+                  android:adjustViewBounds="true"
+                  android:scaleType="fitCenter"
+                  android:padding="5dp"
+                  android:background="#00000000"
+                  android:id="@+id/imageButtonSelectOther" /> 
         </GridLayout>
         <LinearLayout android:orientation="horizontal"
                   android:layout_width="match_parent"

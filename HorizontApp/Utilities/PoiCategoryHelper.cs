@@ -9,18 +9,18 @@ namespace HorizontApp.Utilities
         {
             switch (buttonResourceId)
             {
-                case Resource.Id.imageButtonSelectCastle:
-                    return PoiCategory.Castles;
+                case Resource.Id.imageButtonSelectHistoric:
+                    return PoiCategory.Historic;
+                case Resource.Id.imageButtonSelectCity:
+                    return PoiCategory.Cities;
+                case Resource.Id.imageButtonSelectOther:
+                    return PoiCategory.Other;
                 case Resource.Id.imageButtonSelectMountain:
                     return PoiCategory.Mountains;
                 case Resource.Id.imageButtonSelectLake:
                     return PoiCategory.Lakes;
                 case Resource.Id.imageButtonSelectViewtower:
                     return PoiCategory.ViewTowers;
-                case Resource.Id.imageButtonSelectPalace:
-                    return PoiCategory.Palaces;
-                case Resource.Id.imageButtonSelectRuins:
-                    return PoiCategory.Ruins;
                 case Resource.Id.imageButtonSelectTransmitter:
                     return PoiCategory.Transmitters;
                 case Resource.Id.imageButtonSelectChurch:
@@ -40,18 +40,18 @@ namespace HorizontApp.Utilities
         {
             switch (category)
             {
-                case PoiCategory.Castles:
+                case PoiCategory.Historic:
                     return enabled ? Resource.Drawable.c_castle : Resource.Drawable.c_castle_grey;
+                case PoiCategory.Cities:
+                    return enabled ? Resource.Drawable.c_city : Resource.Drawable.c_city_grey;
+                case PoiCategory.Other:
+                    return enabled ? Resource.Drawable.c_other : Resource.Drawable.c_other_grey;
                 case PoiCategory.Mountains:
                     return enabled ? Resource.Drawable.c_mountain : Resource.Drawable.c_mountain_grey;
                 case PoiCategory.Lakes:
                     return enabled ? Resource.Drawable.c_lake : Resource.Drawable.c_lake_grey;
                 case PoiCategory.ViewTowers:
                     return enabled ? Resource.Drawable.c_viewtower : Resource.Drawable.c_viewtower_grey;
-                case PoiCategory.Palaces:
-                    return enabled ? Resource.Drawable.c_palace : Resource.Drawable.c_palace_grey;
-                case PoiCategory.Ruins:
-                    return enabled ? Resource.Drawable.c_ruins : Resource.Drawable.c_ruins_grey;
                 case PoiCategory.Transmitters:
                     return enabled ? Resource.Drawable.c_transmitter : Resource.Drawable.c_transmitter_grey;
                 case PoiCategory.Churches:

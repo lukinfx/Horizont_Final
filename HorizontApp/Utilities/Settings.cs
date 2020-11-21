@@ -31,7 +31,6 @@ namespace HorizontApp.Utilities
         {
             _maxDistance = 12;
             _minAltitute = 0;
-            Categories.Add(PoiCategory.Mountains);
 
             _changeFilterTimer.Interval = 1000;
             _changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;

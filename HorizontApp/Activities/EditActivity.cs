@@ -41,7 +41,7 @@ namespace HorizontApp.Activities
         private long _id;
         private PoiCategory _category;
 
-        private PoiCategory[] _poiCategories = new PoiCategory[] { PoiCategory.Castles, PoiCategory.Churches, PoiCategory.Lakes, PoiCategory.Mountains, PoiCategory.Palaces, PoiCategory.Ruins, PoiCategory.Transmitters, PoiCategory.ViewTowers};
+        private PoiCategory[] _poiCategories = new PoiCategory[] { PoiCategory.Mountains, PoiCategory.Cities, PoiCategory.Historic, PoiCategory.Churches, PoiCategory.Lakes, PoiCategory.Transmitters, PoiCategory.ViewTowers, PoiCategory.Other};
 
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
