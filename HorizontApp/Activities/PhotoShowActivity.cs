@@ -113,6 +113,7 @@ namespace HorizontApp.Activities
             _context.Settings.MaxDistance = Convert.ToInt32(photodata.MaxDistance);
             _context.Settings.MinAltitute = Convert.ToInt32(photodata.MinAltitude);
             _context.Settings.ShowElevationProfile = photodata.ShowElevationProfile;
+            _context.ElevationProfileDataDistance = photodata.MaxElevationProfileDataDistance;
 
             _filterText = FindViewById<TextView>(Resource.Id.textView1);
 
@@ -283,10 +284,11 @@ namespace HorizontApp.Activities
             _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
             _filterText.Visibility = ViewStates.Visible;
 
-            /*if (photodata.MaxElevationProfileDataDistance < _distanceSeekBar.Progress)
+            if (_context.ElevationProfileDataDistance < _distanceSeekBar.Progress || _context.ElevationProfileDataDistance == null)
             {
-                GenerateElevationProfile();  
-            }*/
+                GenerateElevationProfile();
+                _context.ElevationProfileDataDistance = _distanceSeekBar.Progress;
+            }
 
             _context.Settings.MaxDistance = _distanceSeekBar.Progress;
         }
@@ -352,13 +354,7 @@ namespace HorizontApp.Activities
                     }
                 case Resource.Id.menuButton:
                     {
-                        photodata.LeftTiltCorrector = _compassView.GetTiltSettings().Item1;
-                        photodata.RightTiltCorrector = _compassView.GetTiltSettings().Item2;
-                        photodata.Heading = _context.Heading + _compassView.HeadingCorrector;
-                        photodata.ShowElevationProfile = _context.Settings.ShowElevationProfile;
-                        if (_context.ElevationProfileData != null)
-                            photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
-                        Database.UpdateItem(photodata);
+                        _saveData();
 
                         var resultIntent = new Intent();
                         resultIntent.PutExtra("Id", photodata.Id);
@@ -384,8 +380,18 @@ namespace HorizontApp.Activities
                     _handleButtonShareClicked();
                     break;
             }
+        }
 
-
+        private void _saveData()
+        {
+            photodata.LeftTiltCorrector = _compassView.GetTiltSettings().Item1;
+            photodata.RightTiltCorrector = _compassView.GetTiltSettings().Item2;
+            photodata.Heading = _context.Heading + _compassView.HeadingCorrector;
+            photodata.ShowElevationProfile = _context.Settings.ShowElevationProfile;
+            photodata.JsonCategories = JsonConvert.SerializeObject(_context.Settings.Categories);
+            if (_context.ElevationProfileData != null)
+                photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
+            Database.UpdateItem(photodata);
         }
 
         private void _handleButtonSaveClicked()
