@@ -8,8 +8,8 @@ namespace HorizontLib.Domain.ViewModel
 {
     public class ElevationProfileData
     {
-        public GpsLocation MyLocation { get; private set; }
-        public double MaxDistance { get; private set; }
+        public GpsLocation MyLocation { get; set; }
+        public double MaxDistance { get; set; }
 
         public List<ElevationData> elevationData = new List<ElevationData>();
         public string ErrorMessage { get; set; }
