@@ -241,15 +241,7 @@ namespace HorizontApp
                         }
                     case Resource.Id.buttonPause:
                         {
-                            Context.ToggleCompassPaused();
-                            if (Context.CompassPaused)
-                            {
-                                _pauseButton.SetImageResource(Resource.Drawable.ic_pause_on);
-                            }
-                            else
-                            {
-                                _pauseButton.SetImageResource(Resource.Drawable.ic_pause);
-                            }
+                            HandleButtonPauseClicked();
                             break;
                         }
                     case Resource.Id.buttonDisplayTerrain:
@@ -283,6 +275,19 @@ namespace HorizontApp
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(this, "Error", ex.Message);
+            }
+        }
+
+        private void HandleButtonPauseClicked()
+        {
+            Context.ToggleCompassPaused();
+            if (Context.CompassPaused)
+            {
+                _pauseButton.SetImageResource(Resource.Drawable.ic_pause_on);
+            }
+            else
+            {
+                _pauseButton.SetImageResource(Resource.Drawable.ic_pause);
             }
         }
 

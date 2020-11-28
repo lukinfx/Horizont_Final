@@ -81,20 +81,12 @@ namespace HorizontApp.Activities
                 case Resource.Id.buttonHome:
                     Finish();
                     break;
-
                 case Resource.Id.buttonDownload:
                     Intent downloadActivityIntent = new Intent(this, typeof(DownloadActivity));
                     StartActivity(downloadActivityIntent);
                     break;
-
                 case Resource.Id.buttonList:
-                    Intent listActivityIntent = new Intent(this, typeof(PoiListActivity));
-                    listActivityIntent.PutExtra("latitude", _location.Latitude);
-                    listActivityIntent.PutExtra("longitude", _location.Longitude);
-                    listActivityIntent.PutExtra("altitude", _location.Altitude);
-                    listActivityIntent.PutExtra("maxDistance", _maxDistance);
-                    listActivityIntent.PutExtra("minAltitude", _minAltitude);
-                    StartActivityForResult(listActivityIntent, PoiListActivity.REQUEST_SHOW_POI_LIST);
+                    StartPoisListActivity();
                     break;
                 case Resource.Id.buttonSettings:
                     Intent settingsActivityIntent = new Intent(this, typeof(SettingsActivity));
@@ -110,6 +102,17 @@ namespace HorizontApp.Activities
                     break;
 
             }
+        }
+
+        private void StartPoisListActivity()
+        {
+            Intent listActivityIntent = new Intent(this, typeof(PoiListActivity));
+            listActivityIntent.PutExtra("latitude", _location.Latitude);
+            listActivityIntent.PutExtra("longitude", _location.Longitude);
+            listActivityIntent.PutExtra("altitude", _location.Altitude);
+            listActivityIntent.PutExtra("maxDistance", _maxDistance);
+            listActivityIntent.PutExtra("minAltitude", _minAltitude);
+            StartActivityForResult(listActivityIntent, PoiListActivity.REQUEST_SHOW_POI_LIST);
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
