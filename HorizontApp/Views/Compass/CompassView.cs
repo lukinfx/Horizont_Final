@@ -217,5 +217,10 @@ namespace HorizontApp.Views
         {
             return (_leftTiltCorrector, _rightTiltCorrector);
         }
+
+        public void SetTiltSettings((double, double) item)
+        {
+            (_leftTiltCorrector, _rightTiltCorrector) = item;
+        }
     }
 } 

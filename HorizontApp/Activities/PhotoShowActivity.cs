@@ -401,8 +401,10 @@ namespace HorizontApp.Activities
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
+            compassView.SetTiltSettings(_compassView.GetTiltSettings());
             compassView.Initialize(_context);
             compassView.InitializeViewDrawer(new Size(dstBmp.Width, dstBmp.Height));
+            
             compassView.Draw(canvas);
 
 
@@ -446,6 +448,7 @@ namespace HorizontApp.Activities
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
+            compassView.SetTiltSettings(_compassView.GetTiltSettings());
             compassView.Initialize(_context);
             compassView.InitializeViewDrawer(new Size(dstBmp.Width, dstBmp.Height));
             compassView.Draw(canvas);
