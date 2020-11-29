@@ -6,10 +6,10 @@ namespace HorizonLib.Domain.Models
 {
     public class ProfileLine
     {
-        public float x1;
-        public float x2;
-        public float y1;
-        public float y2;
+        public float Bearing1;
+        public float Bearing2;
+        public float VerticalViewAngle1;
+        public float VerticalViewAngle2;
         public double distance;
     }
 }

@@ -97,9 +97,11 @@ namespace HorizontLib.Utilities
             return YCoordFloat;
         }
 
-        public static float GetYLocationOnScreen(float YLocation, float XLocation, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
+        public static float GetYLocationOnScreen(float YLocation, float XLocation, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth, double canvasHeight, double cameraViewAngle)
         {
-            double YDifference = leftTiltCorrector + XLocation * (rightTiltCorrector - leftTiltCorrector) / canvasWidth;
+            double leftPixelsDifference = (leftTiltCorrector / cameraViewAngle) * canvasHeight;
+            double rightPixelsDifference = (rightTiltCorrector / cameraViewAngle) * canvasHeight;
+            double YDifference = leftPixelsDifference + XLocation * (rightPixelsDifference - leftPixelsDifference) / canvasWidth;
             var YCoordFloat = (float)(YLocation + YDifference);
             return YCoordFloat;
         }

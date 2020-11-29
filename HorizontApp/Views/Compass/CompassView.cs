@@ -178,6 +178,8 @@ namespace HorizontApp.Views
 
         public void OnScroll(float distanceY, bool isLeft)
         {
+            var viewAngleVertical = _context.Settings.ViewAngleVertical;
+            distanceY = (distanceY / Height) * viewAngleVertical;
             if (isLeft)
             {
                 _leftTiltCorrector -= distanceY;
