@@ -105,7 +105,6 @@ namespace HorizontApp.Activities
 
             _context = new AppContextStaticData(loc, photodata.Heading);
 
-            _context.DataChanged += OnDataChanged;
             _context.Settings.LoadData(this);
             _context.Settings.Categories = JsonConvert.DeserializeObject<List<PoiCategory>>(photodata.JsonCategories);
             _context.Settings.SetCameraParameters((float)photodata.ViewAngleHorizontal, (float)photodata.ViewAngleVertical,
@@ -179,6 +178,9 @@ namespace HorizontApp.Activities
 
             var delayedAction = new System.Threading.Timer(o => { LoadImageAndProfile(); },
                 null, TimeSpan.FromSeconds(0.1), TimeSpan.FromMilliseconds(-1));
+
+            //Finnaly setup OnDataChanged listener and Road all data
+            _context.DataChanged += OnDataChanged;
 
             System.Threading.Tasks.Task.Run(() => { _context.ReloadData(); });
         }

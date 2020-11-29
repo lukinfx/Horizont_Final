@@ -181,7 +181,10 @@ namespace HorizontApp.Activities
             if (_isDirty)
                 return true;
 
-            if (_settings.AppStyle != _listOfAppStyles[_spinnerAppStyle.SelectedItemPosition] || _settings.cameraResolutionSelected != _listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition])
+            if (_settings.AppStyle != _listOfAppStyles[_spinnerAppStyle.SelectedItemPosition])
+                return true;
+
+            if(!_settings.cameraResolutionSelected.Equals(_listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition]))
                 return true;
 
             return false;
