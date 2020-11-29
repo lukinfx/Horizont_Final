@@ -12,11 +12,17 @@ namespace HorizontApp.Utilities
         Activity context;
         List<PoiCountry> list;
 
-        public DownloadCountryAdapter(Activity _context, IEnumerable<PoiCountry> _list)
+        public DownloadCountryAdapter(Activity _context)
             : base()
         {
             this.context = _context;
-            this.list = _list.ToList();
+            list = new List<PoiCountry>();
+        }
+
+        public void SetItems(IEnumerable<PoiCountry> items)
+        {
+            list = items.ToList();
+            NotifyDataSetChanged();
         }
 
         public override int Count

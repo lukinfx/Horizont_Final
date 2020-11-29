@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+using System.Threading;
 using Android.App;
-using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Xamarin.Essentials;
+using Newtonsoft.Json;
 using HorizontApp.DataAccess;
 using HorizontLib.Domain.Enums;
 using HorizontLib.Domain.Models;
-using HorizontLib.Utilities;
 using HorizontApp.Providers;
 using HorizontApp.Tasks;
 using HorizontApp.Utilities;
-using Newtonsoft.Json;
-using Xamarin.Essentials;
-using static Android.Views.View;
-using System.Threading;
-using HorizonLib.Utilities;
 
 namespace HorizontApp.Activities
 {
@@ -27,12 +23,11 @@ namespace HorizontApp.Activities
         private ListView _downloadItemListView;
         private ListView _downloadCountryListView;
         private Spinner _downloadCountrySpinner;
+        private DownloadCountryAdapter _countryAdapter;
         private DownloadItemAdapter _downloadItemAdapter;
 
         private HorizonIndex _horizonIndex;
         private List<PoisToDownload> _downloadItems;
-        private List<PoisToDownload> _items;
-        private List<PoiCountry> _countries;
 
         private PoiDatabase _database;
         private PoiDatabase Database
@@ -51,54 +46,73 @@ namespace HorizontApp.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            InitializeData();
-
             InitializeUI();
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            System.Threading.Tasks.Task.Run(() => { InitializeData(); });
         }
 
         private void InitializeData()
         {
-            //fetch list of already downladed items from database
-            var downloadedTask = Database.GetDownloadedPoisAsync();
-            downloadedTask.Wait();
-            _downloadItems = downloadedTask.Result.ToList();
-
-            //fetch list of item from internet
-            var json = GpxFileProvider.GetFile(GpxFileProvider.GetIndexUrl());
-            _horizonIndex = JsonConvert.DeserializeObject<HorizonIndex>(json);
-
-            //combine those two lists together
-            foreach (var country in _horizonIndex)
+            try
             {
-                foreach (var item in country.PoiData)
+                //fetch list of already downladed items from database
+                var downloadedTask = Database.GetDownloadedPoisAsync();
+                downloadedTask.Wait();
+                _downloadItems = downloadedTask.Result.ToList();
+
+                //fetch list of item from internet
+                var json = GpxFileProvider.GetFile(GpxFileProvider.GetIndexUrl());
+                _horizonIndex = JsonConvert.DeserializeObject<HorizonIndex>(json);
+
+                //combine those two lists together
+                foreach (var country in _horizonIndex)
                 {
-                    if (!_downloadItems.Any(x => x.Id == item.Id))
+                    foreach (var item in country.PoiData)
                     {
-                        _downloadItems.Add(new PoisToDownload()
+                        if (!_downloadItems.Any(x => x.Id == item.Id))
                         {
-                            Id = item.Id,
-                            Description = item.Description,
-                            Category = item.Category,
-                            Url = item.Url,
-                            Country = country.Country,
-                        });
+                            _downloadItems.Add(new PoisToDownload()
+                            {
+                                Id = item.Id,
+                                Description = item.Description,
+                                Category = item.Category,
+                                Url = item.Url,
+                                Country = country.Country,
+                            });
+                        }
                     }
                 }
-            }
 
-            _countries = _downloadItems.Select(x => x.Country).Distinct().ToList();
-            _items = new List<PoisToDownload>();
+                var countries = _downloadItems.Select(x => x.Country).Distinct().ToList();
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    _countryAdapter.SetItems(countries);
+
+                    _downloadCountryListView?.SetSelection(0);
+                    _downloadCountrySpinner?.SetSelection(0);
+                });
+
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, "Error", ex.Message);
+            }
         }
 
         private void InitializeUI()
         {
-            var countryAdapter = new DownloadCountryAdapter(this, _countries);
+            _countryAdapter = new DownloadCountryAdapter(this);
             if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
                 SetContentView(Resource.Layout.DownloadActivityPortrait);
                 
                 _downloadCountrySpinner = FindViewById<Spinner>(Resource.Id.DownloadCountrySpinner);
-                _downloadCountrySpinner.Adapter = countryAdapter;
+                _downloadCountrySpinner.Adapter = _countryAdapter;
                 _downloadCountrySpinner.ItemSelected += OnCountrySpinnerItemSelected;
 
             }
@@ -107,7 +121,7 @@ namespace HorizontApp.Activities
                 SetContentView(Resource.Layout.DownloadActivityLandscape);
                 
                 _downloadCountryListView = FindViewById<ListView>(Resource.Id.DownloadCountryListView);
-                _downloadCountryListView.Adapter = countryAdapter;
+                _downloadCountryListView.Adapter = _countryAdapter;
                 _downloadCountryListView.ItemClick += OnCountryListItemClicked;
             }
 
@@ -144,7 +158,8 @@ namespace HorizontApp.Activities
 
         private void OnDownloadListItemClicked(object sender, AdapterView.ItemClickEventArgs e)
         {
-            PoisToDownload item = _items[e.Position];
+            PoisToDownload item = _downloadItemAdapter[e.Position];
+
             if (item.Category == PoiCategory.ElevationData)
             {
                 if (item.DownloadDate == null)
@@ -182,9 +197,9 @@ namespace HorizontApp.Activities
 
         private void OnCountrySelected(int position)
         {
-            PoiCountry country = _countries[position];
-            _items = _downloadItems.Where(x => x.Country == country).OrderBy(x => x.Category).ToList();
-            _downloadItemAdapter.SetItems(_items);
+            PoiCountry country = _countryAdapter[position];
+            var items = _downloadItems.Where(x => x.Country == country).OrderBy(x => x.Category).ToList();
+            _downloadItemAdapter.SetItems(items);
         }
 
         private void DownloadPoiDataFromInternet(PoisToDownload source)
