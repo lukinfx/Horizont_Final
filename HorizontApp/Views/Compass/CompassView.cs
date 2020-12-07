@@ -224,5 +224,20 @@ namespace HorizontApp.Views
         {
             (_leftTiltCorrector, _rightTiltCorrector) = item;
         }
+        public void SetOffset(double offset)
+        {
+            _leftTiltCorrector = offset;
+            _rightTiltCorrector = offset;
+        }
+        public void RecalculateViewAngles (float scale)
+        {
+            _context.Settings.ScaledViewAngleHorizontal = (1 / scale) * _context.Settings.ViewAngleHorizontal;
+            _context.Settings.ScaledViewAngleVertical = (1 / scale) * _context.Settings.ViewAngleVertical;
+
+
+            compassViewDrawer.SetScaledViewAngle(_context.Settings.ScaledViewAngleHorizontal, _context.Settings.ScaledViewAngleVertical);
+            elevationProfileBitmapDrawer.SetScaledViewAngle(_context.Settings.ScaledViewAngleHorizontal, _context.Settings.ScaledViewAngleVertical);
+            Invalidate();
+        }
     }
 } 

@@ -27,11 +27,13 @@ using System.Threading.Tasks;
 namespace HorizontApp.Activities
 {
     [Activity(Label = "PhotoShowActivity")]
-    public class PhotoShowActivity : Activity, GestureDetector.IOnGestureListener, IOnClickListener
+    public class PhotoShowActivity : Activity, GestureDetector.IOnGestureListener, ScaleGestureDetector.IOnScaleGestureListener, IOnClickListener
     {
         public static int REQUEST_SHOW_PHOTO = 0;
 
         private static string TAG = "Horizon-PhotoShowActivity";
+        private double _scale = 1;
+        private Point _offset = new Point { X = 0, Y = 0 };
 
         private IAppContext _context;
         private TextView _GPSTextView;
@@ -40,6 +42,7 @@ namespace HorizontApp.Activities
         private CompassView _compassView;
         private byte[] _thumbnail;
         private GestureDetector _gestureDetector;
+        private ScaleGestureDetector _scaleGestureDetector;
         private TextView _filterText;
 
         private ImageButton _favouriteButton;
@@ -71,7 +74,7 @@ namespace HorizontApp.Activities
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
+            base.OnCreate(savedInstanceState); 
             SetContentView(Resource.Layout.PhotoShowActivityLayout);
             long id = Intent.GetLongExtra("ID", -1);
             photodata = Database.GetPhotoDataItem(id);
@@ -85,7 +88,8 @@ namespace HorizontApp.Activities
             }*/
 
             _gestureDetector = new GestureDetector(this);
-
+            _scaleGestureDetector = new ScaleGestureDetector(this, this);
+             
             var loc = new GpsLocation(
                 photodata.Longitude,
                 photodata.Latitude,
@@ -313,12 +317,50 @@ namespace HorizontApp.Activities
                     _compassView.OnScroll(distanceX);
                 }
             }
+            else
+            {
+                //if (photoView.Height * _scale - _offset.Y >= photoView.Height * (_scale - 1) && photoView.Width * _scale - _offset.X >= photoView.Width * (_scale - 1) && _offset.X <= 0 && _offset.Y <= 0)
+                if (_scale >1 )
+                {
+                    _offset.X -= (int)(distanceX);
+                    _offset.Y -= (int)(distanceY);
+
+                    if (_offset.X > 0)
+                    {
+                        _offset.X = 0;
+                        return false;
+                    }
+                    if (_offset.Y > 0)
+                    {
+                        _offset.Y = 0;
+                        return false;
+                    }
+                    if (photoView.Height * _scale - _offset.Y < photoView.Height * (_scale - 1))
+                    {
+                        _offset.Y = (int)(photoView.Height * (_scale - 1));
+                        return false; 
+                    }
+                    if (photoView.Width * _scale - _offset.X < photoView.Width * (_scale - 1))
+                    {
+                        _offset.X = (int)(photoView.Width * (_scale - 1));
+                        return false;
+                    }
+                    //photoView.Matrix.SetTranslate(_offset.X, _offset.Y);
+                    photoView.OffsetLeftAndRight((int)-distanceX);
+                    photoView.OffsetTopAndBottom((int)-distanceY);    
+
+                    _compassView.SetOffset(-distanceY);
+                    _compassView.OnScroll((float)(distanceX / _scale));
+                }
+                
+            }
             return false;
         }
 
         public override bool OnTouchEvent(MotionEvent e)
         {
             _gestureDetector.OnTouchEvent(e);
+            _scaleGestureDetector.OnTouchEvent(e);
             return false;
         }
         
@@ -327,6 +369,8 @@ namespace HorizontApp.Activities
         public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) { return false; }
         public void OnLongPress(MotionEvent e) { }
         public void OnShowPress(MotionEvent e) { }
+
+        //public void OnPinch(MotionEvent e) { }
         public bool OnSingleTapUp(MotionEvent e) { return false; }
         #endregion Required abstract methods
 
@@ -378,7 +422,6 @@ namespace HorizontApp.Activities
                     _handleButtonSaveClicked();
                     break;
                 case Resource.Id.buttonShare:
-
                     _handleButtonShareClicked();
                     break;
             }
@@ -615,6 +658,41 @@ namespace HorizontApp.Activities
                 _compassView.SetElevationProfile(_context.ElevationProfileData);
             }
         }
+
         #endregion ElevationProfile
+
+        public bool OnScale(ScaleGestureDetector detector)
+        {
+            var _tempScale = photoView.ScaleX * detector.ScaleFactor;
+
+            if (_tempScale < 1)
+                _tempScale = 1;
+
+            if (_tempScale > 10)
+                _tempScale = 10;
+
+            
+            _scale = _tempScale;
+
+            photoView.ScaleX = (float)_scale;
+            photoView.ScaleY = (float)_scale;
+            _compassView.RecalculateViewAngles((float)_scale);
+
+            _offset.X = -(int)((photoView.Width / 2) * (_scale - 1));
+            _offset.Y = -(int)((photoView.Height / 2) * (_scale - 1));
+
+            return true;
+           
+        }
+
+        public bool OnScaleBegin(ScaleGestureDetector detector)
+        {
+            return true;
+        }
+
+        public void OnScaleEnd(ScaleGestureDetector detector)
+        {
+            
+        }
     }
 }
