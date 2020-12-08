@@ -325,34 +325,40 @@ namespace HorizontApp.Activities
                     _offset.X -= (int)(distanceX);
                     _offset.Y -= (int)(distanceY);
 
+                    bool _continue = true;
+
                     if (_offset.X > 0)
                     {
                         _offset.X = 0;
-                        return false;
+                        _continue = false;
                     }
-                    if (_offset.Y > 0)
+                    if (_offset.Y - photoView.Height / 2 > 0)
                     {
                         _offset.Y = 0;
-                        return false;
+                        _continue = false;
                     }
-                    if (photoView.Height * _scale - _offset.Y < photoView.Height * (_scale - 1))
+                    if (photoView.Height * _scale - (_offset.Y - photoView.Height / 2)< photoView.Height * (_scale - 1))
                     {
                         _offset.Y = (int)(photoView.Height * (_scale - 1));
-                        return false; 
+                        _continue = false;
                     }
                     if (photoView.Width * _scale - _offset.X < photoView.Width * (_scale - 1))
                     {
                         _offset.X = (int)(photoView.Width * (_scale - 1));
-                        return false;
+                        _continue = false;
                     }
-                    //photoView.Matrix.SetTranslate(_offset.X, _offset.Y);
-                    photoView.OffsetLeftAndRight((int)-distanceX);
-                    photoView.OffsetTopAndBottom((int)-distanceY);    
 
-                    _compassView.SetOffset(-distanceY);
-                    _compassView.OnScroll((float)(distanceX / _scale));
+                    if (_continue)
+                    {
+
+                        photoView.OffsetLeftAndRight((int)-distanceX);
+                        photoView.OffsetTopAndBottom((int)-distanceY);    
+
+                        _compassView.SetOffset((float)(_offset.Y));
+                        _compassView.OnScroll((float)(distanceX / _scale));
+                    }
                 }
-                
+                    //photoView.Matrix.SetTranslate(_offset.X, _offset.Y); 
             }
             return false;
         }
@@ -679,7 +685,7 @@ namespace HorizontApp.Activities
             _compassView.RecalculateViewAngles((float)_scale);
 
             _offset.X = -(int)((photoView.Width / 2) * (_scale - 1));
-            _offset.Y = -(int)((photoView.Height / 2) * (_scale - 1));
+            //_offset.Y = -(int)((photoView.Height / 2) * (_scale - 1));
 
             return true;
            

@@ -91,8 +91,9 @@ namespace HorizontLib.Utilities
         {
             var verticalAngle = GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance));
             var YCoord = (canvasHeight / 2) - ((verticalAngle / (cameraViewAngle / 2)) * canvasHeight / 2);
-
-            double YDifference = leftTiltCorrector + XLocation * (rightTiltCorrector-leftTiltCorrector)/canvasWidth;
+            double leftPixelsDifference = (leftTiltCorrector / cameraViewAngle) * canvasHeight;
+            double rightPixelsDifference = (rightTiltCorrector / cameraViewAngle) * canvasHeight;
+            double YDifference = leftPixelsDifference + XLocation * (rightPixelsDifference - leftPixelsDifference) / canvasWidth;
             var YCoordFloat = (float)(YCoord + YDifference);
             return YCoordFloat;
         }
