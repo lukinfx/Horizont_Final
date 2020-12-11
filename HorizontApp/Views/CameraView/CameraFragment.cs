@@ -713,7 +713,6 @@ namespace HorizontApp.Views.Camera
         {
             if (mFlashSupported)
             {
-                requestBuilder.Set(CaptureRequest.ControlAeMode, (int)ControlAEMode.Off);
                 requestBuilder.Set(CaptureRequest.FlashMode, (int)FlashMode.Off);
             }
         }
