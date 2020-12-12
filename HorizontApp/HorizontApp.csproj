@@ -136,6 +136,7 @@
     <Compile Include="Views\Compass\CompassViewFilter.cs" />
     <Compile Include="Views\ErrorDialog.cs" />
     <Compile Include="Activities\PoiListActivity.cs" />
+    <Compile Include="Views\ScaleImage\ScaleImageView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

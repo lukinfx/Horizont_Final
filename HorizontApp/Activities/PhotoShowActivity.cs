@@ -23,6 +23,7 @@ using Xamarin.Essentials;
 using static Android.Views.View;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
 using System.Threading.Tasks;
+using HorizontApp.Views.ScaleImage;
 
 namespace HorizontApp.Activities
 {
@@ -36,7 +37,7 @@ namespace HorizontApp.Activities
         private IAppContext _context;
         private TextView _GPSTextView;
         private TextView _headingTextView;
-        private ImageView photoView;
+        private ScaleImageView photoView;
         private CompassView _compassView;
         private byte[] _thumbnail;
         private GestureDetector _gestureDetector;
@@ -55,6 +56,12 @@ namespace HorizontApp.Activities
         private PhotoData photodata;
 
         private Bitmap dstBmp;
+
+        //for gesture detection
+        private int m_PreviousMoveX;
+        private int m_PreviousMoveY;
+        private float m_PreviousDistance;
+        private bool m_IsScaling;
 
         private PoiDatabase _database;
         private PoiDatabase Database
@@ -148,7 +155,7 @@ namespace HorizontApp.Activities
             _tiltCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonTiltCorrector);
             _tiltCorrectorButton.SetOnClickListener(this);
             
-            photoView = FindViewById<ImageView>(Resource.Id.photoView);
+            photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.Initialize(_context);
@@ -318,10 +325,64 @@ namespace HorizontApp.Activities
 
         public override bool OnTouchEvent(MotionEvent e)
         {
-            _gestureDetector.OnTouchEvent(e);
-            return false;
+            if (_gestureDetector.OnTouchEvent(e))
+            {
+                m_PreviousMoveX = (int)e.GetX();
+                m_PreviousMoveY = (int)e.GetY();
+                return true;
+            }
+            var touchCount = e.PointerCount;
+            switch (e.Action)
+            {
+                case MotionEventActions.Down:
+                case MotionEventActions.Pointer1Down:
+                case MotionEventActions.Pointer2Down:
+                    {
+                        if (touchCount >= 2)
+                        {
+                            var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
+                            m_PreviousDistance = distance;
+                            m_IsScaling = true;
+                        }
+                    }
+                    break;
+                case MotionEventActions.Move:
+                    {
+                        if (touchCount >= 2 && m_IsScaling)
+                        {
+                            var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
+                            var scale = (distance - m_PreviousDistance) / photoView.DispDistance();
+                            m_PreviousDistance = distance;
+                            scale += 1;
+                            scale = scale * scale;
+                            photoView.ZoomTo(scale, photoView.Width / 2, photoView.Height / 2);
+                            photoView.Cutting();
+                        }
+                        else if (!m_IsScaling)
+                        {
+                            var distanceX = m_PreviousMoveX - (int)e.GetX();
+                            var distanceY = m_PreviousMoveY - (int)e.GetY();
+                            m_PreviousMoveX = (int)e.GetX();
+                            m_PreviousMoveY = (int)e.GetY();
+                            photoView.MoveTo(-distanceX, -distanceY);
+                            photoView.Cutting();
+                        }
+                    }
+                    break;
+                case MotionEventActions.Up:
+                case MotionEventActions.Pointer1Up:
+                case MotionEventActions.Pointer2Up:
+                    {
+                        if (touchCount <= 1)
+                        {
+                            m_IsScaling = false;
+                        }
+                    }
+                    break;
+            }
+            return true;
         }
-        
+
         #region Required abstract methods
         public bool OnDown(MotionEvent e) { return false; }
         public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) { return false; }
