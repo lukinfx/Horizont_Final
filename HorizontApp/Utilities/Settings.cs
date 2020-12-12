@@ -106,9 +106,6 @@ namespace HorizontApp.Utilities
             }
         }
 
-        public float ScaledViewAngleHorizontal { get; set; }
-        public float ScaledViewAngleVertical { get; set; }
-
         private System.Drawing.Size _cameraPictureSize;
         public System.Drawing.Size CameraPictureSize { get { return _cameraPictureSize; } }
 

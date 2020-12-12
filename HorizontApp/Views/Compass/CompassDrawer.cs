@@ -142,11 +142,5 @@ namespace HorizontApp.Views.Compass
             }
             
         }
-
-        public void SetScaledViewAngle(float scaledViewAngleHorizontal, float scaledViewAngleVertical)
-        {
-            adjustedViewAngleHorizontal = scaledViewAngleHorizontal;
-            adjustedViewAngleVertical = scaledViewAngleVertical;
-        }
     }
 }
