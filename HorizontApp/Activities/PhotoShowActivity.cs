@@ -50,7 +50,6 @@ namespace HorizontApp.Activities
         private ImageButton _tiltCorrectorButton;
 
         private bool _editingOn = false;
-        private bool _zooming = false;
 
         private bool _elevationProfileBeingGenerated = false;
 
@@ -81,7 +80,7 @@ namespace HorizontApp.Activities
             photodata = Database.GetPhotoDataItem(id);
             _thumbnail = photodata.Thumbnail;
 
-            //Log.WriteLine(LogPriority.Debug, TAG, $"Heading {photodata.Heading:F0}");
+            Log.WriteLine(LogPriority.Debug, TAG, $"Heading {photodata.Heading:F0}");
 
             /*if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
@@ -321,7 +320,7 @@ namespace HorizontApp.Activities
             else
             {
                 //if (photoView.Height * _scale - _offset.Y >= photoView.Height * (_scale - 1) && photoView.Width * _scale - _offset.X >= photoView.Width * (_scale - 1) && _offset.X <= 0 && _offset.Y <= 0)
-                if (_scale >1 && !_zooming)
+                if (_scale >1 )
                 {
                     _offset.X -= (int)(distanceX);
                     _offset.Y -= (int)(distanceY);
@@ -333,30 +332,21 @@ namespace HorizontApp.Activities
                         _offset.X = 0;
                         _continue = false;
                     }
-                    if (_offset.Y > 0)
+                    if (_offset.Y - photoView.Height / 2 > 0)
                     {
-                        _offset.Y = 0; 
+                        _offset.Y = 0;
                         _continue = false;
                     }
-                    if (_offset.Y < -photoView.Height * (_scale - 1))
+                    if (photoView.Height * _scale - (_offset.Y - photoView.Height / 2)< photoView.Height * (_scale - 1))
                     {
-                        _offset.Y = (int)(-photoView.Height * (_scale - 1));
+                        _offset.Y = (int)(photoView.Height * (_scale - 1));
                         _continue = false;
                     }
-                    if ( _offset.X < -photoView.Width * (_scale - 1))
+                    if (photoView.Width * _scale - _offset.X < photoView.Width * (_scale - 1))
                     {
-                        _offset.X = (int)(-photoView.Width * (_scale - 1));
+                        _offset.X = (int)(photoView.Width * (_scale - 1));
                         _continue = false;
                     }
-
-                    Log.WriteLine(LogPriority.Debug, TAG, $"scale{_scale}");
-                    Log.WriteLine(LogPriority.Debug, TAG, $"offset.X {_offset.X}");
-                    Log.WriteLine(LogPriority.Debug, TAG, $"offset.Y {_offset.Y}");
-
-                    Log.WriteLine(LogPriority.Debug, TAG, $"too low: {photoView.Height * _scale - (_offset.Y - photoView.Height / 2) < photoView.Height * (_scale - 1)}");
-                    Log.WriteLine(LogPriority.Debug, TAG, $"right {photoView.Width * _scale - _offset.X < photoView.Width * (_scale - 1)}");
-                    Log.WriteLine(LogPriority.Debug, TAG, $"left {_offset.X > 0}");
-                    Log.WriteLine(LogPriority.Debug, TAG, $"top {_offset.Y - photoView.Height / 2 > 0}");
 
                     if (_continue)
                     {
@@ -364,7 +354,7 @@ namespace HorizontApp.Activities
                         photoView.OffsetLeftAndRight((int)-distanceX);
                         photoView.OffsetTopAndBottom((int)-distanceY);    
 
-                        _compassView.SetOffset((float)(_offset.Y /(_context.Settings.ViewAngleHorizontal*_scale)));
+                        _compassView.SetOffset((float)(_offset.Y));
                         _compassView.OnScroll((float)(distanceX / _scale));
                     }
                 }
@@ -694,8 +684,8 @@ namespace HorizontApp.Activities
             photoView.ScaleY = (float)_scale;
             _compassView.RecalculateViewAngles((float)_scale);
 
-            _offset.X = (int)((-photoView.Width / 2) * (_scale - 1));
-            _offset.Y = (int)((-photoView.Height / 2) * (_scale - 1));
+            _offset.X = -(int)((photoView.Width / 2) * (_scale - 1));
+            //_offset.Y = -(int)((photoView.Height / 2) * (_scale - 1));
 
             return true;
            
@@ -703,13 +693,12 @@ namespace HorizontApp.Activities
 
         public bool OnScaleBegin(ScaleGestureDetector detector)
         {
-            _zooming = true;
             return true;
         }
 
         public void OnScaleEnd(ScaleGestureDetector detector)
         {
-            _zooming = false;
+            
         }
     }
 }
