@@ -379,6 +379,7 @@ namespace HorizontApp.Activities
                             scale = scale * scale;
                             photoView.ZoomTo(scale, photoView.Width / 2, photoView.Height / 2);
                             photoView.Cutting();
+                            _compassView.RecalculateViewAngles(scale);
                         }
                         else if (!m_IsScaling)
                         {
@@ -388,6 +389,9 @@ namespace HorizontApp.Activities
                             m_PreviousMoveY = (int)e.GetY();
                             photoView.MoveTo(-distanceX, -distanceY);
                             photoView.Cutting();
+
+                            _compassView.SetOffset(distanceY);
+                            _compassView.OnScroll(distanceX);
                         }
                     }
                     break;

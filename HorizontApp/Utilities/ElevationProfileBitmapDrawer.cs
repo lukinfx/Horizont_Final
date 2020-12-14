@@ -142,5 +142,11 @@ namespace HorizontApp.Utilities
                 }
             }*/
         }
+
+        public void SetScaledViewAngle(float scaledViewAngleHorizontal, float scaledViewAngleVertical)
+        {
+            _adjustedViewAngleHorizontal = scaledViewAngleHorizontal;
+            _adjustedViewAngleVertical = scaledViewAngleVertical;
+        }
     }
 }
