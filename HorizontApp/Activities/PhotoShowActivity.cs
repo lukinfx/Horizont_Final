@@ -275,7 +275,6 @@ namespace HorizontApp.Activities
                     $"Lat:{_context.MyLocation.Latitude:F7} Lon:{_context.MyLocation.Longitude:F7} Alt:{_context.MyLocation.Altitude:F0}" : "No GPS location";
                 Log.WriteLine(LogPriority.Debug, TAG, $"PoiCount: {e.PoiData.Count}");
                 _compassView.SetPoiViewItemList(e.PoiData);
-
             });
         }
 
@@ -338,6 +337,9 @@ namespace HorizontApp.Activities
                 case MotionEventActions.Pointer1Down:
                 case MotionEventActions.Pointer2Down:
                     {
+                        m_PreviousMoveX = (int)e.GetX();
+                        m_PreviousMoveY = (int)e.GetY();
+                        
                         if (touchCount >= 2)
                         {
                             var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
@@ -348,7 +350,27 @@ namespace HorizontApp.Activities
                     break;
                 case MotionEventActions.Move:
                     {
-                        if (touchCount >= 2 && m_IsScaling)
+                        if (_editingOn)
+                        {
+                            var distanceX = m_PreviousMoveX - (int)e.GetX();
+                            var distanceY = m_PreviousMoveY - (int)e.GetY();
+                            m_PreviousMoveX = (int)e.GetX();
+                            m_PreviousMoveY = (int)e.GetY();
+
+                            if (e.RawX < Resources.DisplayMetrics.WidthPixels / 7)
+                            {
+                                _compassView.OnScroll(distanceY, true);
+                            }
+                            else if (e.RawX > Resources.DisplayMetrics.WidthPixels - Resources.DisplayMetrics.WidthPixels / 7)
+                            {
+                                _compassView.OnScroll(distanceY, false);
+                            }
+                            else if (e.RawY < 0.75 * Resources.DisplayMetrics.HeightPixels)
+                            {
+                                _compassView.OnScroll(distanceX);
+                            }
+                        }
+                        else if (touchCount >= 2 && m_IsScaling)
                         {
                             var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
                             var scale = (distance - m_PreviousDistance) / photoView.DispDistance();
@@ -373,6 +395,7 @@ namespace HorizontApp.Activities
                 case MotionEventActions.Pointer1Up:
                 case MotionEventActions.Pointer2Up:
                     {
+                        
                         if (touchCount <= 1)
                         {
                             m_IsScaling = false;
