@@ -62,6 +62,7 @@ namespace HorizontApp.Activities
         private int m_PreviousMoveY;
         private float m_PreviousDistance;
         private bool m_IsScaling;
+        private float m_minScale;
 
         private PoiDatabase _database;
         private PoiDatabase Database
@@ -256,7 +257,7 @@ namespace HorizontApp.Activities
                     });
 
                     dstBmp = bmp.Copy(Bitmap.Config.Argb8888, true);
-
+                    m_minScale = photoView.Scale;
                 }
             }
             catch (Exception ex)
@@ -350,7 +351,7 @@ namespace HorizontApp.Activities
                     break;
                 case MotionEventActions.Move:
                     {
-                        if (_editingOn)
+                        if (_editingOn && touchCount == 1)
                         {
                             var distanceX = m_PreviousMoveX - (int)e.GetX();
                             var distanceY = m_PreviousMoveY - (int)e.GetY();
@@ -370,7 +371,7 @@ namespace HorizontApp.Activities
                                 _compassView.OnScroll(distanceX);
                             }
                         }
-                        else if (touchCount >= 2 && m_IsScaling)
+                        else if (touchCount >= 2 && m_IsScaling && !_editingOn)
                         {
                             var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
                             var scale = (distance - m_PreviousDistance) / photoView.DispDistance();
@@ -379,9 +380,11 @@ namespace HorizontApp.Activities
                             scale = scale * scale;
                             photoView.ZoomTo(scale, photoView.Width / 2, photoView.Height / 2);
                             photoView.Cutting();
-                            _compassView.RecalculateViewAngles(scale);
+
+                            if (photoView.Scale > m_minScale && photoView.Scale < 5)
+                                _compassView.RecalculateViewAngles(scale);
                         }
-                        else if (!m_IsScaling)
+                        else if (!m_IsScaling && photoView.Scale > m_minScale && !_editingOn)
                         {
                             var distanceX = m_PreviousMoveX - (int)e.GetX();
                             var distanceY = m_PreviousMoveY - (int)e.GetY();
@@ -390,8 +393,18 @@ namespace HorizontApp.Activities
                             photoView.MoveTo(-distanceX, -distanceY);
                             photoView.Cutting();
 
-                            _compassView.SetOffset(distanceY);
+                            _compassView.SetOffset(distanceY / (m_minScale * photoView.Scale));
                             _compassView.OnScroll(distanceX);
+                        }
+                        else if (touchCount >= 2 && _editingOn)
+                        {
+                            var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
+                            var scale = (distance - m_PreviousDistance) / photoView.DispDistance();
+                            m_PreviousDistance = distance;
+                            scale += 1;
+                            scale = scale * scale;
+
+                            _compassView.RecalculateViewAngles(scale);
                         }
                     }
                     break;

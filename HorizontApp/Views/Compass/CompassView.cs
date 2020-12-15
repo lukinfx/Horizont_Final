@@ -174,7 +174,7 @@ namespace HorizontApp.Views
         public void OnScroll(float distanceX)
         {
             var viewAngleHorizontal = _context.Settings.ViewAngleHorizontal;
-            HeadingCorrector = HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX);
+            HeadingCorrector = HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX / _scale);
             Invalidate();
         }
 
@@ -184,11 +184,11 @@ namespace HorizontApp.Views
             distanceY = (distanceY / Height) * viewAngleVertical;
             if (isLeft)
             {
-                _leftTiltCorrector -= distanceY;
+                _leftTiltCorrector -= distanceY / _scale;
             }
             else 
             {
-                _rightTiltCorrector -= distanceY;
+                _rightTiltCorrector -= distanceY / _scale;
             }
             Invalidate();
         }
@@ -229,13 +229,17 @@ namespace HorizontApp.Views
 
         public void SetOffset(double offset)
         {
-            _leftTiltCorrector =+ offset;
-            _rightTiltCorrector =+ offset;
+            if (_context.Settings.ScaledViewAngleHorizontal != 0)
+            {
+                _leftTiltCorrector = _leftTiltCorrector - offset / (_context.Settings.ScaledViewAngleHorizontal * _scale);
+                _rightTiltCorrector = _leftTiltCorrector;
+            }
         }
 
         public void RecalculateViewAngles(float scale)
         {
             _scale *= scale;
+
             _context.Settings.ScaledViewAngleHorizontal = (1 / _scale) * _context.Settings.ViewAngleHorizontal;
             _context.Settings.ScaledViewAngleVertical = (1 / _scale) * _context.Settings.ViewAngleVertical;
 
