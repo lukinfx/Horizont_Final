@@ -38,7 +38,7 @@ namespace HorizontApp.Views.Camera
 		protected override void OnMeasure (int widthMeasureSpec, int heightMeasureSpec)
 		{
 			base.OnMeasure (widthMeasureSpec, heightMeasureSpec);
-			int width = MeasureSpec.GetSize (widthMeasureSpec);
+			/*int width = MeasureSpec.GetSize (widthMeasureSpec);
 			int height = MeasureSpec.GetSize (heightMeasureSpec);
 			if (0 == mRatioWidth || 0 == mRatioHeight) {
 				SetMeasuredDimension (width, height);
@@ -48,7 +48,7 @@ namespace HorizontApp.Views.Camera
 				} else {
 					SetMeasuredDimension (height * mRatioWidth / mRatioHeight, height);
 				}
-			}
+			}*/
 		}
 	}
 }

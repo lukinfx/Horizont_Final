@@ -143,8 +143,8 @@ namespace HorizontApp.Views.Camera
         private static Size ChooseOptimalSize(Size[] choices, int textureViewWidth,
             int textureViewHeight, int maxWidth, int maxHeight, Size aspectRatio)
         {
-            return new Size(textureViewWidth, textureViewHeight);
-            /*
+            //return new Size(textureViewWidth, textureViewHeight);
+
             // Collect the supported resolutions that are at least as big as the preview Surface
             var bigEnough = new List<Size>();
             // Collect the supported resolutions that are smaller than the preview Surface
@@ -184,7 +184,7 @@ namespace HorizontApp.Views.Camera
             {
                 Log.Error(TAG, "Couldn't find any suitable preview size");
                 return choices[0];
-            }*/
+            }
         }
 
         public static CameraFragment NewInstance()
@@ -386,8 +386,9 @@ namespace HorizontApp.Views.Camera
                 // bus' bandwidth limitation, resulting in gorgeous previews but the storage of
                 // garbage capture data.
                 mPreviewSize = ChooseOptimalSize(map?.GetOutputSizes(Class.FromType(typeof(SurfaceTexture))),
-                     rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth,
-                     maxPreviewHeight, _context.Settings.cameraResolutionSelected);
+                     rotatedPreviewWidth, rotatedPreviewHeight,
+                     maxPreviewWidth, maxPreviewHeight,
+                     _context.Settings.cameraResolutionSelected);
                 
                 // We fit the aspect ratio of TextureView to the size of preview we picked.
                 var orientation = Resources.Configuration.Orientation;
