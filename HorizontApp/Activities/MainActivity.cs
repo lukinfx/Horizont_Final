@@ -434,10 +434,10 @@ namespace HorizontApp
                 }
 
                 Context.ElevationProfileData = result;
-                _elevationProfileBeingGenerated = false;
                 Context.ElevationProfileDataDistance = Context.Settings.MaxDistance;
 
                 RefreshElevationProfile();
+                _elevationProfileBeingGenerated = false;
             };
             ec.OnStageChange = (text, max) =>
             {
