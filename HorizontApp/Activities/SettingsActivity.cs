@@ -159,6 +159,8 @@ namespace HorizontApp.Activities
                     Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
                     break;
             }
+
+            Resources.UpdateConfiguration(Resources.Configuration, Resources.DisplayMetrics);
         }
 
         private void LanguageChanged(object sender, AdapterView.ItemSelectedEventArgs e)
@@ -174,6 +176,8 @@ namespace HorizontApp.Activities
                     Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
                     break;
             }
+
+            Resources.UpdateConfiguration(Resources.Configuration, Resources.DisplayMetrics);
         }
 
         protected override void OnStart()
