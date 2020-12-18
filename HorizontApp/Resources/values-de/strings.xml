@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Horizon</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="SpinnerItems">Wähle einen Stil</string>
+
+  <string name="ChooseLanguage">Wähle eine Sprache</string>
+
+  <string-array name="SpinnerItemsArray">
+      <item>Neuer Stil</item>
+      <item>Alter Stil</item>
+    </string-array>
+
+</resources>

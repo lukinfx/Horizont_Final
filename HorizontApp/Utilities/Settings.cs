@@ -19,6 +19,8 @@ namespace HorizontApp.Utilities
     {
         public event SettingsChangedEventHandler SettingsChanged;
 
+        public HorizonLib.Domain.Enums.Languages Language;
+
         private Context mContext;
 
         private Timer _changeFilterTimer = new Timer();

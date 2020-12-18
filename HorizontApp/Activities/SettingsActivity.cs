@@ -16,6 +16,9 @@ using Java.Lang;
 using HorizontApp.Views.Camera;
 using System.Collections.Generic;
 using Android.Util;
+using Android.Content;
+using Android.Content.Res;
+using HorizonLib.Domain.Enums;
 
 namespace HorizontApp.Activities
 {
@@ -46,9 +49,11 @@ namespace HorizontApp.Activities
         private TextView _textViewAngleVertical;
         private SeekBar _seekBarCorrectionViewAngleVertical;
         private Spinner _spinnerAppStyle;
+        private Spinner _spinnerLanguages;
         private Spinner _spinnerPhotoResolution;
         private Button _resetButton;
-        private AppStyles[] _listOfAppStyles = new AppStyles[] {AppStyles.EachPoiSeparate, AppStyles.FullScreenRectangle, AppStyles.Simple, AppStyles.SimpleWithDistance, AppStyles.SimpleWithHeight};
+        private AppStyles[] _listOfAppStyles = new AppStyles[] { AppStyles.EachPoiSeparate, AppStyles.FullScreenRectangle, AppStyles.Simple, AppStyles.SimpleWithDistance, AppStyles.SimpleWithHeight };
+        private Languages[] _listOfLanguages = new Languages[] { Languages.English, Languages.German};
 
         private bool _isDirty = false;
         private List<Size> _listOfCameraResolutions;
@@ -56,6 +61,7 @@ namespace HorizontApp.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetLanguage();
 
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
             var orientation = mainDisplayInfo.Orientation;
@@ -76,6 +82,7 @@ namespace HorizontApp.Activities
             ActionBar.SetDisplayShowTitleEnabled(false);
 
             _spinnerAppStyle = FindViewById<Spinner>(Resource.Id.spinnerAppStyle);
+            _spinnerLanguages = FindViewById<Spinner>(Resource.Id.spinnerLanguage);
             _spinnerPhotoResolution = FindViewById<Spinner>(Resource.Id.spinnerResolution);
 
             _switchManualViewAngle = FindViewById<Switch>(Resource.Id.switchManualViewAngle);
@@ -88,9 +95,13 @@ namespace HorizontApp.Activities
 
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfAppStyles.ToList());
             _spinnerAppStyle.Adapter = adapter;
-            _spinnerAppStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == _settings.AppStyle));
+            _spinnerAppStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == _settings.AppStyle)); 
             _spinnerAppStyle.ItemSelected += (sender, args) => { InvalidateOptionsMenu(); };
 
+            var adapterLanguages = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfLanguages.ToList());
+            _spinnerLanguages.Adapter = adapterLanguages;
+            _spinnerLanguages.SetSelection(_listOfLanguages.ToList().FindIndex(i => i == _settings.Language));
+            _spinnerLanguages.ItemSelected += LanguageChanged;
 
             _listOfCameraResolutions = CameraFragment.GetCameraResolutions(_settings.CameraId).ToList();
             var adapterPhotoResolution = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfCameraResolutions);
@@ -137,12 +148,39 @@ namespace HorizontApp.Activities
             _switchAutoElevationProfile.SetOnClickListener(this);
         }
 
+        private void SetLanguage()
+        {
+            switch (_settings.Language)
+            {
+                case Languages.English:
+                    Resources.Configuration.SetLocale(new Java.Util.Locale("en"));
+                    break;
+                case Languages.German:
+                    Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
+                    break;
+            }
+        }
+
+        private void LanguageChanged(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            switch (_spinnerLanguages.SelectedItemId)
+            {
+                case 0:
+                    _settings.Language = Languages.English;
+                    Resources.Configuration.SetLocale(new Java.Util.Locale("en"));
+                    break;
+                case 1:
+                    _settings.Language = Languages.German;
+                    Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
+                    break;
+            }
+        }
+
         protected override void OnStart()
         {
             base.OnStart();
             _isDirty = false;
         }
-
         public override void OnBackPressed()
         {
             OnClose();
