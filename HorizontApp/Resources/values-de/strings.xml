@@ -5,6 +5,33 @@
 
   <string name="ChooseLanguage">Wähle eine Sprache</string>
 
+  <string name="CameraViewAngle">Blickwinkel der Kamera</string>
+
+  <string name="SetViewAngleManually">Blickwinkel manuell einstellen</string>
+
+
+  <string name="HorizontalViewAngle">Horizontaler Blickwinkel</string>
+  <string name="DefaultViewAngleHorizontal">  Der aktuelle Blickwinkel der Kamera beträgt 40 (manuell eingestellt)</string>
+  <string name="VerticalViewAngle">Vertikaler Blickwinkel</string>
+  <string name="DefaultViewAngleVertical">  Der aktuelle Blickwinkel der Kamera beträgt 40 (manuell eingestellt)</string>
+
+  <string name="GPSLocation">GPS-Standort</string>
+
+  <string name="SetGPSManually">Stellen Sie den GPS-Standort manuell ein</string>
+
+  <string name="ElevationProfile">Höhenprofil</string>
+
+
+  <string name="ElevationProfileExplenation">Für eine bessere Benutzererfahrung ist es möglich, das Höhenprofil automatisch zu erhalten und anzuzeigen, sobald die Daten verfügbar sind.</string>
+
+  <string name="AutomaticElevationProfile">Automatisches Höhenprofil</string>
+
+  <string name="MyAltitude">Meine Höhe</string>
+  <string name="AltitudeExplenation">Eine genaue Höhe ist für die Benutzererfahrung sehr wichtig. Sie können möglicherweise den Höhenwert aus der Höhenkarte (wenn Höhendaten verfügbar sind) anstelle der Höhe aus dem GPS verwenden.</string>
+
+  <string name="AltitudeFromElevationMap">Verwenden Sie die Höhe von der Höhenkarte</string>
+  <string name="PhotoResolution">Fotoauflösung</string>
+
   <string-array name="SpinnerItemsArray">
       <item>Neuer Stil</item>
       <item>Alter Stil</item>

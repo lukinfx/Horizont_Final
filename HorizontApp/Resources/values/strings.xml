@@ -1,11 +1,39 @@
 <resources>
-    <string name="app_name">Horizon</string>
-    <string name="action_settings">Settings</string>
-    <string name="SpinnerItems">Choose a style</string>
+  <string name="app_name">Horizon</string>
+  <string name="action_settings">Settings</string>
+  <string name="SpinnerItems">Choose a style</string>
 
-    <string name="ChooseLanguage">Choose a style</string>
+  <string name="ChooseLanguage">Choose a language</string>
+
+  <string name="CameraViewAngle">Camera view angle</string>
+
+  <string name="SetViewAngleManually">Set view angle manually</string>
   
-    <string-array name="SpinnerItemsArray">
+
+  <string name="HorizontalViewAngle">Horizontal view angle</string>
+  <string name="DefaultViewAngleHorizontal">  Current camera view angle is 40 (set manually)</string>
+  <string name="VerticalViewAngle">Vertical view angle</string>
+  <string name="DefaultViewAngleVertical">  Current camera view angle is 60 (set manually)</string>
+  
+  <string name="GPSLocation">GPS Location</string>
+  
+  <string name="SetGPSManually">Set GPS Location Manually</string>
+  
+  <string name="ElevationProfile">Elevation profile</string>
+  
+
+  <string name="ElevationProfileExplenation">For better user experience it is possible to obtain and show elevation profile automatically whenever the data are available.</string>
+
+  <string name="AutomaticElevationProfile">Auto elevation profile</string>
+  
+  <string name="MyAltitude">My altitude</string>
+  <string name="AltitudeExplenation">Accurate altitude is very important for user experience. You can possibly use altitude value from elevation map (when elevation data are available) instead of altitude from GPS.</string>
+
+  <string name="AltitudeFromElevationMap">Use altitude from elevation map</string>
+  <string name="PhotoResolution">Photo resolution</string>
+
+
+  <string-array name="SpinnerItemsArray">
       <item>New Style</item>
       <item>Old Style</item>
     </string-array>
