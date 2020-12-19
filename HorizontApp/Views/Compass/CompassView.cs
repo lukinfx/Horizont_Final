@@ -11,7 +11,9 @@ using HorizontApp.Views.Compass;
 using HorizontApp.AppContext;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
 using System.Runtime.InteropServices.ComTypes;
-using System;
+using Java.Lang;
+using Double = System.Double;
+using Math = System.Math;
 
 namespace HorizontApp.Views
 {
@@ -180,6 +182,10 @@ namespace HorizontApp.Views
 
         public void OnScroll(float distanceY, bool isLeft)
         {
+
+            if (distanceY == Double.NaN)
+                return;
+
             var viewAngleVertical = _context.Settings.ViewAngleVertical;
             distanceY = (distanceY / Height) * viewAngleVertical;
             if (isLeft)

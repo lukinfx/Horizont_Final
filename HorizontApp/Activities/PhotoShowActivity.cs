@@ -159,14 +159,8 @@ namespace HorizontApp.Activities
             photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
+            _compassView.LayoutChange += OnLayoutChanged;
             _compassView.Initialize(_context);
-
-            if (photodata.LeftTiltCorrector.HasValue && photodata.RightTiltCorrector.HasValue)
-            {
-                _compassView.OnScroll((float)-photodata.LeftTiltCorrector.Value, true);
-                _compassView.OnScroll((float)-photodata.RightTiltCorrector.Value, false);
-            
-            }
 
             var photoLayout = FindViewById<AbsoluteLayout>(Resource.Id.photoLayout);
 
@@ -189,8 +183,19 @@ namespace HorizontApp.Activities
 
             //Finnaly setup OnDataChanged listener and Road all data
             _context.DataChanged += OnDataChanged;
+        }
 
-            System.Threading.Tasks.Task.Run(() => { _context.ReloadData(); });
+        public void OnLayoutChanged(object sender, LayoutChangeEventArgs e)
+        {
+            System.Threading.Tasks.Task.Run(() =>
+            {
+                _context.ReloadData();
+                if (photodata.LeftTiltCorrector.HasValue && photodata.RightTiltCorrector.HasValue)
+                {
+                    _compassView.OnScroll((float)-photodata.LeftTiltCorrector.Value, true);
+                    _compassView.OnScroll((float)-photodata.RightTiltCorrector.Value, false);
+                }
+            });
         }
 
         private void LoadImageAndProfile()
@@ -293,15 +298,27 @@ namespace HorizontApp.Activities
             _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
             _filterText.Visibility = ViewStates.Visible;
 
-            if (_context.ElevationProfileDataDistance < _distanceSeekBar.Progress || _context.ElevationProfileDataDistance == null)
+            _context.Settings.MaxDistance = _distanceSeekBar.Progress;
+
+            if (_context.Settings.ShowElevationProfile)
             {
-                GenerateElevationProfile();
-                _context.ElevationProfileDataDistance = _distanceSeekBar.Progress;
+                if (_context.ElevationProfileData == null && photodata.JsonElevationProfileData != null)
+                {
+                    _context.ElevationProfileData = JsonConvert.DeserializeObject<ElevationProfileData>(photodata.JsonElevationProfileData);
+                }
+
+                if (_context.ElevationProfileData == null || _context.ElevationProfileData.MaxDistance < _distanceSeekBar.Progress)
+                {
+                    GenerateElevationProfile();
+                    _context.ElevationProfileDataDistance = _distanceSeekBar.Progress;
+                }
+                else
+                {
+                    RefreshElevationProfile();
+                }
             }
 
-            _context.Settings.MaxDistance = _distanceSeekBar.Progress;
         }
-
 
         public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
         {
@@ -608,16 +625,6 @@ namespace HorizontApp.Activities
         {
             try
             {
-                if (photodata.JsonElevationProfileData != null)
-                {
-                    _context.ElevationProfileData = JsonConvert.DeserializeObject<ElevationProfileData>(photodata.JsonElevationProfileData);
-                    if (_context.ElevationProfileData != null)
-                    {
-                        RefreshElevationProfile();
-                        return;
-                    }
-                } 
-
                 if (!GpsUtils.HasAltitude(_context.MyLocation))
                 {
                     PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");

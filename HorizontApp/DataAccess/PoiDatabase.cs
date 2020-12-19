@@ -272,6 +272,11 @@ namespace HorizontApp.DataAccess
         {
             var task = Database.Table<PhotoData>().Where(i => i.Id == id).FirstOrDefaultAsync();
             task.Wait();
+            if (!task.Result.LeftTiltCorrector.HasValue || task.Result.LeftTiltCorrector < -10000 || task.Result.LeftTiltCorrector > 10000)
+                task.Result.LeftTiltCorrector = 0;
+            if (!task.Result.RightTiltCorrector.HasValue || task.Result.RightTiltCorrector < -10000 || task.Result.RightTiltCorrector > 10000)
+                task.Result.RightTiltCorrector = 0;
+
             return task.Result;
         }
 
