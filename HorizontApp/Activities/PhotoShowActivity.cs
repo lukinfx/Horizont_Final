@@ -235,26 +235,6 @@ namespace HorizontApp.Activities
                     }
                     var bmp = BitmapFactory.DecodeByteArray(b, 0, b.Length);
 
-                    /*var a = ImageResizer.ResizeImageAndroid(b, (float)photoView.Width, (float)photoView.Height, 100);
-                    var bmp = BitmapFactory.DecodeByteArray(a, 0, a.Length);
-                    Bitmap bitmap;
-                    if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
-                    {
-                        bitmap = Bitmap.CreateBitmap(bmp,
-                            Convert.ToInt32(bmp.Width - photoView.Width) / 2, 0,
-                            Convert.ToInt32(photoView.Width),
-                            Convert.ToInt32(photoView.Height));
-                    }
-                    else
-                    {
-                        bitmap = Bitmap.CreateBitmap(bmp,
-                            0, Convert.ToInt32(bmp.Height - photoView.Height) / 2,
-                            Convert.ToInt32(photoView.Width),
-                            Convert.ToInt32(photoView.Height));
-                    }
-                    dstBmp = Bitmap.CreateBitmap(bitmap);*/
-                    
-
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
                         photoView.SetScaleType(ImageView.ScaleType.CenterCrop);
@@ -383,6 +363,7 @@ namespace HorizontApp.Activities
                     break;
                 case MotionEventActions.Move:
                     {
+                        //heading and tilt correction
                         if (_editingOn && touchCount == 1)
                         {
                             var distanceX = m_PreviousMoveX - (int)e.GetX();
@@ -403,6 +384,7 @@ namespace HorizontApp.Activities
                                 _compassView.OnScroll(distanceX);
                             }
                         }
+                        //zooming
                         else if (touchCount >= 2 && m_IsScaling && !_editingOn)
                         {
                             var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
@@ -416,6 +398,7 @@ namespace HorizontApp.Activities
                             if (photoView.Scale > m_minScale && photoView.Scale < 5)
                                 _compassView.RecalculateViewAngles(scale);
                         }
+                        //moving
                         else if (!m_IsScaling && photoView.Scale > m_minScale && !_editingOn)
                         {
                             var distanceX = m_PreviousMoveX - (int)e.GetX();

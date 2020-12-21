@@ -74,36 +74,54 @@ namespace HorizontApp.Views.ScaleImage
             }
             //m_GestureDetector = new GestureDetector(m_Context, new ScaleImageViewGestureDetector(this));
         }
+
         protected override bool SetFrame(int l, int t, int r, int b)
         {
+            m_MinScale = CalculateMinScale(l, t, r, b);
+
             m_Width = r - l;
             m_Height = b - t;
             m_Matrix.Reset();
-
-            var r_norm = b - l;
-            m_Scale = (float)r_norm / (float)m_IntrinsicHeight;
-
+            var r_norm = r - l;
+            m_Scale = (float)r_norm / (float)m_IntrinsicWidth;
             var paddingHeight = 0;
             var paddingWidth = 0;
             if (m_Scale * m_IntrinsicHeight > m_Height)
             {
-                m_Scale = (float)m_Height / (float)m_IntrinsicHeight;
+                int scaledImageHeight = (int)(m_Scale * m_IntrinsicHeight);
+                paddingHeight = (scaledImageHeight - m_Height) / 2;
                 m_Matrix.PostScale(m_Scale, m_Scale);
-                paddingWidth = (r - m_Width) / 2;
+                /*m_Scale = (float)m_Height / (float)m_IntrinsicHeight;
+                m_Matrix.PostScale(m_Scale, m_Scale);
+                paddingWidth = (r - m_Width) / 2;*/
             }
             else
             {
                 m_Matrix.PostScale(m_Scale, m_Scale);
                 paddingHeight = (b - m_Height) / 2;
             }
-            m_Matrix.PostTranslate(paddingWidth, paddingHeight);
+            m_Matrix.PostTranslate(-paddingWidth, -paddingHeight);
             ImageMatrix = m_Matrix;
-            m_MinScale = m_Scale;
 
-            ZoomTo(m_Scale, m_Width / 2, m_Height / 2);
-            Cutting();
+            //ZoomTo(m_Scale, m_Width / 2, m_Height / 2);
+            //Cutting();
             return base.SetFrame(l, t, r, b);
         }
+
+        private float CalculateMinScale(int l, int t, int r, int b)
+        {
+            var Height = b - t;
+            var Width = r - l;
+            var minScale = (float)Width / (float)m_IntrinsicWidth;
+
+            if (minScale * m_IntrinsicHeight > Height)
+            {
+                minScale = (float)Height / (float)m_IntrinsicHeight;
+            }
+
+            return minScale;
+        }
+
         private float GetValue(Matrix matrix, int whichValue)
         {
             matrix.GetValues(m_MatrixValues);
