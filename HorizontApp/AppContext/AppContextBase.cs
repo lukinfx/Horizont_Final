@@ -5,6 +5,7 @@ using HorizontApp.Utilities;
 using HorizontLib.Domain.Models;
 using System.Collections.Generic;
 using HorizonLib.Domain.Models;
+using Xamarin.Essentials;
 
 namespace HorizontApp.AppContext
 {
@@ -41,6 +42,14 @@ namespace HorizontApp.AppContext
         public virtual double Heading { get; protected set; }
 
         public PoiViewItemList PoiData { get; protected set; }
+
+        public bool IsPortrait
+        {
+            get {
+                return  DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait &&
+                    (DeviceDisplay.MainDisplayInfo.Rotation == DisplayRotation.Rotation0 || DeviceDisplay.MainDisplayInfo.Rotation == DisplayRotation.Rotation180);
+            }
+        }
 
         protected PoiDatabase database;
         public PoiDatabase Database

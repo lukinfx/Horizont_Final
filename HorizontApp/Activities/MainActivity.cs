@@ -71,10 +71,7 @@ namespace HorizontApp
             base.OnCreate(bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
 
-            // Set our view from the "main" mainLayout resource
-            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
-            var orientation = mainDisplayInfo.Orientation;
-            if (orientation == DisplayOrientation.Portrait)
+            if (AppContextLiveData.Instance.IsPortrait)
             {
                 SetContentView(Resource.Layout.MainActivityPortrait);
             }

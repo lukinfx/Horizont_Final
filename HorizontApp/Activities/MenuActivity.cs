@@ -11,6 +11,7 @@ using HorizontApp.Activities;
 using Xamarin.Essentials;
 using System;
 using Android.Runtime;
+using HorizontApp.AppContext;
 
 namespace HorizontApp.Activities
 {
@@ -37,7 +38,7 @@ namespace HorizontApp.Activities
             _maxDistance = Intent.GetIntExtra("maxDistance", 0);
             _minAltitude = Intent.GetIntExtra("minAltitude", 0);
 
-            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+            if (AppContextLiveData.Instance.IsPortrait)
             {
                 SetContentView(Resource.Layout.MenuActivityPortrait);
             }

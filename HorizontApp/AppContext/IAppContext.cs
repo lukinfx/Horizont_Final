@@ -31,6 +31,7 @@ namespace HorizontApp.AppContext
         GpsLocation MyLocation { get; }
         double Heading { get; }
         PoiViewItemList PoiData { get; }
+        bool IsPortrait { get; }
         PoiDatabase Database { get; }
         void ToggleCompassPaused();
         void ReloadData();
