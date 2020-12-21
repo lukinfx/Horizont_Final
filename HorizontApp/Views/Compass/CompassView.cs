@@ -11,9 +11,7 @@ using HorizontApp.Views.Compass;
 using HorizontApp.AppContext;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
 using System.Runtime.InteropServices.ComTypes;
-using Java.Lang;
-using Double = System.Double;
-using Math = System.Math;
+using System;
 
 namespace HorizontApp.Views
 {
@@ -28,10 +26,15 @@ namespace HorizontApp.Views
         private Paint _paint;
         private double _headingCorrector = 0;
         private float _scale = 1;
+        private double _offsetY = 0;
+        private double _offsetX = 0;
 
         private ElevationProfileData _elevationProfile;
         private double _leftTiltCorrector = 0;
         private double _rightTiltCorrector = 0;
+
+        public double LeftTiltCorrector { get { return _leftTiltCorrector; } }
+        public double RightTiltCorrector { get { return _rightTiltCorrector; } }
 
         public double HeadingCorrector
         {
@@ -163,10 +166,10 @@ namespace HorizontApp.Views
             {
                 foreach (var item in list)
                 {
-                    if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible && (_leftTiltCorrector != 0 || _rightTiltCorrector != 0))
-                        compassViewDrawer.DrawItem(canvas, item, (float)heading, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
-                    else if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible)
-                        compassViewDrawer.DrawItem(canvas, item, (float)heading);
+                    if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible)
+                    {
+                        compassViewDrawer.DrawItem(canvas, item, (float) heading, (float)_offsetX, (float) _offsetY, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
+                    }
                 }
             }
             
@@ -182,10 +185,6 @@ namespace HorizontApp.Views
 
         public void OnScroll(float distanceY, bool isLeft)
         {
-
-            if (distanceY == Double.NaN)
-                return;
-
             var viewAngleVertical = _context.Settings.ViewAngleVertical;
             distanceY = (distanceY / Height) * viewAngleVertical;
             if (isLeft)
@@ -220,7 +219,7 @@ namespace HorizontApp.Views
 
         private void PaintElevationProfileBitmap(Canvas canvas, double heading)
         {
-            elevationProfileBitmapDrawer.PaintElevationProfileBitmap(canvas, heading, _leftTiltCorrector, _rightTiltCorrector);
+            elevationProfileBitmapDrawer.PaintElevationProfileBitmap(canvas, heading, _leftTiltCorrector, _rightTiltCorrector, (float)_offsetX, (float)_offsetY);
         }
 
         public (double, double) GetTiltSettings()
@@ -233,13 +232,11 @@ namespace HorizontApp.Views
             (_leftTiltCorrector, _rightTiltCorrector) = item;
         }
 
-        public void SetOffset(double offset)
+        public void Move(double offsetX, double offsetY)
         {
-            if (_context.Settings.ScaledViewAngleHorizontal != 0)
-            {
-                _leftTiltCorrector = _leftTiltCorrector - offset / (_context.Settings.ScaledViewAngleHorizontal * _scale);
-                _rightTiltCorrector = _leftTiltCorrector;
-            }
+            _offsetX += offsetX;
+            _offsetY += offsetY;
+            Invalidate();
         }
 
         public void RecalculateViewAngles(float scale)

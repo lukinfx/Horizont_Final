@@ -277,11 +277,26 @@ namespace HorizontApp.Activities
             {
                 _filterText.Visibility = ViewStates.Invisible;
 
-                _GPSTextView.Text = GpsUtils.HasLocation(_context.MyLocation) ?
-                    $"Lat:{_context.MyLocation.Latitude:F7} Lon:{_context.MyLocation.Longitude:F7} Alt:{_context.MyLocation.Altitude:F0}" : "No GPS location";
+                UpdateStatusBar();
+
                 Log.WriteLine(LogPriority.Debug, TAG, $"PoiCount: {e.PoiData.Count}");
                 _compassView.SetPoiViewItemList(e.PoiData);
             });
+        }
+
+        private void UpdateStatusBar()
+        {
+            var gpsLocation = GpsUtils.HasLocation(_context.MyLocation) ?
+                $"Lat:{_context.MyLocation.Latitude:F7} Lon:{_context.MyLocation.Longitude:F7} Alt:{_context.MyLocation.Altitude:F0}" 
+                : "No GPS location";
+            
+            var zoomAndTiltCorrection = $"Scale:{photoView.Scale:F2} ,LT:{_compassView.LeftTiltCorrector:F2}, RT:{_compassView.RightTiltCorrector:F2}";
+
+            var viewAngle = $"va-V:{ _context.Settings.ViewAngleVertical:F1} va-H:{ _context.Settings.ViewAngleHorizontal:F1}";
+
+            var photoMatrix = $"im-X:{photoView.TranslateX:F1}, im-Y:{photoView.TranslateY:F1}, Sc:{photoView.Scale:F2}";
+
+            _GPSTextView.Text = zoomAndTiltCorrection + "  /  " + viewAngle + "  /  " + photoMatrix;
         }
 
         private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
@@ -410,8 +425,7 @@ namespace HorizontApp.Activities
                             photoView.MoveTo(-distanceX, -distanceY);
                             photoView.Cutting();
 
-                            _compassView.SetOffset(distanceY / (m_minScale * photoView.Scale));
-                            _compassView.OnScroll(distanceX);
+                            _compassView.Move(-distanceX, -distanceY);
                         }
                         else if (touchCount >= 2 && _editingOn)
                         {
@@ -437,6 +451,8 @@ namespace HorizontApp.Activities
                     }
                     break;
             }
+
+            UpdateStatusBar();
             return true;
         }
 
@@ -595,6 +611,7 @@ namespace HorizontApp.Activities
                 File = new ShareFile(filename)
             });
         }
+        
         #region ElevationProfile
         private void HandleDisplayTarrainButtonClicked()
         {

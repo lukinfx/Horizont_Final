@@ -32,16 +32,17 @@ namespace HorizontLib.Utilities
             return a;
         }
 
-        public static float? GetXLocationOnScreen(float heading, float bearing, float canvasWidth, float cameraViewAngle)
+        public static float? GetXLocationOnScreen(float heading, float bearing, float canvasWidth, float cameraViewAngle, float offset)
         {
-            float XCoord;
             if (bearing < 0) bearing = 360 + bearing;
             double diff = GetAngleDiff(bearing, heading);
-            // +2 due to the edge of the screen and rounding bearing
-            if (Math.Abs(diff) < (cameraViewAngle + 2) / 2)
+            var xCoord = ((float)diff / (cameraViewAngle / 2)) * canvasWidth / 2 + canvasWidth / 2 + offset;
+            
+            // +-50 due to the edge of the screen and rounding bearing
+            if (xCoord >= 0 - 50 && xCoord <= canvasWidth + 50)
             {
-                XCoord = ((float)diff/ (cameraViewAngle / 2)) * canvasWidth/2 + canvasWidth / 2;
-                return XCoord;
+                
+                return xCoord;
             }
             else return null;
         }

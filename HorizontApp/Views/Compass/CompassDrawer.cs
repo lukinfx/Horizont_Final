@@ -121,24 +121,14 @@ namespace HorizontApp.Views.Compass
             }
         }*/
 
-        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading)
+        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, float offsetX, float offsetY, double? leftTiltCorrector, double? rightTiltCorrector, double? canvasWidth)
         {
-            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal);
-            if (startX != null)
-            {
-                float endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical);
-                OnDrawItem(canvas, item, startX.Value, endY);
-            }
-        }
-
-        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, double? leftTiltCorrector, double? rightTiltCorrector, double? canvasWidth)
-        {
-            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal);
+            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal, offsetX);
 
             if (startX != null)
             {
                 float endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical, startX.Value, leftTiltCorrector.Value, rightTiltCorrector.Value, canvasWidth.Value);
-                OnDrawItem(canvas, item, startX.Value, endY);
+                OnDrawItem(canvas, item, startX.Value, endY + offsetY);
             }
             
         }
