@@ -272,7 +272,7 @@ namespace HorizontApp.Activities
 
             var viewAngle = $"va-V:{ _context.Settings.ViewAngleVertical:F1} va-H:{ _context.Settings.ViewAngleHorizontal:F1}";
 
-            var photoMatrix = $"im-X:{photoView.TranslateX:F1}, im-Y:{photoView.TranslateY:F1}, Sc:{photoView.Scale:F2}";
+            var photoMatrix = $"im-X:{photoView.TranslateX:F1}, im-Y:{photoView.TranslateY:F1}, Sc:{photoView.DisplayScale:F2}/{photoView.Scale:F2}";
 
             _GPSTextView.Text = zoomAndTiltCorrection + "  /  " + viewAngle + "  /  " + photoMatrix;
         }
@@ -394,6 +394,7 @@ namespace HorizontApp.Activities
                             photoView.Cutting();
 
                             _compassView.RecalculateViewAngles(photoView.DisplayScale);
+                            _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
                         }
                         //moving
                         else if (!m_IsScaling && photoView.Scale > photoView.MinScale && !_editingOn)
@@ -405,7 +406,7 @@ namespace HorizontApp.Activities
                             photoView.MoveTo(-distanceX, -distanceY);
                             photoView.Cutting();
 
-                            _compassView.Move(-distanceX, -distanceY);
+                            _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
                         }
                         else if (touchCount >= 2 && _editingOn)
                         {

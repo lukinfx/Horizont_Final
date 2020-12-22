@@ -236,8 +236,8 @@ namespace HorizontApp.Views
 
         public void Move(double offsetX, double offsetY)
         {
-            _offsetX += offsetX;
-            _offsetY += offsetY;
+            _offsetX = offsetX;
+            _offsetY = offsetY;
             Invalidate();
         }
 

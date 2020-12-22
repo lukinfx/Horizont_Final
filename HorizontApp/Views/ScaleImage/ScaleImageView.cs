@@ -30,14 +30,20 @@ namespace HorizontApp.Views.ScaleImage
     {
         private Context m_Context;
         private float m_MaxScale = 5.0f;
+        private float m_MinScale; 
+        private float m_StdScale;
+        private float m_Scale;
+
         private Matrix m_Matrix;
         private float[] m_MatrixValues = new float[9];
         private int m_Width;
         private int m_Height;
         private int m_IntrinsicWidth;
         private int m_IntrinsicHeight;
-        private float m_Scale;
-        private float m_MinScale;
+        private int m_InitialPaddingWidth;
+        private int m_InitialPaddingHeight;
+        
+        
 
         public float MinScale { get { return m_MinScale; } }
 
@@ -86,13 +92,14 @@ namespace HorizontApp.Views.ScaleImage
             m_Height = b - t;
             m_Matrix.Reset();
             var r_norm = r - l;
-            m_Scale = (float)r_norm / (float)m_IntrinsicWidth;
-            var paddingHeight = 0;
-            var paddingWidth = 0;
+            m_StdScale = (float)r_norm / (float)m_IntrinsicWidth;
+            
+            m_Scale = m_StdScale;
+            m_InitialPaddingWidth = 0;
             if (m_Scale * m_IntrinsicHeight > m_Height)
             {
                 int scaledImageHeight = (int)(m_Scale * m_IntrinsicHeight);
-                paddingHeight = (scaledImageHeight - m_Height) / 2;
+                m_InitialPaddingHeight = (scaledImageHeight - m_Height) / 2;
                 m_Matrix.PostScale(m_Scale, m_Scale);
                 /*m_Scale = (float)m_Height / (float)m_IntrinsicHeight;
                 m_Matrix.PostScale(m_Scale, m_Scale);
@@ -101,9 +108,9 @@ namespace HorizontApp.Views.ScaleImage
             else
             {
                 m_Matrix.PostScale(m_Scale, m_Scale);
-                paddingHeight = (b - m_Height) / 2;
+                m_InitialPaddingHeight = (b - m_Height) / 2;
             }
-            m_Matrix.PostTranslate(-paddingWidth, -paddingHeight);
+            m_Matrix.PostTranslate(-m_InitialPaddingWidth, -m_InitialPaddingHeight);
             ImageMatrix = m_Matrix;
 
             //ZoomTo(m_Scale, m_Width / 2, m_Height / 2);
@@ -130,10 +137,35 @@ namespace HorizontApp.Views.ScaleImage
             matrix.GetValues(m_MatrixValues);
             return m_MatrixValues[whichValue];
         }
+        
+        /// <summary>
+        /// Scale in display units (1 = full screen width)
+        /// </summary>
         public float DisplayScale
         {
             get { return Scale * m_IntrinsicWidth / Width; }
         }
+        /// <summary>
+        /// X Translation in display pixels
+        /// </summary>
+        public float DisplayTranslateX
+        {
+            get
+            {
+                return ((DisplayScale * Width) - Width )/2 + TranslateX + m_InitialPaddingWidth * DisplayScale;
+            }
+        }
+        /// <summary>
+        /// Y Translation in display pixels
+        /// </summary>
+        public float DisplayTranslateY
+        {
+            get
+            {
+                return ((DisplayScale * Height) - Height)/2 + TranslateY + m_InitialPaddingHeight * DisplayScale;
+            }
+        }
+
         public float Scale
         {
             get { return this.GetValue(m_Matrix, Matrix.MscaleX); }
@@ -146,6 +178,7 @@ namespace HorizontApp.Views.ScaleImage
         {
             get { return this.GetValue(m_Matrix, Matrix.MtransY); }
         }
+
         public void MaxZoomTo(int x, int y)
         {
             if (this.m_MinScale != this.Scale && (Scale - m_MinScale) > 0.1f)
