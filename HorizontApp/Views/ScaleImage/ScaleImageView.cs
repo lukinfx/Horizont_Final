@@ -38,6 +38,9 @@ namespace HorizontApp.Views.ScaleImage
         private int m_IntrinsicHeight;
         private float m_Scale;
         private float m_MinScale;
+
+        public float MinScale { get { return m_MinScale; } }
+
         //private GestureDetector m_GestureDetector;
         public ScaleImageView(Context context, IAttributeSet attrs) :
         base(context, attrs)
@@ -127,6 +130,10 @@ namespace HorizontApp.Views.ScaleImage
             matrix.GetValues(m_MatrixValues);
             return m_MatrixValues[whichValue];
         }
+        public float DisplayScale
+        {
+            get { return Scale * m_IntrinsicWidth / Width; }
+        }
         public float Scale
         {
             get { return this.GetValue(m_Matrix, Matrix.MscaleX); }
@@ -152,25 +159,25 @@ namespace HorizontApp.Views.ScaleImage
                 ZoomTo(scale, x, y);
             }
         }
-        public void ZoomTo(float scale, int x, int y)
+        public void ZoomTo(float zoomFactor, int x, int y)
         {
-            if (Scale * scale < m_MinScale)
+            if (Scale * zoomFactor < m_MinScale)
             {
-                scale = m_MinScale / Scale;
+                zoomFactor = m_MinScale / Scale;
             }
             else
             {
-                if (scale >= 1 && Scale * scale > m_MaxScale)
+                if (zoomFactor >= 1 && Scale * zoomFactor > m_MaxScale)
                 {
-                    scale = m_MaxScale / Scale;
+                    zoomFactor = m_MaxScale / Scale;
                 }
             }
-            m_Matrix.PostScale(scale, scale);
+            m_Matrix.PostScale(zoomFactor, zoomFactor);
             //move to center
-            m_Matrix.PostTranslate(-(m_Width * scale - m_Width) / 2, -(m_Height * scale - m_Height) / 2);
+            m_Matrix.PostTranslate(-(m_Width * zoomFactor - m_Width) / 2, -(m_Height * zoomFactor - m_Height) / 2);
             //move x and y distance
-            m_Matrix.PostTranslate(-(x - (m_Width / 2)) * scale, 0);
-            m_Matrix.PostTranslate(0, -(y - (m_Height / 2)) * scale);
+            m_Matrix.PostTranslate(-(x - (m_Width / 2)) * zoomFactor, 0);
+            m_Matrix.PostTranslate(0, -(y - (m_Height / 2)) * zoomFactor);
             ImageMatrix = m_Matrix;
         }
         internal void MoveTo(int distanceX, int distanceY)

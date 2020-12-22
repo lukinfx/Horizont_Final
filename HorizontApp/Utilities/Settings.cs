@@ -52,10 +52,6 @@ namespace HorizontApp.Utilities
                 NotifySettingsChanged();
             }
         }
-
-        public float ScaledViewAngleHorizontal { get; set; }
-        public float ScaledViewAngleVertical { get; set; }
-
         public float? AutomaticViewAngleHorizontal { get; private set; }
         public float? AutomaticViewAngleVertical { get; private set; }
 

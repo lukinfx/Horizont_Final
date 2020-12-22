@@ -62,7 +62,6 @@ namespace HorizontApp.Activities
         private int m_PreviousMoveY;
         private float m_PreviousDistance;
         private bool m_IsScaling;
-        private float m_minScale;
 
         private PoiDatabase _database;
         private PoiDatabase Database
@@ -242,7 +241,6 @@ namespace HorizontApp.Activities
                     });
 
                     dstBmp = bmp.Copy(Bitmap.Config.Argb8888, true);
-                    m_minScale = photoView.Scale;
                 }
             }
             catch (Exception ex)
@@ -395,11 +393,10 @@ namespace HorizontApp.Activities
                             photoView.ZoomTo(scale, photoView.Width / 2, photoView.Height / 2);
                             photoView.Cutting();
 
-                            if (photoView.Scale > m_minScale && photoView.Scale < 5)
-                                _compassView.RecalculateViewAngles(scale);
+                            _compassView.RecalculateViewAngles(photoView.DisplayScale);
                         }
                         //moving
-                        else if (!m_IsScaling && photoView.Scale > m_minScale && !_editingOn)
+                        else if (!m_IsScaling && photoView.Scale > photoView.MinScale && !_editingOn)
                         {
                             var distanceX = m_PreviousMoveX - (int)e.GetX();
                             var distanceY = m_PreviousMoveY - (int)e.GetY();
@@ -418,7 +415,7 @@ namespace HorizontApp.Activities
                             scale += 1;
                             scale = scale * scale;
 
-                            _compassView.RecalculateViewAngles(scale);
+                            _compassView.RecalculateViewAngles(photoView.DisplayScale);
                         }
                     }
                     break;

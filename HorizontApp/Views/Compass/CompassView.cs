@@ -28,6 +28,8 @@ namespace HorizontApp.Views
         private float _scale = 1;
         private double _offsetY = 0;
         private double _offsetX = 0;
+        private float _adjustedViewAngleHorizontal = 0;
+        private float _adjustedViewAngleVertical = 0;
 
         private ElevationProfileData _elevationProfile;
         private double _leftTiltCorrector = 0;
@@ -133,17 +135,17 @@ namespace HorizontApp.Views
                         break;
             }
 
-            var (adjustedViewAngleHorizontal, adjustedViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
+            (_adjustedViewAngleHorizontal, _adjustedViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
                 _context.Settings.ViewAngleHorizontal, _context.Settings.ViewAngleVertical,
                 new System.Drawing.Size(compassViewSize.Width, compassViewSize.Height), 
                 _context.Settings.CameraPictureSize);
 
             Log.WriteLine(LogPriority.Debug, TAG, $"ViewAngle: {_context.Settings.ViewAngleHorizontal:F1}/{_context.Settings.ViewAngleVertical:F1}");
-            Log.WriteLine(LogPriority.Debug, TAG, $"AdjustedViewAngle: {adjustedViewAngleHorizontal:F1}/{adjustedViewAngleVertical:F1}");
+            Log.WriteLine(LogPriority.Debug, TAG, $"AdjustedViewAngle: {_adjustedViewAngleHorizontal:F1}/{_adjustedViewAngleVertical:F1}");
 
             float multiplier = (float)Math.Sqrt(compassViewSize.Width * compassViewSize.Height / 2000000.0);
-            compassViewDrawer.Initialize(adjustedViewAngleHorizontal, adjustedViewAngleVertical, multiplier);
-            elevationProfileBitmapDrawer.Initialize(adjustedViewAngleHorizontal, adjustedViewAngleVertical);
+            compassViewDrawer.Initialize(_adjustedViewAngleHorizontal, _adjustedViewAngleVertical, multiplier);
+            elevationProfileBitmapDrawer.Initialize(_adjustedViewAngleHorizontal, _adjustedViewAngleVertical);
         }
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
@@ -241,14 +243,11 @@ namespace HorizontApp.Views
 
         public void RecalculateViewAngles(float scale)
         {
-            _scale *= scale;
+            var scaledViewAngleHorizontal = _adjustedViewAngleHorizontal / scale;
+            var scaledViewAngleVertical = _adjustedViewAngleVertical / scale;
 
-            _context.Settings.ScaledViewAngleHorizontal = (1 / _scale) * _context.Settings.ViewAngleHorizontal;
-            _context.Settings.ScaledViewAngleVertical = (1 / _scale) * _context.Settings.ViewAngleVertical;
-
-
-            compassViewDrawer.SetScaledViewAngle(_context.Settings.ScaledViewAngleHorizontal, _context.Settings.ScaledViewAngleVertical);
-            elevationProfileBitmapDrawer.SetScaledViewAngle(_context.Settings.ScaledViewAngleHorizontal, _context.Settings.ScaledViewAngleVertical);
+            compassViewDrawer.SetScaledViewAngle(scaledViewAngleHorizontal, scaledViewAngleVertical);
+            elevationProfileBitmapDrawer.SetScaledViewAngle(scaledViewAngleHorizontal, scaledViewAngleVertical);
             Invalidate();
         }
     }
