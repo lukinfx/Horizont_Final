@@ -69,12 +69,11 @@ namespace HorizontApp.Utilities
             view.SetOnClickListener(this);
 
             PoiViewItem item = this[position];
-            string infoAvailable = "";
             if (item.Poi.Wikidata != null || item.Poi.Wikipedia != null)
             {
-                infoAvailable = "ⓘ";
+                view.FindViewById<ImageView>(Resource.Id.InfoAvailable).SetImageResource(Resource.Drawable.ic_systeminfo_grey);
             }
-            view.FindViewById<TextView>(Resource.Id.Title).Text = item.Poi.Name + " "+ infoAvailable;
+            view.FindViewById<TextView>(Resource.Id.Title).Text = item.Poi.Name;
             view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Poi.Altitude) + "m | " + 
                 Convert.ToString(Math.Round(item.Distance/1000, 2)) + " km |" +
                 Convert.ToString(Math.Round(item.Bearing, 2)) + " dg";
