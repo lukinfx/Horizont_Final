@@ -37,12 +37,12 @@
           android:layout_height="wrap_content"
           android:id="@+id/linearLayoutName">
         <TextView
-            android:text="Name: "
+            android:text="@string/Name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/NameTitle" />
         <EditText
-            android:text="My current location"
+            android:text="@string/DefaultTextAddPoi"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
 
           <TextView
               android:layout_columnWeight="8"
-              android:text="Latitude: "
+              android:text="@string/Latitude"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:id="@+id/latitudeTitle" />
@@ -82,7 +82,7 @@
             android:layout_columnWeight="2"/> 
           <TextView
               android:layout_columnWeight="8"
-              android:text="Longitude: "
+              android:text="@string/Longitude"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:id="@+id/longitudeTitle" />
@@ -102,7 +102,7 @@
             android:layout_columnWeight="2"/> 
           <TextView
             android:layout_columnWeight="3"
-            android:text="Altitude: "
+            android:text="@string/Altitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/altitudeTitle" />
@@ -119,7 +119,7 @@
         </GridLayout>
         
         <TextView
-          android:text="Category: "
+          android:text="@string/Category"
           android:paddingTop="20dp"
           android:layout_width="wrap_content"
           android:layout_height="match_parent"

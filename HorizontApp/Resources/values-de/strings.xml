@@ -32,6 +32,9 @@
   <string name="AltitudeFromElevationMap">Verwenden Sie die Höhe von der Höhenkarte</string>
   <string name="PhotoResolution">Fotoauflösung</string>
 
+
+  <string name="Austria">Österreich</string>
+
   <string-array name="SpinnerItemsArray">
       <item>Neuer Stil</item>
       <item>Alter Stil</item>
