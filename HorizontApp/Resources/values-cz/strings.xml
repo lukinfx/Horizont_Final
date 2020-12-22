@@ -1,50 +1,50 @@
 <resources>
   <string name="app_name">Horizon</string>
-  <string name="action_settings">Settings</string>
-  <string name="SpinnerItems">Choose a style</string>
+  <string name="action_settings">Nastavení</string>
+  <string name="SpinnerItems">Vyber zobrazení aplikace</string>
 
-  <string name="ChooseLanguage">Choose a language</string>
+  <string name="ChooseLanguage">Vyber jazyk</string>
 
-  <string name="CameraViewAngle">Camera view angle</string>
+  <string name="CameraViewAngle">Zorný úhel fotoaparátu</string>
 
-  <string name="SetViewAngleManually">Set view angle manually</string>
+  <string name="SetViewAngleManually">Nastavit zorný úhel manuálně</string>
   
 
-  <string name="HorizontalViewAngle">Horizontal view angle</string>
-  <string name="DefaultViewAngleHorizontal">  Current camera view angle is 40 (set manually)</string>
-  <string name="VerticalViewAngle">Vertical view angle</string>
-  <string name="DefaultViewAngleVertical">  Current camera view angle is 60 (set manually)</string>
+  <string name="HorizontalViewAngle">Horizontalní zorný úhel</string>
+  <string name="DefaultViewAngleHorizontal">Zorný úhel je 40° (nastaveno manuálně)</string>
+  <string name="VerticalViewAngle">Vertikální zorný úhel</string>
+  <string name="DefaultViewAngleVertical">  Zorný úhel je 60° (nastaveno manuálně)</string>
   
-  <string name="GPSLocation">GPS Location</string>
+  <string name="GPSLocation">GPS poloha </string>
   
-  <string name="SetGPSManually">Set GPS Location Manually</string>
+  <string name="SetGPSManually">Nastavit GPS polohu manuálně</string>
   
-  <string name="ElevationProfile">Elevation profile</string>
+  <string name="ElevationProfile">Výškový profil</string>
 
-  <string name="ElevationProfileExplenation">For better user experience it is possible to obtain and show elevation profile automatically whenever the data are available.</string>
+  <string name="ElevationProfileExplenation">Pro lepší uživatelský zážitel lze generovat výškový profil automaticky, kdykoliv jsou k dispozici výšková data.</string>
 
-  <string name="AutomaticElevationProfile">Auto elevation profile</string>
+  <string name="AutomaticElevationProfile">Generovat výškový profil automaticky</string>
   
-  <string name="MyAltitude">My altitude</string>
-  <string name="AltitudeExplenation">Accurate altitude is very important for user experience. You can possibly use altitude value from elevation map (when elevation data are available) instead of altitude from GPS.</string>
+  <string name="MyAltitude">Nadmořská výška</string>
+  <string name="AltitudeExplenation">Přesné určení nadmořské výšky je pro správné fungování aplikace velmi podstatné. Nadmořskou výšku lze získat z výškové mapy namísto nadmořské výšky z GPS polohy (jsou-li výšková data k dispozici).</string>
 
-  <string name="AltitudeFromElevationMap">Use altitude from elevation map</string>
-  <string name="PhotoResolution">Photo resolution</string>
+  <string name="AltitudeFromElevationMap">Používat nadmořskou výšku z výškové mapy</string>
+  <string name="PhotoResolution">Rozlišení fotografie</string>
   
-  <string name="Name">Name: </string>
+  <string name="Name">Název: </string>
 
-  <string name="DefaultTextAddPoi">My current location</string>
-  <string name="Latitude">Latitude: </string>
-  <string name="Longitude">Longitude: </string>
-  <string name="Altitude">Altitude: </string>
-  <string name="Category">Category: </string>
-  <string name="EditName">Edit name</string>
+  <string name="DefaultTextAddPoi">Současná GPS poloha</string>
+  <string name="Latitude">Zeměpisná šířka: </string>
+  <string name="Longitude">Zeměpisná délka: </string>
+  <string name="Altitude">Nadmořská výška: </string>
+  <string name="Category">Kategorie: </string>
+  <string name="EditName">Uprav název</string>
 
-  <string name="CategoryFilter">Category filter</string>
-  <string name="All">All</string>
-  <string name="None">None</string>
-  <string name="Close">Close</string>
-  <string name="Search">Search...</string>
+  <string name="CategoryFilter">Filtr kategorie</string>
+  <string name="All">Vše</string>
+  <string name="None">Nic</string>
+  <string name="Close">Uložit</string>
+  <string name="Search">Vyhledávání...</string>
     
   <string-array name="SpinnerItemsArray">
       <item>New Style</item>

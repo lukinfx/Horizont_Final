@@ -53,7 +53,7 @@ namespace HorizontApp.Activities
         private Spinner _spinnerPhotoResolution;
         private Button _resetButton;
         private AppStyles[] _listOfAppStyles = new AppStyles[] { AppStyles.EachPoiSeparate, AppStyles.FullScreenRectangle, AppStyles.Simple, AppStyles.SimpleWithDistance, AppStyles.SimpleWithHeight };
-        private Languages[] _listOfLanguages = new Languages[] { Languages.English, Languages.German};
+        private Languages[] _listOfLanguages = new Languages[] { Languages.English, Languages.German, Languages.Czech};
 
         private bool _isDirty = false;
         private List<Size> _listOfCameraResolutions;
@@ -158,6 +158,9 @@ namespace HorizontApp.Activities
                 case Languages.German:
                     Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
                     break;
+                case Languages.Czech:
+                    Resources.Configuration.SetLocale(new Java.Util.Locale("cz"));
+                    break;
             }
 
             Resources.UpdateConfiguration(Resources.Configuration, Resources.DisplayMetrics);
@@ -174,6 +177,11 @@ namespace HorizontApp.Activities
                 case 1:
                     _settings.Language = Languages.German;
                     Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
+                    break;
+
+                case 2:
+                    _settings.Language = Languages.Czech;
+                    Resources.Configuration.SetLocale(new Java.Util.Locale("cz"));
                     break;
             }
 

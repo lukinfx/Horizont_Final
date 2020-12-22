@@ -33,7 +33,20 @@
   <string name="PhotoResolution">Fotoauflösung</string>
 
 
-  <string name="Austria">Österreich</string>
+  <string name="Name">Name: </string>
+
+  <string name="DefaultTextAddPoi">Mein aktueller Standort</string>
+  <string name="Latitude">Breite: </string>
+  <string name="Longitude">Längengrad: </string>
+  <string name="Altitude">Höhe: </string>
+  <string name="Category">Kategorie: </string>
+  <string name="EditName">Namen bearbeiten</string>
+
+  <string name="CategoryFilter">Kategoriefilter</string>
+  <string name="All">Alle</string>
+  <string name="None">Keiner</string>
+  <string name="Close">Schließen</string>
+  <string name="Search">Suche...</string>
 
   <string-array name="SpinnerItemsArray">
       <item>Neuer Stil</item>
