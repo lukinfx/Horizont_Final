@@ -1,63 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_landscape">
     <ImageView
         android:src="@drawable/logo_horizon5"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="250dp"
         android:padding="20dp"
         android:id="@+id/imageView1" />
-    <GridLayout
-        android:orientation="horizontal"
-        android:columnCount="6"
-        android:rowCount="1"
-        android:padding="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-      <ImageButton
-        android:src="@drawable/ic_camera"
-        android:layout_columnWeight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonHome"
-        android:background="#00000000"/>
-      <ImageButton
-          android:src="@drawable/ic_notesalt"
-          android:layout_columnWeight="1"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/buttonList"
-          android:background="#00000000"/>
-        <ImageButton
-          android:src="@drawable/ic_gallery"
-          android:layout_columnWeight="1"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/buttonPhotos" 
-          android:background="#00000000"/>
-        <ImageButton
-            android:src="@drawable/ic_download"
-            android:layout_columnWeight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonDownload" 
-            android:background="#00000000"/>
-        <ImageButton
-            android:src="@drawable/ic_settingsalt2"
-            android:layout_columnWeight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonSettings" 
-            android:background="#00000000"/>
-        <ImageButton
-            android:src="@drawable/ic_systeminfo"
-            android:layout_columnWeight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonAbout" 
-            android:background="#00000000"/>
-    </GridLayout>
+    
+    <include
+      layout="@layout/MenuButtons" />
 </LinearLayout>

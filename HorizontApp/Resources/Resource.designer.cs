@@ -9968,115 +9968,118 @@ namespace HorizontApp
 			public const int MenuActivityPortrait = 2131492928;
 			
 			// aapt resource value: 0x7F0C0041
-			public const int mtrl_layout_snackbar = 2131492929;
+			public const int MenuButtons = 2131492929;
 			
 			// aapt resource value: 0x7F0C0042
-			public const int mtrl_layout_snackbar_include = 2131492930;
+			public const int mtrl_layout_snackbar = 2131492930;
 			
 			// aapt resource value: 0x7F0C0043
-			public const int notification_action = 2131492931;
+			public const int mtrl_layout_snackbar_include = 2131492931;
 			
 			// aapt resource value: 0x7F0C0044
-			public const int notification_action_tombstone = 2131492932;
+			public const int notification_action = 2131492932;
 			
 			// aapt resource value: 0x7F0C0045
-			public const int notification_media_action = 2131492933;
+			public const int notification_action_tombstone = 2131492933;
 			
 			// aapt resource value: 0x7F0C0046
-			public const int notification_media_cancel_action = 2131492934;
+			public const int notification_media_action = 2131492934;
 			
 			// aapt resource value: 0x7F0C0047
-			public const int notification_template_big_media = 2131492935;
+			public const int notification_media_cancel_action = 2131492935;
 			
 			// aapt resource value: 0x7F0C0048
-			public const int notification_template_big_media_custom = 2131492936;
+			public const int notification_template_big_media = 2131492936;
 			
 			// aapt resource value: 0x7F0C0049
-			public const int notification_template_big_media_narrow = 2131492937;
+			public const int notification_template_big_media_custom = 2131492937;
 			
 			// aapt resource value: 0x7F0C004A
-			public const int notification_template_big_media_narrow_custom = 2131492938;
+			public const int notification_template_big_media_narrow = 2131492938;
 			
 			// aapt resource value: 0x7F0C004B
-			public const int notification_template_custom_big = 2131492939;
+			public const int notification_template_big_media_narrow_custom = 2131492939;
 			
 			// aapt resource value: 0x7F0C004C
-			public const int notification_template_icon_group = 2131492940;
+			public const int notification_template_custom_big = 2131492940;
 			
 			// aapt resource value: 0x7F0C004D
-			public const int notification_template_lines_media = 2131492941;
+			public const int notification_template_icon_group = 2131492941;
 			
 			// aapt resource value: 0x7F0C004E
-			public const int notification_template_media = 2131492942;
+			public const int notification_template_lines_media = 2131492942;
 			
 			// aapt resource value: 0x7F0C004F
-			public const int notification_template_media_custom = 2131492943;
+			public const int notification_template_media = 2131492943;
 			
 			// aapt resource value: 0x7F0C0050
-			public const int notification_template_part_chronometer = 2131492944;
+			public const int notification_template_media_custom = 2131492944;
 			
 			// aapt resource value: 0x7F0C0051
-			public const int notification_template_part_time = 2131492945;
+			public const int notification_template_part_chronometer = 2131492945;
 			
 			// aapt resource value: 0x7F0C0052
-			public const int PhotosActivityItem = 2131492946;
+			public const int notification_template_part_time = 2131492946;
 			
 			// aapt resource value: 0x7F0C0053
-			public const int PhotosActivityLandscape = 2131492947;
+			public const int PhotosActivityItem = 2131492947;
 			
 			// aapt resource value: 0x7F0C0054
-			public const int PhotosActivityPortrait = 2131492948;
+			public const int PhotosActivityLandscape = 2131492948;
 			
 			// aapt resource value: 0x7F0C0055
-			public const int PhotosActivityToolbar = 2131492949;
+			public const int PhotosActivityPortrait = 2131492949;
 			
 			// aapt resource value: 0x7F0C0056
-			public const int PhotoShowActivityControlBar = 2131492950;
+			public const int PhotosActivityToolbar = 2131492950;
 			
 			// aapt resource value: 0x7F0C0057
-			public const int PhotoShowActivityLayout = 2131492951;
+			public const int PhotoShowActivityControlBar = 2131492951;
 			
 			// aapt resource value: 0x7F0C0058
-			public const int PoiListActivityLandscape = 2131492952;
+			public const int PhotoShowActivityLayout = 2131492952;
 			
 			// aapt resource value: 0x7F0C0059
-			public const int PoiListActivityPortrait = 2131492953;
+			public const int PoiListActivityLandscape = 2131492953;
 			
 			// aapt resource value: 0x7F0C005A
-			public const int PoiListActivityToolbar = 2131492954;
+			public const int PoiListActivityPortrait = 2131492954;
 			
 			// aapt resource value: 0x7F0C005B
-			public const int PoiListItemLayout = 2131492955;
+			public const int PoiListActivityToolbar = 2131492955;
 			
 			// aapt resource value: 0x7F0C005C
-			public const int RootLayout = 2131492956;
+			public const int PoiListItemLayout = 2131492956;
 			
 			// aapt resource value: 0x7F0C005D
-			public const int select_dialog_item_material = 2131492957;
+			public const int RootLayout = 2131492957;
 			
 			// aapt resource value: 0x7F0C005E
-			public const int select_dialog_multichoice_material = 2131492958;
+			public const int select_dialog_item_material = 2131492958;
 			
 			// aapt resource value: 0x7F0C005F
-			public const int select_dialog_singlechoice_material = 2131492959;
+			public const int select_dialog_multichoice_material = 2131492959;
 			
 			// aapt resource value: 0x7F0C0060
-			public const int SettingsActivity = 2131492960;
+			public const int select_dialog_singlechoice_material = 2131492960;
 			
 			// aapt resource value: 0x7F0C0061
-			public const int SettingsActivityLandscape = 2131492961;
+			public const int SettingsActivity = 2131492961;
 			
 			// aapt resource value: 0x7F0C0062
-			public const int SettingsActivityPortrait = 2131492962;
+			public const int SettingsActivityLandscape = 2131492962;
 			
 			// aapt resource value: 0x7F0C0063
-			public const int SettingsActivityToolbar = 2131492963;
+			public const int SettingsActivityPortrait = 2131492963;
 			
 			// aapt resource value: 0x7F0C0064
-			public const int ShellContent = 2131492964;
+			public const int SettingsActivityToolbar = 2131492964;
 			
 			// aapt resource value: 0x7F0C0065
-			public const int support_simple_spinner_dropdown_item = 2131492965;
+			public const int ShellContent = 2131492965;
+			
+			// aapt resource value: 0x7F0C0066
+			public const int support_simple_spinner_dropdown_item = 2131492966;
 			
 			static Layout()
 			{
