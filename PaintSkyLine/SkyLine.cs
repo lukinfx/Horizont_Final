@@ -86,7 +86,7 @@ namespace PaintSkyLine
             var d = etc.GetSizeToDownload();
             etc.Download(progress => { });
             etc.Read(progress => { });
-            profileGenerator.Generate(_myLocation, etc, progress => { });
+            profileGenerator.Generate(_myLocation, 12, etc, progress => { });
 
             /*ProfileGeneratorOld ep2 = new ProfileGeneratorOld();
             //ep2.GenerateElevationProfile3(_myLocation, _visibility, _data, progress => { });

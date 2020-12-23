@@ -39,6 +39,7 @@ namespace HorizontApp.AppContext
 
         void Pause();
         void Resume();
+        void SetLocale(Android.Content.ContextWrapper contextWrapper);
 
         double? ElevationProfileDataDistance { get; set; }
     }

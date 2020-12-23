@@ -6,13 +6,19 @@ using HorizontLib.Domain.Models;
 using System.Collections.Generic;
 using HorizonLib.Domain.Models;
 using Xamarin.Essentials;
+using HorizonLib.Domain.Enums;
+using Android.Content.Res;
+using Android.Content;
 
 namespace HorizontApp.AppContext
 {
     public abstract class AppContextBase : IAppContext
     {
-        public virtual void Initialize(Android.Content.Context context)
+        protected Context context;
+
+        public virtual void Initialize(Context context)
         {
+            this.context = context;
         }
 
         public event DataChangedEventHandler DataChanged;
@@ -143,6 +149,25 @@ namespace HorizontApp.AppContext
 
         public virtual void Resume()
         {
+        }
+
+        public void SetLocale(ContextWrapper appContext)
+        {
+            
+            switch (Settings.Language)
+            {
+                case Languages.English:
+                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("en"));
+                    break;
+                case Languages.German:
+                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
+                    break;
+                case Languages.Czech:
+                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("cz"));
+                    break;
+            }
+
+            appContext.Resources.UpdateConfiguration(appContext.Resources.Configuration, appContext.Resources.DisplayMetrics);
         }
     }
 }

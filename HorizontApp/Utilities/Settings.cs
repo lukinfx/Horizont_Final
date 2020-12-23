@@ -9,6 +9,7 @@ using HorizontLib.Domain.Enums;
 using HorizontLib.Domain.Models;
 using HorizontLib.Domain.ViewModel;
 using Android.Util;
+using HorizonLib.Domain.Enums;
 
 namespace HorizontApp.Utilities
 {
@@ -33,65 +34,38 @@ namespace HorizontApp.Utilities
         {
             _maxDistance = 12;
             _minAltitute = 0;
+            Categories = new List<PoiCategory>();
+            AppStyle = AppStyles.FullScreenRectangle;
 
             _changeFilterTimer.Interval = 1000;
             _changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;
             _changeFilterTimer.AutoReset = false;
         }
 
-        private bool isViewAngleCorrection;
-        public bool IsViewAngleCorrection
-        {
-            get
-            {
-                return isViewAngleCorrection;
-            }
-            set
-            {
-                isViewAngleCorrection = value;
-                NotifySettingsChanged();
-            }
-        }
+        public bool IsViewAngleCorrection { get; set; }
         public float? AutomaticViewAngleHorizontal { get; private set; }
         public float? AutomaticViewAngleVertical { get; private set; }
+        public float CorrectionViewAngleHorizontal { get; set; }
+        public float CorrectionViewAngleVertical { get; set; }
+        public bool IsManualLocation { get; set; }
+        public GpsLocation ManualLocation { get; set; }
+        public bool AltitudeFromElevationMap { get; set; }
+        public bool AutoElevationProfile { get; set; }
+        public bool ShowElevationProfile { get; set; }
+        public string CameraId { get; set; }
+        public AppStyles AppStyle { get; set; }
+        public List<PoiCategory> Categories { get; set; }
+        public bool ShowFavoritesOnly { get; set; }
 
-        private float correctionViewAngleHorizontal;
-        public float CorrectionViewAngleHorizontal
-        {
-            get
-            {
-                return correctionViewAngleHorizontal;
-            }
-            set
-            {
-                correctionViewAngleHorizontal = value;
-                NotifySettingsChanged();
-            }
-        }
 
-        private float correctionViewAngleVertical;
-        public float CorrectionViewAngleVertical
-        {
-            get
-            {
-                return correctionViewAngleVertical;
-            }
-            set
-            {
-                correctionViewAngleVertical = value;
-                NotifySettingsChanged();
-            }
-        }
-
-        
         public float ViewAngleHorizontal
         {
             get
             {
                 if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Landscape)
-                    return (AutomaticViewAngleHorizontal.HasValue?AutomaticViewAngleHorizontal.Value:60) + (isViewAngleCorrection?correctionViewAngleHorizontal:0);
+                    return (AutomaticViewAngleHorizontal.HasValue?AutomaticViewAngleHorizontal.Value:60) + (IsViewAngleCorrection?CorrectionViewAngleHorizontal:0);
                 else
-                    return (AutomaticViewAngleVertical.HasValue?AutomaticViewAngleVertical.Value:40) + (isViewAngleCorrection? correctionViewAngleVertical:0);
+                    return (AutomaticViewAngleVertical.HasValue?AutomaticViewAngleVertical.Value:40) + (IsViewAngleCorrection? CorrectionViewAngleVertical:0);
 
             }
         }
@@ -101,9 +75,9 @@ namespace HorizontApp.Utilities
             get
             {
                 if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Landscape)
-                    return (AutomaticViewAngleVertical.HasValue ? AutomaticViewAngleVertical.Value : 40) + (isViewAngleCorrection ? correctionViewAngleVertical : 0);
+                    return (AutomaticViewAngleVertical.HasValue ? AutomaticViewAngleVertical.Value : 40) + (IsViewAngleCorrection ? CorrectionViewAngleVertical : 0);
                 else
-                    return (AutomaticViewAngleHorizontal.HasValue ? AutomaticViewAngleHorizontal.Value : 60) + (isViewAngleCorrection ? correctionViewAngleHorizontal : 0);
+                    return (AutomaticViewAngleHorizontal.HasValue ? AutomaticViewAngleHorizontal.Value : 60) + (IsViewAngleCorrection ? CorrectionViewAngleHorizontal : 0);
             }
         }
 
@@ -116,41 +90,6 @@ namespace HorizontApp.Utilities
             AutomaticViewAngleVertical = verticalViewAngle;
             _cameraPictureSize = new System.Drawing.Size(imageWidth, imageHeight);
             NotifySettingsChanged();
-        }
-
-        private AppStyles appStyle = AppStyles.FullScreenRectangle;
-        public AppStyles AppStyle
-        {
-            get  
-            { 
-                return appStyle; 
-            }
-            set 
-            { 
-                appStyle = value;
-                NotifySettingsChanged();
-            }
-        }
-
-        private List<PoiCategory> categories = new List<PoiCategory>();
-        public List<PoiCategory> Categories
-        {
-            get
-            {
-                return categories;
-            }
-            set
-            {
-                categories = value;
-                NotifySettingsChanged();
-            }
-        }
-
-        private bool _showFavoritesOnly;
-        public bool ShowFavoritesOnly
-        {
-            get { return _showFavoritesOnly; }
-            private set { _showFavoritesOnly = value; NotifySettingsChanged(); }
         }
 
         private int _minAltitute;
@@ -167,44 +106,6 @@ namespace HorizontApp.Utilities
             set { _maxDistance = value; RestartTimer(); }
         }
 
-        private bool _isManualLocation;
-        public bool IsManualLocation
-        {
-            get { return _isManualLocation; }
-            set { _isManualLocation = value; NotifySettingsChanged(); }
-        }
-
-        private GpsLocation _manualLocation;
-        public GpsLocation ManualLocation
-        {
-            get { return _manualLocation; }
-            set { _manualLocation = value; NotifySettingsChanged(); }
-        }
-
-        private bool _altitudeFromElevationMap;
-        public bool AltitudeFromElevationMap
-        {
-            get { return _altitudeFromElevationMap; }
-            set { _altitudeFromElevationMap = value; NotifySettingsChanged(); }
-        }
-
-        private bool _autoElevationProfile;
-        public bool AutoElevationProfile
-        {
-            get { return _autoElevationProfile; }
-            set { _autoElevationProfile = value; NotifySettingsChanged(); }
-        }
-
-
-        private bool _showElevationProfile;
-        public bool ShowElevationProfile
-        {
-            get { return _showElevationProfile; }
-            set { _showElevationProfile = value; NotifySettingsChanged(); }
-        }
-
-        public string CameraId { get; set; }
-
         public void NotifySettingsChanged()
         {
             var args = new SettingsChangedEventArgs();
@@ -217,26 +118,29 @@ namespace HorizontApp.Utilities
 
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(context);
 
-            String str = prefs.GetString("AppStyle", appStyle.ToString());
-            appStyle = Enum.Parse<AppStyles>(str);
+            String str = prefs.GetString("AppStyle", AppStyle.ToString());
+            AppStyle = Enum.Parse<AppStyles>(str);
 
             var categoriesAsCollection = prefs.GetStringSet("Categories", GetDefaultCategories());
-            categories.Clear();
+            Categories.Clear();
             foreach (var i in categoriesAsCollection)
             {
-                categories.Add(Enum.Parse<PoiCategory>(i));
+                Categories.Add(Enum.Parse<PoiCategory>(i));
             }
 
-            isViewAngleCorrection = prefs.GetBoolean("IsViewAngleCorrection", false);
+            IsViewAngleCorrection = prefs.GetBoolean("IsViewAngleCorrection", false);
 
-            correctionViewAngleHorizontal = prefs.GetFloat("CorrectionViewAngleHorizontal", 0);
-            correctionViewAngleVertical = prefs.GetFloat("CorrectionViewAngleVertical", 0);
+            CorrectionViewAngleHorizontal = prefs.GetFloat("CorrectionViewAngleHorizontal", 0);
+            CorrectionViewAngleVertical = prefs.GetFloat("CorrectionViewAngleVertical", 0);
 
-            _altitudeFromElevationMap = prefs.GetBoolean("AltitudeFromElevationMap", false);
-            _autoElevationProfile = prefs.GetBoolean("AutoElevationProfile", false);
+            AltitudeFromElevationMap = prefs.GetBoolean("AltitudeFromElevationMap", false);
+            AutoElevationProfile = prefs.GetBoolean("AutoElevationProfile", false);
 
             cameraResolutionSelected = new Size (prefs.GetInt("CameraResolutionWidth", 0), prefs.GetInt("CameraResolutionHeight", 0));
             CameraId= prefs.GetString("CameraId", null);
+
+            string lan = prefs.GetString("Language", Languages.English.ToString());
+            Language = Enum.Parse<Languages>(lan);
 
             ShowElevationProfile = AutoElevationProfile;
             ShowFavoritesOnly = false;
@@ -249,25 +153,26 @@ namespace HorizontApp.Utilities
                 ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(mContext);
                 ISharedPreferencesEditor editor = prefs.Edit();
 
-                editor.PutString("AppStyle", appStyle.ToString());
+                editor.PutString("AppStyle", AppStyle.ToString());
 
                 var categoriesAsCollection = new Collection<string>();
-                foreach (var i in categories)
+                foreach (var i in Categories)
                 {
                     categoriesAsCollection.Add(i.ToString());
                 }
                 editor.PutStringSet("Categories", categoriesAsCollection);
 
-                editor.PutBoolean("IsViewAngleCorrection", isViewAngleCorrection);
-                editor.PutFloat("CorrectionViewAngleHorizontal", correctionViewAngleHorizontal);
-                editor.PutFloat("CorrectionViewAngleVertical", correctionViewAngleVertical);
+                editor.PutBoolean("IsViewAngleCorrection", IsViewAngleCorrection);
+                editor.PutFloat("CorrectionViewAngleHorizontal", CorrectionViewAngleHorizontal);
+                editor.PutFloat("CorrectionViewAngleVertical", CorrectionViewAngleVertical);
 
-                editor.PutBoolean("AltitudeFromElevationMap", _altitudeFromElevationMap);
-                editor.PutBoolean("AutoElevationProfile", _autoElevationProfile);
+                editor.PutBoolean("AltitudeFromElevationMap", AltitudeFromElevationMap);
+                editor.PutBoolean("AutoElevationProfile", AutoElevationProfile);
 
                 editor.PutInt("CameraResolutionWidth", cameraResolutionSelected.Width);
                 editor.PutInt("CameraResolutionHeight", cameraResolutionSelected.Height);
                 editor.PutString("CameraId", CameraId);
+                editor.PutString("Language", Language.ToString());
                 
                 editor.Apply();
             }

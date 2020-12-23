@@ -28,6 +28,7 @@ using HorizontLib.Domain.Enums;
 using HorizontApp.Tasks;
 using HorizontApp.AppContext;
 using SQLitePCL;
+using HorizonLib.Domain.Enums;
 
 namespace HorizontApp
 {
@@ -70,6 +71,8 @@ namespace HorizontApp
         {
             base.OnCreate(bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
+
+            Context.SetLocale(this);
 
             if (AppContextLiveData.Instance.IsPortrait)
             {

@@ -61,8 +61,8 @@ namespace HorizontApp.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetLanguage();
 
+            AppContextLiveData.Instance.SetLocale(this);
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
             var orientation = mainDisplayInfo.Orientation;
             if (orientation == DisplayOrientation.Portrait)
@@ -96,12 +96,12 @@ namespace HorizontApp.Activities
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfAppStyles.ToList());
             _spinnerAppStyle.Adapter = adapter;
             _spinnerAppStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == _settings.AppStyle)); 
-            _spinnerAppStyle.ItemSelected += (sender, args) => { InvalidateOptionsMenu(); };
+             _spinnerAppStyle.ItemSelected += (sender, args) => { InvalidateOptionsMenu(); };
 
             var adapterLanguages = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfLanguages.ToList());
             _spinnerLanguages.Adapter = adapterLanguages;
             _spinnerLanguages.SetSelection(_listOfLanguages.ToList().FindIndex(i => i == _settings.Language));
-            _spinnerLanguages.ItemSelected += LanguageChanged;
+            _spinnerLanguages.ItemSelected += (sender, args) => { InvalidateOptionsMenu(); };
 
             _listOfCameraResolutions = CameraFragment.GetCameraResolutions(_settings.CameraId).ToList();
             var adapterPhotoResolution = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfCameraResolutions);
@@ -150,42 +150,21 @@ namespace HorizontApp.Activities
 
         private void SetLanguage()
         {
-            switch (_settings.Language)
+            if (_spinnerLanguages != null)
             {
-                case Languages.English:
-                    Resources.Configuration.SetLocale(new Java.Util.Locale("en"));
-                    break;
-                case Languages.German:
-                    Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
-                    break;
-                case Languages.Czech:
-                    Resources.Configuration.SetLocale(new Java.Util.Locale("cz"));
-                    break;
+                switch (_listOfLanguages[_spinnerLanguages.SelectedItemPosition])
+                {
+                    case Languages.English:
+                        _settings.Language = Languages.English;
+                        break;
+                    case Languages.German:
+                        _settings.Language = Languages.German;
+                        break;
+                    case Languages.Czech:
+                        _settings.Language = Languages.Czech;
+                        break;
+                }
             }
-
-            Resources.UpdateConfiguration(Resources.Configuration, Resources.DisplayMetrics);
-        }
-
-        private void LanguageChanged(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            switch (_spinnerLanguages.SelectedItemId)
-            {
-                case 0:
-                    _settings.Language = Languages.English;
-                    Resources.Configuration.SetLocale(new Java.Util.Locale("en"));
-                    break;
-                case 1:
-                    _settings.Language = Languages.German;
-                    Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
-                    break;
-
-                case 2:
-                    _settings.Language = Languages.Czech;
-                    Resources.Configuration.SetLocale(new Java.Util.Locale("cz"));
-                    break;
-            }
-
-            Resources.UpdateConfiguration(Resources.Configuration, Resources.DisplayMetrics);
         }
 
         protected override void OnStart()
@@ -237,6 +216,8 @@ namespace HorizontApp.Activities
             if(!_settings.cameraResolutionSelected.Equals(_listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition]))
                 return true;
 
+            if (_settings.Language != _listOfLanguages[_spinnerLanguages.SelectedItemPosition])
+                return true;
             return false;
         }
 
@@ -303,6 +284,10 @@ namespace HorizontApp.Activities
                 //Altitude from elevation map
                 _settings.AltitudeFromElevationMap = _switchAltitudeFromElevationMap.Checked;
                 _settings.cameraResolutionSelected = _listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition];
+                SetLanguage();
+
+                _settings.NotifySettingsChanged();
+                AppContextLiveData.Instance.SetLocale(this);
             }
             catch(Exception ex)
             {

@@ -6,8 +6,8 @@ namespace HorizonLib.Domain.Enums
 {
     public enum Languages
     {
-        German = 0,
-        English = 1,
+        English= 0,
+        German = 1,
         Czech = 2
     }
 }

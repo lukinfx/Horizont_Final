@@ -16,6 +16,7 @@ namespace HorizontApp
         {
             base.OnCreate();
             AppContextLiveData.Instance.Initialize(Context);
+            AppContextLiveData.Instance.SetLocale(this);
         }
     }
 }

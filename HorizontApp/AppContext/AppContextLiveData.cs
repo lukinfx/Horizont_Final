@@ -70,10 +70,7 @@ namespace HorizontApp.AppContext
 
                 Settings.cameraResolutionSelected = defaultSize;
                 Settings.CameraId = cameraId;
-                
             }
-            Settings.SaveData();
-            
         }
 
         public void OnHeadingChanged(double heading)
