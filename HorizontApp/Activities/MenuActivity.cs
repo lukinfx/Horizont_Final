@@ -47,22 +47,22 @@ namespace HorizontApp.Activities
                 SetContentView(Resource.Layout.MenuActivityLandspace);
             }
 
-            var buttonHome = FindViewById<ImageButton>(Resource.Id.buttonHome);
+            var buttonHome = FindViewById<LinearLayout>(Resource.Id.cameraLinearLayout);
             buttonHome.SetOnClickListener(this);
 
-            var buttonList = FindViewById<ImageButton>(Resource.Id.buttonList);
+            var buttonList = FindViewById<LinearLayout>(Resource.Id.listOfPoisLinearLayout);
             buttonList.SetOnClickListener(this);
 
-            var buttonDownload = FindViewById<ImageButton>(Resource.Id.buttonDownload);
+            var buttonDownload = FindViewById<LinearLayout>(Resource.Id.downloadDataLinearLayout);
             buttonDownload.SetOnClickListener(this);
 
-            var buttonSettings = FindViewById<ImageButton>(Resource.Id.buttonSettings);
+            var buttonSettings = FindViewById<LinearLayout>(Resource.Id.settingsLinearLayout);
             buttonSettings.SetOnClickListener(this);
 
-            var buttonPhotos = FindViewById<ImageButton>(Resource.Id.buttonPhotos);
+            var buttonPhotos = FindViewById<LinearLayout>(Resource.Id.photoGalleryLinearLayout);
             buttonPhotos.SetOnClickListener(this);
 
-            var buttonAbout = FindViewById<ImageButton>(Resource.Id.buttonAbout);
+            var buttonAbout = FindViewById<LinearLayout>(Resource.Id.aboutLinearLayout);
             buttonAbout.SetOnClickListener(this);
         }
 
@@ -79,25 +79,25 @@ namespace HorizontApp.Activities
         {
             switch (v.Id)
             {
-                case Resource.Id.buttonHome:
+                case Resource.Id.cameraLinearLayout:
                     Finish();
                     break;
-                case Resource.Id.buttonDownload:
+                case Resource.Id.downloadDataLinearLayout:
                     Intent downloadActivityIntent = new Intent(this, typeof(DownloadActivity));
                     StartActivity(downloadActivityIntent);
                     break;
-                case Resource.Id.buttonList:
+                case Resource.Id.listOfPoisLinearLayout:
                     StartPoisListActivity();
                     break;
-                case Resource.Id.buttonSettings:
+                case Resource.Id.settingsLinearLayout:
                     Intent settingsActivityIntent = new Intent(this, typeof(SettingsActivity));
                     StartActivity(settingsActivityIntent);
                     break;
-                case Resource.Id.buttonPhotos:
+                case Resource.Id.photoGalleryLinearLayout:
                     Intent photosActivityIntent = new Intent(this, typeof(PhotosActivity));
                     StartActivity(photosActivityIntent);
                     break;
-                case Resource.Id.buttonAbout:
+                case Resource.Id.aboutLinearLayout:
                     Intent aboutActivityIntent = new Intent(this, typeof(AboutActivity));
                     StartActivity(aboutActivityIntent);
                     break;
