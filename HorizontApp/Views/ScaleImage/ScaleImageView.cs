@@ -79,42 +79,31 @@ namespace HorizontApp.Views.ScaleImage
             {
                 m_IntrinsicWidth = Drawable.IntrinsicWidth;
                 m_IntrinsicHeight = Drawable.IntrinsicHeight;
-                //this.SetOnTouchListener(this);
             }
-            //m_GestureDetector = new GestureDetector(m_Context, new ScaleImageViewGestureDetector(this));
         }
 
         protected override bool SetFrame(int l, int t, int r, int b)
         {
-            m_MinScale = CalculateMinScale(l, t, r, b);
 
             m_Width = r - l;
             m_Height = b - t;
             m_Matrix.Reset();
-            var r_norm = r - l;
-            m_StdScale = (float)r_norm / (float)m_IntrinsicWidth;
-            
+
+            //Calculate scale
+            m_MinScale = CalculateMinScale(l, t, r, b);
+            m_StdScale = (r-l) / (float)m_IntrinsicWidth;
             m_Scale = m_StdScale;
+
+            //Calculate initial padding
+            int scaledImageHeight = (int)(m_Scale * m_IntrinsicHeight);
+            m_InitialPaddingHeight = (scaledImageHeight - m_Height) / 2;
             m_InitialPaddingWidth = 0;
-            if (m_Scale * m_IntrinsicHeight > m_Height)
-            {
-                int scaledImageHeight = (int)(m_Scale * m_IntrinsicHeight);
-                m_InitialPaddingHeight = (scaledImageHeight - m_Height) / 2;
-                m_Matrix.PostScale(m_Scale, m_Scale);
-                /*m_Scale = (float)m_Height / (float)m_IntrinsicHeight;
-                m_Matrix.PostScale(m_Scale, m_Scale);
-                paddingWidth = (r - m_Width) / 2;*/
-            }
-            else
-            {
-                m_Matrix.PostScale(m_Scale, m_Scale);
-                m_InitialPaddingHeight = (b - m_Height) / 2;
-            }
+
+            //Set image transformation matrix
+            m_Matrix.PostScale(m_Scale, m_Scale);
             m_Matrix.PostTranslate(-m_InitialPaddingWidth, -m_InitialPaddingHeight);
             ImageMatrix = m_Matrix;
 
-            //ZoomTo(m_Scale, m_Width / 2, m_Height / 2);
-            //Cutting();
             return base.SetFrame(l, t, r, b);
         }
 
