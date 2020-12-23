@@ -52,7 +52,7 @@
         android:background="@drawable/bg_activity"
         android:id="@+id/listOfPoisLinearLayout">
         <ImageButton
-            android:src="@drawable/ic_notesalt"
+            android:src="@drawable/ic_notesalt_grey"
             android:layout_columnWeight="1"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -68,7 +68,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textSize="20dp"
-            android:textColor="#EEEEFF"/>
+            android:textColor="#000000"/>
     </LinearLayout>
     
     <LinearLayout
