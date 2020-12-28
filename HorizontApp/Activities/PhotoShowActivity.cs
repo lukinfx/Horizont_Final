@@ -631,6 +631,8 @@ namespace HorizontApp.Activities
                     }
                 }
             }
+
+            _compassView.Invalidate();
         }
 
         private void GenerateElevationProfile()
