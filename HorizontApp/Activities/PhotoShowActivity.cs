@@ -60,6 +60,8 @@ namespace HorizontApp.Activities
         //for gesture detection
         private int m_PreviousMoveX;
         private int m_PreviousMoveY;
+        private int m_FirstMoveX;
+        private int m_FirstMoveY;
         private float m_PreviousDistance;
         private bool m_IsScaling;
 
@@ -159,8 +161,8 @@ namespace HorizontApp.Activities
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.LayoutChange += OnLayoutChanged;
-            _compassView.Initialize(_context);
-
+            _compassView.Initialize(_context, (float)photodata.LeftTiltCorrector, (float)photodata.RightTiltCorrector, 0);
+            
             var photoLayout = FindViewById<AbsoluteLayout>(Resource.Id.photoLayout);
 
 
@@ -270,7 +272,7 @@ namespace HorizontApp.Activities
             
             var zoomAndTiltCorrection = $"Scale:{photoView.Scale:F2} ,LT:{_compassView.LeftTiltCorrector:F2}, RT:{_compassView.RightTiltCorrector:F2}";
 
-            var viewAngle = $"va-V:{ _context.Settings.ViewAngleVertical:F1} va-H:{ _context.Settings.ViewAngleHorizontal:F1}";
+            var viewAngle = $"va-V:{ _context.ViewAngleVertical:F1} va-H:{ _context.ViewAngleHorizontal:F1}";
 
             var photoMatrix = $"im-X:{photoView.TranslateX:F1}, im-Y:{photoView.TranslateY:F1}, Sc:{photoView.DisplayScale:F2}/{photoView.Scale:F2}";
 
@@ -348,8 +350,8 @@ namespace HorizontApp.Activities
                 case MotionEventActions.Pointer1Down:
                 case MotionEventActions.Pointer2Down:
                     {
-                        m_PreviousMoveX = (int)e.GetX();
-                        m_PreviousMoveY = (int)e.GetY();
+                        m_FirstMoveX = m_PreviousMoveX = (int)e.GetX();
+                        m_FirstMoveY = m_PreviousMoveY = (int)e.GetY();
                         
                         if (touchCount >= 2)
                         {
@@ -369,17 +371,20 @@ namespace HorizontApp.Activities
                             m_PreviousMoveX = (int)e.GetX();
                             m_PreviousMoveY = (int)e.GetY();
 
-                            if (e.RawX < Resources.DisplayMetrics.WidthPixels / 7)
-                            {
-                                _compassView.OnScroll(distanceY, true);
-                            }
-                            else if (e.RawX > Resources.DisplayMetrics.WidthPixels - Resources.DisplayMetrics.WidthPixels / 7)
-                            {
-                                _compassView.OnScroll(distanceY, false);
-                            }
-                            else if (e.RawY < 0.75 * Resources.DisplayMetrics.HeightPixels)
+                            if (Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
                             {
                                 _compassView.OnScroll(distanceX);
+                            }
+                            else
+                            {
+                                if (e.RawX < Resources.DisplayMetrics.WidthPixels / 2)
+                                {
+                                    _compassView.OnScroll(distanceY, true);
+                                }
+                                else
+                                {
+                                    _compassView.OnScroll(distanceY, false);
+                                }
                             }
                         }
                         //zooming
@@ -410,13 +415,22 @@ namespace HorizontApp.Activities
                         }
                         else if (touchCount >= 2 && _editingOn)
                         {
-                            var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
-                            var scale = (distance - m_PreviousDistance) / photoView.DispDistance();
-                            m_PreviousDistance = distance;
-                            scale += 1;
-                            scale = scale * scale;
-
-                            _compassView.RecalculateViewAngles(photoView.DisplayScale);
+                            var distX = Math.Abs(e.GetX(0) - e.GetX(1));
+                            var distY = Math.Abs(e.GetY(0) - e.GetY(1));
+                            if (distX > distY)
+                            {
+                                var scale = (distX - m_PreviousDistance) / photoView.Width;
+                                m_PreviousDistance = distX;
+                                scale += 1;
+                                _compassView.ScaleHorizontalViewAngle(scale);
+                            }
+                            else
+                            {
+                                var scale = (distY - m_PreviousDistance) / photoView.Height;
+                                m_PreviousDistance = distY;
+                                scale += 1;
+                                _compassView.ScaleVerticalViewAngle(scale);
+                            }
                         }
                     }
                     break;
@@ -501,8 +515,10 @@ namespace HorizontApp.Activities
 
         private void _saveData()
         {
-            photodata.LeftTiltCorrector = _compassView.GetTiltSettings().Item1;
-            photodata.RightTiltCorrector = _compassView.GetTiltSettings().Item2;
+            photodata.ViewAngleHorizontal = _context.ViewAngleHorizontal;
+            photodata.ViewAngleVertical = _context.ViewAngleVertical; 
+            photodata.LeftTiltCorrector = _compassView.LeftTiltCorrector;
+            photodata.RightTiltCorrector = _compassView.RightTiltCorrector;
             photodata.Heading = _context.Heading + _compassView.HeadingCorrector;
             photodata.ShowElevationProfile = _context.Settings.ShowElevationProfile;
             photodata.JsonCategories = JsonConvert.SerializeObject(_context.Settings.Categories);
@@ -518,8 +534,7 @@ namespace HorizontApp.Activities
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
-            compassView.SetTiltSettings(_compassView.GetTiltSettings());
-            compassView.Initialize(_context);
+            compassView.Initialize(_context, (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
             compassView.InitializeViewDrawer(new Size(dstBmp.Width, dstBmp.Height));
             
             compassView.Draw(canvas);
@@ -565,8 +580,7 @@ namespace HorizontApp.Activities
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
-            compassView.SetTiltSettings(_compassView.GetTiltSettings());
-            compassView.Initialize(_context);
+            compassView.Initialize(_context, (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
             compassView.InitializeViewDrawer(new Size(dstBmp.Width, dstBmp.Height));
             compassView.Draw(canvas);
 

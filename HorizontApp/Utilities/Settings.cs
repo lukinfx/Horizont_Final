@@ -58,26 +58,19 @@ namespace HorizontApp.Utilities
         public bool ShowFavoritesOnly { get; set; }
 
 
-        public float ViewAngleHorizontal
+        public float AViewAngleHorizontal
         {
             get
             {
-                if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Landscape)
-                    return (AutomaticViewAngleHorizontal.HasValue?AutomaticViewAngleHorizontal.Value:60) + (IsViewAngleCorrection?CorrectionViewAngleHorizontal:0);
-                else
-                    return (AutomaticViewAngleVertical.HasValue?AutomaticViewAngleVertical.Value:40) + (IsViewAngleCorrection? CorrectionViewAngleVertical:0);
-
+                return (AutomaticViewAngleHorizontal.HasValue?AutomaticViewAngleHorizontal.Value:60) + (IsViewAngleCorrection?CorrectionViewAngleHorizontal:0);
             }
         }
 
-        public float ViewAngleVertical
+        public float AViewAngleVertical
         {
             get
             {
-                if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Landscape)
-                    return (AutomaticViewAngleVertical.HasValue ? AutomaticViewAngleVertical.Value : 40) + (IsViewAngleCorrection ? CorrectionViewAngleVertical : 0);
-                else
-                    return (AutomaticViewAngleHorizontal.HasValue ? AutomaticViewAngleHorizontal.Value : 60) + (IsViewAngleCorrection ? CorrectionViewAngleHorizontal : 0);
+                return (AutomaticViewAngleVertical.HasValue ? AutomaticViewAngleVertical.Value : 40) + (IsViewAngleCorrection ? CorrectionViewAngleVertical : 0);
             }
         }
 

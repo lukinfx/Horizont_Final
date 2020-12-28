@@ -57,6 +57,22 @@ namespace HorizontApp.AppContext
             }
         }
 
+        public float ViewAngleHorizontal
+        {
+            get
+            {
+                return IsPortrait ? Settings.AViewAngleVertical : Settings.AViewAngleHorizontal;
+            }
+        }
+
+        public float ViewAngleVertical
+        {
+            get
+            {
+                return IsPortrait ? Settings.AViewAngleHorizontal : Settings.AViewAngleVertical;
+            }
+        }
+
         protected PoiDatabase database;
         public PoiDatabase Database
         {

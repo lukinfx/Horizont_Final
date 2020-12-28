@@ -130,7 +130,7 @@ namespace HorizontApp.Utilities
             /*
             if (_elevationProfileBitmap != null)
             {
-                float offset = (float)(_elevationProfileBitmap.Width * (heading - _adjustedViewAngleHorizontal / 2) / 360);
+                float offset = (float)(_elevationProfileBitmap.Width * (heading - ViewAngleHorizontal / 2) / 360);
                 canvas.DrawBitmap(_elevationProfileBitmap, -offset, (float)0, null);
                 if (heading > 360 - _context.Settings.ViewAngleHorizontal)
                 {

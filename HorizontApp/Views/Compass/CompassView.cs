@@ -28,12 +28,15 @@ namespace HorizontApp.Views
         private float _scale = 1;
         private double _offsetY = 0;
         private double _offsetX = 0;
-        private float _adjustedViewAngleHorizontal = 0;
-        private float _adjustedViewAngleVertical = 0;
+        private float scaledViewAngleHorizontal = 0;
+        private float scaledViewAngleVertical = 0;
 
         private ElevationProfileData _elevationProfile;
         private double _leftTiltCorrector = 0;
         private double _rightTiltCorrector = 0;
+
+        public float ViewAngleHorizontal { get; private set; } = 0;
+        public float ViewAngleVertical { get; private set; } = 0;
 
         public double LeftTiltCorrector { get { return _leftTiltCorrector; } }
         public double RightTiltCorrector { get { return _rightTiltCorrector; } }
@@ -59,6 +62,28 @@ namespace HorizontApp.Views
         {
         }
 
+        public CompassView(Context context, IAttributeSet attrs, int defStyle) :
+            base(context, attrs, defStyle)
+        {
+        }
+
+        public void Initialize(IAppContext context, float leftTiltCorrector = 0, float rightTiltCorrector = 0, float headingCorrector = 0)
+        {
+            _context = context;
+            _leftTiltCorrector = leftTiltCorrector;
+            _rightTiltCorrector = rightTiltCorrector;
+            _headingCorrector = headingCorrector;
+
+            _context.Settings.SettingsChanged += OnSettingsChanged;
+
+            elevationProfileBitmapDrawer = new ElevationProfileBitmapDrawer(_context);
+
+            _paint = new Paint();
+            _paint.SetARGB(255, 255, 255, 0);
+            _paint.SetStyle(Paint.Style.Stroke);
+            _paint.StrokeWidth = 3;
+        }
+
         public void SetPoiViewItemList(PoiViewItemList list2)
         {
             list = list2.OrderByDescending(poi => poi.Poi.Altitude).ThenBy(poi => poi.Distance);
@@ -82,11 +107,6 @@ namespace HorizontApp.Views
             Invalidate();
         }
 
-        public CompassView(Context context, IAttributeSet attrs, int defStyle) :
-            base(context, attrs, defStyle) 
-        {
-        }
-
         public void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
             InitializeViewDrawer(new Size(this.Width, this.Height));
@@ -100,18 +120,6 @@ namespace HorizontApp.Views
             InitializeViewDrawer(compassViewSize);
         }
 
-        public void Initialize(IAppContext context)
-        {
-            _context = context;
-            _context.Settings.SettingsChanged += OnSettingsChanged;
-
-            elevationProfileBitmapDrawer = new ElevationProfileBitmapDrawer(_context);
-
-            _paint = new Paint();
-            _paint.SetARGB(255, 255, 255, 0);
-            _paint.SetStyle(Paint.Style.Stroke);
-            _paint.StrokeWidth = 3;
-        }
 
         public void InitializeViewDrawer(Size compassViewSize)
         {
@@ -135,17 +143,19 @@ namespace HorizontApp.Views
                         break;
             }
 
-            (_adjustedViewAngleHorizontal, _adjustedViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
-                _context.Settings.ViewAngleHorizontal, _context.Settings.ViewAngleVertical,
+            (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
+                _context.ViewAngleHorizontal, _context.ViewAngleVertical,
                 new System.Drawing.Size(compassViewSize.Width, compassViewSize.Height), 
                 _context.Settings.CameraPictureSize);
 
-            Log.WriteLine(LogPriority.Debug, TAG, $"ViewAngle: {_context.Settings.ViewAngleHorizontal:F1}/{_context.Settings.ViewAngleVertical:F1}");
-            Log.WriteLine(LogPriority.Debug, TAG, $"AdjustedViewAngle: {_adjustedViewAngleHorizontal:F1}/{_adjustedViewAngleVertical:F1}");
+            scaledViewAngleVertical = ViewAngleVertical;
+            scaledViewAngleHorizontal = ViewAngleHorizontal; 
+            Log.WriteLine(LogPriority.Debug, TAG, $"ViewAngle: {_context.ViewAngleHorizontal:F1}/{_context.ViewAngleVertical:F1}");
+            Log.WriteLine(LogPriority.Debug, TAG, $"AdjustedViewAngle: {ViewAngleHorizontal:F1}/{ViewAngleVertical:F1}");
 
             float multiplier = (float)Math.Sqrt(compassViewSize.Width * compassViewSize.Height / 2000000.0);
-            compassViewDrawer.Initialize(_adjustedViewAngleHorizontal, _adjustedViewAngleVertical, multiplier);
-            elevationProfileBitmapDrawer.Initialize(_adjustedViewAngleHorizontal, _adjustedViewAngleVertical);
+            compassViewDrawer.Initialize(ViewAngleHorizontal, ViewAngleVertical, multiplier);
+            elevationProfileBitmapDrawer.Initialize(ViewAngleHorizontal, ViewAngleVertical);
         }
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
@@ -180,22 +190,21 @@ namespace HorizontApp.Views
 
         public void OnScroll(float distanceX)
         {
-            var viewAngleHorizontal = _context.Settings.ViewAngleHorizontal;
+            var viewAngleHorizontal = _context.ViewAngleHorizontal;
             HeadingCorrector = HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX / _scale);
             Invalidate();
         }
 
         public void OnScroll(float distanceY, bool isLeft)
         {
-            var viewAngleVertical = _context.Settings.ViewAngleVertical;
-            distanceY = (distanceY / Height) * viewAngleVertical;
+            var dY = (distanceY / Height) * scaledViewAngleVertical;
             if (isLeft)
             {
-                _leftTiltCorrector -= distanceY / _scale;
+                _leftTiltCorrector -= dY;
             }
             else 
             {
-                _rightTiltCorrector -= distanceY / _scale;
+                _rightTiltCorrector -= dY;
             }
             Invalidate();
         }
@@ -241,10 +250,38 @@ namespace HorizontApp.Views
             Invalidate();
         }
 
+        public void ScaleHorizontalViewAngle(float scale)
+        {
+            _context.Settings.SetCameraParameters(_context.ViewAngleHorizontal / scale, _context.ViewAngleVertical,
+                AppContextLiveData.Instance.Settings.CameraPictureSize.Width, AppContextLiveData.Instance.Settings.CameraPictureSize.Height);
+
+            (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
+                _context.ViewAngleHorizontal, _context.ViewAngleVertical,
+                new System.Drawing.Size(Width, Height),
+                _context.Settings.CameraPictureSize);
+            //ViewAngleHorizontal = ViewAngleHorizontal * scale;
+            RecalculateViewAngles(_scale);
+        }
+
+        public void ScaleVerticalViewAngle(float scale)
+        {
+            _context.Settings.SetCameraParameters(_context.ViewAngleHorizontal, _context.ViewAngleVertical / scale,
+                AppContextLiveData.Instance.Settings.CameraPictureSize.Width, AppContextLiveData.Instance.Settings.CameraPictureSize.Height);
+
+            (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
+                _context.ViewAngleHorizontal, _context.ViewAngleVertical,
+                new System.Drawing.Size(Width, Height),
+                _context.Settings.CameraPictureSize);
+            //ViewAngleVertical = ViewAngleVertical * scale;
+            RecalculateViewAngles(_scale);
+        }
+
         public void RecalculateViewAngles(float scale)
         {
-            var scaledViewAngleHorizontal = _adjustedViewAngleHorizontal / scale;
-            var scaledViewAngleVertical = _adjustedViewAngleVertical / scale;
+            _scale = scale;
+
+            scaledViewAngleHorizontal = ViewAngleHorizontal / scale;
+            scaledViewAngleVertical = ViewAngleVertical / scale;
 
             compassViewDrawer.SetScaledViewAngle(scaledViewAngleHorizontal, scaledViewAngleVertical);
             elevationProfileBitmapDrawer.SetScaledViewAngle(scaledViewAngleHorizontal, scaledViewAngleVertical);

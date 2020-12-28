@@ -32,6 +32,8 @@ namespace HorizontApp.AppContext
         double Heading { get; }
         PoiViewItemList PoiData { get; }
         bool IsPortrait { get; }
+        float ViewAngleHorizontal { get; }
+        float ViewAngleVertical { get; }
         PoiDatabase Database { get; }
         void ToggleCompassPaused();
         void ReloadData();
