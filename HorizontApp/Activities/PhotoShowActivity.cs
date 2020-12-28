@@ -515,6 +515,8 @@ namespace HorizontApp.Activities
 
         private void _saveData()
         {
+            photodata.MaxDistance = _distanceSeekBar.Progress;
+            photodata.MinAltitude = _heightSeekBar.Progress;
             photodata.ViewAngleHorizontal = _context.ViewAngleHorizontal;
             photodata.ViewAngleVertical = _context.ViewAngleVertical; 
             photodata.LeftTiltCorrector = _compassView.LeftTiltCorrector;
