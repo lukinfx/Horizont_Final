@@ -269,14 +269,17 @@ namespace HorizontApp.Activities
             var gpsLocation = GpsUtils.HasLocation(_context.MyLocation) ?
                 $"Lat:{_context.MyLocation.Latitude:F7} Lon:{_context.MyLocation.Longitude:F7} Alt:{_context.MyLocation.Altitude:F0}" 
                 : "No GPS location";
-            
+
+            var sign = _compassView.HeadingCorrector < 0 ? '-' : '+';
+            var heading = $"Hdg:{_context.Heading:F1}{sign}{Math.Abs(_compassView.HeadingCorrector):F1}";
+
             var zoomAndTiltCorrection = $"Scale:{photoView.Scale:F2} ,LT:{_compassView.LeftTiltCorrector:F2}, RT:{_compassView.RightTiltCorrector:F2}";
 
             var viewAngle = $"va-V:{ _context.ViewAngleVertical:F1} va-H:{ _context.ViewAngleHorizontal:F1}";
 
             var photoMatrix = $"im-X:{photoView.TranslateX:F1}, im-Y:{photoView.TranslateY:F1}, Sc:{photoView.DisplayScale:F2}/{photoView.Scale:F2}";
 
-            _GPSTextView.Text = zoomAndTiltCorrection + "  /  " + viewAngle + "  /  " + photoMatrix;
+            _GPSTextView.Text = heading + "  /  " + zoomAndTiltCorrection + "  /  " + viewAngle;// + "  /  " + photoMatrix;
         }
 
         private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
