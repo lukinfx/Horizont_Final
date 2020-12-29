@@ -463,6 +463,7 @@ namespace HorizontApp.Activities
                             _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
                         else
                             _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
+                        _context.ReloadData();
                         break;
                     }
                 case Resource.Id.buttonCategorySelect:
