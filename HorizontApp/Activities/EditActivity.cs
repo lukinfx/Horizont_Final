@@ -50,7 +50,7 @@ namespace HorizontApp.Activities
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
-            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+            if (AppContextLiveData.Instance.IsPortrait)
             {
                 SetContentView(Resource.Layout.EditActivityPortrait);
             }
