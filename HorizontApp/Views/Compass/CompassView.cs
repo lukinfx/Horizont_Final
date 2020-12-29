@@ -233,16 +233,6 @@ namespace HorizontApp.Views
             elevationProfileBitmapDrawer.PaintElevationProfileBitmap(canvas, heading, _leftTiltCorrector, _rightTiltCorrector, (float)_offsetX, (float)_offsetY);
         }
 
-        public (double, double) GetTiltSettings()
-        {
-            return (_leftTiltCorrector, _rightTiltCorrector);
-        }
-
-        public void SetTiltSettings((double, double) item)
-        {
-            (_leftTiltCorrector, _rightTiltCorrector) = item;
-        }
-
         public void Move(double offsetX, double offsetY)
         {
             _offsetX = offsetX;

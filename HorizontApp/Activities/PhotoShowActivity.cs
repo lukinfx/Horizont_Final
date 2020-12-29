@@ -28,7 +28,7 @@ using HorizontApp.Views.ScaleImage;
 namespace HorizontApp.Activities
 {
     [Activity(Label = "PhotoShowActivity")]
-    public class PhotoShowActivity : Activity, GestureDetector.IOnGestureListener, IOnClickListener
+    public class PhotoShowActivity : Activity, IOnClickListener
     {
         public static int REQUEST_SHOW_PHOTO = 0;
 
@@ -40,7 +40,6 @@ namespace HorizontApp.Activities
         private ScaleImageView photoView;
         private CompassView _compassView;
         private byte[] _thumbnail;
-        private GestureDetector _gestureDetector;
         private TextView _filterText;
 
         private ImageButton _favouriteButton;
@@ -92,8 +91,6 @@ namespace HorizontApp.Activities
             {
                 heading += 90;
             }*/
-
-            _gestureDetector = new GestureDetector(this);
 
             var loc = new GpsLocation(
                 photodata.Longitude,
@@ -279,7 +276,8 @@ namespace HorizontApp.Activities
 
             var photoMatrix = $"im-X:{photoView.TranslateX:F1}, im-Y:{photoView.TranslateY:F1}, Sc:{photoView.DisplayScale:F2}/{photoView.Scale:F2}";
 
-            _GPSTextView.Text = heading + "  /  " + zoomAndTiltCorrection + "  /  " + viewAngle;// + "  /  " + photoMatrix;
+            //_GPSTextView.Text = heading + "  /  " + zoomAndTiltCorrection + "  /  " + viewAngle;// + "  /  " + photoMatrix;
+            _GPSTextView.Text = zoomAndTiltCorrection + "  /  " + viewAngle + "  /  " + photoMatrix;
         }
 
         private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
@@ -340,127 +338,115 @@ namespace HorizontApp.Activities
 
         public override bool OnTouchEvent(MotionEvent e)
         {
-            if (_gestureDetector.OnTouchEvent(e))
-            {
-                m_PreviousMoveX = (int)e.GetX();
-                m_PreviousMoveY = (int)e.GetY();
-                return true;
-            }
+            base.OnTouchEvent(e);
+
             var touchCount = e.PointerCount;
             switch (e.Action)
             {
                 case MotionEventActions.Down:
                 case MotionEventActions.Pointer1Down:
                 case MotionEventActions.Pointer2Down:
+                {
+                    m_FirstMoveX = m_PreviousMoveX = (int) e.GetX();
+                    m_FirstMoveY = m_PreviousMoveY = (int) e.GetY();
+
+                    if (touchCount >= 2)
                     {
-                        m_FirstMoveX = m_PreviousMoveX = (int)e.GetX();
-                        m_FirstMoveY = m_PreviousMoveY = (int)e.GetY();
-                        
-                        if (touchCount >= 2)
-                        {
-                            var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
-                            m_PreviousDistance = distance;
-                            m_IsScaling = true;
-                        }
+                        var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
+                        m_PreviousDistance = distance;
+                        m_IsScaling = true;
                     }
+                }
                     break;
                 case MotionEventActions.Move:
+                {
+                    //heading and tilt correction
+                    if (_editingOn && touchCount == 1)
                     {
-                        //heading and tilt correction
-                        if (_editingOn && touchCount == 1)
-                        {
-                            var distanceX = m_PreviousMoveX - (int)e.GetX();
-                            var distanceY = m_PreviousMoveY - (int)e.GetY();
-                            m_PreviousMoveX = (int)e.GetX();
-                            m_PreviousMoveY = (int)e.GetY();
+                        var distanceX = m_PreviousMoveX - (int) e.GetX();
+                        var distanceY = m_PreviousMoveY - (int) e.GetY();
+                        m_PreviousMoveX = (int) e.GetX();
+                        m_PreviousMoveY = (int) e.GetY();
 
-                            if (Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
+                        if (Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
+                        {
+                            _compassView.OnScroll(distanceX);
+                        }
+                        else
+                        {
+                            if (e.RawX < Resources.DisplayMetrics.WidthPixels / 2)
                             {
-                                _compassView.OnScroll(distanceX);
+                                _compassView.OnScroll(distanceY, true);
                             }
                             else
                             {
-                                if (e.RawX < Resources.DisplayMetrics.WidthPixels / 2)
-                                {
-                                    _compassView.OnScroll(distanceY, true);
-                                }
-                                else
-                                {
-                                    _compassView.OnScroll(distanceY, false);
-                                }
-                            }
-                        }
-                        //zooming
-                        else if (touchCount >= 2 && m_IsScaling && !_editingOn)
-                        {
-                            var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
-                            var scale = (distance - m_PreviousDistance) / photoView.DispDistance();
-                            m_PreviousDistance = distance;
-                            scale += 1;
-                            scale = scale * scale;
-                            photoView.ZoomTo(scale, photoView.Width / 2, photoView.Height / 2);
-                            photoView.Cutting();
-
-                            _compassView.RecalculateViewAngles(photoView.DisplayScale);
-                            _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
-                        }
-                        //moving
-                        else if (!m_IsScaling && photoView.Scale > photoView.MinScale && !_editingOn)
-                        {
-                            var distanceX = m_PreviousMoveX - (int)e.GetX();
-                            var distanceY = m_PreviousMoveY - (int)e.GetY();
-                            m_PreviousMoveX = (int)e.GetX();
-                            m_PreviousMoveY = (int)e.GetY();
-                            photoView.MoveTo(-distanceX, -distanceY);
-                            photoView.Cutting();
-
-                            _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
-                        }
-                        else if (touchCount >= 2 && _editingOn)
-                        {
-                            var distX = Math.Abs(e.GetX(0) - e.GetX(1));
-                            var distY = Math.Abs(e.GetY(0) - e.GetY(1));
-                            if (distX > distY)
-                            {
-                                var scale = (distX - m_PreviousDistance) / photoView.Width;
-                                m_PreviousDistance = distX;
-                                scale += 1;
-                                _compassView.ScaleHorizontalViewAngle(scale);
-                            }
-                            else
-                            {
-                                var scale = (distY - m_PreviousDistance) / photoView.Height;
-                                m_PreviousDistance = distY;
-                                scale += 1;
-                                _compassView.ScaleVerticalViewAngle(scale);
+                                _compassView.OnScroll(distanceY, false);
                             }
                         }
                     }
+                    //zooming
+                    else if (touchCount >= 2 && m_IsScaling && !_editingOn)
+                    {
+                        var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
+                        var scale = (distance - m_PreviousDistance) / photoView.DispDistance();
+                        m_PreviousDistance = distance;
+                        scale += 1;
+                        scale = scale * scale;
+                        photoView.ZoomTo(scale, photoView.Width / 2, photoView.Height / 2);
+                        photoView.Cutting();
+
+                        _compassView.RecalculateViewAngles(photoView.DisplayScale);
+                        _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
+                    }
+                    //moving
+                    else if (!m_IsScaling && photoView.Scale > photoView.MinScale && !_editingOn)
+                    {
+                        var distanceX = m_PreviousMoveX - (int) e.GetX();
+                        var distanceY = m_PreviousMoveY - (int) e.GetY();
+                        m_PreviousMoveX = (int) e.GetX();
+                        m_PreviousMoveY = (int) e.GetY();
+                        photoView.MoveTo(-distanceX, -distanceY);
+                        photoView.Cutting();
+
+                        _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
+                    }
+                    else if (touchCount >= 2 && _editingOn)
+                    {
+                        var distX = Math.Abs(e.GetX(0) - e.GetX(1));
+                        var distY = Math.Abs(e.GetY(0) - e.GetY(1));
+                        if (distX > distY)
+                        {
+                            var scale = (distX - m_PreviousDistance) / photoView.Width;
+                            m_PreviousDistance = distX;
+                            scale += 1;
+                            _compassView.ScaleHorizontalViewAngle(scale);
+                        }
+                        else
+                        {
+                            var scale = (distY - m_PreviousDistance) / photoView.Height;
+                            m_PreviousDistance = distY;
+                            scale += 1;
+                            _compassView.ScaleVerticalViewAngle(scale);
+                        }
+                    }
+                }
                     break;
                 case MotionEventActions.Up:
                 case MotionEventActions.Pointer1Up:
                 case MotionEventActions.Pointer2Up:
+                {
+
+                    if (touchCount <= 1)
                     {
-                        
-                        if (touchCount <= 1)
-                        {
-                            m_IsScaling = false;
-                        }
+                        m_IsScaling = false;
                     }
+                }
                     break;
             }
 
             UpdateStatusBar();
             return true;
         }
-
-        #region Required abstract methods
-        public bool OnDown(MotionEvent e) { return false; }
-        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) { return false; }
-        public void OnLongPress(MotionEvent e) { }
-        public void OnShowPress(MotionEvent e) { }
-        public bool OnSingleTapUp(MotionEvent e) { return false; }
-        #endregion Required abstract methods
 
         public void OnClick(View v)
         {

@@ -59,11 +59,6 @@ namespace HorizontLib.Utilities
             return GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance));
         }
 
-        public static float GetYLocationOnScreen(double distance, double altitudeDifference, double canvasHeight, double cameraViewAngle)
-        {
-            return GetYLocationOnScreen(GetPoiViewAngle(distance, altitudeDifference), canvasHeight, cameraViewAngle);
-        }
-
         public static Visibility IsPoiVisible (PoiViewItem item, ElevationProfileData elevationProfileData)
         {
             if (elevationProfileData == null)
