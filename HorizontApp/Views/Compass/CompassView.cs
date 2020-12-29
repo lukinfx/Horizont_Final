@@ -200,11 +200,11 @@ namespace HorizontApp.Views
             var dY = (distanceY / Height) * scaledViewAngleVertical;
             if (isLeft)
             {
-                _leftTiltCorrector -= dY;
+                _leftTiltCorrector += dY;
             }
             else 
             {
-                _rightTiltCorrector -= dY;
+                _rightTiltCorrector += dY;
             }
             Invalidate();
         }

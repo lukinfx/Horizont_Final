@@ -15,6 +15,8 @@ namespace HorizontApp.Utilities
     {
         private IAppContext _context;
         private Bitmap _elevationProfileBitmap;
+        private float _viewAngleHorizontal;
+        private float _viewAngleVertical;
         private float _adjustedViewAngleHorizontal;
         private float _adjustedViewAngleVertical;
 
@@ -30,10 +32,10 @@ namespace HorizontApp.Utilities
             _context = context;
         }
 
-        public virtual void Initialize(float adjustedViewAngleHorizontal, float adjustedViewAngleVertical)
+        public virtual void Initialize(float viewAngleHorizontal, float viewAngleVertical)
         {
-            _adjustedViewAngleHorizontal = adjustedViewAngleHorizontal;
-            _adjustedViewAngleVertical = adjustedViewAngleVertical;
+            _adjustedViewAngleHorizontal = _viewAngleHorizontal = viewAngleHorizontal;
+            _adjustedViewAngleVertical = _viewAngleVertical = viewAngleVertical;
         }
 
         public void GenerateElevationProfileBitmap(ElevationProfileData epd, double displayWidth, double displayHeight)
@@ -105,23 +107,14 @@ namespace HorizontApp.Utilities
                     var x2 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.Bearing2, canvas.Width, _adjustedViewAngleHorizontal, offsetX);
                     if (x1.HasValue && x2.HasValue)
                     {
-                        var y1 = CompassViewUtils.GetYLocationOnScreen(line.VerticalViewAngle1, canvas.Height, _adjustedViewAngleVertical);
-                        var y2 = CompassViewUtils.GetYLocationOnScreen(line.VerticalViewAngle2, canvas.Height, _adjustedViewAngleVertical);
+                        double verticalAngleCorrection1 = CompassViewUtils.GetTiltCorrection(line.Bearing1, heading, _viewAngleHorizontal, leftTiltCorrector, rightTiltCorrector);
+                        double verticalAngleCorrection2 = CompassViewUtils.GetTiltCorrection(line.Bearing2, heading, _viewAngleHorizontal, leftTiltCorrector, rightTiltCorrector);
 
-                        if (leftTiltCorrector == 0 && rightTiltCorrector == 0)
-                        {
-                            //canvas.DrawLine(x1.Value, line.y1, x2.Value, line.y2, paint);
-                            canvas.DrawLine(x1.Value, y1 + offsetY, x2.Value, y2 + offsetY, paint2);
-                        }
-                        else
-                        {
-                            y1 = CompassViewUtils.GetYLocationOnScreen(y1, x1.Value, leftTiltCorrector, rightTiltCorrector, canvas.Width, canvas.Height, _adjustedViewAngleVertical);
-                            y2 = CompassViewUtils.GetYLocationOnScreen(y2, x2.Value, leftTiltCorrector, rightTiltCorrector, canvas.Width, canvas.Height, _adjustedViewAngleVertical);
+                        var y1 = CompassViewUtils.GetYLocationOnScreen(line.VerticalViewAngle1 + verticalAngleCorrection1, canvas.Height, _adjustedViewAngleVertical);
+                        var y2 = CompassViewUtils.GetYLocationOnScreen(line.VerticalViewAngle2 + verticalAngleCorrection2, canvas.Height, _adjustedViewAngleVertical);
 
-                            //canvas.DrawLine(x1.Value, y1, x2.Value, y2, paint);
-                            canvas.DrawLine(x1.Value, y1 + offsetY, x2.Value, y2 + offsetY, paint2);
-                        }
-                       
+                        //canvas.DrawLine(x1.Value, line.y1, x2.Value, line.y2, paint);
+                        canvas.DrawLine(x1.Value, y1 + offsetY, x2.Value, y2 + offsetY, paint2);
                     }
 
                 }

@@ -47,11 +47,11 @@ namespace HorizontLib.Utilities
             else return null;
         }
 
-        public static float GetYLocationOnScreen(double verticalAngle, double canvasHeight, double cameraViewAngle)
+        public static float GetYLocationOnScreen(double itemViewAngle, double canvasHeight, double cameraViewAngle)
         {
-            var YCoord = (canvasHeight / 2) - ((verticalAngle / (cameraViewAngle / 2)) * canvasHeight / 2);
-            var YCoordFloat = (float)YCoord;
-            return YCoordFloat;
+            var YCoord = (canvasHeight / 2) - ((itemViewAngle / (cameraViewAngle / 2)) * canvasHeight / 2);
+
+            return (float)YCoord;
         }
 
         public static double GetPoiViewAngle(double distance, double altitudeDifference)
@@ -83,26 +83,6 @@ namespace HorizontLib.Utilities
             return Visibility.Invisible;
         }
 
-        public static float GetYLocationOnScreen(double distance, double altitudeDifference, double canvasHeight, double cameraViewAngle, float XLocation, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
-        {
-            var verticalAngle = GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance));
-            var YCoord = (canvasHeight / 2) - ((verticalAngle / (cameraViewAngle / 2)) * canvasHeight / 2);
-            double leftPixelsDifference = (leftTiltCorrector / cameraViewAngle) * canvasHeight;
-            double rightPixelsDifference = (rightTiltCorrector / cameraViewAngle) * canvasHeight;
-            double YDifference = leftPixelsDifference + XLocation * (rightPixelsDifference - leftPixelsDifference) / canvasWidth;
-            var YCoordFloat = (float)(YCoord + YDifference);
-            return YCoordFloat;
-        }
-
-        public static float GetYLocationOnScreen(float YLocation, float XLocation, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth, double canvasHeight, double cameraViewAngle)
-        {
-            double leftPixelsDifference = (leftTiltCorrector / cameraViewAngle) * canvasHeight;
-            double rightPixelsDifference = (rightTiltCorrector / cameraViewAngle) * canvasHeight;
-            double YDifference = leftPixelsDifference + XLocation * (rightPixelsDifference - leftPixelsDifference) / canvasWidth;
-            var YCoordFloat = (float)(YLocation + YDifference);
-            return YCoordFloat;
-        }
-
         /// <summary>
         /// Returns angular difference defined by moveX translation
         /// </summary>
@@ -128,6 +108,14 @@ namespace HorizontLib.Utilities
                 return 360 - beta + alfa;
             }
             else return alfa - beta;
+        }
+
+        public static double GetTiltCorrection(double bearing, double heading, double viewAngleHorizontal, double leftTiltCorrector, double rightTiltCorrector)
+        {
+            double diff = CompassViewUtils.GetAngleDiff(bearing, heading);
+            double percentX = (diff + viewAngleHorizontal / 2) / viewAngleHorizontal; //0.00 - 1.00
+            double verticalAngleCorrection = leftTiltCorrector + (rightTiltCorrector - leftTiltCorrector) * percentX;
+            return verticalAngleCorrection;
         }
 
         public static (float, float) AdjustViewAngles(float viewAngleHorizontal, float viewAngleVertical, Size canvasSize, Size imageSize)

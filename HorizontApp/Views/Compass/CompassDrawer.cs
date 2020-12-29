@@ -2,6 +2,7 @@
 using HorizonLib.Domain.Enums;
 using HorizontLib.Domain.ViewModel;
 using HorizontLib.Utilities;
+using System;
 
 namespace HorizontApp.Views.Compass
 {
@@ -13,6 +14,8 @@ namespace HorizontApp.Views.Compass
         protected Paint paintRectPartialyVisible;
         protected Paint textpaint;
         protected Paint textpaintPartialyVisible;
+        protected float viewAngleHorizontal;
+        protected float viewAngleVertical;
         protected float adjustedViewAngleHorizontal;
         protected float adjustedViewAngleVertical;
         protected float multiplier;
@@ -76,6 +79,8 @@ namespace HorizontApp.Views.Compass
         public virtual void Initialize(float viewAngleHorizontal, float viewAngleVertical, float multiplier)
         {
             this.multiplier = multiplier;
+            this.viewAngleHorizontal = viewAngleHorizontal;
+            this.viewAngleVertical = viewAngleVertical;
             adjustedViewAngleHorizontal = viewAngleHorizontal;
             adjustedViewAngleVertical = viewAngleVertical;
 
@@ -121,13 +126,17 @@ namespace HorizontApp.Views.Compass
             }
         }*/
 
-        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, float offsetX, float offsetY, double? leftTiltCorrector, double? rightTiltCorrector, double? canvasWidth)
+        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
         {
             var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal, offsetX);
 
+            
             if (startX != null)
             {
-                float endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical, startX.Value, leftTiltCorrector.Value, rightTiltCorrector.Value, canvasWidth.Value);
+                double verticalAngleCorrection = CompassViewUtils.GetTiltCorrection(item.Bearing, heading, viewAngleHorizontal, leftTiltCorrector, rightTiltCorrector);
+                double verticalAngle = GpsUtils.Rad2Dg(Math.Atan(item.AltitudeDifference / item.Distance));
+
+                float endY = CompassViewUtils.GetYLocationOnScreen(verticalAngle + verticalAngleCorrection, canvas.Height, adjustedViewAngleVertical);
                 OnDrawItem(canvas, item, startX.Value, endY + offsetY);
             }
             
