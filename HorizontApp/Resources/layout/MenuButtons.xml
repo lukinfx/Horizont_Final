@@ -10,13 +10,12 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:padding="5dp"
-        android:background="@drawable/bg_activity"
         android:id="@+id/cameraLinearLayout">
         <ImageButton
-        android:src="@drawable/ic_camera"
+        android:src="@drawable/ic_camera_blue2"
         android:layout_columnWeight="1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:scaleType="fitCenter"
         android:background="#00000000"
         android:id="@+id/buttonHome" />
@@ -26,22 +25,33 @@
             android:text="Go back to camera"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="20dp"
-            android:textColor="#EEEEFF"/>
+            android:textSize="15dp"
+            android:textColor="#222222"/>
     </LinearLayout>
+    
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="3dp"/>
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="?android:attr/actionMenuTextColor"/>
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="3dp"/>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:gravity="center_vertical"
-        android:background="@drawable/bg_activity"
         android:id="@+id/listOfPoisLinearLayout">
         <ImageButton
-            android:src="@drawable/ic_notesalt_grey"
+            android:src="@drawable/ic_notesalt_blue2"
             android:layout_columnWeight="1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:scaleType="fitCenter"
             android:background="#00000000"
             android:id="@+id/buttonList" />
@@ -52,9 +62,20 @@
             android:text="List of POIs"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="20dp"
-            android:textColor="#000000"/>
+            android:textSize="15dp"
+            android:textColor="#222222"/>
     </LinearLayout>
+
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="3dp"/>
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="?android:attr/actionMenuTextColor"/>
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="3dp"/>
     
     <LinearLayout
         android:orientation="horizontal"
@@ -62,12 +83,11 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:padding="5dp"
-        android:background="@drawable/bg_activity"
         android:id="@+id/downloadDataLinearLayout">
     <ImageButton
-      android:src="@drawable/ic_download"
-      android:layout_width="50dp"
-      android:layout_height="50dp"
+      android:src="@drawable/ic_download_blue2"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
       android:scaleType="fitCenter"
       android:background="#00000000"
       android:id="@+id/buttonDownload" />
@@ -78,22 +98,32 @@
             android:text="Download data"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="20dp"
-            android:textColor="#EEEEFF"/>
+            android:textSize="15dp"
+            android:textColor="#222222"/>
     </LinearLayout>
-    
+
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="3dp"/>
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="?android:attr/actionMenuTextColor"/>
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="3dp"/>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:padding="5dp"
-        android:background="@drawable/bg_activity"
         android:id="@+id/photoGalleryLinearLayout">
     <ImageButton
-      android:src="@drawable/ic_gallery"
-      android:layout_width="50dp"
-      android:layout_height="50dp"
+      android:src="@drawable/ic_gallery_blue2"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
       android:scaleType="fitCenter"
       android:background="#00000000"
       android:id="@+id/buttonPhotos" />
@@ -105,22 +135,32 @@
             android:text="Photo grallery"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="20dp"
-            android:textColor="#EEEEFF"/>
+            android:textSize="15dp"
+            android:textColor="#222222"/>
     </LinearLayout>
     
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="3dp"/>
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="?android:attr/actionMenuTextColor"/>
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="3dp"/>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:padding="5dp"
-        android:background="@drawable/bg_activity"
         android:id="@+id/settingsLinearLayout">
         <ImageButton
-          android:src="@drawable/ic_settingsalt2"
-          android:layout_width="50dp"
-          android:layout_height="50dp"
+          android:src="@drawable/ic_settingsalt_blue2"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
           android:scaleType="fitCenter"
           android:background="#00000000"
           android:id="@+id/buttonSettings" />
@@ -132,24 +172,34 @@
             android:text="Settings"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="20dp"
-            android:textColor="#EEEEFF"/>
+            android:textSize="15dp"
+            android:textColor="#222222"/>
     </LinearLayout>
     
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="3dp"/>
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="?android:attr/actionMenuTextColor"/>
+    <Space
+      android:layout_width="match_parent"
+      android:layout_height="3dp"/>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:gravity="center_vertical"
-        android:background="@drawable/bg_activity"
         android:id="@+id/aboutLinearLayout">
         
         <ImageButton
-          android:src="@drawable/ic_systeminfo"
+          android:src="@drawable/ic_systeminfo_blue2"
           android:layout_columnWeight="1"
-          android:layout_width="50dp"
-          android:layout_height="50dp"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
           android:scaleType="fitCenter"
           android:background="#00000000"
           android:id="@+id/buttonAbout" />
@@ -161,7 +211,7 @@
             android:text="About"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="20dp"
-            android:textColor="#EEEEFF"/>
+            android:textSize="15dp"
+            android:textColor="#222222"/>
     </LinearLayout>
 </LinearLayout>
