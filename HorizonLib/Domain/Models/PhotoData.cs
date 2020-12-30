@@ -22,6 +22,8 @@ namespace HorizontLib.Domain.Models
         public string Tag { get; set; }
         public double ViewAngleHorizontal { get; set; }
         public double ViewAngleVertical { get; set; }
+        public int PictureWidth { get; set; }
+        public int PictureHeight { get; set; }
         public double MinAltitude{ get; set; }
         public double MaxDistance { get; set; }
         public double? RightTiltCorrector { get; set; }

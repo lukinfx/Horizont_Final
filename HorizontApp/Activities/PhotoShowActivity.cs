@@ -111,6 +111,11 @@ namespace HorizontApp.Activities
 
             _context = new AppContextStaticData(loc, photodata.Heading);
 
+            //### This can be removed later
+            if (photodata.PictureWidth == 0) photodata.PictureWidth = _context.Settings.CameraPictureSize.Width;
+            if (photodata.PictureHeight == 0) photodata.PictureHeight = _context.Settings.CameraPictureSize.Height;
+
+
             _context.Settings.LoadData(this);
             _context.Settings.Categories = JsonConvert.DeserializeObject<List<PoiCategory>>(photodata.JsonCategories);
             _context.Settings.SetCameraParameters((float)photodata.ViewAngleHorizontal, (float)photodata.ViewAngleVertical,
@@ -158,7 +163,9 @@ namespace HorizontApp.Activities
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.LayoutChange += OnLayoutChanged;
-            _compassView.Initialize(_context, (float)photodata.LeftTiltCorrector, (float)photodata.RightTiltCorrector, 0);
+            _compassView.Initialize(_context, false,
+                new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight), 
+                (float)photodata.LeftTiltCorrector, (float)photodata.RightTiltCorrector, 0);
             
             var photoLayout = FindViewById<AbsoluteLayout>(Resource.Id.photoLayout);
 
@@ -505,6 +512,10 @@ namespace HorizontApp.Activities
 
         private void _saveData()
         {
+            //### This can be removed later
+            photodata.PictureWidth = dstBmp.Width;
+            photodata.PictureHeight = dstBmp.Height;
+
             photodata.MaxDistance = _distanceSeekBar.Progress;
             photodata.MinAltitude = _heightSeekBar.Progress;
             photodata.ViewAngleHorizontal = _context.ViewAngleHorizontal;
@@ -526,8 +537,10 @@ namespace HorizontApp.Activities
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
-            compassView.Initialize(_context, (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
-            compassView.InitializeViewDrawer(new Size(dstBmp.Width, dstBmp.Height));
+            compassView.Initialize(_context, false,
+                new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight),
+                (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
+            compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight));
             
             compassView.Draw(canvas);
 
@@ -572,8 +585,10 @@ namespace HorizontApp.Activities
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
-            compassView.Initialize(_context, (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
-            compassView.InitializeViewDrawer(new Size(dstBmp.Width, dstBmp.Height));
+            compassView.Initialize(_context, false,
+                new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight),
+                (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
+            compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight));
             compassView.Draw(canvas);
 
             var logoWidth = Convert.ToInt32(0.2 * canvas.Width);

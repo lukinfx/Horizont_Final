@@ -118,13 +118,13 @@ namespace HorizontLib.Utilities
             return verticalAngleCorrection;
         }
 
-        public static (float, float) AdjustViewAngles(float viewAngleHorizontal, float viewAngleVertical, Size canvasSize, Size imageSize)
+        public static (float, float) AdjustViewAngles(float viewAngleHorizontal, float viewAngleVertical, Size canvasSize, Size imageSize, bool allowRotation)
         {
             var adjustedViewAngleVertical = viewAngleVertical;
             var adjustedViewAngleHorizontal = viewAngleHorizontal;
             if (canvasSize.Height > 0 && canvasSize.Width > 0 && imageSize.Width > 0 && imageSize.Height > 0)
             {
-                if (canvasSize.Width > canvasSize.Height)
+                if (!allowRotation || (allowRotation && canvasSize.Width > canvasSize.Height))
                 {
                     var ratio = canvasSize.Height / (float)canvasSize.Width;
                     var displayedPictureHeight = imageSize.Width * ratio;

@@ -107,6 +107,8 @@ namespace HorizontApp.Utilities
                         JsonCategories = jsonCategories,
                         ViewAngleVertical = _context.ViewAngleVertical,
                         ViewAngleHorizontal = _context.ViewAngleHorizontal,
+                        PictureWidth = _Image.Width,
+                        PictureHeight = _Image.Height,
                         MinAltitude = _context.Settings.MinAltitute,
                         MaxDistance = _context.Settings.MaxDistance,
                         FavouriteFilter = _context.Settings.ShowFavoritesOnly,

@@ -25,6 +25,22 @@ namespace HorizontApp.AppContext
 
         public override double Heading { get { return _compassProvider.Heading; } }
 
+        public override float ViewAngleHorizontal
+        {
+            get
+            {
+                return IsPortrait ? Settings.AViewAngleVertical : Settings.AViewAngleHorizontal;
+            }
+        }
+
+        public override float ViewAngleVertical
+        {
+            get
+            {
+                return IsPortrait ? Settings.AViewAngleHorizontal : Settings.AViewAngleVertical;
+            }
+        }
+
         public static IAppContext Instance
         {
             get

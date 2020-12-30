@@ -4,6 +4,22 @@ namespace HorizontApp.AppContext
 {
     public class AppContextStaticData : AppContextBase
     {
+        public override float ViewAngleHorizontal
+        {
+            get
+            {
+                return Settings.AViewAngleHorizontal;
+            }
+        }
+
+        public override float ViewAngleVertical
+        {
+            get
+            {
+                return Settings.AViewAngleVertical;
+            }
+        }
+
         public AppContextStaticData(GpsLocation myLocation, double heading)
         {
             this.myLocation = myLocation;

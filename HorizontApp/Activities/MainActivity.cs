@@ -179,7 +179,7 @@ namespace HorizontApp
             _refreshCorrectorButton.SetOnClickListener(this);
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
-            _compassView.Initialize(Context);
+            _compassView.Initialize(Context, true, Context.Settings.CameraPictureSize);
 
             _mainLayout = FindViewById(Resource.Id.sample_main_layout);
 

@@ -34,6 +34,8 @@ namespace HorizontApp.Views
         private ElevationProfileData _elevationProfile;
         private double _leftTiltCorrector = 0;
         private double _rightTiltCorrector = 0;
+        private bool _allowRotation = true;
+        private System.Drawing.Size _pictureSize;
 
         public float ViewAngleHorizontal { get; private set; } = 0;
         public float ViewAngleVertical { get; private set; } = 0;
@@ -62,14 +64,16 @@ namespace HorizontApp.Views
         {
         }
 
-        public CompassView(Context context, IAttributeSet attrs, int defStyle) :
+/*        public CompassView(Context context, IAttributeSet attrs, int defStyle) :
             base(context, attrs, defStyle)
         {
         }
-
-        public void Initialize(IAppContext context, float leftTiltCorrector = 0, float rightTiltCorrector = 0, float headingCorrector = 0)
+*/
+        public void Initialize(IAppContext context, bool allowRotation, System.Drawing.Size pictureSize, float leftTiltCorrector = 0, float rightTiltCorrector = 0, float headingCorrector = 0)
         {
             _context = context;
+            _allowRotation = allowRotation;
+            _pictureSize = pictureSize;
             _leftTiltCorrector = leftTiltCorrector;
             _rightTiltCorrector = rightTiltCorrector;
             _headingCorrector = headingCorrector;
@@ -109,19 +113,19 @@ namespace HorizontApp.Views
 
         public void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
-            InitializeViewDrawer(new Size(this.Width, this.Height));
+            InitializeViewDrawer(new System.Drawing.Size(this.Width, this.Height), _pictureSize);
         }
 
         protected override void OnLayout(bool changed, int left, int top, int right, int bottom)
         {
             base.OnLayout(changed, left, top, right, bottom);
 
-            var compassViewSize = new Size(this.Width, this.Height);
-            InitializeViewDrawer(compassViewSize);
+            var compassViewSize = new System.Drawing.Size(this.Width, this.Height);
+            InitializeViewDrawer(compassViewSize, _pictureSize);
         }
 
 
-        public void InitializeViewDrawer(Size compassViewSize)
+        public void InitializeViewDrawer(System.Drawing.Size compassViewSize, System.Drawing.Size pictureSize)
         {
 
             switch (_context.Settings.AppStyle)
@@ -145,8 +149,7 @@ namespace HorizontApp.Views
 
             (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
                 _context.ViewAngleHorizontal, _context.ViewAngleVertical,
-                new System.Drawing.Size(compassViewSize.Width, compassViewSize.Height), 
-                _context.Settings.CameraPictureSize);
+                compassViewSize, pictureSize, _allowRotation);
 
             scaledViewAngleVertical = ViewAngleVertical;
             scaledViewAngleHorizontal = ViewAngleHorizontal; 
@@ -248,8 +251,8 @@ namespace HorizontApp.Views
             (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
                 _context.ViewAngleHorizontal, _context.ViewAngleVertical,
                 new System.Drawing.Size(Width, Height),
-                _context.Settings.CameraPictureSize);
-            //ViewAngleHorizontal = ViewAngleHorizontal * scale;
+                _context.Settings.CameraPictureSize, _allowRotation);
+
             RecalculateViewAngles(_scale);
         }
 
@@ -261,8 +264,8 @@ namespace HorizontApp.Views
             (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
                 _context.ViewAngleHorizontal, _context.ViewAngleVertical,
                 new System.Drawing.Size(Width, Height),
-                _context.Settings.CameraPictureSize);
-            //ViewAngleVertical = ViewAngleVertical * scale;
+                _context.Settings.CameraPictureSize, _allowRotation);
+
             RecalculateViewAngles(_scale);
         }
 
