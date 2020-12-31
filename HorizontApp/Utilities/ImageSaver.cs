@@ -84,14 +84,7 @@ namespace HorizontApp.Utilities
                 try
                 {
                     output.Write(bytes);
-                }
-                catch (Java.IO.IOException e)
-                {
-                    e.PrintStackTrace();
-                }
-                finally
-                {
-                    _Image.Close();
+                    
                     PoiDatabase poiDatabase = new PoiDatabase();
                     string jsonCategories = JsonConvert.SerializeObject(_context.Settings.Categories);
 
@@ -119,7 +112,16 @@ namespace HorizontApp.Utilities
                         photodata.MaxElevationProfileDataDistance = _context.ElevationProfileDataDistance.Value;
                         photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
                     }
-                    poiDatabase.InsertItem(photodata); 
+                    poiDatabase.InsertItem(photodata);
+
+                }
+                catch (Java.IO.IOException e)
+                {
+                    e.PrintStackTrace();
+                }
+                finally
+                {
+                    _Image.Close();
                 }
             }
         }
