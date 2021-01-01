@@ -246,7 +246,7 @@ namespace HorizontApp.Views
         public void ScaleHorizontalViewAngle(float scale)
         {
             _context.Settings.SetCameraParameters(_context.ViewAngleHorizontal / scale, _context.ViewAngleVertical,
-                AppContextLiveData.Instance.Settings.CameraPictureSize.Width, AppContextLiveData.Instance.Settings.CameraPictureSize.Height);
+                _context.Settings.CameraPictureSize.Width, _context.Settings.CameraPictureSize.Height);
 
             (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
                 _context.ViewAngleHorizontal, _context.ViewAngleVertical,
@@ -259,7 +259,7 @@ namespace HorizontApp.Views
         public void ScaleVerticalViewAngle(float scale)
         {
             _context.Settings.SetCameraParameters(_context.ViewAngleHorizontal, _context.ViewAngleVertical / scale,
-                AppContextLiveData.Instance.Settings.CameraPictureSize.Width, AppContextLiveData.Instance.Settings.CameraPictureSize.Height);
+                _context.Settings.CameraPictureSize.Width, _context.Settings.CameraPictureSize.Height);
 
             (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
                 _context.ViewAngleHorizontal, _context.ViewAngleVertical,

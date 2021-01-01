@@ -62,6 +62,8 @@ namespace HorizontApp.Activities
         private int m_FirstMoveX;
         private int m_FirstMoveY;
         private float m_PreviousDistance;
+        private float m_PreviousDistanceX;
+        private float m_PreviousDistanceY;
         private bool m_IsScaling;
 
         private PoiDatabase _database;
@@ -112,14 +114,14 @@ namespace HorizontApp.Activities
             _context = new AppContextStaticData(loc, photodata.Heading);
 
             //### This can be removed later
-            if (photodata.PictureWidth == 0) photodata.PictureWidth = _context.Settings.CameraPictureSize.Width;
-            if (photodata.PictureHeight == 0) photodata.PictureHeight = _context.Settings.CameraPictureSize.Height;
+            if (photodata.PictureWidth == 0) photodata.PictureWidth = AppContextLiveData.Instance.Settings.CameraPictureSize.Width;
+            if (photodata.PictureHeight == 0) photodata.PictureHeight = AppContextLiveData.Instance.Settings.CameraPictureSize.Height;
 
 
             _context.Settings.LoadData(this);
             _context.Settings.Categories = JsonConvert.DeserializeObject<List<PoiCategory>>(photodata.JsonCategories);
             _context.Settings.SetCameraParameters((float)photodata.ViewAngleHorizontal, (float)photodata.ViewAngleVertical,
-                AppContextLiveData.Instance.Settings.CameraPictureSize.Width, AppContextLiveData.Instance.Settings.CameraPictureSize.Height);
+                photodata.PictureWidth, photodata.PictureHeight);
             _context.Settings.MaxDistance = Convert.ToInt32(photodata.MaxDistance);
             _context.Settings.MinAltitute = Convert.ToInt32(photodata.MinAltitude);
             _context.Settings.ShowElevationProfile = photodata.ShowElevationProfile;
@@ -359,8 +361,10 @@ namespace HorizontApp.Activities
 
                     if (touchCount >= 2)
                     {
-                        var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
-                        m_PreviousDistance = distance;
+                        m_PreviousDistance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
+                        m_PreviousDistanceX = Math.Abs(e.GetX(0) - e.GetX(1));
+                        m_PreviousDistanceY = Math.Abs(e.GetY(0) - e.GetY(1));
+
                         m_IsScaling = true;
                     }
                 }
@@ -423,15 +427,15 @@ namespace HorizontApp.Activities
                         var distY = Math.Abs(e.GetY(0) - e.GetY(1));
                         if (distX > distY)
                         {
-                            var scale = (distX - m_PreviousDistance) / photoView.Width;
-                            m_PreviousDistance = distX;
+                            var scale = (distX - m_PreviousDistanceX) / photoView.Width;
+                            m_PreviousDistanceX = distX;
                             scale += 1;
                             _compassView.ScaleHorizontalViewAngle(scale);
                         }
                         else
                         {
-                            var scale = (distY - m_PreviousDistance) / photoView.Height;
-                            m_PreviousDistance = distY;
+                            var scale = (distY - m_PreviousDistanceY) / photoView.Height;
+                            m_PreviousDistanceY = distY;
                             scale += 1;
                             _compassView.ScaleVerticalViewAngle(scale);
                         }
