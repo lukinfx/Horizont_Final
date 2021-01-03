@@ -266,54 +266,6 @@ namespace HorizontApp.Views.Camera
             base.OnPause();
         }
 
-        public static List<string> GetCameras()
-        {
-            var ctx = Application.Context;
-            var manager = (CameraManager)ctx.GetSystemService(Context.CameraService);
-
-            var result = new List<string>();
-
-            try
-            {
-                for (var i = 0; i < manager.GetCameraIdList().Length; i++)
-                {
-                    var cameraId = manager.GetCameraIdList()[i];
-                    CameraCharacteristics characteristics = manager.GetCameraCharacteristics(cameraId);
-
-                    // We don't use a front facing camera in this sample.
-                    var facing = (Integer)characteristics.Get(CameraCharacteristics.LensFacing);
-                    if (facing != null && facing == (Integer.ValueOf((int)LensFacing.Front)))
-                    {
-                        continue;
-                    }
-
-                    result.Add(cameraId);
-                }
-            }
-            catch (System.Exception ex)
-            {
-            }
-
-            return result;
-        }
-
-        public static Size[] GetCameraResolutions(string cameraId)
-        {
-            var ctx = Application.Context;
-
-            var manager = (CameraManager)ctx.GetSystemService(Context.CameraService);
-            CameraCharacteristics characteristics = manager.GetCameraCharacteristics(cameraId);
-
-            var map = (StreamConfigurationMap)characteristics.Get(CameraCharacteristics.ScalerStreamConfigurationMap);
-            if (map == null)
-            {
-                return new List<Size>().ToArray();
-            }
-
-            var imageSizes = map.GetOutputSizes((int)ImageFormatType.Jpeg);
-            return imageSizes;
-        }
-
         // Sets up member variables related to camera.
         private void SetUpCameraOutputs(int width, int height)
         {
@@ -411,8 +363,6 @@ namespace HorizontApp.Views.Camera
                 {
                     mFlashSupported = (bool)available;
                 }
-
-                FetchCameraViewAngle(cameraId);
 
                 mCameraId = cameraId;
                 return;
@@ -718,22 +668,6 @@ namespace HorizontApp.Views.Camera
             }
         }
 
-        void FetchCameraViewAngle(string cameraId)
-        {
-            try
-            {
-                var camera = Android.Hardware.Camera.Open(Int32.Parse(cameraId));
-                AppContextLiveData.Instance.Settings.SetCameraParameters(
-                    camera.GetParameters().HorizontalViewAngle,
-                    camera.GetParameters().VerticalViewAngle,
-                    camera.GetParameters().PictureSize.Width, camera.GetParameters().PictureSize.Height);
-            }
-            catch
-            {
-                //Default values
-                AppContextLiveData.Instance.Settings.SetCameraParameters(60, 40, 1920, 1080);
-            }
-        }
     }
 }
 

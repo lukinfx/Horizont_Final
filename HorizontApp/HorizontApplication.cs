@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Runtime;
 using HorizontApp.AppContext;
+using HorizontApp.Views.Camera;
 
 namespace HorizontApp
 {

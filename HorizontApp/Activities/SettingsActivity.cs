@@ -103,7 +103,7 @@ namespace HorizontApp.Activities
             _spinnerLanguages.SetSelection(_listOfLanguages.ToList().FindIndex(i => i == _settings.Language));
             _spinnerLanguages.ItemSelected += (sender, args) => { InvalidateOptionsMenu(); };
 
-            _listOfCameraResolutions = CameraFragment.GetCameraResolutions(_settings.CameraId).ToList();
+            _listOfCameraResolutions = CameraUtilities.GetCameraResolutions(_settings.CameraId).ToList();
             var adapterPhotoResolution = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfCameraResolutions);
             _spinnerPhotoResolution.Adapter = adapterPhotoResolution;
             var resolutionIdx = _listOfCameraResolutions.FindIndex(i => i.Equals(_settings.cameraResolutionSelected));

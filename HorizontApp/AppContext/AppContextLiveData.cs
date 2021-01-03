@@ -25,19 +25,39 @@ namespace HorizontApp.AppContext
 
         public override double Heading { get { return _compassProvider.Heading; } }
 
+        private float GetViewAngleHorizontal()
+        {
+            var dx = Settings.cameraResolutionSelected.Width / (float)Settings.CameraPictureSize.Width;
+            var dy = Settings.cameraResolutionSelected.Height / (float)Settings.CameraPictureSize.Height;
+
+            var m = (dx < dy) ? (dx / dy) : 1;
+            return m * Settings.AViewAngleHorizontal;
+        }
+
+        private float GetViewAngleVertical()
+        {
+            var dx = Settings.cameraResolutionSelected.Width / (float)Settings.CameraPictureSize.Width;
+            var dy = Settings.cameraResolutionSelected.Height / (float)Settings.CameraPictureSize.Height;
+
+            var m = (dx > dy) ? (dy / dx) : 1;
+            return m * Settings.AViewAngleVertical;
+        }
+
         public override float ViewAngleHorizontal
         {
             get
             {
-                return IsPortrait ? Settings.AViewAngleVertical : Settings.AViewAngleHorizontal;
+                var x = IsPortrait ? GetViewAngleVertical() : GetViewAngleHorizontal();
+                return x;
             }
         }
 
         public override float ViewAngleVertical
         {
             get
-            {
-                return IsPortrait ? Settings.AViewAngleHorizontal : Settings.AViewAngleVertical;
+            {;
+                var x = IsPortrait ? GetViewAngleHorizontal() : GetViewAngleVertical();
+                return x; 
             }
         }
 
@@ -79,14 +99,18 @@ namespace HorizontApp.AppContext
 
             if (String.IsNullOrEmpty(Settings.CameraId))
             {
-                var cameraId = CameraFragment.GetCameras().First();
-                var listOfSizes = CameraFragment.GetCameraResolutions(cameraId);
-
+                var cameraId = CameraUtilities.GetCameras().First();
+                var listOfSizes = CameraUtilities.GetCameraResolutions(cameraId);
                 Size defaultSize = (Size)Collections.Max(listOfSizes, new CompareSizesByArea());
 
                 Settings.cameraResolutionSelected = defaultSize;
                 Settings.CameraId = cameraId;
             }
+
+            var (viewAngleHorizontal, viewAngleVertical) = CameraUtilities.FetchCameraViewAngle(Settings.CameraId);
+            var (resolutionHorizontal, resolutionVertical) = CameraUtilities.FetchCameraResolution(Settings.CameraId);
+
+            Settings.SetCameraParameters(viewAngleHorizontal, viewAngleVertical, resolutionHorizontal, resolutionVertical);
         }
 
         public void OnHeadingChanged(double heading)
