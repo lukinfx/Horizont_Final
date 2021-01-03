@@ -31,7 +31,7 @@ namespace HorizontApp.Providers
                     return AppContextLiveData.Instance.Settings.ManualLocation;
                 }
 
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var request = new GeolocationRequest(GeolocationAccuracy.Best);
                 Location location = await Geolocation.GetLocationAsync(request);
 
                 if (location != null)
