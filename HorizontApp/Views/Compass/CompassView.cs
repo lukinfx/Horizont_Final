@@ -151,14 +151,14 @@ namespace HorizontApp.Views
                 _context.ViewAngleHorizontal, _context.ViewAngleVertical,
                 compassViewSize, pictureSize, _allowRotation);
 
-            scaledViewAngleVertical = ViewAngleVertical;
-            scaledViewAngleHorizontal = ViewAngleHorizontal; 
-            Log.WriteLine(LogPriority.Debug, TAG, $"ViewAngle: {_context.ViewAngleHorizontal:F1}/{_context.ViewAngleVertical:F1}");
-            Log.WriteLine(LogPriority.Debug, TAG, $"AdjustedViewAngle: {ViewAngleHorizontal:F1}/{ViewAngleVertical:F1}");
-
             float multiplier = (float)Math.Sqrt(compassViewSize.Width * compassViewSize.Height / 2000000.0);
             compassViewDrawer.Initialize(ViewAngleHorizontal, ViewAngleVertical, multiplier);
             elevationProfileBitmapDrawer.Initialize(ViewAngleHorizontal, ViewAngleVertical);
+
+            Log.WriteLine(LogPriority.Debug, TAG, $"ViewAngle: {_context.ViewAngleHorizontal:F1}/{_context.ViewAngleVertical:F1}");
+            Log.WriteLine(LogPriority.Debug, TAG, $"AdjustedViewAngle: {ViewAngleHorizontal:F1}/{ViewAngleVertical:F1}");
+
+            RecalculateViewAngles(_scale);
         }
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
