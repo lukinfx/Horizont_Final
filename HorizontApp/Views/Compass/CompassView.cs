@@ -168,7 +168,7 @@ namespace HorizontApp.Views
             compassViewDrawer.OnDrawBackground(canvas);
 
             if (_context.Settings.ShowElevationProfile)
-                PaintElevationProfileBitmap(canvas, heading);
+                PaintElevationProfileLines(canvas, heading);
 
             PaintVisiblePois(canvas, heading);
         }
@@ -221,19 +221,19 @@ namespace HorizontApp.Views
         public void SetElevationProfile(ElevationProfileData elevationProfile)
         {
             _elevationProfile = elevationProfile;
-            GenerateElevationProfileBitmap();
+            GenerateElevationProfileLines();
 
             Invalidate();
         }
 
-        private void GenerateElevationProfileBitmap()
+        private void GenerateElevationProfileLines()
         {
-            elevationProfileBitmapDrawer.GenerateElevationProfileBitmap(_elevationProfile, Width, Height);
+            elevationProfileBitmapDrawer.GenerateElevationProfileLines(_elevationProfile, Width, Height);
         }
 
-        private void PaintElevationProfileBitmap(Canvas canvas, double heading)
+        private void PaintElevationProfileLines(Canvas canvas, double heading)
         {
-            elevationProfileBitmapDrawer.PaintElevationProfileBitmap(canvas, heading, _leftTiltCorrector, _rightTiltCorrector, (float)_offsetX, (float)_offsetY);
+            elevationProfileBitmapDrawer.PaintElevationProfileLines(canvas, heading, _leftTiltCorrector, _rightTiltCorrector, (float)_offsetX, (float)_offsetY);
         }
 
         public void Move(double offsetX, double offsetY)

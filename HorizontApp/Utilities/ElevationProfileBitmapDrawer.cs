@@ -38,7 +38,7 @@ namespace HorizontApp.Utilities
             _adjustedViewAngleVertical = _viewAngleVertical = viewAngleVertical;
         }
 
-        public void GenerateElevationProfileBitmap(ElevationProfileData epd, double displayWidth, double displayHeight)
+        public void GenerateElevationProfileLines(ElevationProfileData epd, double displayWidth, double displayHeight)
         {
             /*foreach(var ed in epd.GetData())
             {
@@ -80,7 +80,7 @@ namespace HorizontApp.Utilities
             _context.ListOfProfileLines = listOfLines;
         }
 
-        public void PaintElevationProfileBitmap(Canvas canvas, double heading, double leftTiltCorrector, double rightTiltCorrector, float offsetX, float offsetY)
+        public void PaintElevationProfileLines(Canvas canvas, double heading, double leftTiltCorrector, double rightTiltCorrector, float offsetX, float offsetY)
         {
             if (_context.ListOfProfileLines != null)
             {
