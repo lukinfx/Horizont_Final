@@ -119,6 +119,7 @@ namespace HorizontApp.Activities
 
 
             _context.Settings.LoadData(this);
+            _context.Settings.IsViewAngleCorrection = false;
             _context.Settings.Categories = JsonConvert.DeserializeObject<List<PoiCategory>>(photodata.JsonCategories);
             _context.Settings.SetCameraParameters((float)photodata.ViewAngleHorizontal, (float)photodata.ViewAngleVertical,
                 photodata.PictureWidth, photodata.PictureHeight);
@@ -382,16 +383,19 @@ namespace HorizontApp.Activities
                         if (Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
                         {
                             _compassView.OnScroll(distanceX);
+                            Log.WriteLine(LogPriority.Debug, TAG, $"Heading correction: {distanceX}");
                         }
                         else
                         {
                             if (e.RawX < Resources.DisplayMetrics.WidthPixels / 2)
                             {
                                 _compassView.OnScroll(distanceY, true);
+                                Log.WriteLine(LogPriority.Debug, TAG, $"Left tilt correction: {distanceY}");
                             }
                             else
                             {
                                 _compassView.OnScroll(distanceY, false);
+                                Log.WriteLine(LogPriority.Debug, TAG, $"Right tilt correction: {distanceY}");
                             }
                         }
                     }
@@ -408,6 +412,7 @@ namespace HorizontApp.Activities
 
                         _compassView.RecalculateViewAngles(photoView.DisplayScale);
                         _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
+                        Log.WriteLine(LogPriority.Debug, TAG, $"Zooming: {scale}");
                     }
                     //moving
                     else if (!m_IsScaling && photoView.Scale > photoView.MinScale && !_editingOn)
@@ -420,6 +425,7 @@ namespace HorizontApp.Activities
                         photoView.Cutting();
 
                         _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
+                        Log.WriteLine(LogPriority.Debug, TAG, $"Moving: {distanceX}/{distanceY}");
                     }
                     else if (touchCount >= 2 && _editingOn)
                     {
@@ -431,6 +437,7 @@ namespace HorizontApp.Activities
                             m_PreviousDistanceX = distX;
                             scale += 1;
                             _compassView.ScaleHorizontalViewAngle(scale);
+                            Log.WriteLine(LogPriority.Debug, TAG, $"Horizontal VA correction: {scale}");
                         }
                         else
                         {
@@ -438,6 +445,7 @@ namespace HorizontApp.Activities
                             m_PreviousDistanceY = distY;
                             scale += 1;
                             _compassView.ScaleVerticalViewAngle(scale);
+                            Log.WriteLine(LogPriority.Debug, TAG, $"Vertical VA correction: {scale}");
                         }
                     }
                 }
