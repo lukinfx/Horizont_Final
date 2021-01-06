@@ -12,11 +12,13 @@ using HorizontApp.AppContext;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
 using System.Runtime.InteropServices.ComTypes;
 using System;
+using System.Threading;
 
 namespace HorizontApp.Views
 {
     public class CompassView : View
     {
+        private readonly object syncLock = new object(); 
         private static string TAG = "Horizon-CompassView";
 
         private static IOrderedEnumerable<PoiViewItem> list;
@@ -88,27 +90,38 @@ namespace HorizontApp.Views
             _paint.StrokeWidth = 3;
         }
 
-        public void SetPoiViewItemList(PoiViewItemList list2)
+        public void SetPoiViewItemList(PoiViewItemList srcList)
         {
-            list = list2.OrderByDescending(poi => poi.Poi.Altitude).ThenBy(poi => poi.Distance);
-            
-            var minAngleDiff = compassViewDrawer.GetMinItemAngleDiff(this.Width);
-            _compassViewFilter.Reset();
-            foreach (var item in list)
+            lock (syncLock)
             {
-                item.Visibility = CompassViewUtils.IsPoiVisible(item, _context.ElevationProfileData);
-
-                if (item.Visibility == HorizonLib.Domain.Enums.Visibility.Invisible)
+                PoiViewItem[] listCopy = new PoiViewItem[srcList.Count];
+                srcList.CopyTo(listCopy);
+                foreach (var item in listCopy)
                 {
-                    continue;
+                    item.Visibility = CompassViewUtils.IsPoiVisible(item, _context.ElevationProfileData);
                 }
 
-                if (_compassViewFilter.IsOverlapping(item, minAngleDiff))
+                list = listCopy.Where(poi => poi.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible).OrderByDescending(poi => poi.Priority).ThenByDescending(poi => poi.GpsLocation.VerticalViewAngle);
+                CheckOverlappingItems();
+            }
+
+            Invalidate();
+        }
+
+        private void CheckOverlappingItems()
+        {
+            lock (syncLock)
+            {
+                if (list == null)
+                    return;
+
+                var minAngleDiff = compassViewDrawer.GetMinItemAngleDiff((int) (this.Width * _scale));
+                _compassViewFilter.Reset();
+                foreach (var item in list)
                 {
-                    item.Visibility = HorizonLib.Domain.Enums.Visibility.Invisible;
+                    item.Overlapped = _compassViewFilter.IsOverlapping(item, minAngleDiff);
                 }
             }
-            Invalidate();
         }
 
         public void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
@@ -176,18 +189,21 @@ namespace HorizontApp.Views
         private void PaintVisiblePois(Canvas canvas, double heading)
         {
             canvas.Rotate(90, 0, 0);
-
-            if (list != null)
+            
+            lock (syncLock)
             {
-                foreach (var item in list)
+                if (list != null)
                 {
-                    if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible)
+                    foreach (var item in list)
                     {
-                        compassViewDrawer.DrawItem(canvas, item, (float) heading, (float)_offsetX, (float) _offsetY, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
+                        if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
+                        {
+                            compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
+                        }
                     }
                 }
             }
-            
+
             canvas.Rotate(-90, 0, 0);
         }
 
@@ -278,6 +294,8 @@ namespace HorizontApp.Views
 
             compassViewDrawer.SetScaledViewAngle(scaledViewAngleHorizontal, scaledViewAngleVertical);
             elevationProfileBitmapDrawer.SetScaledViewAngle(scaledViewAngleHorizontal, scaledViewAngleVertical);
+
+            CheckOverlappingItems();
             Invalidate();
         }
     }

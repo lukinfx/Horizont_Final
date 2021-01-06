@@ -20,7 +20,7 @@ namespace HorizontApp.Views.Compass
 
         public override double GetMinItemAngleDiff(int canvasWidth)
         {
-            return 4;
+            return 8500.0 * multiplier / (double)canvasWidth;
         }
     }
 }

@@ -552,6 +552,7 @@ namespace HorizontApp.Activities
             compassView.Initialize(_context, false,
                 new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight),
                 (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
+            compassView.Layout(0, 0, photodata.PictureWidth, photodata.PictureHeight);
             compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight));
             
             compassView.Draw(canvas);
@@ -600,6 +601,7 @@ namespace HorizontApp.Activities
             compassView.Initialize(_context, false,
                 new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight),
                 (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
+            compassView.Layout(0, 0, photodata.PictureWidth, photodata.PictureHeight);
             compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight));
             compassView.Draw(canvas);
 

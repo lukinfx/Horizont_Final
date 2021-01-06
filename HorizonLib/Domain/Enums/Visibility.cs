@@ -6,8 +6,8 @@ namespace HorizonLib.Domain.Enums
 {
     public enum Visibility
     {
-        Visible,
-        PartialyVisible,
-        Invisible
+        Invisible = 0,
+        PartialyVisible = 1, 
+        Visible = 2
     }
 }
