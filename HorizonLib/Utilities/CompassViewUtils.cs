@@ -75,9 +75,10 @@ namespace HorizontLib.Utilities
 
             var viewAngleDiff = itemViewAngle - maxViewAngle;
 
-            if (viewAngleDiff > -0.5)
+            if (viewAngleDiff > -0.4)
                 return Visibility.Visible;
-            if (viewAngleDiff > -2.0)
+
+            if (viewAngleDiff > -1.0 && itemViewAngle > 0)
                 return Visibility.PartialyVisible;
 
             return Visibility.Invisible;
