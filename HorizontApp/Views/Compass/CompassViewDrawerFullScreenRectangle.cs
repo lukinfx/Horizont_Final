@@ -1,10 +1,16 @@
 ﻿using Android.Graphics;
+using HorizontApp.Providers;
 using HorizontLib.Domain.ViewModel;
 
 namespace HorizontApp.Views.Compass
 {
     public class CompassViewDrawerFullScreenRectangle : CompassViewDrawer
     {
+        public CompassViewDrawerFullScreenRectangle(PoiCategoryBitmapProvider poiCategoryBitmapProvider)
+            : base(poiCategoryBitmapProvider)
+        {
+        }
+
         public override void OnDrawBackground(Canvas canvas)
         {
             canvas.DrawRect(0, 0, canvas.Width, canvas.Height / 3, paintRect);
@@ -19,7 +25,8 @@ namespace HorizontApp.Views.Compass
 
         public override void OnDrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY)
         {
-            canvas.DrawBitmap(GetCategoryIcon(item.Poi.Category), startX - ToPixels(30), 5, null);
+            var bmp = poiCategoryBitmapProvider.GetCategoryIcon(item.Poi.Category);
+            canvas.DrawBitmap(bmp, startX - ToPixels(30), 5, null);
         }
 
         public override double GetMinItemAngleDiff(int canvasWidth)

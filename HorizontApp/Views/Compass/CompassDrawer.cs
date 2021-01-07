@@ -5,6 +5,8 @@ using HorizontLib.Utilities;
 using System;
 using System.Collections.Generic;
 using Android.Content.Res;
+using Android.Util;
+using HorizontApp.Providers;
 using HorizontLib.Domain.Enums;
 
 namespace HorizontApp.Views.Compass
@@ -22,11 +24,12 @@ namespace HorizontApp.Views.Compass
         protected float adjustedViewAngleHorizontal;
         protected float adjustedViewAngleVertical;
         protected float multiplier;
-        protected Dictionary<PoiCategory, Bitmap> categoryIcon;
-        protected Bitmap defaultIcon;
+        protected PoiCategoryBitmapProvider poiCategoryBitmapProvider;
 
-        public CompassViewDrawer()
+        public CompassViewDrawer(PoiCategoryBitmapProvider poiCategoryBitmapProvider)
         {
+            this.poiCategoryBitmapProvider = poiCategoryBitmapProvider;
+
             paintVisible = new Paint();
             paintVisible.SetARGB(255, 200, 255, 0);
             paintVisible.SetStyle(Paint.Style.FillAndStroke);
@@ -58,7 +61,6 @@ namespace HorizontApp.Views.Compass
             textpaintPartialyVisible.TextSize = 36;
             textpaintPartialyVisible.SetTypeface(normal);
 
-            defaultIcon = Bitmap.CreateBitmap(1, 1, Bitmap.Config.Argb8888);
             multiplier = 1;
         }
 
@@ -85,6 +87,7 @@ namespace HorizontApp.Views.Compass
         public virtual void Initialize(Resources resources, float viewAngleHorizontal, float viewAngleVertical, float multiplier)
         {
             this.multiplier = multiplier;
+
             this.viewAngleHorizontal = viewAngleHorizontal;
             this.viewAngleVertical = viewAngleVertical;
             adjustedViewAngleHorizontal = viewAngleHorizontal;
@@ -98,31 +101,7 @@ namespace HorizontApp.Views.Compass
             textpaint.TextSize = ToPixels(36);
             textpaintPartialyVisible.TextSize = ToPixels(36);
 
-            categoryIcon = new Dictionary<PoiCategory, Bitmap>();
-            categoryIcon.Add(PoiCategory.Cities, GetCategoryBitmap(resources, PoiCategory.Cities));
-            categoryIcon.Add(PoiCategory.Mountains, GetCategoryBitmap(resources, PoiCategory.Mountains));
-            categoryIcon.Add(PoiCategory.Castles, GetCategoryBitmap(resources, PoiCategory.Castles));
-            categoryIcon.Add(PoiCategory.Churches, GetCategoryBitmap(resources, PoiCategory.Churches));
-            categoryIcon.Add(PoiCategory.Historic, GetCategoryBitmap(resources, PoiCategory.Historic));
-            categoryIcon.Add(PoiCategory.Lakes, GetCategoryBitmap(resources, PoiCategory.Lakes));
-            categoryIcon.Add(PoiCategory.Transmitters, GetCategoryBitmap(resources, PoiCategory.Transmitters));
-            categoryIcon.Add(PoiCategory.ViewTowers, GetCategoryBitmap(resources, PoiCategory.ViewTowers));
-            categoryIcon.Add(PoiCategory.Other, GetCategoryBitmap(resources, PoiCategory.Other));
-        }
-
-        private Bitmap GetCategoryBitmap(Resources resources, PoiCategory category)
-        {
-            var resourceId = Utilities.PoiCategoryHelper.GetImage(category);
-            var img = BitmapFactory.DecodeResource(resources, resourceId);
-            return Bitmap.CreateScaledBitmap(img, (int)ToPixels(60), (int)ToPixels(60), false);
-        }
-
-        protected Bitmap GetCategoryIcon(PoiCategory category)
-        {
-            if (!categoryIcon.ContainsKey(category))
-                return defaultIcon;
-
-            return categoryIcon[category];
+            poiCategoryBitmapProvider.Initialize(resources, new Size((int)ToPixels(60), (int)ToPixels(60)));
         }
 
         public virtual double GetMinItemAngleDiff(int canvasWidth) { return 0; }

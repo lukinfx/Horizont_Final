@@ -13,6 +13,7 @@ using GpsUtils = HorizontApp.Utilities.GpsUtils;
 using System.Runtime.InteropServices.ComTypes;
 using System;
 using System.Threading;
+using HorizontApp.Providers;
 
 namespace HorizontApp.Views
 {
@@ -57,13 +58,15 @@ namespace HorizontApp.Views
             }
         }
 
-        private CompassViewDrawer compassViewDrawer = new CompassViewDrawer();
+        private PoiCategoryBitmapProvider poiCategoryBitmapProvider;
+        private CompassViewDrawer compassViewDrawer;
         private ElevationProfileBitmapDrawer elevationProfileBitmapDrawer;
-
 
         public CompassView(Context context, IAttributeSet attrs) :
             base(context, attrs)
         {
+            poiCategoryBitmapProvider = new PoiCategoryBitmapProvider();
+            compassViewDrawer = new CompassViewDrawer(poiCategoryBitmapProvider);
         }
 
 /*        public CompassView(Context context, IAttributeSet attrs, int defStyle) :
@@ -140,24 +143,23 @@ namespace HorizontApp.Views
 
         public void InitializeViewDrawer(System.Drawing.Size compassViewSize, System.Drawing.Size pictureSize)
         {
-
             switch (_context.Settings.AppStyle)
-                {
-                    case AppStyles.EachPoiSeparate:
-                        compassViewDrawer = new CompassViewDrawerEachPoiSeparate();
-                        break;
-                    case AppStyles.FullScreenRectangle:
-                        compassViewDrawer = new CompassViewDrawerFullScreenRectangle();
-                        break;
-                    case AppStyles.Simple:
-                        compassViewDrawer = new CompassViewDrawerSimple();
-                        break;
-                    case AppStyles.SimpleWithDistance:
-                        compassViewDrawer = new CompassViewDrawerSimpleWithDistance();
-                        break;
-                    case AppStyles.SimpleWithHeight:
-                        compassViewDrawer = new CompassViewDrawerSimpleWithHeight();
-                        break;
+            {
+                case AppStyles.EachPoiSeparate:
+                    compassViewDrawer = new CompassViewDrawerEachPoiSeparate(poiCategoryBitmapProvider);
+                    break;
+                case AppStyles.FullScreenRectangle:
+                    compassViewDrawer = new CompassViewDrawerFullScreenRectangle(poiCategoryBitmapProvider);
+                    break;
+                case AppStyles.Simple:
+                    compassViewDrawer = new CompassViewDrawerSimple(poiCategoryBitmapProvider);
+                    break;
+                case AppStyles.SimpleWithDistance:
+                    compassViewDrawer = new CompassViewDrawerSimpleWithDistance(poiCategoryBitmapProvider);
+                    break;
+                case AppStyles.SimpleWithHeight:
+                    compassViewDrawer = new CompassViewDrawerSimpleWithHeight(poiCategoryBitmapProvider);
+                    break;
             }
 
             (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(

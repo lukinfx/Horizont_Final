@@ -1,10 +1,16 @@
 ﻿using Android.Graphics;
+using HorizontApp.Providers;
 using HorizontLib.Domain.ViewModel;
 
 namespace HorizontApp.Views.Compass
 {
     public class CompassViewDrawerSimpleWithHeight : CompassViewDrawer
     {
+        public CompassViewDrawerSimpleWithHeight(PoiCategoryBitmapProvider poiCategoryBitmapProvider)
+            : base(poiCategoryBitmapProvider)
+        {
+        }
+
         public override void OnDrawBackground(Canvas canvas)
         {
         }
@@ -18,7 +24,8 @@ namespace HorizontApp.Views.Compass
 
         public override void OnDrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY)
         {
-            canvas.DrawBitmap(GetCategoryIcon(item.Poi.Category), startX, 5, null);
+            var bmp = poiCategoryBitmapProvider.GetCategoryIcon(item.Poi.Category);
+            canvas.DrawBitmap(bmp, startX, 5, null);
         }
 
         public override double GetMinItemAngleDiff(int canvasWidth)
