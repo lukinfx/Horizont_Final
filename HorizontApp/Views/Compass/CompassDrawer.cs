@@ -3,6 +3,9 @@ using HorizonLib.Domain.Enums;
 using HorizontLib.Domain.ViewModel;
 using HorizontLib.Utilities;
 using System;
+using System.Collections.Generic;
+using Android.Content.Res;
+using HorizontLib.Domain.Enums;
 
 namespace HorizontApp.Views.Compass
 {
@@ -19,6 +22,8 @@ namespace HorizontApp.Views.Compass
         protected float adjustedViewAngleHorizontal;
         protected float adjustedViewAngleVertical;
         protected float multiplier;
+        protected Dictionary<PoiCategory, Bitmap> categoryIcon;
+        protected Bitmap defaultIcon;
 
         public CompassViewDrawer()
         {
@@ -53,6 +58,7 @@ namespace HorizontApp.Views.Compass
             textpaintPartialyVisible.TextSize = 36;
             textpaintPartialyVisible.SetTypeface(normal);
 
+            defaultIcon = Bitmap.CreateBitmap(1, 1, Bitmap.Config.Argb8888);
             multiplier = 1;
         }
 
@@ -76,7 +82,7 @@ namespace HorizontApp.Views.Compass
             return multiplier * dpi;
         }
 
-        public virtual void Initialize(float viewAngleHorizontal, float viewAngleVertical, float multiplier)
+        public virtual void Initialize(Resources resources, float viewAngleHorizontal, float viewAngleVertical, float multiplier)
         {
             this.multiplier = multiplier;
             this.viewAngleHorizontal = viewAngleHorizontal;
@@ -91,6 +97,32 @@ namespace HorizontApp.Views.Compass
 
             textpaint.TextSize = ToPixels(36);
             textpaintPartialyVisible.TextSize = ToPixels(36);
+
+            categoryIcon = new Dictionary<PoiCategory, Bitmap>();
+            categoryIcon.Add(PoiCategory.Cities, GetCategoryBitmap(resources, PoiCategory.Cities));
+            categoryIcon.Add(PoiCategory.Mountains, GetCategoryBitmap(resources, PoiCategory.Mountains));
+            categoryIcon.Add(PoiCategory.Castles, GetCategoryBitmap(resources, PoiCategory.Castles));
+            categoryIcon.Add(PoiCategory.Churches, GetCategoryBitmap(resources, PoiCategory.Churches));
+            categoryIcon.Add(PoiCategory.Historic, GetCategoryBitmap(resources, PoiCategory.Historic));
+            categoryIcon.Add(PoiCategory.Lakes, GetCategoryBitmap(resources, PoiCategory.Lakes));
+            categoryIcon.Add(PoiCategory.Transmitters, GetCategoryBitmap(resources, PoiCategory.Transmitters));
+            categoryIcon.Add(PoiCategory.ViewTowers, GetCategoryBitmap(resources, PoiCategory.ViewTowers));
+            categoryIcon.Add(PoiCategory.Other, GetCategoryBitmap(resources, PoiCategory.Other));
+        }
+
+        private Bitmap GetCategoryBitmap(Resources resources, PoiCategory category)
+        {
+            var resourceId = Utilities.PoiCategoryHelper.GetImage(category);
+            var img = BitmapFactory.DecodeResource(resources, resourceId);
+            return Bitmap.CreateScaledBitmap(img, (int)ToPixels(60), (int)ToPixels(60), false);
+        }
+
+        protected Bitmap GetCategoryIcon(PoiCategory category)
+        {
+            if (!categoryIcon.ContainsKey(category))
+                return defaultIcon;
+
+            return categoryIcon[category];
         }
 
         public virtual double GetMinItemAngleDiff(int canvasWidth) { return 0; }
@@ -107,39 +139,38 @@ namespace HorizontApp.Views.Compass
         /// <param name="heading"></param>
         public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY) { }
 
-        /*public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, double? leftTiltCorrector, double? rightTiltCorrector, double? canvasWidth)
-        {
-            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal);
-            float endY;
-            if (startX != null)
-            {
-                if (leftTiltCorrector.HasValue && rightTiltCorrector.HasValue)
-                {
-                    endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical, startX.Value, leftTiltCorrector.Value, rightTiltCorrector.Value, canvasWidth.Value);
-                }
-                else
-                {
-                    endY = CompassViewUtils.GetYLocationOnScreen(item.Distance, item.AltitudeDifference, canvas.Height, adjustedViewAngleVertical);
-                }
+        public virtual void OnDrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY) { }
 
-                OnDrawItem(canvas, item, startX.Value, endY);
-            }
-        }*/
+        public (float? x,float? y) GetXY(PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, float canvasWidth, float canvasHeight)
+        {
+            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvasWidth, adjustedViewAngleHorizontal, offsetX);
+
+            if (!startX.HasValue)
+                return (null, null);
+            
+            double verticalAngleCorrection = CompassViewUtils.GetTiltCorrection(item.Bearing, heading, viewAngleHorizontal, leftTiltCorrector, rightTiltCorrector);
+            double verticalAngle = GpsUtils.Rad2Dg(Math.Atan(item.AltitudeDifference / item.Distance));
+
+            float endY = CompassViewUtils.GetYLocationOnScreen(verticalAngle + verticalAngleCorrection, canvasHeight, adjustedViewAngleVertical);
+            return (startX, endY);
+        }
 
         public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
         {
-            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvas.Width, adjustedViewAngleHorizontal, offsetX);
-
-            
-            if (startX != null)
+            var (x, y) = GetXY(item, heading, offsetX, offsetY, leftTiltCorrector, rightTiltCorrector, canvas.Width, canvas.Height);
+            if (x != null && y != null)
             {
-                double verticalAngleCorrection = CompassViewUtils.GetTiltCorrection(item.Bearing, heading, viewAngleHorizontal, leftTiltCorrector, rightTiltCorrector);
-                double verticalAngle = GpsUtils.Rad2Dg(Math.Atan(item.AltitudeDifference / item.Distance));
-
-                float endY = CompassViewUtils.GetYLocationOnScreen(verticalAngle + verticalAngleCorrection, canvas.Height, adjustedViewAngleVertical);
-                OnDrawItem(canvas, item, startX.Value, endY + offsetY);
+                OnDrawItem(canvas, item, x.Value, y.Value + offsetY);
             }
-            
+        }
+
+        public void DrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
+        {
+            var (x, y) = GetXY(item, heading, offsetX, offsetY, leftTiltCorrector, rightTiltCorrector, canvas.Width, canvas.Height);
+            if (x != null && y != null)
+            {
+                OnDrawItemIcon(canvas, item, x.Value, y.Value + offsetY);
+            }
         }
 
         public void SetScaledViewAngle(float scaledViewAngleHorizontal, float scaledViewAngleVertical)

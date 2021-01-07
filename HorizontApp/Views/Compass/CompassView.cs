@@ -165,7 +165,7 @@ namespace HorizontApp.Views
                 compassViewSize, pictureSize, _allowRotation);
 
             float multiplier = (float)Math.Sqrt(compassViewSize.Width * compassViewSize.Height / 2000000.0);
-            compassViewDrawer.Initialize(ViewAngleHorizontal, ViewAngleVertical, multiplier);
+            compassViewDrawer.Initialize(Resources, ViewAngleHorizontal, ViewAngleVertical, multiplier);
             elevationProfileBitmapDrawer.Initialize(ViewAngleHorizontal, ViewAngleVertical);
 
             Log.WriteLine(LogPriority.Debug, TAG, $"ViewAngle: {_context.ViewAngleHorizontal:F1}/{_context.ViewAngleVertical:F1}");
@@ -188,12 +188,12 @@ namespace HorizontApp.Views
 
         private void PaintVisiblePois(Canvas canvas, double heading)
         {
-            canvas.Rotate(90, 0, 0);
-            
             lock (syncLock)
             {
                 if (list != null)
                 {
+                    canvas.Rotate(90, 0, 0);
+
                     foreach (var item in list)
                     {
                         if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
@@ -201,10 +201,20 @@ namespace HorizontApp.Views
                             compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
                         }
                     }
+
+                    canvas.Rotate(-90, 0, 0);
+
+                    foreach (var item in list)
+                    {
+                        if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
+                        {
+                            compassViewDrawer.DrawItemIcon(canvas, item, (float)heading, (float)_offsetX, (float)_offsetY, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
+                        }
+                    }
+
                 }
             }
 
-            canvas.Rotate(-90, 0, 0);
         }
 
         public void OnScroll(float distanceX)
