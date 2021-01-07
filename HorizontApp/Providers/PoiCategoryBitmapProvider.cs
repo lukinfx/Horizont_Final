@@ -15,7 +15,13 @@ using Android.Util;
 
 namespace HorizontApp.Providers
 {
-    public class PoiCategoryBitmapProvider
+    public interface IPoiCategoryBitmapProvider
+    {
+        void Initialize(Resources resources, Size size);
+        Bitmap GetCategoryIcon(PoiCategory category);
+    }
+
+    public class PoiCategoryBitmapProvider : IPoiCategoryBitmapProvider
     {
         protected Dictionary<PoiCategory, Bitmap> categoryIcon = new Dictionary<PoiCategory, Bitmap>();
         protected Bitmap defaultIcon;

@@ -6,7 +6,7 @@ namespace HorizontApp.Views.Compass
 {
     public class CompassViewDrawerFullScreenRectangle : CompassViewDrawer
     {
-        public CompassViewDrawerFullScreenRectangle(PoiCategoryBitmapProvider poiCategoryBitmapProvider)
+        public CompassViewDrawerFullScreenRectangle(IPoiCategoryBitmapProvider poiCategoryBitmapProvider)
             : base(poiCategoryBitmapProvider)
         {
         }

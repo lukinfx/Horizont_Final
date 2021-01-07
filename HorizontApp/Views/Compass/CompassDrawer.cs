@@ -24,9 +24,9 @@ namespace HorizontApp.Views.Compass
         protected float adjustedViewAngleHorizontal;
         protected float adjustedViewAngleVertical;
         protected float multiplier;
-        protected PoiCategoryBitmapProvider poiCategoryBitmapProvider;
+        protected IPoiCategoryBitmapProvider poiCategoryBitmapProvider;
 
-        public CompassViewDrawer(PoiCategoryBitmapProvider poiCategoryBitmapProvider)
+        public CompassViewDrawer(IPoiCategoryBitmapProvider poiCategoryBitmapProvider)
         {
             this.poiCategoryBitmapProvider = poiCategoryBitmapProvider;
 

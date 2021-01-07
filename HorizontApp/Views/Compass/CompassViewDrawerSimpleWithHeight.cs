@@ -6,7 +6,7 @@ namespace HorizontApp.Views.Compass
 {
     public class CompassViewDrawerSimpleWithHeight : CompassViewDrawer
     {
-        public CompassViewDrawerSimpleWithHeight(PoiCategoryBitmapProvider poiCategoryBitmapProvider)
+        public CompassViewDrawerSimpleWithHeight(IPoiCategoryBitmapProvider poiCategoryBitmapProvider)
             : base(poiCategoryBitmapProvider)
         {
         }

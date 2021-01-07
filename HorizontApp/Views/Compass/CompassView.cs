@@ -58,7 +58,7 @@ namespace HorizontApp.Views
             }
         }
 
-        private PoiCategoryBitmapProvider poiCategoryBitmapProvider;
+        private IPoiCategoryBitmapProvider poiCategoryBitmapProvider;
         private CompassViewDrawer compassViewDrawer;
         private ElevationProfileBitmapDrawer elevationProfileBitmapDrawer;
 
