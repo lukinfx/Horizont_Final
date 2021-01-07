@@ -6,8 +6,8 @@
     android:background="@drawable/background_landscape">
     <ImageView
         android:src="@drawable/logo_horizon5"
-        android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_width="400dp"
+        android:layout_height="350dp"
         android:padding="20dp"
         android:id="@+id/imageView1" />
     
