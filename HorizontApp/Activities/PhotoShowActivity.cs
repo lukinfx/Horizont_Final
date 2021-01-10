@@ -198,11 +198,6 @@ namespace HorizontApp.Activities
             System.Threading.Tasks.Task.Run(() =>
             {
                 _context.ReloadData();
-                if (photodata.LeftTiltCorrector.HasValue && photodata.RightTiltCorrector.HasValue)
-                {
-                    _compassView.OnScroll((float)-photodata.LeftTiltCorrector.Value, true);
-                    _compassView.OnScroll((float)-photodata.RightTiltCorrector.Value, false);
-                }
             });
         }
 
