@@ -5,6 +5,7 @@ using HorizontLib.Utilities;
 using System;
 using System.Collections.Generic;
 using Android.Content.Res;
+using Android.Text;
 using Android.Util;
 using HorizontApp.Providers;
 using HorizontLib.Domain.Enums;
@@ -18,6 +19,7 @@ namespace HorizontApp.Views.Compass
         protected Paint paintRect;
         protected Paint paintRectPartialyVisible;
         protected Paint textpaint;
+        protected TextPaint textPaintForEllipsize;
         protected Paint textpaintPartialyVisible;
         protected float viewAngleHorizontal;
         protected float viewAngleVertical;
@@ -53,8 +55,17 @@ namespace HorizontApp.Views.Compass
             textpaint = new Paint();
             textpaint.SetARGB(255, 200, 255, 0);
             textpaint.TextSize = 36;
+            textpaint.AntiAlias = true;
             Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
             textpaint.SetTypeface(normal);
+
+            textPaintForEllipsize = new TextPaint();
+            textPaintForEllipsize.SetARGB(255, 200, 255, 0);
+            textPaintForEllipsize.SetStyle(Paint.Style.Fill);
+            textPaintForEllipsize.TextSize  = 36;
+            textPaintForEllipsize.AntiAlias = true;
+            textPaintForEllipsize.TextAlign = Paint.Align.Left;
+            textPaintForEllipsize.LinearText = true;
 
             textpaintPartialyVisible = new Paint();
             textpaintPartialyVisible.SetARGB(120, 200, 255, 0);
@@ -62,6 +73,11 @@ namespace HorizontApp.Views.Compass
             textpaintPartialyVisible.SetTypeface(normal);
 
             multiplier = 1;
+        }
+
+        protected string EllipsizeText(string text, float textWidth)
+        {
+            return TextUtils.Ellipsize(text, textPaintForEllipsize, textWidth, TextUtils.TruncateAt.End);
         }
 
         protected Paint GetTextPaint(PoiViewItem item)

@@ -1,4 +1,6 @@
 ﻿using Android.Graphics;
+using Android.Runtime;
+using Android.Text;
 using HorizontApp.Providers;
 using HorizontLib.Domain.ViewModel;
 
@@ -17,10 +19,41 @@ namespace HorizontApp.Views.Compass
 
         public override void OnDrawItem(Canvas canvas, PoiViewItem item, float startX, float endY)
         {
-            canvas.DrawRect(0, -startX + ToPixels(50), endY - ToPixels(50), -startX - ToPixels(50), GetRectPaint(item));
-            canvas.DrawLine(ToPixels(60), -startX, endY, -startX, GetPaint(item));
-            canvas.DrawText(item.Poi.Name, ToPixels(70), -startX - ToPixels(10), GetTextPaint(item));
-            canvas.DrawText($"{item.Poi.Altitude} m / {(item.GpsLocation.Distance / 1000):F2} km", ToPixels(70), -startX + ToPixels(35), GetTextPaint(item));
+            //   x1   x2
+            //    ----  y1
+            //   /    \ y2
+            //   |    | y3
+            //   |    |
+            //   |    |
+            //   |    | y4
+            //   \   /
+            //    \ /
+            //     V    y5
+
+            float y1 = 0;
+            float y2 = ToPixels(70);
+            float y3 = y2 / 2 + 1;
+            float y4 = endY - ToPixels(50);
+            float y5 = endY;
+
+            float x1 = startX - ToPixels(35);
+            float x2 = startX + ToPixels(35);
+
+            canvas.DrawArc(new RectF(y1, -x2, y2, -x1), 90, 180, true, GetRectPaint(item));
+
+            var path = new Path();
+            path.MoveTo(y3, -x1);
+            path.LineTo(y4, -x1);
+            path.LineTo(y5, -startX);
+            path.LineTo(y4, -x2);
+            path.LineTo(y3, -x2);
+            canvas.DrawPath(path, GetRectPaint(item));
+
+            var textWidth = y4 - y2 - 10;
+            var text1 = EllipsizeText(item.Poi.Name, textWidth);
+            var text2 = EllipsizeText($"{item.Poi.Altitude} m / {(item.GpsLocation.Distance / 1000):F2} km", textWidth);
+            canvas.DrawText(text1, ToPixels(70), -startX - ToPixels(4), GetTextPaint(item));
+            canvas.DrawText(text2, ToPixels(70), -startX + ToPixels(29), GetTextPaint(item));
         }
 
         public override void OnDrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY)
@@ -31,7 +64,7 @@ namespace HorizontApp.Views.Compass
 
         public override double GetMinItemAngleDiff(int canvasWidth)
         {
-            return 8500.0 * multiplier / (double)canvasWidth;
+            return 6500.0 * multiplier / (double)canvasWidth;
         }
     }
 }
