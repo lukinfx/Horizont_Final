@@ -19,7 +19,7 @@ namespace HorizontApp.Views.Compass
         {
             canvas.DrawRect(0, -startX, endY - ToPixels(50), -startX - ToPixels(40), GetRectPaint(item));
             canvas.DrawLine(ToPixels(30), -startX, endY, -startX, GetPaint(item));
-            canvas.DrawText($"{item.Poi.Name} ({(item.Distance / 1000):F0}km)", ToPixels(70), -startX - ToPixels(10), GetTextPaint(item));
+            canvas.DrawText($"{item.Poi.Name} ({(item.GpsLocation.Distance / 1000):F0}km)", ToPixels(70), -startX - ToPixels(10), GetTextPaint(item));
         }
 
         public override void OnDrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY)

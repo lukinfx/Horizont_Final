@@ -23,7 +23,7 @@ namespace HorizontApp.Views.Compass
         {
             foreach (var heading in _headings)
             {
-                if (IsOverlapping(heading.Bearing, item.Bearing, minDiff))
+                if (IsOverlapping(heading.GpsLocation.Bearing.Value, item.GpsLocation.Bearing.Value, minDiff))
                 {
                     return true;
                 }

@@ -122,13 +122,13 @@ namespace HorizontApp.Views.Compass
 
         public (float? x,float? y) GetXY(PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, float canvasWidth, float canvasHeight)
         {
-            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.Bearing, canvasWidth, adjustedViewAngleHorizontal, offsetX);
+            var startX = CompassViewUtils.GetXLocationOnScreen(heading, (float)item.GpsLocation.Bearing, canvasWidth, adjustedViewAngleHorizontal, offsetX);
 
             if (!startX.HasValue)
                 return (null, null);
             
-            double verticalAngleCorrection = CompassViewUtils.GetTiltCorrection(item.Bearing, heading, viewAngleHorizontal, leftTiltCorrector, rightTiltCorrector);
-            double verticalAngle = GpsUtils.Rad2Dg(Math.Atan(item.AltitudeDifference / item.Distance));
+            double verticalAngleCorrection = CompassViewUtils.GetTiltCorrection(item.GpsLocation.Bearing.Value, heading, viewAngleHorizontal, leftTiltCorrector, rightTiltCorrector);
+            double verticalAngle = GpsUtils.Rad2Dg(Math.Atan(item.AltitudeDifference / item.GpsLocation.Distance.Value));
 
             float endY = CompassViewUtils.GetYLocationOnScreen(verticalAngle + verticalAngleCorrection, canvasHeight, adjustedViewAngleVertical);
             return (startX, endY);

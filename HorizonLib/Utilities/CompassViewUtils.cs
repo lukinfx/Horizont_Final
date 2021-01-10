@@ -64,13 +64,13 @@ namespace HorizontLib.Utilities
             if (elevationProfileData == null)
                 return Visibility.Visible;
 
-            var leftPoints = elevationProfileData.GetData((int) item.Bearing);
-            var rightPoints = elevationProfileData.GetData((int)GpsUtils.Normalize360(item.Bearing + 1));
+            var leftPoints = elevationProfileData.GetData((int) item.GpsLocation.Bearing);
+            var rightPoints = elevationProfileData.GetData((int)GpsUtils.Normalize360(item.GpsLocation.Bearing.Value + 1));
 
-            var itemViewAngle = GetPoiViewAngle(item.Distance, item.AltitudeDifference);
+            var itemViewAngle = GetPoiViewAngle(item.GpsLocation.Distance.Value, item.AltitudeDifference);
 
-            var maxLeft = leftPoints.GetPoints().Where(p => p.Distance < item.Distance).Max(p => p.VerticalViewAngle) ?? -100;
-            var maxRight = rightPoints.GetPoints().Where(p => p.Distance < item.Distance).Max(p => p.VerticalViewAngle) ?? -100;;
+            var maxLeft = leftPoints.GetPoints().Where(p => p.Distance < item.GpsLocation.Distance).Max(p => p.VerticalViewAngle) ?? -100;
+            var maxRight = rightPoints.GetPoints().Where(p => p.Distance < item.GpsLocation.Distance).Max(p => p.VerticalViewAngle) ?? -100;;
             var maxViewAngle = Math.Max(maxLeft, maxRight);
 
             var viewAngleDiff = itemViewAngle - maxViewAngle;

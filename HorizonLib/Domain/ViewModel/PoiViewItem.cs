@@ -6,23 +6,16 @@ namespace HorizontLib.Domain.ViewModel
     public class PoiViewItem
     {
         public Poi Poi;
-        public double Bearing;
-        public double Distance;
         public Visibility Visibility;
         public bool Overlapped;
         public float AltitudeDifference { get; set; }
 
-        public GpsLocation GpsLocation
-        {
-            get
-            {
-                return new GpsLocation() { Latitude = this.Poi.Latitude, Longitude = this.Poi.Longitude, Altitude = this.Poi.Altitude };
-            }
-        }
+        public GpsLocation GpsLocation { get; private set; }
 
         public PoiViewItem(Poi poi)
         {
             Poi = poi;
+            GpsLocation = new GpsLocation() { Latitude = this.Poi.Latitude, Longitude = this.Poi.Longitude, Altitude = this.Poi.Altitude };
         }
 
         public int Priority

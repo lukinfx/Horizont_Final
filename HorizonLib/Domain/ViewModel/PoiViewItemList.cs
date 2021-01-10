@@ -24,14 +24,15 @@ namespace HorizontLib.Domain.ViewModel
             foreach (var item in poiList)
             {
                 var poiViewItem = new PoiViewItem(item);
-                poiViewItem.Bearing = GpsUtils.QuickBearing(myLocation, poiViewItem.GpsLocation);
+                poiViewItem.GpsLocation.Bearing = GpsUtils.QuickBearing(myLocation, poiViewItem.GpsLocation);
                 poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(myLocation, poiViewItem.GpsLocation);
-                poiViewItem.Distance = GpsUtils.QuickDistance(myLocation, poiViewItem.GpsLocation);
+                poiViewItem.GpsLocation.Distance = GpsUtils.QuickDistance(myLocation, poiViewItem.GpsLocation);
+                poiViewItem.GpsLocation.GetVerticalViewAngle(myLocation);
 
                 if (favourite && !poiViewItem.Poi.Favorite)
                     continue;
 
-                if (poiViewItem.Distance > maxDistance * 1000)
+                if (poiViewItem.GpsLocation.Distance > maxDistance * 1000)
                     continue;
 
                 if (poiViewItem.Poi.Altitude > 0.1 && poiViewItem.Poi.Altitude < minAltitude)
@@ -49,9 +50,10 @@ namespace HorizontLib.Domain.ViewModel
             foreach (var item in poiList)
             {
                 var poiViewItem = new PoiViewItem(item);
-                poiViewItem.Bearing = GpsUtils.QuickBearing(myLocation, poiViewItem.GpsLocation);
+                poiViewItem.GpsLocation.Bearing = GpsUtils.QuickBearing(myLocation, poiViewItem.GpsLocation);
                 poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(myLocation, poiViewItem.GpsLocation);
-                poiViewItem.Distance = GpsUtils.QuickDistance(myLocation, poiViewItem.GpsLocation);
+                poiViewItem.GpsLocation.Distance = GpsUtils.QuickDistance(myLocation, poiViewItem.GpsLocation);
+                poiViewItem.GpsLocation.GetVerticalViewAngle(myLocation);
                 Add(poiViewItem);
             }
         }

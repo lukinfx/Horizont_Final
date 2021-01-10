@@ -80,7 +80,7 @@ namespace HorizontApp.Views.ListOfPoiView
             _listViewPoi = FindViewById<ListView>(Resource.Id.listViewPoi);
 
             List<PoiViewItem> _items = Context.PoiData;
-            _items = _items.OrderBy(i => i.Distance).ToList();
+            _items = _items.OrderBy(i => i.GpsLocation.Distance).ToList();
             _adapter = new ListViewAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;
 
@@ -133,7 +133,7 @@ namespace HorizontApp.Views.ListOfPoiView
         private void _selectByDistance()
         {
             List<PoiViewItem> _items = Context.PoiData;
-            _items = _items.OrderBy(i => i.Distance).ToList();
+            _items = _items.OrderBy(i => i.GpsLocation.Distance).ToList();
             _adapter = new ListViewAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;
             _listViewPoi.Invalidate();
@@ -144,7 +144,7 @@ namespace HorizontApp.Views.ListOfPoiView
             var poiList = Context.Database.GetMyItems();
 
             List<PoiViewItem> _items = new PoiViewItemList(poiList, _location);
-            _items = _items.OrderBy(i => i.Distance).ToList();
+            _items = _items.OrderBy(i => i.GpsLocation.Distance).ToList();
             _adapter = new ListViewAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;
             _listViewPoi.Invalidate();
@@ -155,7 +155,7 @@ namespace HorizontApp.Views.ListOfPoiView
             var poiList = Context.Database.FindItems(_editTextSearch.Text);
 
             List<PoiViewItem> _items = new PoiViewItemList(poiList, _location);
-            _items = _items.OrderBy(i => i.Distance).ToList();
+            _items = _items.OrderBy(i => i.GpsLocation.Distance).ToList();
             _adapter = new ListViewAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;
             _listViewPoi.Invalidate();
@@ -243,9 +243,9 @@ namespace HorizontApp.Views.ListOfPoiView
                     var item = Context.Database.GetItem(id);
 
                     var poiViewItem = new PoiViewItem(item);
-                    poiViewItem.Bearing = Utilities.GpsUtils.QuickBearing(Context.MyLocation, poiViewItem.GpsLocation);
+                    poiViewItem.GpsLocation.Bearing = Utilities.GpsUtils.QuickBearing(Context.MyLocation, poiViewItem.GpsLocation);
                     poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(Context.MyLocation, poiViewItem.GpsLocation);
-                    poiViewItem.Distance = Utilities.GpsUtils.QuickDistance(Context.MyLocation, poiViewItem.GpsLocation);
+                    poiViewItem.GpsLocation.Distance = Utilities.GpsUtils.QuickDistance(Context.MyLocation, poiViewItem.GpsLocation);
                     _adapter.Add(poiViewItem);
                 }
                 if (resultCode == EditActivity.RESULT_OK_AND_CLOSE_PARENT)

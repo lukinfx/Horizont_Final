@@ -74,8 +74,8 @@ namespace HorizontApp.Utilities
             
             view.FindViewById<TextView>(Resource.Id.Title).Text = item.Poi.Name;
             view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Poi.Altitude) + "m | " + 
-                Convert.ToString(Math.Round(item.Distance/1000, 2)) + " km |" +
-                Convert.ToString(Math.Round(item.Bearing, 2)) + " dg";
+                Convert.ToString(Math.Round(item.GpsLocation.Distance.Value /1000, 2)) + " km |" +
+                Convert.ToString(Math.Round(item.GpsLocation.Bearing.Value, 2)) + " dg";
 
 
             Thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
