@@ -29,7 +29,7 @@ namespace HorizontApp.Views.ScaleImage
     public class ScaleImageView : ImageView
     {
         private Context m_Context;
-        private float m_MaxScale = 5.0f;
+        private float m_MaxScale = 10.0f;
         private float m_MinScale; 
         private float m_StdScale;
         private float m_Scale;
