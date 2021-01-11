@@ -75,34 +75,45 @@ namespace HorizontApp.Views.ScaleImage
         {
             this.SetScaleType(ScaleType.Matrix);
             m_Matrix = new Matrix();
-            if (Drawable != null)
-            {
-                m_IntrinsicWidth = Drawable.IntrinsicWidth;
-                m_IntrinsicHeight = Drawable.IntrinsicHeight;
-            }
         }
 
         protected override bool SetFrame(int l, int t, int r, int b)
         {
-
             m_Width = r - l;
             m_Height = b - t;
-            m_Matrix.Reset();
 
-            //Calculate scale
-            m_MinScale = CalculateMinScale(l, t, r, b);
-            m_StdScale = (r-l) / (float)m_IntrinsicWidth;
-            m_Scale = m_StdScale;
+            bool resetScale = false;
+            if (m_IntrinsicWidth != Drawable.IntrinsicWidth || m_IntrinsicHeight != Drawable.IntrinsicHeight)
+            {
+                m_IntrinsicWidth = Drawable.IntrinsicWidth;
+                m_IntrinsicHeight = Drawable.IntrinsicHeight;
+                resetScale = true;
+            }
 
-            //Calculate initial padding
-            int scaledImageHeight = (int)(m_Scale * m_IntrinsicHeight);
-            m_InitialPaddingHeight = (scaledImageHeight - m_Height) / 2;
-            m_InitialPaddingWidth = 0;
+            if (Width != m_Width || Height != m_Height)
+            {
+                resetScale = true;
+            }
 
-            //Set image transformation matrix
-            m_Matrix.PostScale(m_Scale, m_Scale);
-            m_Matrix.PostTranslate(-m_InitialPaddingWidth, -m_InitialPaddingHeight);
-            ImageMatrix = m_Matrix;
+            if (resetScale)
+            {
+                m_Matrix.Reset();
+
+                //Calculate scale
+                m_MinScale = CalculateMinScale(l, t, r, b);
+                m_StdScale = (r - l) / (float) m_IntrinsicWidth;
+                m_Scale = m_StdScale;
+
+                //Calculate initial padding
+                int scaledImageHeight = (int) (m_Scale * m_IntrinsicHeight);
+                m_InitialPaddingHeight = (scaledImageHeight - m_Height) / 2;
+                m_InitialPaddingWidth = 0;
+
+                //Set image transformation matrix
+                m_Matrix.PostScale(m_Scale, m_Scale);
+                m_Matrix.PostTranslate(-m_InitialPaddingWidth, -m_InitialPaddingHeight);
+                ImageMatrix = m_Matrix;
+            }
 
             return base.SetFrame(l, t, r, b);
         }

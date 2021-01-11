@@ -310,5 +310,23 @@ namespace HorizontApp.Views
             CheckOverlappingItems();
             Invalidate();
         }
+
+        public PoiViewItem GetPoiByScreenLocation(float x, float y)
+        {
+            var heading = _context.Heading + HeadingCorrector;
+
+            foreach (var item in list)
+            {
+                if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
+                {
+                    if (compassViewDrawer.IsItemClicked(item, (float) heading, (float) _offsetX, (float) _offsetY, _leftTiltCorrector, _rightTiltCorrector, Width, Height, x, y))
+                    {
+                        return item;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 } 

@@ -66,5 +66,10 @@ namespace HorizontApp.Views.Compass
         {
             return 6500.0 * multiplier / (double)canvasWidth;
         }
+
+        public override float GetItemWidth()
+        {
+            return ToPixels(35);
+        }
     }
 }

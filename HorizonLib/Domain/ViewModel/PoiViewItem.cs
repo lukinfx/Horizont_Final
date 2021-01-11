@@ -8,6 +8,7 @@ namespace HorizontLib.Domain.ViewModel
         public Poi Poi;
         public Visibility Visibility;
         public bool Overlapped;
+        public bool Selected;
         public float AltitudeDifference { get; set; }
 
         public GpsLocation GpsLocation { get; private set; }

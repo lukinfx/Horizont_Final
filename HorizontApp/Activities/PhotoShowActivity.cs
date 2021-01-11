@@ -46,6 +46,9 @@ namespace HorizontApp.Activities
         private ImageButton _displayTerrainButton;
         private ImageButton _tiltCorrectorButton;
 
+        private LinearLayout _seekBars;
+        private LinearLayout _poiInfo;
+
         private bool _editingOn = false;
 
         private bool _elevationProfileBeingGenerated = false;
@@ -65,6 +68,7 @@ namespace HorizontApp.Activities
         private float m_PreviousDistanceX;
         private float m_PreviousDistanceY;
         private bool m_IsScaling;
+        private PoiViewItem _selectedPoi;
 
         private PoiDatabase _database;
         private PoiDatabase Database
@@ -140,6 +144,11 @@ namespace HorizontApp.Activities
             _heightSeekBar.Progress = _context.Settings.MinAltitute;
             _heightSeekBar.ProgressChanged += OnMinAltitudeChanged;
 
+            _seekBars = FindViewById<LinearLayout>(Resource.Id.mainActivitySeekBars);
+            _poiInfo = FindViewById<LinearLayout>(Resource.Id.mainActivityPoiInfo);
+            _seekBars.Visibility = ViewStates.Visible;
+            _poiInfo.Visibility = ViewStates.Gone;
+
             _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
             _displayTerrainButton.SetOnClickListener(this);
             _displayTerrainButton.SetImageResource(_context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
@@ -161,7 +170,10 @@ namespace HorizontApp.Activities
 
             _tiltCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonTiltCorrector);
             _tiltCorrectorButton.SetOnClickListener(this);
-            
+
+            FindViewById<ImageButton>(Resource.Id.buttonWiki).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.buttonMap).SetOnClickListener(this);
+
             photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
@@ -443,19 +455,56 @@ namespace HorizontApp.Activities
                             Log.WriteLine(LogPriority.Debug, TAG, $"Vertical VA correction: {scale}");
                         }
                     }
-                }
                     break;
+                }
                 case MotionEventActions.Up:
                 case MotionEventActions.Pointer1Up:
                 case MotionEventActions.Pointer2Up:
                 {
-
                     if (touchCount <= 1)
                     {
-                        m_IsScaling = false;
+                        if (m_IsScaling)
+                        {
+                            m_IsScaling = false;
+                        }
+                        else
+                        {
+                            var dist = photoView.Distance(e.GetX(0), m_FirstMoveX, e.GetY(0), m_FirstMoveY);
+                            if (dist < 1)
+                            {
+                                var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
+
+                                if (_selectedPoi != null)
+                                {
+                                    _selectedPoi.Selected = false;
+                                }
+
+                                if (newSelectedPoi != null)
+                                {
+                                    _selectedPoi = newSelectedPoi;
+                                    _selectedPoi.Selected = true;
+
+                                    _seekBars.Visibility = ViewStates.Gone;
+                                    _poiInfo.Visibility = ViewStates.Visible;
+                                    FindViewById<TextView>(Resource.Id.textViewPoiName).Text = _selectedPoi.Poi.Name;
+                                    FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = "No description";
+                                    FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = $"{_selectedPoi.Poi.Altitude} m / {(_selectedPoi.GpsLocation.Distance / 1000):F2} km";
+                                    FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{_selectedPoi.Poi.Latitude:F7} N, {_selectedPoi.Poi.Longitude:F7} E";
+                                    FindViewById<ImageButton>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(_selectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
+                                }
+                                else
+                                {
+                                    _selectedPoi = null;
+
+                                    _seekBars.Visibility = ViewStates.Visible;
+                                    _poiInfo.Visibility = ViewStates.Gone;
+                                }
+                                _compassView.Invalidate();
+                            }
+                        }
                     }
-                }
                     break;
+                }
             }
 
             UpdateStatusBar();
@@ -514,6 +563,13 @@ namespace HorizontApp.Activities
 
                     _handleButtonShareClicked();
                     break;
+                case Resource.Id.buttonMap:
+                    MapUtilities.OpenMap(_selectedPoi.Poi);
+                    break;
+                case Resource.Id.buttonWiki:
+                    WikiUtilities.OpenWiki(_selectedPoi.Poi);
+                    break;
+
             }
         }
 

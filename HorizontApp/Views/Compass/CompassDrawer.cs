@@ -18,6 +18,7 @@ namespace HorizontApp.Views.Compass
         protected Paint paintPartialyVisible;
         protected Paint paintRect;
         protected Paint paintRectPartialyVisible;
+        protected Paint paintRectSelectedItem;
         protected Paint textpaint;
         protected TextPaint textPaintForEllipsize;
         protected Paint textpaintPartialyVisible;
@@ -51,6 +52,12 @@ namespace HorizontApp.Views.Compass
             paintRectPartialyVisible.SetARGB(75, 0, 0, 0);
             paintRectPartialyVisible.SetStyle(Paint.Style.FillAndStroke);
             paintRectPartialyVisible.StrokeWidth = 4;
+
+
+            paintRectSelectedItem = new Paint();
+            paintRectSelectedItem.SetARGB(255, 0, 0, 0);
+            paintRectSelectedItem.SetStyle(Paint.Style.FillAndStroke);
+            paintRectSelectedItem.StrokeWidth = 4;
 
             textpaint = new Paint();
             textpaint.SetARGB(255, 200, 255, 0);
@@ -92,6 +99,9 @@ namespace HorizontApp.Views.Compass
 
         protected Paint GetRectPaint(PoiViewItem item)
         {
+            if (item.Selected)
+                return paintRectSelectedItem;
+
             return item.Visibility == Visibility.Visible ? paintRect : paintRectPartialyVisible;
         }
 
@@ -166,6 +176,26 @@ namespace HorizontApp.Views.Compass
             {
                 OnDrawItemIcon(canvas, item, x.Value, y.Value + offsetY);
             }
+        }
+
+        public virtual float GetItemWidth()
+        {
+            return 0;
+        }
+
+        public bool IsItemClicked(PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, float canvasWidth, float canvasHeight, float clickX, float clickY)
+        {
+            var (itemX, itemY) = GetXY(item, heading, offsetX, offsetY, leftTiltCorrector, rightTiltCorrector, canvasWidth, canvasHeight);
+            if (itemX.HasValue && itemY.HasValue)
+            { 
+                float xDiff = itemX.Value - clickX;
+                if (Math.Abs(xDiff) < GetItemWidth() && clickY < itemY + offsetY)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void SetScaledViewAngle(float scaledViewAngleHorizontal, float scaledViewAngleVertical)
