@@ -113,12 +113,14 @@
     <Compile Include="Utilities\HeadingStabilizator.cs" />
     <Compile Include="Utilities\ImageSaver.cs" />
     <Compile Include="Utilities\ListViewAdapter.cs" />
+    <Compile Include="Utilities\MapUtilities.cs" />
     <Compile Include="Utilities\PhotosItemAdapter.cs" />
     <Compile Include="Utilities\PoiCategoryHelper.cs" />
     <Compile Include="Utilities\Settings.cs" />
     <Compile Include="Utilities\PopupHelper.cs" />
     <Compile Include="Utilities\ShowToastRunnable.cs" />
     <Compile Include="Utilities\SolarPositionUtils.cs" />
+    <Compile Include="Utilities\WikiUtilities.cs" />
     <Compile Include="Views\CameraView\AutoFitTextureView.cs" />
     <Compile Include="Views\CameraView\CameraFragment.cs" />
     <Compile Include="Views\CameraView\CameraSurfaceTextureListener.cs" />

@@ -210,24 +210,11 @@ namespace HorizontApp.Activities
             switch (v.Id)
             {
                 case Resource.Id.buttonMap:
-                    {
-                        var location = new Location(double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture), double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture));
-                        Map.OpenAsync(location);
-                        break;
-                    }
+                    MapUtilities.OpenMap(double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture), double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture));
+                    break;
                 case Resource.Id.buttonWiki:
-                    {
-                        if (_item.Wikipedia != "")
-                        {
-                            Browser.OpenAsync("https://en.wikipedia.org/w/index.php?search=" + _item.Wikipedia, BrowserLaunchMode.SystemPreferred);
-                        }
-                        else
-                        {
-                            Browser.OpenAsync("https://www.wikidata.org/wiki/" + _item.Wikidata, BrowserLaunchMode.SystemPreferred);
-                        }
-
-                        break;
-                    }
+                    WikiUtilities.OpenWiki(_item);
+                    break;
                 case Resource.Id.buttonTeleport:
                 {
                     var manualLocation = new GpsLocation()
