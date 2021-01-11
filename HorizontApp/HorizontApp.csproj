@@ -117,6 +117,7 @@
     <Compile Include="Utilities\PoiCategoryHelper.cs" />
     <Compile Include="Utilities\Settings.cs" />
     <Compile Include="Utilities\PopupHelper.cs" />
+    <Compile Include="Utilities\ShowToastRunnable.cs" />
     <Compile Include="Utilities\SolarPositionUtils.cs" />
     <Compile Include="Views\CameraView\AutoFitTextureView.cs" />
     <Compile Include="Views\CameraView\CameraFragment.cs" />
