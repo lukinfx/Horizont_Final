@@ -4,75 +4,98 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="bottom">
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
-                android:background="@drawable/bg_activity"
-                android:gravity="bottom">
-    <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="wrap_content"
+  <LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_activity"
+    android:paddingHorizontal="10dp"
+    android:gravity="bottom">
+
+    <TextView
+      android:text="Name can be very very very very very very very long"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_weight="0"
-      android:id="@+id/linearLayout1">
-      <TextView
-        android:text="Name"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+      android:textStyle="bold"
+      android:ellipsize="end"
+      android:singleLine="true"
+      android:textColor="@android:color/black"
+      android:id="@+id/textViewPoiName" />
+
+    <LinearLayout 
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="bottom">
+
+      <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:textColor="@android:color/black"
-        android:id="@+id/textViewPoiName" />
-      <TextView
-        android:text="Description"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
+        android:layout_weight="0"
+        android:id="@+id/linearLayout1">
+        <TextView
+          android:text="Description"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@android:color/black"
+          android:id="@+id/textViewPoiDescription" />
+        <TextView
+          android:text="GPS location"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@android:color/black"
+          android:id="@+id/textViewPoiGpsLocation" />
+        <TextView
+          android:text="Poi data"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@android:color/black"
+          android:id="@+id/textViewPoiData" />
+      </LinearLayout>
+
+      <Space 
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:id="@+id/textViewPoiDescription" />
-      <TextView
-        android:text="GPS location"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:id="@+id/textViewPoiGpsLocation" />
-      <TextView
-        android:text="Poi data"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:id="@+id/textViewPoiData" />
+        android:layout_weight="2"/>
+
+      <ImageButton
+        android:src="@android:drawable/ic_menu_info_details"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:padding="5dp"
+        android:layout_gravity="right"
+        android:layout_weight="0"
+        android:id="@+id/buttonWiki"/>
+
+      <ImageButton
+        android:src="@android:drawable/ic_menu_mapmode"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:padding="5dp"
+        android:layout_gravity="right"
+        android:layout_weight="0"
+        android:id="@+id/buttonMap"/>
+
     </LinearLayout>
-
-    <Space 
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_weight="2"/>
-
-    <ImageButton
-      android:src="@android:drawable/ic_menu_info_details"
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent"
-      android:layout_gravity="right"
-      android:layout_weight="0"
-      android:id="@+id/buttonWiki"/>
-
-    <ImageButton
-      android:src="@android:drawable/ic_menu_mapmode"
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent"
-      android:layout_gravity="right"
-      android:layout_weight="0"
-      android:id="@+id/buttonMap"/>
-
   </LinearLayout>
-  
+
   <Space
     android:layout_width="20dp"
     android:layout_height="20dp"/> 
