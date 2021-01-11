@@ -33,16 +33,19 @@ namespace HorizontApp.Providers
 
         public virtual void Initialize(Resources resources, Size size)
         {
-            categoryIcon.Clear();
-            categoryIcon.Add(PoiCategory.Cities, GetCategoryBitmap(resources, PoiCategory.Cities, size));
-            categoryIcon.Add(PoiCategory.Mountains, GetCategoryBitmap(resources, PoiCategory.Mountains, size));
-            categoryIcon.Add(PoiCategory.Castles, GetCategoryBitmap(resources, PoiCategory.Castles, size));
-            categoryIcon.Add(PoiCategory.Churches, GetCategoryBitmap(resources, PoiCategory.Churches, size));
-            categoryIcon.Add(PoiCategory.Historic, GetCategoryBitmap(resources, PoiCategory.Historic, size));
-            categoryIcon.Add(PoiCategory.Lakes, GetCategoryBitmap(resources, PoiCategory.Lakes, size));
-            categoryIcon.Add(PoiCategory.Transmitters, GetCategoryBitmap(resources, PoiCategory.Transmitters, size));
-            categoryIcon.Add(PoiCategory.ViewTowers, GetCategoryBitmap(resources, PoiCategory.ViewTowers, size));
-            categoryIcon.Add(PoiCategory.Other, GetCategoryBitmap(resources, PoiCategory.Other, size));
+            lock (categoryIcon)
+            {
+                categoryIcon.Clear();
+                categoryIcon.Add(PoiCategory.Cities, GetCategoryBitmap(resources, PoiCategory.Cities, size));
+                categoryIcon.Add(PoiCategory.Mountains, GetCategoryBitmap(resources, PoiCategory.Mountains, size));
+                categoryIcon.Add(PoiCategory.Castles, GetCategoryBitmap(resources, PoiCategory.Castles, size));
+                categoryIcon.Add(PoiCategory.Churches, GetCategoryBitmap(resources, PoiCategory.Churches, size));
+                categoryIcon.Add(PoiCategory.Historic, GetCategoryBitmap(resources, PoiCategory.Historic, size));
+                categoryIcon.Add(PoiCategory.Lakes, GetCategoryBitmap(resources, PoiCategory.Lakes, size));
+                categoryIcon.Add(PoiCategory.Transmitters, GetCategoryBitmap(resources, PoiCategory.Transmitters, size));
+                categoryIcon.Add(PoiCategory.ViewTowers, GetCategoryBitmap(resources, PoiCategory.ViewTowers, size));
+                categoryIcon.Add(PoiCategory.Other, GetCategoryBitmap(resources, PoiCategory.Other, size));
+            }
         }
 
         public Bitmap GetCategoryIcon(PoiCategory category)
