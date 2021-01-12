@@ -6,11 +6,18 @@
     android:background="@drawable/background_landscape">
     <ImageView
         android:src="@drawable/logo_horizon5"
-        android:layout_width="400dp"
-        android:layout_height="350dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:padding="20dp"
         android:id="@+id/imageView1" />
     
-    <include
-      layout="@layout/MenuButtons" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+      <include layout="@layout/MenuButtons" />
+    </LinearLayout>
 </LinearLayout>
