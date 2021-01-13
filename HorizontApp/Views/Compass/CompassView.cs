@@ -136,13 +136,21 @@ namespace HorizontApp.Views
         {
             base.OnLayout(changed, left, top, right, bottom);
 
-            var compassViewSize = new System.Drawing.Size(this.Width, this.Height);
-            InitializeViewDrawer(compassViewSize, _pictureSize);
+            if (_pictureSize != null)
+            {
+                var compassViewSize = new System.Drawing.Size(this.Width, this.Height);
+                InitializeViewDrawer(compassViewSize, _pictureSize);
+            }
         }
 
 
         public void InitializeViewDrawer(System.Drawing.Size compassViewSize, System.Drawing.Size pictureSize)
         {
+            if (_context == null || poiCategoryBitmapProvider == null)
+            {
+                return;
+            }
+
             switch (_context.Settings.AppStyle)
             {
                 case AppStyles.EachPoiSeparate:
@@ -178,6 +186,11 @@ namespace HorizontApp.Views
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
         {
+            if (_context == null || compassViewDrawer == null)
+            {
+                return;
+            }
+
             var heading = _context.Heading + HeadingCorrector;
 
             compassViewDrawer.OnDrawBackground(canvas);
