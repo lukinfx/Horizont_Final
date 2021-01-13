@@ -29,7 +29,7 @@ namespace HorizontApp.Views.ScaleImage
     public class ScaleImageView : ImageView
     {
         private Context m_Context;
-        private float m_MaxScale = 10.0f;
+        private float m_MaxScale;
         private float m_MinScale; 
         private float m_StdScale;
         private float m_Scale;
@@ -46,6 +46,9 @@ namespace HorizontApp.Views.ScaleImage
         
 
         public float MinScale { get { return m_MinScale; } }
+        public float MaxScale { get { return m_MaxScale; } }
+        public float StdScale { get { return m_StdScale; } }
+        public float MiddleScale { get { return (m_MaxScale + m_MinScale) * 0.2f; } }
 
         //private GestureDetector m_GestureDetector;
         public ScaleImageView(Context context, IAttributeSet attrs) :
@@ -101,6 +104,7 @@ namespace HorizontApp.Views.ScaleImage
 
                 //Calculate scale
                 m_MinScale = CalculateMinScale(l, t, r, b);
+                m_MaxScale = 30 * m_MinScale;
                 m_StdScale = (r - l) / (float) m_IntrinsicWidth;
                 m_Scale = m_StdScale;
 

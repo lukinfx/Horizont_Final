@@ -22,8 +22,12 @@ using HorizontLib.Utilities;
 using Xamarin.Essentials;
 using static Android.Views.View;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
-using System.Threading.Tasks;
 using HorizontApp.Views.ScaleImage;
+using Xamarin.Forms;
+using AbsoluteLayout = Android.Widget.AbsoluteLayout;
+using ImageButton = Android.Widget.ImageButton;
+using Rect = Android.Graphics.Rect;
+using View = Android.Views.View;
 
 namespace HorizontApp.Activities
 {
@@ -68,7 +72,13 @@ namespace HorizontApp.Activities
         private float m_PreviousDistanceX;
         private float m_PreviousDistanceY;
         private bool m_IsScaling;
+        private int m_startTime;
+        private int m_tapCount = 0;
+
+
         private PoiViewItem _selectedPoi;
+
+        private TapGestureRecognizer _tapGestureRecognizer;
 
         private PoiDatabase _database;
         private PoiDatabase Database
@@ -364,8 +374,25 @@ namespace HorizontApp.Activities
                 case MotionEventActions.Pointer1Down:
                 case MotionEventActions.Pointer2Down:
                 {
+
                     m_FirstMoveX = m_PreviousMoveX = (int) e.GetX();
                     m_FirstMoveY = m_PreviousMoveY = (int) e.GetY();
+
+                    if (touchCount == 1)
+                    {
+
+                        if (System.Environment.TickCount - m_startTime > 500)
+                        {
+                            m_tapCount = 0;
+                        }
+
+                        if (m_tapCount == 0)
+                        {
+                            m_startTime = System.Environment.TickCount;
+                        }
+
+                        m_tapCount++;
+                    }
 
                     if (touchCount >= 2)
                     {
@@ -461,6 +488,42 @@ namespace HorizontApp.Activities
                 case MotionEventActions.Pointer1Up:
                 case MotionEventActions.Pointer2Up:
                 {
+                    //zooming by double tap
+                    if (touchCount == 1)
+                    {
+                        if (m_tapCount == 2)
+                        {
+                            long time = System.Environment.TickCount - m_startTime;
+
+                            if (time < 500)
+                            {
+                                float scale;
+                                if (photoView.DisplayScale < 1.1)
+                                {//Zoom in
+                                    scale = photoView.MiddleScale / photoView.Scale;
+
+                                }
+                                else
+                                {//Zoom out
+                                    scale = photoView.StdScale / photoView.Scale;
+                                }
+
+                                photoView.ZoomTo(scale, photoView.Width / 2, photoView.Height / 2);
+                                photoView.Cutting();
+
+                                _compassView.RecalculateViewAngles(photoView.DisplayScale);
+
+                                //TODO: Moving to place of double tap gesture
+                                //photoView.MoveTo(x, y);
+
+                                _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
+                            }
+
+                            m_tapCount = 0;
+                            break;
+                        }
+                    }
+
                     if (touchCount <= 1)
                     {
                         if (m_IsScaling)
@@ -469,6 +532,7 @@ namespace HorizontApp.Activities
                         }
                         else
                         {
+                            //seelecting POI item
                             var dist = photoView.Distance(e.GetX(0), m_FirstMoveX, e.GetY(0), m_FirstMoveY);
                             if (dist < 1)
                             {
