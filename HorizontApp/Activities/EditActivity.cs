@@ -14,6 +14,7 @@ using HorizontLib.Domain.Models;
 using HorizontApp.Utilities;
 using HorizontLib.Domain.Enums;
 using HorizontApp.AppContext;
+using HorizontLib.Utilities;
 
 namespace HorizontApp.Activities
 {
@@ -40,6 +41,7 @@ namespace HorizontApp.Activities
         private Poi _item = new Poi();
         private long _id;
         private PoiCategory _category;
+        private ElevationTile _elevationTile;
 
         private PoiCategory[] _poiCategories = new PoiCategory[] { PoiCategory.Mountains, PoiCategory.Cities, PoiCategory.Historic, PoiCategory.Churches, PoiCategory.Lakes, PoiCategory.Transmitters, PoiCategory.ViewTowers, PoiCategory.Other};
 
@@ -193,6 +195,8 @@ namespace HorizontApp.Activities
                     else
                         PopupHelper.ErrorDialog(this, "Error", "It seems you don't have any text in your ClipBoard.");
 
+                    UpdateElevation();
+
                     break;
             }
 
@@ -205,6 +209,41 @@ namespace HorizontApp.Activities
             _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_category));
         }
 
+        private void UpdateElevation()
+        {
+            if (IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
+            {
+                try
+                {
+                    var location = new GpsLocation(
+                        double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture),
+                        double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture),
+                        0);
+
+                    if (_elevationTile == null || !_elevationTile.HasElevation(location))
+                    {
+                        _elevationTile = null;
+                        var et = new ElevationTile(location);
+                        if (et.Exists())
+                        {
+                            if (et.LoadFromZip())
+                            {
+                                _elevationTile = et;
+                            }
+                        }
+                    }
+
+                    if (_elevationTile != null)
+                    {
+                        var altitude =  _elevationTile.GetElevation(location);
+                        _editTextAltitude.Text = $"{altitude:F0}";
+                    }
+                }
+                catch
+                {
+                }
+            }
+        }
         public void OnClick(View v)
         {
             switch (v.Id)
