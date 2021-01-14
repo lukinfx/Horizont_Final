@@ -32,7 +32,7 @@ using View = Android.Views.View;
 namespace HorizontApp.Activities
 {
     [Activity(Label = "PhotoShowActivity")]
-    public class PhotoShowActivity : Activity, IOnClickListener, GestureDetector.IOnGestureListener
+    public class PhotoShowActivity : Activity, IOnClickListener, GestureDetector.IOnGestureListener, GestureDetector.IOnDoubleTapListener
     {
         public static int REQUEST_SHOW_PHOTO = 0;
 
@@ -79,8 +79,6 @@ namespace HorizontApp.Activities
 
 
         private PoiViewItem _selectedPoi;
-
-        private TapGestureRecognizer _tapGestureRecognizer;
 
         private PoiDatabase _database;
         private PoiDatabase Database
@@ -504,83 +502,11 @@ namespace HorizontApp.Activities
                 case MotionEventActions.Pointer1Up:
                 case MotionEventActions.Pointer2Up:
                 {
-                    //zooming by double tap
-                    if (touchCount == 1)
-                    {
-                        if (m_tapCount == 2)
-                        {
-                            long time = System.Environment.TickCount - m_startTime;
-
-                            if (time < 500)
-                            {
-                                float scale;
-                                if (photoView.DisplayScale < 1.1)
-                                {//Zoom in
-                                    scale = photoView.MiddleScale / photoView.Scale;
-
-                                }
-                                else
-                                {//Zoom out
-                                    scale = photoView.StdScale / photoView.Scale;
-                                }
-
-                                photoView.ZoomTo(scale, photoView.Width / 2, photoView.Height / 2);
-                                photoView.Cutting();
-
-                                _compassView.RecalculateViewAngles(photoView.DisplayScale);
-
-                                //TODO: Moving to place of double tap gesture
-                                //photoView.MoveTo(x, y);
-
-                                _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
-                            }
-
-                            m_tapCount = 0;
-                            break;
-                        }
-                    }
-
                     if (touchCount <= 1)
                     {
                         if (m_IsScaling)
                         {
                             m_IsScaling = false;
-                        }
-                        else
-                        {
-                            //seelecting POI item
-                            var dist = photoView.Distance(e.GetX(0), m_FirstMoveX, e.GetY(0), m_FirstMoveY);
-                            if (dist < 1)
-                            {
-                                var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
-
-                                if (_selectedPoi != null)
-                                {
-                                    _selectedPoi.Selected = false;
-                                }
-
-                                if (newSelectedPoi != null)
-                                {
-                                    _selectedPoi = newSelectedPoi;
-                                    _selectedPoi.Selected = true;
-
-                                    _seekBars.Visibility = ViewStates.Gone;
-                                    _poiInfo.Visibility = ViewStates.Visible;
-                                    FindViewById<TextView>(Resource.Id.textViewPoiName).Text = _selectedPoi.Poi.Name;
-                                    FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = "No description";
-                                    FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = $"{_selectedPoi.Poi.Altitude} m / {(_selectedPoi.GpsLocation.Distance / 1000):F2} km";
-                                    FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{_selectedPoi.Poi.Latitude:F7} N, {_selectedPoi.Poi.Longitude:F7} E";
-                                    FindViewById<ImageButton>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(_selectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
-                                }
-                                else
-                                {
-                                    _selectedPoi = null;
-
-                                    _seekBars.Visibility = ViewStates.Visible;
-                                    _poiInfo.Visibility = ViewStates.Gone;
-                                }
-                                _compassView.Invalidate();
-                            }
                         }
                     }
                     break;
@@ -913,6 +839,71 @@ namespace HorizontApp.Activities
         public void OnLongPress(MotionEvent e) { }
         public void OnShowPress(MotionEvent e) { }
         public bool OnSingleTapUp(MotionEvent e) { return false; }
+
+        public bool OnDoubleTap(MotionEvent e)
+        {
+            float scale;
+            if (photoView.DisplayScale < 1.1)
+            {//Zoom in
+                scale = photoView.MiddleScale / photoView.Scale;
+
+            }
+            else
+            {//Zoom out
+                scale = photoView.StdScale / photoView.Scale;
+            }
+
+            photoView.ZoomTo(scale, photoView.Width / 2, photoView.Height / 2);
+            photoView.Cutting();
+
+            _compassView.RecalculateViewAngles(photoView.DisplayScale);
+
+            //TODO: Moving to place of double tap gesture
+            //photoView.MoveTo(x, y);
+
+            _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
+
+            return false;
+        }
+
+        public bool OnDoubleTapEvent(MotionEvent e)
+        {
+            return false;
+        }
+
+        public bool OnSingleTapConfirmed(MotionEvent e)
+        {
+            var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
+
+            if (_selectedPoi != null)
+            {
+                _selectedPoi.Selected = false;
+            }
+
+            if (newSelectedPoi != null)
+            {
+                _selectedPoi = newSelectedPoi;
+                _selectedPoi.Selected = true;
+
+                _seekBars.Visibility = ViewStates.Gone;
+                _poiInfo.Visibility = ViewStates.Visible;
+                FindViewById<TextView>(Resource.Id.textViewPoiName).Text = _selectedPoi.Poi.Name;
+                FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = "No description";
+                FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = $"{_selectedPoi.Poi.Altitude} m / {(_selectedPoi.GpsLocation.Distance / 1000):F2} km";
+                FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{_selectedPoi.Poi.Latitude:F7} N, {_selectedPoi.Poi.Longitude:F7} E";
+                FindViewById<ImageButton>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(_selectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
+            }
+            else
+            {
+                _selectedPoi = null;
+
+                _seekBars.Visibility = ViewStates.Visible;
+                _poiInfo.Visibility = ViewStates.Gone;
+            }
+            _compassView.Invalidate();
+
+            return false;
+        }
         #endregion Required abstract methods
     }
 }
