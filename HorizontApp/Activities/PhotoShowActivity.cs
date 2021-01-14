@@ -32,51 +32,23 @@ using View = Android.Views.View;
 namespace HorizontApp.Activities
 {
     [Activity(Label = "PhotoShowActivity")]
-    public class PhotoShowActivity : Activity, IOnClickListener, GestureDetector.IOnGestureListener, GestureDetector.IOnDoubleTapListener
+    public class PhotoShowActivity : HorizonBaseActivity
     {
         public static int REQUEST_SHOW_PHOTO = 0;
 
         private static string TAG = "Horizon-PhotoShowActivity";
 
-        private IAppContext _context;
         private TextView _GPSTextView;
         private TextView _headingTextView;
         private ScaleImageView photoView;
-        private CompassView _compassView;
-        private byte[] _thumbnail;
-        private TextView _filterText;
 
-        private ImageButton _favouriteButton;
-        private ImageButton _displayTerrainButton;
+        private byte[] _thumbnail;
+
         private ImageButton _tiltCorrectorButton;
 
-        private LinearLayout _seekBars;
-        private LinearLayout _poiInfo;
-
-        private bool _editingOn = false;
-
-        private bool _elevationProfileBeingGenerated = false;
-
-        private GestureDetector _gestureDetector;
-
-        private SeekBar _distanceSeekBar;
-        private SeekBar _heightSeekBar;
         private PhotoData photodata;
 
         private Bitmap dstBmp;
-
-        //for gesture detection
-        private int m_PreviousMoveX;
-        private int m_PreviousMoveY;
-        private int m_FirstMoveX;
-        private int m_FirstMoveY;
-        private float m_PreviousDistance;
-        private float m_PreviousDistanceX;
-        private float m_PreviousDistanceY;
-        private bool m_IsScaling;
-        private int m_startTime;
-        private int m_tapCount = 0;
-
 
         private PoiViewItem _selectedPoi;
 
@@ -93,27 +65,8 @@ namespace HorizontApp.Activities
             }
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        void InitializeAppContext(PhotoData photodata)
         {
-            base.OnCreate(savedInstanceState);
-
-            AppContextLiveData.Instance.SetLocale(this);
-
-            if (AppContextLiveData.Instance.IsPortrait)
-            {
-                SetContentView(Resource.Layout.PhotoShowActivityPortrait);
-            }
-            else
-            {
-                SetContentView(Resource.Layout.PhotoShowActivityLandscape);
-            }
-
-            _gestureDetector = new GestureDetector(this);
-
-            long id = Intent.GetLongExtra("ID", -1);
-            photodata = Database.GetPhotoDataItem(id);
-            _thumbnail = photodata.Thumbnail;
-
             Log.WriteLine(LogPriority.Debug, TAG, $"Heading {photodata.Heading:F0}");
 
             /*if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
@@ -121,11 +74,7 @@ namespace HorizontApp.Activities
                 heading += 90;
             }*/
 
-            var loc = new GpsLocation(
-                photodata.Longitude,
-                photodata.Latitude,
-                photodata.Altitude);
-
+            var loc = new GpsLocation(photodata.Longitude, photodata.Latitude, photodata.Altitude);
             if (AppContextLiveData.Instance.Settings.AltitudeFromElevationMap)
             {
                 var elevationTile = new ElevationTile(loc);
@@ -133,7 +82,7 @@ namespace HorizontApp.Activities
                 {
                     if (elevationTile.LoadFromZip())
                     {
-                        loc.Altitude = elevationTile.GetElevation(loc); 
+                        loc.Altitude = elevationTile.GetElevation(loc);
                     }
                 }
             }
@@ -144,7 +93,6 @@ namespace HorizontApp.Activities
             if (photodata.PictureWidth == 0) photodata.PictureWidth = AppContextLiveData.Instance.Settings.CameraPictureSize.Width;
             if (photodata.PictureHeight == 0) photodata.PictureHeight = AppContextLiveData.Instance.Settings.CameraPictureSize.Height;
 
-
             _context.Settings.LoadData(this);
             _context.Settings.IsViewAngleCorrection = false;
             _context.Settings.Categories = JsonConvert.DeserializeObject<List<PoiCategory>>(photodata.JsonCategories);
@@ -154,36 +102,32 @@ namespace HorizontApp.Activities
             _context.Settings.MinAltitute = Convert.ToInt32(photodata.MinAltitude);
             _context.Settings.ShowElevationProfile = photodata.ShowElevationProfile;
             _context.ElevationProfileDataDistance = photodata.MaxElevationProfileDataDistance;
+        }
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
 
-            _filterText = FindViewById<TextView>(Resource.Id.textView1);
+            if (AppContextLiveData.Instance.IsPortrait)
+            {
+                SetContentView(Resource.Layout.PhotoShowActivityPortrait);
+            }
+            else
+            {
+                SetContentView(Resource.Layout.PhotoShowActivityLandscape);
+            }
+
+            long id = Intent.GetLongExtra("ID", -1);
+            photodata = Database.GetPhotoDataItem(id);
+
+            InitializeAppContext(photodata);
+            InitializeBaseActivityUI();
+
+            _thumbnail = photodata.Thumbnail;
 
             _headingTextView = FindViewById<TextView>(Resource.Id.editText1);
             _GPSTextView = FindViewById<TextView>(Resource.Id.editText2);
 
-            _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
-            _distanceSeekBar.Progress = _context.Settings.MaxDistance;
-            _distanceSeekBar.ProgressChanged += OnMaxDistanceChanged;
-            _heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
-            _heightSeekBar.Progress = _context.Settings.MinAltitute;
-            _heightSeekBar.ProgressChanged += OnMinAltitudeChanged;
-
-            _seekBars = FindViewById<LinearLayout>(Resource.Id.mainActivitySeekBars);
-            _poiInfo = FindViewById<LinearLayout>(Resource.Id.mainActivityPoiInfo);
-            _seekBars.Visibility = ViewStates.Visible;
-            _poiInfo.Visibility = ViewStates.Gone;
-
-            _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
-            _displayTerrainButton.SetOnClickListener(this);
-            _displayTerrainButton.SetImageResource(_context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
-
-            _favouriteButton = FindViewById<ImageButton>(Resource.Id.favouriteFilterButton);
-            _favouriteButton.SetOnClickListener(this);
-
-            var _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
-            _selectCategoryButton.SetOnClickListener(this);
-
-            var _backButton = FindViewById<ImageButton>(Resource.Id.menuButton);
-            _backButton.SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.menuButton).SetOnClickListener(this);
 
             var _saveToDeviceButton = FindViewById<ImageButton>(Resource.Id.buttonSaveToDevice);
             _saveToDeviceButton.SetOnClickListener(this);
@@ -194,46 +138,22 @@ namespace HorizontApp.Activities
             _tiltCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonTiltCorrector);
             _tiltCorrectorButton.SetOnClickListener(this);
 
-            FindViewById<ImageButton>(Resource.Id.buttonWiki).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.buttonMap).SetOnClickListener(this);
-
             photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);
 
-            _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
-            _compassView.LayoutChange += OnLayoutChanged;
             _compassView.Initialize(_context, false,
-                new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight), 
+                new System.Drawing.Size(GetPictureWidth(), photodata.PictureHeight),
                 (float)photodata.LeftTiltCorrector, (float)photodata.RightTiltCorrector, 0);
-            
-            var photoLayout = FindViewById<AbsoluteLayout>(Resource.Id.photoLayout);
-
 
             if (_thumbnail != null)
             {
                 var bitmap = BitmapFactory.DecodeByteArray(_thumbnail, 0, _thumbnail.Length);
-                //var number = ((float)DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Height) / ((float)bitmap.Height / bitmap.Width) * bitmap.Width;
-                /*var bmp = Bitmap.CreateBitmap(bitmap,
-                                Convert.ToInt32(number) / 2, 0,
-                                Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Width),
-                                Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Height));*/
                 MainThread.BeginInvokeOnMainThread(() => { photoView.SetImageBitmap(bitmap); });
             }
-
-            //System.Threading.Tasks.Task.Run(() => {LoadImage(fileName); });
 
             var delayedAction = new System.Threading.Timer(o => { LoadImageAndProfile(); },
                 null, TimeSpan.FromSeconds(0.1), TimeSpan.FromMilliseconds(-1));
 
-            //Finnaly setup OnDataChanged listener and Road all data
-            _context.DataChanged += OnDataChanged;
-        }
-
-        public void OnLayoutChanged(object sender, LayoutChangeEventArgs e)
-        {
-            System.Threading.Tasks.Task.Run(() =>
-            {
-                _context.ReloadData();
-            });
+            Start();
         }
 
         private void LoadImageAndProfile()
@@ -288,23 +208,39 @@ namespace HorizontApp.Activities
             }
         }
 
-        public void OnDataChanged(object sender, DataChangedEventArgs e)
+        public override void OnDataChanged(object sender, DataChangedEventArgs e)
         {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                _filterText.Visibility = ViewStates.Invisible;
-
-                UpdateStatusBar();
-
-                Log.WriteLine(LogPriority.Debug, TAG, $"PoiCount: {e.PoiData.Count}");
-                _compassView.SetPoiViewItemList(e.PoiData);
-            });
+            base.OnDataChanged(sender, e);
+            
+            Log.WriteLine(LogPriority.Debug, TAG, $"PoiCount: {e.PoiData.Count}");
+            _compassView.SetPoiViewItemList(e.PoiData);
         }
 
-        private void UpdateStatusBar()
+        private void OnMaxDistanceChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+        {
+            if (_context.Settings.ShowElevationProfile)
+            {
+                if (_context.ElevationProfileData == null && photodata.JsonElevationProfileData != null)
+                {
+                    _context.ElevationProfileData = JsonConvert.DeserializeObject<ElevationProfileData>(photodata.JsonElevationProfileData);
+                }
+
+                if (_context.ElevationProfileData == null || _context.ElevationProfileData.MaxDistance < _context.Settings.MaxDistance)
+                {
+                    GenerateElevationProfile();
+                }
+                else
+                {
+                    RefreshElevationProfile();
+                }
+            }
+
+        }
+
+        protected override void UpdateStatusBar()
         {
             var gpsLocation = GpsUtils.HasLocation(_context.MyLocation) ?
-                $"Lat:{_context.MyLocation.Latitude:F7} Lon:{_context.MyLocation.Longitude:F7} Alt:{_context.MyLocation.Altitude:F0}" 
+                $"Lat:{_context.MyLocation.Latitude:F7} Lon:{_context.MyLocation.Longitude:F7} Alt:{_context.MyLocation.Altitude:F0}"
                 : "No GPS location";
 
             var sign = _compassView.HeadingCorrector < 0 ? '-' : '+';
@@ -320,262 +256,53 @@ namespace HorizontApp.Activities
             _GPSTextView.Text = zoomAndTiltCorrection + "  /  " + viewAngle + "  /  " + photoMatrix;
         }
 
-        private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
-        {
-            _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
-            _filterText.Visibility = ViewStates.Visible;
 
-            _context.Settings.MinAltitute = _heightSeekBar.Progress;
+        protected override void OnMove(int distanceX, int distanceY)
+        {
+            photoView.MoveTo(distanceX, distanceY);
+            photoView.Cutting();
+
+            _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
+            Log.WriteLine(LogPriority.Debug, TAG, $"Moving: {distanceX}/{distanceY}");
         }
 
-        private void OnMaxDistanceChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+        protected override void OnZoom(float scale, int x, int y)
         {
-            //TODO: Save minAltitude and maxDistance to CompassViewSettings
-            _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
-            _filterText.Visibility = ViewStates.Visible;
+            photoView.ZoomTo(scale, x, y);
+            photoView.Cutting();
 
-            _context.Settings.MaxDistance = _distanceSeekBar.Progress;
-
-            if (_context.Settings.ShowElevationProfile)
-            {
-                if (_context.ElevationProfileData == null && photodata.JsonElevationProfileData != null)
-                {
-                    _context.ElevationProfileData = JsonConvert.DeserializeObject<ElevationProfileData>(photodata.JsonElevationProfileData);
-                }
-
-                if (_context.ElevationProfileData == null || _context.ElevationProfileData.MaxDistance < _distanceSeekBar.Progress)
-                {
-                    GenerateElevationProfile();
-                    _context.ElevationProfileDataDistance = _distanceSeekBar.Progress;
-                }
-                else
-                {
-                    RefreshElevationProfile();
-                }
-            }
-
+            _compassView.RecalculateViewAngles(photoView.DisplayScale);
+            _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
+            Log.WriteLine(LogPriority.Debug, TAG, $"Zooming: {scale}");
         }
 
-        public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
+        public override void OnClick(View v)
         {
-            if (_editingOn)
-            {
-                if (e1.RawX < Resources.DisplayMetrics.WidthPixels / 7)
-                {
-                    _compassView.OnScroll(distanceY, true);
-                }
-                else if (e1.RawX > Resources.DisplayMetrics.WidthPixels - Resources.DisplayMetrics.WidthPixels / 7)
-                {
-                    _compassView.OnScroll(distanceY, false);
-                }
-                else if (e1.RawY < 0.75 * Resources.DisplayMetrics.HeightPixels)
-                {
-                    _compassView.OnScroll(distanceX);
-                }
-            }
-            return false;
-        }
+            base.OnClick(v);
 
-        public override bool OnTouchEvent(MotionEvent e)
-        {
-            base.OnTouchEvent(e);
-            _gestureDetector.OnTouchEvent(e);
-
-            var touchCount = e.PointerCount;
-            switch (e.Action)
-            {
-                case MotionEventActions.Down:
-                case MotionEventActions.Pointer1Down:
-                case MotionEventActions.Pointer2Down:
-                {
-
-                    m_FirstMoveX = m_PreviousMoveX = (int) e.GetX();
-                    m_FirstMoveY = m_PreviousMoveY = (int) e.GetY();
-
-                    if (touchCount == 1)
-                    {
-
-                        if (System.Environment.TickCount - m_startTime > 500)
-                        {
-                            m_tapCount = 0;
-                        }
-
-                        if (m_tapCount == 0)
-                        {
-                            m_startTime = System.Environment.TickCount;
-                        }
-
-                        m_tapCount++;
-                    }
-
-                    if (touchCount >= 2)
-                    {
-                        m_PreviousDistance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
-                        m_PreviousDistanceX = Math.Abs(e.GetX(0) - e.GetX(1));
-                        m_PreviousDistanceY = Math.Abs(e.GetY(0) - e.GetY(1));
-
-                        m_IsScaling = true;
-                    }
-                }
-                    break;
-                case MotionEventActions.Move:
-                {
-                    //heading and tilt correction
-                    if (_editingOn && touchCount == 1)
-                    {
-                        var distanceX = m_PreviousMoveX - (int) e.GetX();
-                        var distanceY = m_PreviousMoveY - (int) e.GetY();
-                        m_PreviousMoveX = (int) e.GetX();
-                        m_PreviousMoveY = (int) e.GetY();
-
-                        if (Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
-                        {
-                            _compassView.OnScroll(distanceX);
-                            Log.WriteLine(LogPriority.Debug, TAG, $"Heading correction: {distanceX}");
-                        }
-                        else
-                        {
-                            if (e.RawX < Resources.DisplayMetrics.WidthPixels / 2)
-                            {
-                                _compassView.OnScroll(distanceY, true);
-                                Log.WriteLine(LogPriority.Debug, TAG, $"Left tilt correction: {distanceY}");
-                            }
-                            else
-                            {
-                                _compassView.OnScroll(distanceY, false);
-                                Log.WriteLine(LogPriority.Debug, TAG, $"Right tilt correction: {distanceY}");
-                            }
-                        }
-                    }
-                    //zooming
-                    else if (touchCount >= 2 && m_IsScaling && !_editingOn)
-                    {
-                        var distance = photoView.Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
-                        var scale = (distance - m_PreviousDistance) / photoView.DispDistance();
-                        m_PreviousDistance = distance;
-                        scale += 1;
-                        scale = scale * scale;
-                        photoView.ZoomTo(scale, photoView.Width / 2, photoView.Height / 2);
-                        photoView.Cutting();
-
-                        _compassView.RecalculateViewAngles(photoView.DisplayScale);
-                        _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
-                        Log.WriteLine(LogPriority.Debug, TAG, $"Zooming: {scale}");
-                    }
-                    //moving
-                    else if (!m_IsScaling && photoView.Scale > photoView.MinScale && !_editingOn)
-                    {
-                        var distanceX = m_PreviousMoveX - (int) e.GetX();
-                        var distanceY = m_PreviousMoveY - (int) e.GetY();
-                        m_PreviousMoveX = (int) e.GetX();
-                        m_PreviousMoveY = (int) e.GetY();
-                        photoView.MoveTo(-distanceX, -distanceY);
-                        photoView.Cutting();
-
-                        _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
-                        Log.WriteLine(LogPriority.Debug, TAG, $"Moving: {distanceX}/{distanceY}");
-                    }
-                    else if (touchCount >= 2 && _editingOn)
-                    {
-                        var distX = Math.Abs(e.GetX(0) - e.GetX(1));
-                        var distY = Math.Abs(e.GetY(0) - e.GetY(1));
-                        if (distX > distY)
-                        {
-                            var scale = (distX - m_PreviousDistanceX) / photoView.Width;
-                            m_PreviousDistanceX = distX;
-                            scale += 1;
-                            _compassView.ScaleHorizontalViewAngle(scale);
-                            Log.WriteLine(LogPriority.Debug, TAG, $"Horizontal VA correction: {scale}");
-                        }
-                        else
-                        {
-                            var scale = (distY - m_PreviousDistanceY) / photoView.Height;
-                            m_PreviousDistanceY = distY;
-                            scale += 1;
-                            _compassView.ScaleVerticalViewAngle(scale);
-                            Log.WriteLine(LogPriority.Debug, TAG, $"Vertical VA correction: {scale}");
-                        }
-                    }
-                    break;
-                }
-                case MotionEventActions.Up:
-                case MotionEventActions.Pointer1Up:
-                case MotionEventActions.Pointer2Up:
-                {
-                    if (touchCount <= 1)
-                    {
-                        if (m_IsScaling)
-                        {
-                            m_IsScaling = false;
-                        }
-                    }
-                    break;
-                }
-            }
-
-            UpdateStatusBar();
-            return true;
-        }
-
-        public void OnClick(View v)
-        {
             switch (v.Id)
             {
-                case Resource.Id.buttonDisplayTerrain:
-                    HandleDisplayTarrainButtonClicked();
+                case Resource.Id.menuButton:
+                    _saveData();
+
+                    var resultIntent = new Intent();
+                    resultIntent.PutExtra("Id", photodata.Id);
+                    SetResult(Result.Ok, resultIntent);
+                    Finish();
                     break;
 
-                case Resource.Id.favouriteFilterButton:
-                    {
-                        _context.Settings.ToggleFavourite(); ;
-                        if (_context.Settings.ShowFavoritesOnly)
-                            _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
-                        else
-                            _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
-                        _context.ReloadData();
-                        break;
-                    }
-                case Resource.Id.buttonCategorySelect:
-                    {
-                        var dialog = new PoiFilterDialog(this, _context);
-                        dialog.Show();
-                       
-                        break;
-                    }
-                case Resource.Id.menuButton:
-                    {
-                        _saveData();
-
-                        var resultIntent = new Intent();
-                        resultIntent.PutExtra("Id", photodata.Id);
-                        SetResult(Result.Ok, resultIntent);
-                        Finish();
-                        break;
-                    }
                 case Resource.Id.buttonTiltCorrector:
-                    {
-                        _editingOn = !_editingOn;
-                        if (_editingOn)
-                            _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_lock_unlocked);
-                        else if (!_editingOn)
-                            _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_lock_locked);
-                        break;
-                    }
-                case Resource.Id.buttonSaveToDevice:
+                    ToggleEditing();
+                    _tiltCorrectorButton.SetImageResource(EditingOn?Resource.Drawable.ic_lock_unlocked: Resource.Drawable.ic_lock_locked);
+                    break;
 
+                case Resource.Id.buttonSaveToDevice:
                     _handleButtonSaveClicked();
                     break;
-                case Resource.Id.buttonShare:
 
+                case Resource.Id.buttonShare:
                     _handleButtonShareClicked();
                     break;
-                case Resource.Id.buttonMap:
-                    MapUtilities.OpenMap(_selectedPoi.Poi);
-                    break;
-                case Resource.Id.buttonWiki:
-                    WikiUtilities.OpenWiki(_selectedPoi.Poi);
-                    break;
-
             }
         }
 
@@ -585,10 +312,10 @@ namespace HorizontApp.Activities
             photodata.PictureWidth = dstBmp.Width;
             photodata.PictureHeight = dstBmp.Height;
 
-            photodata.MaxDistance = _distanceSeekBar.Progress;
-            photodata.MinAltitude = _heightSeekBar.Progress;
+            photodata.MaxDistance = MaxDistance;
+            photodata.MinAltitude = MinHeight;
             photodata.ViewAngleHorizontal = _context.ViewAngleHorizontal;
-            photodata.ViewAngleVertical = _context.ViewAngleVertical; 
+            photodata.ViewAngleVertical = _context.ViewAngleVertical;
             photodata.LeftTiltCorrector = _compassView.LeftTiltCorrector;
             photodata.RightTiltCorrector = _compassView.RightTiltCorrector;
             photodata.Heading = _context.Heading + _compassView.HeadingCorrector;
@@ -611,7 +338,7 @@ namespace HorizontApp.Activities
                 (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
             compassView.Layout(0, 0, photodata.PictureWidth, photodata.PictureHeight);
             compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight));
-            
+
             compassView.Draw(canvas);
 
 
@@ -663,7 +390,7 @@ namespace HorizontApp.Activities
             compassView.Draw(canvas);
 
             var logoWidth = Convert.ToInt32(0.2 * canvas.Width);
-            canvas.DrawBitmap(logoBmp, new Rect(0, 0, logoBmp.Width, logoBmp.Height), new Rect(canvas.Width - logoWidth, canvas.Height  - logoWidth * 2 / 3, canvas.Width, canvas.Height), null);
+            canvas.DrawBitmap(logoBmp, new Rect(0, 0, logoBmp.Width, logoBmp.Height), new Rect(canvas.Width - logoWidth, canvas.Height - logoWidth * 2 / 3, canvas.Width, canvas.Height), null);
             //canvas.DrawBitmap(logoBmp, canvas.Width - logoBmp.Width - 40, canvas.Height - logoBmp.Height - 40, null);
 
             var filename = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), "tmpHorizon.jpg");
@@ -684,161 +411,8 @@ namespace HorizontApp.Activities
                 File = new ShareFile(filename)
             });
         }
-        
-        #region ElevationProfile
-        private void HandleDisplayTarrainButtonClicked()
-        {
-            _context.Settings.ShowElevationProfile = !_context.Settings.ShowElevationProfile;
-            _displayTerrainButton.SetImageResource(_context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
-
-            CheckAndReloadElevationProfile();
-        }
-
-        private void CheckAndReloadElevationProfile()
-        {
-            if (_context.Settings.ShowElevationProfile)
-            {
-                if (GpsUtils.HasAltitude(_context.MyLocation))
-                {
-                    if (_elevationProfileBeingGenerated == false)
-                    {
-                        if (_context.ElevationProfileData == null || !_context.ElevationProfileData.IsValid(_context.MyLocation, _context.Settings.MaxDistance))
-                        {
-                            GenerateElevationProfile();
-                        }
-                    }
-                }
-            }
-
-            _compassView.Invalidate();
-        }
-
-        private void GenerateElevationProfile()
-        {
-            try
-            {
-                if (!GpsUtils.HasAltitude(_context.MyLocation))
-                {
-                    PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
-                    return;
-                }
-
-                var ec = new ElevationCalculation(_context.MyLocation, _distanceSeekBar.Progress);
-
-                var size = ec.GetSizeToDownload();
-                if (size == 0)
-                {
-                    StartDownloadAndCalculate(ec);
-                    return;
-                }
-
-                using (var builder = new AlertDialog.Builder(this))
-                {
-                    builder.SetTitle("Question");
-                    builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount of downloaded data. \r\n\r\nDo you really want to continue?");
-                    builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
-                    builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
-                    builder.SetNegativeButton("Cancel", (senderAlert, args) => { });
-
-                    var myCustomDialog = builder.Create();
-
-                    myCustomDialog.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
-            }
-        }
-
-        private void StartDownloadAndCalculate(ElevationCalculation ec)
-        {
-            _elevationProfileBeingGenerated = true;
-            var lastProgressUpdate = System.Environment.TickCount;
-
-            var pd = new ProgressDialog(this);
-            pd.SetMessage("Loading elevation data. Please Wait.");
-            pd.SetCancelable(false);
-            pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
-            pd.Show();
-
-            ec.OnFinishedAction = (result) =>
-            {
-                pd.Hide();
-                if (!string.IsNullOrEmpty(result.ErrorMessage))
-                {
-                    PopupHelper.ErrorDialog(this, "Error", result.ErrorMessage);
-                }
-
-                _context.ElevationProfileData = result;
-                _elevationProfileBeingGenerated = false;
-                RefreshElevationProfile();
-            };
-            ec.OnStageChange = (text, max) =>
-            {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    pd.SetMessage(text);
-                    pd.Max = max;
-                });
-            };
-            ec.OnProgressChange = (progress) =>
-            {
-                var tickCount = System.Environment.TickCount;
-                if (tickCount - lastProgressUpdate > 100)
-                {
-                    MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
-                    Thread.Sleep(50);
-                    lastProgressUpdate = tickCount;
-                }
-            };
-
-            ec.Execute(_context.MyLocation);
-        }
-
-        private void StartDownloadAndCalculateAsync(ElevationCalculation ec)
-        {
-            try
-            {
-                StartDownloadAndCalculate(ec);
-            }
-            catch (Exception ex)
-            {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
-            }
-        }
-
-        private void RefreshElevationProfile()
-        {
-            if (_context.ElevationProfileData != null)
-            {
-                _compassView.SetElevationProfile(_context.ElevationProfileData);
-            }
-        }
-        #endregion ElevationProfile
 
         #region Required abstract methods
-        public bool OnDown(MotionEvent e) { return false; }
-
-        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
-        {
-            if (velocityX > 4000)
-            {
-                //Previous image
-                return true;
-            }
-
-            if (velocityX < -4000)
-            {
-                //Next image
-                return true;
-            }
-
-            return false;
-        }
-        public void OnLongPress(MotionEvent e) { }
-        public void OnShowPress(MotionEvent e) { }
-        public bool OnSingleTapUp(MotionEvent e) { return false; }
 
         public bool OnDoubleTap(MotionEvent e)
         {
@@ -853,14 +427,7 @@ namespace HorizontApp.Activities
                 scale = photoView.StdScale / photoView.Scale;
             }
 
-            photoView.ZoomTo(scale, photoView.Width / 2, photoView.Height / 2);
-            photoView.Cutting();
-
-            _compassView.RecalculateViewAngles(photoView.DisplayScale);
-
-            //TODO: Moving to place of double tap gesture
-            //photoView.MoveTo(x, y);
-
+            OnZoom(scale, (int)e.GetX(), (int)e.GetY());
             _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
 
             return false;
@@ -871,39 +438,26 @@ namespace HorizontApp.Activities
             return false;
         }
 
-        public bool OnSingleTapConfirmed(MotionEvent e)
+        protected override int GetScreenWidth()
         {
-            var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
-
-            if (_selectedPoi != null)
-            {
-                _selectedPoi.Selected = false;
-            }
-
-            if (newSelectedPoi != null)
-            {
-                _selectedPoi = newSelectedPoi;
-                _selectedPoi.Selected = true;
-
-                _seekBars.Visibility = ViewStates.Gone;
-                _poiInfo.Visibility = ViewStates.Visible;
-                FindViewById<TextView>(Resource.Id.textViewPoiName).Text = _selectedPoi.Poi.Name;
-                FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = "No description";
-                FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = $"{_selectedPoi.Poi.Altitude} m / {(_selectedPoi.GpsLocation.Distance / 1000):F2} km";
-                FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{_selectedPoi.Poi.Latitude:F7} N, {_selectedPoi.Poi.Longitude:F7} E";
-                FindViewById<ImageButton>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(_selectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
-            }
-            else
-            {
-                _selectedPoi = null;
-
-                _seekBars.Visibility = ViewStates.Visible;
-                _poiInfo.Visibility = ViewStates.Gone;
-            }
-            _compassView.Invalidate();
-
-            return false;
+            return photoView.Width;
         }
+
+        protected override int GetScreenHeight()
+        {
+            return photoView.Height;
+        }
+
+        protected override int GetPictureWidth()
+        {
+            return photodata.PictureWidth;
+        }
+
+        protected override int GetPictureHeight()
+        {
+            return photodata.PictureHeight;
+        }
+
         #endregion Required abstract methods
     }
 }

@@ -77,6 +77,9 @@
   <ItemGroup>
     <Compile Include="Activities\AboutActivity.cs" />
     <Compile Include="Activities\EditTagDialog.cs" />
+    <Compile Include="Activities\HorizonBaseActivity.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Activities\PhotoShowActivity.cs" />
     <Compile Include="Activities\PhotosActivity.cs" />
     <Compile Include="Activities\DownloadActivity.cs" />

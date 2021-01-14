@@ -1,0 +1,605 @@
+﻿using Android.App;
+using Android.Content;
+using Android.Graphics;
+using Android.OS;
+using Android.Util;
+using Android.Views;
+using Android.Widget;
+using HorizontApp.AppContext;
+using HorizontApp.DataAccess;
+using HorizontApp.Tasks;
+using HorizontApp.Utilities;
+using HorizontApp.Views;
+using HorizontLib.Domain.Enums;
+using HorizontLib.Domain.Models;
+using HorizontLib.Domain.ViewModel;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
+using HorizontLib.Utilities;
+using Xamarin.Essentials;
+using static Android.Views.View;
+using GpsUtils = HorizontApp.Utilities.GpsUtils;
+using HorizontApp.Views.ScaleImage;
+using Xamarin.Forms;
+using AbsoluteLayout = Android.Widget.AbsoluteLayout;
+using ImageButton = Android.Widget.ImageButton;
+using Rect = Android.Graphics.Rect;
+using View = Android.Views.View;
+
+namespace HorizontApp.Activities
+{
+    public abstract class HorizonBaseActivity : Activity, IOnClickListener, GestureDetector.IOnGestureListener, GestureDetector.IOnDoubleTapListener
+    {
+        private static string TAG = "Horizon-BaseActivity";
+
+        protected IAppContext _context;
+        private TextView _headingTextView;
+
+        protected CompassView _compassView;
+        private TextView _filterText;
+
+        private ImageButton _favouriteButton;
+        private ImageButton _displayTerrainButton;
+
+        private LinearLayout _seekBars;
+        private LinearLayout _poiInfo;
+
+        private bool _elevationProfileBeingGenerated = false;
+
+        private GestureDetector _gestureDetector;
+
+        private SeekBar _distanceSeekBar;
+        private SeekBar _heightSeekBar;
+
+        //for gesture detection
+        private int m_PreviousMoveX;
+        private int m_PreviousMoveY;
+        private int m_FirstMoveX;
+        private int m_FirstMoveY;
+        private float m_PreviousDistance;
+        private float m_PreviousDistanceX;
+        private float m_PreviousDistanceY;
+        private bool m_IsScaling;
+        private int m_startTime;
+        private int m_tapCount = 0;
+
+        protected bool EditingOn { get; set; }
+
+        private PoiViewItem _selectedPoi;
+
+        private PoiDatabase _database;
+        private PoiDatabase Database
+        {
+            get
+            {
+                if (_database == null)
+                {
+                    _database = new PoiDatabase();
+                }
+                return _database;
+            }
+        }
+
+        protected int MaxDistance { get { return _distanceSeekBar.Progress; } }
+        protected int MinHeight { get { return _heightSeekBar.Progress; } }
+        protected void InitializeBaseActivityUI()
+        {
+            AppContextLiveData.Instance.SetLocale(this);
+
+            _gestureDetector = new GestureDetector(this);
+
+
+            _filterText = FindViewById<TextView>(Resource.Id.textView1);
+
+            _headingTextView = FindViewById<TextView>(Resource.Id.editText1);
+
+            _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
+            _distanceSeekBar.Progress = _context.Settings.MaxDistance;
+            _distanceSeekBar.ProgressChanged += OnMaxDistanceChanged;
+            _heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
+            _heightSeekBar.Progress = _context.Settings.MinAltitute;
+            _heightSeekBar.ProgressChanged += OnMinAltitudeChanged;
+
+            _seekBars = FindViewById<LinearLayout>(Resource.Id.mainActivitySeekBars);
+            _poiInfo = FindViewById<LinearLayout>(Resource.Id.mainActivityPoiInfo);
+            _seekBars.Visibility = ViewStates.Visible;
+            _poiInfo.Visibility = ViewStates.Gone;
+
+            _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
+            _displayTerrainButton.SetOnClickListener(this);
+            _displayTerrainButton.SetImageResource(_context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
+
+            _favouriteButton = FindViewById<ImageButton>(Resource.Id.favouriteFilterButton);
+            _favouriteButton.SetOnClickListener(this);
+
+            var _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
+            _selectCategoryButton.SetOnClickListener(this);
+
+            FindViewById<ImageButton>(Resource.Id.buttonWiki).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.buttonMap).SetOnClickListener(this);
+
+            _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
+            _compassView.LayoutChange += OnLayoutChanged;
+        }
+
+        protected void Start()
+        {
+            //Finnaly setup OnDataChanged listener and Road all data
+            _context.DataChanged += DataChanged;
+        }
+
+        protected void ToggleEditing()
+        {
+            EditingOn = !EditingOn;
+        }
+
+        public void OnLayoutChanged(object sender, LayoutChangeEventArgs e)
+        {
+            System.Threading.Tasks.Task.Run(() =>
+            {
+                _context.ReloadData();
+            });
+        }
+
+        public virtual void DataChanged(object sender, DataChangedEventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                _filterText.Visibility = ViewStates.Invisible;
+
+                OnDataChanged(sender, e);
+
+                UpdateStatusBar();
+            });
+        }
+
+        public virtual void OnDataChanged(object sender, DataChangedEventArgs e)
+        {
+            _filterText.Visibility = ViewStates.Invisible;
+        }
+
+        private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+        {
+            _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
+            _filterText.Visibility = ViewStates.Visible;
+
+            _context.Settings.MinAltitute = _heightSeekBar.Progress;
+        }
+
+        private void OnMaxDistanceChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+        {
+            //TODO: Save minAltitude and maxDistance to CompassViewSettings
+            _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
+            _filterText.Visibility = ViewStates.Visible;
+
+            _context.Settings.MaxDistance = _distanceSeekBar.Progress;
+        }
+
+        private float Distance(float x0, float x1, float y0, float y1)
+        {
+            var x = x0 - x1;
+            var y = y0 - y1;
+            return FloatMath.Sqrt(x * x + y * y);
+        }
+
+        public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
+        {
+            //###in MainActivity
+            //if (e1.RawY < Resources.DisplayMetrics.HeightPixels / 2)
+            //    _compassView.OnScroll(distanceX);
+            //return false;
+
+            if (EditingOn)
+            {
+                if (e1.RawX < Resources.DisplayMetrics.WidthPixels / 7)
+                {
+                    _compassView.OnScroll(distanceY, true);
+                }
+                else if (e1.RawX > Resources.DisplayMetrics.WidthPixels - Resources.DisplayMetrics.WidthPixels / 7)
+                {
+                    _compassView.OnScroll(distanceY, false);
+                }
+                else if (e1.RawY < 0.75 * Resources.DisplayMetrics.HeightPixels)
+                {
+                    _compassView.OnScroll(distanceX);
+                }
+            }
+            return false;
+        }
+
+        public override bool OnTouchEvent(MotionEvent e)
+        {
+            base.OnTouchEvent(e);
+            _gestureDetector.OnTouchEvent(e);
+
+            var touchCount = e.PointerCount;
+            switch (e.Action)
+            {
+                case MotionEventActions.Down:
+                case MotionEventActions.Pointer1Down:
+                case MotionEventActions.Pointer2Down:
+                    {
+
+                        m_FirstMoveX = m_PreviousMoveX = (int)e.GetX();
+                        m_FirstMoveY = m_PreviousMoveY = (int)e.GetY();
+
+                        if (touchCount == 1)
+                        {
+
+                            if (System.Environment.TickCount - m_startTime > 500)
+                            {
+                                m_tapCount = 0;
+                            }
+
+                            if (m_tapCount == 0)
+                            {
+                                m_startTime = System.Environment.TickCount;
+                            }
+
+                            m_tapCount++;
+                        }
+
+                        if (touchCount >= 2)
+                        {
+                            m_PreviousDistance = Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
+                            m_PreviousDistanceX = Math.Abs(e.GetX(0) - e.GetX(1));
+                            m_PreviousDistanceY = Math.Abs(e.GetY(0) - e.GetY(1));
+
+                            m_IsScaling = true;
+                        }
+                    }
+                    break;
+                case MotionEventActions.Move:
+                    {
+                        //heading and tilt correction
+                        if (EditingOn && touchCount == 1)
+                        {
+                            var distanceX = m_PreviousMoveX - (int)e.GetX();
+                            var distanceY = m_PreviousMoveY - (int)e.GetY();
+                            m_PreviousMoveX = (int)e.GetX();
+                            m_PreviousMoveY = (int)e.GetY();
+
+                            if (Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
+                            {
+                                _compassView.OnScroll(distanceX);
+                                Log.WriteLine(LogPriority.Debug, TAG, $"Heading correction: {distanceX}");
+                            }
+                            else
+                            {
+                                if (e.RawX < Resources.DisplayMetrics.WidthPixels / 2)
+                                {
+                                    _compassView.OnScroll(distanceY, true);
+                                    Log.WriteLine(LogPriority.Debug, TAG, $"Left tilt correction: {distanceY}");
+                                }
+                                else
+                                {
+                                    _compassView.OnScroll(distanceY, false);
+                                    Log.WriteLine(LogPriority.Debug, TAG, $"Right tilt correction: {distanceY}");
+                                }
+                            }
+                        }
+                        //zooming
+                        else if (touchCount >= 2 && m_IsScaling && !EditingOn)
+                        {
+                            var distance = Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
+                            var scale = (distance - m_PreviousDistance) / DispDistance();
+                            m_PreviousDistance = distance;
+
+                            scale += 1;
+                            scale = scale * scale;
+
+                            OnZoom(scale, GetScreenWidth() / 2, GetScreenHeight() / 2);
+                        }
+                        //moving
+                        else if (!m_IsScaling && /*photoView.Scale > photoView.MinScale && */!EditingOn)
+                        {
+                            var distanceX = m_PreviousMoveX - (int)e.GetX();
+                            var distanceY = m_PreviousMoveY - (int)e.GetY();
+                            m_PreviousMoveX = (int)e.GetX();
+                            m_PreviousMoveY = (int)e.GetY();
+                            OnMove(-distanceX, -distanceY);
+                        }
+                        else if (touchCount >= 2 && EditingOn)
+                        {
+                            var distX = Math.Abs(e.GetX(0) - e.GetX(1));
+                            var distY = Math.Abs(e.GetY(0) - e.GetY(1));
+                            if (distX > distY)
+                            {
+                                var scale = (distX - m_PreviousDistanceX) / GetScreenWidth();
+                                m_PreviousDistanceX = distX;
+                                scale += 1;
+                                _compassView.ScaleHorizontalViewAngle(scale);
+                                //OnVerticalViewAngleChange();
+                                Log.WriteLine(LogPriority.Debug, TAG, $"Horizontal VA correction: {scale}");
+                            }
+                            else
+                            {
+                                var scale = (distY - m_PreviousDistanceY) / GetScreenHeight();
+                                m_PreviousDistanceY = distY;
+                                scale += 1;
+                                _compassView.ScaleVerticalViewAngle(scale);
+                                //OnHorizontalViewAngleChange();
+                                Log.WriteLine(LogPriority.Debug, TAG, $"Vertical VA correction: {scale}");
+                            }
+                        }
+                        break;
+                    }
+                case MotionEventActions.Up:
+                case MotionEventActions.Pointer1Up:
+                case MotionEventActions.Pointer2Up:
+                    {
+                        if (touchCount <= 1)
+                        {
+                            if (m_IsScaling)
+                            {
+                                m_IsScaling = false;
+                            }
+                        }
+                        break;
+                    }
+            }
+
+            UpdateStatusBar();
+            return true;
+        }
+
+        protected abstract void UpdateStatusBar();
+
+        protected abstract void OnMove(int distanceX, int distanceY);
+        protected abstract void OnZoom(float scale, int x, int y);
+
+        protected abstract int GetScreenWidth();
+        protected abstract int GetScreenHeight();
+
+        protected abstract int GetPictureWidth();
+        protected abstract int GetPictureHeight();
+
+        private float DispDistance()
+        {
+            return FloatMath.Sqrt(GetScreenWidth() * GetScreenWidth() + GetScreenHeight() * GetScreenHeight());
+        }
+
+        public virtual void OnClick(View v)
+        {
+            switch (v.Id)
+            {
+                case Resource.Id.buttonDisplayTerrain:
+                    HandleDisplayTarrainButtonClicked();
+                    break;
+
+                case Resource.Id.favouriteFilterButton:
+                    {
+                        _context.Settings.ToggleFavourite(); ;
+                        if (_context.Settings.ShowFavoritesOnly)
+                            _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
+                        else
+                            _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
+                        _context.ReloadData();
+                        break;
+                    }
+                case Resource.Id.buttonCategorySelect:
+                    {
+                        var dialog = new PoiFilterDialog(this, _context);
+                        dialog.Show();
+
+                        break;
+                    }
+                case Resource.Id.buttonMap:
+                    MapUtilities.OpenMap(_selectedPoi.Poi);
+                    break;
+                case Resource.Id.buttonWiki:
+                    WikiUtilities.OpenWiki(_selectedPoi.Poi);
+                    break;
+            }
+        }
+
+
+        #region ElevationProfile
+        private void HandleDisplayTarrainButtonClicked()
+        {
+            _context.Settings.ShowElevationProfile = !_context.Settings.ShowElevationProfile;
+            _displayTerrainButton.SetImageResource(_context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
+
+            CheckAndReloadElevationProfile();
+        }
+
+        private void CheckAndReloadElevationProfile()
+        {
+            if (_context.Settings.ShowElevationProfile)
+            {
+                if (GpsUtils.HasAltitude(_context.MyLocation))
+                {
+                    if (_elevationProfileBeingGenerated == false)
+                    {
+                        if (_context.ElevationProfileData == null || !_context.ElevationProfileData.IsValid(_context.MyLocation, _context.Settings.MaxDistance))
+                        {
+                            GenerateElevationProfile();
+                        }
+                    }
+                }
+            }
+
+            _compassView.Invalidate();
+        }
+
+        protected void GenerateElevationProfile()
+        {
+            try
+            {
+                if (!GpsUtils.HasAltitude(_context.MyLocation))
+                {
+                    PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
+                    return;
+                }
+
+                _elevationProfileBeingGenerated = true;
+
+                var ec = new ElevationCalculation(_context.MyLocation, MaxDistance);
+
+                var size = ec.GetSizeToDownload();
+                if (size == 0)
+                {
+                    StartDownloadAndCalculate(ec);
+                    return;
+                }
+
+                using (var builder = new AlertDialog.Builder(this))
+                {
+                    builder.SetTitle("Question");
+                    builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount of downloaded data. \r\n\r\nDo you really want to continue?");
+                    builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
+                    builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
+                    builder.SetNegativeButton("Cancel", (senderAlert, args) => { _elevationProfileBeingGenerated = false; });
+
+                    var myCustomDialog = builder.Create();
+
+                    myCustomDialog.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
+            }
+        }
+
+        private void StartDownloadAndCalculate(ElevationCalculation ec)
+        {
+            _elevationProfileBeingGenerated = true;
+            var lastProgressUpdate = System.Environment.TickCount;
+
+            var pd = new ProgressDialog(this);
+            pd.SetMessage("Loading elevation data. Please Wait.");
+            pd.SetCancelable(false);
+            pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
+            pd.Show();
+
+            ec.OnFinishedAction = (result) =>
+            {
+                pd.Hide();
+                if (!string.IsNullOrEmpty(result.ErrorMessage))
+                {
+                    PopupHelper.ErrorDialog(this, "Error", result.ErrorMessage);
+                }
+
+                _context.ElevationProfileData = result;
+                _context.ElevationProfileDataDistance = _context.Settings.MaxDistance;
+
+                RefreshElevationProfile();
+                _elevationProfileBeingGenerated = false;
+            };
+            ec.OnStageChange = (text, max) =>
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    pd.SetMessage(text);
+                    pd.Max = max;
+                });
+            };
+            ec.OnProgressChange = (progress) =>
+            {
+                var tickCount = System.Environment.TickCount;
+                if (tickCount - lastProgressUpdate > 100)
+                {
+                    MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
+                    Thread.Sleep(50);
+                    lastProgressUpdate = tickCount;
+                }
+            };
+
+            ec.Execute(_context.MyLocation);
+        }
+
+        private void StartDownloadAndCalculateAsync(ElevationCalculation ec)
+        {
+            try
+            {
+                StartDownloadAndCalculate(ec);
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
+            }
+        }
+
+        protected void RefreshElevationProfile()
+        {
+            if (_context.ElevationProfileData != null)
+            {
+                _compassView.SetElevationProfile(_context.ElevationProfileData);
+            }
+        }
+        #endregion ElevationProfile
+
+        #region Required abstract methods
+        public bool OnDown(MotionEvent e) { return false; }
+
+        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
+        {
+            if (velocityX > 4000)
+            {
+                //Previous image
+                return true;
+            }
+
+            if (velocityX < -4000)
+            {
+                //Next image
+                return true;
+            }
+
+            return false;
+        }
+        public void OnLongPress(MotionEvent e) { }
+        public void OnShowPress(MotionEvent e) { }
+        public bool OnSingleTapUp(MotionEvent e) { return false; }
+
+        public bool OnDoubleTap(MotionEvent e)
+        {
+            return false;
+        }
+
+        public bool OnDoubleTapEvent(MotionEvent e)
+        {
+            return false;
+        }
+
+        public bool OnSingleTapConfirmed(MotionEvent e)
+        {
+            var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
+
+            if (_selectedPoi != null)
+            {
+                _selectedPoi.Selected = false;
+            }
+
+            if (newSelectedPoi != null)
+            {
+                _selectedPoi = newSelectedPoi;
+                _selectedPoi.Selected = true;
+
+                _seekBars.Visibility = ViewStates.Gone;
+                _poiInfo.Visibility = ViewStates.Visible;
+                FindViewById<TextView>(Resource.Id.textViewPoiName).Text = _selectedPoi.Poi.Name;
+                FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = "No description";
+                FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = $"{_selectedPoi.Poi.Altitude} m / {(_selectedPoi.GpsLocation.Distance / 1000):F2} km";
+                FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{_selectedPoi.Poi.Latitude:F7} N, {_selectedPoi.Poi.Longitude:F7} E";
+                FindViewById<ImageButton>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(_selectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
+            }
+            else
+            {
+                _selectedPoi = null;
+
+                _seekBars.Visibility = ViewStates.Visible;
+                _poiInfo.Visibility = ViewStates.Gone;
+            }
+            _compassView.Invalidate();
+
+            return false;
+        }
+
+        #endregion Required abstract methods
+    }
+}
