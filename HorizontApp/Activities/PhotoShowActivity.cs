@@ -32,7 +32,7 @@ using View = Android.Views.View;
 namespace HorizontApp.Activities
 {
     [Activity(Label = "PhotoShowActivity")]
-    public class PhotoShowActivity : Activity, IOnClickListener
+    public class PhotoShowActivity : Activity, IOnClickListener, GestureDetector.IOnGestureListener
     {
         public static int REQUEST_SHOW_PHOTO = 0;
 
@@ -56,6 +56,8 @@ namespace HorizontApp.Activities
         private bool _editingOn = false;
 
         private bool _elevationProfileBeingGenerated = false;
+
+        private GestureDetector _gestureDetector;
 
         private SeekBar _distanceSeekBar;
         private SeekBar _heightSeekBar;
@@ -107,6 +109,8 @@ namespace HorizontApp.Activities
             {
                 SetContentView(Resource.Layout.PhotoShowActivityLandscape);
             }
+
+            _gestureDetector = new GestureDetector(this);
 
             long id = Intent.GetLongExtra("ID", -1);
             photodata = Database.GetPhotoDataItem(id);
@@ -377,6 +381,7 @@ namespace HorizontApp.Activities
         public override bool OnTouchEvent(MotionEvent e)
         {
             base.OnTouchEvent(e);
+            _gestureDetector.OnTouchEvent(e);
 
             var touchCount = e.PointerCount;
             switch (e.Action)
@@ -885,5 +890,29 @@ namespace HorizontApp.Activities
             }
         }
         #endregion ElevationProfile
+
+        #region Required abstract methods
+        public bool OnDown(MotionEvent e) { return false; }
+
+        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
+        {
+            if (velocityX > 4000)
+            {
+                //Previous image
+                return true;
+            }
+
+            if (velocityX < -4000)
+            {
+                //Next image
+                return true;
+            }
+
+            return false;
+        }
+        public void OnLongPress(MotionEvent e) { }
+        public void OnShowPress(MotionEvent e) { }
+        public bool OnSingleTapUp(MotionEvent e) { return false; }
+        #endregion Required abstract methods
     }
 }
