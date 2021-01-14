@@ -33,7 +33,7 @@ using HorizonLib.Domain.Enums;
 namespace HorizontApp
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, IOnClickListener, GestureDetector.IOnGestureListener
+    public class MainActivity : Activity, IOnClickListener, GestureDetector.IOnGestureListener
     {
         private static readonly int REQUEST_PERMISSIONS = 0;
 
