@@ -63,9 +63,8 @@ namespace HorizontApp.Activities
             base.OnCreate(savedInstanceState);
 
             AppContextLiveData.Instance.SetLocale(this);
-            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
-            var orientation = mainDisplayInfo.Orientation;
-            if (orientation == DisplayOrientation.Portrait)
+
+            if (AppContextLiveData.Instance.IsPortrait)
             {
                 SetContentView(Resource.Layout.SettingsActivityPortrait);
             }
