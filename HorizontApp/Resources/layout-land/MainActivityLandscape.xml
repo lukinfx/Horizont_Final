@@ -24,19 +24,19 @@
             android:id="@+id/compassView1"/>
 
         <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="#ffff00"
-                    android:textAlignment="center"
-                    android:textSize="42dp"
-                    android:paddingTop="200dp"
-                    android:background="#00000000"
-                    android:id="@+id/textView1" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#ffff00"
+            android:textAlignment="center"
+            android:textSize="42dp"
+            android:paddingTop="200dp"
+            android:background="#00000000"
+            android:id="@+id/textView1" />
         <LinearLayout
-          android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-          android:gravity="right">
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right">
 
             <ImageButton
               android:src="@drawable/ic_photo1"
@@ -52,37 +52,44 @@
         </LinearLayout>
 
         <LinearLayout
-          android:orientation="horizontal"
+          android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:gravity="bottom ">
-
-            <include
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:id="@+id/mainActivityControlBar"
-              layout="@layout/MainActivityControlBar"
-              android:gravity="bottom" />
-            <include
-              android:id="@+id/mainActivitySeekBars"
-              layout="@layout/MainActivitySeekBars" 
+          android:gravity="bottom">
+          
+            <LinearLayout
+              android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:gravity="bottom"/>
+              android:gravity="bottom">
+
+                <include
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/mainActivityControlBar"
+                  layout="@layout/MainActivityControlBar"
+                  android:gravity="bottom" />
+                <include
+                  android:id="@+id/mainActivitySeekBars"
+                  layout="@layout/MainActivitySeekBars" 
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="bottom"/>
+                <include
+                  android:id="@+id/mainActivityPoiInfo"
+                  layout="@layout/MainActivityPoiInfo"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
             <include
-              android:id="@+id/mainActivityPoiInfo"
-              layout="@layout/MainActivityPoiInfo"
+              android:id="@+id/mainActivityStatusBar"
+              layout="@layout/MainActivityStatusBar" 
+              android:gravity="bottom"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"/>
 
         </LinearLayout>
-
-        <include
-          android:id="@+id/mainActivityStatusBar"
-          layout="@layout/MainActivityStatusBar" 
-          android:gravity="bottom"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"/>
-
     </AbsoluteLayout>
 </LinearLayout>
