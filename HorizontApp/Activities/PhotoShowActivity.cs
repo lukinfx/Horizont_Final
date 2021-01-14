@@ -52,18 +52,6 @@ namespace HorizontApp.Activities
 
         private PoiViewItem _selectedPoi;
 
-        private PoiDatabase _database;
-        private PoiDatabase Database
-        {
-            get
-            {
-                if (_database == null)
-                {
-                    _database = new PoiDatabase();
-                }
-                return _database;
-            }
-        }
 
         void InitializeAppContext(PhotoData photodata)
         {
