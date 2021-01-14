@@ -35,7 +35,7 @@ namespace HorizontApp.Activities
     {
         private static string TAG = "Horizon-BaseActivity";
 
-        protected IAppContext _context;
+        protected IAppContext Context { get; set; }
         private TextView _headingTextView;
 
         protected CompassView _compassView;
@@ -71,7 +71,7 @@ namespace HorizontApp.Activities
         private PoiViewItem _selectedPoi;
 
         private PoiDatabase _database;
-        private PoiDatabase Database
+        protected PoiDatabase Database
         {
             get
             {
@@ -97,10 +97,10 @@ namespace HorizontApp.Activities
             _headingTextView = FindViewById<TextView>(Resource.Id.editText1);
 
             _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
-            _distanceSeekBar.Progress = _context.Settings.MaxDistance;
+            _distanceSeekBar.Progress = Context.Settings.MaxDistance;
             _distanceSeekBar.ProgressChanged += OnMaxDistanceChanged;
             _heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
-            _heightSeekBar.Progress = _context.Settings.MinAltitute;
+            _heightSeekBar.Progress = Context.Settings.MinAltitute;
             _heightSeekBar.ProgressChanged += OnMinAltitudeChanged;
 
             _seekBars = FindViewById<LinearLayout>(Resource.Id.mainActivitySeekBars);
@@ -110,7 +110,7 @@ namespace HorizontApp.Activities
 
             _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
             _displayTerrainButton.SetOnClickListener(this);
-            _displayTerrainButton.SetImageResource(_context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
+            _displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
 
             _favouriteButton = FindViewById<ImageButton>(Resource.Id.favouriteFilterButton);
             _favouriteButton.SetOnClickListener(this);
@@ -128,7 +128,7 @@ namespace HorizontApp.Activities
         protected void Start()
         {
             //Finnaly setup OnDataChanged listener and Road all data
-            _context.DataChanged += DataChanged;
+            Context.DataChanged += DataChanged;
         }
 
         protected void ToggleEditing()
@@ -140,7 +140,7 @@ namespace HorizontApp.Activities
         {
             System.Threading.Tasks.Task.Run(() =>
             {
-                _context.ReloadData();
+                Context.ReloadData();
             });
         }
 
@@ -166,7 +166,7 @@ namespace HorizontApp.Activities
             _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
             _filterText.Visibility = ViewStates.Visible;
 
-            _context.Settings.MinAltitute = _heightSeekBar.Progress;
+            Context.Settings.MinAltitute = _heightSeekBar.Progress;
         }
 
         private void OnMaxDistanceChanged(object sender, SeekBar.ProgressChangedEventArgs e)
@@ -175,7 +175,7 @@ namespace HorizontApp.Activities
             _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
             _filterText.Visibility = ViewStates.Visible;
 
-            _context.Settings.MaxDistance = _distanceSeekBar.Progress;
+            Context.Settings.MaxDistance = _distanceSeekBar.Progress;
         }
 
         private float Distance(float x0, float x1, float y0, float y1)
@@ -372,17 +372,17 @@ namespace HorizontApp.Activities
 
                 case Resource.Id.favouriteFilterButton:
                     {
-                        _context.Settings.ToggleFavourite(); ;
-                        if (_context.Settings.ShowFavoritesOnly)
+                        Context.Settings.ToggleFavourite(); ;
+                        if (Context.Settings.ShowFavoritesOnly)
                             _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
                         else
                             _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
-                        _context.ReloadData();
+                        Context.ReloadData();
                         break;
                     }
                 case Resource.Id.buttonCategorySelect:
                     {
-                        var dialog = new PoiFilterDialog(this, _context);
+                        var dialog = new PoiFilterDialog(this, Context);
                         dialog.Show();
 
                         break;
@@ -400,21 +400,21 @@ namespace HorizontApp.Activities
         #region ElevationProfile
         private void HandleDisplayTarrainButtonClicked()
         {
-            _context.Settings.ShowElevationProfile = !_context.Settings.ShowElevationProfile;
-            _displayTerrainButton.SetImageResource(_context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
+            Context.Settings.ShowElevationProfile = !Context.Settings.ShowElevationProfile;
+            _displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
 
             CheckAndReloadElevationProfile();
         }
 
         private void CheckAndReloadElevationProfile()
         {
-            if (_context.Settings.ShowElevationProfile)
+            if (Context.Settings.ShowElevationProfile)
             {
-                if (GpsUtils.HasAltitude(_context.MyLocation))
+                if (GpsUtils.HasAltitude(Context.MyLocation))
                 {
                     if (_elevationProfileBeingGenerated == false)
                     {
-                        if (_context.ElevationProfileData == null || !_context.ElevationProfileData.IsValid(_context.MyLocation, _context.Settings.MaxDistance))
+                        if (Context.ElevationProfileData == null || !Context.ElevationProfileData.IsValid(Context.MyLocation, Context.Settings.MaxDistance))
                         {
                             GenerateElevationProfile();
                         }
@@ -429,7 +429,7 @@ namespace HorizontApp.Activities
         {
             try
             {
-                if (!GpsUtils.HasAltitude(_context.MyLocation))
+                if (!GpsUtils.HasAltitude(Context.MyLocation))
                 {
                     PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
                     return;
@@ -437,7 +437,7 @@ namespace HorizontApp.Activities
 
                 _elevationProfileBeingGenerated = true;
 
-                var ec = new ElevationCalculation(_context.MyLocation, MaxDistance);
+                var ec = new ElevationCalculation(Context.MyLocation, MaxDistance);
 
                 var size = ec.GetSizeToDownload();
                 if (size == 0)
@@ -484,8 +484,8 @@ namespace HorizontApp.Activities
                     PopupHelper.ErrorDialog(this, "Error", result.ErrorMessage);
                 }
 
-                _context.ElevationProfileData = result;
-                _context.ElevationProfileDataDistance = _context.Settings.MaxDistance;
+                Context.ElevationProfileData = result;
+                Context.ElevationProfileDataDistance = Context.Settings.MaxDistance;
 
                 RefreshElevationProfile();
                 _elevationProfileBeingGenerated = false;
@@ -509,7 +509,7 @@ namespace HorizontApp.Activities
                 }
             };
 
-            ec.Execute(_context.MyLocation);
+            ec.Execute(Context.MyLocation);
         }
 
         private void StartDownloadAndCalculateAsync(ElevationCalculation ec)
@@ -526,9 +526,9 @@ namespace HorizontApp.Activities
 
         protected void RefreshElevationProfile()
         {
-            if (_context.ElevationProfileData != null)
+            if (Context.ElevationProfileData != null)
             {
-                _compassView.SetElevationProfile(_context.ElevationProfileData);
+                _compassView.SetElevationProfile(Context.ElevationProfileData);
             }
         }
         #endregion ElevationProfile

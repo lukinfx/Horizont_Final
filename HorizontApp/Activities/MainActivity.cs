@@ -65,7 +65,7 @@ namespace HorizontApp
 
         private GestureDetector _gestureDetector;
 
-        private IAppContext Context { get { return AppContextLiveData.Instance; } }
+        protected IAppContext Context { get { return AppContextLiveData.Instance; } }
 
         protected override void OnCreate(Bundle bundle)
         {

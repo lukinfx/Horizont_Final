@@ -53,6 +53,9 @@ namespace HorizontApp.Activities
         private PoiViewItem _selectedPoi;
 
 
+        private AppContextStaticData _context;
+        protected override IAppContext Context { get { return _context; } }
+
         void InitializeAppContext(PhotoData photodata)
         {
             Log.WriteLine(LogPriority.Debug, TAG, $"Heading {photodata.Heading:F0}");
@@ -81,15 +84,15 @@ namespace HorizontApp.Activities
             if (photodata.PictureWidth == 0) photodata.PictureWidth = AppContextLiveData.Instance.Settings.CameraPictureSize.Width;
             if (photodata.PictureHeight == 0) photodata.PictureHeight = AppContextLiveData.Instance.Settings.CameraPictureSize.Height;
 
-            _context.Settings.LoadData(this);
-            _context.Settings.IsViewAngleCorrection = false;
-            _context.Settings.Categories = JsonConvert.DeserializeObject<List<PoiCategory>>(photodata.JsonCategories);
-            _context.Settings.SetCameraParameters((float)photodata.ViewAngleHorizontal, (float)photodata.ViewAngleVertical,
+            Context.Settings.LoadData(this);
+            Context.Settings.IsViewAngleCorrection = false;
+            Context.Settings.Categories = JsonConvert.DeserializeObject<List<PoiCategory>>(photodata.JsonCategories);
+            Context.Settings.SetCameraParameters((float)photodata.ViewAngleHorizontal, (float)photodata.ViewAngleVertical,
                 photodata.PictureWidth, photodata.PictureHeight);
-            _context.Settings.MaxDistance = Convert.ToInt32(photodata.MaxDistance);
-            _context.Settings.MinAltitute = Convert.ToInt32(photodata.MinAltitude);
-            _context.Settings.ShowElevationProfile = photodata.ShowElevationProfile;
-            _context.ElevationProfileDataDistance = photodata.MaxElevationProfileDataDistance;
+            Context.Settings.MaxDistance = Convert.ToInt32(photodata.MaxDistance);
+            Context.Settings.MinAltitute = Convert.ToInt32(photodata.MinAltitude);
+            Context.Settings.ShowElevationProfile = photodata.ShowElevationProfile;
+            Context.ElevationProfileDataDistance = photodata.MaxElevationProfileDataDistance;
         }
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -128,7 +131,7 @@ namespace HorizontApp.Activities
 
             photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);
 
-            _compassView.Initialize(_context, false,
+            _compassView.Initialize(Context, false,
                 new System.Drawing.Size(GetPictureWidth(), photodata.PictureHeight),
                 (float)photodata.LeftTiltCorrector, (float)photodata.RightTiltCorrector, 0);
 
@@ -148,12 +151,12 @@ namespace HorizontApp.Activities
         {
             LoadImage(photodata.PhotoFileName);
 
-            if (_context.Settings.ShowElevationProfile)
+            if (Context.Settings.ShowElevationProfile)
             {
                 if (photodata.JsonElevationProfileData != null)
                 {
-                    _context.ElevationProfileData = ElevationProfileData.Deserialize(photodata.JsonElevationProfileData);
-                    if (_context.ElevationProfileData != null)
+                    Context.ElevationProfileData = ElevationProfileData.Deserialize(photodata.JsonElevationProfileData);
+                    if (Context.ElevationProfileData != null)
                     {
                         RefreshElevationProfile();
                     }
@@ -206,14 +209,14 @@ namespace HorizontApp.Activities
 
         private void OnMaxDistanceChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            if (_context.Settings.ShowElevationProfile)
+            if (Context.Settings.ShowElevationProfile)
             {
-                if (_context.ElevationProfileData == null && photodata.JsonElevationProfileData != null)
+                if (Context.ElevationProfileData == null && photodata.JsonElevationProfileData != null)
                 {
-                    _context.ElevationProfileData = JsonConvert.DeserializeObject<ElevationProfileData>(photodata.JsonElevationProfileData);
+                    Context.ElevationProfileData = JsonConvert.DeserializeObject<ElevationProfileData>(photodata.JsonElevationProfileData);
                 }
 
-                if (_context.ElevationProfileData == null || _context.ElevationProfileData.MaxDistance < _context.Settings.MaxDistance)
+                if (Context.ElevationProfileData == null || Context.ElevationProfileData.MaxDistance < Context.Settings.MaxDistance)
                 {
                     GenerateElevationProfile();
                 }
@@ -227,16 +230,16 @@ namespace HorizontApp.Activities
 
         protected override void UpdateStatusBar()
         {
-            var gpsLocation = GpsUtils.HasLocation(_context.MyLocation) ?
-                $"Lat:{_context.MyLocation.Latitude:F7} Lon:{_context.MyLocation.Longitude:F7} Alt:{_context.MyLocation.Altitude:F0}"
+            var gpsLocation = GpsUtils.HasLocation(Context.MyLocation) ?
+                $"Lat:{Context.MyLocation.Latitude:F7} Lon:{Context.MyLocation.Longitude:F7} Alt:{Context.MyLocation.Altitude:F0}"
                 : "No GPS location";
 
             var sign = _compassView.HeadingCorrector < 0 ? '-' : '+';
-            var heading = $"Hdg:{_context.Heading:F1}{sign}{Math.Abs(_compassView.HeadingCorrector):F1}";
+            var heading = $"Hdg:{Context.Heading:F1}{sign}{Math.Abs(_compassView.HeadingCorrector):F1}";
 
             var zoomAndTiltCorrection = $"Scale:{photoView.Scale:F2} ,LT:{_compassView.LeftTiltCorrector:F2}, RT:{_compassView.RightTiltCorrector:F2}";
 
-            var viewAngle = $"va-V:{ _context.ViewAngleVertical:F1} va-H:{ _context.ViewAngleHorizontal:F1}";
+            var viewAngle = $"va-V:{ Context.ViewAngleVertical:F1} va-H:{ Context.ViewAngleHorizontal:F1}";
 
             var photoMatrix = $"im-X:{photoView.TranslateX:F1}, im-Y:{photoView.TranslateY:F1}, Sc:{photoView.DisplayScale:F2}/{photoView.Scale:F2}";
 
@@ -302,15 +305,15 @@ namespace HorizontApp.Activities
 
             photodata.MaxDistance = MaxDistance;
             photodata.MinAltitude = MinHeight;
-            photodata.ViewAngleHorizontal = _context.ViewAngleHorizontal;
-            photodata.ViewAngleVertical = _context.ViewAngleVertical;
+            photodata.ViewAngleHorizontal = Context.ViewAngleHorizontal;
+            photodata.ViewAngleVertical = Context.ViewAngleVertical;
             photodata.LeftTiltCorrector = _compassView.LeftTiltCorrector;
             photodata.RightTiltCorrector = _compassView.RightTiltCorrector;
-            photodata.Heading = _context.Heading + _compassView.HeadingCorrector;
-            photodata.ShowElevationProfile = _context.Settings.ShowElevationProfile;
-            photodata.JsonCategories = JsonConvert.SerializeObject(_context.Settings.Categories);
-            if (_context.ElevationProfileData != null)
-                photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
+            photodata.Heading = Context.Heading + _compassView.HeadingCorrector;
+            photodata.ShowElevationProfile = Context.Settings.ShowElevationProfile;
+            photodata.JsonCategories = JsonConvert.SerializeObject(Context.Settings.Categories);
+            if (Context.ElevationProfileData != null)
+                photodata.JsonElevationProfileData = Context.ElevationProfileData.Serialize();
             Database.UpdateItem(photodata);
         }
 
@@ -321,7 +324,7 @@ namespace HorizontApp.Activities
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
-            compassView.Initialize(_context, false,
+            compassView.Initialize(Context, false,
                 new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight),
                 (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
             compassView.Layout(0, 0, photodata.PictureWidth, photodata.PictureHeight);
@@ -370,7 +373,7 @@ namespace HorizontApp.Activities
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
-            compassView.Initialize(_context, false,
+            compassView.Initialize(Context, false,
                 new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight),
                 (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
             compassView.Layout(0, 0, photodata.PictureWidth, photodata.PictureHeight);
