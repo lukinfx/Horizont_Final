@@ -20,6 +20,7 @@ namespace HorizontApp.Views.Compass
         protected Paint paintRectPartialyVisible;
         protected Paint paintRectSelectedItem;
         protected Paint textpaint;
+        protected Paint textpaintSelected;
         protected TextPaint textPaintForEllipsize;
         protected Paint textpaintPartialyVisible;
         protected float viewAngleHorizontal;
@@ -53,9 +54,10 @@ namespace HorizontApp.Views.Compass
             paintRectPartialyVisible.SetStyle(Paint.Style.FillAndStroke);
             paintRectPartialyVisible.StrokeWidth = 4;
 
+            Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
 
             paintRectSelectedItem = new Paint();
-            paintRectSelectedItem.SetARGB(255, 0, 0, 0);
+            paintRectSelectedItem.SetARGB(150, 255, 255, 255);
             paintRectSelectedItem.SetStyle(Paint.Style.FillAndStroke);
             paintRectSelectedItem.StrokeWidth = 4;
 
@@ -63,8 +65,13 @@ namespace HorizontApp.Views.Compass
             textpaint.SetARGB(255, 200, 255, 0);
             textpaint.TextSize = 36;
             textpaint.AntiAlias = true;
-            Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
             textpaint.SetTypeface(normal);
+
+            textpaintSelected = new Paint();
+            textpaintSelected.SetARGB(255, 0, 0, 0);
+            textpaintSelected.TextSize = 36;
+            textpaintSelected.AntiAlias = true;
+            textpaintSelected.SetTypeface(normal);
 
             textPaintForEllipsize = new TextPaint();
             textPaintForEllipsize.SetARGB(255, 200, 255, 0);
@@ -89,6 +96,9 @@ namespace HorizontApp.Views.Compass
 
         protected Paint GetTextPaint(PoiViewItem item)
         {
+            if (item.Selected)
+                return textpaintSelected;
+
             return item.Visibility == Visibility.Visible ? textpaint : textpaintPartialyVisible;
         }
 
