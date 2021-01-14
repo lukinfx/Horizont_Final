@@ -575,7 +575,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\PhotoShowActivityLayout.xml">
+    <AndroidResource Include="Resources\layout\PhotoShowActivityPortrait.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -727,6 +727,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\bg_gradient.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout-land\PhotoShowActivityLandscape.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

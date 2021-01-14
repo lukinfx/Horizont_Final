@@ -96,7 +96,18 @@ namespace HorizontApp.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.PhotoShowActivityLayout);
+
+            AppContextLiveData.Instance.SetLocale(this);
+
+            if (AppContextLiveData.Instance.IsPortrait)
+            {
+                SetContentView(Resource.Layout.PhotoShowActivityPortrait);
+            }
+            else
+            {
+                SetContentView(Resource.Layout.PhotoShowActivityLandscape);
+            }
+
             long id = Intent.GetLongExtra("ID", -1);
             photodata = Database.GetPhotoDataItem(id);
             _thumbnail = photodata.Thumbnail;
