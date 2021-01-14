@@ -241,73 +241,66 @@ namespace HorizontApp.Activities
                             m_PreviousMoveX = (int)e.GetX();
                             m_PreviousMoveY = (int)e.GetY();
 
-                            if (Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
+                            //moving
+                            if (MoveingAndZoomingEnabled && !m_IsScaling)
                             {
-                                if (HeadingCorrectionEnabled)
+                                OnMove(-distanceX, -distanceY);
+                            }
+                            else if (HeadingCorrectionEnabled && Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
+                            {
+                                _compassView.OnScroll(distanceX);
+                                Log.WriteLine(LogPriority.Debug, TAG, $"Heading correction: {distanceX}");
+                            }
+                            else if (TiltCorrectionEnabled)
+                            {
+                                if (e.RawX < Resources.DisplayMetrics.WidthPixels / 2)
                                 {
-                                    _compassView.OnScroll(distanceX);
-                                    Log.WriteLine(LogPriority.Debug, TAG, $"Heading correction: {distanceX}");
+                                    _compassView.OnScroll(distanceY, true);
+                                    Log.WriteLine(LogPriority.Debug, TAG, $"Left tilt correction: {distanceY}");
+                                }
+                                else
+                                {
+                                    _compassView.OnScroll(distanceY, false);
+                                    Log.WriteLine(LogPriority.Debug, TAG, $"Right tilt correction: {distanceY}");
                                 }
                             }
-                            else
+                        }
+                        else if (touchCount >= 2)
+                        {
+                            //zooming
+                            if (MoveingAndZoomingEnabled && touchCount >= 2 && m_IsScaling)
                             {
-                                if (TiltCorrectionEnabled)
+                                var distance = Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
+                                var scale = (distance - m_PreviousDistance) / DispDistance();
+                                m_PreviousDistance = distance;
+
+                                scale += 1;
+                                scale = scale * scale;
+
+                                OnZoom(scale, GetScreenWidth() / 2, GetScreenHeight() / 2);
+                            }
+                            else if (ViewAngleCorrectionEnabled)
+                            {
+                                var distX = Math.Abs(e.GetX(0) - e.GetX(1));
+                                var distY = Math.Abs(e.GetY(0) - e.GetY(1));
+                                if (distX > distY)
                                 {
-                                    if (e.RawX < Resources.DisplayMetrics.WidthPixels / 2)
-                                    {
-                                        _compassView.OnScroll(distanceY, true);
-                                        Log.WriteLine(LogPriority.Debug, TAG, $"Left tilt correction: {distanceY}");
-                                    }
-                                    else
-                                    {
-                                        _compassView.OnScroll(distanceY, false);
-                                        Log.WriteLine(LogPriority.Debug, TAG, $"Right tilt correction: {distanceY}");
-                                    }
+                                    var scale = (distX - m_PreviousDistanceX) / GetScreenWidth();
+                                    m_PreviousDistanceX = distX;
+                                    scale += 1;
+                                    _compassView.ScaleHorizontalViewAngle(scale);
+                                    //OnVerticalViewAngleChange();
+                                    Log.WriteLine(LogPriority.Debug, TAG, $"Horizontal VA correction: {scale}");
                                 }
-                            }
-                        }
-                        //zooming
-                        else if (touchCount >= 2 && m_IsScaling && MoveingAndZoomingEnabled)
-                        {
-                            var distance = Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
-                            var scale = (distance - m_PreviousDistance) / DispDistance();
-                            m_PreviousDistance = distance;
-
-                            scale += 1;
-                            scale = scale * scale;
-
-                            OnZoom(scale, GetScreenWidth() / 2, GetScreenHeight() / 2);
-                        }
-                        //moving
-                        else if (!m_IsScaling && /*photoView.Scale > photoView.MinScale && */MoveingAndZoomingEnabled)
-                        {
-                            var distanceX = m_PreviousMoveX - (int)e.GetX();
-                            var distanceY = m_PreviousMoveY - (int)e.GetY();
-                            m_PreviousMoveX = (int)e.GetX();
-                            m_PreviousMoveY = (int)e.GetY();
-                            OnMove(-distanceX, -distanceY);
-                        }
-                        else if (touchCount >= 2 && ViewAngleCorrectionEnabled)
-                        {
-                            var distX = Math.Abs(e.GetX(0) - e.GetX(1));
-                            var distY = Math.Abs(e.GetY(0) - e.GetY(1));
-                            if (distX > distY)
-                            {
-                                var scale = (distX - m_PreviousDistanceX) / GetScreenWidth();
-                                m_PreviousDistanceX = distX;
-                                scale += 1;
-                                _compassView.ScaleHorizontalViewAngle(scale);
-                                //OnVerticalViewAngleChange();
-                                Log.WriteLine(LogPriority.Debug, TAG, $"Horizontal VA correction: {scale}");
-                            }
-                            else
-                            {
-                                var scale = (distY - m_PreviousDistanceY) / GetScreenHeight();
-                                m_PreviousDistanceY = distY;
-                                scale += 1;
-                                _compassView.ScaleVerticalViewAngle(scale);
-                                //OnHorizontalViewAngleChange();
-                                Log.WriteLine(LogPriority.Debug, TAG, $"Vertical VA correction: {scale}");
+                                else
+                                {
+                                    var scale = (distY - m_PreviousDistanceY) / GetScreenHeight();
+                                    m_PreviousDistanceY = distY;
+                                    scale += 1;
+                                    _compassView.ScaleVerticalViewAngle(scale);
+                                    //OnHorizontalViewAngleChange();
+                                    Log.WriteLine(LogPriority.Debug, TAG, $"Vertical VA correction: {scale}");
+                                }
                             }
                         }
                         break;
@@ -519,9 +512,8 @@ namespace HorizontApp.Activities
         #endregion ElevationProfile
 
         #region Required abstract methods
-        public bool OnDown(MotionEvent e) { return false; }
-
-        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
+        public virtual bool OnDown(MotionEvent e) { return false; }
+        public virtual bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
         {
             if (velocityX > 4000)
             {
@@ -537,21 +529,18 @@ namespace HorizontApp.Activities
 
             return false;
         }
-        public void OnLongPress(MotionEvent e) { }
-        public void OnShowPress(MotionEvent e) { }
-        public bool OnSingleTapUp(MotionEvent e) { return false; }
-
-        public bool OnDoubleTap(MotionEvent e)
+        public virtual void OnLongPress(MotionEvent e) { }
+        public virtual void OnShowPress(MotionEvent e) { }
+        public virtual bool OnSingleTapUp(MotionEvent e) { return false; }
+        public virtual bool OnDoubleTap(MotionEvent e)
         {
             return false;
         }
-
-        public bool OnDoubleTapEvent(MotionEvent e)
+        public virtual bool OnDoubleTapEvent(MotionEvent e)
         {
             return false;
         }
-
-        public bool OnSingleTapConfirmed(MotionEvent e)
+        public virtual bool OnSingleTapConfirmed(MotionEvent e)
         {
             var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
 

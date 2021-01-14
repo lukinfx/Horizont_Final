@@ -416,7 +416,7 @@ namespace HorizontApp.Activities
 
         #region Required abstract methods
 
-        public bool OnDoubleTap(MotionEvent e)
+        public override bool OnDoubleTap(MotionEvent e)
         {
             float scale;
             if (photoView.DisplayScale < 1.1)
@@ -432,11 +432,6 @@ namespace HorizontApp.Activities
             OnZoom(scale, (int)e.GetX(), (int)e.GetY());
             _compassView.Move(photoView.DisplayTranslateX, photoView.DisplayTranslateY);
 
-            return false;
-        }
-
-        public bool OnDoubleTapEvent(MotionEvent e)
-        {
             return false;
         }
 
