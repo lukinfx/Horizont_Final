@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_activity"
+    android:background="@drawable/bg_activity_dark"
     android:paddingHorizontal="10dp"
     android:gravity="bottom">
 
@@ -20,7 +20,7 @@
       android:textStyle="bold"
       android:ellipsize="end"
       android:singleLine="true"
-      android:textColor="@android:color/black"
+      android:textColor="#c8ff00"
       android:id="@+id/textViewPoiName" />
 
     <LinearLayout 
@@ -40,21 +40,21 @@
           android:textAppearance="?android:attr/textAppearanceSmall"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:textColor="@android:color/black"
+          android:textColor="#c8ff00"
           android:id="@+id/textViewPoiDescription" />
         <TextView
           android:text="GPS location"
           android:textAppearance="?android:attr/textAppearanceSmall"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:textColor="@android:color/black"
+          android:textColor="#c8ff00"
           android:id="@+id/textViewPoiGpsLocation" />
         <TextView
           android:text="Poi data"
           android:textAppearance="?android:attr/textAppearanceSmall"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:textColor="@android:color/black"
+          android:textColor="#c8ff00"
           android:id="@+id/textViewPoiData" />
       </LinearLayout>
 
