@@ -35,7 +35,7 @@ namespace HorizontApp.Activities
     {
         private static string TAG = "Horizon-BaseActivity";
 
-        protected IAppContext Context { get; set; }
+        protected abstract IAppContext Context { get; }
         private TextView _headingTextView;
 
         protected CompassView _compassView;
@@ -66,7 +66,11 @@ namespace HorizontApp.Activities
         private int m_startTime;
         private int m_tapCount = 0;
 
-        protected bool EditingOn { get; set; }
+        protected abstract bool MoveingAndZoomingEnabled { get; }
+        protected abstract bool TiltCorrectionEnabled { get; }
+        protected abstract bool HeadingCorrectionEnabled { get; }
+        protected abstract bool ViewAngleCorrectionEnabled { get; }
+
 
         private PoiViewItem _selectedPoi;
 
@@ -131,11 +135,6 @@ namespace HorizontApp.Activities
             Context.DataChanged += DataChanged;
         }
 
-        protected void ToggleEditing()
-        {
-            EditingOn = !EditingOn;
-        }
-
         public void OnLayoutChanged(object sender, LayoutChangeEventArgs e)
         {
             System.Threading.Tasks.Task.Run(() =>
@@ -187,26 +186,6 @@ namespace HorizontApp.Activities
 
         public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
         {
-            //###in MainActivity
-            //if (e1.RawY < Resources.DisplayMetrics.HeightPixels / 2)
-            //    _compassView.OnScroll(distanceX);
-            //return false;
-
-            if (EditingOn)
-            {
-                if (e1.RawX < Resources.DisplayMetrics.WidthPixels / 7)
-                {
-                    _compassView.OnScroll(distanceY, true);
-                }
-                else if (e1.RawX > Resources.DisplayMetrics.WidthPixels - Resources.DisplayMetrics.WidthPixels / 7)
-                {
-                    _compassView.OnScroll(distanceY, false);
-                }
-                else if (e1.RawY < 0.75 * Resources.DisplayMetrics.HeightPixels)
-                {
-                    _compassView.OnScroll(distanceX);
-                }
-            }
             return false;
         }
 
@@ -255,7 +234,7 @@ namespace HorizontApp.Activities
                 case MotionEventActions.Move:
                     {
                         //heading and tilt correction
-                        if (EditingOn && touchCount == 1)
+                        if (touchCount == 1)
                         {
                             var distanceX = m_PreviousMoveX - (int)e.GetX();
                             var distanceY = m_PreviousMoveY - (int)e.GetY();
@@ -264,25 +243,31 @@ namespace HorizontApp.Activities
 
                             if (Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
                             {
-                                _compassView.OnScroll(distanceX);
-                                Log.WriteLine(LogPriority.Debug, TAG, $"Heading correction: {distanceX}");
+                                if (HeadingCorrectionEnabled)
+                                {
+                                    _compassView.OnScroll(distanceX);
+                                    Log.WriteLine(LogPriority.Debug, TAG, $"Heading correction: {distanceX}");
+                                }
                             }
                             else
                             {
-                                if (e.RawX < Resources.DisplayMetrics.WidthPixels / 2)
+                                if (TiltCorrectionEnabled)
                                 {
-                                    _compassView.OnScroll(distanceY, true);
-                                    Log.WriteLine(LogPriority.Debug, TAG, $"Left tilt correction: {distanceY}");
-                                }
-                                else
-                                {
-                                    _compassView.OnScroll(distanceY, false);
-                                    Log.WriteLine(LogPriority.Debug, TAG, $"Right tilt correction: {distanceY}");
+                                    if (e.RawX < Resources.DisplayMetrics.WidthPixels / 2)
+                                    {
+                                        _compassView.OnScroll(distanceY, true);
+                                        Log.WriteLine(LogPriority.Debug, TAG, $"Left tilt correction: {distanceY}");
+                                    }
+                                    else
+                                    {
+                                        _compassView.OnScroll(distanceY, false);
+                                        Log.WriteLine(LogPriority.Debug, TAG, $"Right tilt correction: {distanceY}");
+                                    }
                                 }
                             }
                         }
                         //zooming
-                        else if (touchCount >= 2 && m_IsScaling && !EditingOn)
+                        else if (touchCount >= 2 && m_IsScaling && MoveingAndZoomingEnabled)
                         {
                             var distance = Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));
                             var scale = (distance - m_PreviousDistance) / DispDistance();
@@ -294,7 +279,7 @@ namespace HorizontApp.Activities
                             OnZoom(scale, GetScreenWidth() / 2, GetScreenHeight() / 2);
                         }
                         //moving
-                        else if (!m_IsScaling && /*photoView.Scale > photoView.MinScale && */!EditingOn)
+                        else if (!m_IsScaling && /*photoView.Scale > photoView.MinScale && */MoveingAndZoomingEnabled)
                         {
                             var distanceX = m_PreviousMoveX - (int)e.GetX();
                             var distanceY = m_PreviousMoveY - (int)e.GetY();
@@ -302,7 +287,7 @@ namespace HorizontApp.Activities
                             m_PreviousMoveY = (int)e.GetY();
                             OnMove(-distanceX, -distanceY);
                         }
-                        else if (touchCount >= 2 && EditingOn)
+                        else if (touchCount >= 2 && ViewAngleCorrectionEnabled)
                         {
                             var distX = Math.Abs(e.GetX(0) - e.GetX(1));
                             var distY = Math.Abs(e.GetY(0) - e.GetY(1));
@@ -406,7 +391,7 @@ namespace HorizontApp.Activities
             CheckAndReloadElevationProfile();
         }
 
-        private void CheckAndReloadElevationProfile()
+        protected void CheckAndReloadElevationProfile()
         {
             if (Context.Settings.ShowElevationProfile)
             {

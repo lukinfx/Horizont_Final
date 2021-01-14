@@ -55,6 +55,12 @@ namespace HorizontApp.Activities
 
         private AppContextStaticData _context;
         protected override IAppContext Context { get { return _context; } }
+        protected bool EditingOn { get; set; }
+
+        protected override bool MoveingAndZoomingEnabled => !EditingOn;
+        protected override bool TiltCorrectionEnabled => EditingOn;
+        protected override bool HeadingCorrectionEnabled => EditingOn;
+        protected override bool ViewAngleCorrectionEnabled => EditingOn; 
 
         void InitializeAppContext(PhotoData photodata)
         {
@@ -197,6 +203,11 @@ namespace HorizontApp.Activities
             {
 
             }
+        }
+
+        protected void ToggleEditing()
+        {
+            EditingOn = !EditingOn;
         }
 
         public override void OnDataChanged(object sender, DataChangedEventArgs e)

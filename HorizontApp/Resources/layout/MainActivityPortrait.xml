@@ -52,6 +52,12 @@
             android:id="@+id/buttonRecord" />
 
           <include
+            android:id="@+id/mainActivityPoiInfo"
+            layout="@layout/MainActivityPoiInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+          <include
             android:id="@+id/mainActivitySeekBars"
             layout="@layout/MainActivitySeekBars" 
             android:layout_width="match_parent"

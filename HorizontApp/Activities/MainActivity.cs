@@ -33,7 +33,7 @@ using HorizonLib.Domain.Enums;
 namespace HorizontApp
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : Activity, IOnClickListener, GestureDetector.IOnGestureListener
+    public class MainActivity : HorizonBaseActivity
     {
         private static readonly int REQUEST_PERMISSIONS = 0;
 
@@ -42,37 +42,28 @@ namespace HorizontApp
         //UI elements
         private TextView _headingEditText;
         private TextView _GPSEditText;
-        private TextView _filterText;
-        private ImageButton _selectCategoryButton;
         private ImageButton _pauseButton;
         private ImageButton _recordButton;
         private ImageButton _menuButton;
-        private ImageButton _favouriteButton;
-        private ImageButton _displayTerrainButton;
         private ImageButton _refreshCorrectorButton;
 
-        private LinearLayout _mainActivitySeekBars;
-        private CompassView _compassView;
-        private SeekBar _distanceSeekBar;
-        private SeekBar _heightSeekBar;
         private View _mainLayout;
         
         private CameraFragment _cameraFragment;
 
         private static bool _firstStart = true;
 
-        private bool _elevationProfileBeingGenerated = false;
+        protected override IAppContext Context { get { return AppContextLiveData.Instance; } }
 
-        private GestureDetector _gestureDetector;
-
-        protected IAppContext Context { get { return AppContextLiveData.Instance; } }
+        protected override bool MoveingAndZoomingEnabled => false;
+        protected override bool TiltCorrectionEnabled => false;
+        protected override bool HeadingCorrectionEnabled => true;
+        protected override bool ViewAngleCorrectionEnabled => false;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
-
-            Context.SetLocale(this);
 
             if (AppContextLiveData.Instance.IsPortrait)
             {
@@ -82,9 +73,8 @@ namespace HorizontApp
             {
                 SetContentView(Resource.Layout.MainActivityLandscape);
             }
-
-            _gestureDetector = new GestureDetector(this);
-
+            
+            
             if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) != Permission.Granted ||
                 ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != Permission.Granted ||
                 ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) != Permission.Granted ||
@@ -98,10 +88,11 @@ namespace HorizontApp
                 Context.Start();
             }
 
-            Context.DataChanged += OnDataChanged;
-            Context.HeadingChanged += OnHeadingChanged;
-
+            InitializeBaseActivityUI();
             InitializeUIElements();
+
+            Start();
+            Context.HeadingChanged += OnHeadingChanged;
 
             if (bundle != null)
             {
@@ -142,28 +133,8 @@ namespace HorizontApp
             _headingEditText = FindViewById<TextView>(Resource.Id.editText1);
             _GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
 
-            _mainActivitySeekBars = FindViewById<LinearLayout>(Resource.Id.mainActivitySeekBars);
-            _mainActivitySeekBars.Enabled = true;
-            _mainActivitySeekBars.Visibility = ViewStates.Visible;
-
-            _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
-            _selectCategoryButton.SetOnClickListener(this);
-
-            _filterText = FindViewById<TextView>(Resource.Id.textView1);
-
-            _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
-            _distanceSeekBar.Progress = Context.Settings.MaxDistance;
-            _distanceSeekBar.ProgressChanged += OnMaxDistanceChanged;
-
-            _heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
-            _heightSeekBar.Progress = Context.Settings.MinAltitute;
-            _heightSeekBar.ProgressChanged += OnMinAltitudeChanged;
-
             _menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
             _menuButton.SetOnClickListener(this);
-
-            _favouriteButton = FindViewById<ImageButton>(Resource.Id.favouriteFilterButton);
-            _favouriteButton.SetOnClickListener(this);
 
             _pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
             _pauseButton.SetOnClickListener(this);
@@ -171,18 +142,12 @@ namespace HorizontApp
             _recordButton = FindViewById<ImageButton>(Resource.Id.buttonRecord);
             _recordButton.SetOnClickListener(this);
 
-            _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
-            _displayTerrainButton.SetOnClickListener(this);
-            _displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
-
             _refreshCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
             _refreshCorrectorButton.SetOnClickListener(this);
 
-            _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.Initialize(Context, true, Context.Settings.CameraPictureSize);
 
             _mainLayout = FindViewById(Resource.Id.sample_main_layout);
-
         }
 
         protected override void OnStart()
@@ -213,8 +178,10 @@ namespace HorizontApp
             FragmentManager.BeginTransaction().Replace(Resource.Id.container, _cameraFragment).Commit();
         }
 
-        public async void OnClick(Android.Views.View v)
+        public override void OnClick(View v)
         {
+            base.OnClick(v);
+
             try
             {
                 switch (v.Id)
@@ -225,28 +192,14 @@ namespace HorizontApp
                             menuActivityIntent.PutExtra("latitude", Context.MyLocation.Latitude);
                             menuActivityIntent.PutExtra("longitude", Context.MyLocation.Longitude);
                             menuActivityIntent.PutExtra("altitude", Context.MyLocation.Altitude);
-                            menuActivityIntent.PutExtra("maxDistance", _distanceSeekBar.Progress);
-                            menuActivityIntent.PutExtra("minAltitude", _heightSeekBar.Progress);
+                            menuActivityIntent.PutExtra("maxDistance", MaxDistance);
+                            menuActivityIntent.PutExtra("minAltitude", MinHeight);
                             StartActivity(menuActivityIntent);
-                            break;
-                        }
-                    case Resource.Id.favouriteFilterButton:
-                        {
-                            Context.Settings.ToggleFavourite(); ;
-                            if (Context.Settings.ShowFavoritesOnly)
-                                _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
-                            else
-                                _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
                             break;
                         }
                     case Resource.Id.buttonPause:
                         {
                             HandleButtonPauseClicked();
-                            break;
-                        }
-                    case Resource.Id.buttonDisplayTerrain:
-                        {
-                            HandleDisplayTarrainButtonClicked();
                             break;
                         }
                     case Resource.Id.buttonRecord:
@@ -256,12 +209,6 @@ namespace HorizontApp
                             Timer timer = new Timer(500);
                             timer.Elapsed += OnTakePictureTimerElapsed;
                             timer.Enabled = true;
-                            break;
-                        }
-                    case Resource.Id.buttonCategorySelect:
-                        {
-                            var dialog = new PoiFilterDialog(this, Context);
-                            dialog.Show();
                             break;
                         }
                     case Resource.Id.buttonResetCorrector:
@@ -336,133 +283,6 @@ namespace HorizontApp
 
         #endregion Request Permissions
 
-        #region Elevation Profile Calculation
-
-        private void HandleDisplayTarrainButtonClicked()
-        {
-            Context.Settings.ShowElevationProfile = !Context.Settings.ShowElevationProfile;
-            _displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
-
-            CheckAndReloadElevationProfile();
-        }
-
-        private void CheckAndReloadElevationProfile()
-        {
-            if (Context.Settings.ShowElevationProfile)
-            {
-                if (GpsUtils.HasAltitude(Context.MyLocation))
-                {
-                    if (_elevationProfileBeingGenerated == false)
-                    {
-                        if (Context.ElevationProfileData == null || !Context.ElevationProfileData.IsValid(Context.MyLocation, Context.Settings.MaxDistance))
-                        {
-                            GenerateElevationProfile();
-                        }
-                    }
-                }
-            }
-        }
-
-        private void GenerateElevationProfile()
-        {
-            try {
-                if (!GpsUtils.HasAltitude(Context.MyLocation))
-                {
-                    PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
-                    return;
-                }
-
-                _elevationProfileBeingGenerated = true;
-
-                var ec = new ElevationCalculation(Context.MyLocation, _distanceSeekBar.Progress);
-
-                var size = ec.GetSizeToDownload();
-                if (size == 0)
-                {
-                    StartDownloadAndCalculate(ec);
-                    return;
-                }
-
-                using (var builder = new AlertDialog.Builder(this))
-                {
-                    builder.SetTitle("Question");
-                    builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount downloaded data. \r\n\r\nDo you really want to continue?");
-                    builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
-                    builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
-                    builder.SetNegativeButton("Cancel", (senderAlert, args) => { _elevationProfileBeingGenerated = false; });
-
-                    var myCustomDialog = builder.Create();
-
-                    myCustomDialog.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
-            }
-        }
-
-        private void StartDownloadAndCalculateAsync(ElevationCalculation ec)
-        {
-            try
-            {
-                Context.ElevationProfileDataDistance = ec.MaxDistance;
-                StartDownloadAndCalculate(ec);
-            }
-            catch (Exception ex)
-            {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
-            }
-        }
-
-        private void StartDownloadAndCalculate(ElevationCalculation ec)
-        {
-            var lastProgressUpdate = System.Environment.TickCount;
-
-            var pd = new ProgressDialog(this);
-            pd.SetMessage("Loading elevation data. Please Wait.");
-            pd.SetCancelable(false);
-            pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
-            pd.Show();
-
-            ec.OnFinishedAction = (result) =>
-            {
-                pd.Hide();
-                if (!string.IsNullOrEmpty(result.ErrorMessage))
-                {
-                    PopupHelper.ErrorDialog(this, "Error", result.ErrorMessage);
-                }
-
-                Context.ElevationProfileData = result;
-                Context.ElevationProfileDataDistance = Context.Settings.MaxDistance;
-
-                RefreshElevationProfile();
-                _elevationProfileBeingGenerated = false;
-            };
-            ec.OnStageChange = (text, max) =>
-            {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    pd.SetMessage(text);
-                    pd.Max = max;
-                });
-            };
-            ec.OnProgressChange = (progress) =>
-            {
-                var tickCount = System.Environment.TickCount;
-                if (tickCount - lastProgressUpdate > 100)
-                {
-                    MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
-                    Thread.Sleep(50);
-                    lastProgressUpdate = tickCount;
-                }
-            };
-
-            ec.Execute(Context.MyLocation);
-        }
-
-        #endregion Elevation Profile Calculation
-
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
@@ -499,36 +319,6 @@ namespace HorizontApp
             }
         }
 
-        private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
-        {
-            _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
-            _filterText.Visibility = ViewStates.Visible;
-
-            Context.Settings.MinAltitute = _heightSeekBar.Progress;
-        }
-
-        private void OnMaxDistanceChanged(object sender, SeekBar.ProgressChangedEventArgs e)
-        {
-            //TODO: Save minAltitude and maxDistance to CompassViewSettings
-            _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
-            _filterText.Visibility = ViewStates.Visible;
-
-            Context.Settings.MaxDistance = _distanceSeekBar.Progress;
-        }
-
-        public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
-        {
-            if (e1.RawY < Resources.DisplayMetrics.HeightPixels / 2)
-                _compassView.OnScroll(distanceX);
-            return false;
-        }
-
-        public override bool OnTouchEvent(MotionEvent e)
-        {
-            _gestureDetector.OnTouchEvent(e);
-            return false;
-        }
-
         public void OnHeadingChanged(object sender, HeadingChangedEventArgs e)
         {
             MainThread.BeginInvokeOnMainThread(() =>
@@ -537,27 +327,54 @@ namespace HorizontApp
             });
         }
 
-        public void OnDataChanged(object sender, DataChangedEventArgs e)
+        public override void OnDataChanged(object sender, DataChangedEventArgs e)
         {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                _filterText.Visibility = ViewStates.Invisible;
+            base.OnDataChanged(sender, e);
 
-                _GPSEditText.Text = GpsUtils.HasLocation(Context.MyLocation) ?
-                    $"Lat:{Context.MyLocation.Latitude:F7} Lon:{Context.MyLocation.Longitude:F7} Alt:{Context.MyLocation.Altitude:F0}":"No GPS location";
+            _GPSEditText.Text = GpsUtils.HasLocation(Context.MyLocation) ?
+                $"Lat:{Context.MyLocation.Latitude:F7} Lon:{Context.MyLocation.Longitude:F7} Alt:{Context.MyLocation.Altitude:F0}":"No GPS location";
 
-                _compassView.SetPoiViewItemList(e.PoiData);
+            _compassView.SetPoiViewItemList(e.PoiData);
 
-                CheckAndReloadElevationProfile();
-            });
+            CheckAndReloadElevationProfile();
         }
 
-        #region Required abstract methods
-        public bool OnDown(MotionEvent e) { return false; }
-        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) { return false; }
-        public void OnLongPress(MotionEvent e) { }
-        public void OnShowPress(MotionEvent e) { }
-        public bool OnSingleTapUp(MotionEvent e) { return false; }
-        #endregion Required abstract methods
+        protected override void UpdateStatusBar() 
+        {
+        }
+
+        protected override void OnMove(int distanceX, int distanceY)
+        {
+            //move functionality which is not supported here
+        }
+
+        protected override void OnZoom(float scale, int x, int y)
+        {
+            //zoom functionality which is not supported here
+        }
+
+        protected override int GetScreenWidth()
+        {
+            //it's just for zoom functionality which is not supported here
+            return 0;
+        }
+
+        protected override int GetScreenHeight()
+        {
+            //it's just for zoom functionality which is not supported here
+            return 0;
+        }
+
+        protected override int GetPictureWidth()
+        {
+            //it's just for move/zoom functionality which is not supported here, but anyway...
+            return Context.Settings.CameraPictureSize.Width;
+        }
+
+        protected override int GetPictureHeight()
+        {
+            //it's just for move/zoom functionality which is not supported here, but anyway...
+            return Context.Settings.CameraPictureSize.Height;
+        }
     }
 }
