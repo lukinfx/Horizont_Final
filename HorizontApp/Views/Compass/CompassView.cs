@@ -326,6 +326,11 @@ namespace HorizontApp.Views
 
         public PoiViewItem GetPoiByScreenLocation(float x, float y)
         {
+            var windowLocationOnScreen = new int[2];
+            GetLocationInWindow(windowLocationOnScreen);
+            x = x - windowLocationOnScreen[0];
+            y = y - windowLocationOnScreen[1];
+
             var heading = _context.Heading + HeadingCorrector;
 
             foreach (var item in list)
