@@ -1,42 +1,41 @@
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/sample_main_layout">
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:id="@+id/sample_main_layout">
 
     <AbsoluteLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation=    "horizontal"
-            android:layout_width=    "match_parent"
-            android:layout_height=    "match_parent"
-            android:layout_weight="1"
-            android:id="@+id/container" />
+          android:orientation=    "horizontal"
+          android:layout_width=    "match_parent"
+          android:layout_height=    "match_parent"
+          android:layout_weight="1"
+          android:id="@+id/container">
+        </LinearLayout>
 
         <HorizontApp.Views.CompassView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/compassView1"/>
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:id="@+id/compassView1"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="#ffff00"
-            android:textAlignment="center"
-            android:textSize="42dp"
-            android:paddingTop="200dp"
-            android:background="#00000000"
-            android:id="@+id/textView1" />
+        <include
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:id="@+id/notificationArea"
+          layout="@layout/NotificationBar"
+          android:gravity="center" />
+
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="right">
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="right">
 
             <ImageButton
               android:src="@drawable/ic_photo1"
@@ -89,7 +88,6 @@
               android:gravity="bottom"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"/>
-
         </LinearLayout>
     </AbsoluteLayout>
 </LinearLayout>

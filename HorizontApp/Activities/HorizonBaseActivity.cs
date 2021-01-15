@@ -39,7 +39,7 @@ namespace HorizontApp.Activities
         private TextView _headingTextView;
 
         protected CompassView _compassView;
-        private TextView _filterText;
+        private TextView _textViewNotification;
 
         private ImageButton _favouriteButton;
         private ImageButton _displayTerrainButton;
@@ -96,7 +96,7 @@ namespace HorizontApp.Activities
             _gestureDetector = new GestureDetector(this);
 
 
-            _filterText = FindViewById<TextView>(Resource.Id.textView1);
+            _textViewNotification = FindViewById<TextView>(Resource.Id.textViewNotification);
 
             _headingTextView = FindViewById<TextView>(Resource.Id.editText1);
 
@@ -147,7 +147,7 @@ namespace HorizontApp.Activities
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                _filterText.Visibility = ViewStates.Invisible;
+                _textViewNotification.Visibility = ViewStates.Invisible;
 
                 OnDataChanged(sender, e);
 
@@ -157,13 +157,13 @@ namespace HorizontApp.Activities
 
         public virtual void OnDataChanged(object sender, DataChangedEventArgs e)
         {
-            _filterText.Visibility = ViewStates.Invisible;
+            _textViewNotification.Visibility = ViewStates.Invisible;
         }
 
         private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
-            _filterText.Visibility = ViewStates.Visible;
+            _textViewNotification.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
+            _textViewNotification.Visibility = ViewStates.Visible;
 
             Context.Settings.MinAltitute = _heightSeekBar.Progress;
         }
@@ -171,8 +171,8 @@ namespace HorizontApp.Activities
         private void OnMaxDistanceChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
             //TODO: Save minAltitude and maxDistance to CompassViewSettings
-            _filterText.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
-            _filterText.Visibility = ViewStates.Visible;
+            _textViewNotification.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
+            _textViewNotification.Visibility = ViewStates.Visible;
 
             Context.Settings.MaxDistance = _distanceSeekBar.Progress;
         }
