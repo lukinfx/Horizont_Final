@@ -24,9 +24,16 @@ namespace HorizontApp.Activities
         private DisplayOrientation appOrientation;
 
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+            AppContextLiveData.Instance.SetLocale(this);
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            AppContextLiveData.Instance.SetLocale(this);
 
             _location = new GpsLocation()
             {
@@ -90,8 +97,7 @@ namespace HorizontApp.Activities
                     StartPoisListActivity();
                     break;
                 case Resource.Id.settingsLinearLayout:
-                    Intent settingsActivityIntent = new Intent(this, typeof(SettingsActivity));
-                    StartActivity(settingsActivityIntent);
+                    StartSettingsActivity();
                     break;
                 case Resource.Id.photoGalleryLinearLayout:
                     Intent photosActivityIntent = new Intent(this, typeof(PhotosActivity));
@@ -116,18 +122,28 @@ namespace HorizontApp.Activities
             StartActivityForResult(listActivityIntent, PoiListActivity.REQUEST_SHOW_POI_LIST);
         }
 
+        private void StartSettingsActivity()
+        {
+            Intent settingsActivityIntent = new Intent(this, typeof(SettingsActivity));
+            StartActivityForResult(settingsActivityIntent,SettingsActivity.REQUEST_SHOW_SETTINGS);
+        }
+
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
             if (requestCode == PoiListActivity.REQUEST_SHOW_POI_LIST)
             {
-                if (resultCode == (Result) PoiListActivity.RESULT_OK_AND_CLOSE_PARENT)
+                if (resultCode == (Result)PoiListActivity.RESULT_OK_AND_CLOSE_PARENT)
                 {
                     SetResult(Result.Ok);
                     Finish();
                 }
             }
-            
+            else if (requestCode == SettingsActivity.REQUEST_SHOW_SETTINGS)
+            {
+                Recreate();
+            }
+
         }
     }
 }

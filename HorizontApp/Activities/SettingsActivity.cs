@@ -25,6 +25,8 @@ namespace HorizontApp.Activities
     [Activity(Label = "SettingsActivity")]
     public class SettingsActivity : Activity, IOnClickListener
     {
+        public static int REQUEST_SHOW_SETTINGS = Definitions.BaseResultCode.SETTINGS_ACTIVITY + 0;
+
         public static Result RESULT_CANCELED { get { return Result.Canceled; } }
         public static Result RESULT_OK { get { return Result.Ok; } }
         public static Result RESULT_OK_AND_CLOSE_PARENT { get { return (Result)2; } }

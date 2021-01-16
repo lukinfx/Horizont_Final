@@ -28,6 +28,7 @@ namespace HorizontApp.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            AppContextLiveData.Instance.SetLocale(this);
 
             if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {

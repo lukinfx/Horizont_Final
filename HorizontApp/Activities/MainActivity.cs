@@ -37,7 +37,7 @@ namespace HorizontApp
     {
         private static readonly int REQUEST_PERMISSIONS = 0;
 
-        private static readonly int ReqCode_SelectCategoryActivity = 1000;
+        //private static readonly int ReqCode_SelectCategoryActivity = 1000;
 
         //UI elements
         private TextView _headingEditText;
@@ -286,10 +286,10 @@ namespace HorizontApp
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-            if (requestCode == ReqCode_SelectCategoryActivity)
+            /*if (requestCode == ReqCode_SelectCategoryActivity)
             {
-                //ReloadData(favourite);
-            }
+                ReloadData(favourite);
+            }*/
         }
 
         private void OnTakePictureTimerElapsed(object sender, ElapsedEventArgs e)

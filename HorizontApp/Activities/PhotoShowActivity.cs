@@ -34,7 +34,7 @@ namespace HorizontApp.Activities
     [Activity(Label = "PhotoShowActivity")]
     public class PhotoShowActivity : HorizonBaseActivity
     {
-        public static int REQUEST_SHOW_PHOTO = 0;
+        public static int REQUEST_SHOW_PHOTO = Definitions.BaseResultCode.PHOTO_SHOW_ACTIVITY;
 
         private static string TAG = "Horizon-PhotoShowActivity";
 
@@ -103,6 +103,7 @@ namespace HorizontApp.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            AppContextLiveData.Instance.SetLocale(this);
 
             if (AppContextLiveData.Instance.IsPortrait)
             {

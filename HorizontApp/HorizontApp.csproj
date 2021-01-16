@@ -90,6 +90,7 @@
     <Compile Include="AppContext\AppContextLiveData.cs" />
     <Compile Include="AppContext\AppContextStaticData.cs" />
     <Compile Include="DataAccess\PoiDatabase.cs" />
+    <Compile Include="Definitions\Definitions.cs" />
     <Compile Include="HorizontApplication.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Providers\CompassProvider.cs" />

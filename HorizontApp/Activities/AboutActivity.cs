@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
-using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using HorizontApp.AppContext;
 
 namespace HorizontApp.Activities
 {
@@ -19,6 +13,7 @@ namespace HorizontApp.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            AppContextLiveData.Instance.SetLocale(this);
 
             SetContentView(Resource.Layout.AboutActivity);
 
