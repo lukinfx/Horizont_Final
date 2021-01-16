@@ -1,5 +1,14 @@
 <resources>
   <string name="app_name">Horizon</string>
+  
+  <!--Menu Activity-->
+  <string name="MainActivity">Go back to camera</string>
+  <string name="PoiListActivity">List of POIs</string>
+  <string name="DownloadActivity">Download data</string>
+  <string name="PhotosActivity">Photo gallery</string>
+  <string name="SettingsActivity">Settings</string>
+  <string name="AboutActivity">About</string>
+
   <string name="action_settings">Settings</string>
   <string name="SpinnerItems">Choose a style</string>
 
