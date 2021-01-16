@@ -6,6 +6,7 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using HorizontApp.AppContext;
 using Xamarin.Essentials;
 using Newtonsoft.Json;
 using HorizontApp.DataAccess;
@@ -45,6 +46,7 @@ namespace HorizontApp.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            AppContextLiveData.Instance.SetLocale(this);
 
             InitializeUI();
         }

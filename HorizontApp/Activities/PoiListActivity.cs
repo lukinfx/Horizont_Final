@@ -22,7 +22,7 @@ namespace HorizontApp.Views.ListOfPoiView
     [Activity(Label = "PoiListActivity")]
     public class PoiListActivity : Activity, IPoiActionListener
     {
-        public static int REQUEST_SHOW_POI_LIST = 0;
+        public static int REQUEST_SHOW_POI_LIST = Definitions.BaseResultCode.POILIST_ACTIVITY;
 
         public static Result RESULT_CANCELED { get { return Result.Canceled; } }
         public static Result RESULT_OK { get { return Result.Ok; } }
@@ -45,6 +45,7 @@ namespace HorizontApp.Views.ListOfPoiView
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            AppContextLiveData.Instance.SetLocale(this);
 
             _location.Latitude = Intent.GetDoubleExtra("latitude", 0);
             _location.Longitude = Intent.GetDoubleExtra("longitude", 0);

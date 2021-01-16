@@ -21,8 +21,8 @@ namespace HorizontApp.Activities
     [Activity(Label = "EditActivity")]
     public class EditActivity : Activity, IOnClickListener
     {
-        public static int REQUEST_ADD_POI = 0;
-        public static int REQUEST_EDIT_POI = 1;
+        public static int REQUEST_ADD_POI = Definitions.BaseResultCode.POIEDIT_ACTIVITY + 0;
+        public static int REQUEST_EDIT_POI = Definitions.BaseResultCode.POIEDIT_ACTIVITY + 1;
 
         public static Result RESULT_CANCELED { get { return Result.Canceled; } }
         public static Result RESULT_OK { get { return Result.Ok; } }
@@ -50,7 +50,8 @@ namespace HorizontApp.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            AppContextLiveData.Instance.SetLocale(this);
+            Platform.Init(this, savedInstanceState);
 
             if (AppContextLiveData.Instance.IsPortrait)
             {
