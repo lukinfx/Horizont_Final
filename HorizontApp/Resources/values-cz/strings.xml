@@ -1,5 +1,14 @@
 <resources>
   <string name="app_name">Horizon</string>
+
+  <!--Menu Activity-->
+  <string name="MainActivity">Zpět do fotoaparátu</string>
+  <string name="PoiListActivity">Seznam bodů</string>
+  <string name="DownloadActivity">Stažení dat</string>
+  <string name="PhotosActivity">Galerie fotografií</string>
+  <string name="SettingsActivity">Nastavení</string>
+  <string name="AboutActivity">O aplikaci</string>
+
   <string name="action_settings">Nastavení</string>
   <string name="SpinnerItems">Vyber zobrazení aplikace</string>
 
