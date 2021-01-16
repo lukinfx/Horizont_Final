@@ -1,7 +1,4 @@
 ﻿using Android.App;
-using Android.Content;
-using Android.Graphics;
-using Android.OS;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -10,23 +7,13 @@ using HorizontApp.DataAccess;
 using HorizontApp.Tasks;
 using HorizontApp.Utilities;
 using HorizontApp.Views;
-using HorizontLib.Domain.Enums;
-using HorizontLib.Domain.Models;
 using HorizontLib.Domain.ViewModel;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Threading;
-using HorizontLib.Utilities;
 using Xamarin.Essentials;
 using static Android.Views.View;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
-using HorizontApp.Views.ScaleImage;
-using Xamarin.Forms;
-using AbsoluteLayout = Android.Widget.AbsoluteLayout;
 using ImageButton = Android.Widget.ImageButton;
-using Rect = Android.Graphics.Rect;
 using View = Android.Views.View;
 
 namespace HorizontApp.Activities
@@ -158,6 +145,7 @@ namespace HorizontApp.Activities
         public virtual void OnDataChanged(object sender, DataChangedEventArgs e)
         {
             _textViewNotification.Visibility = ViewStates.Invisible;
+            UpdateStatusBar();
         }
 
         private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
@@ -395,6 +383,10 @@ namespace HorizontApp.Activities
                         if (Context.ElevationProfileData == null || !Context.ElevationProfileData.IsValid(Context.MyLocation, Context.Settings.MaxDistance))
                         {
                             GenerateElevationProfile();
+                        }
+                        else
+                        {
+                            RefreshElevationProfile();
                         }
                     }
                 }

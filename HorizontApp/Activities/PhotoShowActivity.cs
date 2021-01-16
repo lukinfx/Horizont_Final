@@ -6,8 +6,6 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using HorizontApp.AppContext;
-using HorizontApp.DataAccess;
-using HorizontApp.Tasks;
 using HorizontApp.Utilities;
 using HorizontApp.Views;
 using HorizontLib.Domain.Enums;
@@ -17,14 +15,10 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 using HorizontLib.Utilities;
 using Xamarin.Essentials;
-using static Android.Views.View;
-using GpsUtils = HorizontApp.Utilities.GpsUtils;
 using HorizontApp.Views.ScaleImage;
-using Xamarin.Forms;
-using AbsoluteLayout = Android.Widget.AbsoluteLayout;
+using GpsUtils = HorizontApp.Utilities.GpsUtils;
 using ImageButton = Android.Widget.ImageButton;
 using Rect = Android.Graphics.Rect;
 using View = Android.Views.View;
@@ -217,27 +211,8 @@ namespace HorizontApp.Activities
             
             Log.WriteLine(LogPriority.Debug, TAG, $"PoiCount: {e.PoiData.Count}");
             _compassView.SetPoiViewItemList(e.PoiData);
-        }
-
-        private void OnMaxDistanceChanged(object sender, SeekBar.ProgressChangedEventArgs e)
-        {
-            if (Context.Settings.ShowElevationProfile)
-            {
-                if (Context.ElevationProfileData == null && photodata.JsonElevationProfileData != null)
-                {
-                    Context.ElevationProfileData = JsonConvert.DeserializeObject<ElevationProfileData>(photodata.JsonElevationProfileData);
-                }
-
-                if (Context.ElevationProfileData == null || Context.ElevationProfileData.MaxDistance < Context.Settings.MaxDistance)
-                {
-                    GenerateElevationProfile();
-                }
-                else
-                {
-                    RefreshElevationProfile();
-                }
-            }
-
+            
+            CheckAndReloadElevationProfile();
         }
 
         protected override void UpdateStatusBar()

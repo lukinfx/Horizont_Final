@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Timers;
-using System.Collections.Generic;
-using Java.Lang;
-using Exception = System.Exception;
-using Math = System.Math;
-using String = System.String;
 using Android;
 using Android.App;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
 using Android.Content.PM;
@@ -17,18 +11,16 @@ using Android.Content;
 using Android.Support.V13.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
-using static Android.Views.View;
-using AlertDialog = Android.Support.V7.App.AlertDialog;
 using Xamarin.Essentials;
 using HorizontApp.Utilities;
-using HorizontApp.Views;
 using HorizontApp.Views.Camera;
 using HorizontApp.Activities;
-using HorizontLib.Domain.Enums;
-using HorizontApp.Tasks;
 using HorizontApp.AppContext;
-using SQLitePCL;
-using HorizonLib.Domain.Enums;
+
+using Exception = System.Exception;
+using Math = System.Math;
+using String = System.String;
+using AlertDialog = Android.Support.V7.App.AlertDialog;
 
 namespace HorizontApp
 {
