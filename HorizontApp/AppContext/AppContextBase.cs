@@ -46,7 +46,7 @@ namespace HorizontApp.AppContext
         protected GpsLocation myLocation = new GpsLocation();
         public GpsLocation MyLocation { get { return myLocation; } }
         public virtual double Heading { get; protected set; }
-
+        public bool ShowFavoritesOnly { get; set; }
         public PoiViewItemList PoiData { get; protected set; }
 
         public bool IsPortrait
@@ -91,6 +91,11 @@ namespace HorizontApp.AppContext
             }
         }
 
+        public void ToggleFavourite()
+        {
+            ShowFavoritesOnly = !ShowFavoritesOnly;
+        }
+
         protected AppContextBase()
         {
             PoiData = new PoiViewItemList();
@@ -119,7 +124,7 @@ namespace HorizontApp.AppContext
                 if (GpsUtils.HasLocation(MyLocation))
                 {
                     var poiList = Database.GetItems(MyLocation, Settings.MaxDistance);
-                    PoiData = new PoiViewItemList(poiList, MyLocation, Settings.MaxDistance, Settings.MinAltitute, Settings.ShowFavoritesOnly, Settings.Categories);
+                    PoiData = new PoiViewItemList(poiList, MyLocation, Settings.MaxDistance, Settings.MinAltitute, ShowFavoritesOnly, Settings.Categories);
                 }
             }
             else

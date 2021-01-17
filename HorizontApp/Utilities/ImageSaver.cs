@@ -104,12 +104,11 @@ namespace HorizontApp.Utilities
                         PictureHeight = _Image.Height,
                         MinAltitude = _context.Settings.MinAltitute,
                         MaxDistance = _context.Settings.MaxDistance,
-                        FavouriteFilter = _context.Settings.ShowFavoritesOnly,
+                        FavouriteFilter = _context.ShowFavoritesOnly,
                         ShowElevationProfile = _context.Settings.ShowElevationProfile
                     };
-                    if (_context.ElevationProfileData != null && _context.ElevationProfileDataDistance.HasValue)
+                    if (_context.ElevationProfileData != null)
                     {
-                        photodata.MaxElevationProfileDataDistance = _context.ElevationProfileDataDistance.Value;
                         photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
                     }
                     poiDatabase.InsertItem(photodata);

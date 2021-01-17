@@ -29,8 +29,7 @@ namespace HorizontLib.Domain.Models
         public double? RightTiltCorrector { get; set; }
         public double? LeftTiltCorrector { get; set; }
         public string JsonElevationProfileData { get; set; }
-        public double MaxElevationProfileDataDistance { get; set; }
-        public bool FavouriteFilter = false;
+        public bool FavouriteFilter { get; set; }
         public bool ShowElevationProfile { get; set; }
 
         private bool _favourite = false;

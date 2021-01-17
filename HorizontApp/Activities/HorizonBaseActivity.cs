@@ -105,6 +105,7 @@ namespace HorizontApp.Activities
 
             _favouriteButton = FindViewById<ImageButton>(Resource.Id.favouriteFilterButton);
             _favouriteButton.SetOnClickListener(this);
+            _favouriteButton.SetImageResource(Context.ShowFavoritesOnly ? Resource.Drawable.ic_heart2_on : Resource.Drawable.ic_heart2);
 
             var _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
             _selectCategoryButton.SetOnClickListener(this);
@@ -338,11 +339,8 @@ namespace HorizontApp.Activities
 
                 case Resource.Id.favouriteFilterButton:
                     {
-                        Context.Settings.ToggleFavourite(); ;
-                        if (Context.Settings.ShowFavoritesOnly)
-                            _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2_on);
-                        else
-                            _favouriteButton.SetImageResource(Resource.Drawable.ic_heart2);
+                        Context.ToggleFavourite();
+                        _favouriteButton.SetImageResource(Context.ShowFavoritesOnly ? Resource.Drawable.ic_heart2_on : Resource.Drawable.ic_heart2);
                         Context.ReloadData();
                         break;
                     }
@@ -455,7 +453,6 @@ namespace HorizontApp.Activities
                 }
 
                 Context.ElevationProfileData = result;
-                Context.ElevationProfileDataDistance = Context.Settings.MaxDistance;
 
                 RefreshElevationProfile();
                 _elevationProfileBeingGenerated = false;

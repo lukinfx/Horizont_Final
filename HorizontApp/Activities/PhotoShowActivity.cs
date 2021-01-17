@@ -54,7 +54,7 @@ namespace HorizontApp.Activities
         protected override bool MoveingAndZoomingEnabled => !EditingOn;
         protected override bool TiltCorrectionEnabled => EditingOn;
         protected override bool HeadingCorrectionEnabled => EditingOn;
-        protected override bool ViewAngleCorrectionEnabled => EditingOn; 
+        protected override bool ViewAngleCorrectionEnabled => EditingOn;
 
         void InitializeAppContext(PhotoData photodata)
         {
@@ -87,13 +87,18 @@ namespace HorizontApp.Activities
             Context.Settings.LoadData(this);
             Context.Settings.IsViewAngleCorrection = false;
             Context.Settings.Categories = JsonConvert.DeserializeObject<List<PoiCategory>>(photodata.JsonCategories);
-            Context.Settings.SetCameraParameters((float)photodata.ViewAngleHorizontal, (float)photodata.ViewAngleVertical,
+            Context.Settings.SetCameraParameters((float) photodata.ViewAngleHorizontal, (float) photodata.ViewAngleVertical,
                 photodata.PictureWidth, photodata.PictureHeight);
             Context.Settings.MaxDistance = Convert.ToInt32(photodata.MaxDistance);
             Context.Settings.MinAltitute = Convert.ToInt32(photodata.MinAltitude);
+            Context.ShowFavoritesOnly = photodata.FavouriteFilter;
             Context.Settings.ShowElevationProfile = photodata.ShowElevationProfile;
-            Context.ElevationProfileDataDistance = photodata.MaxElevationProfileDataDistance;
+            if (photodata.JsonElevationProfileData != null)
+            {
+                Context.ElevationProfileData = ElevationProfileData.Deserialize(photodata.JsonElevationProfileData);
+            }
         }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -298,6 +303,7 @@ namespace HorizontApp.Activities
             photodata.RightTiltCorrector = _compassView.RightTiltCorrector;
             photodata.Heading = Context.Heading + _compassView.HeadingCorrector;
             photodata.ShowElevationProfile = Context.Settings.ShowElevationProfile;
+            photodata.FavouriteFilter = Context.ShowFavoritesOnly;
             photodata.JsonCategories = JsonConvert.SerializeObject(Context.Settings.Categories);
             if (Context.ElevationProfileData != null)
                 photodata.JsonElevationProfileData = Context.ElevationProfileData.Serialize();

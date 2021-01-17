@@ -36,13 +36,13 @@ namespace HorizontApp.AppContext
         float ViewAngleVertical { get; }
         PoiDatabase Database { get; }
         void ToggleCompassPaused();
+        void ToggleFavourite();
         void ReloadData();
         List<ProfileLine> ListOfProfileLines { get; set; }
+        bool ShowFavoritesOnly { get; set; }
 
         void Pause();
         void Resume();
         void SetLocale(Android.Content.ContextWrapper contextWrapper);
-
-        double? ElevationProfileDataDistance { get; set; }
     }
 }

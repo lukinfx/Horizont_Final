@@ -55,8 +55,6 @@ namespace HorizontApp.Utilities
         public string CameraId { get; set; }
         public AppStyles AppStyle { get; set; }
         public List<PoiCategory> Categories { get; set; }
-        public bool ShowFavoritesOnly { get; set; }
-
 
         public float AViewAngleHorizontal
         {
@@ -136,7 +134,6 @@ namespace HorizontApp.Utilities
             Language = Enum.Parse<Languages>(lan);
 
             ShowElevationProfile = AutoElevationProfile;
-            ShowFavoritesOnly = false;
         }
 
         public void SaveData()
@@ -186,11 +183,6 @@ namespace HorizontApp.Utilities
             };
 
             return categoriesAsCollectionDefault;
-        }
-
-        public void ToggleFavourite()
-        {
-            ShowFavoritesOnly = !ShowFavoritesOnly;
         }
 
         private void RestartTimer()
