@@ -9,6 +9,7 @@ using Xamarin.Essentials;
 using HorizonLib.Domain.Enums;
 using Android.Content.Res;
 using Android.Content;
+using HorizonLib.Domain.ViewModel;
 
 namespace HorizontApp.AppContext
 {
@@ -48,6 +49,8 @@ namespace HorizontApp.AppContext
         public virtual double Heading { get; protected set; }
         public bool ShowFavoritesOnly { get; set; }
         public bool ShowFavoritePicturesOnly { get; set; }
+        public bool ShowFavoritePoisOnly { get; set; }
+        public PoiFilter SelectedPoiFilter { get; set; }
         public PoiViewItemList PoiData { get; protected set; }
 
         public bool IsPortrait
@@ -100,6 +103,11 @@ namespace HorizontApp.AppContext
         public void ToggleFavouritePictures()
         {
             ShowFavoritePicturesOnly = !ShowFavoritePicturesOnly;
+        }
+
+        public void ToggleFavouritePois()
+        {
+            ShowFavoritePoisOnly = !ShowFavoritePoisOnly;
         }
 
         protected AppContextBase()

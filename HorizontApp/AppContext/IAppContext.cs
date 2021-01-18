@@ -5,6 +5,7 @@ using HorizontLib.Domain.ViewModel;
 using HorizontLib.Domain.Models;
 using System.Collections.Generic;
 using HorizonLib.Domain.Models;
+using HorizonLib.Domain.ViewModel;
 
 namespace HorizontApp.AppContext
 {
@@ -38,10 +39,13 @@ namespace HorizontApp.AppContext
         void ToggleCompassPaused();
         void ToggleFavourite();
         void ToggleFavouritePictures();
+        void ToggleFavouritePois();
         void ReloadData();
         List<ProfileLine> ListOfProfileLines { get; set; }
         bool ShowFavoritesOnly { get; set; }
         bool ShowFavoritePicturesOnly { get; set; }
+        bool ShowFavoritePoisOnly { get; set; }
+        PoiFilter SelectedPoiFilter { get; set; }
         void Pause();
         void Resume();
         void SetLocale(Android.Content.ContextWrapper contextWrapper);

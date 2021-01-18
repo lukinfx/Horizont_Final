@@ -9,6 +9,7 @@ using Android.Runtime;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
+using HorizonLib.Domain.ViewModel;
 using Xamarin.Essentials;
 using HorizontApp.Activities;
 using HorizontApp.AppContext;
@@ -37,8 +38,6 @@ namespace HorizontApp.Views.ListOfPoiView
         private GpsLocation _location = new GpsLocation();
         private Timer _searchTimer = new Timer();
         private String[] _listOfSelections = new String[] { "Visible points", "My points", "Find by name"};
-        private double _maxDistance; 
-        private double _minAltitude;
 
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
@@ -51,10 +50,6 @@ namespace HorizontApp.Views.ListOfPoiView
             _location.Longitude = Intent.GetDoubleExtra("longitude", 0);
             _location.Altitude = Intent.GetDoubleExtra("altitude", 0);
             
-            //TODO: we can get minAltitude and maxDistance - not needed as activity parameter
-            _maxDistance = Intent.GetIntExtra("maxDistance", 0);
-            _minAltitude = Intent.GetIntExtra("minAltitude", 0);
-
             if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
                 SetContentView(Resource.Layout.PoiListActivityPortrait);
@@ -65,7 +60,8 @@ namespace HorizontApp.Views.ListOfPoiView
             }
 
             InitializeUI();
-            _selectByDistance();
+            ShowData();
+
             InitializeSearchTimer();
         }
 
@@ -96,12 +92,13 @@ namespace HorizontApp.Views.ListOfPoiView
 
 
             _editTextSearch = FindViewById<EditText>(Resource.Id.editTextSearch);
-            _editTextSearch.TextChanged += editTextSearch_TextChanged;
+            _editTextSearch.TextChanged += OnSearchTextChanged;
 
             _spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
             var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfSelections.ToList());
             _spinnerSelection.Adapter = selectionAdapter;
-            _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(FilterSelectionChanged);
+            _spinnerSelection.SetSelection((int)Context.SelectedPoiFilter);
+            _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterSelectionChanged);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -110,74 +107,12 @@ namespace HorizontApp.Views.ListOfPoiView
             return base.OnCreateOptionsMenu(menu);
         }
 
-        private void OnSearchTimerTimerElapsed(object sender, ElapsedEventArgs e)
+        public override bool OnPrepareOptionsMenu(IMenu menu)
         {
-            _searchTimer.Stop();
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
+            var buttonFavourite = menu.GetItem(1);
+            buttonFavourite.SetIcon(Context.ShowFavoritePoisOnly ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
 
-                _selectByName();
-            });
-        }
-
-        private void editTextSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            _searchTimer.Stop();
-            _searchTimer.Start();
-        }
-
-        void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
-        {
-            OnPoiEdit(e.Position);
-        }
-
-        private void _selectByDistance()
-        {
-            List<PoiViewItem> _items = Context.PoiData;
-            _items = _items.OrderBy(i => i.GpsLocation.Distance).ToList();
-            _adapter = new ListViewAdapter(this, _items, this);
-            _listViewPoi.Adapter = _adapter;
-            _listViewPoi.Invalidate();
-        }
-
-        private void _selectMyPois()
-        {
-            var poiList = Context.Database.GetMyItems();
-
-            List<PoiViewItem> _items = new PoiViewItemList(poiList, _location);
-            _items = _items.OrderBy(i => i.GpsLocation.Distance).ToList();
-            _adapter = new ListViewAdapter(this, _items, this);
-            _listViewPoi.Adapter = _adapter;
-            _listViewPoi.Invalidate();
-        }
-
-        private void _selectByName()
-        {
-            var poiList = Context.Database.FindItems(_editTextSearch.Text);
-
-            List<PoiViewItem> _items = new PoiViewItemList(poiList, _location);
-            _items = _items.OrderBy(i => i.GpsLocation.Distance).ToList();
-            _adapter = new ListViewAdapter(this, _items, this);
-            _listViewPoi.Adapter = _adapter;
-            _listViewPoi.Invalidate();
-        }
-
-        private void FilterSelectionChanged(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            int selection = e.Position;
-            if (selection == 0)
-            {
-                _editTextSearch.Visibility = ViewStates.Invisible;
-                _selectByDistance();
-            } else if (selection == 1)
-            {
-                _editTextSearch.Visibility = ViewStates.Invisible;
-                _selectMyPois();
-            }
-            else if (selection == 2)
-            {
-                _editTextSearch.Visibility = ViewStates.Visible;
-            }
+            return base.OnPrepareOptionsMenu(menu);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -190,8 +125,113 @@ namespace HorizontApp.Views.ListOfPoiView
                 case Resource.Id.menu_addNew:
                     OnPoiAdd();
                     break;
+                case Resource.Id.menu_favourite:
+                    Context.ToggleFavouritePois();
+                    ShowData();
+                    InvalidateOptionsMenu();
+                    break;
             }
             return base.OnOptionsItemSelected(item);
+        }
+
+        private void OnSearchTimerTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            _searchTimer.Stop();
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                ShowData();
+            });
+        }
+
+        private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+        {
+            _searchTimer.Stop();
+            _searchTimer.Start();
+        }
+
+        private void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            OnPoiEdit(e.Position);
+        }
+
+        private void OnFilterSelectionChanged(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            int selection = e.Position;
+            if (selection == 0)
+            {
+                Context.SelectedPoiFilter = PoiFilter.VisiblePoints;
+                _editTextSearch.Visibility = ViewStates.Invisible;
+
+            }
+            else if (selection == 1)
+            {
+                Context.SelectedPoiFilter = PoiFilter.MyPoints;
+                _editTextSearch.Visibility = ViewStates.Invisible;
+            }
+            else if (selection == 2)
+            {
+                Context.SelectedPoiFilter = PoiFilter.ByName;
+                _editTextSearch.Visibility = ViewStates.Visible;
+            }
+
+            ShowData();
+        }
+
+        private IEnumerable<PoiViewItem> GetVisiblePois()
+        {
+            var items = Context.PoiData;
+            return items;
+        }
+
+        private IEnumerable<PoiViewItem> GetMyPois()
+        {
+            var poiList = Context.Database.GetMyItems();
+            List<PoiViewItem> items = new PoiViewItemList(poiList, _location);
+            return items;
+        }
+
+        private IEnumerable<PoiViewItem> GetByName()
+        {
+            IEnumerable<Poi> poiList;
+            if (_editTextSearch.Text.Length > 0)
+            {
+                poiList = Context.Database.FindItems(_editTextSearch.Text);
+            }
+            else
+            {
+                poiList = new List<Poi>();
+            }
+            List<PoiViewItem> items = new PoiViewItemList(poiList, _location);
+            return items;
+        }
+
+        private void ShowData()
+        {
+            IEnumerable<PoiViewItem> items;
+            switch (Context.SelectedPoiFilter)
+            {
+                case PoiFilter.VisiblePoints:
+                    items = GetVisiblePois();
+                    break;
+                case PoiFilter.MyPoints:
+                    items = GetMyPois();
+                    break;
+                case PoiFilter.ByName:
+                    items = GetByName();
+                    break;
+                default:
+                    return;
+            }
+
+            if (Context.ShowFavoritePoisOnly)
+            {
+                items = items.Where(x => x.Poi.Favorite);
+            }
+
+            items = items.OrderBy(i => i.GpsLocation.Distance).ToList();
+            _adapter = new ListViewAdapter(this, items, this);
+            _listViewPoi.Adapter = _adapter;
+            _listViewPoi.Invalidate();
         }
 
         public void OnPoiDelete(int position)
