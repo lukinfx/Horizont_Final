@@ -47,6 +47,7 @@ namespace HorizontApp.AppContext
         public GpsLocation MyLocation { get { return myLocation; } }
         public virtual double Heading { get; protected set; }
         public bool ShowFavoritesOnly { get; set; }
+        public bool ShowFavoritePicturesOnly { get; set; }
         public PoiViewItemList PoiData { get; protected set; }
 
         public bool IsPortrait
@@ -94,6 +95,11 @@ namespace HorizontApp.AppContext
         public void ToggleFavourite()
         {
             ShowFavoritesOnly = !ShowFavoritesOnly;
+        }
+
+        public void ToggleFavouritePictures()
+        {
+            ShowFavoritePicturesOnly = !ShowFavoritePicturesOnly;
         }
 
         protected AppContextBase()

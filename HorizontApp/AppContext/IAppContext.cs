@@ -37,10 +37,11 @@ namespace HorizontApp.AppContext
         PoiDatabase Database { get; }
         void ToggleCompassPaused();
         void ToggleFavourite();
+        void ToggleFavouritePictures();
         void ReloadData();
         List<ProfileLine> ListOfProfileLines { get; set; }
         bool ShowFavoritesOnly { get; set; }
-
+        bool ShowFavoritePicturesOnly { get; set; }
         void Pause();
         void Resume();
         void SetLocale(Android.Content.ContextWrapper contextWrapper);

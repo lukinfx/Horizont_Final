@@ -23,8 +23,6 @@ namespace HorizontApp.Activities
         private List<PhotoData> photoList;
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
-        private bool _showFavouritePhotosBool = false;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -46,11 +44,10 @@ namespace HorizontApp.Activities
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetDisplayShowTitleEnabled(false);
 
-
             _photosListView = FindViewById<ListView>(Resource.Id.listViewPhotos);
 
             photoList = Context.Database.GetPhotoDataItems().ToList();
-            _adapter = new PhotosItemAdapter(this, photoList.OrderByDescending(i => i.Datetime), this);
+            ShowPhotos(Context.ShowFavoritePicturesOnly);
 
             _photosListView.Adapter = _adapter;
         }
@@ -77,15 +74,8 @@ namespace HorizontApp.Activities
                     Finish();
                     break;
                 case Resource.Id.menu_favourite:
-                    _showFavouritePhotosBool = !_showFavouritePhotosBool;
-                    if (_showFavouritePhotosBool)
-                    {
-                        _showFavouritePhotos();
-                    }
-                    else
-                    {
-                        _showAllPhotos();
-                    }
+                    Context.ToggleFavouritePictures();
+                    ShowPhotos(Context.ShowFavoritePicturesOnly);
                     InvalidateOptionsMenu();
                     break;
             }
@@ -95,7 +85,7 @@ namespace HorizontApp.Activities
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
             var buttonFavourite = menu.GetItem(0);
-            buttonFavourite.SetIcon(_showFavouritePhotosBool ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
+            buttonFavourite.SetIcon(Context.ShowFavoritePicturesOnly ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
             
             return base.OnPrepareOptionsMenu(menu);
         }
@@ -159,15 +149,15 @@ namespace HorizontApp.Activities
             }
         }
 
-        private void _showFavouritePhotos()
+        private void ShowPhotos(bool favoriesOnly)
         {
-            _adapter = new PhotosItemAdapter(this, photoList.OrderByDescending(i => i.Datetime).Where(i => i.Favourite), this);
-            _photosListView.Adapter = _adapter;
-        }
+            var list = photoList.AsQueryable();
+            if (favoriesOnly)
+            {
+                list = list.Where(i => i.Favourite);
+            }
 
-        private void _showAllPhotos()
-        {
-            _adapter = new PhotosItemAdapter(this, photoList.OrderByDescending(i => i.Datetime), this);
+            _adapter = new PhotosItemAdapter(this, list.OrderByDescending(i => i.Datetime), this);
             _photosListView.Adapter = _adapter;
         }
     }
