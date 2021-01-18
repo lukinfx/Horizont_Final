@@ -13,7 +13,23 @@ using HorizonLib.Domain.Enums;
 
 namespace HorizontApp.Utilities
 {
-    public class SettingsChangedEventArgs : EventArgs {}
+    public enum ChangedData
+    {
+        ViewOptions,
+        PoiFilterSettings
+    }
+
+
+    public class SettingsChangedEventArgs : EventArgs
+    {
+        public SettingsChangedEventArgs(ChangedData changedData)
+        : base()
+        {
+            ChangedData = changedData;
+        }
+
+        public ChangedData ChangedData { get; private set; }
+    }
     public delegate void SettingsChangedEventHandler(object sender, SettingsChangedEventArgs e);
 
     public sealed class Settings
@@ -80,7 +96,7 @@ namespace HorizontApp.Utilities
             AutomaticViewAngleHorizontal = horizontalViewAngle;
             AutomaticViewAngleVertical = verticalViewAngle;
             _cameraPictureSize = new System.Drawing.Size(imageWidth, imageHeight);
-            NotifySettingsChanged();
+            NotifySettingsChanged(ChangedData.ViewOptions);
         }
 
         private int _minAltitute;
@@ -97,9 +113,9 @@ namespace HorizontApp.Utilities
             set { _maxDistance = value; RestartTimer(); }
         }
 
-        public void NotifySettingsChanged()
+        public void NotifySettingsChanged(ChangedData changedData)
         {
-            var args = new SettingsChangedEventArgs();
+            var args = new SettingsChangedEventArgs(changedData);
             SettingsChanged?.Invoke(this, args);
         }
 
@@ -194,7 +210,7 @@ namespace HorizontApp.Utilities
         private async void OnChangeFilterTimerElapsed(object sender, ElapsedEventArgs e)
         {
             _changeFilterTimer.Stop();
-            NotifySettingsChanged();
+            NotifySettingsChanged(ChangedData.PoiFilterSettings);
         }
     }
 }

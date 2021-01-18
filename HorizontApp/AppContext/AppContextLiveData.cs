@@ -141,7 +141,11 @@ namespace HorizontApp.AppContext
             base.OnSettingsChanged(sender, e);
 
             Settings.SaveData();
-            NotifyDataChanged();
+
+            if (e.ChangedData == ChangedData.PoiFilterSettings)
+            {
+                NotifyDataChanged();
+            }
         }
 
         private async Task<bool> UpdateMyLocation()

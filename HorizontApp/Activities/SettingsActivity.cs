@@ -287,7 +287,7 @@ namespace HorizontApp.Activities
                 _settings.cameraResolutionSelected = _listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition];
                 SetLanguage();
 
-                _settings.NotifySettingsChanged();
+                _settings.NotifySettingsChanged(ChangedData.ViewOptions);
                 AppContextLiveData.Instance.SetLocale(this);
             }
             catch(Exception ex)

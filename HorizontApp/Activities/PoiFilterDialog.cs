@@ -115,7 +115,7 @@ namespace HorizontApp.Activities
                 imageButton.SetImageResource(PoiCategoryHelper.GetImage(poiCategory, true));
             }
 
-            _context.Settings.NotifySettingsChanged();
+            _context.Settings.NotifySettingsChanged(ChangedData.PoiFilterSettings);
         }
 
         private void OnCategoryFilterSelectAll()
@@ -133,7 +133,7 @@ namespace HorizontApp.Activities
                     imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, true));
                 }
             }
-            _context.Settings.NotifySettingsChanged();
+            _context.Settings.NotifySettingsChanged(ChangedData.PoiFilterSettings);
         }
 
         private void OnCategoryFilterSelectNone()
@@ -149,7 +149,7 @@ namespace HorizontApp.Activities
 
             _context.Settings.Categories.Clear();
 
-            _context.Settings.NotifySettingsChanged();
+            _context.Settings.NotifySettingsChanged(ChangedData.PoiFilterSettings);
         }
     }
 }

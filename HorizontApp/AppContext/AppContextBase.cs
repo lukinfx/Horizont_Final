@@ -144,7 +144,10 @@ namespace HorizontApp.AppContext
 
         protected virtual void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
-            ReloadData();
+            if (e.ChangedData == ChangedData.PoiFilterSettings)
+            {
+                ReloadData();
+            }
         }
 
         protected void LogError(string v, Exception ex)

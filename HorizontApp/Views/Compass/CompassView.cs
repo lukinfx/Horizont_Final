@@ -129,7 +129,10 @@ namespace HorizontApp.Views
 
         public void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
-            InitializeViewDrawer(new System.Drawing.Size(this.Width, this.Height), _pictureSize);
+            if (e.ChangedData == ChangedData.ViewOptions)
+            {
+                InitializeViewDrawer(new System.Drawing.Size(this.Width, this.Height), _pictureSize);
+            }
         }
 
         protected override void OnLayout(bool changed, int left, int top, int right, int bottom)
