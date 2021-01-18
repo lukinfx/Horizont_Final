@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -145,106 +144,20 @@ namespace HorizontApp.Activities
                     Finish();
                     break;
                 case Resource.Id.menu_save:
-                    _item.Name = _editTextName.Text;
-
-                    if (IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
-                    {
-                        _item.Latitude = double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture);
-                        _item.Longitude = double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture);
-                        _item.Altitude = double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture);
-                        _item.Category = _category;
-                        if (_id == -1)
-                        {
-                            Context.Database.InsertItemAsync(_item);
-                        }
-                        else
-                        {
-                            Context.Database.UpdateItem(_item);
-                        }
-
-                        var resultIntent = new Intent();
-                        resultIntent.PutExtra("Id", _item.Id);
-                        SetResult(RESULT_OK, resultIntent);
-                        Finish();
-                    }
-                    else
-                    {
-                        PopupHelper.ErrorDialog(this, "Wrong format", "Use correct format. Example: '12,34567890' ");
-                    }
-
+                    Save();
                     break;
                 case Resource.Id.menu_paste:
-                    if (Clipboard.HasText)
-                    {
-                        try
-                        {
-                            string ClipBoardText = GetClipBoardInput().Result;
+                    PasteGpsLocation();
+                    break;
 
-                            if (ClipBoardText == null) ; //nepodarilo se ziskat text, je potreba osetrit?
-
-                            GpsLocation location = Parser(ClipBoardText);
-                            _editTextAltitude.Text = $"{location.Altitude:F0}";
-                            _editTextLongitude.Text = $"{location.Longitude:F7}".Replace(",", ".");
-                            _editTextLatitude.Text = $"{location.Latitude:F7}".Replace(",", ".");
-                        }
-
-                        catch (Exception ex)
-                        {
-                            PopupHelper.ErrorDialog(this, "The format is not correct", ex.Message);
-                        }
-                    }
-                    else
-                        PopupHelper.ErrorDialog(this, "Error", "It seems you don't have any text in your ClipBoard.");
-
+                case Resource.Id.menu_fetch_altitude:
                     UpdateElevation();
-
                     break;
             }
 
             return base.OnOptionsItemSelected(item);
         }
-    
-        private void OnSpinnerCategoryItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            _category = _poiCategories[e.Position];
-            _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_category));
-        }
 
-        private void UpdateElevation()
-        {
-            if (IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
-            {
-                try
-                {
-                    var location = new GpsLocation(
-                        double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture),
-                        double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture),
-                        0);
-
-                    if (_elevationTile == null || !_elevationTile.HasElevation(location))
-                    {
-                        _elevationTile = null;
-                        var et = new ElevationTile(location);
-                        if (et.Exists())
-                        {
-                            if (et.LoadFromZip())
-                            {
-                                _elevationTile = et;
-                            }
-                        }
-                    }
-
-                    if (_elevationTile != null)
-                    {
-                        var altitude =  _elevationTile.GetElevation(location);
-                        _editTextAltitude.Text = $"{altitude:F0}";
-                    }
-                }
-                catch
-                {
-                }
-            }
-        }
         public void OnClick(View v)
         {
             switch (v.Id)
@@ -257,27 +170,129 @@ namespace HorizontApp.Activities
                     break;
                 case Resource.Id.buttonTeleport:
                 {
-                    var manualLocation = new GpsLocation()
-                    {
-                        Latitude = double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture),
-                        Longitude = double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture),
-                        Altitude = double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture)
-                    };
-
-                    AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                    alert.SetPositiveButton("Yes", (senderAlert, args) =>
-                    {
-                        AppContextLiveData.Instance.Settings.ManualLocation = manualLocation;
-                        AppContextLiveData.Instance.Settings.IsManualLocation = true;
-                        SetResult(RESULT_OK_AND_CLOSE_PARENT);
-                        Finish();
-                    });
-                    alert.SetNegativeButton("No", (senderAlert, args) => { });
-                    alert.SetMessage($"Your location will be set to { _editTextName.Text}. To reset your location, press [Reset] button in camera view or reset manual location in application settings.\r\n\r\nDo you want to continue?");
-                    var answer = alert.Show();
-
+                    TeleportToPoi();
                     break;
                 }
+            }
+        }
+
+        private void OnSpinnerCategoryItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            _category = _poiCategories[e.Position];
+            _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_category));
+        }
+
+        private void Save()
+        {
+            _item.Name = _editTextName.Text;
+
+            if (HorizontLib.Utilities.GpsUtils.IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
+            {
+                _item.Latitude = double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture);
+                _item.Longitude = double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture);
+                _item.Altitude = double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture);
+                _item.Category = _category;
+                if (_id == -1)
+                {
+                    Context.Database.InsertItemAsync(_item);
+                }
+                else
+                {
+                    Context.Database.UpdateItem(_item);
+                }
+
+                var resultIntent = new Intent();
+                resultIntent.PutExtra("Id", _item.Id);
+                SetResult(RESULT_OK, resultIntent);
+                Finish();
+            }
+            else
+            {
+                PopupHelper.ErrorDialog(this, "Wrong format", "Use correct format. Example: '12,34567890' ");
+            }
+        }
+
+        private void PasteGpsLocation()
+        {
+            if (!Clipboard.HasText)
+            {
+                PopupHelper.ErrorDialog(this, "Error", "It seems you don't have any text in your ClipBoard.");
+                return;
+            }
+
+            try
+            {
+                string ClipBoardText = GetClipBoardInput().Result;
+
+                if (ClipBoardText == null) ; //nepodarilo se ziskat text, je potreba osetrit?
+
+                GpsLocation location = HorizontLib.Utilities.GpsUtils.ParseGPSLocationText(ClipBoardText);
+                _editTextAltitude.Text = $"{location.Altitude:F0}";
+                _editTextLongitude.Text = $"{location.Longitude:F7}".Replace(",", ".");
+                _editTextLatitude.Text = $"{location.Latitude:F7}".Replace(",", ".");
+            }
+
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, "The format is not correct", ex.Message);
+            }
+
+            try
+            {
+                GetElevation();
+            }
+            catch
+            {
+                //ignore error since the GetElevation is not a mandatory part of pasting GPS location from clipboard
+            }
+        }
+
+        private void UpdateElevation()
+        {
+            if (HorizontLib.Utilities.GpsUtils.IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
+            {
+                try
+                {
+                    var ok = GetElevation();
+
+                    if (!ok)
+                    {
+                        PopupHelper.ErrorDialog(this, "Error", "The elevation was not updated. Missing elevation data.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    PopupHelper.ErrorDialog(this, "Error", "The elevation was not updated. " + ex.Message);
+                }
+            }
+        }
+        private void TeleportToPoi()
+        {
+            _item.Name = _editTextName.Text;
+
+            if (HorizontLib.Utilities.GpsUtils.IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
+            {
+                _item.Latitude = double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture);
+                _item.Longitude = double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture);
+                _item.Altitude = double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture);
+                _item.Category = _category;
+                if (_id == -1)
+                {
+                    Context.Database.InsertItemAsync(_item);
+                }
+                else
+                {
+                    Context.Database.UpdateItem(_item);
+                }
+
+                var resultIntent = new Intent();
+                resultIntent.PutExtra("Id", _item.Id);
+                SetResult(RESULT_OK, resultIntent);
+                Finish();
+            }
+            else
+            {
+                PopupHelper.ErrorDialog(this, "Wrong format", "Use correct GPS location format. Example: '12.34567890' ");
             }
         }
 
@@ -287,51 +302,37 @@ namespace HorizontApp.Activities
             return clipboardText;
         }
 
-        private bool IsGPSLocation(string lat, string lon, string alt)
+        private bool GetElevation()
         {
-            if (Regex.IsMatch(lat, @"[0-9]{0,3}\.[0-9]{0,9}")
-                && Regex.IsMatch(lon, @"[0-9]{0,3}\.[0-9]{0,9}")
-                && Regex.IsMatch(alt, @"[0-9]{0,5}"))
-                { return true; }
-            else return false;
-        }
+            var location = new GpsLocation(
+                double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture),
+                double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture),
+                0);
 
-        private GpsLocation Parser (string text)
-        {
-            try
+            if (_elevationTile == null || !_elevationTile.HasElevation(location))
             {
-                GpsLocation poi = new GpsLocation();
-                text = text.Replace('.', ',');
-                int SNchanger = 1;
-                int WEchanger = 1;
-                if (text.Contains("S"))
+                _elevationTile = null;
+                var et = new ElevationTile(location);
+                if (et.Exists())
                 {
-                    SNchanger = -1;
-                    text = text.Replace("S", "");
+                    if (et.LoadFromZip())
+                    {
+                        _elevationTile = et;
+                    }
                 }
-
-
-                if (text.Contains("W"))
-                {
-                    WEchanger = -1;
-                    text = text.Replace("W", "");
-                }
-
-                text = text.Replace("E", "");
-                text = text.Replace("N", "");
-
-                string[] location = text.Split(", ");
-
-                poi.Latitude = SNchanger * Convert.ToDouble(location[0]);
-                poi.Longitude = WEchanger * Convert.ToDouble(location[1]);
-                poi.Altitude = 0;
-                return poi;
             }
-            catch (Exception ex)
+
+            if (_elevationTile != null)
             {
-                PopupHelper.ErrorDialog(this, "Error while parsing", ex.Message);
-                return null;
+                var altitude = _elevationTile.GetElevation(location);
+                _editTextAltitude.Text = $"{altitude:F0}";
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
+
     }
 }

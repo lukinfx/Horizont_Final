@@ -43,11 +43,14 @@
   <string name="Name">Název: </string>
 
   <string name="DefaultTextAddPoi">Současná GPS poloha</string>
-  <string name="Latitude">Zeměpisná šířka: </string>
-  <string name="Longitude">Zeměpisná délka: </string>
-  <string name="Altitude">Nadmořská výška: </string>
+  <string name="Latitude">Zeměp. šířka: </string>
+  <string name="Longitude">Zeměp. délka: </string>
+  <string name="Altitude">Nadm. výška: </string>
   <string name="Category">Kategorie: </string>
   <string name="EditName">Uprav název</string>
+  <string name="Save">Uložit</string>
+  <string name="PasteLocationFromClipboard">Vložit GPS polohu ze schránky</string>
+  <string name="FetchAltitudeFromElevationMap">Získat nadmořskou výšku z výškové mapy</string>
 
   <string name="CategoryFilter">Filtr kategorie</string>
   <string name="All">Vše</string>

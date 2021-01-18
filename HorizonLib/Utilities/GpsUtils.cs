@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using HorizontLib.Domain.Models;
 
 namespace HorizontLib.Utilities
@@ -178,6 +180,68 @@ namespace HorizontLib.Utilities
                 Latitude = Rad2Dg(maxLat),
                 Longitude = Rad2Dg(maxLon)
             };
+        }
+
+        public static bool IsGPSLocation(string lat, string lon, string alt)
+        {
+            if (Regex.IsMatch(lat, @"[0-9]{0,3}\.[0-9]{0,9}")
+                && Regex.IsMatch(lon, @"[0-9]{0,3}\.[0-9]{0,9}")
+                && Regex.IsMatch(alt, @"[0-9]{0,5}"))
+            { return true; }
+            else return false;
+        }
+
+        public static GpsLocation ParseGPSLocationText(string text)
+        {
+            GpsLocation poi = new GpsLocation();
+            string[] locations = text.Split(',');
+
+            if (locations.Length != 2)
+            {
+                throw new ApplicationException("Invalid GPS coordinates");
+            }
+
+            foreach (var location in locations)
+            {
+                var temp = location;
+                int sign = 1;
+                bool latitude;
+
+                if (temp.Contains("S") || temp.Contains("N"))
+                {
+                    if (temp.Contains("S"))
+                        sign = -1;
+                    temp = temp.Replace("S", "");
+                    temp = temp.Replace("N", "");
+                    latitude = true;
+                }
+                else if (temp.Contains("W") || temp.Contains("E"))
+                {
+                    if (temp.Contains("W"))
+                        sign = -1;
+                    temp = temp.Replace("W", "");
+                    temp = temp.Replace("E", "");
+                    latitude = false;
+                }
+                else
+                {
+                    throw new ApplicationException("Invalid GPS coordinates");
+                }
+
+                if (!Regex.IsMatch(temp, @"[0-9]{0,3}\.[0-9]{0,9}"))
+                {
+                    throw new ApplicationException("Invalid GPS coordinates");
+                }
+
+                if (latitude)
+                    poi.Latitude = sign * double.Parse(temp, CultureInfo.InvariantCulture);
+                else
+                    poi.Longitude = sign * double.Parse(temp, CultureInfo.InvariantCulture);
+            }
+
+            poi.Altitude = 0;
+
+            return poi;
         }
     }
 }

@@ -48,8 +48,11 @@
   <string name="Altitude">Altitude: </string>
   <string name="Category">Category: </string>
   <string name="EditName">Edit name</string>
+  <string name="Save">Save</string>
+  <string name="PasteLocationFromClipboard">Paste GPS location from clipboard</string>
+  <string name="FetchAltitudeFromElevationMap">Fetch altitude from elevation map</string>
 
-  <string name="CategoryFilter">Category filter</string>
+    <string name="CategoryFilter">Category filter</string>
   <string name="All">All</string>
   <string name="None">None</string>
   <string name="Close">Close</string>
