@@ -65,8 +65,10 @@ namespace HorizontApp
             {
                 SetContentView(Resource.Layout.MainActivityLandscape);
             }
-            
-            
+
+            InitializeBaseActivityUI();
+            InitializeUIElements();
+
             if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) != Permission.Granted ||
                 ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != Permission.Granted ||
                 ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) != Permission.Granted ||
@@ -80,8 +82,6 @@ namespace HorizontApp
                 Context.Start();
             }
 
-            InitializeBaseActivityUI();
-            InitializeUIElements();
 
             Start();
             Context.HeadingChanged += OnHeadingChanged;
