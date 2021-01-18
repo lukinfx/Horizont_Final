@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HorizontLib.Domain.Models;
 using HorizonLib.Utilities;
 using HorizontApp.Utilities;
+using HorizontLib.Domain.ViewModel;
 using SQLite;
 
 namespace HorizontApp.DataAccess
@@ -152,6 +153,14 @@ namespace HorizontApp.DataAccess
             var task = Database.QueryAsync<Poi>(query);
             task.Wait();
             return task.Result;
+        }
+
+        internal PoiViewItem GetNearestPoi(GpsLocation loc)
+        {
+            var candidates = GetItems(loc, 0.2);
+            List<PoiViewItem> items = new PoiViewItemList(candidates, loc);
+            var item = items.OrderBy(x => x.GpsLocation.Distance).FirstOrDefault();
+            return item;
         }
 
         public IEnumerable<Poi> GetMyItems()

@@ -30,6 +30,7 @@ namespace HorizontApp.AppContext
         ElevationProfileData ElevationProfileData { get; set; }
         bool CompassPaused { get; set; }
         GpsLocation MyLocation { get; }
+        string MyLocationName { get; }
         double Heading { get; }
         PoiViewItemList PoiData { get; }
         bool IsPortrait { get; }

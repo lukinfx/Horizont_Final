@@ -14,6 +14,7 @@ using HorizontApp.Utilities;
 using HorizontLib.Domain.Enums;
 using HorizontApp.AppContext;
 using HorizontLib.Utilities;
+using GpsUtils = HorizontApp.Utilities.GpsUtils;
 
 namespace HorizontApp.Activities
 {
@@ -230,6 +231,14 @@ namespace HorizontApp.Activities
                 _editTextAltitude.Text = $"{location.Altitude:F0}";
                 _editTextLongitude.Text = $"{location.Longitude:F7}".Replace(",", ".");
                 _editTextLatitude.Text = $"{location.Latitude:F7}".Replace(",", ".");
+
+                Task.Run(async () =>
+                {
+                    var placeName = await GpsUtils.AsyncGetPlaceName(location);
+                    _editTextName.Text = placeName;
+                });
+                
+                
             }
 
             catch (Exception ex)

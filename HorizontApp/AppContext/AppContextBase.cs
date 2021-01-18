@@ -46,6 +46,10 @@ namespace HorizontApp.AppContext
         
         protected GpsLocation myLocation = new GpsLocation();
         public GpsLocation MyLocation { get { return myLocation; } }
+        
+        protected string myLocationName = "unknown location";
+        public string MyLocationName { get { return myLocationName; } }
+
         public virtual double Heading { get; protected set; }
         public bool ShowFavoritesOnly { get; set; }
         public bool ShowFavoritePicturesOnly { get; set; }

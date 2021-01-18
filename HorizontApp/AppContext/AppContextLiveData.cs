@@ -132,6 +132,16 @@ namespace HorizontApp.AppContext
 
             if (needRefresh)
             {
+                var poi = Database.GetNearestPoi(myLocation);
+                if (poi != null)
+                {
+                    myLocationName = poi.Poi.Name;
+                }
+                else
+                {
+                    myLocationName = await HorizontApp.Utilities.GpsUtils.AsyncGetPlaceName(myLocation);
+                }
+
                 ReloadData();
             }
         }

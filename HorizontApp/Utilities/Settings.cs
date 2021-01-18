@@ -100,6 +100,9 @@ namespace HorizontApp.Utilities
         }
 
         private int _minAltitute;
+        /// <summary>
+        /// Minimum altitude of the displayed points in meters
+        /// </summary>
         public int MinAltitute 
         {
             get { return _minAltitute; }
@@ -107,7 +110,11 @@ namespace HorizontApp.Utilities
         }
 
         private int _maxDistance;
-        public int MaxDistance
+
+        /// <summary>
+        /// Max distance (visibility) in km
+        /// </summary>
+        public int MaxDistance // in km
         {
             get { return _maxDistance; }
             set { _maxDistance = value; RestartTimer(); }

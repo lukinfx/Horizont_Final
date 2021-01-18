@@ -323,8 +323,11 @@ namespace HorizontApp
         {
             base.OnDataChanged(sender, e);
 
-            _GPSEditText.Text = GpsUtils.HasLocation(Context.MyLocation) ?
-                $"Lat:{Context.MyLocation.Latitude:F7} Lon:{Context.MyLocation.Longitude:F7} Alt:{Context.MyLocation.Altitude:F0}":"No GPS location";
+            var text = GpsUtils.HasLocation(Context.MyLocation) ?
+                $"Lat:{Context.MyLocation.Latitude:F7} Lon:{Context.MyLocation.Longitude:F7} Alt:{Context.MyLocation.Altitude:F0}" : "No GPS location";
+            text += $" ({Context.MyLocationName})";
+
+            _GPSEditText.Text = text;
 
             _compassView.SetPoiViewItemList(e.PoiData);
 

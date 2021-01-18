@@ -77,8 +77,8 @@ namespace HorizontApp.Activities
                     }
                 }
             }
-
-            _context = new AppContextStaticData(loc, photodata.Heading);
+            
+            _context = new AppContextStaticData(loc, "unknown location", photodata.Heading);
 
             //### This can be removed later
             if (photodata.PictureWidth == 0) photodata.PictureWidth = AppContextLiveData.Instance.Settings.CameraPictureSize.Width;

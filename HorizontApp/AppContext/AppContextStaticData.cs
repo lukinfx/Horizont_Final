@@ -20,9 +20,10 @@ namespace HorizontApp.AppContext
             }
         }
 
-        public AppContextStaticData(GpsLocation myLocation, double heading)
+        public AppContextStaticData(GpsLocation myLocation, string myLocationName, double heading)
         {
             this.myLocation = myLocation;
+            this.myLocationName = myLocationName;
             Heading = heading;
         }
 
