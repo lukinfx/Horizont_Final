@@ -88,8 +88,19 @@ namespace HorizontApp.Utilities
                     PoiDatabase poiDatabase = new PoiDatabase();
                     string jsonCategories = JsonConvert.SerializeObject(_context.Settings.Categories);
 
+                    var tag = _context.MyLocationName + " -> ";
+                    if (_context.SelectedPoi != null)
+                    {
+                        tag += _context.SelectedPoi.Poi.Name;
+                    }
+                    else
+                    {
+                        tag += $"{_context.Heading:F0}° direction";
+                    }
+
                     PhotoData photodata = new PhotoData
                     {
+                        Tag = tag,
                         Datetime = DateTime.Now,
                         PhotoFileName = filename,
                         Longitude = _context.MyLocation.Longitude,

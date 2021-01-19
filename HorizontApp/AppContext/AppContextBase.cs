@@ -55,6 +55,7 @@ namespace HorizontApp.AppContext
         public bool ShowFavoritePicturesOnly { get; set; }
         public bool ShowFavoritePoisOnly { get; set; }
         public PoiFilter SelectedPoiFilter { get; set; }
+        public PoiViewItem SelectedPoi { get; set; }
         public PoiViewItemList PoiData { get; protected set; }
 
         public bool IsPortrait

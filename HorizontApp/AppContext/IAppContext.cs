@@ -47,6 +47,7 @@ namespace HorizontApp.AppContext
         bool ShowFavoritePicturesOnly { get; set; }
         bool ShowFavoritePoisOnly { get; set; }
         PoiFilter SelectedPoiFilter { get; set; }
+        PoiViewItem SelectedPoi { get; set; }
         void Pause();
         void Resume();
         void SetLocale(Android.Content.ContextWrapper contextWrapper);

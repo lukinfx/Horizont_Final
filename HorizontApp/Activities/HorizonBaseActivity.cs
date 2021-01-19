@@ -59,8 +59,6 @@ namespace HorizontApp.Activities
         protected abstract bool ViewAngleCorrectionEnabled { get; }
 
 
-        private PoiViewItem _selectedPoi;
-
         private PoiDatabase _database;
         protected PoiDatabase Database
         {
@@ -352,10 +350,10 @@ namespace HorizontApp.Activities
                         break;
                     }
                 case Resource.Id.buttonMap:
-                    MapUtilities.OpenMap(_selectedPoi.Poi);
+                    MapUtilities.OpenMap(Context.SelectedPoi.Poi);
                     break;
                 case Resource.Id.buttonWiki:
-                    WikiUtilities.OpenWiki(_selectedPoi.Poi);
+                    WikiUtilities.OpenWiki(Context.SelectedPoi.Poi);
                     break;
             }
         }
@@ -533,27 +531,27 @@ namespace HorizontApp.Activities
         {
             var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
 
-            if (_selectedPoi != null)
+            if (Context.SelectedPoi != null)
             {
-                _selectedPoi.Selected = false;
+                Context.SelectedPoi.Selected = false;
             }
 
             if (newSelectedPoi != null)
             {
-                _selectedPoi = newSelectedPoi;
-                _selectedPoi.Selected = true;
+                Context.SelectedPoi = newSelectedPoi;
+                Context.SelectedPoi.Selected = true;
 
                 _seekBars.Visibility = ViewStates.Gone;
                 _poiInfo.Visibility = ViewStates.Visible;
-                FindViewById<TextView>(Resource.Id.textViewPoiName).Text = _selectedPoi.Poi.Name;
+                FindViewById<TextView>(Resource.Id.textViewPoiName).Text = Context.SelectedPoi.Poi.Name;
                 FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = "No description";
-                FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = $"{_selectedPoi.Poi.Altitude} m / {(_selectedPoi.GpsLocation.Distance / 1000):F2} km";
-                FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{_selectedPoi.Poi.Latitude:F7} N, {_selectedPoi.Poi.Longitude:F7} E";
-                FindViewById<ImageButton>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(_selectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
+                FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = $"{Context.SelectedPoi.Poi.Altitude} m / {(Context.SelectedPoi.GpsLocation.Distance / 1000):F2} km";
+                FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Context.SelectedPoi.Poi.Latitude:F7} N, {Context.SelectedPoi.Poi.Longitude:F7} E";
+                FindViewById<ImageButton>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(Context.SelectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
             }
             else
             {
-                _selectedPoi = null;
+                Context.SelectedPoi = null;
 
                 _seekBars.Visibility = ViewStates.Visible;
                 _poiInfo.Visibility = ViewStates.Gone;
