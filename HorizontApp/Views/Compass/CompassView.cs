@@ -27,7 +27,6 @@ namespace HorizontApp.Views
         private IAppContext _context { get; set; }
 
         private Paint _paint;
-        private double _headingCorrector = 0;
         private float _scale = 1;
         private double _offsetY = 0;
         private double _offsetX = 0;
@@ -46,18 +45,6 @@ namespace HorizontApp.Views
         public double LeftTiltCorrector { get { return _leftTiltCorrector; } }
         public double RightTiltCorrector { get { return _rightTiltCorrector; } }
 
-        public double HeadingCorrector
-        {
-            get
-            {
-                return _headingCorrector;
-            }
-            set
-            {
-                _headingCorrector = GpsUtils.Normalize180(value);
-            }
-        }
-
         private IPoiCategoryBitmapProvider poiCategoryBitmapProvider;
         private CompassViewDrawer compassViewDrawer;
         private ElevationProfileBitmapDrawer elevationProfileBitmapDrawer;
@@ -74,14 +61,13 @@ namespace HorizontApp.Views
         {
         }
 */
-        public void Initialize(IAppContext context, bool allowRotation, System.Drawing.Size pictureSize, float leftTiltCorrector = 0, float rightTiltCorrector = 0, float headingCorrector = 0)
+        public void Initialize(IAppContext context, bool allowRotation, System.Drawing.Size pictureSize, float leftTiltCorrector = 0, float rightTiltCorrector = 0)
         {
             _context = context;
             _allowRotation = allowRotation;
             _pictureSize = pictureSize;
             _leftTiltCorrector = leftTiltCorrector;
             _rightTiltCorrector = rightTiltCorrector;
-            _headingCorrector = headingCorrector;
 
             _context.Settings.SettingsChanged += OnSettingsChanged;
 
@@ -194,7 +180,7 @@ namespace HorizontApp.Views
                 return;
             }
 
-            var heading = _context.Heading + HeadingCorrector;
+            var heading = _context.Heading + _context.HeadingCorrector;
 
             compassViewDrawer.OnDrawBackground(canvas);
 
@@ -238,7 +224,7 @@ namespace HorizontApp.Views
         public void OnScroll(float distanceX)
         {
             var viewAngleHorizontal = _context.ViewAngleHorizontal;
-            HeadingCorrector = HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX / _scale);
+            _context.HeadingCorrector = _context.HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX / _scale);
             Invalidate();
         }
 
@@ -258,7 +244,7 @@ namespace HorizontApp.Views
 
         public void ResetHeadingCorrector()
         {
-            HeadingCorrector = 0;
+            _context.HeadingCorrector = 0;
             Invalidate();
         }
 
@@ -334,7 +320,7 @@ namespace HorizontApp.Views
             x = x - windowLocationOnScreen[0];
             y = y - windowLocationOnScreen[1];
 
-            var heading = _context.Heading + HeadingCorrector;
+            var heading = _context.Heading + _context.HeadingCorrector;
 
             foreach (var item in list)
             {

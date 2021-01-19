@@ -32,6 +32,7 @@ namespace HorizontApp.AppContext
         GpsLocation MyLocation { get; }
         string MyLocationName { get; }
         double Heading { get; }
+        double HeadingCorrector { get; set; }
         PoiViewItemList PoiData { get; }
         bool IsPortrait { get; }
         float ViewAngleHorizontal { get; }

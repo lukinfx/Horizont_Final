@@ -106,7 +106,7 @@ namespace HorizontApp.Utilities
                         Longitude = _context.MyLocation.Longitude,
                         Latitude = _context.MyLocation.Latitude,
                         Altitude = _context.MyLocation.Altitude,
-                        Heading = _context.Heading,
+                        Heading = _context.Heading + _context.HeadingCorrector,
                         Thumbnail = thumbnail,
                         JsonCategories = jsonCategories,
                         ViewAngleVertical = _context.ViewAngleVertical,

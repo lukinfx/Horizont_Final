@@ -139,7 +139,7 @@ namespace HorizontApp.Activities
 
             _compassView.Initialize(Context, false,
                 new System.Drawing.Size(GetPictureWidth(), photodata.PictureHeight),
-                (float)photodata.LeftTiltCorrector, (float)photodata.RightTiltCorrector, 0);
+                (float)photodata.LeftTiltCorrector, (float)photodata.RightTiltCorrector);
 
             if (_thumbnail != null)
             {
@@ -226,8 +226,8 @@ namespace HorizontApp.Activities
                 $"Lat:{Context.MyLocation.Latitude:F7} Lon:{Context.MyLocation.Longitude:F7} Alt:{Context.MyLocation.Altitude:F0}"
                 : "No GPS location";
 
-            var sign = _compassView.HeadingCorrector < 0 ? '-' : '+';
-            var heading = $"Hdg:{Context.Heading:F1}{sign}{Math.Abs(_compassView.HeadingCorrector):F1}";
+            var sign = Context.HeadingCorrector < 0 ? '-' : '+';
+            var heading = $"Hdg:{Context.Heading:F1}{sign}{Math.Abs(Context.HeadingCorrector):F1}";
 
             var zoomAndTiltCorrection = $"Scale:{photoView.Scale:F2} ,LT:{_compassView.LeftTiltCorrector:F2}, RT:{_compassView.RightTiltCorrector:F2}";
 
@@ -301,7 +301,7 @@ namespace HorizontApp.Activities
             photodata.ViewAngleVertical = Context.ViewAngleVertical;
             photodata.LeftTiltCorrector = _compassView.LeftTiltCorrector;
             photodata.RightTiltCorrector = _compassView.RightTiltCorrector;
-            photodata.Heading = Context.Heading + _compassView.HeadingCorrector;
+            photodata.Heading = Context.Heading + Context.HeadingCorrector;
             photodata.ShowElevationProfile = Context.Settings.ShowElevationProfile;
             photodata.FavouriteFilter = Context.ShowFavoritesOnly;
             photodata.JsonCategories = JsonConvert.SerializeObject(Context.Settings.Categories);
@@ -319,7 +319,7 @@ namespace HorizontApp.Activities
             var compassView = new CompassView(ApplicationContext, null);
             compassView.Initialize(Context, false,
                 new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight),
-                (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
+                (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector);
             compassView.Layout(0, 0, photodata.PictureWidth, photodata.PictureHeight);
             compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight));
 
@@ -368,7 +368,7 @@ namespace HorizontApp.Activities
             var compassView = new CompassView(ApplicationContext, null);
             compassView.Initialize(Context, false,
                 new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight),
-                (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector, (float)_compassView.HeadingCorrector);
+                (float)_compassView.LeftTiltCorrector, (float)_compassView.RightTiltCorrector);
             compassView.Layout(0, 0, photodata.PictureWidth, photodata.PictureHeight);
             compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight));
             compassView.Draw(canvas);

@@ -205,7 +205,7 @@ namespace HorizontApp
                         }
                     case Resource.Id.buttonResetCorrector:
                     {
-                        _compassView.HeadingCorrector = 0;
+                        Context.HeadingCorrector = 0;
                         Context.Settings.IsManualLocation = false;
                         break;
                     }
@@ -293,11 +293,11 @@ namespace HorizontApp
         {
             if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
-                _headingEditText.Text = $"{Math.Round(Context.Heading, 0):F0}°+{_compassView.HeadingCorrector + 90:F0} | ";
+                _headingEditText.Text = $"{Math.Round(Context.Heading, 0):F0}°+{Context.HeadingCorrector + 90:F0} | ";
             }
             else
             {
-                _headingEditText.Text = $"{Math.Round(Context.Heading, 0):F0}°+{_compassView.HeadingCorrector:F0} | ";
+                _headingEditText.Text = $"{Math.Round(Context.Heading, 0):F0}°+{Context.HeadingCorrector:F0} | ";
             }
 
             _compassView.Invalidate();

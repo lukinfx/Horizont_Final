@@ -51,6 +51,20 @@ namespace HorizontApp.AppContext
         public string MyLocationName { get { return myLocationName; } }
 
         public virtual double Heading { get; protected set; }
+
+        private double _headingCorrector = 0;
+        public double HeadingCorrector
+        {
+            get
+            {
+                return _headingCorrector;
+            }
+            set
+            {
+                _headingCorrector = GpsUtils.Normalize180(value);
+            }
+        }
+
         public bool ShowFavoritesOnly { get; set; }
         public bool ShowFavoritePicturesOnly { get; set; }
         public bool ShowFavoritePoisOnly { get; set; }
