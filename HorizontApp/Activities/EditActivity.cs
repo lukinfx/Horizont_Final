@@ -277,33 +277,26 @@ namespace HorizontApp.Activities
         }
         private void TeleportToPoi()
         {
-            _item.Name = _editTextName.Text;
-
-            if (HorizontLib.Utilities.GpsUtils.IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
+            var manualLocation = new GpsLocation()
             {
-                _item.Latitude = double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture);
-                _item.Longitude = double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture);
-                _item.Altitude = double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture);
-                _item.Category = _category;
-                if (_id == -1)
-                {
-                    Context.Database.InsertItemAsync(_item);
-                }
-                else
-                {
-                    Context.Database.UpdateItem(_item);
-                }
+                Latitude = double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture),
+                Longitude = double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture),
+                Altitude = double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture)
+            };
 
-                var resultIntent = new Intent();
-                resultIntent.PutExtra("Id", _item.Id);
-                SetResult(RESULT_OK, resultIntent);
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetPositiveButton("Yes", (senderAlert, args) =>
+            {
+                AppContextLiveData.Instance.Settings.ManualLocation = manualLocation;
+                AppContextLiveData.Instance.Settings.IsManualLocation = true;
+                SetResult(RESULT_OK_AND_CLOSE_PARENT);
                 Finish();
-            }
-            else
-            {
-                PopupHelper.ErrorDialog(this, "Wrong format", "Use correct GPS location format. Example: '12.34567890' ");
-            }
+            });
+            alert.SetNegativeButton("No", (senderAlert, args) => { });
+            alert.SetMessage($"Your location will be set to { _editTextName.Text}. To reset your location, press [Reset] button in camera view or reset manual location in application settings.\r\n\r\nDo you want to continue?");
+            var answer = alert.Show();
         }
+
 
         private async Task<string> GetClipBoardInput()
         {
