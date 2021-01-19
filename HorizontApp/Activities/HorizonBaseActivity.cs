@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -92,10 +93,12 @@ namespace HorizontApp.Activities
             _heightSeekBar.Progress = Context.Settings.MinAltitute;
             _heightSeekBar.ProgressChanged += OnMinAltitudeChanged;
 
-            _seekBars = FindViewById<LinearLayout>(Resource.Id.mainActivitySeekBars);
             _poiInfo = FindViewById<LinearLayout>(Resource.Id.mainActivityPoiInfo);
-            _seekBars.Visibility = ViewStates.Visible;
+            _poiInfo.SetOnClickListener(this);
             _poiInfo.Visibility = ViewStates.Gone;
+
+            _seekBars = FindViewById<LinearLayout>(Resource.Id.mainActivitySeekBars);
+            _seekBars.Visibility = ViewStates.Visible;
 
             _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
             _displayTerrainButton.SetOnClickListener(this);
@@ -349,6 +352,16 @@ namespace HorizontApp.Activities
 
                         break;
                     }
+                case Resource.Id.mainActivityPoiInfo:
+                    {
+                        if (Context.SelectedPoi != null)
+                        {
+                            Intent editActivityIntent = new Intent(this, typeof(EditActivity));
+                            editActivityIntent.PutExtra("Id", Context.SelectedPoi.Poi.Id);
+                            StartActivityForResult(editActivityIntent, EditActivity.REQUEST_EDIT_POI);
+                        }
+                    }
+                    break;
                 case Resource.Id.buttonMap:
                     MapUtilities.OpenMap(Context.SelectedPoi.Poi);
                     break;
