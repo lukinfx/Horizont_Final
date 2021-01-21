@@ -52,7 +52,6 @@ namespace HorizontApp.Activities
         private float m_PreviousDistanceY;
         private bool m_IsScaling;
         private int m_startTime;
-        private int m_tapCount = 0;
 
         protected abstract bool MoveingAndZoomingEnabled { get; }
         protected abstract bool TiltCorrectionEnabled { get; }
@@ -194,22 +193,6 @@ namespace HorizontApp.Activities
 
                         m_FirstMoveX = m_PreviousMoveX = (int)e.GetX();
                         m_FirstMoveY = m_PreviousMoveY = (int)e.GetY();
-
-                        if (touchCount == 1)
-                        {
-
-                            if (System.Environment.TickCount - m_startTime > 500)
-                            {
-                                m_tapCount = 0;
-                            }
-
-                            if (m_tapCount == 0)
-                            {
-                                m_startTime = System.Environment.TickCount;
-                            }
-
-                            m_tapCount++;
-                        }
 
                         if (touchCount >= 2)
                         {
