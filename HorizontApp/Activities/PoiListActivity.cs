@@ -37,7 +37,6 @@ namespace HorizontApp.Views.ListOfPoiView
         private ListViewAdapter _adapter;
         private GpsLocation _location = new GpsLocation();
         private Timer _searchTimer = new Timer();
-        private String[] _listOfSelections = new String[] { "Visible points", "My points", "Find by name"};
 
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
@@ -95,10 +94,23 @@ namespace HorizontApp.Views.ListOfPoiView
             _editTextSearch.TextChanged += OnSearchTextChanged;
 
             _spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
-            var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfSelections.ToList());
+            
+
+            var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, GetFilterOptions());
             _spinnerSelection.Adapter = selectionAdapter;
             _spinnerSelection.SetSelection((int)Context.SelectedPoiFilter);
             _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterSelectionChanged);
+        }
+
+        private List<string> GetFilterOptions()
+        {
+            var list = new string[]
+            {
+                Resources.GetText(Resource.String.PoiListFilter_Visible),
+                Resources.GetText(Resource.String.PoiListFilter_My),
+                Resources.GetText(Resource.String.PoiListFilter_ByName),
+            };
+            return list.ToList();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -237,14 +249,14 @@ namespace HorizontApp.Views.ListOfPoiView
         public void OnPoiDelete(int position)
         {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetPositiveButton("Yes", (senderAlert, args) =>
+            alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
             {
                 PoiViewItem item = _adapter[position];
                 Context.Database.DeleteItemAsync(item.Poi);
                 _adapter.RemoveAt(position);
             });
-            alert.SetNegativeButton("No", (senderAlert, args) => { });
-            alert.SetMessage("Are you sure you want to delete this item?");
+            alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+            alert.SetMessage(Resources.GetText(Resource.String.PoiListDeleteQuestion));
             var answer = alert.Show();
 
 

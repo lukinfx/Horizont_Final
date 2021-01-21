@@ -209,7 +209,8 @@ namespace HorizontApp.Activities
             }
             else
             {
-                PopupHelper.ErrorDialog(this, "Wrong format", "Use correct format. Example: '12,34567890' ");
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
             }
         }
 
@@ -217,7 +218,8 @@ namespace HorizontApp.Activities
         {
             if (!Clipboard.HasText)
             {
-                PopupHelper.ErrorDialog(this, "Error", "It seems you don't have any text in your ClipBoard.");
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.EditPoi_EmptyClipboard));
                 return;
             }
 
@@ -243,7 +245,8 @@ namespace HorizontApp.Activities
 
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this, "The format is not correct", ex.Message);
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error), 
+                    Resources.GetText(Resource.String.EditPoi_WrongFormat) + " " + ex.Message);
             }
 
             try
@@ -266,12 +269,14 @@ namespace HorizontApp.Activities
 
                     if (!ok)
                     {
-                        PopupHelper.ErrorDialog(this, "Error", "The elevation was not updated. Missing elevation data.");
+                        PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                            Resources.GetText(Resource.String.EditPoi_AltitudeNotUpdated) + " " + Resources.GetText(Resource.String.EditPoi_MissingElevationData));
                     }
                 }
                 catch (Exception ex)
                 {
-                    PopupHelper.ErrorDialog(this, "Error", "The elevation was not updated. " + ex.Message);
+                    PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                        Resources.GetText(Resource.String.EditPoi_AltitudeNotUpdated) + " " + ex.Message);
                 }
             }
         }
@@ -285,15 +290,15 @@ namespace HorizontApp.Activities
             };
 
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetPositiveButton("Yes", (senderAlert, args) =>
+            alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
             {
                 AppContextLiveData.Instance.Settings.ManualLocation = manualLocation;
                 AppContextLiveData.Instance.Settings.IsManualLocation = true;
                 SetResult(RESULT_OK_AND_CLOSE_PARENT);
                 Finish();
             });
-            alert.SetNegativeButton("No", (senderAlert, args) => { });
-            alert.SetMessage($"Your location will be set to { _editTextName.Text}. To reset your location, press [Reset] button in camera view or reset manual location in application settings.\r\n\r\nDo you want to continue?");
+            alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+            alert.SetMessage(String.Format(Resources.GetText(Resource.String.EditPoi_TeleportationWarning), _editTextName.Text));
             var answer = alert.Show();
         }
 

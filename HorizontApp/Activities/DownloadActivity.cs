@@ -130,7 +130,7 @@ namespace HorizontApp.Activities
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
 
-            ActionBar.Title = "Download POIs";
+            ActionBar.Title = Resources.GetText(Resource.String.DownloadActivity);
             ActionBar.SetDisplayShowHomeEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
 
@@ -213,7 +213,7 @@ namespace HorizontApp.Activities
                 var lastProgressUpdate = System.Environment.TickCount;
 
                 var pd = new ProgressDialog(this);
-                pd.SetMessage("Loading data. Please Wait.");
+                pd.SetMessage(Resources.GetText(Resource.String.Download_LoadingData));
                 pd.SetCancelable(false);
                 pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
                 pd.Show();
@@ -227,15 +227,16 @@ namespace HorizontApp.Activities
                         source.DownloadDate = DateTime.Now;
                         Database.InsertItem(source);
 
-                        PopupHelper.InfoDialog(this, "Information", $"{result.Count()} items loaded to database.");
+                        PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Information), 
+                            String.Format(Resources.GetText(Resource.String.Download_InfoLoadedItems), result.Count));
                         _downloadItemAdapter.NotifyDataSetChanged();
                     }
                 };
-                ec.OnStageChange = (text, max) =>
+                ec.OnStageChange = (resourceStringId, max) =>
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        pd.SetMessage(text);
+                        pd.SetMessage(Resources.GetText(resourceStringId));
                         pd.Max = max;
                     });
                 };
@@ -256,7 +257,8 @@ namespace HorizontApp.Activities
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        PopupHelper.ErrorDialog(this, "Error", $"Error when downloading POI data. {message}");
+                        PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                            Resources.GetText(Resource.String.Download_ErrorDownloading) + " " + message);
                     });
                 };
 
@@ -264,7 +266,8 @@ namespace HorizontApp.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when downloading POI data. {ex.Message}");
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.Download_ErrorDownloading) + " " + ex.Message);
             }
         }
 
@@ -277,11 +280,13 @@ namespace HorizontApp.Activities
                 source.DownloadDate = null;
                 Database.DeleteItem(source);
 
-                PopupHelper.InfoDialog(this, "Information", $"POI items removed from database.");
+                PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Information),
+                    Resources.GetText(Resource.String.Download_InfoRemovedItems));
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when removing POI data. {ex.Message}");
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Information),
+                    Resources.GetText(Resource.String.Download_ErrorRemoving) + " " + ex.Message);
             }
         }
 
@@ -294,7 +299,7 @@ namespace HorizontApp.Activities
                 var lastProgressUpdate = System.Environment.TickCount;
 
                 var pd = new ProgressDialog(this);
-                pd.SetMessage("Loading data. Please Wait.");
+                pd.SetMessage(Resources.GetText(Resource.String.Download_LoadingData));
                 pd.SetCancelable(false);
                 pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
                 pd.Show();
@@ -307,15 +312,18 @@ namespace HorizontApp.Activities
                         source.DownloadDate = DateTime.Now;
                         Database.InsertItem(source);
 
-                        PopupHelper.InfoDialog(this, "Information", $"Elevation data were downloaded.");
+                        
+                        PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Information),
+                            Resources.GetText(Resource.String.Download_InfoLoadedElevation));
+                        
                         _downloadItemAdapter.NotifyDataSetChanged();
                     }
                 };
-                ec.OnStageChange = (text, max) =>
+                ec.OnStageChange = (resourceStringId, max) =>
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        pd.SetMessage(text);
+                        pd.SetMessage(Resources.GetText(resourceStringId));
                         pd.Max = max;
                     });
                 };
@@ -333,7 +341,8 @@ namespace HorizontApp.Activities
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        PopupHelper.ErrorDialog(this, "Error", $"Error when downloading elevation data. {message}");
+                        PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                            Resources.GetText(Resource.String.Download_ErrorDownloadingElevation) + " " + message);
                     });
                 };
 
@@ -341,7 +350,8 @@ namespace HorizontApp.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when downloading elevation data. {ex.Message}");
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.Download_ErrorDownloadingElevation) + " " + ex.Message);
             }
         }
 
@@ -352,7 +362,7 @@ namespace HorizontApp.Activities
                 var ec = new ElevationDataImport(source);
 
                 var pd = new ProgressDialog(this);
-                pd.SetMessage("Removing data. Please Wait.");
+                pd.SetMessage(Resources.GetText(Resource.String.Download_RemovingData));
                 pd.SetCancelable(false);
                 pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
                 pd.Show();
@@ -365,14 +375,15 @@ namespace HorizontApp.Activities
                         source.DownloadDate = null;
                         Database.DeleteItem(source);
 
-                        PopupHelper.InfoDialog(this, "Information", $"Elevation data deleted."); 
+                        PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Information),
+                            Resources.GetText(Resource.String.Download_InfoRemovedElevation)); 
                     }
                 };
-                ec.OnStageChange = (text, max) =>
+                ec.OnStageChange = (resourceStringId, max) =>
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        pd.SetMessage(text);
+                        pd.SetMessage(Resources.GetText(resourceStringId));
                         pd.Max = max;
                     });
                 };
@@ -380,7 +391,8 @@ namespace HorizontApp.Activities
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        PopupHelper.ErrorDialog(this, "Error", $"Error when downloading elevation data. {message}");
+                        PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                            Resources.GetText(Resource.String.Download_ErrorDownloadingElevation) + " " + message);
                     });
                 };
 
@@ -388,7 +400,8 @@ namespace HorizontApp.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when deleting elevation data. {ex.Message}");
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.Download_ErrorDownloadingElevation) + " " + ex.Message);
             }
         }
     }

@@ -15,7 +15,7 @@ namespace HorizontApp.Tasks
         private PoisToDownload _source;
 
         public Action<PoiList> OnFinishedAction;
-        public Action<string, int> OnStageChange;
+        public Action<int, int> OnStageChange;
         public Action<int> OnProgressChange;
         public Action<string> OnError;
 
@@ -32,13 +32,11 @@ namespace HorizontApp.Tasks
         protected override void OnPreExecute()
         {
             base.OnPreExecute();
-            System.Console.WriteLine("Staring");
         }
 
         protected override void OnPostExecute(PoiList result)
         {
             base.OnPostExecute(result);
-            System.Console.WriteLine("Finished");
             OnFinishedAction?.Invoke(result);
         }
 
@@ -46,12 +44,12 @@ namespace HorizontApp.Tasks
         {
             try
             {
-                OnStageChange?.Invoke("Downloading data", 1);
+                OnStageChange?.Invoke(Resource.String.Download_Progress_Downloading, 1);
                 var file = GpxFileProvider.GetFile(GpxFileProvider.GetUrl(url[0]));
                 OnProgressChange?.Invoke(1);
 
                 var listOfPoi = GpxFileParser.Parse(file, _source.Category, _source.Id,
-                    x => OnStageChange?.Invoke("Parsing data", x),
+                    x => OnStageChange?.Invoke(Resource.String.Download_Progress_Processing, x),
                     x => OnProgressChange?.Invoke(x));
 
                 return listOfPoi;

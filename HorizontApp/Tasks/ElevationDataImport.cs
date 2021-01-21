@@ -20,7 +20,7 @@ namespace HorizontApp.Tasks
         private ElevationTileCollection _elevationTileCollection;
 
         public Action<bool> OnFinishedAction;
-        public Action<string, int> OnStageChange;
+        public Action<int, int> OnStageChange;
         public Action<int> OnProgressChange;
         public Action<string> OnError;
 
@@ -37,13 +37,11 @@ namespace HorizontApp.Tasks
         protected override void OnPreExecute()
         {
             base.OnPreExecute();
-            System.Console.WriteLine("Staring");
         }
 
         protected override void OnPostExecute(bool result)
         {
             base.OnPostExecute(result);
-            System.Console.WriteLine("Finished");
             OnFinishedAction?.Invoke(result);
         }
 
@@ -51,7 +49,7 @@ namespace HorizontApp.Tasks
         {
             try
             {
-                OnStageChange?.Invoke("Fetching list of elevation tiles", 1);
+                OnStageChange?.Invoke(Resource.String.Download_Progress_FetchingElevationTilesList, 1);
                 var file = GpxFileProvider.GetFile(GpxFileProvider.GetUrl(_source.Url));
                 OnProgressChange?.Invoke(1);
                 var elevationMap = JsonConvert.DeserializeObject<ElevationMap>(file);
@@ -60,7 +58,7 @@ namespace HorizontApp.Tasks
 
                 if (@command[0] == COMMAND_DOWNLOAD)
                 {
-                    OnStageChange?.Invoke("Downloading elevation data", _elevationTileCollection.GetCountToDownload());
+                    OnStageChange?.Invoke(Resource.String.Download_Progress_DownloadingElevationData, _elevationTileCollection.GetCountToDownload());
                     if (!_elevationTileCollection.Download(progress => { OnProgressChange(progress); }))
                     {
                         OnError?.Invoke(_elevationTileCollection.GetErrorList());
@@ -72,7 +70,7 @@ namespace HorizontApp.Tasks
                 
                 if(@command[0] == COMMAND_REMOVE)
                 {
-                    OnStageChange?.Invoke("Removing elevation data", 1);
+                    OnStageChange?.Invoke(Resource.String.Download_Progress_RemovingElevationData, 1);
                     return _elevationTileCollection.Remove();
                 }
 

@@ -1,6 +1,13 @@
 <resources>
   <string name="app_name">Horizon</string>
 
+  <!--Common-->
+  <string name="Yes">Ano</string>
+  <string name="No">Ne</string>
+  
+  <string name="Information">Informace</string>
+  <string name="Error">Chyba</string>
+
   <!--Menu Activity-->
   <string name="MainActivity">Zpět do fotoaparátu</string>
   <string name="PoiListActivity">Seznam bodů</string>
@@ -8,6 +15,36 @@
   <string name="PhotosActivity">Galerie fotografií</string>
   <string name="SettingsActivity">Nastavení</string>
   <string name="AboutActivity">O aplikaci</string>
+
+  <!--PoiListActivity-->
+  <string name="PoiListFilter_Visible">Viditelné</string>
+  <string name="PoiListFilter_My">Mé body</string>
+  <string name="PoiListFilter_ByName">Podle jména</string>
+  <string name="PoiListDeleteQuestion">Opravdu chcete smazat ten bod?</string>
+
+  <!--DownloadActivity-->
+  <string name="Download_LoadingData">Stahuji data. Prosím čekejte.</string>
+  <string name="Download_InfoLoadedItems">{0} bodů bylo uloženo do databáze.</string>
+  <string name="Download_ErrorDownloading">Chyba při stahování bodů.</string>
+  <string name="Download_RemovingData">Odstraňuji data. Prosím čekejte.</string>
+  <string name="Download_InfoRemovedItems">Body byly odstraněny z databáze.</string>
+  <string name="Download_ErrorRemoving">Chyba při odstraňování dat.</string>
+  <string name="Download_InfoLoadedElevation">Výšková data byla stažena.</string>
+  <string name="Download_ErrorDownloadingElevation">Chyba při stahování výškových dat.</string>
+  <string name="Download_InfoRemovedElevation">Výšková data byla odstraněna.</string>
+  <string name="Download_Progress_Downloading">Stahuji data...</string>
+  <string name="Download_Progress_Processing">Zpracovávám data...</string>
+  <string name="Download_Progress_FetchingElevationTilesList">Stahuji seznam výškových dat...</string>
+  <string name="Download_Progress_DownloadingElevationData">Stahuji výšková data...</string>
+  <string name="Download_Progress_RemovingElevationData">Odstaňuji výšková data...</string>
+
+  <!--EditActivity-->
+  <string name="EditPoi_WrongFormat">Použijte správný formát. Například: 12,34567890.</string>
+  <string name="EditPoi_EmptyClipboard">Zdá že ve schránce není žádný text.</string>
+  <string name="EditPoi_MissingElevationData">Chybějící výšková data.</string>
+  <string name="EditPoi_AltitudeNotUpdated">Nadmořská výška nebyla aktualizována.</string>
+  <string name="EditPoi_TeleportationWarning">Vaše poloha bude nastavena na {0}. Pro resetování vaší polohy, stistněte tlačítko [Reset] ve fotoaparátu nebo resetujte manuální polohu v nastavení aplikace.\r\n\r\nChcete pokračovat?</string>
+
 
   <string name="action_settings">Nastavení</string>
   <string name="SpinnerItems">Vyber zobrazení aplikace</string>
