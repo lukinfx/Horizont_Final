@@ -11,6 +11,7 @@ using Android.Content;
 using Android.Support.V13.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
+using HorizonLib.Domain.ViewModel;
 using Xamarin.Essentials;
 using HorizontApp.Utilities;
 using HorizontApp.Views.Camera;
@@ -51,6 +52,7 @@ namespace HorizontApp
         protected override bool TiltCorrectionEnabled => false;
         protected override bool HeadingCorrectionEnabled => true;
         protected override bool ViewAngleCorrectionEnabled => false;
+        protected override bool ImageCroppingEnabled => false;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -346,6 +348,11 @@ namespace HorizontApp
         protected override void OnZoom(float scale, int x, int y)
         {
             //zoom functionality which is not supported here
+        }
+
+        protected override void OnCropAdjustment(CroppingHandle handle, float distanceX, float distanceY)
+        {
+            //cropping functionality which is not supported here
         }
 
         protected override int GetScreenWidth()

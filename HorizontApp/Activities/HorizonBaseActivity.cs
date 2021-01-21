@@ -11,6 +11,7 @@ using HorizontApp.Views;
 using HorizontLib.Domain.ViewModel;
 using System;
 using System.Threading;
+using HorizonLib.Domain.ViewModel;
 using Xamarin.Essentials;
 using static Android.Views.View;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
@@ -32,8 +33,8 @@ namespace HorizontApp.Activities
         private ImageButton _favouriteButton;
         private ImageButton _displayTerrainButton;
 
-        private LinearLayout _seekBars;
-        private LinearLayout _poiInfo;
+        protected LinearLayout _seekBars;
+        protected LinearLayout _poiInfo;
 
         private bool _elevationProfileBeingGenerated = false;
 
@@ -52,12 +53,13 @@ namespace HorizontApp.Activities
         private float m_PreviousDistanceY;
         private bool m_IsScaling;
         private int m_startTime;
+        private CroppingHandle? m_croppingHandle;
 
         protected abstract bool MoveingAndZoomingEnabled { get; }
         protected abstract bool TiltCorrectionEnabled { get; }
         protected abstract bool HeadingCorrectionEnabled { get; }
         protected abstract bool ViewAngleCorrectionEnabled { get; }
-
+        protected abstract bool ImageCroppingEnabled { get; }
 
         private PoiDatabase _database;
         protected PoiDatabase Database
@@ -115,6 +117,8 @@ namespace HorizontApp.Activities
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.LayoutChange += OnLayoutChanged;
+            _compassView.ShowPointsOfInterest = true;
+            _compassView.ShowElevationProfile = Context.Settings.ShowElevationProfile;
         }
 
         protected void Start()
@@ -202,6 +206,11 @@ namespace HorizontApp.Activities
 
                             m_IsScaling = true;
                         }
+
+                        if (ImageCroppingEnabled)
+                        {
+                            m_croppingHandle = GetCroppingHandle(e.GetX(), e.GetY());
+                        }
                     }
                     break;
                 case MotionEventActions.Move:
@@ -214,9 +223,12 @@ namespace HorizontApp.Activities
                             m_PreviousMoveX = (int)e.GetX();
                             m_PreviousMoveY = (int)e.GetY();
 
-                            //moving
-                            if (MoveingAndZoomingEnabled && !m_IsScaling)
+                            if (ImageCroppingEnabled && m_croppingHandle != null)
                             {
+                                OnCropAdjustment(m_croppingHandle.Value, -distanceX, -distanceY);
+                            }
+                            else if (MoveingAndZoomingEnabled && !m_IsScaling)
+                            {//moving
                                 OnMove(-distanceX, -distanceY);
                             }
                             else if (HeadingCorrectionEnabled && Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
@@ -302,11 +314,18 @@ namespace HorizontApp.Activities
         protected abstract void OnMove(int distanceX, int distanceY);
         protected abstract void OnZoom(float scale, int x, int y);
 
+        protected abstract void OnCropAdjustment(CroppingHandle handle, float distanceX, float distanceY);
+
         protected abstract int GetScreenWidth();
         protected abstract int GetScreenHeight();
 
         protected abstract int GetPictureWidth();
         protected abstract int GetPictureHeight();
+
+        protected virtual CroppingHandle? GetCroppingHandle(float x, float y)
+        {
+            return null;
+        }
 
         private float DispDistance()
         {
@@ -359,14 +378,16 @@ namespace HorizontApp.Activities
         private void HandleDisplayTarrainButtonClicked()
         {
             Context.Settings.ShowElevationProfile = !Context.Settings.ShowElevationProfile;
-            _displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
+            _compassView.ShowElevationProfile = Context.Settings.ShowElevationProfile;
+
+            _displayTerrainButton.SetImageResource(_compassView.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
 
             CheckAndReloadElevationProfile();
         }
 
         protected void CheckAndReloadElevationProfile()
         {
-            if (Context.Settings.ShowElevationProfile)
+            if (_compassView.ShowElevationProfile)
             {
                 if (GpsUtils.HasAltitude(Context.MyLocation))
                 {
@@ -383,8 +404,6 @@ namespace HorizontApp.Activities
                     }
                 }
             }
-
-            _compassView.Invalidate();
         }
 
         protected void GenerateElevationProfile()
@@ -525,34 +544,38 @@ namespace HorizontApp.Activities
         }
         public virtual bool OnSingleTapConfirmed(MotionEvent e)
         {
-            var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
-
-            if (Context.SelectedPoi != null)
+            if (ImageCroppingEnabled)
             {
-                Context.SelectedPoi.Selected = false;
-            }
+                var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
 
-            if (newSelectedPoi != null)
-            {
-                Context.SelectedPoi = newSelectedPoi;
-                Context.SelectedPoi.Selected = true;
+                if (Context.SelectedPoi != null)
+                {
+                    Context.SelectedPoi.Selected = false;
+                }
 
-                _seekBars.Visibility = ViewStates.Gone;
-                _poiInfo.Visibility = ViewStates.Visible;
-                FindViewById<TextView>(Resource.Id.textViewPoiName).Text = Context.SelectedPoi.Poi.Name;
-                FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = "No description";
-                FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = $"{Context.SelectedPoi.Poi.Altitude} m / {(Context.SelectedPoi.GpsLocation.Distance / 1000):F2} km";
-                FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Context.SelectedPoi.Poi.Latitude:F7} N, {Context.SelectedPoi.Poi.Longitude:F7} E";
-                FindViewById<ImageButton>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(Context.SelectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
-            }
-            else
-            {
-                Context.SelectedPoi = null;
+                if (newSelectedPoi != null)
+                {
+                    Context.SelectedPoi = newSelectedPoi;
+                    Context.SelectedPoi.Selected = true;
 
-                _seekBars.Visibility = ViewStates.Visible;
-                _poiInfo.Visibility = ViewStates.Gone;
+                    _seekBars.Visibility = ViewStates.Gone;
+                    _poiInfo.Visibility = ViewStates.Visible;
+                    FindViewById<TextView>(Resource.Id.textViewPoiName).Text = Context.SelectedPoi.Poi.Name;
+                    FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = "No description";
+                    FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = $"{Context.SelectedPoi.Poi.Altitude} m / {(Context.SelectedPoi.GpsLocation.Distance / 1000):F2} km";
+                    FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Context.SelectedPoi.Poi.Latitude:F7} N, {Context.SelectedPoi.Poi.Longitude:F7} E";
+                    FindViewById<ImageButton>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(Context.SelectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
+                }
+                else
+                {
+                    Context.SelectedPoi = null;
+
+                    _seekBars.Visibility = ViewStates.Visible;
+                    _poiInfo.Visibility = ViewStates.Gone;
+                }
+
+                _compassView.Invalidate();
             }
-            _compassView.Invalidate();
 
             return false;
         }

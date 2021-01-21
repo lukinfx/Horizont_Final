@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using HorizonLib.Domain.ViewModel;
 using HorizontLib.Utilities;
 using Xamarin.Essentials;
 using HorizontApp.Views.ScaleImage;
@@ -39,6 +40,10 @@ namespace HorizontApp.Activities
         private byte[] _thumbnail;
 
         private ImageButton _tiltCorrectorButton;
+        private ImageButton _cropButton;
+        private LinearLayout _confirmCloseButtons;
+        private LinearLayout _photoShowActivityControlBar;
+        private LinearLayout _mainActivityStatusBar;
 
         private PhotoData photodata;
 
@@ -50,11 +55,14 @@ namespace HorizontApp.Activities
         private AppContextStaticData _context;
         protected override IAppContext Context { get { return _context; } }
         protected bool EditingOn { get; set; }
+        protected bool CroppingOn { get; set; }
 
         protected override bool MoveingAndZoomingEnabled => !EditingOn;
         protected override bool TiltCorrectionEnabled => EditingOn;
         protected override bool HeadingCorrectionEnabled => EditingOn;
         protected override bool ViewAngleCorrectionEnabled => EditingOn;
+
+        protected override bool ImageCroppingEnabled => CroppingOn;
 
         void InitializeAppContext(PhotoData photodata)
         {
@@ -135,6 +143,16 @@ namespace HorizontApp.Activities
             _tiltCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonTiltCorrector);
             _tiltCorrectorButton.SetOnClickListener(this);
 
+            _cropButton = FindViewById<ImageButton>(Resource.Id.buttonCropImage);
+            _cropButton.SetOnClickListener(this);
+
+            _confirmCloseButtons = FindViewById<LinearLayout>(Resource.Id.confirmCloseButtons);
+            _confirmCloseButtons.Visibility = ViewStates.Gone;
+            FindViewById<ImageButton>(Resource.Id.confirmButton).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.closeButton).SetOnClickListener(this);
+
+            _photoShowActivityControlBar = FindViewById<LinearLayout>(Resource.Id.PhotoShowActivityControlBar);
+            _mainActivityStatusBar = FindViewById<LinearLayout>(Resource.Id.mainActivityStatusBar); 
             photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);
 
             _compassView.Initialize(Context, false,
@@ -208,6 +226,60 @@ namespace HorizontApp.Activities
         protected void ToggleEditing()
         {
             EditingOn = !EditingOn;
+
+            _tiltCorrectorButton.SetImageResource(EditingOn ? Resource.Drawable.ic_lock_unlocked : Resource.Drawable.ic_lock_locked);
+        }
+
+        protected void ToggleCropping()
+        {
+            if (!CroppingOn)
+            {
+                EnableCropping();
+            }
+            else
+            {
+                DisableCropping();
+            }
+        }
+
+        protected void EnableCropping()
+        {
+            CroppingOn = true;
+
+            Matrix inverseMatrix = new Matrix();
+            if (photoView.m_Matrix.Invert(inverseMatrix))
+            {
+                var cr = CroppingOn ? new RectF(
+                    GetScreenWidth() / 5, GetScreenHeight() / 5,
+                    GetScreenWidth() * 4 / 5, GetScreenHeight() * 4 / 5) : null;
+                var dst = new RectF();
+                inverseMatrix.MapRect(dst, cr);
+                photoView.CroppingRectangle = new Rect((int)(int)dst.Left, (int)dst.Top, (int)dst.Right, (int)dst.Bottom);
+
+                _confirmCloseButtons.Visibility = ViewStates.Visible;
+                _seekBars.Visibility = ViewStates.Gone;
+                _poiInfo.Visibility = ViewStates.Gone;
+                _photoShowActivityControlBar.Visibility = ViewStates.Gone;
+                _mainActivityStatusBar.Visibility = ViewStates.Gone;
+
+                _compassView.ShowPointsOfInterest = false;
+                _compassView.ShowElevationProfile = false;
+            }
+        }
+
+        protected void DisableCropping()
+        {
+            CroppingOn = false;
+
+            photoView.CroppingRectangle = null;
+
+            _confirmCloseButtons.Visibility = ViewStates.Gone;
+            _seekBars.Visibility = ViewStates.Visible;
+            _photoShowActivityControlBar.Visibility = ViewStates.Visible;
+            _mainActivityStatusBar.Visibility = ViewStates.Visible;
+
+            _compassView.ShowPointsOfInterest = true;
+            _compassView.ShowElevationProfile = Context.Settings.ShowElevationProfile;
         }
 
         public override void OnDataChanged(object sender, DataChangedEventArgs e)
@@ -259,6 +331,29 @@ namespace HorizontApp.Activities
             Log.WriteLine(LogPriority.Debug, TAG, $"Zooming: {scale}");
         }
 
+        protected override void OnCropAdjustment(CroppingHandle handle, float distanceX, float distanceY)
+        {
+            var oldCR = photoView.CroppingRectangle;
+            distanceX = distanceX / photoView.Scale;
+            distanceY = distanceY / photoView.Scale;
+
+            switch (handle)
+            {
+                case CroppingHandle.Left:
+                    photoView.CroppingRectangle = new Rect((int)(oldCR.Left + distanceX), oldCR.Top, oldCR.Right, oldCR.Bottom);
+                    break;
+                case CroppingHandle.Right:
+                    photoView.CroppingRectangle = new Rect(oldCR.Left, oldCR.Top, (int)(oldCR.Right + distanceX), oldCR.Bottom);
+                    break;
+                case CroppingHandle.Top:
+                    photoView.CroppingRectangle = new Rect(oldCR.Left, (int)(oldCR.Top + distanceY), oldCR.Right, oldCR.Bottom);
+                    break;
+                case CroppingHandle.Bottom:
+                    photoView.CroppingRectangle = new Rect(oldCR.Left, oldCR.Top, oldCR.Right, (int)(oldCR.Bottom + distanceY)); 
+                    break;
+            }
+        }
+
         public override void OnClick(View v)
         {
             base.OnClick(v);
@@ -276,7 +371,19 @@ namespace HorizontApp.Activities
 
                 case Resource.Id.buttonTiltCorrector:
                     ToggleEditing();
-                    _tiltCorrectorButton.SetImageResource(EditingOn?Resource.Drawable.ic_lock_unlocked: Resource.Drawable.ic_lock_locked);
+                    break;
+
+                case Resource.Id.buttonCropImage:
+                    ToggleCropping();
+                    break;
+
+                case Resource.Id.confirmButton:
+                    PopupHelper.InfoDialog(this, "NotImplemented", "This feature is not implemented yet.");
+                    DisableCropping();
+                    break;
+                
+                case Resource.Id.closeButton:
+                    DisableCropping();
                     break;
 
                 case Resource.Id.buttonSaveToDevice:
@@ -435,6 +542,11 @@ namespace HorizontApp.Activities
         protected override int GetPictureHeight()
         {
             return photodata.PictureHeight;
+        }
+
+        protected override CroppingHandle? GetCroppingHandle(float x, float y)
+        {
+            return photoView.GetCroppingHandle(x, y);
         }
 
         #endregion Required abstract methods

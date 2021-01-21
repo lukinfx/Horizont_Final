@@ -32,12 +32,25 @@ namespace HorizontApp.Views
         private double _offsetX = 0;
         private float scaledViewAngleHorizontal = 0;
         private float scaledViewAngleVertical = 0;
+        private bool _showElevationProfile;
+        private bool _showPointsOfInterest;
 
         private ElevationProfileData _elevationProfile;
         private double _leftTiltCorrector = 0;
         private double _rightTiltCorrector = 0;
         private bool _allowRotation = true;
         private System.Drawing.Size _pictureSize;
+
+        public bool ShowElevationProfile
+        {
+            get { return _showElevationProfile; }
+            set { _showElevationProfile = value; Invalidate(); }
+        }
+        public bool ShowPointsOfInterest
+        {
+            get { return _showPointsOfInterest; }
+            set { _showPointsOfInterest = value; Invalidate(); }
+        }
 
         public float ViewAngleHorizontal { get; private set; } = 0;
         public float ViewAngleVertical { get; private set; } = 0;
@@ -184,10 +197,11 @@ namespace HorizontApp.Views
 
             compassViewDrawer.OnDrawBackground(canvas);
 
-            if (_context.Settings.ShowElevationProfile)
+            if (ShowElevationProfile)
                 PaintElevationProfileLines(canvas, heading);
 
-            PaintVisiblePois(canvas, heading);
+            if (ShowPointsOfInterest)
+                PaintVisiblePois(canvas, heading);
         }
 
         private void PaintVisiblePois(Canvas canvas, double heading)
@@ -315,25 +329,34 @@ namespace HorizontApp.Views
 
         public PoiViewItem GetPoiByScreenLocation(float x, float y)
         {
-            var windowLocationOnScreen = new int[2];
-            GetLocationInWindow(windowLocationOnScreen);
-            x = x - windowLocationOnScreen[0];
-            y = y - windowLocationOnScreen[1];
-
-            var heading = _context.Heading + _context.HeadingCorrector;
-
-            foreach (var item in list)
+            if (ShowPointsOfInterest)
             {
-                if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
+                (x, y) = ToLocationOnScreen(x, y);
+                
+                var heading = _context.Heading + _context.HeadingCorrector;
+
+                foreach (var item in list)
                 {
-                    if (compassViewDrawer.IsItemClicked(item, (float) heading, (float) _offsetX, (float) _offsetY, _leftTiltCorrector, _rightTiltCorrector, Width, Height, x, y))
+                    if (item.Visibility != HorizonLib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
                     {
-                        return item;
+                        if (compassViewDrawer.IsItemClicked(item, (float) heading, (float) _offsetX, (float) _offsetY, _leftTiltCorrector, _rightTiltCorrector, Width, Height, x, y))
+                        {
+                            return item;
+                        }
                     }
                 }
             }
 
             return null;
+        }
+
+        private (float x, float y) ToLocationOnScreen(float x, float y)
+        {
+            var windowLocationOnScreen = new int[2];
+            GetLocationInWindow(windowLocationOnScreen);
+            x = x - windowLocationOnScreen[0];
+            y = y - windowLocationOnScreen[1];
+            return (x, y);
         }
     }
 } 

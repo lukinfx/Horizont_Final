@@ -4,6 +4,7 @@ using Android.Graphics;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using HorizonLib.Domain.ViewModel;
 
 namespace HorizontApp.Views.ScaleImage
 {
@@ -28,13 +29,14 @@ namespace HorizontApp.Views.ScaleImage
 
     public class ScaleImageView : ImageView
     {
+        private const int HOLDER_SIZE = 30;
         private Context m_Context;
         private float m_MaxScale;
         private float m_MinScale; 
         private float m_StdScale;
         private float m_Scale;
 
-        private Matrix m_Matrix;
+        public Matrix m_Matrix;
         private float[] m_MatrixValues = new float[9];
         private int m_Width;
         private int m_Height;
@@ -42,8 +44,37 @@ namespace HorizontApp.Views.ScaleImage
         private int m_IntrinsicHeight;
         private int m_InitialPaddingWidth;
         private int m_InitialPaddingHeight;
-        
-        
+        private Rect croppingRectangle;
+        private Paint croppingPaint;
+        private Paint croppingHandlePaint;
+
+
+
+        public Rect CroppingRectangle {
+            get
+            {
+                return croppingRectangle;
+            }
+            set
+            {
+                croppingRectangle = value;
+                Invalidate();
+            }
+        }
+
+        public RectF CroppingRectangleOnDisplay
+        {
+            get
+            {
+                if (CroppingRectangle == null)
+                    return null;
+
+                var dst = new RectF();
+                var src = new RectF(CroppingRectangle);
+                m_Matrix.MapRect(dst, src); 
+                return dst;
+            }
+        }
 
         public float MinScale { get { return m_MinScale; } }
         public float MaxScale { get { return m_MaxScale; } }
@@ -78,6 +109,17 @@ namespace HorizontApp.Views.ScaleImage
         {
             this.SetScaleType(ScaleType.Matrix);
             m_Matrix = new Matrix();
+
+            croppingPaint = new Paint();
+            croppingPaint.SetARGB(150, 0, 0, 0);
+            croppingPaint.SetStyle(Paint.Style.Fill);
+            croppingPaint.StrokeWidth = 0;
+
+            croppingHandlePaint = new Paint();
+            croppingHandlePaint.SetARGB(255, 200, 200, 200);
+            croppingHandlePaint.SetStyle(Paint.Style.FillAndStroke);
+            croppingHandlePaint.StrokeWidth = 4;
+            
         }
 
         protected override bool SetFrame(int l, int t, int r, int b)
@@ -268,5 +310,72 @@ namespace HorizontApp.Views.ScaleImage
             return OnTouchEvent(e);
         }
 
+        private (float x, float y) GetCroppingHandle(CroppingHandle handle)
+        {
+            var cr = CroppingRectangleOnDisplay;
+            
+            switch (handle)
+            {
+                case CroppingHandle.Left:
+                    return (cr.Left, (cr.Top + cr.Bottom) / 2);
+                case CroppingHandle.Right:
+                    return (cr.Right, (cr.Top + cr.Bottom) / 2);
+                case CroppingHandle.Top:
+                    return ((cr.Right + cr.Left) / 2, cr.Top);
+                case CroppingHandle.Bottom:
+                    return ((cr.Right + cr.Left) / 2, cr.Bottom);
+                default:
+                    throw new SystemException("Unsupported handle type");
+            }
+        }
+
+        protected override void OnDraw(Canvas? canvas)
+        {
+            base.OnDraw(canvas);
+
+            if (CroppingRectangleOnDisplay != null)
+            {
+                Rect r = new Rect((int)CroppingRectangleOnDisplay.Left, (int)CroppingRectangleOnDisplay.Top, (int)CroppingRectangleOnDisplay.Right, (int)CroppingRectangleOnDisplay.Bottom);
+
+                //canvas.DrawRect(CroppingRectangleOnDisplay, croppingPaint);
+                canvas.DrawRect(0, 0, r.Left, Height, croppingPaint);
+                canvas.DrawRect(r.Right, 0, Width, Height, croppingPaint);
+                canvas.DrawRect(r.Left, 0, r.Right, r.Top, croppingPaint);
+                canvas.DrawRect(r.Left, r.Bottom, r.Right, Height, croppingPaint);
+
+                foreach (CroppingHandle handle in (CroppingHandle[])Enum.GetValues(typeof(CroppingHandle)))
+                {
+                    var (x, y) = GetCroppingHandle(handle);
+                    canvas.DrawCircle(x, y, HOLDER_SIZE, croppingHandlePaint);
+                }
+            }
+        }
+
+        public CroppingHandle? GetCroppingHandle(float x, float y)
+        {
+            (x, y) = ToLocationOnScreen(x, y);
+
+            foreach (CroppingHandle handle in (CroppingHandle[])Enum.GetValues(typeof(CroppingHandle)))
+            {
+                var (handleX, handleY) = GetCroppingHandle(handle);
+                var distX = handleX - x;
+                var distY = handleY - y;
+                if (FloatMath.Sqrt(distX * distX + distY * distY) < HOLDER_SIZE*2)
+                {
+                    return handle;
+                }
+            }
+
+            return null;
+        }
+
+        private (float x, float y) ToLocationOnScreen(float x, float y)
+        {
+            var windowLocationOnScreen = new int[2];
+            GetLocationInWindow(windowLocationOnScreen);
+            x = x - windowLocationOnScreen[0];
+            y = y - windowLocationOnScreen[1];
+            return (x, y);
+        }
     }
 }
