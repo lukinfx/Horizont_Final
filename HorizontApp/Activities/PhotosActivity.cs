@@ -21,7 +21,6 @@ namespace HorizontApp.Activities
     {
         private ListView _photosListView;
         private PhotosItemAdapter _adapter;
-        private List<PhotoData> photoList;
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -47,7 +46,6 @@ namespace HorizontApp.Activities
 
             _photosListView = FindViewById<ListView>(Resource.Id.listViewPhotos);
 
-            photoList = Context.PhotosModel.GetPhotoDataItems().OrderByDescending(x => x.Datetime).ToList();
             ShowPhotos(Context.ShowFavoritePicturesOnly);
 
             Context.PhotosModel.PhotoAdded += OnPhotoAdded;
@@ -144,7 +142,7 @@ namespace HorizontApp.Activities
                 {
                     var id = data.GetLongExtra("Id", -1);
                     var item = Context.Database.GetPhotoDataItem(id);
-                    var photoItem = photoList.Single(p => p.Id == id);
+                    var photoItem = _adapter.GetById(id);
                     photoItem.Heading = item.Heading;
                     _adapter.NotifyDataSetChanged();
                 }
@@ -153,7 +151,8 @@ namespace HorizontApp.Activities
 
         private void ShowPhotos(bool favoriesOnly)
         {
-            var list = photoList.AsQueryable();
+            var list = Context.PhotosModel.GetPhotoDataItems().AsQueryable();
+            
             if (favoriesOnly)
             {
                 list = list.Where(i => i.Favourite);

@@ -38,6 +38,11 @@ namespace HorizontApp.Utilities
             get { return list.Count; }
         }
 
+        public PhotoData GetById(long id)
+        {
+            return list.Single(p => p.Id == id);
+        }
+
         public override long GetItemId(int position)
         {
             return position;
@@ -47,6 +52,7 @@ namespace HorizontApp.Utilities
         {
             get { return list[index]; }
         }
+
         public void RemoveAt(int index)
         {
             list.RemoveAt(index);
