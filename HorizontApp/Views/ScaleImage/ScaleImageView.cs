@@ -100,6 +100,7 @@ namespace HorizontApp.Views.ScaleImage
             base.SetImageBitmap(bm);
             this.Initialize();
         }
+
         public override void SetImageResource(int resId)
         {
             base.SetImageResource(resId);

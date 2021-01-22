@@ -46,7 +46,7 @@ namespace HorizontApp.Activities
 
             _photosListView = FindViewById<ListView>(Resource.Id.listViewPhotos);
 
-            photoList = Context.Database.GetPhotoDataItems().ToList();
+            photoList = Context.Database.GetPhotoDataItems().OrderByDescending(x => x.Datetime).ToList();
             ShowPhotos(Context.ShowFavoritePicturesOnly);
 
             _photosListView.Adapter = _adapter;
@@ -56,14 +56,6 @@ namespace HorizontApp.Activities
         {
             MenuInflater.Inflate(Resource.Menu.PhotosActivityMenu, menu);
             return base.OnCreateOptionsMenu(menu);
-        }
-
-        void OnPhotoShow(int position)
-        {
-            Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
-            showIntent.PutExtra("ID", _adapter[position].Id);
-
-            StartActivityForResult(showIntent, PhotoShowActivity.REQUEST_SHOW_PHOTO);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -108,7 +100,10 @@ namespace HorizontApp.Activities
 
         public void OnPhotoEdit(int position)
         {
-            OnPhotoShow(position);
+            Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
+            showIntent.PutExtra("ID", _adapter[position].Id);
+
+            StartActivityForResult(showIntent, PhotoShowActivity.REQUEST_SHOW_PHOTO);
         }
 
         public void OnFavouriteEdit(int position)

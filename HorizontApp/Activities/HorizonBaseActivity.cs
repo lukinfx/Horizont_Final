@@ -544,7 +544,7 @@ namespace HorizontApp.Activities
         }
         public virtual bool OnSingleTapConfirmed(MotionEvent e)
         {
-            if (ImageCroppingEnabled)
+            if (!ImageCroppingEnabled)
             {
                 var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
 
