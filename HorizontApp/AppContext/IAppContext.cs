@@ -6,6 +6,7 @@ using HorizontLib.Domain.Models;
 using System.Collections.Generic;
 using HorizonLib.Domain.Models;
 using HorizonLib.Domain.ViewModel;
+using HorizontApp.Models;
 
 namespace HorizontApp.AppContext
 {
@@ -27,6 +28,7 @@ namespace HorizontApp.AppContext
         event HeadingChangedEventHandler HeadingChanged;
 
         Settings Settings { get; }
+        PhotosModel PhotosModel { get; }
         ElevationProfileData ElevationProfileData { get; set; }
         bool CompassPaused { get; set; }
         GpsLocation MyLocation { get; }

@@ -10,6 +10,7 @@ using HorizonLib.Domain.Enums;
 using Android.Content.Res;
 using Android.Content;
 using HorizonLib.Domain.ViewModel;
+using HorizontApp.Models;
 
 namespace HorizontApp.AppContext
 {
@@ -20,12 +21,15 @@ namespace HorizontApp.AppContext
         public virtual void Initialize(Context context)
         {
             this.context = context;
+            PhotosModel = new PhotosModel(Database);
         }
 
         public event DataChangedEventHandler DataChanged;
         public event HeadingChangedEventHandler HeadingChanged;
 
         public Settings Settings { get; private set; }
+
+        public PhotosModel PhotosModel { get; private set; }
 
         private ElevationProfileData _elevationProfileData;
         public ElevationProfileData ElevationProfileData

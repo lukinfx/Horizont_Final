@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using HorizontLib.Domain.Models;
 using System.Linq;
 using Android.Runtime;
+using HorizontApp.Models;
 using HorizontApp.Views.ListOfPoiView;
 
 namespace HorizontApp.Activities
@@ -46,10 +47,16 @@ namespace HorizontApp.Activities
 
             _photosListView = FindViewById<ListView>(Resource.Id.listViewPhotos);
 
-            photoList = Context.Database.GetPhotoDataItems().OrderByDescending(x => x.Datetime).ToList();
+            photoList = Context.PhotosModel.GetPhotoDataItems().OrderByDescending(x => x.Datetime).ToList();
             ShowPhotos(Context.ShowFavoritePicturesOnly);
 
+            Context.PhotosModel.PhotoAdded += OnPhotoAdded;
             _photosListView.Adapter = _adapter;
+        }
+
+        private void OnPhotoAdded(object sender, PhotoAddedEventArgs args)
+        {
+            _adapter.Add(args.data);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

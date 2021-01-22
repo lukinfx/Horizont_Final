@@ -93,6 +93,7 @@
     <Compile Include="Definitions\Definitions.cs" />
     <Compile Include="HorizontApplication.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Models\PhotosModel.cs" />
     <Compile Include="Providers\CompassProvider.cs" />
     <Compile Include="Providers\GpsLocationProvider.cs" />
     <Compile Include="Providers\GpxFileProvider.cs" />

@@ -608,7 +608,7 @@ namespace HorizontApp.Activities
             var stream = new FileStream(filePath, FileMode.Create);
             croppedBitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
 
-            Context.Database.InsertItem(newPhotodata);
+            AppContextLiveData.Instance.PhotosModel.InsertItem(newPhotodata);
         }
     }
 }

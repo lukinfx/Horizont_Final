@@ -53,6 +53,12 @@ namespace HorizontApp.Utilities
             NotifyDataSetChanged();
         }
 
+        public void Add(PhotoData item)
+        {
+            list.Insert(0, item);
+            NotifyDataSetChanged();
+        }
+
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View view = convertView;
