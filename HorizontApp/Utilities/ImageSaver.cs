@@ -77,7 +77,7 @@ namespace HorizontApp.Utilities
             var filepath = System.IO.Path.Combine(GetPhotosFileFolder(), filename);
 
             var file = new Java.IO.File(filepath);
-            byte[] thumbnail = ImageResizer.ResizeImageAndroid(bytes, 150, 100, 50 );
+            byte[] thumbnail = ImageResizer.ResizeImageAndroid(bytes, 150, 100, 70 );
 
             using (var output = new Java.IO.FileOutputStream(file))
             {

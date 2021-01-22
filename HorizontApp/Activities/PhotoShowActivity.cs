@@ -586,7 +586,6 @@ namespace HorizontApp.Activities
                 Latitude = photodata.Latitude,
                 Altitude = photodata.Altitude,
                 Heading = Context.Heading + Context.HeadingCorrector + hdgCorrectionInDegrees,
-                Thumbnail = photodata.Thumbnail, //resize cropped !!!!!!!!!!!!!!!!!!!
                 JsonCategories = JsonConvert.SerializeObject(Context.Settings.Categories),
                 ViewAngleVertical = viewAngleVertical,
                 ViewAngleHorizontal = viewAngleHorizontal,
@@ -599,6 +598,14 @@ namespace HorizontApp.Activities
                 FavouriteFilter = Context.ShowFavoritesOnly,
                 ShowElevationProfile = Context.Settings.ShowElevationProfile
             };
+
+            var thumbnainBitmap = Bitmap.CreateScaledBitmap(croppedBitmap, 150, 100, false);
+            using (MemoryStream ms = new MemoryStream())
+            {
+                thumbnainBitmap.Compress(Bitmap.CompressFormat.Jpeg, 70, ms);
+                newPhotodata.Thumbnail = ms.ToArray();
+            }
+            
             if (_context.ElevationProfileData != null)
             {
                 photodata.JsonElevationProfileData = Context.ElevationProfileData.Serialize();
