@@ -572,8 +572,8 @@ namespace HorizontApp.Activities
             double rightCorrectionInDegrees = _compassView.LeftTiltCorrector + (_compassView.RightTiltCorrector - _compassView.LeftTiltCorrector) * (cropRect.Right / (double)dstBmp.Width);
 
             //New center of image can be somewhere else, so we need to reflect this in total view angle correction
-            double totalCorrectionInPixels = ((cropRect.Top + cropRect.Bottom) / 2.0) - (dstBmp.Height / 2.0);
-            double totalCorrectionInDegrees = totalCorrectionInPixels / (cropRect.Height() * viewAngleVertical);
+            double totalCorrectionInPixels = (((cropRect.Top + cropRect.Bottom) / 2.0) - (dstBmp.Height / 2.0));
+            double totalCorrectionInDegrees = (totalCorrectionInPixels / dstBmp.Height) * Context.ViewAngleVertical;
 
             var now = DateTime.Now;
 
