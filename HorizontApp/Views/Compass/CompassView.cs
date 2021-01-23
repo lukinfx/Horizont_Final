@@ -70,6 +70,10 @@ namespace HorizontApp.Views
 
         public void Initialize(IAppContext context, bool allowRotation, System.Drawing.Size pictureSize, float leftTiltCorrector = 0, float rightTiltCorrector = 0)
         {
+            _scale = 1;
+            _offsetY = 0;
+            _offsetX = 0;
+
             _context = context;
             _allowRotation = allowRotation;
             _pictureSize = pictureSize;
@@ -81,6 +85,8 @@ namespace HorizontApp.Views
             elevationProfileBitmapDrawer = new ElevationProfileBitmapDrawer(_context);
 
             _showElevationProfile = _context.Settings.ShowElevationProfile;
+            
+            Invalidate();
         }
 
         public void SetPoiViewItemList(PoiViewItemList srcList)

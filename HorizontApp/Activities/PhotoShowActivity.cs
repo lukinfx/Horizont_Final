@@ -127,8 +127,6 @@ namespace HorizontApp.Activities
             InitializeAppContext(photodata);
             InitializeBaseActivityUI();
 
-            _thumbnail = photodata.Thumbnail;
-
             _headingTextView = FindViewById<TextView>(Resource.Id.editText1);
             _GPSTextView = FindViewById<TextView>(Resource.Id.editText2);
 
@@ -155,13 +153,12 @@ namespace HorizontApp.Activities
             _mainActivityStatusBar = FindViewById<LinearLayout>(Resource.Id.mainActivityStatusBar); 
             photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);
 
-            _compassView.Initialize(Context, false,
-                new System.Drawing.Size(GetPictureWidth(), photodata.PictureHeight),
-                (float)photodata.LeftTiltCorrector, (float)photodata.RightTiltCorrector);
+            var pictureSize = new System.Drawing.Size(GetPictureWidth(), GetPictureHeight());
+            _compassView.Initialize(Context, false, pictureSize, (float?)photodata.LeftTiltCorrector ?? 0, (float?)photodata.RightTiltCorrector ?? 0);
 
-            if (_thumbnail != null)
+            if (photodata.Thumbnail != null)
             {
-                var bitmap = BitmapFactory.DecodeByteArray(_thumbnail, 0, _thumbnail.Length);
+                var bitmap = BitmapFactory.DecodeByteArray(photodata.Thumbnail, 0, photodata.Thumbnail.Length);
                 MainThread.BeginInvokeOnMainThread(() => { photoView.SetImageBitmap(bitmap); });
             }
 
@@ -548,9 +545,23 @@ namespace HorizontApp.Activities
 
         private void SaveCopy()
         {
-            var newPhotoData = ImageCopySaver.Save(dstBmp, photoView.CroppingRectangle, photodata,
+            photodata = ImageCopySaver.Save(dstBmp, photoView.CroppingRectangle, photodata,
                 _compassView.LeftTiltCorrector, _compassView.RightTiltCorrector,MinHeight, MaxDistance, Context);
-            AppContextLiveData.Instance.PhotosModel.InsertItem(newPhotoData);
+            AppContextLiveData.Instance.PhotosModel.InsertItem(photodata);
+
+            //We also have to re-initialize AppContext, CompassView and CompassViewDrawer
+            InitializeAppContext(photodata);
+
+            var pictureSize = new System.Drawing.Size(GetPictureWidth(), GetPictureHeight());
+            var drawingSize = new System.Drawing.Size(_compassView.Width, _compassView.Height);
+
+            _compassView.Initialize(Context, false, pictureSize, (float?)photodata.LeftTiltCorrector ?? 0, (float?)photodata.RightTiltCorrector ?? 0);
+            _compassView.InitializeViewDrawer(drawingSize, pictureSize);
+
+            var delayedAction = new System.Threading.Timer(o => { LoadImageAndProfile(); },
+                null, TimeSpan.FromSeconds(0.1), TimeSpan.FromMilliseconds(-1));
+
+            Start();
         }
     }
 }
