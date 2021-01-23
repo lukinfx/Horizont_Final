@@ -117,6 +117,7 @@
     <Compile Include="Utilities\GpsUtils.cs" />
     <Compile Include="Utilities\HeadingStabilizator.cs" />
     <Compile Include="Utilities\ImageSaver.cs" />
+    <Compile Include="Utilities\ImageSaverUtils.cs" />
     <Compile Include="Utilities\ListViewAdapter.cs" />
     <Compile Include="Utilities\MapUtilities.cs" />
     <Compile Include="Utilities\PhotosItemAdapter.cs" />

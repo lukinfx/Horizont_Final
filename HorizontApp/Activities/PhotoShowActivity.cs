@@ -190,7 +190,7 @@ namespace HorizontApp.Activities
 
         void LoadImage(string fileName)
         {
-            var path = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), fileName);
+            var path = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), fileName);
             /*
             var a = BitmapDrawable.CreateFromPath(path);
             MainThread.BeginInvokeOnMainThread(() => { photoLayout.SetBackground(a); });
@@ -439,7 +439,7 @@ namespace HorizontApp.Activities
             canvas.DrawBitmap(logoBmp, new Rect(0, 0, logoBmp.Width, logoBmp.Height), new Rect(canvas.Width - logoWidth, canvas.Height - logoWidth * 2 / 3, canvas.Width, canvas.Height), null);
             var photoname = "export" +
                 "" + photodata.PhotoFileName;
-            var filename = System.IO.Path.Combine(ImageSaver.GetPublicPhotosFileFolder(), photoname);
+            var filename = System.IO.Path.Combine(ImageSaverUtils.GetPublicPhotosFileFolder(), photoname);
 
             if (File.Exists(filename))
             {
@@ -486,7 +486,7 @@ namespace HorizontApp.Activities
             canvas.DrawBitmap(logoBmp, new Rect(0, 0, logoBmp.Width, logoBmp.Height), new Rect(canvas.Width - logoWidth, canvas.Height - logoWidth * 2 / 3, canvas.Width, canvas.Height), null);
             //canvas.DrawBitmap(logoBmp, canvas.Width - logoBmp.Width - 40, canvas.Height - logoBmp.Height - 40, null);
 
-            var filename = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), "tmpHorizon.jpg");
+            var filename = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), "tmpHorizon.jpg");
 
             if (File.Exists(filename))
             {
@@ -581,7 +581,7 @@ namespace HorizontApp.Activities
             {
                 Tag = "Copy of " + photodata.Tag,
                 Datetime = now,
-                PhotoFileName = ImageSaver.GetPhotoFileName(now),
+                PhotoFileName = ImageSaverUtils.GetPhotoFileName(now),
                 Longitude = photodata.Longitude,
                 Latitude = photodata.Latitude,
                 Altitude = photodata.Altitude,
@@ -611,7 +611,7 @@ namespace HorizontApp.Activities
                 photodata.JsonElevationProfileData = Context.ElevationProfileData.Serialize();
             }
 
-            var filePath = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), newPhotodata.PhotoFileName);
+            var filePath = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), newPhotodata.PhotoFileName);
             var stream = new FileStream(filePath, FileMode.Create);
             croppedBitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
 

@@ -12,15 +12,11 @@ namespace HorizontApp.Utilities
 {
     public class ImageSaver : Java.Lang.Object, IRunnable
     {
-        private static string SAVED_PICTURES_FOLDER = "HorizonPhotos";
-
         // The JPEG image
         private Image _Image;
         private IAppContext _context;
 
         // The file we save the image into.
-        //private File mFile;
-
         public ImageSaver(Image image, IAppContext context)
         {
             if (image == null)
@@ -29,52 +25,14 @@ namespace HorizontApp.Utilities
             _context = context;
         }
 
-        public static string GetPhotoFileName(DateTime? dt = null)
-        {
-            if (!dt.HasValue)
-                dt = DateTime.Now;
-            string mName = dt?.ToString("yyyy-MM-dd-hh-mm-ss") + "_Horizont.jpg";
-            return mName;
-        }
-
-        public static string GetPhotosFileFolder()
-        {
-            string path = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), SAVED_PICTURES_FOLDER);
-
-            if (File.Exists(path))
-            {
-                return path;
-            }
-            else
-            {
-                Directory.CreateDirectory(path);
-            }
-            return path;
-        }
-
-        public static string GetPublicPhotosFileFolder()
-        {
-            string path = System.IO.Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, "Horizon");
-
-            if (File.Exists(path))
-            {
-                return path;
-            }
-            else
-            {
-                Directory.CreateDirectory(path);
-            }
-            return path;
-        }
-
         public void Run()
         {
             ByteBuffer buffer = _Image.GetPlanes()[0].Buffer;
             byte[] bytes = new byte[buffer.Remaining()];
             buffer.Get(bytes);
 
-            var filename = GetPhotoFileName();
-            var filepath = System.IO.Path.Combine(GetPhotosFileFolder(), filename);
+            var filename = ImageSaverUtils.GetPhotoFileName();
+            var filepath = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), filename);
 
             var file = new Java.IO.File(filepath);
             byte[] thumbnail = ImageResizer.ResizeImageAndroid(bytes, 150, 100, 70 );

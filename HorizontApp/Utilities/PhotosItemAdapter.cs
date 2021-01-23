@@ -96,7 +96,7 @@ namespace HorizontApp.Utilities
             else
                 favouriteButton.SetImageResource(Resource.Drawable.f_heart_empty);
 
-            var path = System.IO.Path.Combine(ImageSaver.GetPhotosFileFolder(), item.PhotoFileName);
+            var path = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), item.PhotoFileName);
 
             
             
