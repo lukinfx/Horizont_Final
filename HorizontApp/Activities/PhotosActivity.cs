@@ -49,12 +49,21 @@ namespace HorizontApp.Activities
             ShowPhotos(Context.ShowFavoritePicturesOnly);
 
             Context.PhotosModel.PhotoAdded += OnPhotoAdded;
+            Context.PhotosModel.PhotoUpdated += OnPhotoUpdated;
             _photosListView.Adapter = _adapter;
         }
 
-        private void OnPhotoAdded(object sender, PhotoAddedEventArgs args)
+        private void OnPhotoAdded(object sender, PhotoDataEventArgs args)
         {
             _adapter.Add(args.data);
+            _adapter.NotifyDataSetChanged();
+        }
+
+        private void OnPhotoUpdated(object sender, PhotoDataEventArgs args)
+        {
+            var photoItem = _adapter.GetById(args.data.Id); 
+            photoItem.Heading = args.data.Heading;
+            _adapter.NotifyDataSetChanged();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -108,7 +117,7 @@ namespace HorizontApp.Activities
             Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
             showIntent.PutExtra("ID", _adapter[position].Id);
 
-            StartActivityForResult(showIntent, PhotoShowActivity.REQUEST_SHOW_PHOTO);
+            StartActivity(showIntent);
         }
 
         public void OnFavouriteEdit(int position)
@@ -138,14 +147,6 @@ namespace HorizontApp.Activities
             base.OnActivityResult(requestCode, resultCode, data);
             if (requestCode == PhotoShowActivity.REQUEST_SHOW_PHOTO)
             {
-                if (data != null)
-                {
-                    var id = data.GetLongExtra("Id", -1);
-                    var item = Context.Database.GetPhotoDataItem(id);
-                    var photoItem = _adapter.GetById(id);
-                    photoItem.Heading = item.Heading;
-                    _adapter.NotifyDataSetChanged();
-                }
             }
         }
 

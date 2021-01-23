@@ -13,14 +13,15 @@ using HorizontLib.Domain.Models;
 
 namespace HorizontApp.Models
 {
-    public class PhotoAddedEventArgs : EventArgs { public PhotoData data; }
-    public delegate void PhotoAddedEventHandler(object sender, PhotoAddedEventArgs e);
+    public class PhotoDataEventArgs : EventArgs { public PhotoData data; }
+    public delegate void PhotoDataEventHandler(object sender, PhotoDataEventArgs e);
 
     public class PhotosModel
     {
         private PoiDatabase _database;
         
-        public event PhotoAddedEventHandler PhotoAdded;
+        public event PhotoDataEventHandler PhotoAdded;
+        public event PhotoDataEventHandler PhotoUpdated;
 
         public PhotosModel(PoiDatabase database)
         {
@@ -35,9 +36,13 @@ namespace HorizontApp.Models
         public void InsertItem(PhotoData item)
         {
             _database.InsertItem(item);
-            PhotoAdded?.Invoke(this, new PhotoAddedEventArgs() {data = item});
+            PhotoAdded?.Invoke(this, new PhotoDataEventArgs() {data = item});
         }
 
-
+        internal void UpdateItem(PhotoData item)
+        {
+            _database.UpdateItem(item);
+            PhotoUpdated?.Invoke(this, new PhotoDataEventArgs() { data = item });
+        }
     }
 }

@@ -311,7 +311,6 @@ namespace HorizontApp.Activities
             _GPSTextView.Text = zoomAndTiltCorrection + "  /  " + viewAngle + "  /  " + photoMatrix;
         }
 
-
         protected override void OnMove(int distanceX, int distanceY)
         {
             photoView.MoveTo(distanceX, distanceY);
@@ -361,11 +360,7 @@ namespace HorizontApp.Activities
             switch (v.Id)
             {
                 case Resource.Id.menuButton:
-                    _saveData();
-
-                    var resultIntent = new Intent();
-                    resultIntent.PutExtra("Id", photodata.Id);
-                    SetResult(Result.Ok, resultIntent);
+                    SavePhotoData();
                     Finish();
                     break;
 
@@ -378,10 +373,8 @@ namespace HorizontApp.Activities
                     break;
 
                 case Resource.Id.confirmButton:
-                    //PopupHelper.InfoDialog(this, "NotImplemented", "This feature is not implemented yet.");
                     SaveCopy(); 
                     DisableCropping(); 
-
                     break;
                 
                 case Resource.Id.closeButton:
@@ -398,7 +391,7 @@ namespace HorizontApp.Activities
             }
         }
 
-        private void _saveData()
+        private void SavePhotoData()
         {
             //### This can be removed later
             photodata.PictureWidth = dstBmp.Width;
@@ -416,7 +409,7 @@ namespace HorizontApp.Activities
             photodata.JsonCategories = JsonConvert.SerializeObject(Context.Settings.Categories);
             if (Context.ElevationProfileData != null)
                 photodata.JsonElevationProfileData = Context.ElevationProfileData.Serialize();
-            Database.UpdateItem(photodata);
+            AppContextLiveData.Instance.PhotosModel.UpdateItem(photodata);
         }
 
         private void _handleButtonSaveClicked()
