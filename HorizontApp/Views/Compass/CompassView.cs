@@ -26,14 +26,13 @@ namespace HorizontApp.Views
         private CompassViewFilter _compassViewFilter = new CompassViewFilter();
         private IAppContext _context { get; set; }
 
-        private Paint _paint;
         private float _scale = 1;
         private double _offsetY = 0;
         private double _offsetX = 0;
         private float scaledViewAngleHorizontal = 0;
         private float scaledViewAngleVertical = 0;
-        private bool _showElevationProfile;
-        private bool _showPointsOfInterest;
+        private bool _showElevationProfile = true;
+        private bool _showPointsOfInterest = true;
 
         private ElevationProfileData _elevationProfile;
         private double _leftTiltCorrector = 0;
@@ -69,11 +68,6 @@ namespace HorizontApp.Views
             compassViewDrawer = new CompassViewDrawer(poiCategoryBitmapProvider);
         }
 
-/*        public CompassView(Context context, IAttributeSet attrs, int defStyle) :
-            base(context, attrs, defStyle)
-        {
-        }
-*/
         public void Initialize(IAppContext context, bool allowRotation, System.Drawing.Size pictureSize, float leftTiltCorrector = 0, float rightTiltCorrector = 0)
         {
             _context = context;
@@ -86,10 +80,7 @@ namespace HorizontApp.Views
 
             elevationProfileBitmapDrawer = new ElevationProfileBitmapDrawer(_context);
 
-            _paint = new Paint();
-            _paint.SetARGB(255, 255, 255, 0);
-            _paint.SetStyle(Paint.Style.Stroke);
-            _paint.StrokeWidth = 3;
+            _showElevationProfile = _context.Settings.ShowElevationProfile;
         }
 
         public void SetPoiViewItemList(PoiViewItemList srcList)

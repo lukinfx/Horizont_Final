@@ -117,8 +117,6 @@ namespace HorizontApp.Activities
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.LayoutChange += OnLayoutChanged;
-            _compassView.ShowPointsOfInterest = true;
-            _compassView.ShowElevationProfile = Context.Settings.ShowElevationProfile;
         }
 
         protected void Start()
