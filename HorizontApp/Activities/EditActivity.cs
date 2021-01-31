@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using static Android.Views.View;
@@ -40,6 +41,7 @@ namespace HorizontApp.Activities
         private ImageButton _buttonPaste;
         private Poi _item = new Poi();
         private long _id;
+        private bool _isDirty = false;
         private PoiCategory _category;
         private ElevationTile _elevationTile;
 
@@ -84,19 +86,16 @@ namespace HorizontApp.Activities
             _editTextAltitude = FindViewById<EditText>(Resource.Id.editTextAltitude);
             _editTextAltitude.SetOnClickListener(this);
 
-            _buttonOpenMap = FindViewById<ImageButton>(Resource.Id.buttonMap);
-            _buttonOpenMap.SetOnClickListener(this);
-
             _buttonOpenWiki = FindViewById<ImageButton>(Resource.Id.buttonWiki);
-            _buttonOpenWiki.SetOnClickListener(this);
+            _buttonOpenWiki.Enabled = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikidata)) ? false : true;
+            _buttonOpenWiki.Visibility = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikidata)) ? ViewStates.Gone : ViewStates.Visible;
+
+            _buttonOpenMap = FindViewById<ImageButton>(Resource.Id.buttonMap);
 
             _buttonTeleport = FindViewById<ImageButton>(Resource.Id.buttonTeleport);
-            _buttonTeleport.SetOnClickListener(this);
-
 
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
             _spinnerCategory.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _poiCategories.ToList());
-            _spinnerCategory.ItemSelected += OnSpinnerCategoryItemSelected;
 
             _thumbnail = FindViewById<ImageView>(Resource.Id.Thumbnail);
             
@@ -111,23 +110,31 @@ namespace HorizontApp.Activities
 
                 _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_item.Category));
             }
-            else 
-            {
-                //MainThread.BeginInvokeOnMainThread(() =>
-                //{
-                //    if (Clipboard.HasText)
-                //    {
-                //        ClipBoardInput();
-                //    }
-                //});
-            }
 
+            //finally set-up event listeners
+            _editTextName.TextChanged += OnTextChanged;
+            _editTextLatitude.TextChanged += OnTextChanged;
+            _editTextLongitude.TextChanged += OnTextChanged;
+            _editTextAltitude.TextChanged += OnTextChanged;
+            _buttonOpenMap.SetOnClickListener(this);
+            _buttonOpenWiki.SetOnClickListener(this);
+            _buttonTeleport.SetOnClickListener(this);
+            _spinnerCategory.ItemSelected += OnSpinnerCategoryItemSelected;
+        }
 
-            if (_item.Wikidata == null && _item.Wikipedia == null)
-            {
-                _buttonOpenWiki.Enabled = false;
-                _buttonOpenWiki.Visibility = ViewStates.Gone;
-            }
+        private void SetDirty()
+        {
+            _isDirty = true;
+        }
+
+        private bool IsDirty()
+        {
+            return _isDirty || _item.Category != _category;
+        }
+
+        private void OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            SetDirty();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -141,8 +148,7 @@ namespace HorizontApp.Activities
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
-                    SetResult(RESULT_CANCELED);
-                    Finish();
+                    OnBackPressed();
                     break;
                 case Resource.Id.menu_save:
                     Save();
@@ -170,10 +176,24 @@ namespace HorizontApp.Activities
                     WikiUtilities.OpenWiki(_item);
                     break;
                 case Resource.Id.buttonTeleport:
-                {
                     TeleportToPoi();
                     break;
-                }
+            }
+        }
+
+        public override void OnBackPressed()
+        {
+            if (IsDirty())
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) => { SetResult(RESULT_CANCELED); Finish(); });
+                alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+                alert.SetMessage(Resources.GetText(Resource.String.DiscardChanges));
+                var answer = alert.Show();
+            }
+            else
+            {
+                base.OnBackPressed();
             }
         }
 
