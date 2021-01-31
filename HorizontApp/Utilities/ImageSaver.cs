@@ -53,7 +53,7 @@ namespace HorizontApp.Utilities
                     }
                     else
                     {
-                        tag += $"{_context.Heading:F0}° direction";
+                        tag += $"{GpsUtils.Normalize360((_context.Heading)):F0}° direction";
                     }
 
                     PhotoData photodata = new PhotoData
