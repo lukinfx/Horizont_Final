@@ -9,7 +9,7 @@ namespace HorizontLib.Providers
     public class ElevationFileProvider
     {
         private static string ELEVATION_MAPS_FOLDER = "ElevationMaps";
-        private static string ELEVATION_MAPS_URL = "http://www.krvaveoleje.cz/horizont/ElevationData/";
+        private static string ELEVATION_MAPS_URL = "http://horizon360.hys.cz/horizont/ElevationData/";
         private static int ELEVATION_FILE_SIZE = 3;
 
         public static string GetElevationFile(int lat, int lon)
