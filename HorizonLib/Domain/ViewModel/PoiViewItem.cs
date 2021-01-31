@@ -1,5 +1,7 @@
-﻿using HorizonLib.Domain.Enums;
+﻿using System;
+using HorizonLib.Domain.Enums;
 using HorizontLib.Domain.Models;
+using HorizontLib.Utilities;
 
 namespace HorizontLib.Domain.ViewModel
 {
@@ -24,5 +26,9 @@ namespace HorizontLib.Domain.ViewModel
             get { return (int)Visibility; }
         }
 
+        public double VerticalViewAngle
+        {
+            get { return GpsUtils.Rad2Dg(Math.Atan(AltitudeDifference / GpsLocation.Distance.Value)); }
+        }
     }
 }

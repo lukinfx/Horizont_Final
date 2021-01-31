@@ -164,7 +164,7 @@ namespace HorizontApp.Views.Compass
                 return (null, null);
             
             double verticalAngleCorrection = CompassViewUtils.GetTiltCorrection(item.GpsLocation.Bearing.Value, heading, viewAngleHorizontal, leftTiltCorrector, rightTiltCorrector);
-            double verticalAngle = GpsUtils.Rad2Dg(Math.Atan(item.AltitudeDifference / item.GpsLocation.Distance.Value));
+            double verticalAngle = item.VerticalViewAngle;
 
             float endY = CompassViewUtils.GetYLocationOnScreen(verticalAngle + verticalAngleCorrection, canvasHeight, adjustedViewAngleVertical);
             return (startX, endY);

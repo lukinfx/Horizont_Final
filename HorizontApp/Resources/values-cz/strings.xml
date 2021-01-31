@@ -13,6 +13,9 @@
 
   <string name="DiscardChanges">Chcete zahodit všechny změny?</string>
 
+  <string name="HorizontalViewAngle">Horizontalní zorný úhel</string>
+  <string name="VerticalViewAngle">Vertikální zorný úhel</string>
+
   <!--Menu Activity-->
   <string name="MainActivity">Zpět do fotoaparátu</string>
   <string name="PoiListActivity">Seznam bodů</string>
@@ -70,14 +73,11 @@
   <string name="CameraViewAngle">Zorný úhel fotoaparátu</string>
 
   <string name="SetViewAngleManually">Nastavit zorný úhel manuálně</string>
-  
 
-  <string name="HorizontalViewAngle">Horizontalní zorný úhel</string>
   <string name="DefaultViewAngleHorizontal">Zorný úhel je 40° (nastaveno manuálně)</string>
-  <string name="VerticalViewAngle">Vertikální zorný úhel</string>
   <string name="DefaultViewAngleVertical">  Zorný úhel je 60° (nastaveno manuálně)</string>
   
-  <string name="GPSLocation">GPS poloha </string>
+  <string name="GPSLocation">GPS poloha</string>
   
   <string name="SetGPSManually">Nastavit GPS polohu manuálně</string>
   
@@ -99,6 +99,7 @@
   <string name="Latitude">Zeměp. šířka: </string>
   <string name="Longitude">Zeměp. délka: </string>
   <string name="Altitude">Nadm. výška: </string>
+  <string name="Distance">Vzdálenost: </string>
   <string name="Category">Kategorie: </string>
   <string name="EditName">Uprav název</string>
   <string name="PasteLocationFromClipboard">Vložit GPS polohu ze schránky</string>

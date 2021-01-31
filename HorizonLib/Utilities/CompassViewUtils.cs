@@ -54,11 +54,6 @@ namespace HorizontLib.Utilities
             return (float)YCoord;
         }
 
-        public static double GetPoiViewAngle(double distance, double altitudeDifference)
-        {
-            return GpsUtils.Rad2Dg(Math.Atan(altitudeDifference / distance));
-        }
-
         public static Visibility IsPoiVisible (PoiViewItem item, ElevationProfileData elevationProfileData)
         {
             if (elevationProfileData == null)
@@ -67,7 +62,7 @@ namespace HorizontLib.Utilities
             var leftPoints = elevationProfileData.GetData((int) item.GpsLocation.Bearing);
             var rightPoints = elevationProfileData.GetData((int)GpsUtils.Normalize360(item.GpsLocation.Bearing.Value + 1));
 
-            var itemViewAngle = GetPoiViewAngle(item.GpsLocation.Distance.Value, item.AltitudeDifference);
+            var itemViewAngle = item.VerticalViewAngle;
 
             var maxLeft = leftPoints.GetPoints().Where(p => p.Distance < item.GpsLocation.Distance).Max(p => p.VerticalViewAngle) ?? -100;
             var maxRight = rightPoints.GetPoints().Where(p => p.Distance < item.GpsLocation.Distance).Max(p => p.VerticalViewAngle) ?? -100;;

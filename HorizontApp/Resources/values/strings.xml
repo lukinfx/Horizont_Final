@@ -13,6 +13,9 @@
 
   <string name="DiscardChanges">Do you want to discard all changes?</string>
 
+  <string name="HorizontalViewAngle">Horizontal view angle</string>
+  <string name="VerticalViewAngle">Vertical view angle</string>
+
   <!--Menu Activity-->
   <string name="MainActivity">Go back to camera</string>
   <string name="PoiListActivity">List of POIs</string>
@@ -72,9 +75,7 @@
   <string name="SetViewAngleManually">Set view angle manually</string>
   
 
-  <string name="HorizontalViewAngle">Horizontal view angle</string>
   <string name="DefaultViewAngleHorizontal">  Current camera view angle is 40 (set manually)</string>
-  <string name="VerticalViewAngle">Vertical view angle</string>
   <string name="DefaultViewAngleVertical">  Current camera view angle is 60 (set manually)</string>
   
   <string name="GPSLocation">GPS Location</string>
@@ -99,6 +100,7 @@
   <string name="Latitude">Latitude: </string>
   <string name="Longitude">Longitude: </string>
   <string name="Altitude">Altitude: </string>
+  <string name="Distance">Distance: </string>
   <string name="Category">Category: </string>
   <string name="EditName">Edit name</string>
 

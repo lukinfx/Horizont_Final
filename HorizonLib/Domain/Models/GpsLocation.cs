@@ -116,5 +116,11 @@ namespace HorizontLib.Domain.Models
             var x = angle - Math.Floor(angle / 360) * 360;
             return x;
         }
+
+        public string LocationAsString()
+        {
+            return $"{Latitude:F7}{(Latitude>0 ? 'N' : 'S')}, {Longitude:F7}{(Longitude > 0 ? 'E' : 'W')}";
+        }
+
     }
 }
