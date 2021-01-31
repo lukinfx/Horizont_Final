@@ -14,6 +14,7 @@ using HorizontLib.Domain.Models;
 using HorizontApp.Utilities;
 using HorizontLib.Domain.Enums;
 using HorizontApp.AppContext;
+using HorizontApp.Providers;
 using HorizontLib.Utilities;
 using GpsUtils = HorizontApp.Utilities.GpsUtils;
 
@@ -256,7 +257,7 @@ namespace HorizontApp.Activities
 
                 Task.Run(async () =>
                 {
-                    var placeName = await GpsUtils.AsyncGetPlaceName(location);
+                    var placeName = await PlaceNameProvider.AsyncGetPlaceName(location);
                     _editTextName.Text = placeName;
                 });
                 

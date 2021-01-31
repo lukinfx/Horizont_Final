@@ -48,29 +48,5 @@ namespace HorizontApp.Utilities
             var dist = Distance(c1, c2);
             return VerticalAngle((c2.Altitude - c1.Altitude), dist);
         }
-
-        public static async Task<string> AsyncGetPlaceName(GpsLocation location)
-        {
-            //https://docs.microsoft.com/en-us/xamarin/essentials/geocoding?tabs=android
-
-            try
-            {
-                var loc = new Xamarin.Essentials.Location(location.Latitude, location.Longitude);
-
-                var placemarks = await Geocoding.GetPlacemarksAsync(loc);
-
-                var placemark = placemarks?.FirstOrDefault();
-                if (placemark != null)
-                {
-                    var geocodeAddress = $"{placemark.Thoroughfare} {placemark.SubThoroughfare}, {placemark.SubLocality}, {placemark.Locality}, {placemark.CountryCode}";
-                    return geocodeAddress;
-                }
-                return "Unknown";
-            }
-            catch
-            {
-                return "Unknown";
-            }
-        }
     }
 }

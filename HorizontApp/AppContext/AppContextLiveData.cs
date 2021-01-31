@@ -139,7 +139,7 @@ namespace HorizontApp.AppContext
                 }
                 else
                 {
-                    myLocationName = await HorizontApp.Utilities.GpsUtils.AsyncGetPlaceName(myLocation);
+                    myLocationName = await PlaceNameProvider.AsyncGetPlaceName(myLocation);
                 }
 
                 ReloadData();
