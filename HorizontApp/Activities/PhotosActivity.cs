@@ -99,14 +99,14 @@ namespace HorizontApp.Activities
         public void OnPhotoDelete(int position)
         {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetPositiveButton("Yes", (senderAlert, args) =>
+            alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
             {
                 PhotoData item = _adapter[position];
                 Context.Database.DeleteItem(item);
                 _adapter.RemoveAt(position);
             });
-            alert.SetNegativeButton("No", (senderAlert, args) => { });
-            alert.SetMessage("Are you sure you want to delete this Photo?");
+            alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+            alert.SetMessage(Resources.GetText(Resource.String.Photos_DeletePhotoQuestion));
             var answer = alert.Show();
 
             _adapter.NotifyDataSetChanged();

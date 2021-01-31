@@ -219,6 +219,7 @@ namespace HorizontApp.Activities
 
             if (_settings.Language != _listOfLanguages[_spinnerLanguages.SelectedItemPosition])
                 return true;
+
             return false;
         }
 
@@ -227,15 +228,15 @@ namespace HorizontApp.Activities
             if (IsDirty())
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetPositiveButton("Yes", (senderAlert, args) =>
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
                 {
                     SetResult(RESULT_CANCELED);
                     Finish();
                 });
-                alert.SetNegativeButton("No", (senderAlert, args) =>
+                alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) =>
                 {
                 });
-                alert.SetMessage($"Do you want to discard all you changes?");
+                alert.SetMessage(Resources.GetText(Resource.String.DiscardChanges));
                 var answer = alert.Show();
             }
             else

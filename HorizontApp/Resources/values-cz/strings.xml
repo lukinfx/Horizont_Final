@@ -4,9 +4,14 @@
   <!--Common-->
   <string name="Yes">Ano</string>
   <string name="No">Ne</string>
-  
+
+  <string name="Save">Uložit</string>
+  <string name="Discard">Zahodit</string>
+
   <string name="Information">Informace</string>
   <string name="Error">Chyba</string>
+
+  <string name="DiscardChanges">Chcete zahodit všechny změny?</string>
 
   <!--Menu Activity-->
   <string name="MainActivity">Zpět do fotoaparátu</string>
@@ -15,6 +20,9 @@
   <string name="PhotosActivity">Galerie fotografií</string>
   <string name="SettingsActivity">Nastavení</string>
   <string name="AboutActivity">O aplikaci</string>
+
+  <!--MainActivity-->
+  <string name="Main_DownloadDataQuestion">Žádné body zájmu ještě nebyly staženy. Chcete je stáhnout nyní?</string>
 
   <!--PoiListActivity-->
   <string name="PoiListFilter_Visible">Viditelné</string>
@@ -45,7 +53,15 @@
   <string name="EditPoi_AltitudeNotUpdated">Nadmořská výška nebyla aktualizována.</string>
   <string name="EditPoi_TeleportationWarning">Vaše poloha bude nastavena na {0}. Pro resetování vaší polohy, stistněte tlačítko [Reset] ve fotoaparátu nebo resetujte manuální polohu v nastavení aplikace.\r\n\r\nChcete pokračovat?</string>
 
+  <!--PhotosActivity -->
+  <string name="Photos_DeletePhotoQuestion">Opravdu chcete smazat tuto fotografii?</string>
 
+  <!--PhotoShowActivity-->
+  <string name="PhotoShow_SaveOrDiscard">Parametry fotografie byly změněny. Checete uložit vaše změny?</string>
+  <string name="PhotoShow_OverwriteQuestion">Fotografie již existuje. Chcete ji přepsat?</string>
+  <string name="PhotoShow_PhotoSaved">Fotografile uložena.</string>
+
+  <!--SettingsActivity-->
   <string name="action_settings">Nastavení</string>
   <string name="SpinnerItems">Vyber zobrazení aplikace</string>
 
@@ -85,7 +101,6 @@
   <string name="Altitude">Nadm. výška: </string>
   <string name="Category">Kategorie: </string>
   <string name="EditName">Uprav název</string>
-  <string name="Save">Uložit</string>
   <string name="PasteLocationFromClipboard">Vložit GPS polohu ze schránky</string>
   <string name="FetchAltitudeFromElevationMap">Získat nadmořskou výšku z výškové mapy</string>
 

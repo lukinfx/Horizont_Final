@@ -434,19 +434,16 @@ namespace HorizontApp.Activities
             if (File.Exists(filename))
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetPositiveButton("Yes", (senderAlert, args) =>
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
                 {
                     File.Delete(filename);
                     var stream = new FileStream(filename, FileMode.CreateNew);
                     bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
-                    Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] { filename }, null, null);
-                    PopupHelper.InfoDialog(this, "Information", $"Photo saved.");
+                    Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] {filename}, null, null);
+                    PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Information), Resources.GetText(Resource.String.PhotoShow_PhotoSaved));
                 });
-                alert.SetNegativeButton("No", (senderAlert, args) =>
-                {
-
-                });
-                alert.SetMessage($"This photo already exists. Do you want to rewrite it?");
+                alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+                alert.SetMessage(Resources.GetText(Resource.String.PhotoShow_OverwriteQuestion));
                 var answer = alert.Show();
             }
             else

@@ -152,14 +152,14 @@ namespace HorizontApp
             if (_firstStart && !Context.Database.IsAnyDownloadedPois())
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetPositiveButton("Yes", (senderAlert, args) =>
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
                 {
                     Intent downloadActivityIntent = new Intent(ctx, typeof(DownloadActivity));
                     StartActivity(downloadActivityIntent);
                     //_adapter.NotifyDataSetChanged();
                 });
-                alert.SetNegativeButton("No", (senderAlert, args) => { });
-                alert.SetMessage("No points of interest have been downloaded yet. Do you want do download them now?");
+                alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+                alert.SetMessage(Resources.GetText(Resource.String.Main_DownloadDataQuestion));
                 var answer = alert.Show();
             }
 
