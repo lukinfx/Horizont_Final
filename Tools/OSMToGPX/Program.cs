@@ -78,16 +78,32 @@ namespace OSMToGPX
                     }
                 }
 
-                poiList.Add(
-                    new Poi()
-                    {
-                        Latitude = double.Parse(lat, CultureInfo.InvariantCulture),
-                        Longitude = double.Parse(lon, CultureInfo.InvariantCulture),
-                        Altitude = string.IsNullOrEmpty(ele) ? 0 : double.Parse(ele, CultureInfo.InvariantCulture),
-                        Wikidata = wikidata,
-                        Wikipedia = wikipedia,
-                        Name = name
-                    });
+                if (ele.EndsWith("m"))
+                {
+                    ele = ele.Remove(ele.Length - 1, 1);
+                }
+
+                try
+                {
+                    poiList.Add(
+                        new Poi()
+                        {
+                            Latitude = double.Parse(lat, CultureInfo.InvariantCulture),
+                            Longitude = double.Parse(lon, CultureInfo.InvariantCulture),
+                            Altitude = string.IsNullOrEmpty(ele) ? 0 : double.Parse(ele, CultureInfo.InvariantCulture),
+                            Wikidata = wikidata,
+                            Wikipedia = wikipedia,
+                            Name = name
+                        });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error:" + ex.Message);
+                    Console.WriteLine($"    Name: {name}");
+                    Console.WriteLine($"    Latitude: {lat}");
+                    Console.WriteLine($"    Longitude: {lon}");
+                    Console.WriteLine($"    Altitude: {ele}");
+                }
             }
             
             WriteStatistics(totalRead, errorNoName, errorNoElevation);
@@ -120,7 +136,7 @@ namespace OSMToGPX
                 foreach (var groupLat in groupLon.GroupBy(x => (int)x.Latitude))
                 {
                     //var _data = new List<GpsLocation>();
-                    string filePath = $@"{tiffDir}ALPSMLC30_N0{groupLat.Key}E0{groupLon.Key}_DSM.tif";
+                    string filePath = $@"{tiffDir}ALPSMLC30_N{groupLat.Key:D3}E{groupLon.Key:D3}_DSM.tif";
 
                     var ed = new ElevationTileConvertor(new GpsLocation(groupLon.Key, groupLat.Key, 0));
                     ed.ReadFromTiff(filePath);
