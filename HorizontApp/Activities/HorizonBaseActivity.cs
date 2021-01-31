@@ -30,8 +30,8 @@ namespace HorizontApp.Activities
         protected CompassView _compassView;
         private TextView _textViewNotification;
 
-        private ImageButton _favouriteButton;
-        private ImageButton _displayTerrainButton;
+        protected ImageButton _favouriteButton;
+        protected ImageButton _displayTerrainButton;
 
         protected LinearLayout _seekBars;
         protected LinearLayout _poiInfo;
@@ -335,32 +335,24 @@ namespace HorizontApp.Activities
             switch (v.Id)
             {
                 case Resource.Id.buttonDisplayTerrain:
-                    HandleDisplayTarrainButtonClicked();
+                    OnDisplayTarrainButtonClicked();
                     break;
 
                 case Resource.Id.favouriteFilterButton:
-                    {
-                        Context.ToggleFavourite();
-                        _favouriteButton.SetImageResource(Context.ShowFavoritesOnly ? Resource.Drawable.ic_heart2_on : Resource.Drawable.ic_heart2);
-                        Context.ReloadData();
-                        break;
-                    }
+                    OnFavouriteButtonClicked();
+                    break;
                 case Resource.Id.buttonCategorySelect:
-                    {
-                        var dialog = new PoiFilterDialog(this, Context);
-                        dialog.Show();
-
-                        break;
-                    }
+                    OnCategoryButtonClicked();
+                    break;
                 case Resource.Id.mainActivityPoiInfo:
+                {
+                    if (Context.SelectedPoi != null)
                     {
-                        if (Context.SelectedPoi != null)
-                        {
-                            Intent editActivityIntent = new Intent(this, typeof(EditActivity));
-                            editActivityIntent.PutExtra("Id", Context.SelectedPoi.Poi.Id);
-                            StartActivityForResult(editActivityIntent, EditActivity.REQUEST_EDIT_POI);
-                        }
+                        Intent editActivityIntent = new Intent(this, typeof(EditActivity));
+                        editActivityIntent.PutExtra("Id", Context.SelectedPoi.Poi.Id);
+                        StartActivityForResult(editActivityIntent, EditActivity.REQUEST_EDIT_POI);
                     }
+                }
                     break;
                 case Resource.Id.buttonMap:
                     MapUtilities.OpenMap(Context.SelectedPoi.Poi);
@@ -371,9 +363,20 @@ namespace HorizontApp.Activities
             }
         }
 
+        protected virtual void OnCategoryButtonClicked()
+        {
+                var dialog = new PoiFilterDialog(this, Context);
+                dialog.Show();
+        }
 
-        #region ElevationProfile
-        private void HandleDisplayTarrainButtonClicked()
+        protected virtual void OnFavouriteButtonClicked()
+        {
+            Context.ToggleFavourite();
+            _favouriteButton.SetImageResource(Context.ShowFavoritesOnly ? Resource.Drawable.ic_heart2_on : Resource.Drawable.ic_heart2);
+            Context.ReloadData();
+        }
+
+        protected virtual void OnDisplayTarrainButtonClicked()
         {
             Context.Settings.ShowElevationProfile = !Context.Settings.ShowElevationProfile;
             _compassView.ShowElevationProfile = Context.Settings.ShowElevationProfile;
@@ -382,6 +385,8 @@ namespace HorizontApp.Activities
 
             CheckAndReloadElevationProfile();
         }
+
+        #region ElevationProfile
 
         protected void CheckAndReloadElevationProfile()
         {
@@ -577,7 +582,6 @@ namespace HorizontApp.Activities
 
             return false;
         }
-
         #endregion Required abstract methods
     }
 }
