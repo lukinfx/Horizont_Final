@@ -13,12 +13,44 @@
         HUN,
         ITA,
         POL,
-        ROU,
+        ROU, //Romania
         SVK,
         SVN,
         ESP,
-        CHE,
+        CHE, //Switzerland
         BEL,
-        BIH
+        BIH, //Bosna & Herzegovina
+        HRV, //Croatia
+        BGR,
+        DNK, //denmark
+        FIN,
+        LIE, //liechtenstein
+        LUX, //luxembourg
+        NLD, //netherlands
+        NOR, //norway
+        ERB, //serbia
+        SWE, //sweden
+        GRC, //greece
+        UKR, //ukraine
+        BLR, //belarus
+        ALB, //albania
+        CYP, //cyprus
+        EST, //estonia
+        GBR, //great-britain
+        IRL, //ireland
+        XKX, //kosovo
+        LVA, //latvia
+        LTU, //lithuania
+        MKD, //macedonia
+        MLT, //malta
+        MCO, //monaco
+        PRT, //portugal + join pbf_files\azores
+        RUS, //russia
+        AND, //andorra
+        FRO, //faroe-islands
+        GEO, //georgia
+        GGY, //guernsey
+        IMN, //isle-of-man
+        MNE //montenegro
     }
 }
