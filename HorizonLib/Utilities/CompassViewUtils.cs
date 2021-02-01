@@ -62,6 +62,9 @@ namespace HorizontLib.Utilities
             var leftPoints = elevationProfileData.GetData((int) item.GpsLocation.Bearing);
             var rightPoints = elevationProfileData.GetData((int)GpsUtils.Normalize360(item.GpsLocation.Bearing.Value + 1));
 
+            if (leftPoints == null || rightPoints == null)
+                return Visibility.Visible;
+
             var itemViewAngle = item.VerticalViewAngle;
 
             var maxLeft = leftPoints.GetPoints().Where(p => p.Distance < item.GpsLocation.Distance).Max(p => p.VerticalViewAngle) ?? -100;

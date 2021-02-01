@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using HorizontLib.Domain.Models;
+using HorizontLib.Extensions;
 using HorizontLib.Utilities;
 using Newtonsoft.Json;
 
@@ -37,11 +38,21 @@ namespace HorizontLib.Domain.ViewModel
 
         public static ElevationProfileData Deserialize(string serializedData)
         {
-            return JsonConvert.DeserializeObject<ElevationProfileData>(serializedData);
+            if (!string.IsNullOrEmpty(serializedData))
+            {
+                return JsonConvert.DeserializeObject<ElevationProfileData>(serializedData);
+            }
+            else
+            {
+                return new ElevationProfileData(new GpsLocation(0, 0, 0), 0);
+            }
         }
 
         public string Serialize()
         {
+            if (MaxDistance.IsEqual(0, 0.1))
+                return null;
+
             var epd = new ElevationProfileData();
             return JsonConvert.SerializeObject(this);
         }

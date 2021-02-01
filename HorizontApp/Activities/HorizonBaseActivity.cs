@@ -25,7 +25,6 @@ namespace HorizontApp.Activities
         private static string TAG = "Horizon-BaseActivity";
 
         protected abstract IAppContext Context { get; }
-        private TextView _headingTextView;
 
         protected CompassView _compassView;
         private TextView _textViewNotification;
@@ -85,8 +84,6 @@ namespace HorizontApp.Activities
 
 
             _textViewNotification = FindViewById<TextView>(Resource.Id.textViewNotification);
-
-            _headingTextView = FindViewById<TextView>(Resource.Id.editText1);
 
             _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
             _distanceSeekBar.Progress = Context.Settings.MaxDistance;
@@ -313,6 +310,9 @@ namespace HorizontApp.Activities
         protected abstract void OnMove(int distanceX, int distanceY);
         protected abstract void OnZoom(float scale, int x, int y);
 
+        protected virtual void OnPreviousImage() { }
+        protected virtual void OnNextImage() { }
+
         protected abstract void OnCropAdjustment(CroppingHandle handle, float distanceX, float distanceY);
 
         protected abstract int GetScreenWidth();
@@ -523,13 +523,13 @@ namespace HorizontApp.Activities
         {
             if (velocityX > 4000)
             {
-                //Previous image
+                OnPreviousImage();
                 return true;
             }
 
             if (velocityX < -4000)
             {
-                //Next image
+                OnNextImage();
                 return true;
             }
 

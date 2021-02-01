@@ -15,10 +15,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Policy;
-using Android.Text;
 using HorizonLib.Domain.ViewModel;
-using HorizontApp.Extensions;
+using HorizontLib.Extensions;
 using HorizontLib.Utilities;
 using Xamarin.Essentials;
 using HorizontApp.Views.ScaleImage;
@@ -37,10 +35,7 @@ namespace HorizontApp.Activities
         private static string TAG = "Horizon-PhotoShowActivity";
 
         private TextView _GPSTextView;
-        private TextView _headingTextView;
         private ScaleImageView photoView;
-
-        private byte[] _thumbnail;
 
         private ImageButton _tiltCorrectorButton;
         private ImageButton _cropButton;
@@ -50,12 +45,9 @@ namespace HorizontApp.Activities
         private LinearLayout _confirmCloseButtons;
         private LinearLayout _mainActivityStatusBar;
 
-        private PhotoData photodata;
+        private PhotoData _photodata;
 
         private Bitmap dstBmp;
-
-        private PoiViewItem _selectedPoi;
-        private bool _isDirty = false;
 
         private AppContextStaticData _context;
 
@@ -102,6 +94,10 @@ namespace HorizontApp.Activities
             if (photodata.PictureWidth == 0) photodata.PictureWidth = AppContextLiveData.Instance.Settings.CameraPictureSize.Width;
             if (photodata.PictureHeight == 0) photodata.PictureHeight = AppContextLiveData.Instance.Settings.CameraPictureSize.Height;
 
+
+            //Elavation data will be loaded when user will enable showing of elevation data
+            if (photodata.JsonElevationProfileData == null) photodata.ShowElevationProfile = false;
+
             Context.Settings.LoadData(this);
             Context.Settings.IsViewAngleCorrection = false;
             Context.Settings.Categories = JsonConvert.DeserializeObject<List<PoiCategory>>(photodata.JsonCategories);
@@ -111,11 +107,9 @@ namespace HorizontApp.Activities
             Context.Settings.MinAltitute = Convert.ToInt32(photodata.MinAltitude);
             Context.ShowFavoritesOnly = photodata.FavouriteFilter;
             Context.Settings.ShowElevationProfile = photodata.ShowElevationProfile;
-            if (photodata.JsonElevationProfileData != null)
-            {
-                Context.ElevationProfileData = ElevationProfileData.Deserialize(photodata.JsonElevationProfileData);
-            }
+            Context.ElevationProfileData = ElevationProfileData.Deserialize(photodata.JsonElevationProfileData);
         }
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -132,12 +126,11 @@ namespace HorizontApp.Activities
             }
 
             long id = Intent.GetLongExtra("ID", -1);
-            photodata = Database.GetPhotoDataItem(id);
+            _photodata = Database.GetPhotoDataItem(id);
 
-            InitializeAppContext(photodata);
+            InitializeAppContext(_photodata);
             InitializeBaseActivityUI();
 
-            _headingTextView = FindViewById<TextView>(Resource.Id.editText1);
             _GPSTextView = FindViewById<TextView>(Resource.Id.editText2);
 
             FindViewById<ImageButton>(Resource.Id.menuButton).SetOnClickListener(this);
@@ -164,11 +157,11 @@ namespace HorizontApp.Activities
             photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);
 
             var pictureSize = new System.Drawing.Size(GetPictureWidth(), GetPictureHeight());
-            _compassView.Initialize(Context, false, pictureSize, (float?) photodata.LeftTiltCorrector ?? 0, (float?) photodata.RightTiltCorrector ?? 0);
+            _compassView.Initialize(Context, false, pictureSize, (float?) _photodata.LeftTiltCorrector ?? 0, (float?) _photodata.RightTiltCorrector ?? 0);
 
-            if (photodata.Thumbnail != null)
+            if (_photodata.Thumbnail != null)
             {
-                var bitmap = BitmapFactory.DecodeByteArray(photodata.Thumbnail, 0, photodata.Thumbnail.Length);
+                var bitmap = BitmapFactory.DecodeByteArray(_photodata.Thumbnail, 0, _photodata.Thumbnail.Length);
                 MainThread.BeginInvokeOnMainThread(() => { photoView.SetImageBitmap(bitmap); });
             }
 
@@ -180,13 +173,13 @@ namespace HorizontApp.Activities
 
         private void LoadImageAndProfile()
         {
-            LoadImage(photodata.PhotoFileName);
+            LoadImage(_photodata.PhotoFileName);
 
             if (Context.Settings.ShowElevationProfile)
             {
-                if (photodata.JsonElevationProfileData != null)
+                if (_photodata.JsonElevationProfileData != null)
                 {
-                    Context.ElevationProfileData = ElevationProfileData.Deserialize(photodata.JsonElevationProfileData);
+                    Context.ElevationProfileData = ElevationProfileData.Deserialize(_photodata.JsonElevationProfileData);
                     if (Context.ElevationProfileData != null)
                     {
                         RefreshElevationProfile();
@@ -327,6 +320,51 @@ namespace HorizontApp.Activities
             Log.WriteLine(LogPriority.Debug, TAG, $"Zooming: {scale}");
         }
 
+        protected override void OnPreviousImage()
+        {
+            CheckDirtyAndPerformAction(() => ShowPreviousImage());
+        }
+
+
+        protected override void OnNextImage()
+        {
+            CheckDirtyAndPerformAction(() => ShowNextImage());
+        }
+
+        protected void ShowPreviousImage()
+        {
+            var newPhotodata = Context.Database.GetPreviousPhotoDataItem(_photodata);
+
+            if (newPhotodata != null)
+            {
+                photoView.SetImageBitmap(null);
+                _compassView.Visibility = ViewStates.Gone;
+                photoView.Visibility = ViewStates.Gone;
+
+                ReInitialize(newPhotodata);
+
+                _compassView.Visibility = ViewStates.Visible;
+                photoView.Visibility = ViewStates.Visible;
+            }
+        }
+
+        protected void ShowNextImage()
+        {
+            var newPhotodata = Context.Database.GetNextPhotoDataItem(_photodata);
+
+            if (newPhotodata != null)
+            {
+                photoView.SetImageBitmap(null);
+                _compassView.Visibility = ViewStates.Gone;
+                photoView.Visibility = ViewStates.Gone;
+
+                ReInitialize(newPhotodata);
+
+                _compassView.Visibility = ViewStates.Visible;
+                photoView.Visibility = ViewStates.Visible;
+            }
+        }
+
         protected override void OnCropAdjustment(CroppingHandle handle, float distanceX, float distanceY)
         {
             var oldCR = photoView.CroppingRectangle;
@@ -389,7 +427,8 @@ namespace HorizontApp.Activities
 
         public override void OnBackPressed()
         {
-            if (IsDirty())
+            CheckDirtyAndPerformAction(() => base.OnBackPressed());
+            /*if (IsDirty())
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.SetPositiveButton(Resources.GetText(Resource.String.Discard), (senderAlert, args) => { Finish(); });
@@ -400,65 +439,87 @@ namespace HorizontApp.Activities
             else
             {
                 base.OnBackPressed();
-            }
+            }*/
         }
 
-        private void SetDirty(bool value)
+        private void CheckDirtyAndPerformAction(Action action)
         {
-            _isDirty = value;
+            if (IsDirty())
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Discard), (senderAlert, args) => { action.Invoke(); });
+                alert.SetNegativeButton(Resources.GetText(Resource.String.Save), (senderAlert, args) => { SavePhotoData(); action.Invoke(); });
+                alert.SetMessage(Resources.GetText(Resource.String.PhotoShow_SaveOrDiscard));
+                var answer = alert.Show();
+            }
+            else
+            {
+                action.Invoke();
+            }
         }
 
         private bool IsDirty()
         {
+            var elevationProfileData = ElevationProfileData.Deserialize(_photodata?.JsonElevationProfileData);
+
             return
-                photodata.ShowElevationProfile != Context.Settings.ShowElevationProfile
-                || !photodata.MaxDistance.IsEqual(MaxDistance, 0.1)
-                || !photodata.MinAltitude.IsEqual(MinHeight, 0.1)
-                || !photodata.ViewAngleHorizontal.IsEqual(Context.ViewAngleHorizontal, 0.1)
-                || !photodata.ViewAngleVertical.IsEqual(Context.ViewAngleVertical, 0.1)
-                || !(photodata.LeftTiltCorrector?.IsEqual(_compassView.LeftTiltCorrector, 0.01) ?? true)
-                || !(photodata.RightTiltCorrector?.IsEqual(_compassView.RightTiltCorrector, 0.01) ?? true)
-                || !photodata.Heading.IsEqual(Context.Heading + Context.HeadingCorrector, 0.1);
+                _photodata.ShowElevationProfile != Context.Settings.ShowElevationProfile
+                || _photodata.FavouriteFilter != Context.ShowFavoritesOnly
+                || !_photodata.MaxDistance.IsEqual(Context.Settings.MaxDistance, 0.1)
+                || !_photodata.MinAltitude.IsEqual(Context.Settings.MinAltitute, 0.1)
+                || !_photodata.ViewAngleHorizontal.IsEqual(Context.ViewAngleHorizontal, 0.1)
+                || !_photodata.ViewAngleVertical.IsEqual(Context.ViewAngleVertical, 0.1)
+                || !(_photodata.LeftTiltCorrector?.IsEqual(_compassView.LeftTiltCorrector, 0.01) ?? true)
+                || !(_photodata.RightTiltCorrector?.IsEqual(_compassView.RightTiltCorrector, 0.01) ?? true)
+                || !_photodata.Heading.IsEqual(Context.Heading + Context.HeadingCorrector, 0.1)
+                || (_photodata.ShowElevationProfile && !elevationProfileData.MaxDistance.IsEqual(Context.ElevationProfileData.MaxDistance, 0.1));
         }
 
         private void SavePhotoData()
         {
             //### This can be removed later
-            photodata.PictureWidth = dstBmp.Width;
-            photodata.PictureHeight = dstBmp.Height;
+            _photodata.PictureWidth = dstBmp.Width;
+            _photodata.PictureHeight = dstBmp.Height;
 
-            photodata.MaxDistance = MaxDistance;
-            photodata.MinAltitude = MinHeight;
-            photodata.ViewAngleHorizontal = Context.ViewAngleHorizontal;
-            photodata.ViewAngleVertical = Context.ViewAngleVertical;
-            photodata.LeftTiltCorrector = _compassView.LeftTiltCorrector;
-            photodata.RightTiltCorrector = _compassView.RightTiltCorrector;
-            photodata.Heading = Context.Heading + Context.HeadingCorrector;
-            photodata.ShowElevationProfile = Context.Settings.ShowElevationProfile;
-            photodata.FavouriteFilter = Context.ShowFavoritesOnly;
-            photodata.JsonCategories = JsonConvert.SerializeObject(Context.Settings.Categories);
+            _photodata.MaxDistance = MaxDistance;
+            _photodata.MinAltitude = MinHeight;
+            _photodata.ViewAngleHorizontal = Context.ViewAngleHorizontal;
+            _photodata.ViewAngleVertical = Context.ViewAngleVertical;
+            _photodata.LeftTiltCorrector = _compassView.LeftTiltCorrector;
+            _photodata.RightTiltCorrector = _compassView.RightTiltCorrector;
+            _photodata.Heading = Context.Heading + Context.HeadingCorrector;
+            _photodata.ShowElevationProfile = Context.Settings.ShowElevationProfile;
+            _photodata.FavouriteFilter = Context.ShowFavoritesOnly;
+            _photodata.JsonCategories = JsonConvert.SerializeObject(Context.Settings.Categories);
             if (Context.ElevationProfileData != null)
-                photodata.JsonElevationProfileData = Context.ElevationProfileData.Serialize();
-            AppContextLiveData.Instance.PhotosModel.UpdateItem(photodata);
+                _photodata.JsonElevationProfileData = Context.ElevationProfileData.Serialize();
+            AppContextLiveData.Instance.PhotosModel.UpdateItem(_photodata);
         }
 
         private void SaveCopy()
         {
-            photodata = ImageCopySaver.Save(dstBmp, photoView.CroppingRectangle, photodata,
+            var newPhotodata = ImageCopySaver.Save(dstBmp, photoView.CroppingRectangle, _photodata,
                 _compassView.LeftTiltCorrector, _compassView.RightTiltCorrector, MinHeight, MaxDistance, Context);
-            AppContextLiveData.Instance.PhotosModel.InsertItem(photodata);
+            AppContextLiveData.Instance.PhotosModel.InsertItem(newPhotodata);
 
+            ReInitialize(newPhotodata);
+        }
+
+        private void ReInitialize(PhotoData newPhotodata)
+        {
             //We also have to re-initialize AppContext, CompassView and CompassViewDrawer
-            InitializeAppContext(photodata);
+            InitializeAppContext(newPhotodata);
+
+            _photodata = newPhotodata;
 
             var pictureSize = new System.Drawing.Size(GetPictureWidth(), GetPictureHeight());
             var drawingSize = new System.Drawing.Size(_compassView.Width, _compassView.Height);
 
-            _compassView.Initialize(Context, false, pictureSize, (float?)photodata.LeftTiltCorrector ?? 0, (float?)photodata.RightTiltCorrector ?? 0);
+            _compassView.Initialize(Context, false, pictureSize, (float?)newPhotodata.LeftTiltCorrector ?? 0, (float?)newPhotodata.RightTiltCorrector ?? 0);
             _compassView.InitializeViewDrawer(drawingSize, pictureSize);
 
-            var delayedAction = new System.Threading.Timer(o => { LoadImageAndProfile(); },
-                null, TimeSpan.FromSeconds(0.1), TimeSpan.FromMilliseconds(-1));
+            
+            LoadImageAndProfile();
 
             Start();
         }
@@ -471,10 +532,10 @@ namespace HorizontApp.Activities
 
             var compassView = new CompassView(ApplicationContext, null);
             compassView.Initialize(Context, false,
-                new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight),
+                new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight),
                 (float) _compassView.LeftTiltCorrector, (float) _compassView.RightTiltCorrector);
-            compassView.Layout(0, 0, photodata.PictureWidth, photodata.PictureHeight);
-            compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight));
+            compassView.Layout(0, 0, _photodata.PictureWidth, _photodata.PictureHeight);
+            compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight));
 
             compassView.Draw(canvas);
 
@@ -482,7 +543,7 @@ namespace HorizontApp.Activities
             var logoWidth = Convert.ToInt32(0.2 * canvas.Width);
             canvas.DrawBitmap(logoBmp, new Rect(0, 0, logoBmp.Width, logoBmp.Height), new Rect(canvas.Width - logoWidth, canvas.Height - logoWidth * 2 / 3, canvas.Width, canvas.Height), null);
             var photoname = "export" +
-                "" + photodata.PhotoFileName;
+                "" + _photodata.PhotoFileName;
             var filename = System.IO.Path.Combine(ImageSaverUtils.GetPublicPhotosFileFolder(), photoname);
 
             if (File.Exists(filename))
@@ -517,10 +578,10 @@ namespace HorizontApp.Activities
 
             var compassView = new CompassView(ApplicationContext, null);
             compassView.Initialize(Context, false,
-                new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight),
+                new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight),
                 (float) _compassView.LeftTiltCorrector, (float) _compassView.RightTiltCorrector);
-            compassView.Layout(0, 0, photodata.PictureWidth, photodata.PictureHeight);
-            compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(photodata.PictureWidth, photodata.PictureHeight));
+            compassView.Layout(0, 0, _photodata.PictureWidth, _photodata.PictureHeight);
+            compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight));
             compassView.Draw(canvas);
 
             var logoWidth = Convert.ToInt32(0.2 * canvas.Width);
@@ -581,12 +642,12 @@ namespace HorizontApp.Activities
 
         protected override int GetPictureWidth()
         {
-            return photodata.PictureWidth;
+            return _photodata.PictureWidth;
         }
 
         protected override int GetPictureHeight()
         {
-            return photodata.PictureHeight;
+            return _photodata.PictureHeight;
         }
 
         protected override CroppingHandle? GetCroppingHandle(float x, float y)

@@ -289,6 +289,26 @@ namespace HorizontApp.DataAccess
             return task.Result;
         }
 
+        public PhotoData GetPreviousPhotoDataItem(PhotoData current)
+        {
+            var task = Database.Table<PhotoData>().Where(i => i.Datetime < current.Datetime)
+                .OrderByDescending(i => i.Datetime)
+                .FirstOrDefaultAsync();
+            task.Wait();
+
+            return task.Result;
+        }
+
+        public PhotoData GetNextPhotoDataItem(PhotoData current)
+        {
+            var task = Database.Table<PhotoData>().Where(i => i.Datetime > current.Datetime)
+                .OrderBy(i => i.Datetime)
+                .FirstOrDefaultAsync();
+            task.Wait();
+
+            return task.Result;
+        }
+
         #endregion PhotoData
     }
 }
