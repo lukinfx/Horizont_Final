@@ -312,6 +312,11 @@ namespace HorizontApp.Views.ListOfPoiView
             {
                 if (resultCode == EditActivity.RESULT_OK)
                 {
+                    var id = data.GetLongExtra("Id", 0);
+                    var itemfromDb = Context.Database.GetItem(id);
+                    var itemfromAdapter = _adapter.GetPoiItem(id);
+                    itemfromAdapter.Poi = itemfromDb;
+
                     _adapter.NotifyDataSetChanged();
                 }
                 if (resultCode == EditActivity.RESULT_OK_AND_CLOSE_PARENT)

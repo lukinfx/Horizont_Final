@@ -40,6 +40,11 @@ namespace HorizontApp.Utilities
             return position;
         }
 
+        public PoiViewItem GetPoiItem(long id)
+        {
+            return list.Single(x => x.Poi.Id == id);
+        }
+
         public override PoiViewItem this[int index]
         {
             get { return list[index]; }

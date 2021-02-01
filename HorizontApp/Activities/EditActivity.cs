@@ -38,6 +38,7 @@ namespace HorizontApp.Activities
         private ImageButton _buttonOpenMap;
         private ImageButton _buttonOpenWiki;
         private ImageButton _buttonTeleport;
+        private ImageView _buttonFavourite;
         private ImageView _thumbnail;
         private ImageButton _buttonPaste;
         private Poi _item = new Poi();
@@ -76,20 +77,16 @@ namespace HorizontApp.Activities
             ActionBar.SetDisplayHomeAsUpEnabled(true);
 
             _editTextName = FindViewById<EditText>(Resource.Id.editTextName);
-            _editTextName.SetOnClickListener(this);
 
             _editTextLatitude = FindViewById<EditText>(Resource.Id.editTextLatitude);
-            _editTextLatitude.SetOnClickListener(this);
 
             _editTextLongitude = FindViewById<EditText>(Resource.Id.editTextLongitude);
-            _editTextLongitude.SetOnClickListener(this);
 
             _editTextAltitude = FindViewById<EditText>(Resource.Id.editTextAltitude);
-            _editTextAltitude.SetOnClickListener(this);
+
+            _buttonFavourite = FindViewById<ImageView>(Resource.Id.buttonFavourite);
 
             _buttonOpenWiki = FindViewById<ImageButton>(Resource.Id.buttonWiki);
-            _buttonOpenWiki.Enabled = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikidata)) ? false : true;
-            _buttonOpenWiki.Visibility = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikidata)) ? ViewStates.Gone : ViewStates.Visible;
 
             _buttonOpenMap = FindViewById<ImageButton>(Resource.Id.buttonMap);
 
@@ -112,14 +109,27 @@ namespace HorizontApp.Activities
                 _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_item.Category));
             }
 
+            _buttonFavourite.SetImageResource(_item.Favorite ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
+
+            _buttonOpenWiki.Enabled = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikidata)) ? false : true;
+            _buttonOpenWiki.Visibility = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikidata)) ? ViewStates.Gone : ViewStates.Visible;
+
             //finally set-up event listeners
             _editTextName.TextChanged += OnTextChanged;
             _editTextLatitude.TextChanged += OnTextChanged;
             _editTextLongitude.TextChanged += OnTextChanged;
             _editTextAltitude.TextChanged += OnTextChanged;
+
+            _editTextName.SetOnClickListener(this);
+            _editTextLatitude.SetOnClickListener(this);
+            _editTextLongitude.SetOnClickListener(this);
+            _editTextAltitude.SetOnClickListener(this);
+
+            _buttonFavourite.SetOnClickListener(this);
             _buttonOpenMap.SetOnClickListener(this);
             _buttonOpenWiki.SetOnClickListener(this);
             _buttonTeleport.SetOnClickListener(this);
+
             _spinnerCategory.ItemSelected += OnSpinnerCategoryItemSelected;
         }
 
@@ -170,6 +180,9 @@ namespace HorizontApp.Activities
         {
             switch (v.Id)
             {
+                case Resource.Id.buttonFavourite:
+                    ToggleFavourite();
+                    break;
                 case Resource.Id.buttonMap:
                     MapUtilities.OpenMap(double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture), double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture));
                     break;
@@ -301,6 +314,7 @@ namespace HorizontApp.Activities
                 }
             }
         }
+        
         private void TeleportToPoi()
         {
             var manualLocation = new GpsLocation()
@@ -323,6 +337,12 @@ namespace HorizontApp.Activities
             var answer = alert.Show();
         }
 
+        private void ToggleFavourite()
+        {
+            _item.Favorite = !_item.Favorite;
+            _buttonFavourite.SetImageResource(_item.Favorite ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
+            SetDirty();
+        }
 
         private async Task<string> GetClipBoardInput()
         {
