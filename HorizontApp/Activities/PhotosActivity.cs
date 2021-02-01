@@ -61,9 +61,12 @@ namespace HorizontApp.Activities
 
         private void OnPhotoUpdated(object sender, PhotoDataEventArgs args)
         {
-            var photoItem = _adapter.GetById(args.data.Id); 
-            photoItem.Heading = args.data.Heading;
-            _adapter.NotifyDataSetChanged();
+            var photoItem = _adapter.GetById(args.data.Id);
+            if (photoItem != null)
+            {
+                photoItem.Heading = args.data.Heading;
+                _adapter.NotifyDataSetChanged();
+            }
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

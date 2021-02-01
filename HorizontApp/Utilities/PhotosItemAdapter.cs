@@ -40,7 +40,7 @@ namespace HorizontApp.Utilities
 
         public PhotoData GetById(long id)
         {
-            return list.Single(p => p.Id == id);
+            return list.SingleOrDefault(p => p.Id == id);
         }
 
         public override long GetItemId(int position)
