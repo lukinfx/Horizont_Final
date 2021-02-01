@@ -127,6 +127,8 @@ namespace HorizontApp
             _headingEditText = FindViewById<TextView>(Resource.Id.editText1);
             _GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
 
+            _activityControlBar = FindViewById<LinearLayout>(Resource.Id.mainActivityControlBar);
+
             _menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
             _menuButton.SetOnClickListener(this);
 

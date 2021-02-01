@@ -42,6 +42,7 @@ namespace HorizontApp.Activities
 
         private SeekBar _distanceSeekBar;
         private SeekBar _heightSeekBar;
+        protected LinearLayout _activityControlBar;
 
         //for gesture detection
         private int m_PreviousMoveX;
@@ -550,6 +551,22 @@ namespace HorizontApp.Activities
             if (!ImageCroppingEnabled)
             {
                 var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
+
+                if (Context.SelectedPoi == null && newSelectedPoi == null)
+                {
+                    if (_seekBars.Visibility == ViewStates.Visible)
+                    {
+                        _seekBars.Visibility = ViewStates.Gone;
+                        _activityControlBar.Visibility = ViewStates.Gone;
+                    }
+                    else
+                    {
+                        _seekBars.Visibility = ViewStates.Visible;
+                        _activityControlBar.Visibility = ViewStates.Visible;
+                    }
+
+                    return false;
+                }
 
                 if (Context.SelectedPoi != null)
                 {

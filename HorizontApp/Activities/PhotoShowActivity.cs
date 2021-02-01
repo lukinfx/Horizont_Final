@@ -48,7 +48,6 @@ namespace HorizontApp.Activities
         private ImageButton _shareButton;
 
         private LinearLayout _confirmCloseButtons;
-        private LinearLayout _photoShowActivityControlBar;
         private LinearLayout _mainActivityStatusBar;
 
         private PhotoData photodata;
@@ -160,7 +159,7 @@ namespace HorizontApp.Activities
             FindViewById<ImageButton>(Resource.Id.confirmButton).SetOnClickListener(this);
             FindViewById<ImageButton>(Resource.Id.closeButton).SetOnClickListener(this);
 
-            _photoShowActivityControlBar = FindViewById<LinearLayout>(Resource.Id.PhotoShowActivityControlBar);
+            _activityControlBar = FindViewById<LinearLayout>(Resource.Id.PhotoShowActivityControlBar);
             _mainActivityStatusBar = FindViewById<LinearLayout>(Resource.Id.mainActivityStatusBar);
             photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);
 
@@ -257,7 +256,7 @@ namespace HorizontApp.Activities
                 _confirmCloseButtons.Visibility = ViewStates.Visible;
                 _seekBars.Visibility = ViewStates.Gone;
                 _poiInfo.Visibility = ViewStates.Gone;
-                _photoShowActivityControlBar.Visibility = ViewStates.Gone;
+                _activityControlBar.Visibility = ViewStates.Gone;
                 _mainActivityStatusBar.Visibility = ViewStates.Gone;
 
                 _compassView.ShowPointsOfInterest = false;
@@ -273,7 +272,7 @@ namespace HorizontApp.Activities
 
             _confirmCloseButtons.Visibility = ViewStates.Gone;
             _seekBars.Visibility = ViewStates.Visible;
-            _photoShowActivityControlBar.Visibility = ViewStates.Visible;
+            _activityControlBar.Visibility = ViewStates.Visible;
             _mainActivityStatusBar.Visibility = ViewStates.Visible;
 
             _compassView.ShowPointsOfInterest = true;
