@@ -73,22 +73,6 @@ namespace HorizontApp.Utilities
                             var x2 = (float) otherPoint.Bearing.Value;
                             listOfLines.Add(new ProfileLine {Bearing1 = x1, Bearing2 = x2, VerticalViewAngle1 = (float) y1, VerticalViewAngle2 = (float) y2, distance = point.Distance.Value});
                         }
-
-                        /*foreach (var otherPoint in prevAngle.GetPoints())
-                        {
-                            if (point.Bearing.HasValue && otherPoint.Bearing.HasValue && point.Distance.HasValue && otherPoint.Distance.HasValue && point.VerticalViewAngle.HasValue && otherPoint.VerticalViewAngle.HasValue)
-                            {
-                                if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value) <= point.Distance.Value / 12)
-                                {
-                                    var y1 = point.VerticalViewAngle.Value;
-                                    var x1 = (float)point.Bearing.Value;
-
-                                    var y2 = otherPoint.VerticalViewAngle.Value;
-                                    var x2 = (float)otherPoint.Bearing.Value;
-                                    listOfLines.Add(new ProfileLine { Bearing1 = x1, Bearing2 = x2, VerticalViewAngle1 = (float)y1, VerticalViewAngle2 = (float)y2, distance = point.Distance.Value });
-                                }
-                            }
-                        }*/
                     }
                 }
             }

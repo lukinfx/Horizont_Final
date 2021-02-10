@@ -156,6 +156,8 @@ namespace HorizontApp.Activities
             _mainActivityStatusBar = FindViewById<LinearLayout>(Resource.Id.mainActivityStatusBar);
             photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);
 
+            HideControls();
+
             var pictureSize = new System.Drawing.Size(GetPictureWidth(), GetPictureHeight());
             _compassView.Initialize(Context, false, pictureSize, (float?) _photodata.LeftTiltCorrector ?? 0, (float?) _photodata.RightTiltCorrector ?? 0);
 

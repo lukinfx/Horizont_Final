@@ -387,6 +387,23 @@ namespace HorizontApp.Activities
             CheckAndReloadElevationProfile();
         }
 
+        protected bool IsControlsVisible()
+        {
+            return (_seekBars.Visibility == ViewStates.Visible && _activityControlBar.Visibility == ViewStates.Visible);
+        }
+
+        protected void HideControls()
+        {
+            _seekBars.Visibility = ViewStates.Gone;
+            _activityControlBar.Visibility = ViewStates.Gone;
+        }
+
+        protected void ShowControls()
+        {
+            _seekBars.Visibility = ViewStates.Visible;
+            _activityControlBar.Visibility = ViewStates.Visible;
+        }
+
         #region ElevationProfile
 
         protected void CheckAndReloadElevationProfile()
@@ -554,15 +571,13 @@ namespace HorizontApp.Activities
 
                 if (Context.SelectedPoi == null && newSelectedPoi == null)
                 {
-                    if (_seekBars.Visibility == ViewStates.Visible)
+                    if (IsControlsVisible())
                     {
-                        _seekBars.Visibility = ViewStates.Gone;
-                        _activityControlBar.Visibility = ViewStates.Gone;
+                        HideControls();
                     }
                     else
                     {
-                        _seekBars.Visibility = ViewStates.Visible;
-                        _activityControlBar.Visibility = ViewStates.Visible;
+                        ShowControls();
                     }
 
                     return false;
