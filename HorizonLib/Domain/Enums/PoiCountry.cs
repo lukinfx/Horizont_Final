@@ -13,17 +13,17 @@
         HUN,
         ITA,
         POL,
-        ROU, //Romania
+        ROU, //romania
         SVK,
         SVN,
         ESP,
-        CHE, //Switzerland
-        BEL,
-        BIH, //Bosna & Herzegovina
-        HRV, //Croatia
-        BGR,
+        CHE, //switzerland
+        BEL, //belgium
+        BIH, //bosna & Herzegovina
+        HRV, //croatia
+        BGR, //bulgaria
         DNK, //denmark
-        FIN,
+        FIN, //finland
         LIE, //liechtenstein
         LUX, //luxembourg
         NLD, //netherlands
@@ -51,6 +51,8 @@
         GEO, //georgia
         GGY, //guernsey
         IMN, //isle-of-man
-        MNE //montenegro
+        MNE, //montenegro
+        AZO, //azores
+        MDA, //moldova
     }
 }
