@@ -50,11 +50,9 @@ namespace HorizontApp.Activities
         private SeekBar _seekBarCorrectionViewAngleHorizontal;
         private TextView _textViewAngleVertical;
         private SeekBar _seekBarCorrectionViewAngleVertical;
-        private Spinner _spinnerAppStyle;
         private Spinner _spinnerLanguages;
         private Spinner _spinnerPhotoResolution;
         private Button _resetButton;
-        private AppStyles[] _listOfAppStyles = new AppStyles[] { AppStyles.EachPoiSeparate, AppStyles.FullScreenRectangle, AppStyles.Simple, AppStyles.SimpleWithDistance, AppStyles.SimpleWithHeight };
         private Languages[] _listOfLanguages = new Languages[] { Languages.English, Languages.German, Languages.Czech};
 
         private bool _isDirty = false;
@@ -82,7 +80,6 @@ namespace HorizontApp.Activities
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetDisplayShowTitleEnabled(false);
 
-            _spinnerAppStyle = FindViewById<Spinner>(Resource.Id.spinnerAppStyle);
             _spinnerLanguages = FindViewById<Spinner>(Resource.Id.spinnerLanguage);
             _spinnerPhotoResolution = FindViewById<Spinner>(Resource.Id.spinnerResolution);
 
@@ -93,11 +90,6 @@ namespace HorizontApp.Activities
             _textViewAngleVertical = FindViewById<TextView>(Resource.Id.textViewAngleVertical);
             _resetButton = FindViewById<Button>(Resource.Id.reset);
             _resetButton.SetOnClickListener(this);
-
-            var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfAppStyles.ToList());
-            _spinnerAppStyle.Adapter = adapter;
-            _spinnerAppStyle.SetSelection(_listOfAppStyles.ToList().FindIndex(i => i == _settings.AppStyle)); 
-             _spinnerAppStyle.ItemSelected += (sender, args) => { InvalidateOptionsMenu(); };
 
             var adapterLanguages = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfLanguages.ToList());
             _spinnerLanguages.Adapter = adapterLanguages;
@@ -211,9 +203,6 @@ namespace HorizontApp.Activities
             if (_isDirty)
                 return true;
 
-            if (_settings.AppStyle != _listOfAppStyles[_spinnerAppStyle.SelectedItemPosition])
-                return true;
-
             if(!_settings.cameraResolutionSelected.Equals(_listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition]))
                 return true;
 
@@ -250,9 +239,6 @@ namespace HorizontApp.Activities
         {
             try
             {
-                //Compass view style
-                _settings.AppStyle = _listOfAppStyles[_spinnerAppStyle.SelectedItemPosition];
-
                 //View angle correction
                 _settings.IsViewAngleCorrection = _switchManualViewAngle.Checked;
 

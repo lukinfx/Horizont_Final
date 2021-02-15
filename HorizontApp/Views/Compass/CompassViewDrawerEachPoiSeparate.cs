@@ -50,8 +50,8 @@ namespace HorizontApp.Views.Compass
             canvas.DrawPath(path, GetRectPaint(item));
 
             var textWidth = y4 - y2 - 10;
-            var text1 = EllipsizeText(item.Poi.Name, textWidth);
-            var text2 = EllipsizeText($"{item.Poi.Altitude} m / {(item.GpsLocation.Distance / 1000):F2} km", textWidth);
+            var text1 = EllipsizeText(item.Poi.Name, textWidth/multiplier);
+            var text2 = EllipsizeText($"{item.Poi.Altitude} m / {(item.GpsLocation.Distance / 1000):F2} km", textWidth/multiplier);
             canvas.DrawText(text1, ToPixels(70), -startX - ToPixels(4), GetTextPaint(item));
             canvas.DrawText(text2, ToPixels(70), -startX + ToPixels(29), GetTextPaint(item));
         }
@@ -59,12 +59,15 @@ namespace HorizontApp.Views.Compass
         public override void OnDrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY)
         {
             var bmp = poiCategoryBitmapProvider.GetCategoryIcon(item.Poi.Category);
-            canvas.DrawBitmap(bmp, startX - ToPixels(30), 5, null);
+            canvas.DrawBitmap(bmp, startX - ToPixels(30), ToPixels(5), null);
         }
 
         public override double GetMinItemAngleDiff(int canvasWidth)
         {
-            return 6500.0 * multiplier / (double)canvasWidth;
+            var itemWidth = 90; //px
+            var percentInPixels = itemWidth / (canvasWidth / multiplier);
+            var minAngle = percentInPixels * viewAngleHorizontal;
+            return minAngle;
         }
 
         public override float GetItemWidth()

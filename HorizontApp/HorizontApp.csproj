@@ -139,13 +139,9 @@
     <Compile Include="Views\CameraView\CompareSizesByArea.cs" />
     <Compile Include="Views\CameraView\ConfirmationDialog.cs" />
     <Compile Include="Views\CameraView\ImageAvailableListener.cs" />
-    <Compile Include="Views\Compass\CompassViewDrawerSimpleWithHeight.cs" />
-    <Compile Include="Views\Compass\CompassViewDrawerSimpleWithDistance.cs" />
     <Compile Include="Views\Compass\CompassViewDrawerEachPoiSeparate.cs" />
-    <Compile Include="Views\Compass\CompassViewDrawerFullScreenRectangle.cs" />
     <Compile Include="Views\Compass\CompassDrawer.cs" />
     <Compile Include="Views\Compass\CompassView.cs" />
-    <Compile Include="Views\Compass\CompassViewDrawerSimple.cs" />
     <Compile Include="Views\Compass\CompassViewFilter.cs" />
     <Compile Include="Views\ErrorDialog.cs" />
     <Compile Include="Activities\PoiListActivity.cs" />

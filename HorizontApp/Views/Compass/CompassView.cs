@@ -150,30 +150,13 @@ namespace HorizontApp.Views
                 return;
             }
 
-            switch (_context.Settings.AppStyle)
-            {
-                case AppStyles.EachPoiSeparate:
-                    compassViewDrawer = new CompassViewDrawerEachPoiSeparate(poiCategoryBitmapProvider);
-                    break;
-                case AppStyles.FullScreenRectangle:
-                    compassViewDrawer = new CompassViewDrawerFullScreenRectangle(poiCategoryBitmapProvider);
-                    break;
-                case AppStyles.Simple:
-                    compassViewDrawer = new CompassViewDrawerSimple(poiCategoryBitmapProvider);
-                    break;
-                case AppStyles.SimpleWithDistance:
-                    compassViewDrawer = new CompassViewDrawerSimpleWithDistance(poiCategoryBitmapProvider);
-                    break;
-                case AppStyles.SimpleWithHeight:
-                    compassViewDrawer = new CompassViewDrawerSimpleWithHeight(poiCategoryBitmapProvider);
-                    break;
-            }
+            compassViewDrawer = new CompassViewDrawerEachPoiSeparate(poiCategoryBitmapProvider);
 
             (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
                 _context.ViewAngleHorizontal, _context.ViewAngleVertical,
                 compassViewSize, pictureSize, _allowRotation);
 
-            float multiplier = (float)Math.Sqrt(compassViewSize.Width * compassViewSize.Height / 2000000.0);
+            float multiplier = compassViewSize.Width / 2000.0f; //2000px is a default view size
             compassViewDrawer.Initialize(Resources, ViewAngleHorizontal, ViewAngleVertical, multiplier);
             elevationProfileBitmapDrawer.Initialize(ViewAngleHorizontal, ViewAngleVertical);
 

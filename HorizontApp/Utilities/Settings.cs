@@ -51,7 +51,6 @@ namespace HorizontApp.Utilities
             _maxDistance = 12;
             _minAltitute = 0;
             Categories = new List<PoiCategory>();
-            AppStyle = AppStyles.FullScreenRectangle;
 
             _changeFilterTimer.Interval = 1000;
             _changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;
@@ -69,7 +68,6 @@ namespace HorizontApp.Utilities
         public bool AutoElevationProfile { get; set; }
         public bool ShowElevationProfile { get; set; }
         public string CameraId { get; set; }
-        public AppStyles AppStyle { get; set; }
         public List<PoiCategory> Categories { get; set; }
 
         public float AViewAngleHorizontal
@@ -132,9 +130,6 @@ namespace HorizontApp.Utilities
 
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(context);
 
-            String str = prefs.GetString("AppStyle", AppStyle.ToString());
-            AppStyle = Enum.Parse<AppStyles>(str);
-
             var categoriesAsCollection = prefs.GetStringSet("Categories", GetDefaultCategories());
             Categories.Clear();
             foreach (var i in categoriesAsCollection)
@@ -165,8 +160,6 @@ namespace HorizontApp.Utilities
             {
                 ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(mContext);
                 ISharedPreferencesEditor editor = prefs.Edit();
-
-                editor.PutString("AppStyle", AppStyle.ToString());
 
                 var categoriesAsCollection = new Collection<string>();
                 foreach (var i in Categories)
