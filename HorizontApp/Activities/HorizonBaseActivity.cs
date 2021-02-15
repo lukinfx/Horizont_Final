@@ -433,7 +433,9 @@ namespace HorizontApp.Activities
             {
                 if (!GpsUtils.HasAltitude(Context.MyLocation))
                 {
-                    PopupHelper.ErrorDialog(this, "Error", "It's not possible to generate elevation profile without known altitude");
+                    PopupHelper.ErrorDialog(this,
+                        Resources.GetText(Resource.String.Error),
+                        Resources.GetText(Resource.String.Main_ErrorUnknownAltitude));
                     return;
                 }
 
@@ -450,11 +452,11 @@ namespace HorizontApp.Activities
 
                 using (var builder = new AlertDialog.Builder(this))
                 {
-                    builder.SetTitle("Question");
-                    builder.SetMessage($"This action requires to download additional {size} MBytes. Possibly set lower visibility to reduce amount of downloaded data. \r\n\r\nDo you really want to continue?");
+                    builder.SetTitle(Resources.GetText(Resource.String.Question));
+                    builder.SetMessage(String.Format(Resources.GetText(Resource.String.Download_Confirmation), size));
                     builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
-                    builder.SetPositiveButton("OK", (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
-                    builder.SetNegativeButton("Cancel", (senderAlert, args) => { _elevationProfileBeingGenerated = false; });
+                    builder.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
+                    builder.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { _elevationProfileBeingGenerated = false; });
 
                     var myCustomDialog = builder.Create();
 
@@ -463,7 +465,9 @@ namespace HorizontApp.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
+                PopupHelper.ErrorDialog(this,
+                    Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile) + " " + ex.Message);
             }
         }
 
@@ -483,7 +487,7 @@ namespace HorizontApp.Activities
                 pd.Hide();
                 if (!string.IsNullOrEmpty(result.ErrorMessage))
                 {
-                    PopupHelper.ErrorDialog(this, "Error", result.ErrorMessage);
+                    PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error), result.ErrorMessage);
                 }
 
                 Context.ElevationProfileData = result;
@@ -521,7 +525,9 @@ namespace HorizontApp.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this, "Error", $"Error when generating elevation profile. {ex.Message}");
+                PopupHelper.ErrorDialog(this,
+                    Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile) + " " + ex.Message);
             }
         }
 

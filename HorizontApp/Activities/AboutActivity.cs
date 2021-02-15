@@ -7,7 +7,7 @@ using HorizontApp.AppContext;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "AboutActivity")]
+    [Activity(Label = "@string/AboutActivity")]
     public class AboutActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -22,7 +22,7 @@ namespace HorizontApp.Activities
 
             ActionBar.SetDisplayShowHomeEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.SetDisplayShowTitleEnabled(false);
+            ActionBar.SetDisplayShowTitleEnabled(true);
             // Create your application here
 
             var versionTextView = FindViewById<TextView>(Resource.Id.aboutVersion);

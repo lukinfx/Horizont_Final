@@ -20,7 +20,7 @@ using GpsUtils = HorizontApp.Utilities.GpsUtils;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "EditActivity")]
+    [Activity(Label = "@string/PoiEditActivity")]
     public class EditActivity : Activity, IOnClickListener
     {
         public static int REQUEST_ADD_POI = Definitions.BaseResultCode.POIEDIT_ACTIVITY + 0;

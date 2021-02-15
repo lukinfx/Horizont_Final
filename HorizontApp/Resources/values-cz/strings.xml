@@ -8,6 +8,7 @@
   <string name="Save">Uložit</string>
   <string name="Discard">Zahodit</string>
 
+  <string name="Question">Otázka</string>
   <string name="Information">Informace</string>
   <string name="Error">Chyba</string>
 
@@ -23,15 +24,21 @@
   <string name="PhotosActivity">Galerie fotografií</string>
   <string name="SettingsActivity">Nastavení</string>
   <string name="AboutActivity">O aplikaci</string>
-
+  
   <!--MainActivity-->
   <string name="Main_DownloadDataQuestion">Žádné body zájmu ještě nebyly staženy. Chcete je stáhnout nyní?</string>
+  <string name="Main_ErrorGeneratingElevationProfile">Chyba při vytváření výškového profilu.</string>
+  <string name="Main_ErrorUnknownAltitude">Není možno vygenerovat výškový profil bez známé nadmořské výšky.</string>
+  <string name="Main_GeneratingElevationProfile">Generuji výškový profil. Prosím čekejte.</string>
 
   <!--PoiListActivity-->
   <string name="PoiListFilter_Visible">Viditelné</string>
   <string name="PoiListFilter_My">Mé body</string>
   <string name="PoiListFilter_ByName">Podle jména</string>
   <string name="PoiListDeleteQuestion">Opravdu chcete smazat ten bod?</string>
+
+  <!--PoiEditActivity-->
+  <string name="PoiEditActivity">Editace bodu zájmu</string>
 
   <!--DownloadActivity-->
   <string name="Download_LoadingData">Stahuji data. Prosím čekejte.</string>
@@ -48,13 +55,14 @@
   <string name="Download_Progress_FetchingElevationTilesList">Stahuji seznam výškových dat...</string>
   <string name="Download_Progress_DownloadingElevationData">Stahuji výšková data...</string>
   <string name="Download_Progress_RemovingElevationData">Odstaňuji výšková data...</string>
+  <string name="Download_Confirmation">Tato akce vyžaduje stažení dodatečných {0} MB dat. Pro snížení množství potřebných dat snižte maximální viditelnost.\n\nChcete opravdu pokračovat?</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Použijte správný formát. Například: 12,34567890.</string>
   <string name="EditPoi_EmptyClipboard">Zdá že ve schránce není žádný text.</string>
   <string name="EditPoi_MissingElevationData">Chybějící výšková data.</string>
   <string name="EditPoi_AltitudeNotUpdated">Nadmořská výška nebyla aktualizována.</string>
-  <string name="EditPoi_TeleportationWarning">Vaše poloha bude nastavena na {0}. Pro resetování vaší polohy, stistněte tlačítko [Reset] ve fotoaparátu nebo resetujte manuální polohu v nastavení aplikace.\r\n\r\nChcete pokračovat?</string>
+  <string name="EditPoi_TeleportationWarning">Vaše poloha bude nastavena na {0}. Pro resetování vaší polohy, stistněte tlačítko [Reset] ve fotoaparátu nebo resetujte manuální polohu v nastavení aplikace.\n\nChcete pokračovat?</string>
 
   <!--PhotosActivity -->
   <string name="Photos_DeletePhotoQuestion">Opravdu chcete smazat tuto fotografii?</string>

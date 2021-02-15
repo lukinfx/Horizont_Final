@@ -16,7 +16,7 @@ using HorizontApp.Views.ListOfPoiView;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "PhotosActivity")]
+    [Activity(Label = "@string/PhotosActivity")]
     public class PhotosActivity : Activity, IPhotoActionListener
     {
         private ListView _photosListView;
@@ -42,7 +42,7 @@ namespace HorizontApp.Activities
 
             ActionBar.SetDisplayShowHomeEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.SetDisplayShowTitleEnabled(false);
+            ActionBar.SetDisplayShowTitleEnabled(true);
 
             _photosListView = FindViewById<ListView>(Resource.Id.listViewPhotos);
 

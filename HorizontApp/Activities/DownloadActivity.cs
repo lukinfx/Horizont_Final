@@ -18,7 +18,7 @@ using HorizontApp.Utilities;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "DownloadActivity")]
+    [Activity(Label = "@string/DownloadActivity")]
     public class DownloadActivity : Activity
     {
         private ListView _downloadItemListView;

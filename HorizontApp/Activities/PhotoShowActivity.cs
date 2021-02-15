@@ -27,7 +27,7 @@ using View = Android.Views.View;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "PhotoShowActivity")]
+    [Activity(Label = "@string/PhotosActivity")]
     public class PhotoShowActivity : HorizonBaseActivity
     {
         public static int REQUEST_SHOW_PHOTO = Definitions.BaseResultCode.PHOTO_SHOW_ACTIVITY;

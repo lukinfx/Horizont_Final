@@ -22,7 +22,7 @@ using HorizonLib.Domain.Enums;
 
 namespace HorizontApp.Activities
 {
-    [Activity(Label = "SettingsActivity")]
+    [Activity(Label = "@string/SettingsActivity")]
     public class SettingsActivity : Activity, IOnClickListener
     {
         public static int REQUEST_SHOW_SETTINGS = Definitions.BaseResultCode.SETTINGS_ACTIVITY + 0;
@@ -78,7 +78,7 @@ namespace HorizontApp.Activities
 
             ActionBar.SetDisplayShowHomeEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.SetDisplayShowTitleEnabled(false);
+            ActionBar.SetDisplayShowTitleEnabled(true);
 
             _spinnerLanguages = FindViewById<Spinner>(Resource.Id.spinnerLanguage);
             _spinnerPhotoResolution = FindViewById<Spinner>(Resource.Id.spinnerResolution);

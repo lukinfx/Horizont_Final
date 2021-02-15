@@ -8,6 +8,7 @@
   <string name="Save">Save</string>
   <string name="Discard">Discard</string>
 
+  <string name="Question">Question</string>
   <string name="Information">Information</string>
   <string name="Error">Error</string>
 
@@ -26,12 +27,18 @@
 
   <!--MainActivity-->
   <string name="Main_DownloadDataQuestion">No points of interest have been downloaded yet. Do you want do download them now?</string>
+  <string name="Main_ErrorGeneratingElevationProfile">Error when generating elevation profile.</string>
+  <string name="Main_ErrorUnknownAltitude">It\'s not possible to generate elevation profile without known altitude.</string>
+  <string name="Main_GeneratingElevationProfile">Generating elevation profile. Please wait.</string>
 
   <!--PoiListActivity-->
   <string name="PoiListFilter_Visible">Visible</string>
   <string name="PoiListFilter_My">My POIs</string>
   <string name="PoiListFilter_ByName">By name</string>
   <string name="PoiListDeleteQuestion">Are you sure you want to delete this item?</string>
+
+  <!--PoiEditActivity-->
+  <string name="PoiEditActivity">Edit Point Of Interest</string>
 
   <!--DownloadActivity-->
   <string name="Download_LoadingData">Loading data. Please Wait.</string>
@@ -48,13 +55,14 @@
   <string name="Download_Progress_FetchingElevationTilesList">Fetching list of elevation tiles...</string>
   <string name="Download_Progress_DownloadingElevationData">Downloading elevation data...</string>
   <string name="Download_Progress_RemovingElevationData">Removing elevation data...</string>
+  <string name="Download_Confirmation">This action requires to download additional {0} MBytes. Possibly set lower visibility to reduce amount of downloaded data. \n\nDo you really want to continue?</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Use correct format. Example: 12,34567890.</string>
   <string name="EditPoi_EmptyClipboard">It seems you don\'t have any text in your ClipBoard.</string>
   <string name="EditPoi_MissingElevationData">Missing elevation data.</string>
   <string name="EditPoi_AltitudeNotUpdated">The altitude was not updated.</string>
-  <string name="EditPoi_TeleportationWarning">Your location will be set to {0}. To reset your location, press [Reset] button in camera view or reset manual location in application settings.\r\n\r\nDo you want to continue?</string>
+  <string name="EditPoi_TeleportationWarning">Your location will be set to {0}. To reset your location, press [Reset] button in camera view or reset manual location in application settings.\n\nDo you want to continue?</string>
 
   <!--PhotosActivity -->
   <string name="Photos_DeletePhotoQuestion">Are you sure you want to delete this Photo?</string>
