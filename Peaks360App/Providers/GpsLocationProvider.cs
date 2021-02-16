@@ -10,6 +10,7 @@ namespace Peaks360App.Providers
     {
         private GpsLocation currentLocation;
         private ElevationTile _elevationTile;
+        private bool waitingForResponse = false;
         public GpsLocation CurrentLocation { get { return currentLocation; } }
 
         public GpsLocationProvider()
@@ -31,7 +32,14 @@ namespace Peaks360App.Providers
                     return AppContextLiveData.Instance.Settings.ManualLocation;
                 }
 
-                var request = new GeolocationRequest(GeolocationAccuracy.Best);
+                if (waitingForResponse)
+                {
+                    return null;
+                }
+
+                var request = new GeolocationRequest(GeolocationAccuracy.Best, new TimeSpan(0, 0, 0, 5));
+
+                waitingForResponse = true;
                 Location location = await Geolocation.GetLocationAsync(request);
 
                 if (location != null)
@@ -63,6 +71,7 @@ namespace Peaks360App.Providers
 
                     return currentLocation;
                 }
+
                 return null;
             }
             catch (FeatureNotSupportedException ex)
@@ -80,6 +89,10 @@ namespace Peaks360App.Providers
             catch (Exception ex)
             {
                 throw new Exception($"Error when fetching GPS location. {ex.Message}");
+            }
+            finally
+            {
+                waitingForResponse = false;
             }
         }
 
