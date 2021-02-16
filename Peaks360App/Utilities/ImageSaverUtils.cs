@@ -5,7 +5,7 @@ namespace Peaks360App.Utilities
 {
     public class ImageSaverUtils
     {
-        private static string SAVED_PICTURES_FOLDER = "HorizonPhotos";
+        private static string SAVED_PICTURES_FOLDER = "Peaks360Photos";
 
         public static string GetPhotoFileName(DateTime? dt = null)
         {
@@ -19,7 +19,7 @@ namespace Peaks360App.Utilities
         {
             string path = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData), SAVED_PICTURES_FOLDER);
 
-            if (File.Exists(path))
+            if (Directory.Exists(path))
             {
                 return path;
             }
@@ -32,17 +32,18 @@ namespace Peaks360App.Utilities
 
         public static string GetPublicPhotosFileFolder()
         {
-            string path = System.IO.Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, "Horizon");
+            var dcimFolder = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDcim);
+            string photoFolder = System.IO.Path.Combine(dcimFolder.AbsolutePath, SAVED_PICTURES_FOLDER);
 
-            if (File.Exists(path))
+            if (Directory.Exists(photoFolder))
             {
-                return path;
+                return photoFolder;
             }
             else
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(photoFolder);
             }
-            return path;
+            return photoFolder;
         }
     }
 }

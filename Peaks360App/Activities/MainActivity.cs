@@ -74,7 +74,9 @@ namespace Peaks360App
             if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) != Permission.Granted ||
                 ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != Permission.Granted ||
                 ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) != Permission.Granted ||
-                ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) != Permission.Granted)
+                ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) != Permission.Granted ||
+                ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadUserDictionary) != Permission.Granted ||
+                ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteUserDictionary) != Permission.Granted)
             {
                 RequestGPSLocationPermissions();
             }
@@ -256,13 +258,17 @@ namespace Peaks360App
                 Manifest.Permission.AccessFineLocation, 
                 Manifest.Permission.Camera, 
                 Manifest.Permission.ReadExternalStorage,
-                Manifest.Permission.WriteExternalStorage
+                Manifest.Permission.WriteExternalStorage,
+                Manifest.Permission.ReadUserDictionary,
+                Manifest.Permission.WriteUserDictionary
             };
 
             if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation) ||
                 ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera) ||
                 ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage) ||
-                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.WriteExternalStorage))
+                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.WriteExternalStorage) ||
+                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadUserDictionary) ||
+                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.WriteUserDictionary))
             {
                 Snackbar.Make(_mainLayout, "Internal storage, location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
                     .SetAction("OK", new Action<View>(delegate (View obj) 

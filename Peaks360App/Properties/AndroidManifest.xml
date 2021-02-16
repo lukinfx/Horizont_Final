@@ -14,7 +14,8 @@
     android:roundIcon="@drawable/ic_launcher_circle" 
     android:supportsRtl="true" 
     android:theme="@style/AppTheme" 
-    android:networkSecurityConfig="@xml/network_security_config" >
+    android:networkSecurityConfig="@xml/network_security_config" 
+    android:requestLegacyExternalStorage="true" >
   </application>
 
   <uses-feature android:name="android.hardware.location" android:required="true" />
@@ -28,5 +29,7 @@
   <uses-permission android:name="android.permission.CAMERA" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_USER_DIRECTORY" />
+  <uses-permission android:name="android.permission.READ_USER_DIRECTORY" />
 
 </manifest>
