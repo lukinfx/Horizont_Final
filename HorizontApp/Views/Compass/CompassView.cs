@@ -156,7 +156,11 @@ namespace HorizontApp.Views
                 _context.ViewAngleHorizontal, _context.ViewAngleVertical,
                 compassViewSize, pictureSize, _allowRotation);
 
-            float multiplier = compassViewSize.Width / 2000.0f; //2000px is a default view size
+            //2000 x 1000 px is a default view size. All drawings ale calculated to this size
+            var defaultCompassSize = _context.IsPortrait ? 1000f : 2000f;
+            //so we need to calculate mutliplier to adjust them for current resolution
+            float multiplier = compassViewSize.Width / defaultCompassSize; 
+
             compassViewDrawer.Initialize(Resources, ViewAngleHorizontal, ViewAngleVertical, multiplier);
             elevationProfileBitmapDrawer.Initialize(ViewAngleHorizontal, ViewAngleVertical);
 
