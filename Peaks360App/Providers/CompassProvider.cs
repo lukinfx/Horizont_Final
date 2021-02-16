@@ -7,7 +7,7 @@ namespace Peaks360App.Providers
 {
     public class CompassProvider
     {
-        SensorSpeed speed = SensorSpeed.UI;
+        SensorSpeed speed = SensorSpeed.Default;
 
 
         private HeadingStabilizator2 _headingStabilizator = new HeadingStabilizator2();
@@ -28,10 +28,12 @@ namespace Peaks360App.Providers
             var tmpHeading = (90 + data.HeadingMagneticNorth) % 360;
 
             _headingStabilizator.AddValue(tmpHeading);
-            // Process Heading Magnetic North
-
-            Heading = _headingStabilizator.GetHeading();
-            OnHeadingChanged?.Invoke(Heading);
+            var newHeading = _headingStabilizator.GetHeading();
+            if (Math.Abs(newHeading - Heading) > 0.2)
+            {
+                Heading = newHeading;
+                OnHeadingChanged?.Invoke(Heading);
+            }
         }
 
         public void Start()
