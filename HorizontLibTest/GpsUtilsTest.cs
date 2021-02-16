@@ -1,6 +1,6 @@
 using System;
-using HorizontLib.Domain.Models;
-using HorizontLib.Utilities;
+using Peaks360Lib.Domain.Models;
+using Peaks360Lib.Utilities;
 using NUnit.Framework;
 
 namespace HorizontLibTest

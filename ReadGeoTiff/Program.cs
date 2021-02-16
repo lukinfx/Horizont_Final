@@ -6,8 +6,8 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
-using HorizontLib.Domain.Models;
-using HorizontLib.Utilities;
+using Peaks360Lib.Domain.Models;
+using Peaks360Lib.Utilities;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 
@@ -38,7 +38,7 @@ namespace ReadGeoTiff
             //var _myLocation = new GpsLocation() { Latitude = 49.0000001, Longitude = 18.0000001 }; //288
             //var _myLocation = new GpsLocation() { Latitude = 49.0+0.00013, Longitude = 19.0-0.00013 }; //288
 
-            /*var data3 = HorizontLib.Utilities.GeoTiffReader.ReadTiff_Skip2(inputFileName, 0, 999, 0, 999);
+            /*var data3 = Peaks360Lib.Utilities.GeoTiffReader.ReadTiff_Skip2(inputFileName, 0, 999, 0, 999);
 
             
             {

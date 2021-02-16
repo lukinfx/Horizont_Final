@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HorizonLib\HorizonLib.csproj" />
+    <ProjectReference Include="..\Peaks360Lib\Peaks360Lib.csproj" />
   </ItemGroup>
 
 </Project>

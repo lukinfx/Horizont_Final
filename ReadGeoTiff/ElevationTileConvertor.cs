@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HorizontLib.Domain.Models;
-using HorizontLib.Utilities;
+using Peaks360Lib.Domain.Models;
+using Peaks360Lib.Utilities;
 
 namespace ReadGeoTiff
 {

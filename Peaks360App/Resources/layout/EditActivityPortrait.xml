@@ -1,0 +1,198 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+    <include
+      android:id="@+id/toolbar"
+      layout="@layout/editActivityToolbar" />
+
+    <AbsoluteLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:padding="20dp"
+      android:background="@drawable/background_portrait">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:paddingTop="35dp">
+
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center_horizontal"
+              android:padding="20dp"
+              android:background="@drawable/bg_activity">
+
+                <android.support.v4.widget.Space
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/space1"
+                  android:minHeight="40dp"/>
+                <LinearLayout
+                  android:orientation="vertical"
+                  android:minWidth="25px"
+                  android:minHeight="25px"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/linearLayoutName">
+                    <TextView
+                      android:text="@string/Name"
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:id="@+id/NameTitle" />
+                    
+                    <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:gravity="center_horizontal">
+
+                        <EditText
+                          android:layout_weight="100"
+                          android:text="@string/DefaultTextAddPoi"
+                          android:textAppearance="?android:attr/textAppearanceMedium"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:padding="10px"
+                          android:singleLine="false"
+                          android:background="@drawable/bg_edittext"
+                          android:id="@+id/editTextName" />
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="1dp"/>
+                        <ImageView
+                          android:src="@drawable/f_heart_empty"
+                          android:layout_weight="100"
+                          android:layout_width="60dp"
+                          android:layout_height="match_parent"
+                          android:padding="0px"
+                          android:id="@+id/buttonFavourite"/>
+                    </LinearLayout>
+
+                    <GridLayout
+                      android:paddingTop="20dp"
+                      android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/linearLayoutLatLon"
+                      android:rowCount="2"
+                      android:columnCount="5">
+
+                      <TextView
+                          android:layout_columnWeight="8"
+                          android:text="@string/Latitude"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/latitudeTitle" />
+                      <EditText
+                          android:layout_columnWeight="8"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:inputType="numberDecimal"
+                          android:digits="0123456789.,"
+                          android:padding="10px"
+                          android:background="@drawable/bg_edittext"
+                          android:id="@+id/editTextLatitude" />
+                      <Space
+                        android:layout_columnWeight="2"/> 
+                      <Space
+                        android:layout_columnWeight="2"/> 
+                      <TextView
+                          android:layout_columnWeight="8"
+                          android:text="@string/Longitude"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/longitudeTitle" />
+                      <EditText
+                          android:layout_columnWeight="8"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:inputType="numberDecimal"
+                          android:digits="0123456789.,"
+                          android:padding="10px"
+                          android:background="@drawable/bg_edittext"
+                          android:id="@+id/editTextLongitude" />
+                      <Space
+                        android:layout_columnWeight="2"/> 
+                      <Space
+                        android:layout_columnWeight="2"/> 
+                      <TextView
+                        android:layout_columnWeight="3"
+                        android:text="@string/Altitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/altitudeTitle" />
+                      <EditText
+                        android:layout_columnWeight="3"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789.,"
+                        android:padding="10px"
+                        android:background="@drawable/bg_edittext"
+                        android:id="@+id/editTextAltitude" />
+                    </GridLayout>
+                    
+                    <TextView
+                      android:text="@string/Category"
+                      android:paddingTop="20dp"
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:id="@+id/categoryTitle" />
+                    <Spinner
+                      android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:spinnerMode="dialog"
+                      android:padding="10px"
+                      android:background="@drawable/bg_edittext"
+                      android:id="@+id/spinnerCategory" />
+
+                    <android.support.v4.widget.Space
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/space2"
+                      android:minHeight="40dp"/>
+
+                    <LinearLayout
+                      android:orientation="horizontal"
+                      android:minWidth="25px"
+                      android:minHeight="25px"
+                      android:gravity="center"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/linearLayoutWiki">
+                      <ImageButton
+                        android:src="@android:drawable/ic_menu_mapmode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/buttonMap"/>
+                      <ImageButton
+                        android:src="@android:drawable/ic_menu_info_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/buttonWiki"/>
+                      <ImageButton
+                        android:src="@android:drawable/ic_menu_mylocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/buttonTeleport"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView
+          android:id="@+id/Thumbnail"
+          android:layout_width="match_parent"
+          android:layout_height="70dp"
+          android:src="@drawable/c_basic"/>
+    </AbsoluteLayout>
+
+</LinearLayout>

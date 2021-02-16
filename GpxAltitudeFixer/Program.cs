@@ -7,10 +7,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
-using HorizonLib.Utilities;
-using HorizontLib.Domain.Enums;
-using HorizontLib.Domain.Models;
-using HorizontLib.Utilities;
+using Peaks360Lib.Utilities;
+using Peaks360Lib.Domain.Enums;
+using Peaks360Lib.Domain.Models;
+using Peaks360Lib.Utilities;
 
 namespace GpxAltitudeFixer
 {
@@ -52,7 +52,7 @@ namespace GpxAltitudeFixer
         static void FixElevationInGpxFromPoiCz()
         {
             string xmlFileContext = File.ReadAllText(@"c:\Src\Xamarin\Horizon\Data\Gpx\svk-mountains.gpx");
-            var poiList = HorizontLib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, new Guid());
+            var poiList = Peaks360Lib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, new Guid());
 
             /*foreach (var poi in poiList)
             {
@@ -104,7 +104,7 @@ namespace GpxAltitudeFixer
             Console.WriteLine($"Destination File: {dstFile}");
 
             string xmlFileContext = File.ReadAllText(srcFile);
-            var poiList = HorizontLib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, new Guid());
+            var poiList = Peaks360Lib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, new Guid());
 
             //foreach (var group in poiList.GroupBy(x => ((int)x.Longitude*10000)+(int)x.Latitude))
             foreach (var groupLon in poiList.GroupBy(x => (int)x.Longitude))

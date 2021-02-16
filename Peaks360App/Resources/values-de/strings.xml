@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Peaks360</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="SpinnerItems">Wähle einen Stil</string>
+
+  <string name="ChooseLanguage">Wähle eine Sprache</string>
+
+  <string name="CameraViewAngle">Blickwinkel der Kamera</string>
+
+  <string name="SetViewAngleManually">Blickwinkel manuell einstellen</string>
+
+
+  <string name="HorizontalViewAngle">Horizontaler Blickwinkel</string>
+  <string name="DefaultViewAngleHorizontal">  Der aktuelle Blickwinkel der Kamera beträgt 40 (manuell eingestellt)</string>
+  <string name="VerticalViewAngle">Vertikaler Blickwinkel</string>
+  <string name="DefaultViewAngleVertical">  Der aktuelle Blickwinkel der Kamera beträgt 40 (manuell eingestellt)</string>
+
+  <string name="GPSLocation">GPS-Standort</string>
+
+  <string name="SetGPSManually">Stellen Sie den GPS-Standort manuell ein</string>
+
+  <string name="ElevationProfile">Höhenprofil</string>
+
+
+  <string name="ElevationProfileExplenation">Für eine bessere Benutzererfahrung ist es möglich, das Höhenprofil automatisch zu erhalten und anzuzeigen, sobald die Daten verfügbar sind.</string>
+
+  <string name="AutomaticElevationProfile">Automatisches Höhenprofil</string>
+
+  <string name="MyAltitude">Meine Höhe</string>
+  <string name="AltitudeExplenation">Eine genaue Höhe ist für die Benutzererfahrung sehr wichtig. Sie können möglicherweise den Höhenwert aus der Höhenkarte (wenn Höhendaten verfügbar sind) anstelle der Höhe aus dem GPS verwenden.</string>
+
+  <string name="AltitudeFromElevationMap">Verwenden Sie die Höhe von der Höhenkarte</string>
+  <string name="PhotoResolution">Fotoauflösung</string>
+
+
+  <string name="Name">Name: </string>
+
+  <string name="DefaultTextAddPoi">Mein aktueller Standort</string>
+  <string name="Latitude">Breite: </string>
+  <string name="Longitude">Längengrad: </string>
+  <string name="Altitude">Höhe: </string>
+  <string name="Category">Kategorie: </string>
+  <string name="EditName">Namen bearbeiten</string>
+  <string name="Save">Save</string>
+  <string name="PasteLocationFromClipboard">Paste GPS location from clipboard</string>
+  <string name="FetchAltitudeFromElevationMap">Fetch altitude from elevation map</string>
+
+  <string name="CategoryFilter">Kategoriefilter</string>
+  <string name="All">Alle</string>
+  <string name="None">Keiner</string>
+  <string name="Close">Schließen</string>
+  <string name="Search">Suche...</string>
+
+  <string-array name="SpinnerItemsArray">
+      <item>Neuer Stil</item>
+      <item>Alter Stil</item>
+    </string-array>
+
+</resources>

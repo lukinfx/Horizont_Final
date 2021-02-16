@@ -1,0 +1,93 @@
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:id="@+id/sample_main_layout">
+
+    <AbsoluteLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+        <LinearLayout
+          android:orientation=    "horizontal"
+          android:layout_width=    "match_parent"
+          android:layout_height=    "match_parent"
+          android:layout_weight="1"
+          android:id="@+id/container">
+        </LinearLayout>
+
+        <Peaks360App.Views.CompassView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:id="@+id/compassView1"/>
+
+        <include
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:id="@+id/notificationArea"
+          layout="@layout/NotificationBar"
+          android:gravity="center" />
+
+        <LinearLayout
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="right">
+
+            <ImageButton
+              android:src="@drawable/ic_photo1"
+              android:layout_width="48dp"
+              android:layout_height="48dp"
+              android:adjustViewBounds="true"
+              android:layout_gravity="center_vertical"
+              android:scaleType="fitCenter"
+              android:background="#00000000"
+              android:layout_marginRight="20dp"
+              android:id="@+id/buttonRecord" />
+
+        </LinearLayout>
+
+        <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="bottom">
+          
+            <LinearLayout
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="bottom">
+
+                <include
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/mainActivityControlBar"
+                  layout="@layout/MainActivityControlBar"
+                  android:gravity="bottom" />
+                <include
+                  android:id="@+id/mainActivitySeekBars"
+                  layout="@layout/MainActivitySeekBars" 
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="bottom"/>
+                <include
+                  android:id="@+id/mainActivityPoiInfo"
+                  layout="@layout/MainActivityPoiInfo"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <include
+              android:id="@+id/mainActivityStatusBar"
+              layout="@layout/MainActivityStatusBar" 
+              android:gravity="bottom"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </AbsoluteLayout>
+</LinearLayout>

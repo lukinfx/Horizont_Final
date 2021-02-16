@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HorizontLib.Domain.Models;
+using Peaks360Lib.Domain.Models;
 
 namespace PaintSkyLine
 {

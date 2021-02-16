@@ -1,6 +1,6 @@
-﻿using HorizontLib.Domain.Enums;
-using HorizontLib.Domain.Models;
-using HorizontLib.Utilities;
+﻿using Peaks360Lib.Domain.Enums;
+using Peaks360Lib.Domain.Models;
+using Peaks360Lib.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -174,7 +174,7 @@ namespace OSMToGPX
             Console.WriteLine($"Destination File: {dstFile}");
 
             string xmlFileContext = File.ReadAllText(srcFile);
-            var poiList = HorizontLib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, new Guid());
+            var poiList = Peaks360Lib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, new Guid());
 
             FixMissingElevation(poiList, tiffDir);
             //foreach (var group in poiList.GroupBy(x => ((int)x.Longitude*10000)+(int)x.Latitude))

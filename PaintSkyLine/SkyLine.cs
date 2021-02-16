@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HorizonLib.Utilities;
-using HorizontLib.Domain.Models;
-using HorizontLib.Domain.ViewModel;
-using HorizontLib.Utilities;
+using Peaks360Lib.Utilities;
+using Peaks360Lib.Domain.Models;
+using Peaks360Lib.Domain.ViewModel;
+using Peaks360Lib.Utilities;
 using PaintSkyLine;
 using SkiaSharp;
 

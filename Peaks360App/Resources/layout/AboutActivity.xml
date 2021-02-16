@@ -1,0 +1,111 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+        
+  <include
+    android:id="@+id/toolbar"
+    layout="@layout/photosActivityToolbar" />
+  <LinearLayout
+      android:orientation="vertical"
+      android:padding="10dp"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@drawable/background_portrait">
+    <ScrollView
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:minWidth="25px"
+      android:minHeight="25px"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:padding="10dp"
+          android:background="@drawable/bg_activity">
+
+        <ImageView
+          android:src="@drawable/logo_horizon5"
+          android:layout_width="wrap_content"
+          android:layout_height="180dp"/>
+        <TextView
+          android:text="Version: 1.01, Installed on 2020-01-01"
+          android:gravity="center"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/aboutVersion"/>
+        <TextView
+          android:text="Developers: Tomas Frankl, Lukas Frankl"
+          android:gravity="center"
+          android:paddingTop="10dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+        <TextView
+          android:text="Ostrava, Czech Republic\n\&#169; 2020 All rights reserved"
+          android:gravity="center"
+          android:paddingTop="10dp"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+        <TextView
+          android:text="Credits / Licenses"
+          android:gravity="center"
+          android:paddingTop="20dp"
+          android:textAppearance="?android:attr/textAppearanceLarge"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+        <ImageView
+          android:src="@drawable/logo_jaxa"
+          android:layout_gravity="center"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"/>
+        <TextView
+          android:text="Elevation data used in this application have been provided by AW3D of the Japan Aerospace Exploration Agency."
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+        <ImageView
+          android:src="@drawable/logo_osm_2b"
+          android:paddingBottom="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"/>
+
+        <TextView
+          android:text="Map objects data used in this application have been provided by Map data \&#169; OpenStreetMap contributors."
+          android:layout_gravity="center"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+        <Space
+          android:layout_width="match_parent"
+          android:layout_height="20dp"/>
+        <ImageView
+          android:src="@drawable/logo_wiki"
+          android:paddingBottom="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"/>
+
+        <TextView
+          android:text="The application contains links to Wikipedia. 'Wikipedia' is a registered trademark of the not-for-profit Wikimedia Foundation, which has created a family of free-content projects that are built by user contributions. "
+          android:layout_gravity="center"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+      </LinearLayout>
+      </ScrollView>
+    </LinearLayout>
+</LinearLayout>
