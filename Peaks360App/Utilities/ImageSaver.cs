@@ -27,6 +27,8 @@ namespace Peaks360App.Utilities
 
         public void Run()
         {
+            var imgWidth = _Image.Width;
+            var imgHeight = _Image.Height;
             ByteBuffer buffer = _Image.GetPlanes()[0].Buffer;
             byte[] bytes = new byte[buffer.Remaining()];
             buffer.Get(bytes);
@@ -69,8 +71,8 @@ namespace Peaks360App.Utilities
                         JsonCategories = jsonCategories,
                         ViewAngleVertical = _context.ViewAngleVertical,
                         ViewAngleHorizontal = _context.ViewAngleHorizontal,
-                        PictureWidth = _Image.Width,
-                        PictureHeight = _Image.Height,
+                        PictureWidth = imgWidth,
+                        PictureHeight = imgHeight,
                         MinAltitude = _context.Settings.MinAltitute,
                         MaxDistance = _context.Settings.MaxDistance,
                         FavouriteFilter = _context.ShowFavoritesOnly,

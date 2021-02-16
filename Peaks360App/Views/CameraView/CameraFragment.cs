@@ -454,28 +454,35 @@ namespace Peaks360App.Views.Camera
         {
             try
             {
-                SurfaceTexture texture = mTextureView.SurfaceTexture;
-                if (texture == null)
+                if (mTextureView.IsAvailable)
                 {
-                    throw new IllegalStateException("texture is null");
+                    SurfaceTexture texture = mTextureView.SurfaceTexture;
+                    if (texture == null)
+                    {
+                        throw new IllegalStateException("texture is null");
+                    }
+
+                    // We configure the size of default buffer to be the size of camera preview we want.
+                    texture.SetDefaultBufferSize(mPreviewSize.Width, mPreviewSize.Height);
+
+                    // This is the output Surface we need to start preview.
+                    mSurface = new Surface(texture);
+
+                    // We set up a CaptureRequest.Builder with the output Surface.
+                    mPreviewRequestBuilder = mCameraDevice.CreateCaptureRequest(CameraTemplate.Preview);
+                    DisableFlash(mPreviewRequestBuilder);
+                    mPreviewRequestBuilder.AddTarget(mSurface);
+
+                    // Here, we create a CameraCaptureSession for camera preview.
+                    List<Surface> surfaces = new List<Surface>();
+                    surfaces.Add(mSurface);
+                    surfaces.Add(mImageReader.Surface);
+                    mCameraDevice.CreateCaptureSession(surfaces, new CameraCaptureSessionCallback(this), null);
                 }
-
-                // We configure the size of default buffer to be the size of camera preview we want.
-                texture.SetDefaultBufferSize(mPreviewSize.Width, mPreviewSize.Height);
-
-                // This is the output Surface we need to start preview.
-                mSurface = new Surface(texture);
-                
-                // We set up a CaptureRequest.Builder with the output Surface.
-                mPreviewRequestBuilder = mCameraDevice.CreateCaptureRequest(CameraTemplate.Preview);
-                DisableFlash(mPreviewRequestBuilder);
-                mPreviewRequestBuilder.AddTarget(mSurface);
-
-                // Here, we create a CameraCaptureSession for camera preview.
-                List<Surface> surfaces = new List<Surface>();
-                surfaces.Add(mSurface);
-                surfaces.Add(mImageReader.Surface);
-                mCameraDevice.CreateCaptureSession(surfaces, new CameraCaptureSessionCallback(this), null);
+                else
+                {
+                    //throw new IllegalStateException("texture not available");
+                }
 
             }
             catch (CameraAccessException e)
