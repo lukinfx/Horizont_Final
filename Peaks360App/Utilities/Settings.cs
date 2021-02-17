@@ -190,12 +190,12 @@ namespace Peaks360App.Utilities
             {
                 PoiCategory.Mountains.ToString(),
                 PoiCategory.Lakes.ToString(),
-                PoiCategory.Castles.ToString(),
-                PoiCategory.Palaces.ToString(),
-                PoiCategory.Ruins.ToString(),
                 PoiCategory.ViewTowers.ToString(),
                 PoiCategory.Transmitters.ToString(),
-                PoiCategory.Churches.ToString()
+                PoiCategory.Churches.ToString(),
+                PoiCategory.Cities.ToString(),
+                PoiCategory.Historic.ToString(),
+                PoiCategory.Other.ToString()
             };
 
             return categoriesAsCollectionDefault;
