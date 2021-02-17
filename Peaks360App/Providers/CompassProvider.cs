@@ -7,9 +7,6 @@ namespace Peaks360App.Providers
 {
     public class CompassProvider
     {
-        SensorSpeed speed = SensorSpeed.Default;
-
-
         private HeadingStabilizator2 _headingStabilizator = new HeadingStabilizator2();
 
         public CompassProvider()
@@ -42,7 +39,7 @@ namespace Peaks360App.Providers
             {
                 if (Compass.IsMonitoring)
                     return;
-                Compass.Start(speed, applyLowPassFilter: true);
+                Compass.Start(SensorSpeed.UI, applyLowPassFilter: true);
             }
             catch (FeatureNotSupportedException ex)
             {
