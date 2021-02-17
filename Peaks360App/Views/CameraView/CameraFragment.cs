@@ -206,6 +206,13 @@ namespace Peaks360App.Views.Camera
             mOnImageAvailableListener = new ImageAvailableListener(this);
         }
 
+        public override void OnPause()
+        {
+            CloseCamera();
+            StopBackgroundThread();
+            base.OnPause();
+        }
+
         public override void OnResume()
         {
             base.OnResume();
@@ -223,30 +230,6 @@ namespace Peaks360App.Views.Camera
             {
                 mTextureView.SurfaceTextureListener = mSurfaceTextureListener;
             }
-        }
-
-        public void StopPreview()
-        {
-            //mSurface.Freeze();
-            //mTextureView.SurfaceTextureListener = null;
-            //mPreviewRequestBuilder.RemoveTarget(mSurface);
-            mCaptureSession.StopRepeating();
-        }
-
-        public void StartPreview()
-        {
-            //mSurface.Unfreeze();
-            //mTextureView.SurfaceTextureListener = mSurfaceTextureListener;
-            //mPreviewRequestBuilder.AddTarget(mSurface);
-            mCaptureSession.SetRepeatingRequest(mPreviewRequest, mCaptureCallback, mBackgroundHandler);
-        }
-
-
-        public override void OnPause()
-        {
-            CloseCamera();
-            StopBackgroundThread();
-            base.OnPause();
         }
 
         // Sets up member variables related to camera.
