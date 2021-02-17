@@ -27,6 +27,7 @@
 
   <!--MainActivity-->
   <string name="Main_DownloadDataQuestion">No points of interest have been downloaded yet. Do you want do download them now?</string>
+  <string name="Main_EnableGpsQuestion">GPS is not enabled. Do you want to enable it now?</string>
   <string name="Main_ErrorGeneratingElevationProfile">Error when generating elevation profile.</string>
   <string name="Main_ErrorUnknownAltitude">It\'s not possible to generate elevation profile without known altitude.</string>
   <string name="Main_GeneratingElevationProfile">Generating elevation profile. Please wait.</string>

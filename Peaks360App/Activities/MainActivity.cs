@@ -6,7 +6,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Widget;
 using Android.Content.PM;
-using Android.Views;
 using Android.Content;
 using Android.Support.V13.App;
 using Android.Support.Design.Widget;
@@ -17,11 +16,14 @@ using Peaks360App.Utilities;
 using Peaks360App.Views.Camera;
 using Peaks360App.Activities;
 using Peaks360App.AppContext;
-
+using Peaks360App.Services;
+using Xamarin.Forms;
 using Exception = System.Exception;
 using Math = System.Math;
 using String = System.String;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
+using ImageButton = Android.Widget.ImageButton;
+using View = Android.Views.View;
 
 namespace Peaks360App
 {
@@ -57,6 +59,7 @@ namespace Peaks360App
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
 
             if (AppContextLiveData.Instance.IsPortrait)
@@ -153,7 +156,26 @@ namespace Peaks360App
             base.OnStart();
 
             Android.Content.Context ctx = this;
-            if (_firstStart && !Context.Database.IsAnyDownloadedPois())
+
+            bool isFirstStart = _firstStart;
+            _firstStart = false;
+
+            //For checking the GPS Status
+            bool gpsAvailable = DependencyService.Get<IGpsService>().isGpsAvailable();
+            if (isFirstStart && !gpsAvailable)
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
+                {
+                    DependencyService.Get<IGpsService>().OpenSettings();
+                });
+                alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+                alert.SetMessage(Resources.GetText(Resource.String.Main_EnableGpsQuestion));
+                var answer = alert.Show();
+
+            }
+
+            if (isFirstStart && !Context.Database.IsAnyDownloadedPois())
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
                 alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
@@ -166,8 +188,6 @@ namespace Peaks360App
                 alert.SetMessage(Resources.GetText(Resource.String.Main_DownloadDataQuestion));
                 var answer = alert.Show();
             }
-
-            _firstStart = false;
         }
 
         private void InitializeCameraFragment()
