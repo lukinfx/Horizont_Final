@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation=    "horizontal"
+    android:orientation="horizontal"
     android:gravity="bottom"
-    android:layout_width=    "match_parent"
-    android:layout_height=    "wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <TextView
-      android:inputType="number"
-      android:layout_width="75dp"
-      android:layout_height="wrap_content"
-      android:id="@+id/editText1"
-      android:layout_marginRight="0.0dp"
-      android:textColor="#ffff00"
-      android:background="#50000000"/>
-    <TextView
-      android:inputType="number"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/editText2"
+      android:id="@+id/textViewStatusLine"
       android:textColor="#ffff00"
-      android:background="#50000000"/>
+      android:background="#50000000"
+      android:maxLines="1"
+      
+      android:focusable="true"
+      android:focusableInTouchMode="true"
+      android:singleLine="true"
+      android:scrollHorizontally="true"
+      android:ellipsize="marquee"
+      android:marqueeRepeatLimit ="marquee_forever"/>
 </LinearLayout>

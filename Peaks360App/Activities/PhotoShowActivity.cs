@@ -34,7 +34,6 @@ namespace Peaks360App.Activities
 
         private static string TAG = "Horizon-PhotoShowActivity";
 
-        private TextView _GPSTextView;
         private ScaleImageView photoView;
 
         private ImageButton _tiltCorrectorButton;
@@ -130,8 +129,6 @@ namespace Peaks360App.Activities
 
             InitializeAppContext(_photodata);
             InitializeBaseActivityUI();
-
-            _GPSTextView = FindViewById<TextView>(Resource.Id.editText2);
 
             FindViewById<ImageButton>(Resource.Id.menuButton).SetOnClickListener(this);
 
@@ -286,9 +283,15 @@ namespace Peaks360App.Activities
 
         protected override void UpdateStatusBar()
         {
-            var gpsLocation = GpsUtils.HasLocation(Context.MyLocation)
-                ? $"Lat:{Context.MyLocation.Latitude:F7} Lon:{Context.MyLocation.Longitude:F7} Alt:{Context.MyLocation.Altitude:F0}"
-                : "No GPS location";
+            string gpsLocation;
+            if (GpsUtils.HasLocation(Context.MyLocation))
+            {
+                gpsLocation = $"GPS:{Context.MyLocation.LocationAsString()} Alt:{Context.MyLocation.Altitude:F0}";
+            }
+            else
+            {
+                gpsLocation = "No GPS location";
+            }
 
             var sign = Context.HeadingCorrector < 0 ? '-' : '+';
             var heading = $"Hdg:{Context.Heading:F1}{sign}{Math.Abs(Context.HeadingCorrector):F1}";
@@ -300,7 +303,7 @@ namespace Peaks360App.Activities
             var photoMatrix = $"im-X:{photoView.TranslateX:F1}, im-Y:{photoView.TranslateY:F1}, Sc:{photoView.DisplayScale:F2}/{photoView.Scale:F2}";
 
             //_GPSTextView.Text = heading + "  /  " + zoomAndTiltCorrection + "  /  " + viewAngle;// + "  /  " + photoMatrix;
-            _GPSTextView.Text = zoomAndTiltCorrection + "  /  " + viewAngle + "  /  " + photoMatrix;
+            SetStatusLineText(zoomAndTiltCorrection + "  /  " + viewAngle + "  /  " + photoMatrix);
         }
 
         protected override void OnMove(int distanceX, int distanceY)

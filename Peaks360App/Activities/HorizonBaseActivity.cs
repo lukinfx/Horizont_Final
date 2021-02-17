@@ -28,6 +28,7 @@ namespace Peaks360App.Activities
 
         protected CompassView _compassView;
         private TextView _textViewNotification;
+        private TextView _textViewStatusLine;
 
         protected ImageButton _favouriteButton;
         protected ImageButton _displayTerrainButton;
@@ -82,8 +83,10 @@ namespace Peaks360App.Activities
 
             _gestureDetector = new GestureDetector(this);
 
-
             _textViewNotification = FindViewById<TextView>(Resource.Id.textViewNotification);
+            
+            _textViewStatusLine = FindViewById<TextView>(Resource.Id.textViewStatusLine);
+            _textViewStatusLine.Selected = true;
 
             _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
             _distanceSeekBar.Progress = Context.Settings.MaxDistance;
@@ -402,6 +405,12 @@ namespace Peaks360App.Activities
         {
             _seekBars.Visibility = ViewStates.Visible;
             _activityControlBar.Visibility = ViewStates.Visible;
+        }
+
+        protected void SetStatusLineText(string text, bool alert = false)
+        {
+            _textViewStatusLine.Text = text;
+            _textViewStatusLine.SetTextColor(alert ? Android.Graphics.Color.Yellow : Android.Graphics.Color.GreenYellow);
         }
 
         #region ElevationProfile

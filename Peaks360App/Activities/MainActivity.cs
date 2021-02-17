@@ -35,8 +35,6 @@ namespace Peaks360App
         //private static readonly int ReqCode_SelectCategoryActivity = 1000;
 
         //UI elements
-        private TextView _headingEditText;
-        private TextView _GPSEditText;
         private ImageButton _pauseButton;
         private ImageButton _recordButton;
         private ImageButton _menuButton;
@@ -129,9 +127,6 @@ namespace Peaks360App
 
         private void InitializeUIElements()
         {
-            _headingEditText = FindViewById<TextView>(Resource.Id.editText1);
-            _GPSEditText = FindViewById<TextView>(Resource.Id.editText2);
-
             _activityControlBar = FindViewById<LinearLayout>(Resource.Id.mainActivityControlBar);
 
             _menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
@@ -321,15 +316,6 @@ namespace Peaks360App
 
         private void RefreshHeading()
         {
-            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
-            {
-                _headingEditText.Text = $"{Math.Round(Context.Heading, 0):F0}°+{Context.HeadingCorrector + 90:F0} | ";
-            }
-            else
-            {
-                _headingEditText.Text = $"{Math.Round(Context.Heading, 0):F0}°+{Context.HeadingCorrector:F0} | ";
-            }
-
             _compassView.Invalidate();
         }
 
@@ -353,19 +339,22 @@ namespace Peaks360App
         {
             base.OnDataChanged(sender, e);
 
-            var text = GpsUtils.HasLocation(Context.MyLocation) ?
-                $"Lat:{Context.MyLocation.Latitude:F7} Lon:{Context.MyLocation.Longitude:F7} Alt:{Context.MyLocation.Altitude:F0}" : "No GPS location";
-            text += $" ({Context.MyLocationName})";
-
-            _GPSEditText.Text = text;
-
             _compassView.SetPoiViewItemList(e.PoiData);
 
             CheckAndReloadElevationProfile();
         }
 
-        protected override void UpdateStatusBar() 
+        protected override void UpdateStatusBar()
         {
+            if (GpsUtils.HasLocation(Context.MyLocation))
+            {
+                var gpsLocation = $"GPS:{Context.MyLocation.LocationAsString()} Alt:{Context.MyLocation.Altitude:F0}m";
+                SetStatusLineText($"{gpsLocation} ({Context.MyLocationName})");
+            }
+            else
+            {
+                SetStatusLineText(Resources.GetText(Resource.String.Main_WaitingForGps), true);
+            }
         }
 
         protected override void OnMove(int distanceX, int distanceY)
