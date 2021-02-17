@@ -347,6 +347,7 @@ namespace Peaks360App.Activities
 
                 _compassView.Visibility = ViewStates.Visible;
                 photoView.Visibility = ViewStates.Visible;
+                photoView.InitializeTransformationMatrix();
             }
         }
 
@@ -364,6 +365,7 @@ namespace Peaks360App.Activities
 
                 _compassView.Visibility = ViewStates.Visible;
                 photoView.Visibility = ViewStates.Visible;
+                photoView.InitializeTransformationMatrix();
             }
         }
 

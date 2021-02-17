@@ -143,37 +143,40 @@ namespace Peaks360App.Views.ScaleImage
 
             if (resetScale)
             {
-                m_Matrix.Reset();
-
-                //Calculate scale
-                m_MinScale = CalculateMinScale(l, t, r, b);
-                m_MaxScale = 30 * m_MinScale;
-                m_StdScale = (r - l) / (float) m_IntrinsicWidth;
-                m_Scale = m_StdScale;
-
-                //Calculate initial padding
-                int scaledImageHeight = (int) (m_Scale * m_IntrinsicHeight);
-                m_InitialPaddingHeight = (scaledImageHeight - m_Height) / 2;
-                m_InitialPaddingWidth = 0;
-
-                //Set image transformation matrix
-                m_Matrix.PostScale(m_Scale, m_Scale);
-                m_Matrix.PostTranslate(-m_InitialPaddingWidth, -m_InitialPaddingHeight);
-                ImageMatrix = m_Matrix;
+                InitializeTransformationMatrix();
             }
 
             return base.SetFrame(l, t, r, b);
         }
 
-        private float CalculateMinScale(int l, int t, int r, int b)
+        public void InitializeTransformationMatrix()
         {
-            var Height = b - t;
-            var Width = r - l;
-            var minScale = (float)Width / (float)m_IntrinsicWidth;
+            m_Matrix.Reset();
 
-            if (minScale * m_IntrinsicHeight > Height)
+            //Calculate scale
+            m_MinScale = CalculateMinScale(m_Width, m_Height);
+            m_MaxScale = 30 * m_MinScale;
+            m_StdScale = (m_Width) / (float) m_IntrinsicWidth;
+            m_Scale = m_StdScale;
+
+            //Calculate initial padding
+            int scaledImageHeight = (int) (m_Scale * m_IntrinsicHeight);
+            m_InitialPaddingHeight = (scaledImageHeight - m_Height) / 2;
+            m_InitialPaddingWidth = 0;
+
+            //Set image transformation matrix
+            m_Matrix.PostScale(m_Scale, m_Scale);
+            m_Matrix.PostTranslate(-m_InitialPaddingWidth, -m_InitialPaddingHeight);
+            ImageMatrix = m_Matrix;
+        }
+
+        private float CalculateMinScale(int width, int height)
+        {
+            var minScale = (float)width / (float)m_IntrinsicWidth;
+
+            if (minScale * m_IntrinsicHeight > height)
             {
-                minScale = (float)Height / (float)m_IntrinsicHeight;
+                minScale = (float)height / (float)m_IntrinsicHeight;
             }
 
             return minScale;
