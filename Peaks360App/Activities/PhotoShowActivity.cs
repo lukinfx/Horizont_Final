@@ -243,6 +243,7 @@ namespace Peaks360App.Activities
                     : null;
                 var dst = new RectF();
                 inverseMatrix.MapRect(dst, cr);
+
                 photoView.CroppingRectangle = new Rect((int) (int) dst.Left, (int) dst.Top, (int) dst.Right, (int) dst.Bottom);
 
                 _confirmCloseButtons.Visibility = ViewStates.Visible;
@@ -330,7 +331,6 @@ namespace Peaks360App.Activities
             CheckDirtyAndPerformAction(() => ShowPreviousImage());
         }
 
-
         protected override void OnNextImage()
         {
             CheckDirtyAndPerformAction(() => ShowNextImage());
@@ -372,26 +372,29 @@ namespace Peaks360App.Activities
             }
         }
 
-        protected override void OnCropAdjustment(CroppingHandle handle, float distanceX, float distanceY)
+        protected override void OnCropAdjustment(CroppingHandle handle, float distX, float distY)
         {
-            var oldCR = photoView.CroppingRectangle;
-            distanceX = distanceX / photoView.Scale;
-            distanceY = distanceY / photoView.Scale;
-
-            switch (handle)
+            if (photoView.IsCropAllowed(handle, distX, distY))
             {
-                case CroppingHandle.Left:
-                    photoView.CroppingRectangle = new Rect((int) (oldCR.Left + distanceX), oldCR.Top, oldCR.Right, oldCR.Bottom);
-                    break;
-                case CroppingHandle.Right:
-                    photoView.CroppingRectangle = new Rect(oldCR.Left, oldCR.Top, (int) (oldCR.Right + distanceX), oldCR.Bottom);
-                    break;
-                case CroppingHandle.Top:
-                    photoView.CroppingRectangle = new Rect(oldCR.Left, (int) (oldCR.Top + distanceY), oldCR.Right, oldCR.Bottom);
-                    break;
-                case CroppingHandle.Bottom:
-                    photoView.CroppingRectangle = new Rect(oldCR.Left, oldCR.Top, oldCR.Right, (int) (oldCR.Bottom + distanceY));
-                    break;
+                var oldCR = photoView.CroppingRectangle;
+                var distanceX = distX / photoView.Scale;
+                var distanceY = distY / photoView.Scale;
+
+                switch (handle)
+                {
+                    case CroppingHandle.Left:
+                        photoView.CroppingRectangle = new Rect((int) (oldCR.Left + distanceX), oldCR.Top, oldCR.Right, oldCR.Bottom);
+                        break;
+                    case CroppingHandle.Right:
+                        photoView.CroppingRectangle = new Rect(oldCR.Left, oldCR.Top, (int) (oldCR.Right + distanceX), oldCR.Bottom);
+                        break;
+                    case CroppingHandle.Top:
+                        photoView.CroppingRectangle = new Rect(oldCR.Left, (int) (oldCR.Top + distanceY), oldCR.Right, oldCR.Bottom);
+                        break;
+                    case CroppingHandle.Bottom:
+                        photoView.CroppingRectangle = new Rect(oldCR.Left, oldCR.Top, oldCR.Right, (int) (oldCR.Bottom + distanceY));
+                        break;
+                }
             }
         }
 
@@ -414,6 +417,11 @@ namespace Peaks360App.Activities
                     break;
 
                 case Resource.Id.confirmButton:
+                    if (photoView.IsCroppedImageTooSmall())
+                    {
+                        new ShowToastRunnable(this, Resources.GetText(Resource.String.PhotoShow_ImageTooSmall)).Run();
+                        return;
+                    }
                     SaveCopy();
                     DisableCropping();
                     break;

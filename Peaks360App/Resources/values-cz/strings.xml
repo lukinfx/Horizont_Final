@@ -73,6 +73,7 @@
   <string name="PhotoShow_SaveOrDiscard">Parametry fotografie byly změněny. Checete uložit vaše změny?</string>
   <string name="PhotoShow_OverwriteQuestion">Fotografie již existuje. Chcete ji přepsat?</string>
   <string name="PhotoShow_PhotoSaved">Fotografile uložena.</string>
+  <string name="PhotoShow_ImageTooSmall">Oříznutá fotografie je příliš malá.</string>
 
   <!--SettingsActivity-->
   <string name="action_settings">Nastavení</string>

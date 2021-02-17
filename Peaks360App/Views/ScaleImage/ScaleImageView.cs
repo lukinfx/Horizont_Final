@@ -8,29 +8,14 @@ using Peaks360Lib.Domain.ViewModel;
 
 namespace Peaks360App.Views.ScaleImage
 {
-    public class ScaleImageViewGestureDetector : GestureDetector.SimpleOnGestureListener
-    {
-        private readonly ScaleImageView m_ScaleImageView;
-        public ScaleImageViewGestureDetector(ScaleImageView imageView)
-        {
-            m_ScaleImageView = imageView;
-        }
-        public override bool OnDown(MotionEvent e)
-        {
-            return true;
-        }
-        public override bool OnDoubleTap(MotionEvent e)
-        {
-            m_ScaleImageView.MaxZoomTo((int)e.GetX(), (int)e.GetY());
-            m_ScaleImageView.Cutting();
-            return true;
-        }
-    }
-
     public class ScaleImageView : ImageView
     {
         private const int HOLDER_SIZE = 30;
+        private const int MIN_IMAGE_SIZE = 1024;
+        private const int MIN_CROP_DISTANCE = 100;
+
         private Context m_Context;
+
         private float m_MaxScale;
         private float m_MinScale; 
         private float m_StdScale;
@@ -46,6 +31,7 @@ namespace Peaks360App.Views.ScaleImage
         private int m_InitialPaddingHeight;
         private Rect croppingRectangle;
         private Paint croppingPaint;
+        private Paint croppingPaintWarning;
         private Paint croppingHandlePaint;
 
 
@@ -58,6 +44,11 @@ namespace Peaks360App.Views.ScaleImage
             set
             {
                 croppingRectangle = value;
+                if (croppingRectangle != null)
+                {
+                    ValidateCroppingRectangle();
+                }
+
                 Invalidate();
             }
         }
@@ -106,6 +97,7 @@ namespace Peaks360App.Views.ScaleImage
             base.SetImageResource(resId);
             this.Initialize();
         }
+
         private void Initialize()
         {
             this.SetScaleType(ScaleType.Matrix);
@@ -115,6 +107,11 @@ namespace Peaks360App.Views.ScaleImage
             croppingPaint.SetARGB(150, 0, 0, 0);
             croppingPaint.SetStyle(Paint.Style.Fill);
             croppingPaint.StrokeWidth = 0;
+
+            croppingPaintWarning = new Paint();
+            croppingPaintWarning.SetARGB(50, 255, 0, 0);
+            croppingPaintWarning.SetStyle(Paint.Style.Fill);
+            croppingPaintWarning.StrokeWidth = 0;
 
             croppingHandlePaint = new Paint();
             croppingHandlePaint.SetARGB(255, 200, 200, 200);
@@ -333,6 +330,46 @@ namespace Peaks360App.Views.ScaleImage
             }
         }
 
+        public bool IsCropAllowed(CroppingHandle handle, float distX, float distY)
+        {
+            var oldCRDisp = CroppingRectangleOnDisplay;
+
+            //Check if it is possible?
+            switch (handle)
+            {
+                case CroppingHandle.Left:
+                    return oldCRDisp.Right - (oldCRDisp.Left + distX) > MIN_CROP_DISTANCE;
+                case CroppingHandle.Right:
+                    return (oldCRDisp.Right + distX) - oldCRDisp.Left > MIN_CROP_DISTANCE;
+                case CroppingHandle.Top:
+                    return oldCRDisp.Bottom - (oldCRDisp.Top + distY) > MIN_CROP_DISTANCE;
+                case CroppingHandle.Bottom:
+                    return (oldCRDisp.Bottom + distY) - oldCRDisp.Top > MIN_CROP_DISTANCE;
+            }
+
+            return false;
+        }
+
+        public bool IsCroppedImageTooSmall()
+        {
+            return CroppingRectangle.Width() < MIN_IMAGE_SIZE || CroppingRectangle.Height() < MIN_IMAGE_SIZE;
+        }
+
+        private void ValidateCroppingRectangle()
+        {
+            if (croppingRectangle.Left < 0) 
+                croppingRectangle.Left = 0;
+
+            if (croppingRectangle.Right > m_IntrinsicWidth) 
+                croppingRectangle.Right = m_IntrinsicWidth;
+
+            if (croppingRectangle.Top < 0) 
+                croppingRectangle.Top = 0;
+
+            if (croppingRectangle.Bottom > m_IntrinsicHeight) 
+                croppingRectangle.Bottom = m_IntrinsicHeight;
+        }
+
         protected override void OnDraw(Canvas? canvas)
         {
             base.OnDraw(canvas);
@@ -340,6 +377,11 @@ namespace Peaks360App.Views.ScaleImage
             if (CroppingRectangleOnDisplay != null)
             {
                 Rect r = new Rect((int)CroppingRectangleOnDisplay.Left, (int)CroppingRectangleOnDisplay.Top, (int)CroppingRectangleOnDisplay.Right, (int)CroppingRectangleOnDisplay.Bottom);
+
+                if (IsCroppedImageTooSmall())
+                {
+                    canvas.DrawRect(r, croppingPaintWarning);
+                }
 
                 //canvas.DrawRect(CroppingRectangleOnDisplay, croppingPaint);
                 canvas.DrawRect(0, 0, r.Left, Height, croppingPaint);

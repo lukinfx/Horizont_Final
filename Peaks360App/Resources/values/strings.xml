@@ -72,6 +72,7 @@
   <string name="PhotoShow_SaveOrDiscard">Photo parameters have been changed. Do you want to save your changes?</string>
   <string name="PhotoShow_OverwriteQuestion">This photo already exists. Do you want to rewrite it?</string>
   <string name="PhotoShow_PhotoSaved">Photo saved.</string>
+  <string name="PhotoShow_ImageTooSmall">Cropped image is too small.</string>
 
   <!--SettingsActivity-->
   <string name="action_settings">Settings</string>
