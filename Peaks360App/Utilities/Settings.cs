@@ -142,8 +142,8 @@ namespace Peaks360App.Utilities
             CorrectionViewAngleHorizontal = prefs.GetFloat("CorrectionViewAngleHorizontal", 0);
             CorrectionViewAngleVertical = prefs.GetFloat("CorrectionViewAngleVertical", 0);
 
-            AltitudeFromElevationMap = prefs.GetBoolean("AltitudeFromElevationMap", false);
-            AutoElevationProfile = prefs.GetBoolean("AutoElevationProfile", false);
+            AltitudeFromElevationMap = prefs.GetBoolean("AltitudeFromElevationMap", true);
+            AutoElevationProfile = prefs.GetBoolean("AutoElevationProfile", true);
 
             cameraResolutionSelected = new Size (prefs.GetInt("CameraResolutionWidth", 0), prefs.GetInt("CameraResolutionHeight", 0));
             CameraId= prefs.GetString("CameraId", null);
