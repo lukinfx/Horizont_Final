@@ -35,9 +35,9 @@ namespace Peaks360App.Activities
         private EditText _editTextLongitude;
         private EditText _editTextAltitude;
         private Spinner _spinnerCategory;
-        private ImageButton _buttonOpenMap;
-        private ImageButton _buttonOpenWiki;
-        private ImageButton _buttonTeleport;
+        private Button _buttonOpenMap;
+        private Button _buttonOpenWiki;
+        private Button _buttonTeleport;
         private ImageView _buttonFavourite;
         private ImageView _thumbnail;
         private ImageButton _buttonPaste;
@@ -86,11 +86,11 @@ namespace Peaks360App.Activities
 
             _buttonFavourite = FindViewById<ImageView>(Resource.Id.buttonFavourite);
 
-            _buttonOpenWiki = FindViewById<ImageButton>(Resource.Id.buttonWiki);
+            _buttonOpenWiki = FindViewById<Button>(Resource.Id.buttonWiki);
 
-            _buttonOpenMap = FindViewById<ImageButton>(Resource.Id.buttonMap);
+            _buttonOpenMap = FindViewById<Button>(Resource.Id.buttonMap);
 
-            _buttonTeleport = FindViewById<ImageButton>(Resource.Id.buttonTeleport);
+            _buttonTeleport = FindViewById<Button>(Resource.Id.buttonTeleport);
 
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
             _spinnerCategory.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _poiCategories.ToList());
@@ -143,6 +143,16 @@ namespace Peaks360App.Activities
             return _isDirty || _item.Category != _category;
         }
 
+        protected override void OnPause()
+        {
+            base.OnPause();
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            _isDirty = false;
+        }
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {
             SetDirty();

@@ -21,53 +21,58 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:gravity="center_horizontal"
-              android:paddingTop="20dp"
-              android:paddingBottom="20dp"
-              android:paddingRight="40dp"
-              android:paddingLeft="60dp"
+              android:paddingTop="10dp"
+              android:paddingBottom="0dp"
+              android:paddingRight="30dp"
+              android:paddingLeft="50dp"
               android:background="@drawable/bg_activity">
 
-              <TextView
+              <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
                 android:text="@string/Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/NameTitle" />
 
-              <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
-
-                <EditText
-                  android:layout_weight="100"
-                  android:text="@string/DefaultTextAddPoi"
-                  android:textAppearance="?android:attr/textAppearanceMedium"
+                <LinearLayout
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:padding="10px"
-                  android:singleLine="false"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/editTextName" />
-                <Space
-                  android:layout_width="5dp"
-                  android:layout_height="1dp"/>
-                <ImageView
-                  android:src="@drawable/f_heart_empty"
-                  android:layout_weight="100"
-                  android:layout_width="60dp"
-                  android:layout_height="match_parent"
-                  android:padding="0px"
-                  android:id="@+id/buttonFavourite"/>
+                  android:orientation="horizontal"
+                  android:gravity="center_horizontal">
 
-              </LinearLayout>
+                  <EditText
+                    android:layout_weight="100"
+                    android:text="@string/DefaultTextAddPoi"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10px"
+                    android:singleLine="false"
+                    android:background="@drawable/bg_edittext"
+                    android:id="@+id/editTextName" />
+                  <Space
+                    android:layout_width="5dp"
+                    android:layout_height="1dp"/>
+                  <ImageView
+                    android:src="@drawable/f_heart_empty"
+                    android:layout_weight="100"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:padding="0px"
+                    android:id="@+id/buttonFavourite"/>
+
+                </LinearLayout>
 
                 <GridLayout
                   android:layout_width="match_parent"
-                  android:layout_height="match_parent"
+                  android:layout_height="wrap_content"
                   android:orientation="horizontal"
-                  android:paddingTop="10dp"
+                  android:paddingTop="5dp"
                   android:paddingRight="10dp"
                   android:rowCount="1"
                   android:columnCount="2">
@@ -75,74 +80,72 @@
                     <LinearLayout
                       android:layout_columnWeight="8"
                       android:orientation="vertical"
-                      android:minWidth="25px"
-                      android:minHeight="25px"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content">
                         <GridLayout
-                        android:paddingTop="10dp"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingRight="30dp"
-                        android:rowCount="3"
-                        android:columnCount="2">
-                          <TextView
-                            android:paddingTop="10dp"
-                            android:layout_columnWeight="3"
-                            android:text="@string/Latitude"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/latitudeTitle" />
-                          <EditText
-                            android:layout_columnWeight="8"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
-                            android:digits="0123456789.,"
-                            android:padding="10px"
-                            android:background="@drawable/bg_edittext"
-                            android:id="@+id/editTextLatitude" />
-                          <TextView
-                            android:paddingTop="10dp"
-                            android:layout_columnWeight="3"
-                            android:text="@string/Longitude"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/longitudeTitle" />
-                          <EditText
-                            android:layout_columnWeight="8"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
-                            android:digits="0123456789.,"
-                            android:padding="10px"
-                            android:background="@drawable/bg_edittext"
-                            android:id="@+id/editTextLongitude" />
-                          <TextView
-                            android:paddingTop="10dp"
-                            android:layout_columnWeight="3"
-                            android:text="@string/Altitude"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/altitudeTitle" />
-                          <EditText
-                            android:layout_columnWeight="8"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
-                            android:digits="0123456789.,"
-                            android:padding="10px"
-                            android:background="@drawable/bg_edittext"
-                            android:id="@+id/editTextAltitude" />
-                      </GridLayout>
+                          android:paddingTop="10dp"
+                          android:orientation="horizontal"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:paddingRight="30dp"
+                          android:rowCount="3"
+                          android:columnCount="2">
+                            <TextView
+                              android:paddingTop="10dp"
+                              android:layout_columnWeight="3"
+                              android:text="@string/Latitude"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/latitudeTitle" />
+                            <EditText
+                              android:layout_columnWeight="8"
+                              android:textAppearance="?android:attr/textAppearanceSmall"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:inputType="numberDecimal"
+                              android:digits="0123456789.,"
+                              android:padding="10px"
+                              android:background="@drawable/bg_edittext"
+                              android:id="@+id/editTextLatitude" />
+                            <TextView
+                              android:paddingTop="10dp"
+                              android:layout_columnWeight="3"
+                              android:text="@string/Longitude"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/longitudeTitle" />
+                            <EditText
+                              android:layout_columnWeight="8"
+                              android:textAppearance="?android:attr/textAppearanceSmall"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:inputType="numberDecimal"
+                              android:digits="0123456789.,"
+                              android:padding="10px"
+                              android:background="@drawable/bg_edittext"
+                              android:id="@+id/editTextLongitude" />
+                            <TextView
+                              android:paddingTop="10dp"
+                              android:layout_columnWeight="3"
+                              android:text="@string/Altitude"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:id="@+id/altitudeTitle" />
+                            <EditText
+                              android:layout_columnWeight="8"
+                              android:textAppearance="?android:attr/textAppearanceSmall"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:inputType="numberDecimal"
+                              android:digits="0123456789.,"
+                              android:padding="10px"
+                              android:background="@drawable/bg_edittext"
+                              android:id="@+id/editTextAltitude" />
+                        </GridLayout>
                     </LinearLayout>
 
                     <LinearLayout
-                      android:paddingTop="10dp"
+                      android:paddingTop="5dp"
                       android:layout_columnWeight="8"
                       android:orientation="vertical"
                       android:minWidth="25px"
@@ -150,7 +153,6 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:id="@+id/linearLayoutName">
-
                         <TextView
                           android:text="@string/Category"
                           android:layout_width="wrap_content"
@@ -160,37 +162,65 @@
                           android:textAppearance="?android:attr/textAppearanceMedium"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:spinnerMode="dialog"
-                          android:padding="10px"
+                          android:spinnerMode="dropdown"
+                          android:entries="@array/CategoryItemsArray"
                           android:background="@drawable/bg_edittext"
                           android:id="@+id/spinnerCategory" />
-
-                        <LinearLayout
-                          android:orientation="horizontal"
-                          android:gravity="center"
-                          android:paddingTop="30dp"
-                          android:layout_width="match_parent"
-                          android:layout_height="match_parent"
-                          android:id="@+id/linearLayoutWiki">
-                            <ImageButton
-                              android:src="@android:drawable/ic_menu_mapmode"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:id="@+id/buttonMap"/>
-                            <ImageButton
-                              android:src="@android:drawable/ic_menu_info_details"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:id="@+id/buttonWiki"/>
-                            <ImageButton
-                              android:src="@android:drawable/ic_menu_mylocation"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:id="@+id/buttonTeleport"/>
-                        </LinearLayout>
                     </LinearLayout>
                 </GridLayout>
-            </LinearLayout>
+
+                <LinearLayout
+                  android:orientation="vertical"
+                  android:gravity="bottom"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+
+                  <LinearLayout
+                      android:orientation="horizontal"
+                      android:gravity="right"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+                      
+                      <Button
+                        android:id="@+id/buttonMap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Show on\u00A0map"
+                        android:paddingLeft="20dp"
+                        android:background="@android:color/transparent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:drawableLeft="@android:drawable/ic_menu_mapmode" />
+
+                      <Button
+                        android:id="@+id/buttonWiki"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Show details"
+                        android:paddingLeft="20dp"
+                        android:background="@android:color/transparent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:drawableLeft="@android:drawable/ic_menu_info_details" />
+
+                      <Button
+                        android:id="@+id/buttonTeleport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Teleport to\u00A0POI"
+                        android:paddingLeft="20dp"
+                        android:background="@android:color/transparent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentBottom="true"
+                        android:drawableLeft="@android:drawable/ic_menu_mylocation" />
+                    </LinearLayout>
+                </LinearLayout>
+              </LinearLayout>
+
+
+          </LinearLayout>
+
+
         </LinearLayout>
         <ImageView
           android:id="@+id/Thumbnail"

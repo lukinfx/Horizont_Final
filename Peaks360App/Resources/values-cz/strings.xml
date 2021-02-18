@@ -8,6 +8,10 @@
   <string name="Save">Uložit</string>
   <string name="Discard">Zahodit</string>
 
+  <string name="Details">Detaily</string>
+  <string name="Map">Mapa</string>
+  <string name="Teleport">Teleport</string>
+
   <string name="Question">Otázka</string>
   <string name="Information">Informace</string>
   <string name="Error">Chyba</string>

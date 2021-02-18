@@ -8,6 +8,10 @@
   <string name="Save">Save</string>
   <string name="Discard">Discard</string>
 
+  <string name="Details">Details</string>
+  <string name="Map">Map</string>
+  <string name="Teleport">Teleport</string>
+
   <string name="Question">Question</string>
   <string name="Information">Information</string>
   <string name="Error">Error</string>
@@ -130,5 +134,16 @@
       <item>New Style</item>
       <item>Old Style</item>
     </string-array>
+
+  <string-array name="CategoryItemsArray">
+    <item>Mountains</item>
+    <item>Cities</item>
+    <item>Churches</item>
+    <item>Historic</item>
+    <item>Lakes</item>
+    <item>Transmitters</item>
+    <item>View towers</item>
+    <item>Others</item>
+  </string-array>
 
 </resources>

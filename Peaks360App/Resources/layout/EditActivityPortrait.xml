@@ -26,22 +26,14 @@
               android:padding="20dp"
               android:background="@drawable/bg_activity">
 
-                <android.support.v4.widget.Space
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/space1"
-                  android:minHeight="40dp"/>
                 <LinearLayout
                   android:orientation="vertical"
-                  android:minWidth="25px"
-                  android:minHeight="25px"
                   android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/linearLayoutName">
+                  android:layout_height="match_parent">
                     <TextView
                       android:text="@string/Name"
                       android:layout_width="wrap_content"
-                      android:layout_height="match_parent"
+                      android:layout_height="wrap_content"
                       android:id="@+id/NameTitle" />
                     
                     <LinearLayout
@@ -143,7 +135,7 @@
                       android:text="@string/Category"
                       android:paddingTop="20dp"
                       android:layout_width="wrap_content"
-                      android:layout_height="match_parent"
+                      android:layout_height="wrap_content"
                       android:id="@+id/categoryTitle" />
                     <Spinner
                       android:textAppearance="?android:attr/textAppearanceMedium"
@@ -154,35 +146,52 @@
                       android:background="@drawable/bg_edittext"
                       android:id="@+id/spinnerCategory" />
 
-                    <android.support.v4.widget.Space
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:id="@+id/space2"
-                      android:minHeight="40dp"/>
-
                     <LinearLayout
-                      android:orientation="horizontal"
-                      android:minWidth="25px"
-                      android:minHeight="25px"
-                      android:gravity="center"
+                      android:orientation="vertical"
+                      android:gravity="bottom"
                       android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:id="@+id/linearLayoutWiki">
-                      <ImageButton
-                        android:src="@android:drawable/ic_menu_mapmode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/buttonMap"/>
-                      <ImageButton
-                        android:src="@android:drawable/ic_menu_info_details"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/buttonWiki"/>
-                      <ImageButton
-                        android:src="@android:drawable/ic_menu_mylocation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/buttonTeleport"/>
+                      android:layout_height="match_parent">
+                        <LinearLayout
+                          android:orientation="horizontal"
+                          android:gravity="center"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content">
+                            <Button
+                                android:id="@+id/buttonMap"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Show on\u00A0map"
+                                android:drawablePadding="10dp"
+                                android:background="@android:color/transparent"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentBottom="true"
+                                android:drawableTop="@android:drawable/ic_menu_mapmode" />
+
+                            <Button
+                              android:id="@+id/buttonWiki"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1"
+                              android:text="Show details"
+                              android:drawablePadding="10dp"
+                              android:background="@android:color/transparent"
+                              android:layout_alignParentLeft="true"
+                              android:layout_alignParentBottom="true"
+                              android:drawableTop="@android:drawable/ic_menu_info_details" />
+
+                            <Button
+                              android:id="@+id/buttonTeleport"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1"
+                              android:text="Teleport to\u00A0POI"
+                              android:drawablePadding="10dp"
+                              android:background="@android:color/transparent"
+                              android:layout_alignParentLeft="true"
+                              android:layout_alignParentBottom="true"
+                              android:drawableTop="@android:drawable/ic_menu_mylocation" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
