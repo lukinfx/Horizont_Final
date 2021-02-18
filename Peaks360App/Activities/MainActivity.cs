@@ -57,6 +57,7 @@ namespace Peaks360App
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            AppContextLiveData.Instance.SetLocale(this);
             Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
 
