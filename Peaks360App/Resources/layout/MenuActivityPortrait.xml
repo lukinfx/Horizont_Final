@@ -4,15 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_portrait">
-  <Space
-      android:layout_width="match_parent"
-      android:layout_height="20dp"/>
+  
   <ImageView
       android:src="@drawable/logo_horizon5"
+      android:layout_weight="80"
       android:layout_width="match_parent"
-      android:layout_height="250dp"
+      android:layout_height="200dp"
+      android:minHeight="400dp"
       android:padding="10dp"
       android:id="@+id/imageView1" />
   <include
-      layout="@layout/MenuButtons" />
+      layout="@layout/MenuButtons"
+      android:layout_weight="100"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+  <include
+      android:id="@+id/menuActivityStatusBar"
+      layout="@layout/MenuActivityStatusBar" 
+      android:layout_weight="1" 
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
 </LinearLayout>

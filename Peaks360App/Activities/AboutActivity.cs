@@ -1,9 +1,10 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Peaks360App.AppContext;
+using Peaks360App.Services;
+using Xamarin.Forms;
 
 namespace Peaks360App.Activities
 {
@@ -26,11 +27,11 @@ namespace Peaks360App.Activities
             // Create your application here
 
             var versionTextView = FindViewById<TextView>(Resource.Id.aboutVersion);
-            var packageInfo = Application.Context.ApplicationContext.PackageManager.GetPackageInfo(Application.Context.ApplicationContext.PackageName, 0);
-            var versionName = packageInfo.VersionName;
-            var versionCode = packageInfo.VersionCode;
-            var firstInstall = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(packageInfo.FirstInstallTime);
-            versionTextView.Text = $"Version: {versionName}.{versionCode}, installed on {firstInstall.ToShortDateString()}";
+
+            var versionNumber = DependencyService.Get<IAppVersionService>().GetVersionNumber();
+            var buildNumber = DependencyService.Get<IAppVersionService>().GetBuildNumber();
+            var firstInstall = DependencyService.Get<IAppVersionService>().GetInstallDate();
+            versionTextView.Text = $"Version: {versionNumber} ({buildNumber}) installed on {firstInstall.ToShortDateString()}";
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

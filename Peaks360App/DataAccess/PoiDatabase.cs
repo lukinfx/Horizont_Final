@@ -132,6 +132,11 @@ namespace Peaks360App.DataAccess
             return task.Result;
         }
 
+        public async Task<int> GetItemCount()
+        {
+            return await Database.Table<Poi>().CountAsync();
+        }
+
         /// <summary>
         /// Returns all point within a given distance (in kilometers)
         /// </summary>

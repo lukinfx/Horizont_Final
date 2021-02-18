@@ -25,6 +25,8 @@
   <string name="SettingsActivity">Settings</string>
   <string name="AboutActivity">About</string>
 
+  <string name="Menu_StatusBarLine1Template">Version: {0} ({1})  Poi Count: {2}</string>
+
   <!--MainActivity-->
   <string name="Main_DownloadDataQuestion">No points of interest have been downloaded yet. Do you want do download them now?</string>
   <string name="Main_EnableGpsQuestion">GPS is not enabled. Do you want to enable it now?</string>
@@ -32,6 +34,7 @@
   <string name="Main_ErrorUnknownAltitude">It\'s not possible to generate elevation profile without known altitude.</string>
   <string name="Main_GeneratingElevationProfile">Generating elevation profile. Please wait.</string>
   <string name="Main_WaitingForGps">Waiting for GPS location...</string>
+
   <!--PoiListActivity-->
   <string name="PoiListFilter_Visible">Visible</string>
   <string name="PoiListFilter_My">My POIs</string>

@@ -24,7 +24,9 @@
   <string name="PhotosActivity">Galerie fotografií</string>
   <string name="SettingsActivity">Nastavení</string>
   <string name="AboutActivity">O aplikaci</string>
-  
+
+  <string name="Menu_StatusBarLine1Template">Verze: {0} ({1})  Počet bodů: {2}</string>
+
   <!--MainActivity-->
   <string name="Main_DownloadDataQuestion">Žádné body zájmu ještě nebyly staženy. Chcete je stáhnout nyní?</string>
   <string name="Main_EnableGpsQuestion">GPS není zapnuta. Chcete ji zapnout nyní?</string>

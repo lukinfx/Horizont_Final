@@ -3,15 +3,18 @@ using Android.OS;
 using Android.Widget;
 using Android.Content.PM;
 using Peaks360Lib.Domain.Models;
-using Android.Views;
 using Peaks360App.Views.ListOfPoiView;
 using Android.Content;
 using static Android.Views.View;
 using Peaks360App.Activities;
 using Xamarin.Essentials;
 using System;
+using System.Threading.Tasks;
 using Android.Runtime;
 using Peaks360App.AppContext;
+using Peaks360App.Services;
+using Xamarin.Forms;
+using View = Android.Views.View;
 
 namespace Peaks360App.Activities
 {
@@ -28,6 +31,8 @@ namespace Peaks360App.Activities
         {
             base.OnResume();
             AppContextLiveData.Instance.SetLocale(this);
+
+            UpdatePoiCount();
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -71,16 +76,23 @@ namespace Peaks360App.Activities
 
             var buttonAbout = FindViewById<LinearLayout>(Resource.Id.aboutLinearLayout);
             buttonAbout.SetOnClickListener(this);
+
+            UpdatePoiCount();
         }
 
-        //private void OnMainDisplayInfoChanged(object sender, DisplayInfoChangedEventArgs e)
-        //{
-        //    var displayInfo = e.DisplayInfo;
-        //    if (displayInfo.Orientation != appOrientation)
-        //    {
-        //        appOrientation = displayInfo.Orientation;
-        //    }
-        //}
+
+        private void UpdatePoiCount()
+        {
+            Task.Run(async () =>
+            {
+                var poiCount = await AppContextLiveData.Instance.Database.GetItemCount();
+                var versionNumber = DependencyService.Get<IAppVersionService>().GetVersionNumber();
+                var buildNumber = DependencyService.Get<IAppVersionService>().GetBuildNumber();
+                
+                var text = String.Format(Resources.GetText(Resource.String.Menu_StatusBarLine1Template), versionNumber, buildNumber, poiCount);
+                FindViewById<TextView>(Resource.Id.textViewStatusLine).Text = text;
+            });
+        }
 
         public void OnClick(View v)
         {

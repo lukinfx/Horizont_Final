@@ -4,20 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_landscape">
+  
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_weight="1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+      
     <ImageView
         android:src="@drawable/logo_horizon5"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:padding="20dp"
         android:id="@+id/imageView1" />
-    
-    <LinearLayout
-        android:orientation="horizontal"
+    <include
+        android:id="@+id/menuActivityStatusBar"
+        layout="@layout/MenuActivityStatusBar" 
+        android:layout_weight="0"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="wrap_content" />
+  </LinearLayout>
 
-      <include layout="@layout/MenuButtons" />
-    </LinearLayout>
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_weight="1">
+
+    <include layout="@layout/MenuButtons" />
+  </LinearLayout>
 </LinearLayout>
