@@ -11,7 +11,7 @@ namespace Peaks360App.Views.ScaleImage
     public class ScaleImageView : ImageView
     {
         private const int HOLDER_SIZE = 30;
-        private const int MIN_IMAGE_SIZE = 1024;
+        public const int MIN_IMAGE_SIZE = 1024;
         private const int MIN_CROP_DISTANCE = 100;
 
         private Context m_Context;
