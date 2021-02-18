@@ -719,7 +719,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\MainActivityPoiInfo.xml">
+    <AndroidResource Include="Resources\layout\PoiInfoP.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -770,6 +770,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MenuActivityStatusBar.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PoiInfoL.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

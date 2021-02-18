@@ -113,8 +113,8 @@ namespace Peaks360App.Activities
             var _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
             _selectCategoryButton.SetOnClickListener(this);
 
-            FindViewById<ImageButton>(Resource.Id.buttonWiki).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.buttonMap).SetOnClickListener(this);
+            FindViewById<Button>(Resource.Id.buttonWiki).SetOnClickListener(this);
+            FindViewById<Button>(Resource.Id.buttonMap).SetOnClickListener(this);
 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.LayoutChange += OnLayoutChanged;
@@ -608,7 +608,7 @@ namespace Peaks360App.Activities
                     Context.SelectedPoi = newSelectedPoi;
                     Context.SelectedPoi.Selected = true;
 
-                    _seekBars.Visibility = ViewStates.Gone;
+                    HideControls();
                     _poiInfo.Visibility = ViewStates.Visible;
                     
                     var altitudeText = $"{Resources.GetText(Resource.String.Altitude)}{Context.SelectedPoi.Poi.Altitude} m";
@@ -617,13 +617,13 @@ namespace Peaks360App.Activities
                     FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = $"{Resources.GetText(Resource.String.VerticalViewAngle)}: {(Context.SelectedPoi.VerticalViewAngle>0?"+":"")}{Context.SelectedPoi.VerticalViewAngle:F3}°";
                     FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = altitudeText + " / " + distanceText;
                     FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Resources.GetText(Resource.String.GPSLocation)} :{Context.SelectedPoi.GpsLocation.LocationAsString()}";
-                    FindViewById<ImageButton>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(Context.SelectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
+                    FindViewById<Button>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(Context.SelectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
                 }
                 else
                 {
                     Context.SelectedPoi = null;
 
-                    _seekBars.Visibility = ViewStates.Visible;
+                    ShowControls();
                     _poiInfo.Visibility = ViewStates.Gone;
                 }
 

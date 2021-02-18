@@ -46,7 +46,7 @@
               
             <include
                 android:id="@+id/mainActivityPoiInfo"
-                layout="@layout/MainActivityPoiInfo"
+                layout="@layout/PoiInfoP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="bottom"/>
