@@ -35,6 +35,11 @@ namespace Peaks360App.Utilities
             return position;
         }
 
+        public int GetPosition(PoiCountry country)
+        {
+            return list.IndexOf(country);
+        }
+
         public override PoiCountry this[int index]
         {
             get { return list[index]; }

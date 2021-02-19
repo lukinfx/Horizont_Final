@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
+using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
 using Android.Views;
@@ -27,7 +29,6 @@ namespace Peaks360App.Activities
         private DownloadCountryAdapter _countryAdapter;
         private DownloadItemAdapter _downloadItemAdapter;
 
-        private HorizonIndex _horizonIndex;
         private List<PoisToDownload> _downloadItems;
 
         private PoiDatabase _database;
@@ -55,55 +56,7 @@ namespace Peaks360App.Activities
         {
             base.OnStart();
 
-            System.Threading.Tasks.Task.Run(() => { InitializeData(); });
-        }
-
-        private void InitializeData()
-        {
-            try
-            {
-                //fetch list of already downladed items from database
-                var downloadedTask = Database.GetDownloadedPoisAsync();
-                downloadedTask.Wait();
-                _downloadItems = downloadedTask.Result.ToList();
-
-                //fetch list of item from internet
-                var json = GpxFileProvider.GetFile(GpxFileProvider.GetIndexUrl());
-                _horizonIndex = JsonConvert.DeserializeObject<HorizonIndex>(json);
-
-                //combine those two lists together
-                foreach (var country in _horizonIndex)
-                {
-                    foreach (var item in country.PoiData)
-                    {
-                        if (!_downloadItems.Any(x => x.Id == item.Id))
-                        {
-                            _downloadItems.Add(new PoisToDownload()
-                            {
-                                Id = item.Id,
-                                Description = item.Description,
-                                Category = item.Category,
-                                Url = item.Url,
-                                Country = country.Country,
-                            });
-                        }
-                    }
-                }
-
-                var countries = _downloadItems.Select(x => x.Country).Distinct().ToList();
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    _countryAdapter.SetItems(countries);
-
-                    _downloadCountryListView?.SetSelection(0);
-                    _downloadCountrySpinner?.SetSelection(0);
-                });
-
-            }
-            catch (Exception ex)
-            {
-                PopupHelper.ErrorDialog(this, "Error", ex.Message);
-            }
+            DownloadIndex(result => OnIndexDownloaded(result));
         }
 
         private void InitializeUI()
@@ -112,7 +65,7 @@ namespace Peaks360App.Activities
             if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
                 SetContentView(Resource.Layout.DownloadActivityPortrait);
-                
+
                 _downloadCountrySpinner = FindViewById<Spinner>(Resource.Id.DownloadCountrySpinner);
                 _downloadCountrySpinner.Adapter = _countryAdapter;
                 _downloadCountrySpinner.ItemSelected += OnCountrySpinnerItemSelected;
@@ -121,7 +74,7 @@ namespace Peaks360App.Activities
             else
             {
                 SetContentView(Resource.Layout.DownloadActivityLandscape);
-                
+
                 _downloadCountryListView = FindViewById<ListView>(Resource.Id.DownloadCountryListView);
                 _downloadCountryListView.Adapter = _countryAdapter;
                 _downloadCountryListView.ItemClick += OnCountryListItemClicked;
@@ -139,6 +92,13 @@ namespace Peaks360App.Activities
             _downloadItemAdapter = new DownloadItemAdapter(this);
             _downloadItemListView.Adapter = _downloadItemAdapter;
             _downloadItemListView.ItemClick += OnDownloadListItemClicked;
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            SelectDefaultCountry();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -202,6 +162,113 @@ namespace Peaks360App.Activities
             PoiCountry country = _countryAdapter[position];
             var items = _downloadItems.Where(x => x.Country == country).OrderBy(x => x.Category).ToList();
             _downloadItemAdapter.SetItems(items);
+        }
+
+        private void OnIndexDownloaded(string json)
+        {
+            try
+            {
+                //fetch list of already downladed items from database
+                var downloadedTask = Database.GetDownloadedPoisAsync();
+                downloadedTask.Wait();
+                _downloadItems = downloadedTask.Result.ToList();
+
+                if (!String.IsNullOrEmpty(json))
+                {
+                    var _horizonIndex = JsonConvert.DeserializeObject<HorizonIndex>(json);
+
+                    //combine those two lists together
+                    foreach (var country in _horizonIndex)
+                    {
+                        foreach (var item in country.PoiData)
+                        {
+                            if (!_downloadItems.Any(x => x.Id == item.Id))
+                            {
+                                _downloadItems.Add(new PoisToDownload()
+                                {
+                                    Id = item.Id,
+                                    Description = item.Description,
+                                    Category = item.Category,
+                                    Url = item.Url,
+                                    Country = country.Country,
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                        Resources.GetText(Resource.String.Download_ErrorDownloading) + " " + e.Message);
+                });
+
+                return;
+            }
+
+            var countries = _downloadItems.Select(x => x.Country).Distinct().OrderBy(x => x).ToList();
+
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                _countryAdapter.SetItems(countries);
+
+                SelectDefaultCountry();
+            });
+        }
+
+        private void SelectDefaultCountry()
+        {
+            var defaultCountry = PoiCountryHelper.GetDefaultCountry();
+            if (defaultCountry != null)
+            {
+                var pos = _countryAdapter.GetPosition(defaultCountry.Value);
+                if (pos >= 0)
+                {
+                    _downloadCountrySpinner?.SetSelection(pos);
+                    _downloadCountryListView?.SetSelection(pos);
+                    OnCountrySelected(pos);
+                }
+            }
+        }
+
+        private void DownloadIndex(Action<string> onFinished)
+        {
+            try
+            {
+                var ec = new FileDownload();
+
+                var pd = new ProgressDialog(this);
+                pd.SetMessage(Resources.GetText(Resource.String.Download_LoadingData));
+                pd.SetCancelable(false);
+                pd.Show();
+
+                ec.OnFinishedAction = (result) =>
+                {
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        onFinished.Invoke(result);
+                        pd.Hide();
+                    }); 
+                };
+                ec.OnError = (message) =>
+                {
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        pd.Hide();
+                        PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                            Resources.GetText(Resource.String.Download_ErrorDownloading) + " " + message);
+                    });
+                };
+
+                ec.Execute(GpxFileProvider.GetIndexUrl());
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.Download_ErrorDownloading) + " " + ex.Message);
+            }
         }
 
         private void DownloadPoiDataFromInternet(PoisToDownload source)

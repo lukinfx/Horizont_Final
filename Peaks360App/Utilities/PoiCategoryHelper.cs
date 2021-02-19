@@ -5,6 +5,31 @@ namespace Peaks360App.Utilities
 {
     public class PoiCategoryHelper
     {
+        public static string GetCategoryName(Android.Content.Res.Resources res, PoiCategory category)
+        {
+            switch (category)
+            {
+                case PoiCategory.Historic:
+                    return res.GetText(Resource.String.Category_Historic);
+                case PoiCategory.Cities:
+                    return res.GetText(Resource.String.Category_Cities);
+                case PoiCategory.Other:
+                    return res.GetText(Resource.String.Category_Other);
+                case PoiCategory.Mountains:
+                    return res.GetText(Resource.String.Category_Mountains);
+                case PoiCategory.Lakes:
+                    return res.GetText(Resource.String.Category_Lakes);
+                case PoiCategory.ViewTowers:
+                    return res.GetText(Resource.String.Category_ViewTowers);
+                case PoiCategory.Transmitters:
+                    return res.GetText(Resource.String.Category_Transmitters);
+                case PoiCategory.Churches:
+                    return res.GetText(Resource.String.Category_Churches);
+                default:
+                    return "Unknown category";
+            }
+        }
+
         public static PoiCategory GetCategory(int buttonResourceId)
         {
             switch (buttonResourceId)

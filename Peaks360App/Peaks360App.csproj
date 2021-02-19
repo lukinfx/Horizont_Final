@@ -108,6 +108,7 @@
     <Compile Include="Tasks\ElevationCalculation.cs" />
     <Compile Include="AppContext\AppContextBase.cs" />
     <Compile Include="AppContext\IAppContext.cs" />
+    <Compile Include="Tasks\FileDownload.cs" />
     <Compile Include="Tasks\PoiFileImport.cs" />
     <Compile Include="Utilities\CameraUtilities.cs" />
     <Compile Include="Utilities\HeadingStabilizator2.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Utilities\ImageSaver.cs" />
     <Compile Include="Utilities\ImageSaverUtils.cs" />
     <Compile Include="Utilities\ListViewAdapter.cs" />
+    <Compile Include="Utilities\PoiCountryHelper.cs" />
     <Compile Include="Utilities\MapUtilities.cs" />
     <Compile Include="Utilities\PhotosItemAdapter.cs" />
     <Compile Include="Utilities\PoiCategoryHelper.cs" />

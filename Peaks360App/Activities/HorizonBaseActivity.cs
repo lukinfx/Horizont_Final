@@ -486,7 +486,7 @@ namespace Peaks360App.Activities
             var lastProgressUpdate = System.Environment.TickCount;
 
             var pd = new ProgressDialog(this);
-            pd.SetMessage("Loading elevation data. Please Wait.");
+            pd.SetMessage(Resources.GetText(Resource.String.Download_Progress_DownloadingElevationData));
             pd.SetCancelable(false);
             pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
             pd.Show();

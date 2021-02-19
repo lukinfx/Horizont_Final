@@ -13,34 +13,26 @@
     android:layout_centerVertical="true"
     android:src="@drawable/c_basic" />
   <TextView
+    android:text="Category name"
     android:id="@+id/PoiItemCategoryAsText"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_toRightOf="@id/PoiItemCategoryAsIcon"
     android:lineSpacingExtra="3dp"
     android:paddingLeft="10dp"
-    android:paddingTop="5dp"
+    android:paddingTop="10dp"
     android:textColor="#000000"
     android:textStyle="bold"
     android:typeface="sans" />
   <TextView
-    android:id="@+id/PoiItemDescription"
-    android:layout_width="wrap_content"
+    android:text="Downloaded on 2021-01-01"
+    android:id="@+id/PoiItemDownloadedDate"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/PoiItemCategoryAsText"
     android:layout_toRightOf="@id/PoiItemCategoryAsIcon"
     android:paddingLeft="10dp"
-    android:paddingTop="5dp"
-    android:textColor="#000000"
-    android:textSize="11sp" />
-  <TextView
-    android:id="@+id/PoiItemDownloadedDate"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/PoiItemDescription"
-    android:layout_toRightOf="@id/PoiItemCategoryAsIcon"
-    android:paddingLeft="10dp"
-    android:paddingTop="5dp"
+    android:paddingTop="0dp"
     android:textColor="#000000"
     android:textSize="11sp" />
 </RelativeLayout>

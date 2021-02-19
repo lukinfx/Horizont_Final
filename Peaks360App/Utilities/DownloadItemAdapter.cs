@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Android.App;
+using Android.Content.Res;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using Peaks360Lib.Domain.Enums;
@@ -10,14 +12,20 @@ namespace Peaks360App.Utilities
 {
     public class DownloadItemAdapter : BaseAdapter<PoisToDownload>
     {
-        Activity context;
-        List<PoisToDownload> list;
+        private Activity context;
+        private List<PoisToDownload> list;
+        private ColorMatrixColorFilter _grayscaleFilter;
 
         public DownloadItemAdapter(Activity _context)
             : base()
         {
             this.context = _context;
             this.list = new List<PoisToDownload>();
+
+            var cm = new ColorMatrix();
+            cm.SetSaturation(0.0f);
+            _grayscaleFilter = new ColorMatrixColorFilter(cm);
+
         }
 
         public void SetItems(IEnumerable<PoisToDownload> items)
@@ -49,14 +57,15 @@ namespace Peaks360App.Utilities
                 view = context.LayoutInflater.Inflate(Resource.Layout.DownloadItemListLayout, parent, false);
 
             PoisToDownload item = this[position];
-            view.FindViewById<TextView>(Resource.Id.PoiItemCategoryAsText).Text = item.Category.ToString();
-            view.FindViewById<TextView>(Resource.Id.PoiItemDescription).Text = item.Description;
+            view.FindViewById<TextView>(Resource.Id.PoiItemCategoryAsText).Text = PoiCategoryHelper.GetCategoryName(context.Resources, item.Category);
             if (item.DownloadDate != null)
-                view.FindViewById<TextView>(Resource.Id.PoiItemDownloadedDate).Text = "Downloaded on " + item.DownloadDate;
+                view.FindViewById<TextView>(Resource.Id.PoiItemDownloadedDate).Text = context.Resources.GetText(Resource.String.Download_DownloadedOn) + item.DownloadDate;
             else
-                view.FindViewById<TextView>(Resource.Id.PoiItemDownloadedDate).Text = "Not downloaded yet";
+                view.FindViewById<TextView>(Resource.Id.PoiItemDownloadedDate).Text = context.Resources.GetText(Resource.String.Download_NotDownloadedYet);
 
-            view.FindViewById<ImageView>(Resource.Id.PoiItemCategoryAsIcon).SetImageResource(PoiCategoryHelper.GetImage(item.Category));
+            var image = view.FindViewById<ImageView>(Resource.Id.PoiItemCategoryAsIcon);
+            image.SetColorFilter(item.DownloadDate != null ? null : _grayscaleFilter);
+            image.SetImageResource(PoiCategoryHelper.GetImage(item.Category));
 
             return view;
         }

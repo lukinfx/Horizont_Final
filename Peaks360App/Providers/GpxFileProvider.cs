@@ -1,4 +1,7 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Java.Lang;
 
 namespace Peaks360App.Providers
 {
@@ -30,6 +33,16 @@ namespace Peaks360App.Providers
             var xml = response.Content.ReadAsStringAsync().Result;
             return xml;
         }
+
+        public async static Task GetFile(string url, Action<string> onFinished)
+        {
+            var client = new HttpClient();
+            var response = await client.GetAsync(url);
+            Thread.Sleep(3000);
+            var xml = await response.Content.ReadAsStringAsync();
+            onFinished(xml);
+        }
+
         //Fetch GPX file by HttpClient
         //return GPX files as string 
         //

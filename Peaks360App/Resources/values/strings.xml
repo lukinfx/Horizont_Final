@@ -29,6 +29,15 @@
   <string name="SettingsActivity">Settings</string>
   <string name="AboutActivity">About</string>
 
+  <string name=" Category_Historic">Historic</string>
+  <string name=" Category_Mountains">Mountains</string>
+  <string name=" Category_Lakes">Lakes</string>
+  <string name=" Category_Churches">Churches</string>
+  <string name=" Category_Cities">Settlements</string>
+  <string name=" Category_ViewTowers">View towers</string>
+  <string name=" Category_Transmitters">Transmitters</string>
+  <string name=" Category_Other">Other</string>
+
   <string name="Menu_StatusBarLine1Template">Version: {0} ({1})  Poi Count: {2}</string>
 
   <!--MainActivity-->
@@ -64,6 +73,8 @@
   <string name="Download_Progress_DownloadingElevationData">Downloading elevation data...</string>
   <string name="Download_Progress_RemovingElevationData">Removing elevation data...</string>
   <string name="Download_Confirmation">This action requires to download additional {0} MBytes. Possibly set lower visibility to reduce amount of downloaded data. \n\nDo you really want to continue?</string>
+  <string name="Download_DownloadedOn">Downloaded on </string>
+  <string name="Download_NotDownloadedYet">Not downloaded yet</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Use correct format. Example: 12,34567890.</string>

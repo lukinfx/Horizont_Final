@@ -29,6 +29,15 @@
   <string name="SettingsActivity">Nastavení</string>
   <string name="AboutActivity">O aplikaci</string>
 
+  <string name=" Category_Historic">Historické objekty</string>
+  <string name=" Category_Mountains">Hory</string>
+  <string name=" Category_Lakes">Vodní plochy</string>
+  <string name=" Category_Churches">Kostely</string>
+  <string name=" Category_Cities">Sídla</string>
+  <string name=" Category_ViewTowers">Rozhledny</string>
+  <string name=" Category_Transmitters">Vysílače</string>
+  <string name=" Category_Other">Other</string>
+
   <string name="Menu_StatusBarLine1Template">Verze: {0} ({1})  Počet bodů: {2}</string>
 
   <!--MainActivity-->
@@ -64,6 +73,8 @@
   <string name="Download_Progress_DownloadingElevationData">Stahuji výšková data...</string>
   <string name="Download_Progress_RemovingElevationData">Odstaňuji výšková data...</string>
   <string name="Download_Confirmation">Tato akce vyžaduje stažení dodatečných {0} MB dat. Pro snížení množství potřebných dat snižte maximální viditelnost.\n\nChcete opravdu pokračovat?</string>
+  <string name="Download_DownloadedOn">Staženo dne </string>
+  <string name="Download_NotDownloadedYet">Zatím nestaženo</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Použijte správný formát. Například: 12,34567890.</string>
