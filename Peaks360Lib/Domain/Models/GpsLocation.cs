@@ -119,8 +119,7 @@ namespace Peaks360Lib.Domain.Models
 
         public string LocationAsString()
         {
-            return $"{Latitude:F7}{(Latitude>0 ? 'N' : 'S')}, {Longitude:F7}{(Longitude > 0 ? 'E' : 'W')}";
+            return GpsUtils.LocationAsString(Latitude, Longitude);
         }
-
     }
 }

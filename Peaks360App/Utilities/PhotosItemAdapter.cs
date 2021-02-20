@@ -20,27 +20,27 @@ namespace Peaks360App.Utilities
     [Activity(Label = "PhotosItemAdapter")]
     public class PhotosItemAdapter : BaseAdapter<PhotoData>, View.IOnClickListener
     {
-        Activity context;
-        List<PhotoData> list;
-        private ImageView ThumbnailImageView;
-        private IPhotoActionListener mPoiActionListener;
+        private Activity _context;
+        private List<PhotoData> _list;
+        private ImageView _thumbnailImageView;
+        private IPhotoActionListener _poiActionListener;
 
 
-        public PhotosItemAdapter(Activity _context, IEnumerable<PhotoData> _list, IPhotoActionListener listener) : base()
+        public PhotosItemAdapter(Activity context, IEnumerable<PhotoData> list, IPhotoActionListener listener) : base()
         {
-            this.context = _context;
-            this.list = _list.ToList();
-            mPoiActionListener = listener;
+            _context = context;
+            _list = list.ToList();
+            _poiActionListener = listener;
         }
 
         public override int Count
         {
-            get { return list.Count; }
+            get { return _list.Count; }
         }
 
         public PhotoData GetById(long id)
         {
-            return list.SingleOrDefault(p => p.Id == id);
+            return _list.SingleOrDefault(p => p.Id == id);
         }
 
         public override long GetItemId(int position)
@@ -50,18 +50,18 @@ namespace Peaks360App.Utilities
 
         public override PhotoData this[int index]
         {
-            get { return list[index]; }
+            get { return _list[index]; }
         }
 
         public void RemoveAt(int index)
         {
-            list.RemoveAt(index);
+            _list.RemoveAt(index);
             NotifyDataSetChanged();
         }
 
         public void Add(PhotoData item)
         {
-            list.Insert(0, item);
+            _list.Insert(0, item);
             NotifyDataSetChanged();
         }
 
@@ -69,15 +69,19 @@ namespace Peaks360App.Utilities
         {
             View view = convertView;
             if (view == null)
-                view = context.LayoutInflater.Inflate(Resource.Layout.PhotosActivityItem, parent, false);
+                view = _context.LayoutInflater.Inflate(Resource.Layout.PhotosActivityItem, parent, false);
 
             view.Tag = position;
 
             view.SetOnClickListener(this);
             PhotoData item = this[position];
-            view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.Tag + " | " +item.Datetime.ToString();
-            view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = $"{Math.Round(item.Altitude)} m | {Math.Round(item.Heading)}° | {item.Latitude:F6}/{item.Longitude:F6}";
-            ThumbnailImageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
+
+            _thumbnailImageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
+
+            view.FindViewById<TextView>(Resource.Id.textViewTag).Text = item.Tag;
+            view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.Datetime.ToString();
+            view.FindViewById<TextView>(Resource.Id.textViewAltitude).Text = $"{Math.Round(item.Altitude)} m | {Math.Round(item.Heading)}°"; 
+            view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = GpsUtils.LocationAsString(item.Latitude, item.Longitude);
 
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.photoDeleteButton);
             deleteButton.SetOnClickListener(this);
@@ -98,12 +102,10 @@ namespace Peaks360App.Utilities
 
             var path = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), item.PhotoFileName);
 
-            
-            
             if (item.Thumbnail != null)
             {
                 var bitmap = BitmapFactory.DecodeByteArray(item.Thumbnail, 0, item.Thumbnail.Length);
-                ThumbnailImageView.SetImageBitmap(bitmap);
+                _thumbnailImageView.SetImageBitmap(bitmap);
             }
 
             return view;
@@ -111,7 +113,7 @@ namespace Peaks360App.Utilities
 
         public void OnClick(View v)
         {
-            if (mPoiActionListener == null)
+            if (_poiActionListener == null)
                 return;
 
             int position = (int)v.Tag;
@@ -119,17 +121,17 @@ namespace Peaks360App.Utilities
             switch (v.Id)
             {
                 case Resource.Id.photoDeleteButton:
-                    mPoiActionListener.OnPhotoDelete(position);
+                    _poiActionListener.OnPhotoDelete(position);
                     break;
 
                 case Resource.Id.linearLayoutItem:
-                    mPoiActionListener.OnPhotoEdit(position);
+                    _poiActionListener.OnPhotoEdit(position);
                     break;
                 case Resource.Id.photoEditButton:
-                    mPoiActionListener.OnTagEdit(position);
+                    _poiActionListener.OnTagEdit(position);
                     break;
                 case Resource.Id.favouriteButton:
-                    mPoiActionListener.OnFavouriteEdit(position);
+                    _poiActionListener.OnFavouriteEdit(position);
                     break;
             }
         }

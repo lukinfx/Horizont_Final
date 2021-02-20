@@ -1,74 +1,108 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:minWidth="25px"
-    android:minHeight="25px"
-    android:layout_width="match_parent"
+  android:orientation="vertical"
+  android:minWidth="25px"
+  android:minHeight="25px"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:id="@+id/linearLayoutItem">
+
+  <TextView
+    android:id="@+id/textViewTag"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/linearLayoutItem">
-    <ImageView
+    android:layout_toRightOf="@id/Thumbnail"
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    android:textColor="#000000"
+    android:textStyle="bold"
+    android:typeface="sans"
+    android:singleLine="true"
+    android:ellipsize="end"
+    android:text="Lysa hora -> Radhost"/>
+
+    <LinearLayout 
+      android:paddingLeft="10dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:orientation="horizontal">
+
+      <ImageView
         android:id="@+id/Thumbnail"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:paddingLeft="10dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
+        android:scaleType="centerCrop"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"/>
 
-    <LinearLayout 
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:orientation="vertical">
+      <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <TextView
+          <TextView
             android:id="@+id/textViewDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/Thumbnail"
             android:paddingLeft="10dp"
-            android:paddingTop="5dp"
+            android:paddingTop="3dp"
             android:textColor="#000000"
-            android:textStyle="bold"
             android:typeface="sans"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="gukjgagglhgi;hkbvcxghjhjjhgikhbdfbsiyv"/>
-        <TextView
+            android:textSize="11sp" 
+            android:text="2017-02-08 13:58:40"/>
+          <TextView
+            android:id="@+id/textViewAltitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewDate"
+            android:layout_toRightOf="@id/Thumbnail"
+            android:paddingLeft="10dp"
+            android:textColor="#000000"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="11sp" 
+            android:text="altitude and direction"/>
+          <TextView
             android:id="@+id/textViewLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewDate"
             android:layout_toRightOf="@id/Thumbnail"
             android:paddingLeft="10dp"
-            android:paddingTop="5dp"
             android:textColor="#000000"
             android:singleLine="true"
             android:ellipsize="end"
             android:textSize="11sp" 
-            android:text="gukjgagglhgi;hkbvcxghjhjjhgikhbdfbsiyv"/>
+            android:text="location"/>
+      </LinearLayout>
+      
+      <ImageButton
+        android:src="@android:drawable/ic_menu_edit"
+        android:scaleType="fitCenter"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:id="@+id/photoEditButton"
+        android:background="#00000000"/>
+      <ImageButton
+        android:src="@drawable/f_heart_empty"
+        android:scaleType="fitCenter"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:id="@+id/favouriteButton"
+        android:background="#00000000"/>
+      <ImageButton
+        android:src="@android:drawable/ic_menu_delete"
+        android:scaleType="fitCenter"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:id="@+id/photoDeleteButton"
+        android:background="#00000000"/>
     </LinearLayout>
-    
-    <ImageButton
-      android:src="@android:drawable/ic_menu_edit"
-      android:scaleType="fitCenter"
-      android:layout_width="40dp"
-      android:layout_height="match_parent"
-      android:id="@+id/photoEditButton"
-      android:background="#00000000"/>
-    <ImageButton
-      android:src="@drawable/f_heart_empty"
-      android:scaleType="fitCenter"
-      android:layout_width="30dp"
-      android:layout_height="match_parent"
-      android:id="@+id/favouriteButton"
-      android:background="#00000000"/>
-    <ImageButton
-      android:src="@android:drawable/ic_menu_delete"
-      android:scaleType="fitCenter"
-      android:layout_width="40dp"
-      android:layout_height="match_parent"
-      android:id="@+id/photoDeleteButton"
-      android:background="#00000000"/>
 
 </LinearLayout>
