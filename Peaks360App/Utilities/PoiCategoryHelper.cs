@@ -25,6 +25,8 @@ namespace Peaks360App.Utilities
                     return res.GetText(Resource.String.Category_Transmitters);
                 case PoiCategory.Churches:
                     return res.GetText(Resource.String.Category_Churches);
+                case PoiCategory.ElevationData:
+                    return res.GetText(Resource.String.Category_ElevationData);
                 default:
                     return "Unknown category";
             }
