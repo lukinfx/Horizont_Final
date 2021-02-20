@@ -462,8 +462,8 @@ namespace Peaks360App.Activities
             if (IsDirty())
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetPositiveButton(Resources.GetText(Resource.String.Discard), (senderAlert, args) => { action.Invoke(); });
-                alert.SetNegativeButton(Resources.GetText(Resource.String.Save), (senderAlert, args) => { SavePhotoData(); action.Invoke(); });
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Save), (senderAlert, args) => { SavePhotoData(); action.Invoke(); });
+                alert.SetNegativeButton(Resources.GetText(Resource.String.Discard), (senderAlert, args) => { action.Invoke(); }); 
                 alert.SetMessage(Resources.GetText(Resource.String.PhotoShow_SaveOrDiscard));
                 var answer = alert.Show();
             }
