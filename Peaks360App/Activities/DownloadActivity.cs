@@ -83,9 +83,9 @@ namespace Peaks360App.Activities
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
 
-            ActionBar.Title = Resources.GetText(Resource.String.DownloadActivity);
             ActionBar.SetDisplayShowHomeEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
+            ActionBar.SetTitle(Resource.String.DownloadActivity);
 
             _downloadItemListView = FindViewById<ListView>(Resource.Id.DownloadItemListView);
 

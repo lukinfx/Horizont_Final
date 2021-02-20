@@ -43,6 +43,7 @@ namespace Peaks360App.Activities
             ActionBar.SetDisplayShowHomeEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetDisplayShowTitleEnabled(true);
+            ActionBar.SetTitle(Resource.String.PhotosActivity);
 
             _photosListView = FindViewById<ListView>(Resource.Id.listViewPhotos);
 

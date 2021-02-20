@@ -24,7 +24,7 @@ namespace Peaks360App.Activities
             ActionBar.SetDisplayShowHomeEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetDisplayShowTitleEnabled(true);
-            // Create your application here
+            ActionBar.SetTitle(Resource.String.AboutActivity);
 
             var versionTextView = FindViewById<TextView>(Resource.Id.aboutVersion);
 

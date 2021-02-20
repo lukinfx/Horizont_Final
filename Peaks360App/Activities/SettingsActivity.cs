@@ -80,6 +80,7 @@ namespace Peaks360App.Activities
             ActionBar.SetDisplayShowHomeEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetDisplayShowTitleEnabled(true);
+            ActionBar.SetTitle(Resource.String.SettingsActivity);
 
             _spinnerLanguages = FindViewById<Spinner>(Resource.Id.spinnerLanguage);
             _spinnerPhotoResolution = FindViewById<Spinner>(Resource.Id.spinnerResolution);
