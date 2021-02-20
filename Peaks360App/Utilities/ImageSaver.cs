@@ -55,7 +55,8 @@ namespace Peaks360App.Utilities
                     }
                     else
                     {
-                        tag += $"{GpsUtils.Normalize360((_context.Heading)):F0}° direction";
+                        tag += Android.App.Application.Context.Resources.GetText(Resource.String.Heading);
+                        tag += $" {GpsUtils.Normalize360((_context.Heading)):F0}°";
                     }
 
                     PhotoData photodata = new PhotoData

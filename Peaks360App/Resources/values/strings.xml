@@ -29,14 +29,15 @@
   <string name="SettingsActivity">Settings</string>
   <string name="AboutActivity">About</string>
 
-  <string name=" Category_Historic">Historic</string>
-  <string name=" Category_Mountains">Mountains</string>
-  <string name=" Category_Lakes">Lakes</string>
-  <string name=" Category_Churches">Churches</string>
-  <string name=" Category_Cities">Settlements</string>
-  <string name=" Category_ViewTowers">View towers</string>
-  <string name=" Category_Transmitters">Transmitters</string>
-  <string name=" Category_Other">Other</string>
+  <string name="Category_Historic">Historic</string>
+  <string name="Category_Mountains">Mountains</string>
+  <string name="Category_Lakes">Lakes</string>
+  <string name="Category_Churches">Churches</string>
+  <string name="Category_Cities">Settlements</string>
+  <string name="Category_ViewTowers">View towers</string>
+  <string name="Category_Transmitters">Transmitters</string>
+  <string name="Category_Other">Other</string>
+  <string name="Category_ElevationData">Elevation data</string>
 
   <string name="Menu_StatusBarLine1Template">Version: {0} ({1})  Poi Count: {2}</string>
 
@@ -131,9 +132,10 @@
   <string name="Distance">Distance: </string>
   <string name="Category">Category: </string>
   <string name="EditName">Edit name</string>
-
   <string name="PasteLocationFromClipboard">Paste GPS location from clipboard</string>
   <string name="FetchAltitudeFromElevationMap">Fetch altitude from elevation map</string>
+
+  <string name="Heading">Heading</string>
 
     <string name="CategoryFilter">Category filter</string>
   <string name="All">All</string>

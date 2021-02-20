@@ -225,8 +225,17 @@ namespace Peaks360App.Activities
 
         protected void ToggleEditing()
         {
-            EditingOn = !EditingOn;
-            _tiltCorrectorButton.SetImageResource(EditingOn ? Resource.Drawable.ic_lock_unlocked : Resource.Drawable.ic_lock_locked);
+            if (EditingOn)
+            {
+                SavePhotoData();
+                _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_lock_locked);
+                EditingOn = false;
+            }
+            else
+            {
+                _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_save);
+                EditingOn = true;
+            }
         }
 
         protected void EnableCropping()
