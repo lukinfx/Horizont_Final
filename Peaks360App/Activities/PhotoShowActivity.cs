@@ -228,7 +228,7 @@ namespace Peaks360App.Activities
             if (EditingOn)
             {
                 SavePhotoData();
-                _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_lock_locked);
+                _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_edit);
                 EditingOn = false;
             }
             else
