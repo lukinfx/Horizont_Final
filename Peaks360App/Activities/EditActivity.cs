@@ -362,10 +362,17 @@ namespace Peaks360App.Activities
 
         private bool GetElevation()
         {
-            var location = new GpsLocation(
-                double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture),
-                double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture),
-                0);
+            if (!double.TryParse(_editTextLongitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var lon))
+            {
+                return false;
+            }
+
+            if (!double.TryParse(_editTextLatitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var lat))
+            {
+                return false;
+            }
+            
+            var location = new GpsLocation(lon, lat, 0);
 
             if (_elevationTile == null || !_elevationTile.HasElevation(location))
             {
