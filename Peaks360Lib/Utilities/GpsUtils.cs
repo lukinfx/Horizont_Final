@@ -245,7 +245,7 @@ namespace Peaks360Lib.Utilities
         }
         public static string LocationAsString(double latitude, double longitude)
         {
-            return $"{latitude:F7}{(latitude > 0 ? 'N' : 'S')}, {longitude:F7}{(longitude > 0 ? 'E' : 'W')}";
+            return $"{latitude:F7}{(latitude >= 0 ? 'N' : 'S')}, {longitude:F7}{(longitude >= 0 ? 'E' : 'W')}";
         }
     }
 }
