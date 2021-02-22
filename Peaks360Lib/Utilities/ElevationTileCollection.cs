@@ -78,9 +78,9 @@ namespace Peaks360Lib.Utilities
             _visibility = visibility;
             GpsUtils.BoundingRect(_myLocation, _visibility, out _boundingRectMin, out _boundingRectMax);
 
-            for (var lat = (int)_boundingRectMin.Latitude; lat < ((int)_boundingRectMax.Latitude) + 1; lat++)
+            for (var lat = Math.Floor(_boundingRectMin.Latitude); lat < Math.Floor(_boundingRectMax.Latitude) + 1; lat++)
             {
-                for (var lon = (int)_boundingRectMin.Longitude; lon < ((int)_boundingRectMax.Longitude) + 1; lon++)
+                for (var lon = Math.Floor(_boundingRectMin.Longitude); lon < Math.Floor(_boundingRectMax.Longitude) + 1; lon++)
                 {
                     _elevationTiles.Add( new ElevationTile(new GpsLocation(lon, lat, 0)));
                 }

@@ -26,7 +26,10 @@ namespace Peaks360Lib.Utilities
 
         public ElevationTile(GpsLocation startLocation)
         {
-            this.StartLocation = startLocation;
+            var etLat = Math.Floor(startLocation.Latitude);
+            var etLon = Math.Floor(startLocation.Longitude);
+
+            this.StartLocation = new GpsLocation(etLon, etLat, 0);
         }
 
         public bool Exists()
@@ -121,14 +124,19 @@ namespace Peaks360Lib.Utilities
             if (_elevationData == null)
                 throw new SystemException("Elevation Tile is now loaded yet");
 
-            var stepX = 1 / (double)(width-1);
+            var stepX = 1 / (double)(width - 1);
             var stepY = 1 / (double)(height - 1);
 
-            var py = (myLocation.Latitude - (int)myLocation.Latitude);
-            var px = (myLocation.Longitude - (int)myLocation.Longitude);
+            var py = Math.Abs(myLocation.Latitude - (int)myLocation.Latitude); //decimal part of Y coordinate
+            var px = Math.Abs(myLocation.Longitude - (int)myLocation.Longitude); //decimal part of X coordinate
 
-            var y = (int)(py == 0 ? 0 : (1 - py) / stepY);
-            var x = (int)(px / stepX);
+            //lower index in Y direction (not solving negative values)
+            var y = (int)(py == 0 ? width - 1 : (1 - py) / stepY);
+
+            //lower index in X direction
+            var x = (myLocation.Longitude >= 0)
+                ? (int)(px / stepX)
+                : (int)(px == 0 ? height - 1 : (1 - px) / stepX);
 
             if (size == 1)
             {
@@ -141,8 +149,11 @@ namespace Peaks360Lib.Utilities
                 //0.000278 dg = distance between 2 points
 
                 //px2 and py2 is a distance between 2 x/y points expressed in percent
-                var px2 = (px - (x * stepX)) / stepX;
-                var py2 = ((py == 0 ? 0 : (1 - py)) - (y * stepY)) / stepY;
+                var py2 = ((1 - py) - (y * stepY)) / stepY;
+
+                var px2 = (myLocation.Longitude >= 0)
+                    ? (px - (x * stepX)) / stepX
+                    :((1 - px) - (x * stepX)) / stepX;
 
                 //e1 = average between points x,y and x+1,y
                 var e1 = ele00 + px2 * (ele10 - ele00);

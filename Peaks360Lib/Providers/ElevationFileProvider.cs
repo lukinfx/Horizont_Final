@@ -31,7 +31,13 @@ namespace Peaks360Lib.Providers
 
         private static string GetElevationFileName(int lat, int lon)
         {
-            return $"ALPSMLC30_N{lat:D3}E{lon:D3}_DSM.zip";
+            char latNS = lat >= 0 ? 'N' : 'S';
+            lat = Math.Abs(lat);
+
+            char lonEW = lon >= 0 ? 'E' : 'W';
+            lon = Math.Abs(lon);
+
+            return $"ALPSMLC30_{latNS}{lat:D3}{lonEW}{lon:D3}_DSM.zip";
         }
 
         private static string GetElevationFileFolder()
