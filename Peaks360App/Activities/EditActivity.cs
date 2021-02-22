@@ -111,8 +111,8 @@ namespace Peaks360App.Activities
 
             _buttonFavourite.SetImageResource(_item.Favorite ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
 
-            _buttonOpenWiki.Enabled = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikidata)) ? false : true;
-            _buttonOpenWiki.Visibility = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikidata)) ? ViewStates.Gone : ViewStates.Visible;
+            _buttonOpenWiki.Enabled = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikipedia)) ? false : true;
+            _buttonOpenWiki.Visibility = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikipedia)) ? ViewStates.Gone : ViewStates.Visible;
 
             //finally set-up event listeners
             _editTextName.TextChanged += OnTextChanged;

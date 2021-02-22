@@ -34,7 +34,7 @@ namespace Peaks360App.Views.ListOfPoiView
         private Spinner _spinnerSelection;
         private EditText _editTextSearch;
 
-        private ListViewAdapter _adapter;
+        private PoiListItemAdapter _adapter;
         private GpsLocation _location = new GpsLocation();
         private Timer _searchTimer = new Timer();
 
@@ -77,7 +77,7 @@ namespace Peaks360App.Views.ListOfPoiView
 
             List<PoiViewItem> _items = Context.PoiData;
             _items = _items.OrderBy(i => i.GpsLocation.Distance).ToList();
-            _adapter = new ListViewAdapter(this, _items, this);
+            _adapter = new PoiListItemAdapter(this, _items, this);
             _listViewPoi.Adapter = _adapter;
 
             _listViewPoi.ItemClick += OnListItemClick;
@@ -241,7 +241,7 @@ namespace Peaks360App.Views.ListOfPoiView
             }
 
             items = items.OrderBy(i => i.GpsLocation.Distance).ToList();
-            _adapter = new ListViewAdapter(this, items, this);
+            _adapter = new PoiListItemAdapter(this, items, this);
             _listViewPoi.Adapter = _adapter;
             _listViewPoi.Invalidate();
         }

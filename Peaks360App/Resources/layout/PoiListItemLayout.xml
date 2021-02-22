@@ -43,8 +43,9 @@
         android:layout_height="match_parent"
         android:layout_toRightOf="@id/Title"
         android:paddingTop="5dp"
+        android:paddingLeft="5dp"
         android:scaleType="fitStart"
-        android:src="@drawable/ic_systeminfo_grey"/>
+        android:src="@android:drawable/ic_menu_info_details"/>
     </LinearLayout>
     <TextView
         android:id="@+id/Description"

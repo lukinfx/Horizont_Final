@@ -15,14 +15,14 @@ namespace Peaks360App.Utilities
         void OnPoiLike(int position);
     }
 
-    public class ListViewAdapter : BaseAdapter<PoiViewItem>, View.IOnClickListener
+    public class PoiListItemAdapter : BaseAdapter<PoiViewItem>, View.IOnClickListener
     {
         Activity context;
         List<PoiViewItem> list;
         private ImageView Thumbnail;
         private IPoiActionListener mPoiActionListener;
 
-        public ListViewAdapter(Activity _context, IEnumerable<PoiViewItem> _list, IPoiActionListener listener)
+        public PoiListItemAdapter(Activity _context, IEnumerable<PoiViewItem> _list, IPoiActionListener listener)
             : base()
         {
             this.context = _context;
@@ -75,7 +75,9 @@ namespace Peaks360App.Utilities
 
             PoiViewItem item = this[position];
             
-            view.FindViewById<ImageView>(Resource.Id.InfoAvailable).Visibility = (item.Poi.Wikidata == null && item.Poi.Wikipedia == null) ? ViewStates.Invisible : ViewStates.Visible;
+            view.FindViewById<ImageView>(Resource.Id.InfoAvailable).Visibility = 
+                (String.IsNullOrEmpty(item.Poi.Wikidata) && string.IsNullOrEmpty(item.Poi.Wikipedia)) 
+                    ? ViewStates.Invisible : ViewStates.Visible;
             
             view.FindViewById<TextView>(Resource.Id.Title).Text = item.Poi.Name;
             view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Poi.Altitude) + "m | " + 
