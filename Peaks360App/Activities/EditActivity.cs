@@ -76,6 +76,8 @@ namespace Peaks360App.Activities
             //ActionBar.SetHomeButtonEnabled(true);
             ActionBar.SetDisplayShowHomeEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
+            ActionBar.SetDisplayShowTitleEnabled(true);
+            ActionBar.SetTitle(Resource.String.PoiEditActivity);
 
             _editTextName = FindViewById<EditText>(Resource.Id.editTextName);
 
