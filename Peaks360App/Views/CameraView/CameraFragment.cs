@@ -309,14 +309,13 @@ namespace Peaks360App.Views.Camera
                      _context.Settings.cameraResolutionSelected);
                 
                 // We fit the aspect ratio of TextureView to the size of preview we picked.
-                var orientation = Resources.Configuration.Orientation;
-                if (orientation == Orientation.Landscape)
+                if (AppContextLiveData.Instance.IsPortrait)
                 {
-                    mTextureView.SetAspectRatio(mPreviewSize.Width, mPreviewSize.Height);
+                    mTextureView.SetAspectRatio(_context.Settings.cameraResolutionSelected.Height, _context.Settings.cameraResolutionSelected.Width); 
                 }
                 else
                 {
-                    mTextureView.SetAspectRatio(mPreviewSize.Height, mPreviewSize.Width);
+                    mTextureView.SetAspectRatio(_context.Settings.cameraResolutionSelected.Width, _context.Settings.cameraResolutionSelected.Height);
                 }
 
                 // Check if the flash is supported.
