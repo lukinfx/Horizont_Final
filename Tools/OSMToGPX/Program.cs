@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using Peaks360Lib.Providers;
 
 namespace OSMToGPX
 {
@@ -128,6 +129,17 @@ namespace OSMToGPX
             xmlWriter.Close();
         }
 
+        public static string GetElevationFileName(int lat, int lon)
+        {
+            char latNS = lat >= 0 ? 'N' : 'S';
+            lat = Math.Abs(lat);
+
+            char lonEW = lon >= 0 ? 'E' : 'W';
+            lon = Math.Abs(lon);
+
+            return $"ALPSMLC30_{latNS}{lat:D3}{lonEW}{lon:D3}_DSM.tif";
+        }
+
         static void FixMissingElevation(PoiList poiList, string tiffDir)
         {
             foreach (var groupLon in poiList.GroupBy(x => (int)x.Longitude))
@@ -136,7 +148,8 @@ namespace OSMToGPX
                 foreach (var groupLat in groupLon.GroupBy(x => (int)x.Latitude))
                 {
                     //var _data = new List<GpsLocation>();
-                    string filePath = $@"{tiffDir}ALPSMLC30_N{groupLat.Key:D3}E{groupLon.Key:D3}_DSM.tif";
+                    var tiffFile = GetElevationFileName(groupLat.Key, groupLon.Key);
+                    string filePath = $@"{tiffDir}{tiffFile}";
 
                     var ed = new ElevationTileConvertor(new GpsLocation(groupLon.Key, groupLat.Key, 0));
                     ed.ReadFromTiff(filePath);
