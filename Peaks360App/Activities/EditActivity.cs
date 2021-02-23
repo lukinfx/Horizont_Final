@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -93,7 +94,17 @@ namespace Peaks360App.Activities
             _buttonTeleport = FindViewById<Button>(Resource.Id.buttonTeleport);
 
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
-            _spinnerCategory.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _poiCategories.ToList());
+            
+            var categoryList = new List<string>();
+            categoryList.Add(Resources.GetText(Resource.String.Category_Mountains));
+            categoryList.Add(Resources.GetText(Resource.String.Category_Cities));
+            categoryList.Add(Resources.GetText(Resource.String.Category_Historic));
+            categoryList.Add(Resources.GetText(Resource.String.Category_Churches));
+            categoryList.Add(Resources.GetText(Resource.String.Category_ViewTowers));
+            categoryList.Add(Resources.GetText(Resource.String.Category_Transmitters));
+            categoryList.Add(Resources.GetText(Resource.String.Category_Lakes));
+            categoryList.Add(Resources.GetText(Resource.String.Category_Other));
+            _spinnerCategory.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, categoryList);
 
             _thumbnail = FindViewById<ImageView>(Resource.Id.Thumbnail);
             

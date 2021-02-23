@@ -36,7 +36,7 @@
   <string name="Category_Cities">Sídla</string>
   <string name="Category_ViewTowers">Rozhledny</string>
   <string name="Category_Transmitters">Vysílače</string>
-  <string name="Category_Other">Other</string>
+  <string name="Category_Other">Jiné</string>
   <string name="Category_ElevationData">Výšková data</string>
 
   <string name="Menu_StatusBarLine1Template">Verze: {0} ({1})  Počet bodů: {2}</string>
