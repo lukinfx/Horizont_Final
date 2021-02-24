@@ -53,5 +53,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Peaks360Lib\Peaks360Lib.csproj">
+      <Project>{44b69304-9ff0-4fce-8809-cc1fc45a35aa}</Project>
+      <Name>Peaks360Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
