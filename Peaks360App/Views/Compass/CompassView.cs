@@ -3,16 +3,11 @@ using Android.Content;
 using Android.Graphics;
 using Android.Util;
 using Android.Views;
-using Xamarin.Essentials;
 using Peaks360Lib.Utilities;
 using Peaks360Lib.Domain.ViewModel;
 using Peaks360App.Utilities;
 using Peaks360App.Views.Compass;
 using Peaks360App.AppContext;
-using GpsUtils = Peaks360App.Utilities.GpsUtils;
-using System.Runtime.InteropServices.ComTypes;
-using System;
-using System.Threading;
 using Peaks360App.Providers;
 
 namespace Peaks360App.Views
