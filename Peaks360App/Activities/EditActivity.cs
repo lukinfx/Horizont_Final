@@ -9,15 +9,14 @@ using Android.OS;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
-using static Android.Views.View;
 using Xamarin.Essentials;
 using Peaks360Lib.Domain.Models;
-using Peaks360App.Utilities;
 using Peaks360Lib.Domain.Enums;
+using Peaks360Lib.Utilities;
+using Peaks360App.Utilities;
 using Peaks360App.AppContext;
 using Peaks360App.Providers;
-using Peaks360Lib.Utilities;
-using GpsUtils = Peaks360App.Utilities.GpsUtils;
+using static Android.Views.View;
 
 namespace Peaks360App.Activities
 {
@@ -41,7 +40,6 @@ namespace Peaks360App.Activities
         private Button _buttonTeleport;
         private ImageView _buttonFavourite;
         private ImageView _thumbnail;
-        private ImageButton _buttonPaste;
         private Poi _item = new Poi();
         private long _id;
         private bool _isDirty = false;
@@ -72,8 +70,6 @@ namespace Peaks360App.Activities
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
 
-            //ActionBar.Title = "Edit POI";
-            //ActionBar.SetHomeButtonEnabled(true);
             ActionBar.SetDisplayShowHomeEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetDisplayShowTitleEnabled(true);

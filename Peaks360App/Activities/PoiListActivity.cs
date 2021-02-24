@@ -9,14 +9,13 @@ using Android.Runtime;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
-using Peaks360Lib.Domain.ViewModel;
 using Xamarin.Essentials;
+using Peaks360Lib.Domain.ViewModel;
+using Peaks360Lib.Domain.Models;
+using Peaks360Lib.Utilities;
 using Peaks360App.Activities;
 using Peaks360App.AppContext;
-using Peaks360Lib.Domain.Models;
-using Peaks360Lib.Domain.ViewModel;
 using Peaks360App.Utilities;
-using Peaks360Lib.Utilities;
 
 namespace Peaks360App.Views.ListOfPoiView
 {

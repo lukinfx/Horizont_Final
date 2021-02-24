@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using BitMiracle.LibTiff.Classic;
-using Peaks360Lib.Utilities;
 using Peaks360Lib.Domain.Models;
 
 namespace Peaks360Lib.Utilities

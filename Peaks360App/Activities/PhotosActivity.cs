@@ -1,18 +1,15 @@
-﻿using System;
+﻿using System.Linq;
 using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Android.Runtime;
+using Android.Content;
 using Xamarin.Essentials;
+using Peaks360Lib.Domain.Models;
 using Peaks360App.AppContext;
 using Peaks360App.Utilities;
-using Android.Content;
-using System.Collections.Generic;
-using Peaks360Lib.Domain.Models;
-using System.Linq;
-using Android.Runtime;
 using Peaks360App.Models;
-using Peaks360App.Views.ListOfPoiView;
 
 namespace Peaks360App.Activities
 {

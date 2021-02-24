@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Peaks360Lib.Domain.Models;
-using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Providers;
-using Peaks360Lib.Utilities;
 
 namespace Peaks360Lib.Utilities
 {

@@ -1,25 +1,19 @@
-﻿using System.Globalization;
-using System.Linq;
-using System.Timers;
+﻿using System.Linq;
+using System.Globalization;
+using System.Collections.Generic;
+using Java.Lang;
+using Android.Util;
 using Android.App;
 using Android.OS;
 using Android.Text;
 using Android.Widget;
 using Android.Views;
-using static Android.Views.View;
-using Peaks360App.Utilities;
-using Xamarin.Essentials;
-using Peaks360App.AppContext;
 using Peaks360Lib.Domain.Models;
-using Peaks360Lib.Domain.ViewModel;
-using Java.Lang;
-using Peaks360App.Views.Camera;
-using System.Collections.Generic;
-using Android.Util;
-using Android.Content;
-using Android.Content.Res;
-using Peaks360App.Views.ScaleImage;
 using Peaks360Lib.Domain.Enums;
+using Peaks360App.Utilities;
+using Peaks360App.AppContext;
+using Peaks360App.Views.ScaleImage;
+using static Android.Views.View;
 
 namespace Peaks360App.Activities
 {

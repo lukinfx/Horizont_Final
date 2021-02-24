@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Android;
+﻿using System.Collections.Generic;
 using Android.App;
 using Android.Content;
-using Android.Content.PM;
 using Android.OS;
 using Android.Util;
 using Android.Views;
-using Android.Widget;
 using Android.Hardware.Camera2;
 using Android.Graphics;
 using Android.Hardware.Camera2.Params;
@@ -18,9 +14,7 @@ using Java.Util;
 using Java.Util.Concurrent;
 using Boolean = Java.Lang.Boolean;
 using Math = Java.Lang.Math;
-using Orientation = Android.Content.Res.Orientation;
 using Peaks360App.AppContext;
-using Peaks360Lib.Domain.Models;
 using Peaks360App.Utilities;
 
 namespace Peaks360App.Views.Camera

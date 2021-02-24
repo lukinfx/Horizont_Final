@@ -2,9 +2,9 @@
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Xamarin.Forms;
 using Peaks360App.AppContext;
 using Peaks360App.Services;
-using Xamarin.Forms;
 
 namespace Peaks360App.Activities
 {

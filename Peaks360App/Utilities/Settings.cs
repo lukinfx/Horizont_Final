@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Android.Content;
 using Android.Preferences;
-using Xamarin.Essentials;
 using Peaks360Lib.Domain.Enums;
 using Peaks360Lib.Domain.Models;
-using Peaks360Lib.Domain.ViewModel;
 using Android.Util;
-using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.Utilities
 {

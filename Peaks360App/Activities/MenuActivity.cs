@@ -1,19 +1,16 @@
-﻿using Android.App;
+﻿using System;
+using System.Threading.Tasks;
+using Android.App;
 using Android.OS;
 using Android.Widget;
-using Android.Content.PM;
+using Android.Content;
+using Android.Runtime;
+using Xamarin.Forms;
 using Peaks360Lib.Domain.Models;
 using Peaks360App.Views.ListOfPoiView;
-using Android.Content;
-using static Android.Views.View;
-using Peaks360App.Activities;
-using Xamarin.Essentials;
-using System;
-using System.Threading.Tasks;
-using Android.Runtime;
 using Peaks360App.AppContext;
 using Peaks360App.Services;
-using Xamarin.Forms;
+using static Android.Views.View;
 using View = Android.Views.View;
 
 namespace Peaks360App.Activities
@@ -24,8 +21,6 @@ namespace Peaks360App.Activities
         private GpsLocation _location;
         private int _maxDistance;
         private int _minAltitude;
-        private DisplayOrientation appOrientation;
-
 
         protected override void OnResume()
         {
@@ -79,7 +74,6 @@ namespace Peaks360App.Activities
 
             UpdatePoiCount();
         }
-
 
         private void UpdatePoiCount()
         {
