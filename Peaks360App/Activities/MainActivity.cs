@@ -337,11 +337,18 @@ namespace Peaks360App
 
         public override void OnDataChanged(object sender, DataChangedEventArgs e)
         {
-            base.OnDataChanged(sender, e);
+            try
+            {
+                base.OnDataChanged(sender, e);
 
-            _compassView.SetPoiViewItemList(e.PoiData);
+                _compassView.SetPoiViewItemList(e.PoiData);
 
-            CheckAndReloadElevationProfile();
+                CheckAndReloadElevationProfile();
+            }
+            catch (Exception ex)
+            {
+                //TODO: Possibly log the failure
+            }
         }
 
         protected override void UpdateStatusBar()
