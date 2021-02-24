@@ -36,7 +36,7 @@ namespace Peaks360App.Utilities
     {
         public event SettingsChangedEventHandler SettingsChanged;
 
-        public Peaks360Lib.Domain.Enums.Languages Language;
+        public Peaks360Lib.Domain.Enums.Language Language;
 
         private Context mContext;
 
@@ -148,8 +148,11 @@ namespace Peaks360App.Utilities
             cameraResolutionSelected = new Size (prefs.GetInt("CameraResolutionWidth", 0), prefs.GetInt("CameraResolutionHeight", 0));
             CameraId= prefs.GetString("CameraId", null);
 
-            string lan = prefs.GetString("Language", Languages.English.ToString());
-            Language = Enum.Parse<Languages>(lan);
+            string lan = prefs.GetString("Language", "");
+            if (!Enum.TryParse<Language>(lan, out Language))
+            {
+                Language = PoiCountryHelper.GetDefaultLanguage();
+            }
 
             ShowElevationProfile = AutoElevationProfile;
         }

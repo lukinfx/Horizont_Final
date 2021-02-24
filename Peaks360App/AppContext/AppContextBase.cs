@@ -205,13 +205,13 @@ namespace Peaks360App.AppContext
             
             switch (Settings.Language)
             {
-                case Languages.English:
+                case Language.English:
                     appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("en"));
                     break;
-                case Languages.German:
+                case Language.German:
                     appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
                     break;
-                case Languages.Czech:
+                case Language.Czech:
                     appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("cz"));
                     break;
             }

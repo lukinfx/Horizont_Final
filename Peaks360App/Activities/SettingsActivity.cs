@@ -54,7 +54,8 @@ namespace Peaks360App.Activities
         private Spinner _spinnerLanguages;
         private Spinner _spinnerPhotoResolution;
         private Button _resetButton;
-        private Languages[] _listOfLanguages = new Languages[] { Languages.English, Languages.German, Languages.Czech};
+
+        private readonly Language[] _listOfLanguages = { Language.Czech, Language.English, Language.French, Language.German, Language.Italian, Language.Spanish};
 
         private bool _isDirty = false;
         private List<Size> _listOfCameraResolutions;
@@ -149,14 +150,14 @@ namespace Peaks360App.Activities
             {
                 switch (_listOfLanguages[_spinnerLanguages.SelectedItemPosition])
                 {
-                    case Languages.English:
-                        _settings.Language = Languages.English;
+                    case Language.English:
+                        _settings.Language = Language.English;
                         break;
-                    case Languages.German:
-                        _settings.Language = Languages.German;
+                    case Language.German:
+                        _settings.Language = Language.German;
                         break;
-                    case Languages.Czech:
-                        _settings.Language = Languages.Czech;
+                    case Language.Czech:
+                        _settings.Language = Language.Czech;
                         break;
                 }
             }
