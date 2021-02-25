@@ -7,6 +7,14 @@
     android:padding="10dp">
 
   <TextView
+    android:text="Privacy policy"
+    android:textAlignment="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/textViewPrivacyPolicyLink"
+    android:textColor="#E0E0E0" />
+
+  <TextView
     android:text="Version: 1.01 (0001)"
     android:textAlignment="center"
     android:layout_width="match_parent"

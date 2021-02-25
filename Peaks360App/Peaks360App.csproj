@@ -86,6 +86,7 @@
     <Compile Include="Activities\EditActivity.cs" />
     <Compile Include="Activities\MenuActivity.cs" />
     <Compile Include="Activities\PoiFilterDialog.cs" />
+    <Compile Include="Activities\PrivacyPolicyActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="AppContext\AppContextLiveData.cs" />
     <Compile Include="AppContext\AppContextStaticData.cs" />
@@ -782,6 +783,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PrivacyPolicyActivityPortrait.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
