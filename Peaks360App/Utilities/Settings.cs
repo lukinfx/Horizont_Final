@@ -115,6 +115,20 @@ namespace Peaks360App.Utilities
             set { _maxDistance = value; RestartTimer(); }
         }
 
+        public int PrivacyPolicyApprovementLevel = 0;
+        private static int PrivacyPolicyApprovementLevelRequired = 1;
+
+        public bool IsPrivacyPolicyApprovementNeeded()
+        {
+            return PrivacyPolicyApprovementLevel < PrivacyPolicyApprovementLevelRequired;
+        }
+
+        public void PrivacyPolicyApproved()
+        {
+            PrivacyPolicyApprovementLevel = PrivacyPolicyApprovementLevelRequired;
+            SaveData();
+        }
+
         public void NotifySettingsChanged(ChangedData changedData)
         {
             var args = new SettingsChangedEventArgs(changedData);
@@ -141,6 +155,8 @@ namespace Peaks360App.Utilities
 
             AltitudeFromElevationMap = prefs.GetBoolean("AltitudeFromElevationMap", true);
             AutoElevationProfile = prefs.GetBoolean("AutoElevationProfile", true);
+
+            PrivacyPolicyApprovementLevel = prefs.GetInt("PrivacyPolicyApprovementLevel", 0);
 
             cameraResolutionSelected = new Size (prefs.GetInt("CameraResolutionWidth", 0), prefs.GetInt("CameraResolutionHeight", 0));
             CameraId= prefs.GetString("CameraId", null);
@@ -174,6 +190,8 @@ namespace Peaks360App.Utilities
 
                 editor.PutBoolean("AltitudeFromElevationMap", AltitudeFromElevationMap);
                 editor.PutBoolean("AutoElevationProfile", AutoElevationProfile);
+
+                editor.PutInt("PrivacyPolicyApprovementLevel", PrivacyPolicyApprovementLevel);
 
                 editor.PutInt("CameraResolutionWidth", cameraResolutionSelected.Width);
                 editor.PutInt("CameraResolutionHeight", cameraResolutionSelected.Height);

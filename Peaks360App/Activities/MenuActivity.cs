@@ -72,9 +72,6 @@ namespace Peaks360App.Activities
             var buttonAbout = FindViewById<LinearLayout>(Resource.Id.aboutLinearLayout);
             buttonAbout.SetOnClickListener(this);
 
-            var buttonPrivacyPolicy = FindViewById<TextView>(Resource.Id.textViewPrivacyPolicyLink);
-            buttonPrivacyPolicy.SetOnClickListener(this);
-
             UpdatePoiCount();
         }
 
@@ -116,10 +113,6 @@ namespace Peaks360App.Activities
                     Intent aboutActivityIntent = new Intent(this, typeof(AboutActivity));
                     StartActivity(aboutActivityIntent);
                     break;
-                case Resource.Id.textViewPrivacyPolicyLink:
-                    Intent privacyPolicyActivityIntent = new Intent(this, typeof(PrivacyPolicyActivity));
-                    StartActivity(privacyPolicyActivityIntent);
-                    break; 
             }
         }
 

@@ -141,10 +141,9 @@
   <string name="None">Nic</string>
   <string name="Close">Uložit</string>
   <string name="Search">Vyhledávání...</string>
-    
-  <string-array name="SpinnerItemsArray">
-      <item>New Style</item>
-      <item>Old Style</item>
-    </string-array>
+
+  <string name="PrivacyPolicyStatement">Prohlášení o ochraně osobních údajů</string>
+  <string name="PrivacyPolicyAcknowledgement">Ano, beru na vědomí.</string>
+  <string name="PrivacyPolicyRejection">Nesouhlasím. Zavřít aplikaci.</string>
 
 </resources>

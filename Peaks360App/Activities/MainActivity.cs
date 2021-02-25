@@ -155,6 +155,12 @@ namespace Peaks360App
             bool isFirstStart = _firstStart;
             _firstStart = false;
 
+            if (Context.Settings.IsPrivacyPolicyApprovementNeeded())
+            {
+                Intent privacyPolicyActivityIntent = new Intent(this, typeof(PrivacyPolicyActivity));
+                StartActivity(privacyPolicyActivityIntent);
+            }
+
             //For checking the GPS Status
             bool gpsAvailable = DependencyService.Get<IGpsService>().isGpsAvailable();
             if (isFirstStart && !gpsAvailable)
