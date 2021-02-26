@@ -26,7 +26,7 @@ using View = Android.Views.View;
 
 namespace Peaks360App
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/SplashScreenTheme", MainLauncher = true)]
     public class MainActivity : HorizonBaseActivity
     {
         private static readonly int REQUEST_PERMISSIONS = 0;
@@ -55,6 +55,8 @@ namespace Peaks360App
 
         protected override void OnCreate(Bundle bundle)
         {
+            base.SetTheme(Resource.Style.AppTheme);
+
             base.OnCreate(bundle);
             AppContextLiveData.Instance.SetLocale(this);
             Xamarin.Forms.Forms.Init(this, bundle);
