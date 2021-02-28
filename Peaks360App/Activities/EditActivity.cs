@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +16,8 @@ using Peaks360App.Utilities;
 using Peaks360App.AppContext;
 using Peaks360App.Providers;
 using static Android.Views.View;
+using Exception = System.Exception;
+using String = System.String;
 
 namespace Peaks360App.Activities
 {
@@ -76,21 +77,13 @@ namespace Peaks360App.Activities
             ActionBar.SetTitle(Resource.String.PoiEditActivity);
 
             _editTextName = FindViewById<EditText>(Resource.Id.editTextName);
-
             _editTextLatitude = FindViewById<EditText>(Resource.Id.editTextLatitude);
-
             _editTextLongitude = FindViewById<EditText>(Resource.Id.editTextLongitude);
-
             _editTextAltitude = FindViewById<EditText>(Resource.Id.editTextAltitude);
-
             _buttonFavourite = FindViewById<ImageView>(Resource.Id.buttonFavourite);
-
             _buttonOpenWiki = FindViewById<Button>(Resource.Id.buttonWiki);
-
             _buttonOpenMap = FindViewById<Button>(Resource.Id.buttonMap);
-
             _buttonTeleport = FindViewById<Button>(Resource.Id.buttonTeleport);
-
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
             
             var categoryList = new List<string>();
@@ -139,7 +132,7 @@ namespace Peaks360App.Activities
             _buttonOpenWiki.SetOnClickListener(this);
             _buttonTeleport.SetOnClickListener(this);
 
-            _spinnerCategory.ItemSelected += OnSpinnerCategoryItemSelected;
+            _spinnerCategory.ItemSelected += OnCategorySelected;
         }
 
         private void SetDirty()
@@ -181,14 +174,14 @@ namespace Peaks360App.Activities
                     OnBackPressed();
                     break;
                 case Resource.Id.menu_save:
-                    Save();
+                    OnSave();
                     break;
                 case Resource.Id.menu_paste:
-                    PasteGpsLocation();
+                    OnPasteGpsLocation();
                     break;
 
                 case Resource.Id.menu_fetch_altitude:
-                    UpdateElevation();
+                    OnUpdateElevation();
                     break;
             }
 
@@ -200,16 +193,16 @@ namespace Peaks360App.Activities
             switch (v.Id)
             {
                 case Resource.Id.buttonFavourite:
-                    ToggleFavourite();
+                    OnToggleFavouriteClicked();
                     break;
                 case Resource.Id.buttonMap:
-                    MapUtilities.OpenMap(double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture), double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture));
+                    OnOpenMapClicked();
                     break;
                 case Resource.Id.buttonWiki:
-                    WikiUtilities.OpenWiki(_item);
+                    OnOpenWikiClicked(); 
                     break;
                 case Resource.Id.buttonTeleport:
-                    TeleportToPoi();
+                    OnTeleportToPoiClicked();
                     break;
             }
         }
@@ -230,45 +223,46 @@ namespace Peaks360App.Activities
             }
         }
 
-        private void OnSpinnerCategoryItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private void OnCategorySelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             _category = _poiCategories[e.Position];
             _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_category));
         }
 
-        private void Save()
+        private void OnSave()
         {
             _item.Name = _editTextName.Text;
 
-            if (Peaks360Lib.Utilities.GpsUtils.IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
-            {
-                _item.Latitude = double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture);
-                _item.Longitude = double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture);
-                _item.Altitude = double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture);
-                _item.Category = _category;
-                if (_id == -1)
-                {
-                    Context.Database.InsertItemAsync(_item);
-                }
-                else
-                {
-                    Context.Database.UpdateItem(_item);
-                }
-
-                var resultIntent = new Intent();
-                resultIntent.PutExtra("Id", _item.Id);
-                SetResult(RESULT_OK, resultIntent);
-                Finish();
-            }
-            else
+            if (!TryGetGpsLocation(out var location))
             {
                 PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
                     Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                return;
             }
+
+            _item.Latitude = location.Latitude;
+            _item.Longitude = location.Longitude;
+            _item.Altitude = location.Altitude;
+            _item.Category = _category;
+            if (_id == -1)
+            {
+                Context.Database.InsertItemAsync(_item);
+            }
+            else
+            {
+                Context.Database.UpdateItem(_item);
+            }
+
+            var resultIntent = new Intent();
+            resultIntent.PutExtra("Id", _item.Id);
+            SetResult(RESULT_OK, resultIntent);
+            Finish();
         }
 
-        private void PasteGpsLocation()
+        private void OnPasteGpsLocation()
         {
+            GpsLocation location;
+
             if (!Clipboard.HasText)
             {
                 PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
@@ -278,11 +272,11 @@ namespace Peaks360App.Activities
 
             try
             {
-                string ClipBoardText = GetClipBoardInput().Result;
+                string ClipBoardText = Clipboard.GetTextAsync().Result;
 
                 if (ClipBoardText == null) ; //nepodarilo se ziskat text, je potreba osetrit?
 
-                GpsLocation location = Peaks360Lib.Utilities.GpsUtils.ParseGPSLocationText(ClipBoardText);
+                location = Peaks360Lib.Utilities.GpsUtils.ParseGPSLocationText(ClipBoardText);
                 _editTextAltitude.Text = $"{location.Altitude:F0}";
                 _editTextLongitude.Text = $"{location.Longitude:F7}".Replace(",", ".");
                 _editTextLatitude.Text = $"{location.Latitude:F7}".Replace(",", ".");
@@ -292,19 +286,17 @@ namespace Peaks360App.Activities
                     var placeName = await PlaceNameProvider.AsyncGetPlaceName(location);
                     _editTextName.Text = placeName;
                 });
-                
-                
             }
-
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error), 
                     Resources.GetText(Resource.String.EditPoi_WrongFormat) + " " + ex.Message);
+                return;
             }
 
             try
             {
-                GetElevation();
+                GetElevation(location);
             }
             catch
             {
@@ -312,13 +304,20 @@ namespace Peaks360App.Activities
             }
         }
 
-        private void UpdateElevation()
+        private void OnUpdateElevation()
         {
             if (Peaks360Lib.Utilities.GpsUtils.IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
             {
                 try
                 {
-                    var ok = GetElevation();
+                    if (!TryGetGpsLocation(out var location))
+                    {
+                        PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                            Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                        return;
+                    }
+
+                    var ok = GetElevation(location);
 
                     if (!ok)
                     {
@@ -333,15 +332,32 @@ namespace Peaks360App.Activities
                 }
             }
         }
-        
-        private void TeleportToPoi()
+
+        private void OnOpenMapClicked()
         {
-            var manualLocation = new GpsLocation()
+            if (!TryGetGpsLocation(out var manualLocation))
             {
-                Latitude = double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture),
-                Longitude = double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture),
-                Altitude = double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture)
-            };
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                return;
+            }
+
+            MapUtilities.OpenMap(double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture), double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture));
+        }
+
+        private void OnOpenWikiClicked()
+        {
+            WikiUtilities.OpenWiki(_item);
+        }
+
+        private void OnTeleportToPoiClicked()
+        {
+            if (!TryGetGpsLocation(out var manualLocation))
+            {
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                return;
+            }
 
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
@@ -356,33 +372,15 @@ namespace Peaks360App.Activities
             var answer = alert.Show();
         }
 
-        private void ToggleFavourite()
+        private void OnToggleFavouriteClicked()
         {
             _item.Favorite = !_item.Favorite;
             _buttonFavourite.SetImageResource(_item.Favorite ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
             SetDirty();
         }
 
-        private async Task<string> GetClipBoardInput()
+        private bool GetElevation(GpsLocation location)
         {
-            string clipboardText = await Clipboard.GetTextAsync();
-            return clipboardText;
-        }
-
-        private bool GetElevation()
-        {
-            if (!double.TryParse(_editTextLongitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var lon))
-            {
-                return false;
-            }
-
-            if (!double.TryParse(_editTextLatitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var lat))
-            {
-                return false;
-            }
-            
-            var location = new GpsLocation(lon, lat, 0);
-
             if (_elevationTile == null || !_elevationTile.HasElevation(location))
             {
                 _elevationTile = null;
@@ -408,5 +406,49 @@ namespace Peaks360App.Activities
             }
         }
 
+        private bool TryGetGpsLocation(out GpsLocation location)
+        {
+            location = new GpsLocation();
+            double lat, lon, alt;
+
+            if (string.IsNullOrEmpty(_editTextLongitude.Text) || string.IsNullOrEmpty(_editTextLatitude.Text))
+            {
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                return false;
+            }
+
+            if (!double.TryParse(_editTextLongitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out lon))
+            {
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                return false;
+            }
+
+            if (!double.TryParse(_editTextLatitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out lat))
+            {
+                PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                return false;
+            }
+
+
+            if (string.IsNullOrEmpty(_editTextAltitude.Text))
+            {
+                if (!double.TryParse(_editTextAltitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out alt))
+                {
+                    PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error),
+                        Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                    return false;
+                }
+            }
+            else
+            {
+                alt = 0;
+            }
+
+            location = new GpsLocation(lon, lat, alt);
+            return true;
+        }
     }
 }
