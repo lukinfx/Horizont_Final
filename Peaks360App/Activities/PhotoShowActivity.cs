@@ -233,6 +233,13 @@ namespace Peaks360App.Activities
             {
                 _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_save);
                 EditingOn = true;
+
+                TutorialDialog.ShowTutorial(this, TutorialPart.PhotoEditActivity,
+                    new TutorialPage[] {
+                        new TutorialPage() { imageResourceId = Resource.Drawable.tutorial_heading_correction, textResourceId = Resource.String.Tutorial_PhotoEdit_HeadingCorrection },
+                        new TutorialPage() { imageResourceId = Resource.Drawable.tutorial_horizont_correction, textResourceId = Resource.String.Tutorial_PhotoEdit_HorizontCorrection },
+                        new TutorialPage() { imageResourceId = Resource.Drawable.tutorial_viewangle_correction, textResourceId = Resource.String.Tutorial_PhotoEdit_ViewAngleCorrection },
+                    });
             }
         }
 

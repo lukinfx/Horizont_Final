@@ -96,32 +96,27 @@
   <!--SettingsActivity-->
   <string name="action_settings">Nastavení</string>
   <string name="SpinnerItems">Vyber zobrazení aplikace</string>
-
   <string name="ChooseLanguage">Vyber jazyk</string>
-
   <string name="CameraViewAngle">Zorný úhel fotoaparátu</string>
-
   <string name="SetViewAngleManually">Nastavit zorný úhel manuálně</string>
-
   <string name="DefaultViewAngleHorizontal">Zorný úhel je 40° (nastaveno manuálně)</string>
   <string name="DefaultViewAngleVertical">  Zorný úhel je 60° (nastaveno manuálně)</string>
-  
   <string name="GPSLocation">GPS poloha</string>
-  
   <string name="SetGPSManually">Nastavit GPS polohu manuálně</string>
-  
   <string name="ElevationProfile">Výškový profil</string>
-
   <string name="ElevationProfileExplenation">Pro lepší uživatelský zážitel lze generovat výškový profil automaticky, kdykoliv jsou k dispozici výšková data.</string>
-
   <string name="AutomaticElevationProfile">Generovat výškový profil automaticky</string>
-  
   <string name="MyAltitude">Nadmořská výška</string>
   <string name="AltitudeExplenation">Přesné určení nadmořské výšky je pro správné fungování aplikace velmi podstatné. Nadmořskou výšku lze získat z výškové mapy namísto nadmořské výšky z GPS polohy (jsou-li výšková data k dispozici).</string>
-
   <string name="AltitudeFromElevationMap">Používat nadmořskou výšku z výškové mapy</string>
   <string name="PhotoResolution">Rozlišení fotografie</string>
-  
+
+  <string name="Tutorial_PhotoEdit_HeadingCorrection">Posouvejte prstem v horní části displeje pro korekci směru pohledu.</string>
+  <string name="Tutorial_PhotoEdit_HorizontCorrection">Posouvejte prstem na levém/pravém okraji displeje pro korekci horizontu.</string>
+  <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Použijte dva prsty pro korekcí horizontálního a vertikálního zobrazovacího úhlu.</string>
+
+  <string name="Tutorial_DontShowAgain">Nezobrazovat znovu</string>
+
   <string name="Name">Název: </string>
 
   <string name="DefaultTextAddPoi">Současná GPS poloha</string>

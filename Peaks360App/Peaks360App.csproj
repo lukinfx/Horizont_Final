@@ -88,6 +88,7 @@
     <Compile Include="Activities\PoiFilterDialog.cs" />
     <Compile Include="Activities\PrivacyPolicyActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="Activities\TutorialDialog.cs" />
     <Compile Include="AppContext\AppContextLiveData.cs" />
     <Compile Include="AppContext\AppContextStaticData.cs" />
     <Compile Include="DataAccess\PoiDatabase.cs" />
@@ -794,6 +795,20 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\splashscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Tutorial.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\tutorial_heading_correction.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\tutorial_horizont_correction.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\tutorial_viewangle_correction.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

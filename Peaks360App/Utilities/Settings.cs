@@ -16,6 +16,11 @@ namespace Peaks360App.Utilities
         PoiFilterSettings
     }
 
+    public enum TutorialPart
+    {
+        MainActivity,
+        PhotoEditActivity
+    }
 
     public class SettingsChangedEventArgs : EventArgs
     {
@@ -52,6 +57,10 @@ namespace Peaks360App.Utilities
             _changeFilterTimer.Interval = 1000;
             _changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;
             _changeFilterTimer.AutoReset = false;
+
+            tutorialNeeded=new Dictionary<TutorialPart, bool>();
+            tutorialNeeded.Add(TutorialPart.MainActivity, true);
+            tutorialNeeded.Add(TutorialPart.PhotoEditActivity, true);
         }
 
         public bool IsViewAngleCorrection { get; set; }
@@ -118,6 +127,18 @@ namespace Peaks360App.Utilities
         public int PrivacyPolicyApprovementLevel = 0;
         private static int PrivacyPolicyApprovementLevelRequired = 1;
 
+        private Dictionary<TutorialPart, bool> tutorialNeeded;
+
+        public bool IsTutorialNeeded(TutorialPart tp)
+        {
+            return tutorialNeeded[tp];
+        }
+
+        public void SetTutorialNeeded(TutorialPart tp, bool passed = true)
+        {
+            tutorialNeeded[tp] = passed;
+        }
+
         public bool IsPrivacyPolicyApprovementNeeded()
         {
             return PrivacyPolicyApprovementLevel < PrivacyPolicyApprovementLevelRequired;
@@ -158,6 +179,15 @@ namespace Peaks360App.Utilities
 
             PrivacyPolicyApprovementLevel = prefs.GetInt("PrivacyPolicyApprovementLevel", 0);
 
+            {
+                var isTutorialNeeded = prefs.GetBoolean("ShowTutorialMainActivity", true);
+                SetTutorialNeeded(TutorialPart.MainActivity, isTutorialNeeded);
+            }
+            {
+                var isTutorialNeeded = prefs.GetBoolean("ShowTutorialPhotoEditActivity", true);
+                SetTutorialNeeded(TutorialPart.PhotoEditActivity, isTutorialNeeded);
+            }
+
             cameraResolutionSelected = new Size (prefs.GetInt("CameraResolutionWidth", 0), prefs.GetInt("CameraResolutionHeight", 0));
             CameraId= prefs.GetString("CameraId", null);
 
@@ -192,6 +222,9 @@ namespace Peaks360App.Utilities
                 editor.PutBoolean("AutoElevationProfile", AutoElevationProfile);
 
                 editor.PutInt("PrivacyPolicyApprovementLevel", PrivacyPolicyApprovementLevel);
+
+                editor.PutBoolean("ShowTutorialMainActivity", IsTutorialNeeded(TutorialPart.MainActivity));
+                editor.PutBoolean("ShowTutorialPhotoEditActivity", IsTutorialNeeded(TutorialPart.PhotoEditActivity));
 
                 editor.PutInt("CameraResolutionWidth", cameraResolutionSelected.Width);
                 editor.PutInt("CameraResolutionHeight", cameraResolutionSelected.Height);

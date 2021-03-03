@@ -96,33 +96,27 @@
   <!--SettingsActivity-->
   <string name="action_settings">Settings</string>
   <string name="SpinnerItems">Choose a style</string>
-
   <string name="ChooseLanguage">Choose a language</string>
-
   <string name="CameraViewAngle">Camera view angle</string>
-
   <string name="SetViewAngleManually">Set view angle manually</string>
-  
-
   <string name="DefaultViewAngleHorizontal">  Current camera view angle is 40 (set manually)</string>
   <string name="DefaultViewAngleVertical">  Current camera view angle is 60 (set manually)</string>
-  
   <string name="GPSLocation">GPS Location</string>
-  
   <string name="SetGPSManually">Set GPS Location Manually</string>
-  
   <string name="ElevationProfile">Elevation profile</string>
-
   <string name="ElevationProfileExplenation">For better user experience it is possible to obtain and show elevation profile automatically whenever the data are available.</string>
-
   <string name="AutomaticElevationProfile">Auto elevation profile</string>
-  
   <string name="MyAltitude">My altitude</string>
   <string name="AltitudeExplenation">Accurate altitude is very important for user experience. You can possibly use altitude value from elevation map (when elevation data are available) instead of altitude from GPS.</string>
-
   <string name="AltitudeFromElevationMap">Use altitude from elevation map</string>
   <string name="PhotoResolution">Photo resolution</string>
-  
+
+  <string name="Tutorial_PhotoEdit_HeadingCorrection">Move you finger on top of the screen to adjust compass heading.</string>
+  <string name="Tutorial_PhotoEdit_HorizontCorrection">Move you finger on left/right screen edge to to adjust artifical horizon.</string>
+  <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Use two fingers to adjust horizontal and vertical view angle.</string>
+
+  <string name="Tutorial_DontShowAgain">Don\'t show again</string>
+
   <string name="Name">Name: </string>
 
   <string name="DefaultTextAddPoi">My current location</string>
