@@ -123,6 +123,7 @@
   <string name="Latitude">Zeměp. šířka: </string>
   <string name="Longitude">Zeměp. délka: </string>
   <string name="Altitude">Nadm. výška: </string>
+  <string name="Bearing">Azimut: </string>
   <string name="Distance">Vzdálenost: </string>
   <string name="Category">Kategorie: </string>
   <string name="EditName">Uprav název</string>
