@@ -151,11 +151,6 @@ namespace Peaks360App.AppContext
             base.OnSettingsChanged(sender, e);
 
             Settings.SaveData();
-
-            if (e.ChangedData == ChangedData.PoiFilterSettings)
-            {
-                NotifyDataChanged();
-            }
         }
 
         private async Task<bool> UpdateMyLocation()

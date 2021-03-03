@@ -121,8 +121,9 @@ namespace Peaks360App.Activities
 
         protected void Start()
         {
-            //Finnaly setup OnDataChanged listener and Road all data
+            //Finnaly setup OnDataChanged listener and Load all data
             Context.DataChanged += DataChanged;
+            UpdateStatusBar();
         }
 
         public void OnLayoutChanged(object sender, LayoutChangeEventArgs e)
@@ -138,7 +139,10 @@ namespace Peaks360App.Activities
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 _textViewNotification.Visibility = ViewStates.Invisible;
-
+                if (e.PoiData.Count == 0)
+                {
+                    new ShowToastRunnable(this, Resources.GetText(Resource.String.NoDataToDisplay)).Run();
+                }
                 OnDataChanged(sender, e);
 
                 UpdateStatusBar();

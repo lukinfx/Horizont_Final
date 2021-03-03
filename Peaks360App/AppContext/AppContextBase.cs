@@ -40,9 +40,12 @@ namespace Peaks360App.AppContext
             }
             set
             {
-                _elevationProfileData = value;
-                var args = new DataChangedEventArgs() { PoiData = PoiData };
-                DataChanged?.Invoke(this, args);
+                if (GpsUtils.HasLocation(MyLocation))
+                {
+                    _elevationProfileData = value;
+                    var args = new DataChangedEventArgs() {PoiData = PoiData};
+                    DataChanged?.Invoke(this, args);
+                }
             }
         }
 
@@ -156,21 +159,21 @@ namespace Peaks360App.AppContext
 
         protected void NotifyDataChanged(PoiViewItemList poiData = null)
         {
-            if (poiData is null)
+            if (GpsUtils.HasLocation(MyLocation))
             {
-                if (GpsUtils.HasLocation(MyLocation))
+                if (poiData is null)
                 {
                     var poiList = Database.GetItems(MyLocation, Settings.MaxDistance);
                     PoiData = new PoiViewItemList(poiList, MyLocation, Settings.MaxDistance, Settings.MinAltitute, ShowFavoritesOnly, Settings.Categories);
                 }
-            }
-            else
-            {
-                PoiData = poiData;
-            }
+                else
+                {
+                    PoiData = poiData;
+                }
 
-            var args = new DataChangedEventArgs() { PoiData = PoiData };
-            DataChanged?.Invoke(this, args);
+                var args = new DataChangedEventArgs() {PoiData = PoiData};
+                DataChanged?.Invoke(this, args);
+            }
         }
 
         protected void NotifyHeadingChanged(double heading)

@@ -17,6 +17,7 @@
   <string name="Error">Error</string>
 
   <string name="DiscardChanges">Do you want to discard all changes?</string>
+  <string name="NoDataToDisplay">No POIs to display. Change filter settings or download POI data.</string>
 
   <string name="HorizontalViewAngle">Horizontal view angle</string>
   <string name="VerticalViewAngle">Vertical view angle</string>

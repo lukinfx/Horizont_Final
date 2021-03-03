@@ -17,6 +17,7 @@
   <string name="Error">Chyba</string>
 
   <string name="DiscardChanges">Chcete zahodit všechny změny?</string>
+  <string name="NoDataToDisplay">Žádné body k zobrazení. Změňte nastavení filtru nebo stáhněte body zájmu.</string>
 
   <string name="HorizontalViewAngle">Horizontalní zorný úhel</string>
   <string name="VerticalViewAngle">Vertikální zorný úhel</string>
