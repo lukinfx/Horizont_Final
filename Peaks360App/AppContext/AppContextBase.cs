@@ -40,12 +40,8 @@ namespace Peaks360App.AppContext
             }
             set
             {
-                if (GpsUtils.HasLocation(MyLocation))
-                {
-                    _elevationProfileData = value;
-                    var args = new DataChangedEventArgs() {PoiData = PoiData};
-                    DataChanged?.Invoke(this, args);
-                }
+                _elevationProfileData = value;
+                NotifyElevationProfileChanged();
             }
         }
 
@@ -105,7 +101,6 @@ namespace Peaks360App.AppContext
         }
 
         public List<ProfileLine> ListOfProfileLines { get; set; }
-        public double? ElevationProfileDataDistance { get; set; }
 
         public void ToggleCompassPaused()
         {
@@ -172,6 +167,15 @@ namespace Peaks360App.AppContext
                 }
 
                 var args = new DataChangedEventArgs() {PoiData = PoiData};
+                DataChanged?.Invoke(this, args);
+            }
+        }
+
+        protected void NotifyElevationProfileChanged()
+        {
+            if (GpsUtils.HasLocation(MyLocation))
+            {
+                var args = new DataChangedEventArgs() { PoiData = PoiData };
                 DataChanged?.Invoke(this, args);
             }
         }
