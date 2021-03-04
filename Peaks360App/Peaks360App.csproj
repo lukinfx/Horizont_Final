@@ -125,6 +125,7 @@
     <Compile Include="Utilities\HeadingStabilizator.cs" />
     <Compile Include="Utilities\ImageSaver.cs" />
     <Compile Include="Utilities\ImageSaverUtils.cs" />
+    <Compile Include="Utilities\ImageViewHelper.cs" />
     <Compile Include="Utilities\PoiListItemAdapter.cs" />
     <Compile Include="Utilities\PoiCountryHelper.cs" />
     <Compile Include="Utilities\MapUtilities.cs" />

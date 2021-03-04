@@ -14,18 +14,12 @@ namespace Peaks360App.Utilities
     {
         private Activity context;
         private List<PoisToDownload> list;
-        private ColorMatrixColorFilter _grayscaleFilter;
 
         public DownloadItemAdapter(Activity _context)
             : base()
         {
             this.context = _context;
             this.list = new List<PoisToDownload>();
-
-            var cm = new ColorMatrix();
-            cm.SetSaturation(0.0f);
-            _grayscaleFilter = new ColorMatrixColorFilter(cm);
-
         }
 
         public void SetItems(IEnumerable<PoisToDownload> items)
@@ -64,7 +58,7 @@ namespace Peaks360App.Utilities
                 view.FindViewById<TextView>(Resource.Id.PoiItemDownloadedDate).Text = context.Resources.GetText(Resource.String.Download_NotDownloadedYet);
 
             var image = view.FindViewById<ImageView>(Resource.Id.PoiItemCategoryAsIcon);
-            image.SetColorFilter(item.DownloadDate != null ? null : _grayscaleFilter);
+            ImageViewHelper.ShowAsEnabled(image, item.DownloadDate != null);
             image.SetImageResource(PoiCategoryHelper.GetImage(item.Category));
 
             return view;
