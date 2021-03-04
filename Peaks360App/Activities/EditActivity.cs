@@ -433,7 +433,7 @@ namespace Peaks360App.Activities
             }
 
 
-            if (string.IsNullOrEmpty(_editTextAltitude.Text))
+            if (!string.IsNullOrEmpty(_editTextAltitude.Text))
             {
                 if (!double.TryParse(_editTextAltitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out alt))
                 {
