@@ -65,6 +65,7 @@ namespace Peaks360App.AppContext
             set
             {
                 _headingCorrector = GpsUtils.Normalize180(value);
+                NotifyHeadingChanged(Heading, HeadingCorrector);
             }
         }
 
@@ -180,9 +181,15 @@ namespace Peaks360App.AppContext
             }
         }
 
-        protected void NotifyHeadingChanged(double heading)
+        protected void NotifyHeadingChanged()
         {
-            var args = new HeadingChangedEventArgs() { Heading = heading };
+            var args = new DataChangedEventArgs() { PoiData = PoiData };
+            DataChanged?.Invoke(this, args);
+        }
+
+        protected void NotifyHeadingChanged(double heading, double headingCorrection)
+        {
+            var args = new HeadingChangedEventArgs() { Heading = heading, HeadingCorrection = headingCorrection };
             HeadingChanged?.Invoke(this, args);
         }
 

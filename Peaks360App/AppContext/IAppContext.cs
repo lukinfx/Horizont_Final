@@ -13,7 +13,7 @@ namespace Peaks360App.AppContext
     public class DataChangedEventArgs : EventArgs { public PoiViewItemList PoiData; }
     public delegate void DataChangedEventHandler(object sender, DataChangedEventArgs e);
 
-    public class HeadingChangedEventArgs : EventArgs { public double Heading; }
+    public class HeadingChangedEventArgs : EventArgs { public double Heading; public double HeadingCorrection; }
     public delegate void HeadingChangedEventHandler(object sender, HeadingChangedEventArgs e);
 
     //TODO: check Context.ApplicationContext

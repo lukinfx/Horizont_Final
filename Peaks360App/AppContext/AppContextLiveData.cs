@@ -115,7 +115,7 @@ namespace Peaks360App.AppContext
 
         public void OnHeadingChanged(double heading)
         {
-            NotifyHeadingChanged(heading);
+            NotifyHeadingChanged(heading, HeadingCorrector);
         }
 
         public override void Start()

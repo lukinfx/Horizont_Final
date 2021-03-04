@@ -10,6 +10,7 @@ using Android.Content;
 using Android.Support.V13.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
+using Android.Views;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using Peaks360Lib.Domain.ViewModel;
@@ -37,7 +38,7 @@ namespace Peaks360App
         private ImageButton _pauseButton;
         private ImageButton _recordButton;
         private ImageButton _menuButton;
-        private ImageButton _refreshCorrectorButton;
+        private ImageButton _resetCorrectionButton;
 
         private View _mainLayout;
         
@@ -140,8 +141,8 @@ namespace Peaks360App
             _recordButton = FindViewById<ImageButton>(Resource.Id.buttonRecord);
             _recordButton.SetOnClickListener(this);
 
-            _refreshCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
-            _refreshCorrectorButton.SetOnClickListener(this);
+            _resetCorrectionButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
+            _resetCorrectionButton.SetOnClickListener(this);
 
             _compassView.Initialize(Context, true, Context.Settings.CameraPictureSize);
 
@@ -339,6 +340,8 @@ namespace Peaks360App
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {
+                _resetCorrectionButton.Visibility = (Context.Settings.IsManualLocation || Math.Abs(e.HeadingCorrection) > 0.1) 
+                    ? ViewStates.Visible : ViewStates.Gone;
                 RefreshHeading();
             });
         }
