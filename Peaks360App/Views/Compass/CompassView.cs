@@ -9,6 +9,7 @@ using Peaks360App.Utilities;
 using Peaks360App.Views.Compass;
 using Peaks360App.AppContext;
 using Peaks360App.Providers;
+using System.Collections.Generic;
 
 namespace Peaks360App.Views
 {
@@ -17,7 +18,8 @@ namespace Peaks360App.Views
         private readonly object syncLock = new object(); 
         private static string TAG = "Horizon-CompassView";
 
-        private static IOrderedEnumerable<PoiViewItem> list;
+        private List<PoiViewItem> _poisInVisibilityRange;
+        private IOrderedEnumerable<PoiViewItem> _poisToBeDisplayed;
         private CompassViewFilter _compassViewFilter = new CompassViewFilter();
         private IAppContext _context { get; set; }
 
@@ -88,30 +90,53 @@ namespace Peaks360App.Views
         {
             lock (syncLock)
             {
-                PoiViewItem[] listCopy = new PoiViewItem[srcList.Count];
-                srcList.CopyTo(listCopy);
-                foreach (var item in listCopy)
-                {
-                    item.Visibility = CompassViewUtils.IsPoiVisible(item, _context.ElevationProfileData);
-                }
-
-                list = listCopy.Where(poi => poi.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible).OrderByDescending(poi => poi.Priority).ThenByDescending(poi => poi.GpsLocation.VerticalViewAngle);
-                CheckOverlappingItems();
+                _poisInVisibilityRange = srcList;
+                
+                _poisToBeDisplayed = FilterPoisDoBeDisplayed(_poisInVisibilityRange);
             }
 
             Invalidate();
         }
 
-        private void CheckOverlappingItems()
+        public void SetElevationProfile(ElevationProfileData elevationProfile)
+        {
+            _elevationProfile = elevationProfile;
+            GenerateElevationProfileLines();
+
+            _poisToBeDisplayed = FilterPoisDoBeDisplayed(_poisInVisibilityRange);
+
+            Invalidate();
+        }
+
+        private IOrderedEnumerable<PoiViewItem> FilterPoisDoBeDisplayed(List<PoiViewItem> srcList)
+        {
+            if (srcList == null)
+            {
+                return null;
+            }
+
+            PoiViewItem[] listCopy = new PoiViewItem[srcList.Count];
+            srcList.CopyTo(listCopy);
+            foreach (var item in listCopy)
+            {
+                item.Visibility = CompassViewUtils.IsPoiVisible(item, _context.ElevationProfileData);
+            }
+
+            _poisToBeDisplayed = listCopy.Where(poi => poi.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible).OrderByDescending(poi => poi.Priority).ThenByDescending(poi => poi.GpsLocation.VerticalViewAngle);
+            CheckOverlappingItems(_poisToBeDisplayed);
+            return _poisToBeDisplayed;
+        }
+
+        private void CheckOverlappingItems(IEnumerable<PoiViewItem> srcList)
         {
             lock (syncLock)
             {
-                if (list == null)
+                if (srcList == null)
                     return;
 
                 var minAngleDiff = compassViewDrawer.GetMinItemAngleDiff((int) (this.Width * _scale));
                 _compassViewFilter.Reset();
-                foreach (var item in list)
+                foreach (var item in srcList)
                 {
                     item.Overlapped = _compassViewFilter.IsOverlapping(item, minAngleDiff);
                 }
@@ -189,11 +214,11 @@ namespace Peaks360App.Views
         {
             lock (syncLock)
             {
-                if (list != null)
+                if (_poisToBeDisplayed != null)
                 {
                     canvas.Rotate(90, 0, 0);
 
-                    foreach (var item in list)
+                    foreach (var item in _poisToBeDisplayed)
                     {
                         if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
                         {
@@ -203,7 +228,7 @@ namespace Peaks360App.Views
 
                     canvas.Rotate(-90, 0, 0);
 
-                    foreach (var item in list)
+                    foreach (var item in _poisToBeDisplayed)
                     {
                         if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
                         {
@@ -240,14 +265,6 @@ namespace Peaks360App.Views
         public void ResetHeadingCorrector()
         {
             _context.HeadingCorrector = 0;
-            Invalidate();
-        }
-
-        public void SetElevationProfile(ElevationProfileData elevationProfile)
-        {
-            _elevationProfile = elevationProfile;
-            GenerateElevationProfileLines();
-
             Invalidate();
         }
 
@@ -304,19 +321,19 @@ namespace Peaks360App.Views
             compassViewDrawer.SetScaledViewAngle(scaledViewAngleHorizontal, scaledViewAngleVertical);
             elevationProfileBitmapDrawer.SetScaledViewAngle(scaledViewAngleHorizontal, scaledViewAngleVertical);
 
-            CheckOverlappingItems();
+            CheckOverlappingItems(_poisToBeDisplayed);
             Invalidate();
         }
 
         public PoiViewItem GetPoiByScreenLocation(float x, float y)
         {
-            if (ShowPointsOfInterest)
+            if (ShowPointsOfInterest && _poisToBeDisplayed != null)
             {
                 (x, y) = ToLocationOnScreen(x, y);
                 
                 var heading = _context.Heading + _context.HeadingCorrector;
 
-                foreach (var item in list)
+                foreach (var item in _poisToBeDisplayed)
                 {
                     if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
                     {
