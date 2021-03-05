@@ -5,6 +5,39 @@ namespace Peaks360App.Utilities
 {
     public class PoiCountryHelper
     {
+        public static string GetCountryName(PoiCountry country)
+        {
+            switch (country)
+            {
+                case PoiCountry.AUT:
+                    return "Austria";
+                case PoiCountry.CZE:
+                    return "Czech republic";
+                case PoiCountry.FRA:
+                    return "France";
+                case PoiCountry.DEU:
+                    return "Germany";
+                case PoiCountry.HUN:
+                    return "Hungary";
+                case PoiCountry.ITA:
+                    return "Italy";
+                case PoiCountry.POL:
+                    return "Poland";
+                case PoiCountry.ROU:
+                    return "Romania";
+                case PoiCountry.SVK:
+                    return "Slovakia";
+                case PoiCountry.SVN:
+                    return "Slovenia";
+                case PoiCountry.ESP:
+                    return "Spain";
+                case PoiCountry.CHE:
+                    return "Switzerland";
+                default:
+                    return "Unknown";
+            }
+        }
+
         public static PoiCountry? GetDefaultCountry()
         {
             var regionCode = RegionInfo.CurrentRegion;

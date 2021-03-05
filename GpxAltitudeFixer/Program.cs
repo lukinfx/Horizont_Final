@@ -52,7 +52,7 @@ namespace GpxAltitudeFixer
         static void FixElevationInGpxFromPoiCz()
         {
             string xmlFileContext = File.ReadAllText(@"c:\Src\Xamarin\Horizon\Data\Gpx\svk-mountains.gpx");
-            var poiList = Peaks360Lib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, new Guid());
+            var poiList = Peaks360Lib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, PoiCountry.SVK, new Guid());
 
             /*foreach (var poi in poiList)
             {
@@ -104,7 +104,7 @@ namespace GpxAltitudeFixer
             Console.WriteLine($"Destination File: {dstFile}");
 
             string xmlFileContext = File.ReadAllText(srcFile);
-            var poiList = Peaks360Lib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, new Guid());
+            var poiList = Peaks360Lib.Utilities.GpxFileParser.Parse(xmlFileContext, PoiCategory.Castles, PoiCountry.CZE, new Guid());
 
             //foreach (var group in poiList.GroupBy(x => ((int)x.Longitude*10000)+(int)x.Latitude))
             foreach (var groupLon in poiList.GroupBy(x => (int)x.Longitude))

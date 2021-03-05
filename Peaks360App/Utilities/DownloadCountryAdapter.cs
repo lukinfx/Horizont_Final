@@ -53,43 +53,10 @@ namespace Peaks360App.Utilities
                 view = context.LayoutInflater.Inflate(Resource.Layout.DownloadCountryListLayout, parent, false);
 
             PoiCountry item = this[position];
-            view.FindViewById<TextView>(Resource.Id.PoiItemCountryAsText).Text = GetCountryName(item);
+            view.FindViewById<TextView>(Resource.Id.PoiItemCountryAsText).Text = PoiCountryHelper.GetCountryName(item);
             view.FindViewById<ImageView>(Resource.Id.PoiItemCountryAsIcon).SetImageResource(GetCountryIcon(item));
 
             return view;
-        }
-
-        private string GetCountryName(PoiCountry country)
-        {
-            switch (country)
-            {
-                case PoiCountry.AUT:
-                    return "Austria";
-                case PoiCountry.CZE:
-                    return "Czech republic";
-                case PoiCountry.FRA:
-                    return "France";
-                case PoiCountry.DEU:
-                    return "Germany";
-                case PoiCountry.HUN:
-                    return "Hungary";
-                case PoiCountry.ITA:
-                    return "Italy";
-                case PoiCountry.POL:
-                    return "Poland";
-                case PoiCountry.ROU:
-                    return "Romania";
-                case PoiCountry.SVK:
-                    return "Slovakia";
-                case PoiCountry.SVN:
-                    return "Slovenia";
-                case PoiCountry.ESP:
-                    return "Spain";
-                case PoiCountry.CHE:
-                    return "Switzerland";
-                default:
-                    return "Unknown";
-            }
         }
 
         private int GetCountryIcon(PoiCountry country)

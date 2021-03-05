@@ -80,6 +80,10 @@ namespace Peaks360App.Utilities
                     ? ViewStates.Invisible : ViewStates.Visible;
             
             view.FindViewById<TextView>(Resource.Id.Title).Text = item.Poi.Name;
+
+            view.FindViewById<TextView>(Resource.Id.Country).Text = item.Poi.Country != null ? 
+                PoiCountryHelper.GetCountryName(item.Poi.Country.Value) : "Unknown";
+
             view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Poi.Altitude) + "m | " + 
                 Convert.ToString(Math.Round(item.GpsLocation.Distance.Value /1000, 2)) + " km |" +
                 Convert.ToString(Math.Round(item.GpsLocation.Bearing.Value, 2)) + " dg";

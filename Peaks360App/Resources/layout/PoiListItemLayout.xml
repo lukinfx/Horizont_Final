@@ -48,18 +48,28 @@
         android:src="@android:drawable/ic_menu_info_details"/>
     </LinearLayout>
     <TextView
+      android:id="@+id/Country"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/Title"
+      android:paddingLeft="10dp"
+      android:textColor="#000000"
+      android:singleLine="true"
+      android:ellipsize="end"
+      android:textSize="11sp" 
+      android:text="item country"/>
+    <TextView
         android:id="@+id/Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Title"
+        android:layout_below="@+id/Country"
         android:paddingLeft="10dp"
-        android:paddingTop="5dp"
         android:textColor="#000000"
         android:singleLine="true"
         android:ellipsize="end"
         android:textSize="11sp" 
-        android:text="gukjgagglhgi;hkbvcxghjhjjhgikhbdfbsiyv"/>
-    
+        android:text="item description"/>
+
   </LinearLayout>
 
   <ImageButton

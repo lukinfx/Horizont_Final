@@ -48,7 +48,7 @@ namespace Peaks360App.Tasks
                 var file = GpxFileProvider.GetFile(GpxFileProvider.GetUrl(url[0]));
                 OnProgressChange?.Invoke(1);
 
-                var listOfPoi = GpxFileParser.Parse(file, _source.Category, _source.Id,
+                var listOfPoi = GpxFileParser.Parse(file, _source.Category, _source.Country, _source.Id,
                     x => OnStageChange?.Invoke(Resource.String.Download_Progress_Processing, x),
                     x => OnProgressChange?.Invoke(x));
 

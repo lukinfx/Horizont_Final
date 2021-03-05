@@ -10,7 +10,7 @@ namespace Peaks360Lib.Utilities
 {
     public class GpxFileParser
     {
-        static public PoiList Parse(string xml, PoiCategory category, Guid source, Action<int> OnStart = null, Action<int> OnProgress = null)
+        static public PoiList Parse(string xml, PoiCategory category, PoiCountry country, Guid source, Action<int> OnStart = null, Action<int> OnProgress = null)
         {
             var lastNode = "";
             try
@@ -53,6 +53,7 @@ namespace Peaks360Lib.Utilities
                         Latitude = double.Parse(lat, CultureInfo.InvariantCulture),
                         Altitude = String.IsNullOrEmpty(ele) ? 0 : double.Parse(ele, CultureInfo.InvariantCulture),
                         Category = category,
+                        Country = country,
                         Source = source
                     };
                     if (!String.IsNullOrEmpty(wikipedia))

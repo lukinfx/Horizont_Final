@@ -24,6 +24,7 @@ namespace Peaks360Lib.Domain.Models
 
         public bool Favorite { get; set; }
         public Guid Source { get; set; }
+        public PoiCountry? Country { get; set; }
         public string Wikidata { get; set; }
         public string Wikipedia { get; set; }
 
