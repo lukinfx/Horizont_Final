@@ -65,21 +65,20 @@
                     </LinearLayout>
 
                     <GridLayout
-                      android:paddingTop="20dp"
-                      android:orientation="vertical"
+                      android:paddingTop="10dp"
+                      android:orientation="horizontal"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:id="@+id/linearLayoutLatLon"
-                      android:rowCount="2"
-                      android:columnCount="5">
-
-                      <TextView
-                          android:layout_columnWeight="8"
+                      android:rowCount="3"
+                      android:columnCount="2">
+                        <TextView
+                          android:paddingTop="10dp"
+                          android:layout_columnWeight="2"
                           android:text="@string/Latitude"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:id="@+id/latitudeTitle" />
-                      <EditText
+                        <EditText
                           android:layout_columnWeight="8"
                           android:textAppearance="?android:attr/textAppearanceSmall"
                           android:layout_width="wrap_content"
@@ -89,17 +88,14 @@
                           android:padding="10px"
                           android:background="@drawable/bg_edittext"
                           android:id="@+id/editTextLatitude" />
-                      <Space
-                        android:layout_columnWeight="2"/> 
-                      <Space
-                        android:layout_columnWeight="2"/> 
-                      <TextView
-                          android:layout_columnWeight="8"
+                        <TextView
+                          android:paddingTop="10dp"
+                          android:layout_columnWeight="2"
                           android:text="@string/Longitude"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:id="@+id/longitudeTitle" />
-                      <EditText
+                        <EditText
                           android:layout_columnWeight="8"
                           android:textAppearance="?android:attr/textAppearanceSmall"
                           android:layout_width="wrap_content"
@@ -109,26 +105,23 @@
                           android:padding="10px"
                           android:background="@drawable/bg_edittext"
                           android:id="@+id/editTextLongitude" />
-                      <Space
-                        android:layout_columnWeight="2"/> 
-                      <Space
-                        android:layout_columnWeight="2"/> 
-                      <TextView
-                        android:layout_columnWeight="3"
-                        android:text="@string/Altitude"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/altitudeTitle" />
-                      <EditText
-                        android:layout_columnWeight="3"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:digits="0123456789.,"
-                        android:padding="10px"
-                        android:background="@drawable/bg_edittext"
-                        android:id="@+id/editTextAltitude" />
+                        <TextView
+                          android:paddingTop="10dp"
+                          android:layout_columnWeight="2"
+                          android:text="@string/Altitude"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/altitudeTitle" />
+                        <EditText
+                          android:layout_columnWeight="8"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:inputType="numberDecimal"
+                          android:digits="0123456789.,"
+                          android:padding="10px"
+                          android:background="@drawable/bg_edittext"
+                          android:id="@+id/editTextAltitude" />
                     </GridLayout>
                     
                     <TextView
@@ -156,17 +149,18 @@
                           android:gravity="center"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content">
+
                             <Button
-                                android:id="@+id/buttonMap"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/Map"
-                                android:drawablePadding="10dp"
-                                android:background="@android:color/transparent"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentBottom="true"
-                                android:drawableTop="@android:drawable/ic_menu_mapmode" />
+                              android:id="@+id/buttonTeleport"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1"
+                              android:text="@string/Teleport"
+                              android:drawablePadding="10dp"
+                              android:background="@android:color/transparent"
+                              android:layout_alignParentLeft="true"
+                              android:layout_alignParentBottom="true"
+                              android:drawableTop="@android:drawable/ic_menu_mylocation" />
 
                             <Button
                               android:id="@+id/buttonWiki"
@@ -181,16 +175,17 @@
                               android:drawableTop="@android:drawable/ic_menu_info_details" />
 
                             <Button
-                              android:id="@+id/buttonTeleport"
+                              android:id="@+id/buttonMap"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:layout_weight="1"
-                              android:text="@string/Teleport"
+                              android:text="@string/Map"
                               android:drawablePadding="10dp"
                               android:background="@android:color/transparent"
                               android:layout_alignParentLeft="true"
                               android:layout_alignParentBottom="true"
-                              android:drawableTop="@android:drawable/ic_menu_mylocation" />
+                              android:drawableTop="@android:drawable/ic_menu_mapmode" />
+
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

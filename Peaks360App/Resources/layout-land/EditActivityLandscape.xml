@@ -180,17 +180,17 @@
                       android:gravity="right"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content">
-                      
+
                       <Button
-                        android:id="@+id/buttonMap"
+                        android:id="@+id/buttonTeleport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Map"
+                        android:text="@string/Teleport"
                         android:paddingLeft="20dp"
                         android:background="@android:color/transparent"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentBottom="true"
-                        android:drawableLeft="@android:drawable/ic_menu_mapmode" />
+                        android:drawableLeft="@android:drawable/ic_menu_mylocation" />
 
                       <Button
                         android:id="@+id/buttonWiki"
@@ -204,15 +204,15 @@
                         android:drawableLeft="@android:drawable/ic_menu_info_details" />
 
                       <Button
-                        android:id="@+id/buttonTeleport"
+                        android:id="@+id/buttonMap"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Teleport"
+                        android:text="@string/Map"
                         android:paddingLeft="20dp"
                         android:background="@android:color/transparent"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentBottom="true"
-                        android:drawableLeft="@android:drawable/ic_menu_mylocation" />
+                        android:drawableLeft="@android:drawable/ic_menu_mapmode" />
                     </LinearLayout>
                 </LinearLayout>
               </LinearLayout>
