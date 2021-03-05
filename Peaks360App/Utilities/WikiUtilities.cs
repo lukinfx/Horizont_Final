@@ -22,11 +22,11 @@ namespace Peaks360App.Utilities
 
         public static void OpenWiki(Poi poi)
         {
-            if (poi.Wikipedia != "")
+            if (!string.IsNullOrEmpty(poi.Wikipedia))
             {
                 Browser.OpenAsync("https://en.wikipedia.org/w/index.php?search=" + poi.Wikipedia, BrowserLaunchMode.SystemPreferred);
             }
-            else
+            if (!string.IsNullOrEmpty(poi.Wikidata))
             {
                 Browser.OpenAsync("https://www.wikidata.org/wiki/" + poi.Wikidata, BrowserLaunchMode.SystemPreferred);
             }
