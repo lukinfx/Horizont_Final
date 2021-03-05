@@ -6,14 +6,28 @@ using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Peaks360App.Utilities;
+using Peaks360Lib.Domain.Enums;
 using Peaks360Lib.Domain.Models;
 using Xamarin.Essentials;
 
 namespace Peaks360App.Providers
 {
+    public class PlaceInfo
+    {
+        public PlaceInfo(string placeName, PoiCountry? country)
+        {
+            PlaceName = placeName;
+            Country = country;
+        }
+        public string PlaceName { get; private set; }
+        public PoiCountry? Country { get; private set; }
+    }
+
     public static class PlaceNameProvider
     {
         private static string Append(this string str, string separator, string param)
@@ -26,7 +40,7 @@ namespace Peaks360App.Providers
             return str;
         }
 
-        public static async Task<string> AsyncGetPlaceName(GpsLocation location)
+        public static async Task<PlaceInfo> AsyncGetPlaceName(GpsLocation location)
         {
             //https://docs.microsoft.com/en-us/xamarin/essentials/geocoding?tabs=android
 
@@ -44,13 +58,14 @@ namespace Peaks360App.Providers
                     geocodeAddress = geocodeAddress.Append(", ",placemark.SubLocality);
                     geocodeAddress = geocodeAddress.Append(", ", placemark.Locality);
                     geocodeAddress = geocodeAddress.Append(", ", placemark.CountryCode);
-                    return geocodeAddress;
+
+                    return new PlaceInfo(geocodeAddress, PoiCountryHelper.GetCountry(placemark.CountryCode));
                 }
-                return "Unknown";
+                return new PlaceInfo("Unknown", null);
             }
             catch
             {
-                return "Unknown";
+                return new PlaceInfo("Unknown", null);
             }
         }
     }

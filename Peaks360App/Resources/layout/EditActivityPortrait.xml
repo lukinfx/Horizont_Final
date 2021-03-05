@@ -10,7 +10,7 @@
     <AbsoluteLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:padding="20dp"
+      android:padding="10dp"
       android:background="@drawable/background_portrait">
 
         <LinearLayout
@@ -135,9 +135,22 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:spinnerMode="dialog"
-                      android:padding="10px"
                       android:background="@drawable/bg_edittext"
                       android:id="@+id/spinnerCategory" />
+
+                    <TextView
+                      android:text="@string/Country"
+                      android:paddingTop="10dp"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/countryTitle" />
+                    <Spinner
+                      android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:spinnerMode="dialog"
+                      android:background="@drawable/bg_edittext"
+                      android:id="@+id/spinnerCountry" />
 
                     <LinearLayout
                       android:orientation="vertical"

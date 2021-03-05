@@ -1,10 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.Utilities
 {
     public class PoiCategoryHelper
     {
+        public static List<PoiCategory> GetAllCategories()
+        {
+            return new PoiCategory[]
+            {
+                PoiCategory.Mountains, 
+                PoiCategory.Cities, 
+                PoiCategory.Historic, 
+                PoiCategory.Churches, 
+                PoiCategory.Lakes, 
+                PoiCategory.Transmitters, 
+                PoiCategory.ViewTowers, 
+                PoiCategory.Other
+            }.ToList();
+        }
+
         public static string GetCategoryName(Android.Content.Res.Resources res, PoiCategory category)
         {
             switch (category)

@@ -9,7 +9,7 @@
     <AbsoluteLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:padding="20dp"
+      android:padding="10dp"
       android:background="@drawable/background_landscape">
         <LinearLayout
           android:orientation="horizontal"
@@ -92,7 +92,8 @@
                           android:columnCount="2">
                             <TextView
                               android:paddingTop="10dp"
-                              android:layout_columnWeight="3"
+                              android:paddingRight="10dp"
+                              android:layout_columnWeight="0"
                               android:text="@string/Latitude"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -109,7 +110,8 @@
                               android:id="@+id/editTextLatitude" />
                             <TextView
                               android:paddingTop="10dp"
-                              android:layout_columnWeight="3"
+                              android:paddingRight="10dp"
+                              android:layout_columnWeight="0"
                               android:text="@string/Longitude"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -126,7 +128,8 @@
                               android:id="@+id/editTextLongitude" />
                             <TextView
                               android:paddingTop="10dp"
-                              android:layout_columnWeight="3"
+                              android:paddingRight="10dp"
+                              android:layout_columnWeight="0"
                               android:text="@string/Altitude"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -166,6 +169,23 @@
                           android:entries="@array/CategoryItemsArray"
                           android:background="@drawable/bg_edittext"
                           android:id="@+id/spinnerCategory" />
+
+                        <TextView
+                          android:text="@string/Country"
+                          android:paddingTop="5dp"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/countryTitle" />
+                        <Spinner
+                          android:textAppearance="?android:attr/textAppearanceMedium"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:spinnerMode="dropdown"
+                          android:entries="@array/CategoryItemsArray"
+                          android:background="@drawable/bg_edittext"
+                          android:id="@+id/spinnerCountry" />
+
+
                     </LinearLayout>
                 </GridLayout>
 

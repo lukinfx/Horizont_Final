@@ -127,6 +127,7 @@
   <string name="Bearing">Azimut: </string>
   <string name="Distance">Vzdálenost: </string>
   <string name="Category">Kategorie: </string>
+  <string name="Country">Země: </string>
   <string name="EditName">Uprav název</string>
   <string name="PasteLocationFromClipboard">Vložit GPS polohu ze schránky</string>
   <string name="FetchAltitudeFromElevationMap">Získat nadmořskou výšku z výškové mapy</string>

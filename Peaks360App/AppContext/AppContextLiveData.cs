@@ -139,7 +139,7 @@ namespace Peaks360App.AppContext
                 }
                 else
                 {
-                    myLocationName = await PlaceNameProvider.AsyncGetPlaceName(myLocation);
+                    myLocationName = (await PlaceNameProvider.AsyncGetPlaceName(myLocation)).PlaceName;
                 }
 
                 ReloadData();

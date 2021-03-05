@@ -127,6 +127,7 @@
   <string name="Bearing">Bearing: </string>
   <string name="Distance">Distance: </string>
   <string name="Category">Category: </string>
+  <string name="Country">Country: </string>
   <string name="EditName">Edit name</string>
   <string name="PasteLocationFromClipboard">Paste GPS location from clipboard</string>
   <string name="FetchAltitudeFromElevationMap">Fetch altitude from elevation map</string>

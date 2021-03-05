@@ -1,41 +1,95 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.Utilities
 {
     public class PoiCountryHelper
     {
+        private static List<PoiCountry> _countryList;
+        public static List<PoiCountry> GetAllCountries()
+        {
+            if (_countryList == null)
+            {
+                _countryList = new List<PoiCountry>();
+                var countryValue = Enum.GetValues(typeof(PoiCountry));
+                foreach (PoiCountry value in countryValue)
+                {
+                    _countryList.Add(value);
+                }
+            }
+
+            return _countryList;
+        }
+
         public static string GetCountryName(PoiCountry country)
         {
             switch (country)
             {
-                case PoiCountry.AUT:
-                    return "Austria";
-                case PoiCountry.CZE:
-                    return "Czech republic";
-                case PoiCountry.FRA:
-                    return "France";
-                case PoiCountry.DEU:
-                    return "Germany";
-                case PoiCountry.HUN:
-                    return "Hungary";
-                case PoiCountry.ITA:
-                    return "Italy";
-                case PoiCountry.POL:
-                    return "Poland";
-                case PoiCountry.ROU:
-                    return "Romania";
-                case PoiCountry.SVK:
-                    return "Slovakia";
-                case PoiCountry.SVN:
-                    return "Slovenia";
-                case PoiCountry.ESP:
-                    return "Spain";
-                case PoiCountry.CHE:
-                    return "Switzerland";
-                default:
-                    return "Unknown";
+                case PoiCountry.AUT: return "Austria";
+                case PoiCountry.CZE: return "Czech republic";
+                case PoiCountry.FRA: return "France";
+                case PoiCountry.DEU: return "Germany";
+                case PoiCountry.HUN: return "Hungary";
+                case PoiCountry.ITA: return "Italy";
+                case PoiCountry.POL: return "Poland";
+                case PoiCountry.ROU: return "Romania";
+                case PoiCountry.SVK: return "Slovakia";
+                case PoiCountry.SVN: return "Slovenia";
+                case PoiCountry.ESP: return "Spain";
+                case PoiCountry.CHE: return "Switzerland";
+                case PoiCountry.BEL: return "Belgium";
+                case PoiCountry.BIH: return "Bosna & Herzegovina";
+                case PoiCountry.HRV: return "Croatia";
+                case PoiCountry.BGR: return "Bulgaria";
+                case PoiCountry.DNK: return "Denmark";
+                case PoiCountry.FIN: return "Finland";
+                case PoiCountry.LIE: return "Liechtenstein";
+                case PoiCountry.LUX: return "Luxembourg";
+                case PoiCountry.NLD: return "Netherlands";
+                case PoiCountry.NOR: return "Norway";
+                case PoiCountry.ERB: return "Serbia";
+                case PoiCountry.SWE: return "Sweden";
+                case PoiCountry.GRC: return "Greece";
+                case PoiCountry.UKR: return "Ukraine";
+                case PoiCountry.BLR: return "Belarus";
+                case PoiCountry.ALB: return "Albania";
+                case PoiCountry.CYP: return "Cyprus";
+                case PoiCountry.EST: return "Estonia";
+                case PoiCountry.GBR: return "Great Britain";
+                case PoiCountry.IRL: return "Ireland";
+                case PoiCountry.XKX: return "Kosovo";
+                case PoiCountry.LVA: return "Latvia";
+                case PoiCountry.LTU: return "Lithuania";
+                case PoiCountry.MKD: return "Macedonia";
+                case PoiCountry.MLT: return "Malta";
+                case PoiCountry.MCO: return "Monaco";
+                case PoiCountry.PRT: return "Portugal";
+                case PoiCountry.RUS: return "Russia";
+                case PoiCountry.AND: return "Andorra";
+                case PoiCountry.FRO: return "Faroe-islands";
+                case PoiCountry.GEO: return "Georgia";
+                case PoiCountry.GGY: return "Guernsey";
+                case PoiCountry.IMN: return "Isle of man";
+                case PoiCountry.MNE: return "Montenegro";
+                case PoiCountry.AZO: return "Azores";
+                case PoiCountry.MDA: return "Moldova";
+                default: return "Unknown";
             }
+        }
+
+        public static PoiCountry? GetCountry(string countryCode)
+        {
+            var ri = CultureInfo.GetCultures(CultureTypes.AllCultures)
+                .Where(x => !x.Equals(CultureInfo.InvariantCulture)) //Remove the invariant culture as a region cannot be created from it.
+                .Where(x => !x.IsNeutralCulture) //Remove nuetral cultures as a region cannot be created from them.
+                .Select(x => new RegionInfo(x.LCID))
+                .SingleOrDefault(x => x.TwoLetterISORegionName.Equals(countryCode, StringComparison.InvariantCulture));
+
+            Enum.TryParse<PoiCountry>(ri?.ThreeLetterISORegionName, out var poiCountry);
+            return poiCountry;
         }
 
         public static PoiCountry? GetDefaultCountry()

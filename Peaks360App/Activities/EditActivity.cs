@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +37,7 @@ namespace Peaks360App.Activities
         private EditText _editTextLongitude;
         private EditText _editTextAltitude;
         private Spinner _spinnerCategory;
+        private Spinner _spinnerCountry;
         private Button _buttonOpenMap;
         private Button _buttonOpenWiki;
         private Button _buttonTeleport;
@@ -45,9 +47,11 @@ namespace Peaks360App.Activities
         private long _id;
         private bool _isDirty = false;
         private PoiCategory _category;
+        private PoiCountry _country;
         private ElevationTile _elevationTile;
 
-        private PoiCategory[] _poiCategories = new PoiCategory[] { PoiCategory.Mountains, PoiCategory.Cities, PoiCategory.Historic, PoiCategory.Churches, PoiCategory.Lakes, PoiCategory.Transmitters, PoiCategory.ViewTowers, PoiCategory.Other};
+        private List<PoiCategory> _poiCategories = PoiCategoryHelper.GetAllCategories();
+        private List<PoiCountry> _poiCountries = PoiCountryHelper.GetAllCountries().OrderBy(x => PoiCountryHelper.GetCountryName(x)).ToList();
 
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
@@ -85,16 +89,12 @@ namespace Peaks360App.Activities
             _buttonOpenMap = FindViewById<Button>(Resource.Id.buttonMap);
             _buttonTeleport = FindViewById<Button>(Resource.Id.buttonTeleport);
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
-            
-            var categoryList = new List<string>();
-            categoryList.Add(Resources.GetText(Resource.String.Category_Mountains));
-            categoryList.Add(Resources.GetText(Resource.String.Category_Cities));
-            categoryList.Add(Resources.GetText(Resource.String.Category_Historic));
-            categoryList.Add(Resources.GetText(Resource.String.Category_Churches));
-            categoryList.Add(Resources.GetText(Resource.String.Category_ViewTowers));
-            categoryList.Add(Resources.GetText(Resource.String.Category_Transmitters));
-            categoryList.Add(Resources.GetText(Resource.String.Category_Lakes));
-            categoryList.Add(Resources.GetText(Resource.String.Category_Other));
+            _spinnerCountry = FindViewById<Spinner>(Resource.Id.spinnerCountry);
+
+            var countryList = _poiCountries.Select(x => PoiCountryHelper.GetCountryName(x)).ToList();
+            _spinnerCountry.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, countryList);
+
+            var categoryList = _poiCategories.Select(x => PoiCategoryHelper.GetCategoryName(this.Resources, x)).ToList();
             _spinnerCategory.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, categoryList);
 
             _thumbnail = FindViewById<ImageView>(Resource.Id.Thumbnail);
@@ -102,7 +102,8 @@ namespace Peaks360App.Activities
             if (_id != -1)
             {
                 _item = Context.Database.GetItem(_id);
-                _spinnerCategory.SetSelection(_poiCategories.ToList().FindIndex(i => i == _item.Category));
+                _spinnerCategory.SetSelection(_poiCategories.FindIndex(i => i == _item.Category));
+                _spinnerCountry.SetSelection(_poiCountries.FindIndex(i => i == _item.Country));
                 _editTextName.Text = _item.Name;
                 _editTextAltitude.Text = $"{_item.Altitude:F0}";
                 _editTextLongitude.Text = $"{_item.Longitude:F7}".Replace(",", ".");
@@ -133,6 +134,7 @@ namespace Peaks360App.Activities
             _buttonTeleport.SetOnClickListener(this);
 
             _spinnerCategory.ItemSelected += OnCategorySelected;
+            _spinnerCountry.ItemSelected += OnCountrySelected;
         }
 
         private void SetDirty()
@@ -229,6 +231,11 @@ namespace Peaks360App.Activities
             _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_category));
         }
 
+        private void OnCountrySelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            _country = _poiCountries[e.Position];
+        }
+
         private void OnSave()
         {
             _item.Name = _editTextName.Text;
@@ -244,6 +251,7 @@ namespace Peaks360App.Activities
             _item.Longitude = location.Longitude;
             _item.Altitude = location.Altitude;
             _item.Category = _category;
+            _item.Country = _country;
             if (_id == -1)
             {
                 Context.Database.InsertItemAsync(_item);
@@ -283,8 +291,9 @@ namespace Peaks360App.Activities
 
                 Task.Run(async () =>
                 {
-                    var placeName = await PlaceNameProvider.AsyncGetPlaceName(location);
-                    _editTextName.Text = placeName;
+                    var placeInfo = await PlaceNameProvider.AsyncGetPlaceName(location);
+                    _editTextName.Text = placeInfo.PlaceName;
+                    _spinnerCountry.SetSelection(_poiCountries.FindIndex(i => i == placeInfo.Country));
                 });
             }
             catch (Exception ex)
