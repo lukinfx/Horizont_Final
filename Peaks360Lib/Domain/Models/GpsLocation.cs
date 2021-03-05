@@ -16,6 +16,13 @@ namespace Peaks360Lib.Domain.Models
         public GpsLocation()
         { }
 
+        public GpsLocation(GpsLocation gpsLocation)
+        {
+            Longitude = gpsLocation.Longitude;
+            Latitude = gpsLocation.Latitude;
+            Altitude = gpsLocation.Altitude;
+        }
+
         public GpsLocation(double longitude, double latitude, double altitude)
         {
             Longitude = longitude; 

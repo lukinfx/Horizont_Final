@@ -105,7 +105,7 @@ namespace Peaks360Lib.Utilities
             return _elevationData != null;
         }
 
-        public double GetElevation(GpsLocation myLocation, int size=1)
+        public double GetElevation(GpsLocation myLocation, int size = 1)
         {
             if (!HasElevation(myLocation))
             {
@@ -158,9 +158,7 @@ namespace Peaks360Lib.Utilities
 
                 //average between e1 and e2
                 var ele = e1 + py2 * (e2 - e1);
-
                 return ele;
-
             }
             else
             {
@@ -173,13 +171,33 @@ namespace Peaks360Lib.Utilities
                         if (y - dy >= 0 && x - dx >= 0)
                         {
                             if (_elevationData[y - dy, x - dx] > maxEle)
+                            {
                                 maxEle = _elevationData[y - dy, x - dx];
+                            }
                         }
 
                         if (y + dy < height && x + dx < width)
                         {
                             if (_elevationData[y + dy, x + dx] > maxEle)
-                                maxEle = _elevationData[y + dy, x + dx]; ;
+                            {
+                                maxEle = _elevationData[y + dy, x + dx];
+                            }
+                        }
+
+                        if (y + dy < height && x - dx >= 0)
+                        {
+                            if (_elevationData[y + dy, x - dx] > maxEle)
+                            {
+                                maxEle = _elevationData[y + dy, x - dx];
+                            }
+                        }
+
+                        if (y - dy >= 0 && x + dx < width)
+                        {
+                            if (_elevationData[y - dy, x + dx] > maxEle)
+                            {
+                                maxEle = _elevationData[y - dy, x + dx];
+                            }
                         }
                     }
                 }
