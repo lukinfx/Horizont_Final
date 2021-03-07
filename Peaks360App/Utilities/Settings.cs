@@ -134,9 +134,9 @@ namespace Peaks360App.Utilities
             return tutorialNeeded[tp];
         }
 
-        public void SetTutorialNeeded(TutorialPart tp, bool passed = true)
+        public void SetTutorialNeeded(TutorialPart tp, bool value)
         {
-            tutorialNeeded[tp] = passed;
+            tutorialNeeded[tp] = value;
         }
 
         public bool IsPrivacyPolicyApprovementNeeded()

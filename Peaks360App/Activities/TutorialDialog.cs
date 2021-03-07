@@ -43,6 +43,7 @@ namespace Peaks360App.Activities
 
         private TutorialDialog(Context context, TutorialPart tp, TutorialPage[] tutorialPages) : base(context)
         {
+            _tutorialPart = tp;
             _tutorialPages = tutorialPages;
         }
 
