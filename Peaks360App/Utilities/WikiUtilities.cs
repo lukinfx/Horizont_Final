@@ -26,7 +26,7 @@ namespace Peaks360App.Utilities
             {
                 Browser.OpenAsync("https://en.wikipedia.org/w/index.php?search=" + poi.Wikipedia, BrowserLaunchMode.SystemPreferred);
             }
-            if (!string.IsNullOrEmpty(poi.Wikidata))
+            else if (!string.IsNullOrEmpty(poi.Wikidata))
             {
                 Browser.OpenAsync("https://www.wikidata.org/wiki/" + poi.Wikidata, BrowserLaunchMode.SystemPreferred);
             }
