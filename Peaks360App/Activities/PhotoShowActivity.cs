@@ -572,7 +572,8 @@ namespace Peaks360App.Activities
                 (float) _compassView.LeftTiltCorrector, (float) _compassView.RightTiltCorrector);
             compassView.Layout(0, 0, _photodata.PictureWidth, _photodata.PictureHeight);
             compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight));
-
+            compassView.SetPoiViewItemList(Context.PoiData);
+            compassView.SetElevationProfile(Context.ElevationProfileData);
             compassView.Draw(canvas);
 
 
@@ -618,6 +619,8 @@ namespace Peaks360App.Activities
                 (float) _compassView.LeftTiltCorrector, (float) _compassView.RightTiltCorrector);
             compassView.Layout(0, 0, _photodata.PictureWidth, _photodata.PictureHeight);
             compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight));
+            compassView.SetPoiViewItemList(Context.PoiData);
+            compassView.SetElevationProfile(Context.ElevationProfileData);
             compassView.Draw(canvas);
 
             var logoWidth = Convert.ToInt32(0.2 * canvas.Width);
