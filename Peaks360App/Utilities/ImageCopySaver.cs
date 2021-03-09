@@ -66,7 +66,7 @@ namespace Peaks360App.Utilities
 
             if (Context.ElevationProfileData != null)
             {
-                photodata.JsonElevationProfileData = Context.ElevationProfileData.Serialize();
+                newPhotodata.JsonElevationProfileData = Context.ElevationProfileData.Serialize();
             }
 
             var filePath = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), newPhotodata.PhotoFileName);
