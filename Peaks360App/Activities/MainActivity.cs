@@ -5,6 +5,10 @@ using Android.OS;
 using Android.Runtime;
 using Android.Widget;
 using Android.Content;
+using Android.Gms.Ads;
+using Android.Support.V13.App;
+using Android.Support.Design.Widget;
+using Android.Support.V4.Content;
 using Android.Views;
 using Xamarin.Essentials;
 using Peaks360Lib.Domain.ViewModel;
@@ -37,6 +41,9 @@ namespace Peaks360App
         
         private CameraFragment _cameraFragment;
 
+        protected AdView mAdView;
+        //protected InterstitialAd mInterstitialAd;
+
         private static bool _firstStart = true;
 
         protected override IAppContext Context { get { return AppContextLiveData.Instance; } }
@@ -53,6 +60,8 @@ namespace Peaks360App
             base.OnCreate(bundle);
             AppContextLiveData.Instance.SetLocale(this);
             Xamarin.Essentials.Platform.Init(this, bundle);
+            MobileAds.Initialize(ApplicationContext);
+            //MobileAds.Initialize(ApplicationContext, "ca-app-pub-3111498881810771~8996939842");
 
             if (AppContextLiveData.Instance.IsPortrait)
             {
@@ -84,7 +93,8 @@ namespace Peaks360App
         protected override void OnPause()
         {
             base.OnPause();
-            Context.Pause();
+            Context.Pause(); 
+            mAdView?.Pause();
         }
 
         protected override void OnResume()
@@ -93,6 +103,22 @@ namespace Peaks360App
             Context.Resume();
             Context.ReloadData();
             ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
+            
+            mAdView?.Resume();
+            
+            /*if (!mInterstitialAd.IsLoaded)
+            {
+                RequestNewInterstitial();
+            }*/
+        }
+
+        protected override void OnDestroy()
+        {
+            if (mAdView != null)
+            {
+                mAdView.Destroy();
+            }
+            base.OnDestroy();
         }
 
         protected override void OnSaveInstanceState(Bundle bundle)
@@ -124,6 +150,19 @@ namespace Peaks360App
 
         private void InitializeUIElements()
         {
+            mAdView = FindViewById<AdView>(Resource.Id.adView);
+            var adRequest = new AdRequest.Builder().Build();
+            mAdView.LoadAd(adRequest);
+
+            /*mInterstitialAd = new InterstitialAd(this);
+            mInterstitialAd.AdUnitId = "ca-app-pub-3111498881810771/1290674361";
+
+            mInterstitialAd.AdListener = new AdListener(this);*/
+
+            //mLoadInterstitialButton = FindViewById<Button>(Resource.Id.load_interstitial_button);
+            //mLoadInterstitialButton.SetOnClickListener(new OnClickListener(this));
+
+
             _activityControlBar = FindViewById<LinearLayout>(Resource.Id.mainActivityControlBar);
             _activityControlBar2 = FindViewById<LinearLayout>(Resource.Id.mainActivityControlBar2);
 
@@ -144,6 +183,12 @@ namespace Peaks360App
 
             _mainLayout = FindViewById(Resource.Id.sample_main_layout);
         }
+
+        /*protected void RequestNewInterstitial()
+        {
+            var adRequest = new AdRequest.Builder().Build();
+            mInterstitialAd.LoadAd(adRequest);
+        }*/
 
         protected override void OnStart()
         {
@@ -245,6 +290,16 @@ namespace Peaks360App
         {
             Context.ToggleCompassPaused();
             UpdatePauseButton();
+            /*if (mInterstitialAd.IsLoaded)
+            {
+                mInterstitialAd.Show();
+            }
+            else
+            {
+                var adRequest = new AdRequest.Builder().Build();
+                mInterstitialAd.LoadAd(adRequest);
+            }*/
+
         }
 
         private void UpdatePauseButton()
@@ -443,5 +498,21 @@ namespace Peaks360App
             //it's just for move/zoom functionality which is not supported here, but anyway...
             return Context.Settings.CameraPictureSize.Height;
         }
+
+
+        /*class AdListener : Android.Gms.Ads.AdListener
+        {
+            MainActivity that;
+
+            public AdListener(MainActivity t)
+            {
+                that = t;
+            }
+
+            public override void OnAdClosed()
+            {
+                that.RequestNewInterstitial();
+            }
+        }*/
     }
 }
