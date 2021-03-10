@@ -137,6 +137,7 @@ namespace Peaks360App
 
             _pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
             _pauseButton.SetOnClickListener(this);
+            UpdatePauseButton();
 
             _recordButton = FindViewById<ImageButton>(Resource.Id.buttonRecord);
             _recordButton.SetOnClickListener(this);
@@ -236,7 +237,7 @@ namespace Peaks360App
                     case Resource.Id.buttonResetCorrector:
                     {
                         Context.HeadingCorrector = 0;
-                        Context.Settings.IsManualLocation = false;
+                        Context.Settings.SetAutoLocation();
                         break;
                     }
                 }
@@ -250,6 +251,11 @@ namespace Peaks360App
         private void HandleButtonPauseClicked()
         {
             Context.ToggleCompassPaused();
+            UpdatePauseButton();
+        }
+
+        private void UpdatePauseButton()
+        {
             if (Context.CompassPaused)
             {
                 _pauseButton.SetImageResource(Resource.Drawable.ic_pause_on);

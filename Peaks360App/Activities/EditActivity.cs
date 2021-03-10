@@ -371,8 +371,7 @@ namespace Peaks360App.Activities
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
             {
-                AppContextLiveData.Instance.Settings.ManualLocation = manualLocation;
-                AppContextLiveData.Instance.Settings.IsManualLocation = true;
+                AppContextLiveData.Instance.Settings.SetManualLocation(manualLocation);
                 SetResult(RESULT_OK_AND_CLOSE_PARENT);
                 Finish();
             });

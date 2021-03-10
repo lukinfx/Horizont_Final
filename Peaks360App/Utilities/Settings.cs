@@ -13,7 +13,8 @@ namespace Peaks360App.Utilities
     public enum ChangedData
     {
         ViewOptions,
-        PoiFilterSettings
+        PoiFilterSettings,
+        GpsLocation
     }
 
     public enum TutorialPart
@@ -32,6 +33,7 @@ namespace Peaks360App.Utilities
 
         public ChangedData ChangedData { get; private set; }
     }
+
     public delegate void SettingsChangedEventHandler(object sender, SettingsChangedEventArgs e);
 
     public sealed class Settings
@@ -68,8 +70,9 @@ namespace Peaks360App.Utilities
         public float? AutomaticViewAngleVertical { get; private set; }
         public float CorrectionViewAngleHorizontal { get; set; }
         public float CorrectionViewAngleVertical { get; set; }
-        public bool IsManualLocation { get; set; }
-        public GpsLocation ManualLocation { get; set; }
+
+        public bool IsManualLocation { get; private set; }
+        public GpsLocation ManualLocation { get; private set; }
         public bool AltitudeFromElevationMap { get; set; }
         public bool AutoElevationProfile { get; set; }
         public bool ShowElevationProfile { get; set; }
@@ -148,6 +151,19 @@ namespace Peaks360App.Utilities
         {
             PrivacyPolicyApprovementLevel = PrivacyPolicyApprovementLevelRequired;
             SaveData();
+        }
+
+        public void SetManualLocation(GpsLocation location)
+        {
+            IsManualLocation = true;
+            ManualLocation = location;
+            NotifySettingsChanged(ChangedData.GpsLocation);
+        }
+
+        public void SetAutoLocation()
+        {
+            IsManualLocation = false;
+            NotifySettingsChanged(ChangedData.GpsLocation);
         }
 
         public void NotifySettingsChanged(ChangedData changedData)

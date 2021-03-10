@@ -30,7 +30,7 @@ namespace Peaks360App.AppContext
         Settings Settings { get; }
         PhotosModel PhotosModel { get; }
         ElevationProfileData ElevationProfileData { get; set; }
-        bool CompassPaused { get; set; }
+        bool CompassPaused { get; }
         GpsLocation MyLocation { get; }
         string MyLocationName { get; }
         double Heading { get; }

@@ -45,7 +45,7 @@ namespace Peaks360App.AppContext
             }
         }
 
-        public bool CompassPaused { get; set; }
+        public bool CompassPaused { get; private set; }
         
         protected GpsLocation myLocation = new GpsLocation();
         public GpsLocation MyLocation { get { return myLocation; } }
@@ -109,11 +109,11 @@ namespace Peaks360App.AppContext
 
             if (CompassPaused)
             {
-                Pause();
+                StopProviders();
             }
             else
             {
-                Resume();
+                StartProviders();
             }
         }
 
@@ -195,9 +195,11 @@ namespace Peaks360App.AppContext
 
         protected virtual void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
-            if (e.ChangedData == ChangedData.PoiFilterSettings)
+            switch(e.ChangedData)
             {
-                ReloadData();
+                case ChangedData.PoiFilterSettings:
+                    ReloadData();
+                    break;
             }
         }
 
@@ -208,9 +210,25 @@ namespace Peaks360App.AppContext
 
         public virtual void Pause()
         {
+            if (!CompassPaused)
+            {
+                StopProviders();
+            }
         }
 
         public virtual void Resume()
+        {
+            if (!CompassPaused)
+            {
+                StartProviders();
+            }
+        }
+
+        protected virtual void StartProviders()
+        {
+        }
+
+        protected virtual void StopProviders()
         {
         }
 

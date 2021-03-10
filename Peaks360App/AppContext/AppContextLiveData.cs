@@ -120,28 +120,26 @@ namespace Peaks360App.AppContext
 
         public override void Start()
         {
-            _compassProvider.Start();
-            _locationProvider.Start();
+            if (!CompassPaused)
+            {
+                _compassProvider.Start();
+                _locationProvider.Start();
+            }
 
             _locationTimer.Enabled = true;
         }
 
         private async void OnLocationTimerElapsed(object sender, ElapsedEventArgs e)
         {
+            if (CompassPaused)
+            {
+                return;
+            }
+
             bool needRefresh = await UpdateMyLocation();
 
             if (needRefresh)
             {
-                var poi = Database.GetNearestPoi(myLocation);
-                if (poi != null)
-                {
-                    myLocationName = poi.Poi.Name;
-                }
-                else
-                {
-                    myLocationName = (await PlaceNameProvider.AsyncGetPlaceName(myLocation)).PlaceName;
-                }
-
                 ReloadData();
             }
         }
@@ -149,6 +147,17 @@ namespace Peaks360App.AppContext
         protected override void OnSettingsChanged(object sender, SettingsChangedEventArgs e)
         {
             base.OnSettingsChanged(sender, e);
+
+            switch (e.ChangedData)
+            {
+                case ChangedData.GpsLocation:
+                    Task.Run(async () =>
+                    {
+                        await UpdateMyLocation();
+                        ReloadData();
+                    });
+                    break;
+            }
 
             Settings.SaveData();
         }
@@ -181,6 +190,19 @@ namespace Peaks360App.AppContext
                     needRefresh = true;
                 }
 
+                if (needRefresh)
+                {
+                    var poi = Database.GetNearestPoi(myLocation);
+                    if (poi != null)
+                    {
+                        myLocationName = poi.Poi.Name;
+                    }
+                    else
+                    {
+                        myLocationName = (await PlaceNameProvider.AsyncGetPlaceName(myLocation)).PlaceName;
+                    }
+                }
+
                 return needRefresh;
             }
             catch (Exception ex)
@@ -190,21 +212,16 @@ namespace Peaks360App.AppContext
             }
         }
 
-        public override void Pause()
+        protected override void StartProviders()
         {
-            base.Pause();
-
-            _compassProvider.Stop();
-            _locationTimer.Stop();
-        }
-
-        public override void Resume()
-        {
-            base.Resume();
-
             _compassProvider.Start();
             _locationTimer.Start();
         }
 
+        protected override void StopProviders()
+        {
+            _compassProvider.Stop();
+            _locationTimer.Stop();
+        }
     }
 }

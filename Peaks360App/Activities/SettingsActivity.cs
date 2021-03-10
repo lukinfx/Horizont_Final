@@ -115,7 +115,7 @@ namespace Peaks360App.Activities
             _textViewAngleVertical.Text = GetViewAngleText(_settings.IsViewAngleCorrection, _settings.CorrectionViewAngleVertical, _settings.AutomaticViewAngleVertical);
 
             _switchManualGpsLocation = FindViewById<Switch>(Resource.Id.switchManualGpsLocation);
-            _switchManualGpsLocation.Checked = (_settings.ManualLocation != null);
+            _switchManualGpsLocation.Checked = _settings.IsManualLocation;
             _switchManualGpsLocation.SetOnClickListener(this);
 
             _textViewLatitude = FindViewById<TextView>(Resource.Id.latitudeTitle);
@@ -255,12 +255,11 @@ namespace Peaks360App.Activities
                         double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture),
                         double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture),
                         double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture));
-                    _settings.ManualLocation = loc;
-                    _settings.IsManualLocation = true;
+                    _settings.SetManualLocation(loc);
                 }
                 else
                 {
-                    _settings.IsManualLocation = false;
+                    _settings.SetAutoLocation();
                 }
 
                 //Auto elevation profile
