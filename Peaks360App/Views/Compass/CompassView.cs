@@ -56,9 +56,6 @@ namespace Peaks360App.Views
         public float ViewAngleHorizontal { get; private set; } = 0;
         public float ViewAngleVertical { get; private set; } = 0;
 
-        public double LeftTiltCorrector { get { return _context.LeftTiltCorrector; } }
-        public double RightTiltCorrector { get { return _context.RightTiltCorrector; } }
-
         private IPoiCategoryBitmapProvider poiCategoryBitmapProvider;
         private CompassViewDrawer compassViewDrawer;
         private ElevationProfileBitmapDrawer elevationProfileBitmapDrawer;

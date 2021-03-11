@@ -320,7 +320,7 @@ namespace Peaks360App.Activities
             var sign = Context.HeadingCorrector < 0 ? '-' : '+';
             var heading = $"Hdg:{Context.Heading:F1}{sign}{Math.Abs(Context.HeadingCorrector):F1}";
 
-            var zoomAndTiltCorrection = $"Scale:{photoView.Scale:F2} ,LT:{_compassView.LeftTiltCorrector:F2}, RT:{_compassView.RightTiltCorrector:F2}";
+            var zoomAndTiltCorrection = $"Scale:{photoView.Scale:F2} ,LT:{Context.LeftTiltCorrector:F2}, RT:{Context.RightTiltCorrector:F2}";
 
             var viewAngle = $"va-V:{Context.ViewAngleVertical:F1} va-H:{Context.ViewAngleHorizontal:F1}";
 
@@ -507,8 +507,8 @@ namespace Peaks360App.Activities
                 || !_photodata.MinAltitude.IsEqual(Context.Settings.MinAltitute, 0.1)
                 || !_photodata.ViewAngleHorizontal.IsEqual(Context.ViewAngleHorizontal, 0.1)
                 || !_photodata.ViewAngleVertical.IsEqual(Context.ViewAngleVertical, 0.1)
-                || !(_photodata.LeftTiltCorrector?.IsEqual(_compassView.LeftTiltCorrector, 0.01) ?? true)
-                || !(_photodata.RightTiltCorrector?.IsEqual(_compassView.RightTiltCorrector, 0.01) ?? true)
+                || !(_photodata.LeftTiltCorrector?.IsEqual(Context.LeftTiltCorrector, 0.01) ?? true)
+                || !(_photodata.RightTiltCorrector?.IsEqual(Context.RightTiltCorrector, 0.01) ?? true)
                 || !_photodata.Heading.IsEqual(Context.Heading + Context.HeadingCorrector, 0.1)
                 || (_photodata.ShowElevationProfile && !elevationProfileData.MaxDistance.IsEqual(Context.ElevationProfileData.MaxDistance, 0.1));
         }
@@ -523,8 +523,8 @@ namespace Peaks360App.Activities
             _photodata.MinAltitude = MinHeight;
             _photodata.ViewAngleHorizontal = Context.ViewAngleHorizontal;
             _photodata.ViewAngleVertical = Context.ViewAngleVertical;
-            _photodata.LeftTiltCorrector = _compassView.LeftTiltCorrector;
-            _photodata.RightTiltCorrector = _compassView.RightTiltCorrector;
+            _photodata.LeftTiltCorrector = Context.LeftTiltCorrector;
+            _photodata.RightTiltCorrector = Context.RightTiltCorrector;
             _photodata.Heading = Context.Heading + Context.HeadingCorrector;
             _photodata.ShowElevationProfile = Context.Settings.ShowElevationProfile;
             _photodata.FavouriteFilter = Context.ShowFavoritesOnly;
@@ -536,8 +536,7 @@ namespace Peaks360App.Activities
 
         private void SaveCopy()
         {
-            var newPhotodata = ImageCopySaver.Save(dstBmp, photoView.CroppingRectangle, _photodata,
-                _compassView.LeftTiltCorrector, _compassView.RightTiltCorrector, MinHeight, MaxDistance, Context);
+            var newPhotodata = ImageCopySaver.Save(dstBmp, photoView.CroppingRectangle, _photodata, MinHeight, MaxDistance, Context);
             AppContextLiveData.Instance.PhotosModel.InsertItem(newPhotodata);
 
             ReInitialize(newPhotodata);
