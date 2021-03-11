@@ -69,6 +69,9 @@ namespace Peaks360App.AppContext
             }
         }
 
+        public double LeftTiltCorrector { get; set; }
+        public double RightTiltCorrector { get; set; }
+
         public bool ShowFavoritesOnly { get; set; }
         public bool ShowFavoritePicturesOnly { get; set; }
         public bool ShowFavoritePoisOnly { get; set; }

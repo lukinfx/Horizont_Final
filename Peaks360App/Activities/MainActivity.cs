@@ -49,7 +49,8 @@ namespace Peaks360App
         protected override IAppContext Context { get { return AppContextLiveData.Instance; } }
 
         protected override bool MoveingAndZoomingEnabled => false;
-        protected override bool TiltCorrectionEnabled => false;
+        protected override bool TwoPointTiltCorrectionEnabled => false;
+        protected override bool OnePointTiltCorrectionEnabled => true; 
         protected override bool HeadingCorrectionEnabled => true;
         protected override bool ViewAngleCorrectionEnabled => false;
         protected override bool ImageCroppingEnabled => false;
@@ -92,7 +93,6 @@ namespace Peaks360App
 
 
             Start();
-            Context.HeadingChanged += OnHeadingChanged;
 
             if (bundle != null)
             {
@@ -237,7 +237,9 @@ namespace Peaks360App
                     case Resource.Id.buttonResetCorrector:
                     {
                         Context.HeadingCorrector = 0;
-                        Context.Settings.SetAutoLocation();
+                        Context.LeftTiltCorrector = 0;
+                        Context.RightTiltCorrector = 0;
+                            Context.Settings.SetAutoLocation();
                         break;
                     }
                 }
@@ -342,14 +344,26 @@ namespace Peaks360App
             }
         }
 
-        public void OnHeadingChanged(object sender, HeadingChangedEventArgs e)
+        public override void OnHeadingChanged(object sender, HeadingChangedEventArgs e)
         {
+            base.OnHeadingChanged(sender, e);
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                _resetCorrectionButton.Visibility = (Context.Settings.IsManualLocation || Math.Abs(e.HeadingCorrection) > 0.1) 
-                    ? ViewStates.Visible : ViewStates.Gone;
+                UpdateResetButtonVisibility();
                 RefreshHeading();
             });
+        }
+
+        public override void OnTiltChanged()
+        {
+            base.OnTiltChanged();
+            UpdateResetButtonVisibility();
+        }
+
+        private void UpdateResetButtonVisibility()
+        {
+            _resetCorrectionButton.Visibility = (Context.Settings.IsManualLocation || Math.Abs(Context.HeadingCorrector) > 0.1 || Math.Abs(Context.LeftTiltCorrector) > 0.01 || Math.Abs(Context.RightTiltCorrector) > 0.01)
+                ? ViewStates.Visible : ViewStates.Gone;
         }
 
         public override void OnDataChanged(object sender, DataChangedEventArgs e)

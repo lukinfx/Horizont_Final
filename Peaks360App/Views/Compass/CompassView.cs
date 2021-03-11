@@ -13,6 +13,13 @@ using System.Collections.Generic;
 
 namespace Peaks360App.Views
 {
+    public enum TiltCorrectionType
+    {
+        Left,
+        Right,
+        Both
+    }
+
     public class CompassView : View
     {
         private readonly object syncLock = new object(); 
@@ -32,8 +39,6 @@ namespace Peaks360App.Views
         private bool _showPointsOfInterest = true;
 
         private ElevationProfileData _elevationProfile;
-        private double _leftTiltCorrector = 0;
-        private double _rightTiltCorrector = 0;
         private bool _allowRotation = true;
         private System.Drawing.Size _pictureSize;
 
@@ -51,8 +56,8 @@ namespace Peaks360App.Views
         public float ViewAngleHorizontal { get; private set; } = 0;
         public float ViewAngleVertical { get; private set; } = 0;
 
-        public double LeftTiltCorrector { get { return _leftTiltCorrector; } }
-        public double RightTiltCorrector { get { return _rightTiltCorrector; } }
+        public double LeftTiltCorrector { get { return _context.LeftTiltCorrector; } }
+        public double RightTiltCorrector { get { return _context.RightTiltCorrector; } }
 
         private IPoiCategoryBitmapProvider poiCategoryBitmapProvider;
         private CompassViewDrawer compassViewDrawer;
@@ -65,7 +70,7 @@ namespace Peaks360App.Views
             compassViewDrawer = new CompassViewDrawer(poiCategoryBitmapProvider);
         }
 
-        public void Initialize(IAppContext context, bool allowRotation, System.Drawing.Size pictureSize, float leftTiltCorrector = 0, float rightTiltCorrector = 0)
+        public void Initialize(IAppContext context, bool allowRotation, System.Drawing.Size pictureSize)
         {
             _scale = 1;
             _offsetY = 0;
@@ -74,8 +79,6 @@ namespace Peaks360App.Views
             _context = context;
             _allowRotation = allowRotation;
             _pictureSize = pictureSize;
-            _leftTiltCorrector = leftTiltCorrector;
-            _rightTiltCorrector = rightTiltCorrector;
 
             _context.Settings.SettingsChanged += OnSettingsChanged;
 
@@ -222,7 +225,7 @@ namespace Peaks360App.Views
                     {
                         if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
                         {
-                            compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
+                            compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, canvas.Width);
                         }
                     }
 
@@ -232,7 +235,7 @@ namespace Peaks360App.Views
                     {
                         if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
                         {
-                            compassViewDrawer.DrawItemIcon(canvas, item, (float)heading, (float)_offsetX, (float)_offsetY, _leftTiltCorrector, _rightTiltCorrector, canvas.Width);
+                            compassViewDrawer.DrawItemIcon(canvas, item, (float)heading, (float)_offsetX, (float)_offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, canvas.Width);
                         }
                     }
 
@@ -241,30 +244,30 @@ namespace Peaks360App.Views
 
         }
 
-        public void OnScroll(float distanceX)
+        public void OnHeadingCorrection(float distanceX)
         {
             var viewAngleHorizontal = _context.ViewAngleHorizontal;
             _context.HeadingCorrector = _context.HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX / _scale);
             Invalidate();
         }
 
-        public void OnScroll(float distanceY, bool isLeft)
+        public void OnTiltCorrection(float distanceY, TiltCorrectionType tiltCorrectionType)
         {
             var dY = (distanceY / Height) * scaledViewAngleVertical;
-            if (isLeft)
+            if (tiltCorrectionType == TiltCorrectionType.Left)
             {
-                _leftTiltCorrector += dY;
+                _context.LeftTiltCorrector += dY;
             }
-            else 
+            else if (tiltCorrectionType == TiltCorrectionType.Right)
             {
-                _rightTiltCorrector += dY;
+                _context.RightTiltCorrector += dY;
             }
-            Invalidate();
-        }
+            else if (tiltCorrectionType == TiltCorrectionType.Both)
+            {
+                _context.LeftTiltCorrector += dY;
+                _context.RightTiltCorrector += dY;
+            }
 
-        public void ResetHeadingCorrector()
-        {
-            _context.HeadingCorrector = 0;
             Invalidate();
         }
 
@@ -275,7 +278,7 @@ namespace Peaks360App.Views
 
         private void PaintElevationProfileLines(Canvas canvas, double heading)
         {
-            elevationProfileBitmapDrawer.PaintElevationProfileLines(canvas, heading, _leftTiltCorrector, _rightTiltCorrector, (float)_offsetX, (float)_offsetY);
+            elevationProfileBitmapDrawer.PaintElevationProfileLines(canvas, heading, _context.LeftTiltCorrector, _context.RightTiltCorrector, (float)_offsetX, (float)_offsetY);
         }
 
         public void Move(double offsetX, double offsetY)
@@ -337,7 +340,7 @@ namespace Peaks360App.Views
                 {
                     if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
                     {
-                        if (compassViewDrawer.IsItemClicked(item, (float) heading, (float) _offsetX, (float) _offsetY, _leftTiltCorrector, _rightTiltCorrector, Width, Height, x, y))
+                        if (compassViewDrawer.IsItemClicked(item, (float) heading, (float) _offsetX, (float) _offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, Width, Height, x, y))
                         {
                             return item;
                         }

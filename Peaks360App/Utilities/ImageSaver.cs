@@ -73,6 +73,8 @@ namespace Peaks360App.Utilities
                         Latitude = _context.MyLocation.Latitude,
                         Altitude = _context.MyLocation.Altitude,
                         Heading = _context.Heading + _context.HeadingCorrector,
+                        LeftTiltCorrector = _context.LeftTiltCorrector,
+                        RightTiltCorrector = _context.RightTiltCorrector,
                         Thumbnail = thumbnail,
                         JsonCategories = jsonCategories,
                         ViewAngleVertical = _context.ViewAngleVertical,

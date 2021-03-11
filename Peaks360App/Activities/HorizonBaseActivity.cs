@@ -56,7 +56,8 @@ namespace Peaks360App.Activities
         private CroppingHandle? m_croppingHandle;
 
         protected abstract bool MoveingAndZoomingEnabled { get; }
-        protected abstract bool TiltCorrectionEnabled { get; }
+        protected abstract bool TwoPointTiltCorrectionEnabled { get; }
+        protected abstract bool OnePointTiltCorrectionEnabled { get; }
         protected abstract bool HeadingCorrectionEnabled { get; }
         protected abstract bool ViewAngleCorrectionEnabled { get; }
         protected abstract bool ImageCroppingEnabled { get; }
@@ -123,6 +124,7 @@ namespace Peaks360App.Activities
         {
             //Finnaly setup OnDataChanged listener and Load all data
             Context.DataChanged += DataChanged;
+            Context.HeadingChanged += HeadingChanged;
             UpdateStatusBar();
         }
 
@@ -149,10 +151,23 @@ namespace Peaks360App.Activities
             });
         }
 
+        public void HeadingChanged(object sender, HeadingChangedEventArgs e)
+        {
+            OnHeadingChanged(sender, e);
+        }
+
         public virtual void OnDataChanged(object sender, DataChangedEventArgs e)
         {
             _textViewNotification.Visibility = ViewStates.Invisible;
             UpdateStatusBar();
+        }
+
+        public virtual void OnHeadingChanged(object sender, HeadingChangedEventArgs e)
+        {
+        }
+
+        public virtual void OnTiltChanged()
+        {
         }
 
         private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
@@ -217,9 +232,10 @@ namespace Peaks360App.Activities
                     break;
                 case MotionEventActions.Move:
                     {
-                        //heading and tilt correction
+                        
                         if (touchCount == 1)
                         {
+                            //image moving + heading and tilt correction 
                             var distanceX = m_PreviousMoveX - (int)e.GetX();
                             var distanceY = m_PreviousMoveY - (int)e.GetY();
                             m_PreviousMoveX = (int)e.GetX();
@@ -230,31 +246,27 @@ namespace Peaks360App.Activities
                                 OnCropAdjustment(m_croppingHandle.Value, -distanceX, -distanceY);
                             }
                             else if (MoveingAndZoomingEnabled && !m_IsScaling)
-                            {//moving
+                            {
                                 OnMove(-distanceX, -distanceY);
                             }
                             else if (HeadingCorrectionEnabled && Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
                             {
-                                _compassView.OnScroll(distanceX);
-                                Log.WriteLine(LogPriority.Debug, TAG, $"Heading correction: {distanceX}");
+                                _compassView.OnHeadingCorrection(distanceX);
                             }
-                            else if (TiltCorrectionEnabled)
+                            else if (OnePointTiltCorrectionEnabled && Math.Abs(m_FirstMoveY - e.GetY()) > Math.Abs(m_FirstMoveX - e.GetX()))
                             {
-                                if (e.RawX < Resources.DisplayMetrics.WidthPixels / 2)
-                                {
-                                    _compassView.OnScroll(distanceY, true);
-                                    Log.WriteLine(LogPriority.Debug, TAG, $"Left tilt correction: {distanceY}");
-                                }
-                                else
-                                {
-                                    _compassView.OnScroll(distanceY, false);
-                                    Log.WriteLine(LogPriority.Debug, TAG, $"Right tilt correction: {distanceY}");
-                                }
+                                _compassView.OnTiltCorrection(distanceY, TiltCorrectionType.Both);
+                                OnTiltChanged();
+                            }
+                            else if (TwoPointTiltCorrectionEnabled)
+                            {
+                                _compassView.OnTiltCorrection(distanceY, (e.RawX < Resources.DisplayMetrics.WidthPixels / 2) ? TiltCorrectionType.Left : TiltCorrectionType.Right);
+                                OnTiltChanged();
                             }
                         }
                         else if (touchCount >= 2)
                         {
-                            //zooming
+                            //image zooming + view angle correction
                             if (MoveingAndZoomingEnabled && touchCount >= 2 && m_IsScaling)
                             {
                                 var distance = Distance(e.GetX(0), e.GetX(1), e.GetY(0), e.GetY(1));

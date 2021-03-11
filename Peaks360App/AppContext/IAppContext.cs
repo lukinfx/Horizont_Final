@@ -35,6 +35,8 @@ namespace Peaks360App.AppContext
         string MyLocationName { get; }
         double Heading { get; }
         double HeadingCorrector { get; set; }
+        double LeftTiltCorrector { get; set; }
+        double RightTiltCorrector { get; set; }
         PoiViewItemList PoiData { get; }
         bool IsPortrait { get; }
         float ViewAngleHorizontal { get; }

@@ -57,7 +57,8 @@ namespace Peaks360App.Activities
         protected bool CroppingOn { get; set; }
 
         protected override bool MoveingAndZoomingEnabled => !EditingOn;
-        protected override bool TiltCorrectionEnabled => EditingOn;
+        protected override bool TwoPointTiltCorrectionEnabled => EditingOn;
+        protected override bool OnePointTiltCorrectionEnabled => false;
         protected override bool HeadingCorrectionEnabled => EditingOn;
         protected override bool ViewAngleCorrectionEnabled => EditingOn;
 
@@ -86,7 +87,8 @@ namespace Peaks360App.Activities
             }
 
             _context = new AppContextStaticData(loc, "unknown location", photodata.Heading);
-
+            _context.LeftTiltCorrector = photodata.LeftTiltCorrector ?? 0;
+            _context.RightTiltCorrector = photodata.RightTiltCorrector ?? 0;
             //### This can be removed later
             if (photodata.PictureWidth == 0) photodata.PictureWidth = AppContextLiveData.Instance.Settings.CameraPictureSize.Width;
             if (photodata.PictureHeight == 0) photodata.PictureHeight = AppContextLiveData.Instance.Settings.CameraPictureSize.Height;
@@ -154,7 +156,7 @@ namespace Peaks360App.Activities
             HideControls();
 
             var pictureSize = new System.Drawing.Size(GetPictureWidth(), GetPictureHeight());
-            _compassView.Initialize(Context, false, pictureSize, (float?) _photodata.LeftTiltCorrector ?? 0, (float?) _photodata.RightTiltCorrector ?? 0);
+            _compassView.Initialize(Context, false, pictureSize);
 
             if (_photodata.Thumbnail != null)
             {
@@ -551,7 +553,7 @@ namespace Peaks360App.Activities
             var pictureSize = new System.Drawing.Size(GetPictureWidth(), GetPictureHeight());
             var drawingSize = new System.Drawing.Size(_compassView.Width, _compassView.Height);
 
-            _compassView.Initialize(Context, false, pictureSize, (float?)newPhotodata.LeftTiltCorrector ?? 0, (float?)newPhotodata.RightTiltCorrector ?? 0);
+            _compassView.Initialize(Context, false, pictureSize);
             _compassView.InitializeViewDrawer(drawingSize, pictureSize);
 
             
@@ -567,9 +569,7 @@ namespace Peaks360App.Activities
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
-            compassView.Initialize(Context, false,
-                new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight),
-                (float) _compassView.LeftTiltCorrector, (float) _compassView.RightTiltCorrector);
+            compassView.Initialize(Context, false, new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight));
             compassView.Layout(0, 0, _photodata.PictureWidth, _photodata.PictureHeight);
             compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight));
             compassView.SetPoiViewItemList(Context.PoiData);
@@ -614,9 +614,7 @@ namespace Peaks360App.Activities
             var logoBmp = BitmapFactory.DecodeResource(Resources, Resource.Drawable.logo_horizon5);
 
             var compassView = new CompassView(ApplicationContext, null);
-            compassView.Initialize(Context, false,
-                new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight),
-                (float) _compassView.LeftTiltCorrector, (float) _compassView.RightTiltCorrector);
+            compassView.Initialize(Context, false, new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight));
             compassView.Layout(0, 0, _photodata.PictureWidth, _photodata.PictureHeight);
             compassView.InitializeViewDrawer(new System.Drawing.Size(dstBmp.Width, dstBmp.Height), new System.Drawing.Size(_photodata.PictureWidth, _photodata.PictureHeight));
             compassView.SetPoiViewItemList(Context.PoiData);
