@@ -38,17 +38,15 @@ namespace Peaks360App.Utilities
 
     public sealed class Settings
     {
-        public event SettingsChangedEventHandler SettingsChanged;
-
-        public Peaks360Lib.Domain.Enums.Language Language;
-
-        private Context mContext;
+        private Context _context;
 
         private Timer _changeFilterTimer = new Timer();
 
-        public Size[] cameraResolutionList;
+        public event SettingsChangedEventHandler SettingsChanged;
 
-        public Size cameraResolutionSelected { get; set; }
+        public Language Language;
+
+        public Size CameraResolutionSelected { get; set; }
 
         public Settings()
         {
@@ -174,7 +172,7 @@ namespace Peaks360App.Utilities
 
         public void LoadData(Context context)
         {
-            mContext = context;
+            _context = context;
 
             ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(context);
 
@@ -204,7 +202,7 @@ namespace Peaks360App.Utilities
                 SetTutorialNeeded(TutorialPart.PhotoEditActivity, isTutorialNeeded);
             }
 
-            cameraResolutionSelected = new Size (prefs.GetInt("CameraResolutionWidth", 0), prefs.GetInt("CameraResolutionHeight", 0));
+            CameraResolutionSelected = new Size (prefs.GetInt("CameraResolutionWidth", 0), prefs.GetInt("CameraResolutionHeight", 0));
             CameraId= prefs.GetString("CameraId", null);
 
             string lan = prefs.GetString("Language", "");
@@ -218,9 +216,9 @@ namespace Peaks360App.Utilities
 
         public void SaveData()
         {
-            if (mContext != null)
+            if (_context != null)
             {
-                ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(mContext);
+                ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(_context);
                 ISharedPreferencesEditor editor = prefs.Edit();
 
                 var categoriesAsCollection = new Collection<string>();
@@ -242,8 +240,8 @@ namespace Peaks360App.Utilities
                 editor.PutBoolean("ShowTutorialMainActivity", IsTutorialNeeded(TutorialPart.MainActivity));
                 editor.PutBoolean("ShowTutorialPhotoEditActivity", IsTutorialNeeded(TutorialPart.PhotoEditActivity));
 
-                editor.PutInt("CameraResolutionWidth", cameraResolutionSelected.Width);
-                editor.PutInt("CameraResolutionHeight", cameraResolutionSelected.Height);
+                editor.PutInt("CameraResolutionWidth", CameraResolutionSelected.Width);
+                editor.PutInt("CameraResolutionHeight", CameraResolutionSelected.Height);
                 editor.PutString("CameraId", CameraId);
                 editor.PutString("Language", Language.ToString());
                 

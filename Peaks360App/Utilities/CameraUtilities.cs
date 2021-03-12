@@ -13,11 +13,14 @@ using Peaks360App.AppContext;
 using Android.Hardware.Camera2;
 using Android.Util;
 using Android.Hardware.Camera2.Params;
+using Java.Util;
+using Peaks360App.Views.Camera;
 
 namespace Peaks360App.Utilities
 {
     public class CameraUtilities
     {
+        private const int MAX_CAMERA_RESOLUTION = 5000 * 4000;
         public static List<string> GetCameras()
         {
             var ctx = Application.Context;
@@ -49,7 +52,7 @@ namespace Peaks360App.Utilities
             return result;
         }
 
-        public static Size[] GetCameraResolutions(string cameraId)
+        public static IEnumerable<Size> GetCameraResolutions(string cameraId)
         {
             var ctx = Application.Context;
 
@@ -63,7 +66,10 @@ namespace Peaks360App.Utilities
             }
 
             var imageSizes = map.GetOutputSizes((int)ImageFormatType.Jpeg);
-            return imageSizes;
+
+            return imageSizes
+                //.Where(x => x.Height * x.Width <= MAX_CAMERA_RESOLUTION)
+                .OrderByDescending(x => x.Height * x.Width);
         }
 
         public static (float, float) FetchCameraViewAngle(string cameraId)
@@ -92,6 +98,64 @@ namespace Peaks360App.Utilities
             {
                 //Default values
                 return (1920, 1080);
+            }
+        }
+
+        public static string GetDefaultCamera()
+        {
+            return GetCameras().First();
+        }
+
+        public static Size GetDefaultCameraResolution(string cameraId)
+        {
+            var listOfSizes = CameraUtilities.GetCameraResolutions(cameraId);
+            return listOfSizes.First();
+        }
+
+        public static Size ChooseOptimalSize(Size[] choices,
+            int textureViewWidth, int textureViewHeight, 
+            int maxWidth, int maxHeight, 
+            Size aspectRatio)
+        {
+            
+            // Collect the supported resolutions that are at least as big as the preview Surface
+            var bigEnough = new List<Size>();
+            // Collect the supported resolutions that are smaller than the preview Surface
+            var notBigEnough = new List<Size>();
+            int w = aspectRatio.Width;
+            int h = aspectRatio.Height;
+
+            foreach (var option in choices)
+            {
+                if ((option.Width <= maxWidth) && (option.Height <= maxHeight)
+                                               && option.Height == option.Width * h / w)
+                {
+                    if (option.Width >= textureViewWidth &&
+                        option.Height >= textureViewHeight)
+                    {
+                        bigEnough.Add(option);
+                    }
+                    else
+                    {
+                        notBigEnough.Add(option);
+                    }
+                }
+            }
+
+            // Pick the smallest of those big enough. If there is no one big enough, pick the
+            // largest of those not big enough.
+            if (bigEnough.Count > 0)
+            {
+                return (Size)Collections.Min(bigEnough, new CompareSizesByArea());
+            }
+            else if (notBigEnough.Count > 0)
+            {
+                return (Size)Collections.Max(notBigEnough, new CompareSizesByArea());
+            }
+            else
+            {
+                //Log.Error(TAG, "Couldn't find any suitable preview size");
+                return choices.First();
             }
         }
     }

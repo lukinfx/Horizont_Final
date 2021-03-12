@@ -96,7 +96,7 @@ namespace Peaks360App.Activities
             _listOfCameraResolutions = CameraUtilities.GetCameraResolutions(_settings.CameraId).Where(x => x.Width >= ScaleImageView.MIN_IMAGE_SIZE && x.Height >= ScaleImageView.MIN_IMAGE_SIZE).ToList();
             var adapterPhotoResolution = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfCameraResolutions);
             _spinnerPhotoResolution.Adapter = adapterPhotoResolution;
-            var resolutionIdx = _listOfCameraResolutions.FindIndex(i => i.Equals(_settings.cameraResolutionSelected));
+            var resolutionIdx = _listOfCameraResolutions.FindIndex(i => i.Equals(_settings.CameraResolutionSelected));
             _spinnerPhotoResolution.SetSelection(resolutionIdx);
             _spinnerPhotoResolution.ItemSelected += (sender, args) => { InvalidateOptionsMenu(); };
 
@@ -200,7 +200,7 @@ namespace Peaks360App.Activities
             if (_isDirty)
                 return true;
 
-            if(!_settings.cameraResolutionSelected.Equals(_listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition]))
+            if(!_settings.CameraResolutionSelected.Equals(_listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition]))
                 return true;
 
             if (_settings.Language != _listOfLanguages[_spinnerLanguages.SelectedItemPosition])
@@ -267,7 +267,7 @@ namespace Peaks360App.Activities
 
                 //Altitude from elevation map
                 _settings.AltitudeFromElevationMap = _switchAltitudeFromElevationMap.Checked;
-                _settings.cameraResolutionSelected = _listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition];
+                _settings.CameraResolutionSelected = _listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition];
                 SetLanguage();
 
                 _settings.NotifySettingsChanged(ChangedData.ViewOptions);

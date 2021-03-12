@@ -27,8 +27,8 @@ namespace Peaks360App.AppContext
 
         private float GetViewAngleHorizontal()
         {
-            var dx = Settings.cameraResolutionSelected.Width / (float)Settings.CameraPictureSize.Width;
-            var dy = Settings.cameraResolutionSelected.Height / (float)Settings.CameraPictureSize.Height;
+            var dx = Settings.CameraResolutionSelected.Width / (float)Settings.CameraPictureSize.Width;
+            var dy = Settings.CameraResolutionSelected.Height / (float)Settings.CameraPictureSize.Height;
 
             var m = (dx < dy) ? (dx / dy) : 1;
             return m * Settings.AViewAngleHorizontal;
@@ -36,8 +36,8 @@ namespace Peaks360App.AppContext
 
         private float GetViewAngleVertical()
         {
-            var dx = Settings.cameraResolutionSelected.Width / (float)Settings.CameraPictureSize.Width;
-            var dy = Settings.cameraResolutionSelected.Height / (float)Settings.CameraPictureSize.Height;
+            var dx = Settings.CameraResolutionSelected.Width / (float)Settings.CameraPictureSize.Width;
+            var dy = Settings.CameraResolutionSelected.Height / (float)Settings.CameraPictureSize.Height;
 
             var m = (dx > dy) ? (dy / dx) : 1;
             return m * Settings.AViewAngleVertical;
@@ -99,12 +99,8 @@ namespace Peaks360App.AppContext
 
             if (String.IsNullOrEmpty(Settings.CameraId))
             {
-                var cameraId = CameraUtilities.GetCameras().First();
-                var listOfSizes = CameraUtilities.GetCameraResolutions(cameraId);
-                Size defaultSize = (Size)Collections.Max(listOfSizes, new CompareSizesByArea());
-
-                Settings.cameraResolutionSelected = defaultSize;
-                Settings.CameraId = cameraId;
+                Settings.CameraId = CameraUtilities.GetDefaultCamera();
+                Settings.CameraResolutionSelected = CameraUtilities.GetDefaultCameraResolution(Settings.CameraId); 
             }
 
             var (viewAngleHorizontal, viewAngleVertical) = CameraUtilities.FetchCameraViewAngle(Settings.CameraId);

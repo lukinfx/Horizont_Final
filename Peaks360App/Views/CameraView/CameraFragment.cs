@@ -117,53 +117,6 @@ namespace Peaks360App.Views.Camera
             }
         }
 
-        private static Size ChooseOptimalSize(Size[] choices, int textureViewWidth,
-            int textureViewHeight, int maxWidth, int maxHeight, Size aspectRatio)
-        {
-            //return new Size(textureViewWidth, textureViewHeight);
-
-            // Collect the supported resolutions that are at least as big as the preview Surface
-            var bigEnough = new List<Size>();
-            // Collect the supported resolutions that are smaller than the preview Surface
-            var notBigEnough = new List<Size>();
-            int w = aspectRatio.Width;
-            int h = aspectRatio.Height;
-
-            for (var i = 0; i < choices.Length; i++)
-            {
-                Size option = choices[i];
-                if ((option.Width <= maxWidth) && (option.Height <= maxHeight)
-                      && option.Height == option.Width * h / w)
-                {
-                    if (option.Width >= textureViewWidth &&
-                        option.Height >= textureViewHeight)
-                    {
-                        bigEnough.Add(option);
-                    }
-                    else
-                    {
-                        notBigEnough.Add(option);
-                    }
-                }
-            }
-
-            // Pick the smallest of those big enough. If there is no one big enough, pick the
-            // largest of those not big enough.
-            if (bigEnough.Count > 0)
-            {
-                return (Size)Collections.Min(bigEnough, new CompareSizesByArea());
-            }
-            else if (notBigEnough.Count > 0)
-            {
-                return (Size)Collections.Max(notBigEnough, new CompareSizesByArea());
-            }
-            else
-            {
-                Log.Error(TAG, "Couldn't find any suitable preview size");
-                return choices[0];
-            }
-        }
-
         public static CameraFragment NewInstance()
         {
             return new CameraFragment();
@@ -239,7 +192,7 @@ namespace Peaks360App.Views.Camera
 
                 var map = (StreamConfigurationMap)characteristics.Get(CameraCharacteristics.ScalerStreamConfigurationMap);
 
-                mImageReader = ImageReader.NewInstance(_context.Settings.cameraResolutionSelected.Width, _context.Settings.cameraResolutionSelected.Height, ImageFormatType.Jpeg, /*maxImages*/2);
+                mImageReader = ImageReader.NewInstance(_context.Settings.CameraResolutionSelected.Width, _context.Settings.CameraResolutionSelected.Height, ImageFormatType.Jpeg, /*maxImages*/2);
                 mImageReader.SetOnImageAvailableListener(mOnImageAvailableListener, mBackgroundHandler);
 
                 // Find out if we need to swap dimension to get the preview size relative to sensor
@@ -297,19 +250,19 @@ namespace Peaks360App.Views.Camera
                 // Danger, W.R.! Attempting to use too large a preview size could  exceed the camera
                 // bus' bandwidth limitation, resulting in gorgeous previews but the storage of
                 // garbage capture data.
-                mPreviewSize = ChooseOptimalSize(map?.GetOutputSizes(Class.FromType(typeof(SurfaceTexture))),
-                     rotatedPreviewWidth, rotatedPreviewHeight,
-                     maxPreviewWidth, maxPreviewHeight,
-                     _context.Settings.cameraResolutionSelected);
+                mPreviewSize = CameraUtilities.ChooseOptimalSize(map?.GetOutputSizes(Class.FromType(typeof(SurfaceTexture))),
+                    rotatedPreviewWidth, rotatedPreviewHeight,
+                    maxPreviewWidth, maxPreviewHeight,
+                    _context.Settings.CameraResolutionSelected);
                 
                 // We fit the aspect ratio of TextureView to the size of preview we picked.
                 if (AppContextLiveData.Instance.IsPortrait)
                 {
-                    mTextureView.SetAspectRatio(_context.Settings.cameraResolutionSelected.Height, _context.Settings.cameraResolutionSelected.Width); 
+                    mTextureView.SetAspectRatio(_context.Settings.CameraResolutionSelected.Height, _context.Settings.CameraResolutionSelected.Width); 
                 }
                 else
                 {
-                    mTextureView.SetAspectRatio(_context.Settings.cameraResolutionSelected.Width, _context.Settings.cameraResolutionSelected.Height);
+                    mTextureView.SetAspectRatio(_context.Settings.CameraResolutionSelected.Width, _context.Settings.CameraResolutionSelected.Height);
                 }
 
                 // Check if the flash is supported.
@@ -324,7 +277,6 @@ namespace Peaks360App.Views.Camera
                 }
 
                 mCameraId = cameraId;
-                return;
             }
             catch (CameraAccessException e)
             {
