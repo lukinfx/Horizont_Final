@@ -111,7 +111,9 @@
   <string name="AltitudeExplenation">Přesné určení nadmořské výšky je pro správné fungování aplikace velmi podstatné. Nadmořskou výšku lze získat z výškové mapy namísto nadmořské výšky z GPS polohy (jsou-li výšková data k dispozici).</string>
   <string name="AltitudeFromElevationMap">Používat nadmořskou výšku z výškové mapy</string>
   <string name="PhotoResolution">Rozlišení fotografie</string>
-
+  <string name="Settings_ClearElevationData">Vymazat výšková data</string>
+  <string name="Settings_ElevationDataSize">Výšková data uložená v mezipaměti zabírají {0} MB paměti zařízení.</string>
+  
   <string name="Tutorial_PhotoEdit_HeadingCorrection">Posouvejte prstem v horní části displeje pro korekci směru pohledu.</string>
   <string name="Tutorial_PhotoEdit_HorizontCorrection">Posouvejte prstem na levém/pravém okraji displeje pro korekci horizontu.</string>
   <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Použijte dva prsty pro korekcí horizontálního a vertikálního zobrazovacího úhlu.</string>

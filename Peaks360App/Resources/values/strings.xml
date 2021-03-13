@@ -111,6 +111,9 @@
   <string name="AltitudeExplenation">Accurate altitude is very important for user experience. You can possibly use altitude value from elevation map (when elevation data are available) instead of altitude from GPS.</string>
   <string name="AltitudeFromElevationMap">Use altitude from elevation map</string>
   <string name="PhotoResolution">Photo resolution</string>
+  <string name="Settings_ClearElevationData">Clear elevation data</string>
+  <string name="Settings_ElevationDataSize">Cached elevation data occupy {0} MBytes of device memory.</string>
+  
 
   <string name="Tutorial_PhotoEdit_HeadingCorrection">Move you finger on top of the screen to adjust compass heading.</string>
   <string name="Tutorial_PhotoEdit_HorizontCorrection">Move you finger on left/right screen edge to to adjust artifical horizon.</string>

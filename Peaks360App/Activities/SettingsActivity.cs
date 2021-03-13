@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Globalization;
 using System.Collections.Generic;
-using Java.Lang;
 using Android.Util;
 using Android.App;
 using Android.OS;
@@ -13,6 +13,7 @@ using Peaks360Lib.Domain.Enums;
 using Peaks360App.Utilities;
 using Peaks360App.AppContext;
 using Peaks360App.Views.ScaleImage;
+using Peaks360Lib.Providers;
 using static Android.Views.View;
 
 namespace Peaks360App.Activities
@@ -40,6 +41,7 @@ namespace Peaks360App.Activities
         private TextView _textViewLatitude;
         private TextView _textViewLongitude;
         private TextView _textViewAltitude;
+        private TextView _textViewElevationDataSize;
 
         private TextView _textViewAngleHorizontal;
         private SeekBar _seekBarCorrectionViewAngleHorizontal;
@@ -136,6 +138,13 @@ namespace Peaks360App.Activities
             _switchAutoElevationProfile = FindViewById<Switch>(Resource.Id.switchAutoElevationProfile);
             _switchAutoElevationProfile.Checked = _settings.AutoElevationProfile;
             _switchAutoElevationProfile.SetOnClickListener(this);
+
+            var buttonClearElevationData = FindViewById<Button>(Resource.Id.buttonClearElevationData);
+            buttonClearElevationData.SetOnClickListener(this);
+
+            _textViewElevationDataSize = FindViewById<TextView>(Resource.Id.textViewElevationDataSize);
+
+            UpdateElevationDataSize();
         }
 
         private void SetLanguage()
@@ -340,6 +349,10 @@ namespace Peaks360App.Activities
                 case Resource.Id.switchAutoElevationProfile:
                     SetDirty();
                     break;
+                case Resource.Id.buttonClearElevationData:
+                    ElevationFileProvider.ClearElevationData();
+                    UpdateElevationDataSize();
+                    break;
             }
         }
 
@@ -366,5 +379,13 @@ namespace Peaks360App.Activities
             var correction = manual ? correctionViewAngle : 0;
             return $"Correction: {correction:0.0}   View angle: {viewAngle:0.0} ()";
         }
+
+        private void UpdateElevationDataSize()
+        {
+            var totalFileSize = ElevationFileProvider.GetTotalElevationFileSize() / 1024f / 1024f;
+            var totalFileSizeAsText = $"{totalFileSize:F1}";
+            _textViewElevationDataSize.Text = String.Format(Resources.GetText(Resource.String.Settings_ElevationDataSize), totalFileSizeAsText); ;
+        }
+
     }
 }

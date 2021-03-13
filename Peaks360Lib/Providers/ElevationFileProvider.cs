@@ -66,10 +66,32 @@ namespace Peaks360Lib.Providers
             var filePath = GetElevationFilePath(lat, lon);
             File.Delete(filePath);
         }
-
         public static int GetFileSize()
         {
             return ELEVATION_FILE_SIZE;
+        }
+
+        public static long GetTotalElevationFileSize()
+        {
+            DirectoryInfo d = new DirectoryInfo(GetElevationFileFolder());
+
+            long totalFileSize = 0;
+            foreach (var file in d.GetFiles("*_DSM.zip"))
+            {
+                totalFileSize += file.Length;
+            }
+
+            return totalFileSize;
+        }
+
+        public static void ClearElevationData()
+        {
+            DirectoryInfo d = new DirectoryInfo(GetElevationFileFolder());
+
+            foreach (var file in d.GetFiles("*_DSM.zip"))
+            {
+                file.Delete();
+            }
         }
     }
 }

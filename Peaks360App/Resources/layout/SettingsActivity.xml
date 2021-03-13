@@ -236,5 +236,29 @@
               android:textAppearance="?android:attr/textAppearanceMedium"
               android:id="@+id/spinnerResolution" />
         </LinearLayout>
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:padding="10dp"
+          android:background="@drawable/bg_activity">
+          <TextView
+            android:text="@string/Category_ElevationData"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+          <TextView
+            android:text="Cached elevation data occupy 28.2 MBytes of device memory."
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:id="@+id/textViewElevationDataSize" />
+          <Button
+            android:text="@string/Settings_ClearElevationData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonClearElevationData" />
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
