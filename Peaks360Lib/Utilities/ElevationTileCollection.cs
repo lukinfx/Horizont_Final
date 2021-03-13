@@ -119,11 +119,14 @@ namespace Peaks360Lib.Utilities
             bool isOk = true;
             foreach (var et in _elevationTiles)
             {
-                if (!et.Download())
+                if (!et.Exists())
                 {
-                    isOk = false;
+                    if (!et.Download())
+                    {
+                        isOk = false;
+                    }
+                    onProgressChange(++count);
                 }
-                onProgressChange(count++);
             }
 
             return isOk;
@@ -177,7 +180,7 @@ namespace Peaks360Lib.Utilities
                 {
                     isOk = false;
                 }
-                onProgressChange(count++);
+                onProgressChange(++count);
             }
 
             return isOk;

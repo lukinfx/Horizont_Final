@@ -47,7 +47,7 @@
   <string name="Main_EnableGpsQuestion">GPS není zapnuta. Chcete ji zapnout nyní?</string>
   <string name="Main_ErrorGeneratingElevationProfile">Chyba při vytváření výškového profilu.</string>
   <string name="Main_ErrorUnknownAltitude">Není možno vygenerovat výškový profil bez známé nadmořské výšky.</string>
-  <string name="Main_GeneratingElevationProfile">Generuji výškový profil. Prosím čekejte.</string>
+  <string name="Main_GeneratingElevationProfile">Generuji výškový profil...</string>
   <string name="Main_WaitingForGps">Čekání na GPS polohu...</string>
 
   <!--PoiListActivity-->

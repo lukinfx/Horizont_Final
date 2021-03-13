@@ -501,9 +501,10 @@ namespace Peaks360App.Activities
             var lastProgressUpdate = System.Environment.TickCount;
 
             var pd = new ProgressDialog(this);
-            pd.SetMessage(Resources.GetText(Resource.String.Download_Progress_DownloadingElevationData));
+            pd.SetMessage(Resources.GetText(Resource.String.Main_GeneratingElevationProfile));
             pd.SetCancelable(false);
             pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
+            pd.Max = 100;
             pd.Show();
 
             ec.OnFinishedAction = (result) =>
@@ -518,14 +519,6 @@ namespace Peaks360App.Activities
 
                 RefreshElevationProfile();
                 _elevationProfileBeingGenerated = false;
-            };
-            ec.OnStageChange = (text, max) =>
-            {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    pd.SetMessage(text);
-                    pd.Max = max;
-                });
             };
             ec.OnProgressChange = (progress) =>
             {

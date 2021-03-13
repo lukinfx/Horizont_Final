@@ -4,6 +4,8 @@ using Peaks360Lib.Utilities;
 using Peaks360Lib.Domain.Models;
 using Peaks360App.Utilities;
 using Peaks360Lib.Domain.ViewModel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Peaks360App.Tasks
 {
@@ -15,7 +17,6 @@ namespace Peaks360App.Tasks
         public int MaxDistance { get; private set; }
 
         public Action<ElevationProfileData> OnFinishedAction;
-        public Action<string, int> OnStageChange;
         public Action<int> OnProgressChange;
 
         public ElevationCalculation(GpsLocation myLocation, int maxDistance)
@@ -49,23 +50,58 @@ namespace Peaks360App.Tasks
             OnFinishedAction?.Invoke(result);
         }
 
+        class Part
+        {
+            public string Title { get; set; }
+            public int TimeComplexity { get; set; }
+            public int Count { get; set; }
+        }
         protected override ElevationProfileData RunInBackground(params GpsLocation[] @params)
         {
             try
             {
-                OnStageChange("Downloading elevation data", _elevationTileCollection.GetCountToDownload());
-                bool downloadingOk = _elevationTileCollection.Download(progress => { OnProgressChange?.Invoke(progress); });
-                
-                OnStageChange("Reading elevation data", _elevationTileCollection.GetCount());
-                bool readingOk = _elevationTileCollection.Read(progress => { OnProgressChange?.Invoke(progress); });
+                var parts = new List<Part>
+                {
+                    new Part() { Title = "DownloadTile", TimeComplexity = 50, Count = _elevationTileCollection.GetCountToDownload() },
+                    new Part() { Title = "ReadTile"    , TimeComplexity = 10, Count = _elevationTileCollection.GetCount() },
+                    new Part() { Title = "Generate"    , TimeComplexity =  1, Count = 360 },
+                    new Part() { Title = "MakeLines"   , TimeComplexity =  1, Count = 360 }
+                };
 
-                OnStageChange("Preparing elevation data.", 360);
+                float totalTimeComplexity = parts.Select(x => x.Count * x.TimeComplexity).Aggregate((sum, part) => sum + part);
+                int totalProgress = 0;
+
+                var downloadingOk = _elevationTileCollection.Download(progress =>
+                {
+                    var localProgress = progress * parts[0].TimeComplexity;
+                    OnProgressChange?.Invoke((int)((totalProgress + localProgress) / totalTimeComplexity * 100f));
+                });
+                totalProgress += parts[0].Count * parts[0].TimeComplexity;
+
+                var readingOk = _elevationTileCollection.Read(progress =>
+                {
+                    var localProgress = progress * parts[1].TimeComplexity;
+                    OnProgressChange?.Invoke((int)((totalProgress + localProgress) / totalTimeComplexity * 100f));
+                });
+                totalProgress += parts[1].Count * parts[1].TimeComplexity;
+
                 ElevationDataGenerator ep = new ElevationDataGenerator();
-                ep.Generate(MyLocation, MaxDistance, _elevationTileCollection, progress => { OnProgressChange?.Invoke(progress); });
+                ep.Generate(MyLocation, MaxDistance, _elevationTileCollection, progress =>
+                {
+                    var localProgress = progress * parts[2].TimeComplexity;
+                    OnProgressChange?.Invoke((int)((totalProgress + localProgress) / totalTimeComplexity * 100f));
+                });
+                totalProgress += parts[2].Count * parts[2].TimeComplexity;
 
-                OnStageChange("Processing elevation data.", 360);
+
                 ElevationProfile ep2 = new ElevationProfile();
-                ep2.GenerateElevationProfile3(MyLocation, MaxDistance, ep.GetProfile(), progress => { OnProgressChange?.Invoke(progress); });
+                ep2.GenerateElevationProfile3(MyLocation, MaxDistance, ep.GetProfile(), progress =>
+                {
+                    var localProgress = progress * parts[3].TimeComplexity;
+                    OnProgressChange?.Invoke((int)((totalProgress + localProgress) / totalTimeComplexity * 100f));
+                });
+                totalProgress += parts[3].Count * parts[3].TimeComplexity;
+
                 var epd  = ep2.GetProfile();
 
                 if (!downloadingOk || !readingOk)
