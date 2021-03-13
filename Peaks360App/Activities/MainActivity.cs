@@ -18,6 +18,7 @@ using Peaks360App.Utilities;
 using Peaks360App.Views.Camera;
 using Peaks360App.Activities;
 using Peaks360App.AppContext;
+using Peaks360App.Providers;
 using Peaks360App.Services;
 using Exception = System.Exception;
 using String = System.String;
@@ -116,7 +117,7 @@ namespace Peaks360App
             base.OnResume();
             Context.Resume();
 
-            CheckAndReloadElevationProfile();
+            ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
         }
 
         protected override void OnSaveInstanceState(Bundle bundle)
@@ -374,7 +375,8 @@ namespace Peaks360App
 
                 _compassView.SetPoiViewItemList(e.PoiData);
 
-                CheckAndReloadElevationProfile();
+                //TODO: check is the following call is really needed
+                ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
             }
             catch (Exception ex)
             {

@@ -16,6 +16,8 @@ using static Android.Views.View;
 using View = Android.Views.View;
 using GpsUtils = Peaks360App.Utilities.GpsUtils;
 using ImageButton = Android.Widget.ImageButton;
+using Peaks360App.Providers;
+using SQLitePCL;
 
 namespace Peaks360App.Activities
 {
@@ -34,8 +36,6 @@ namespace Peaks360App.Activities
 
         protected LinearLayout _seekBars;
         protected LinearLayout _poiInfo;
-
-        private bool _elevationProfileBeingGenerated = false;
 
         private GestureDetector _gestureDetector;
 
@@ -125,7 +125,17 @@ namespace Peaks360App.Activities
             //Finnaly setup OnDataChanged listener and Load all data
             Context.DataChanged += DataChanged;
             Context.HeadingChanged += HeadingChanged;
+            ElevationProfileProvider.Instance().ElevationProfileChanged += OnElevationProfileChanged;
             UpdateStatusBar();
+        }
+
+        protected override void OnDestroy()
+        {
+            Context.DataChanged -= DataChanged;
+            Context.HeadingChanged -= HeadingChanged;
+            ElevationProfileProvider.Instance().ElevationProfileChanged -= OnElevationProfileChanged;
+
+            base.OnDestroy();
         }
 
         public void OnLayoutChanged(object sender, LayoutChangeEventArgs e)
@@ -402,7 +412,7 @@ namespace Peaks360App.Activities
 
             _displayTerrainButton.SetImageResource(_compassView.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
 
-            CheckAndReloadElevationProfile();
+            ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
         }
 
         protected bool IsControlsVisible()
@@ -428,134 +438,11 @@ namespace Peaks360App.Activities
             _textViewStatusLine.SetTextColor(alert ? Android.Graphics.Color.Yellow : Android.Graphics.Color.GreenYellow);
         }
 
-        #region ElevationProfile
-
-        protected void CheckAndReloadElevationProfile()
+        public void OnElevationProfileChanged(object sender, ElevationProfileChangedEventArgs e)
         {
-            if (_compassView.ShowElevationProfile)
-            {
-                if (GpsUtils.HasAltitude(Context.MyLocation))
-                {
-                    if (_elevationProfileBeingGenerated == false)
-                    {
-                        if (Context.ElevationProfileData == null || !Context.ElevationProfileData.IsValid(Context.MyLocation, Context.Settings.MaxDistance))
-                        {
-                            GenerateElevationProfile();
-                        }
-                        else
-                        {
-                            RefreshElevationProfile();
-                        }
-                    }
-                }
-            }
+            Context.ElevationProfileData = e.ElevationProfileData;
+            _compassView.SetElevationProfile(e.ElevationProfileData);
         }
-
-        protected void GenerateElevationProfile()
-        {
-            try
-            {
-                if (!GpsUtils.HasAltitude(Context.MyLocation))
-                {
-                    PopupHelper.ErrorDialog(this,
-                        Resources.GetText(Resource.String.Error),
-                        Resources.GetText(Resource.String.Main_ErrorUnknownAltitude));
-                    return;
-                }
-
-                _elevationProfileBeingGenerated = true;
-
-                var ec = new ElevationCalculation(Context.MyLocation, MaxDistance);
-
-                var size = ec.GetSizeToDownload();
-                if (size == 0)
-                {
-                    StartDownloadAndCalculate(ec);
-                    return;
-                }
-
-                using (var builder = new AlertDialog.Builder(this))
-                {
-                    builder.SetTitle(Resources.GetText(Resource.String.Question));
-                    builder.SetMessage(String.Format(Resources.GetText(Resource.String.Download_Confirmation), size));
-                    builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
-                    builder.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) => { StartDownloadAndCalculateAsync(ec); });
-                    builder.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { _elevationProfileBeingGenerated = false; });
-
-                    var myCustomDialog = builder.Create();
-
-                    myCustomDialog.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Error),
-                    Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile) + " " + ex.Message);
-            }
-        }
-
-        private void StartDownloadAndCalculate(ElevationCalculation ec)
-        {
-            _elevationProfileBeingGenerated = true;
-            var lastProgressUpdate = System.Environment.TickCount;
-
-            var pd = new ProgressDialog(this);
-            pd.SetMessage(Resources.GetText(Resource.String.Main_GeneratingElevationProfile));
-            pd.SetCancelable(false);
-            pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
-            pd.Max = 100;
-            pd.Show();
-
-            ec.OnFinishedAction = (result) =>
-            {
-                pd.Hide();
-                if (!string.IsNullOrEmpty(result.ErrorMessage))
-                {
-                    PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.Error), result.ErrorMessage);
-                }
-
-                Context.ElevationProfileData = result;
-
-                RefreshElevationProfile();
-                _elevationProfileBeingGenerated = false;
-            };
-            ec.OnProgressChange = (progress) =>
-            {
-                var tickCount = System.Environment.TickCount;
-                if (tickCount - lastProgressUpdate > 100)
-                {
-                    MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
-                    Thread.Sleep(50);
-                    lastProgressUpdate = tickCount;
-                }
-            };
-
-            ec.Execute(Context.MyLocation);
-        }
-
-        private void StartDownloadAndCalculateAsync(ElevationCalculation ec)
-        {
-            try
-            {
-                StartDownloadAndCalculate(ec);
-            }
-            catch (Exception ex)
-            {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Error),
-                    Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile) + " " + ex.Message);
-            }
-        }
-
-        protected void RefreshElevationProfile()
-        {
-            if (Context.ElevationProfileData != null)
-            {
-                _compassView.SetElevationProfile(Context.ElevationProfileData);
-            }
-        }
-        #endregion ElevationProfile
 
         #region Required abstract methods
         public virtual bool OnDown(MotionEvent e) { return false; }

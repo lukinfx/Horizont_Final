@@ -15,6 +15,7 @@ using Peaks360Lib.Domain.ViewModel;
 using Peaks360Lib.Extensions;
 using Peaks360Lib.Utilities;
 using Peaks360App.AppContext;
+using Peaks360App.Providers;
 using Peaks360App.Utilities;
 using Peaks360App.Views;
 using Peaks360App.Views.ScaleImage;
@@ -181,7 +182,7 @@ namespace Peaks360App.Activities
                     Context.ElevationProfileData = ElevationProfileData.Deserialize(_photodata.JsonElevationProfileData);
                     if (Context.ElevationProfileData != null)
                     {
-                        RefreshElevationProfile();
+                        ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
                     }
                 }
             }
@@ -297,7 +298,8 @@ namespace Peaks360App.Activities
                 Log.WriteLine(LogPriority.Debug, TAG, $"PoiCount: {e.PoiData.Count}");
                 _compassView.SetPoiViewItemList(e.PoiData);
 
-                CheckAndReloadElevationProfile();
+                //TODO: check is the following call is really needed
+                ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
             }
             catch (Exception ex)
             {

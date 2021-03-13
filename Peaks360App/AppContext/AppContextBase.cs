@@ -41,7 +41,6 @@ namespace Peaks360App.AppContext
             set
             {
                 _elevationProfileData = value;
-                NotifyElevationProfileChanged();
             }
         }
 
@@ -175,21 +174,6 @@ namespace Peaks360App.AppContext
             }
         }
 
-        protected void NotifyElevationProfileChanged()
-        {
-            if (GpsUtils.HasLocation(MyLocation))
-            {
-                var args = new DataChangedEventArgs() { PoiData = PoiData };
-                DataChanged?.Invoke(this, args);
-            }
-        }
-
-        protected void NotifyHeadingChanged()
-        {
-            var args = new DataChangedEventArgs() { PoiData = PoiData };
-            DataChanged?.Invoke(this, args);
-        }
-
         protected void NotifyHeadingChanged(double heading, double headingCorrection)
         {
             var args = new HeadingChangedEventArgs() { Heading = heading, HeadingCorrection = headingCorrection };
@@ -253,5 +237,6 @@ namespace Peaks360App.AppContext
 
             appContext.Resources.UpdateConfiguration(appContext.Resources.Configuration, appContext.Resources.DisplayMetrics);
         }
+
     }
 }
