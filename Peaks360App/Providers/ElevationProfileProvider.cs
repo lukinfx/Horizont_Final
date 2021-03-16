@@ -74,7 +74,6 @@ namespace Peaks360App.Providers
                 if (!GpsUtils.HasAltitude(myLocation))
                 {
                     PopupHelper.ErrorDialog(appContext,
-                        Resources.GetText(Resource.String.Error),
                         Resources.GetText(Resource.String.Main_ErrorUnknownAltitude));
                     return;
                 }
@@ -106,7 +105,6 @@ namespace Peaks360App.Providers
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(appContext,
-                    Resources.GetText(Resource.String.Error),
                     Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile) + " " + ex.Message);
             }
         }
@@ -128,7 +126,7 @@ namespace Peaks360App.Providers
                 pd.Hide();
                 if (!string.IsNullOrEmpty(result.ErrorMessage))
                 {
-                    PopupHelper.ErrorDialog(appContext, Resources.GetText(Resource.String.Error), result.ErrorMessage);
+                    PopupHelper.ErrorDialog(appContext, result.ErrorMessage);
                 }
 
                 RefreshElevationProfile(result);
@@ -157,7 +155,6 @@ namespace Peaks360App.Providers
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(appContext,
-                    Resources.GetText(Resource.String.Error),
                     Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile) + " " + ex.Message);
             }
         }

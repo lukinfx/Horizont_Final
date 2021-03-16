@@ -284,7 +284,7 @@ namespace Peaks360App.Activities
             }
             catch(Exception ex)
             {
-                PopupHelper.ErrorDialog(this, "Error", "Error when saving settings. " + ex.Message);
+                PopupHelper.ErrorDialog(this, "Error when saving settings. " + ex.Message);
             }
 
             SetResult(RESULT_OK);

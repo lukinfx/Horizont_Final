@@ -247,7 +247,7 @@ namespace Peaks360App
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this, "Error", ex.Message);
+                PopupHelper.ErrorDialog(this, ex.Message);
             }
         }
 

@@ -70,7 +70,7 @@ namespace Peaks360App.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(Context, "Error", ex.Message);
+                PopupHelper.ErrorDialog(Context, ex.Message);
             }
         }
 
