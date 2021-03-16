@@ -593,7 +593,7 @@ namespace Peaks360App.Activities
                     var stream = new FileStream(filename, FileMode.CreateNew);
                     bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
                     Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] {filename}, null, null);
-                    PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Information), Resources.GetText(Resource.String.PhotoShow_PhotoSaved));
+                    PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.PhotoShow_PhotoSaved));
                 });
                 alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
                 alert.SetMessage(Resources.GetText(Resource.String.PhotoShow_OverwriteQuestion));
@@ -604,7 +604,7 @@ namespace Peaks360App.Activities
                 var stream = new FileStream(filename, FileMode.CreateNew);
                 bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
                 Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] {filename}, null, null);
-                PopupHelper.InfoDialog(this, "Information", $"Photo saved.");
+                PopupHelper.InfoDialog(this, $"Photo saved.");
             }
         }
 

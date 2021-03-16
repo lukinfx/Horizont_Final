@@ -379,8 +379,7 @@ namespace Peaks360App.Activities
                         Database.InsertItem(source);
 
                         
-                        PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Information),
-                            Resources.GetText(Resource.String.Download_InfoLoadedElevation));
+                        PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Download_InfoLoadedElevation));
                         
                         _downloadItemAdapter.NotifyDataSetChanged();
                     }
@@ -441,8 +440,7 @@ namespace Peaks360App.Activities
                         source.DownloadDate = null;
                         Database.DeleteItem(source);
 
-                        PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Information),
-                            Resources.GetText(Resource.String.Download_InfoRemovedElevation)); 
+                        PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Download_InfoRemovedElevation)); 
                     }
                 };
                 ec.OnStageChange = (resourceStringId, max) =>

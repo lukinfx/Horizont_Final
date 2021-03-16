@@ -18,11 +18,11 @@ namespace Peaks360App.Utilities
             }
         }
 
-        public static void InfoDialog(Context context, string title, string message)
+        public static void InfoDialog(Context context, string message)
         {
             using (var builder = new AlertDialog.Builder(context))
             {
-                builder.SetTitle(title);
+                builder.SetTitle(context.Resources.GetText(Resource.String.Information));
                 builder.SetMessage(message);
                 builder.SetIcon(Android.Resource.Drawable.IcDialogInfo);
                 builder.Show();
