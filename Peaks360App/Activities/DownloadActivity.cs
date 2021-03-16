@@ -200,7 +200,7 @@ namespace Peaks360App.Activities
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
                     PopupHelper.ErrorDialog(this,
-                        Resources.GetText(Resource.String.Download_ErrorDownloading) + " " + e.Message);
+                        Resources.GetText(Resource.String.Download_ErrorDownloading), e.Message);
                 });
 
                 return;
@@ -256,7 +256,7 @@ namespace Peaks360App.Activities
                     {
                         pd.Hide();
                         PopupHelper.ErrorDialog(this,
-                            Resources.GetText(Resource.String.Download_ErrorDownloading) + " " + message);
+                            Resources.GetText(Resource.String.Download_ErrorDownloading), message);
                     });
                 };
 
@@ -265,7 +265,7 @@ namespace Peaks360App.Activities
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Download_ErrorDownloading) + " " + ex.Message);
+                    Resources.GetText(Resource.String.Download_ErrorDownloading), ex.Message);
             }
         }
 
@@ -324,7 +324,7 @@ namespace Peaks360App.Activities
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
                         PopupHelper.ErrorDialog(this,
-                            Resources.GetText(Resource.String.Download_ErrorDownloading) + " " + message);
+                            Resources.GetText(Resource.String.Download_ErrorDownloading), message);
                     });
                 };
 
@@ -333,7 +333,7 @@ namespace Peaks360App.Activities
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Download_ErrorDownloading) + " " + ex.Message);
+                    Resources.GetText(Resource.String.Download_ErrorDownloading), ex.Message);
             }
         }
 
@@ -352,7 +352,7 @@ namespace Peaks360App.Activities
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Download_ErrorRemoving) + " " + ex.Message);
+                    Resources.GetText(Resource.String.Download_ErrorRemoving), ex.Message);
             }
         }
 
@@ -408,7 +408,7 @@ namespace Peaks360App.Activities
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
                         PopupHelper.ErrorDialog(this,
-                            Resources.GetText(Resource.String.Download_ErrorDownloadingElevation) + " " + message);
+                            Resources.GetText(Resource.String.Download_ErrorDownloadingElevation), message);
                     });
                 };
 
@@ -417,7 +417,7 @@ namespace Peaks360App.Activities
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Download_ErrorDownloadingElevation) + " " + ex.Message);
+                    Resources.GetText(Resource.String.Download_ErrorDownloadingElevation), ex.Message);
             }
         }
 
@@ -458,7 +458,7 @@ namespace Peaks360App.Activities
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
                         PopupHelper.ErrorDialog(this,
-                            Resources.GetText(Resource.String.Download_ErrorDownloadingElevation) + " " + message);
+                            Resources.GetText(Resource.String.Download_ErrorDownloadingElevation), message);
                     });
                 };
 
@@ -467,7 +467,7 @@ namespace Peaks360App.Activities
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Download_ErrorDownloadingElevation) + " " + ex.Message);
+                    Resources.GetText(Resource.String.Download_ErrorDownloadingElevation), ex.Message);
             }
         }
     }

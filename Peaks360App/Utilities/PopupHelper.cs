@@ -6,12 +6,12 @@ namespace Peaks360App.Utilities
     public class PopupHelper
     {
 
-        public static void ErrorDialog(Context context, string message)
+        public static void ErrorDialog(Context context, string message, string details = null)
         {
             using (var builder = new AlertDialog.Builder(context))
             {
                 builder.SetTitle(context.Resources.GetText(Resource.String.Error));
-                builder.SetMessage(message);
+                builder.SetMessage(message + " " + details);
                 builder.SetIcon(Android.Resource.Drawable.IcDialogAlert);
                 builder.SetPositiveButton("OK", (senderAlert, args) => { }); 
                 builder.Show();

@@ -299,7 +299,7 @@ namespace Peaks360App.Activities
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.EditPoi_WrongFormat) + " " + ex.Message);
+                    Resources.GetText(Resource.String.EditPoi_WrongFormat), ex.Message);
                 return;
             }
 
@@ -331,13 +331,13 @@ namespace Peaks360App.Activities
                     if (!ok)
                     {
                         PopupHelper.ErrorDialog(this,
-                            Resources.GetText(Resource.String.EditPoi_AltitudeNotUpdated) + " " + Resources.GetText(Resource.String.EditPoi_MissingElevationData));
+                            Resources.GetText(Resource.String.EditPoi_AltitudeNotUpdated), Resources.GetText(Resource.String.EditPoi_MissingElevationData));
                     }
                 }
                 catch (Exception ex)
                 {
                     PopupHelper.ErrorDialog(this,
-                        Resources.GetText(Resource.String.EditPoi_AltitudeNotUpdated) + " " + ex.Message);
+                        Resources.GetText(Resource.String.EditPoi_AltitudeNotUpdated), ex.Message);
                 }
             }
         }

@@ -105,7 +105,7 @@ namespace Peaks360App.Providers
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(appContext,
-                    Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile) + " " + ex.Message);
+                    Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile), ex.Message);
             }
         }
 
@@ -155,7 +155,7 @@ namespace Peaks360App.Providers
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(appContext,
-                    Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile) + " " + ex.Message);
+                    Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile), ex.Message);
             }
         }
 
