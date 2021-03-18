@@ -812,6 +812,11 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\tutorial_viewangle_correction.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\PrivacyPolicyStatement.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
