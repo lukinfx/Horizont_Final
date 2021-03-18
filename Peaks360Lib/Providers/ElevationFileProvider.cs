@@ -74,6 +74,10 @@ namespace Peaks360Lib.Providers
         public static long GetTotalElevationFileSize()
         {
             DirectoryInfo d = new DirectoryInfo(GetElevationFileFolder());
+            if (!d.Exists)
+            {
+                return 0;
+            }
 
             long totalFileSize = 0;
             foreach (var file in d.GetFiles("*_DSM.zip"))
@@ -87,6 +91,10 @@ namespace Peaks360Lib.Providers
         public static void ClearElevationData()
         {
             DirectoryInfo d = new DirectoryInfo(GetElevationFileFolder());
+            if (!d.Exists)
+            {
+                return;
+            }
 
             foreach (var file in d.GetFiles("*_DSM.zip"))
             {

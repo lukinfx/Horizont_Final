@@ -487,8 +487,8 @@ namespace Peaks360App.Activities
             if (IsDirty())
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetPositiveButton(Resources.GetText(Resource.String.Save), (senderAlert, args) => { SavePhotoData(); action.Invoke(); });
-                alert.SetNegativeButton(Resources.GetText(Resource.String.Discard), (senderAlert, args) => { action.Invoke(); }); 
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Save), (senderAlert, args) => { SavePhotoData(); action.Invoke(); });
+                alert.SetNegativeButton(Resources.GetText(Resource.String.Common_Discard), (senderAlert, args) => { action.Invoke(); }); 
                 alert.SetMessage(Resources.GetText(Resource.String.PhotoShow_SaveOrDiscard));
                 var answer = alert.Show();
             }
@@ -587,7 +587,7 @@ namespace Peaks360App.Activities
             if (File.Exists(filename))
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
                 {
                     File.Delete(filename);
                     var stream = new FileStream(filename, FileMode.CreateNew);
@@ -595,7 +595,7 @@ namespace Peaks360App.Activities
                     Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] {filename}, null, null);
                     PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.PhotoShow_PhotoSaved));
                 });
-                alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+                alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
                 alert.SetMessage(Resources.GetText(Resource.String.PhotoShow_OverwriteQuestion));
                 var answer = alert.Show();
             }

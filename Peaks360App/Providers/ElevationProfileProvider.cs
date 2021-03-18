@@ -91,11 +91,11 @@ namespace Peaks360App.Providers
 
                 using (var builder = new AlertDialog.Builder(appContext))
                 {
-                    builder.SetTitle(Resources.GetText(Resource.String.Question));
+                    builder.SetTitle(Resources.GetText(Resource.String.Common_Question));
                     builder.SetMessage(String.Format(Resources.GetText(Resource.String.Download_Confirmation), size));
                     builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
-                    builder.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) => { StartDownloadAndCalculateAsync(appContext, ec); });
-                    builder.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { _elevationProfileBeingGenerated = false; });
+                    builder.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) => { StartDownloadAndCalculateAsync(appContext, ec); });
+                    builder.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { _elevationProfileBeingGenerated = false; });
 
                     var myCustomDialog = builder.Create();
 

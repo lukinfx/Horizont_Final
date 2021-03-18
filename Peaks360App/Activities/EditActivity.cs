@@ -214,9 +214,9 @@ namespace Peaks360App.Activities
             if (IsDirty())
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) => { SetResult(RESULT_CANCELED); Finish(); });
-                alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
-                alert.SetMessage(Resources.GetText(Resource.String.DiscardChanges));
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) => { SetResult(RESULT_CANCELED); Finish(); });
+                alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
+                alert.SetMessage(Resources.GetText(Resource.String.Common_DiscardChanges));
                 var answer = alert.Show();
             }
             else
@@ -369,13 +369,13 @@ namespace Peaks360App.Activities
             }
 
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
+            alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
             {
                 AppContextLiveData.Instance.Settings.SetManualLocation(manualLocation);
                 SetResult(RESULT_OK_AND_CLOSE_PARENT);
                 Finish();
             });
-            alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+            alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
             alert.SetMessage(String.Format(Resources.GetText(Resource.String.EditPoi_TeleportationWarning), _editTextName.Text));
             var answer = alert.Show();
         }

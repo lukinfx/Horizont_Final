@@ -31,7 +31,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent">
                     <TextView
-                      android:text="@string/Name"
+                      android:text="@string/Common_Name"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:id="@+id/NameTitle" />
@@ -44,7 +44,6 @@
 
                         <EditText
                           android:layout_weight="100"
-                          android:text="@string/DefaultTextAddPoi"
                           android:textAppearance="?android:attr/textAppearanceMedium"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
@@ -74,7 +73,7 @@
                         <TextView
                           android:paddingTop="10dp"
                           android:layout_columnWeight="2"
-                          android:text="@string/Latitude"
+                          android:text="@string/Common_Latitude"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:id="@+id/latitudeTitle" />
@@ -91,7 +90,7 @@
                         <TextView
                           android:paddingTop="10dp"
                           android:layout_columnWeight="2"
-                          android:text="@string/Longitude"
+                          android:text="@string/Common_Longitude"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:id="@+id/longitudeTitle" />
@@ -108,7 +107,7 @@
                         <TextView
                           android:paddingTop="10dp"
                           android:layout_columnWeight="2"
-                          android:text="@string/Altitude"
+                          android:text="@string/Common_Altitude"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:id="@+id/altitudeTitle" />
@@ -125,7 +124,7 @@
                     </GridLayout>
                     
                     <TextView
-                      android:text="@string/Category"
+                      android:text="@string/Common_Category"
                       android:paddingTop="20dp"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
@@ -139,7 +138,7 @@
                       android:id="@+id/spinnerCategory" />
 
                     <TextView
-                      android:text="@string/Country"
+                      android:text="@string/Common_Country"
                       android:paddingTop="10dp"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
@@ -168,7 +167,7 @@
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:layout_weight="1"
-                              android:text="@string/Teleport"
+                              android:text="@string/Common_Teleport"
                               android:drawablePadding="10dp"
                               android:background="@android:color/transparent"
                               android:layout_alignParentLeft="true"
@@ -180,7 +179,7 @@
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:layout_weight="1"
-                              android:text="@string/Details"
+                              android:text="@string/Common_Details"
                               android:drawablePadding="10dp"
                               android:background="@android:color/transparent"
                               android:layout_alignParentLeft="true"
@@ -192,7 +191,7 @@
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:layout_weight="1"
-                              android:text="@string/Map"
+                              android:text="@string/Common_Map"
                               android:drawablePadding="10dp"
                               android:background="@android:color/transparent"
                               android:layout_alignParentLeft="true"

@@ -14,7 +14,7 @@
       <TextView
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="@string/EditName"
+        android:text="@string/Photos_EditName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"

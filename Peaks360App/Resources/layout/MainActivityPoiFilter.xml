@@ -14,7 +14,7 @@
       <TextView
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="@string/CategoryFilter"
+        android:text="@string/Common_CategoryFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -115,15 +115,15 @@
                   android:layout_height="wrap_content"
                   android:gravity="center_horizontal"
                   android:background="#E0404040">
-            <Button android:text="@string/All"
+            <Button android:text="@string/Common_All"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" 
                     android:id="@+id/buttonSelectAll" />
-            <Button android:text="@string/None"
+            <Button android:text="@string/Common_None"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/buttonSelectNone" />
-            <Button android:text="@string/Close"
+            <Button android:text="@string/Common_Close"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" 
                     android:id="@+id/buttonSavePoiFilter" />

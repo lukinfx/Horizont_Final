@@ -2,25 +2,41 @@
   <string name="app_name">Peaks360</string>
 
   <!--Common-->
-  <string name="Yes">Ano</string>
-  <string name="No">Ne</string>
+  <string name="Common_Yes">Ano</string>
+  <string name="Common_No">Ne</string>
 
-  <string name="Save">Uložit</string>
-  <string name="Discard">Zahodit</string>
+  <string name="Common_Save">Uložit</string>
+  <string name="Common_Discard">Zahodit</string>
 
-  <string name="Details">Detaily</string>
-  <string name="Map">Mapa</string>
-  <string name="Teleport">Teleport</string>
+  <string name="Common_Details">Detaily</string>
+  <string name="Common_Map">Mapa</string>
+  <string name="Common_Teleport">Teleport</string>
 
-  <string name="Question">Otázka</string>
-  <string name="Information">Informace</string>
-  <string name="Error">Chyba</string>
+  <string name="Common_GPSLocation">GPS poloha</string>
+  <string name="Common_Name">Název</string>
+  <string name="Common_Latitude">Zeměp. šířka</string>
+  <string name="Common_Longitude">Zeměp. délka</string>
+  <string name="Common_Altitude">Nadm. výška</string>
+  <string name="Common_Bearing">Azimut</string>
+  <string name="Common_Distance">Vzdálenost</string>
+  <string name="Common_Category">Kategorie</string>
+  <string name="Common_Country">Země</string>
+  <string name="Common_Heading">Azimut</string>
+  <string name="Common_HorizontalViewAngle">Horizontalní zorný úhel</string>
+  <string name="Common_VerticalViewAngle">Vertikální zorný úhel</string>
+  <string name="Common_All">Vše</string>
+  <string name="Common_None">Nic</string>
+  <string name="Common_Close">Uložit</string>
+  <string name="Common_Search">Vyhledávání</string>
 
-  <string name="DiscardChanges">Chcete zahodit všechny změny?</string>
-  <string name="NoDataToDisplay">Žádné body k zobrazení. Změňte nastavení filtru nebo stáhněte body zájmu.</string>
+  <string name="Common_Question">Otázka</string>
+  <string name="Common_Information">Informace</string>
+  <string name="Common_Error">Chyba</string>
 
-  <string name="HorizontalViewAngle">Horizontalní zorný úhel</string>
-  <string name="VerticalViewAngle">Vertikální zorný úhel</string>
+  <string name="Common_DiscardChanges">Chcete zahodit všechny změny?</string>
+  <string name="Common_NoDataToDisplay">Žádné body k zobrazení. Změňte nastavení filtru nebo stáhněte body zájmu.</string>
+
+  <string name="Common_CategoryFilter">Filtr kategorie</string>
 
   <!--Menu Activity-->
   <string name="MainActivity">Zpět do fotoaparátu</string>
@@ -76,7 +92,7 @@
   <string name="Download_Progress_RemovingElevationData">Odstaňuji výšková data...</string>
   <string name="Download_Confirmation">Tato akce vyžaduje stažení dodatečných {0} MB dat. Pro snížení množství potřebných dat snižte maximální viditelnost.\n\nChcete opravdu pokračovat?</string>
   <string name="Download_DownloadedOn">Staženo dne </string>
-  <string name="Download_NotDownloadedYet">Zatím nestaženo</string>
+  <string name="Download_NotDownloadedYet">Zatím nestaženo.</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Použijte správný formát. Například: 12,34567890.</string>
@@ -84,9 +100,12 @@
   <string name="EditPoi_MissingElevationData">Chybějící výšková data.</string>
   <string name="EditPoi_AltitudeNotUpdated">Nadmořská výška nebyla aktualizována.</string>
   <string name="EditPoi_TeleportationWarning">Vaše poloha bude nastavena na {0}. Pro resetování vaší polohy, stistněte tlačítko [Reset] ve fotoaparátu nebo resetujte manuální polohu v nastavení aplikace.\n\nChcete pokračovat?</string>
+  <string name="EditPoi_PasteLocationFromClipboard">Vložit GPS polohu ze schránky</string>
+  <string name="EditPoi_FetchAltitudeFromElevationMap">Získat nadmořskou výšku z výškové mapy</string>
 
   <!--PhotosActivity -->
   <string name="Photos_DeletePhotoQuestion">Opravdu chcete smazat tuto fotografii?</string>
+  <string name="Photos_EditName">Uprav název</string>
 
   <!--PhotoShowActivity-->
   <string name="PhotoShow_SaveOrDiscard">Parametry fotografie byly změněny. Checete uložit vaše změny?</string>
@@ -95,22 +114,19 @@
   <string name="PhotoShow_ImageTooSmall">Oříznutá fotografie je příliš malá.</string>
 
   <!--SettingsActivity-->
-  <string name="action_settings">Nastavení</string>
-  <string name="SpinnerItems">Vyber zobrazení aplikace</string>
-  <string name="ChooseLanguage">Vyber jazyk</string>
-  <string name="CameraViewAngle">Zorný úhel fotoaparátu</string>
-  <string name="SetViewAngleManually">Nastavit zorný úhel manuálně</string>
-  <string name="DefaultViewAngleHorizontal">Zorný úhel je 40° (nastaveno manuálně)</string>
-  <string name="DefaultViewAngleVertical">  Zorný úhel je 60° (nastaveno manuálně)</string>
-  <string name="GPSLocation">GPS poloha</string>
-  <string name="SetGPSManually">Nastavit GPS polohu manuálně</string>
-  <string name="ElevationProfile">Výškový profil</string>
-  <string name="ElevationProfileExplenation">Pro lepší uživatelský zážitel lze generovat výškový profil automaticky, kdykoliv jsou k dispozici výšková data.</string>
-  <string name="AutomaticElevationProfile">Generovat výškový profil automaticky</string>
-  <string name="MyAltitude">Nadmořská výška</string>
-  <string name="AltitudeExplenation">Přesné určení nadmořské výšky je pro správné fungování aplikace velmi podstatné. Nadmořskou výšku lze získat z výškové mapy namísto nadmořské výšky z GPS polohy (jsou-li výšková data k dispozici).</string>
-  <string name="AltitudeFromElevationMap">Používat nadmořskou výšku z výškové mapy</string>
-  <string name="PhotoResolution">Rozlišení fotografie</string>
+  <string name="Settings_ChooseLanguage">Vyber jazyk</string>
+  <string name="Settings_CameraViewAngle">Zorný úhel fotoaparátu</string>
+  <string name="Settings_SetViewAngleManually">Nastavit zorný úhel manuálně</string>
+  <string name="Settings_DefaultViewAngleHorizontal">Zorný úhel je 40° (nastaveno manuálně)</string>
+  <string name="Settings_DefaultViewAngleVertical">  Zorný úhel je 60° (nastaveno manuálně)</string>
+  <string name="Settings_SetGPSManually">Nastavit GPS polohu manuálně</string>
+  <string name="Settings_ElevationProfile">Výškový profil</string>
+  <string name="Settings_ElevationProfileExplenation">Pro lepší uživatelský zážitel lze generovat výškový profil automaticky, kdykoliv jsou k dispozici výšková data.</string>
+  <string name="Settings_AutomaticElevationProfile">Generovat výškový profil automaticky</string>
+  <string name="Settings_MyAltitude">Nadmořská výška</string>
+  <string name="Settings_AltitudeExplenation">Přesné určení nadmořské výšky je pro správné fungování aplikace velmi podstatné. Nadmořskou výšku lze získat z výškové mapy namísto nadmořské výšky z GPS polohy (jsou-li výšková data k dispozici).</string>
+  <string name="Settings_AltitudeFromElevationMap">Používat nadmořskou výšku z výškové mapy</string>
+  <string name="Settings_PhotoResolution">Rozlišení fotografie</string>
   <string name="Settings_ClearElevationData">Vymazat výšková data</string>
   <string name="Settings_ElevationDataSize">Výšková data uložená v mezipaměti zabírají {0} MB paměti zařízení.</string>
   
@@ -119,28 +135,6 @@
   <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Použijte dva prsty pro korekcí horizontálního a vertikálního zobrazovacího úhlu.</string>
 
   <string name="Tutorial_DontShowAgain">Nezobrazovat znovu</string>
-
-  <string name="Name">Název: </string>
-
-  <string name="DefaultTextAddPoi">Současná GPS poloha</string>
-  <string name="Latitude">Zeměp. šířka: </string>
-  <string name="Longitude">Zeměp. délka: </string>
-  <string name="Altitude">Nadm. výška: </string>
-  <string name="Bearing">Azimut: </string>
-  <string name="Distance">Vzdálenost: </string>
-  <string name="Category">Kategorie: </string>
-  <string name="Country">Země: </string>
-  <string name="EditName">Uprav název</string>
-  <string name="PasteLocationFromClipboard">Vložit GPS polohu ze schránky</string>
-  <string name="FetchAltitudeFromElevationMap">Získat nadmořskou výšku z výškové mapy</string>
-
-  <string name="Heading">Azimut</string>
-
-  <string name="CategoryFilter">Filtr kategorie</string>
-  <string name="All">Vše</string>
-  <string name="None">Nic</string>
-  <string name="Close">Uložit</string>
-  <string name="Search">Vyhledávání...</string>
 
   <string name="PrivacyPolicyStatement">Prohlášení o ochraně osobních údajů</string>
   <string name="PrivacyPolicyAcknowledgement">Ano, beru na vědomí.</string>

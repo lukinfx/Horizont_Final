@@ -100,13 +100,13 @@ namespace Peaks360App.Activities
         public void OnPhotoDelete(int position)
         {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
+            alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
             {
                 PhotoData item = _adapter[position];
                 Context.Database.DeleteItem(item);
                 _adapter.RemoveAt(position);
             });
-            alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+            alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
             alert.SetMessage(Resources.GetText(Resource.String.Photos_DeletePhotoQuestion));
             var answer = alert.Show();
 

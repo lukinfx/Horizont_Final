@@ -60,7 +60,7 @@ namespace Peaks360App.Utilities
                     }
                     else
                     {
-                        tag += Android.App.Application.Context.Resources.GetText(Resource.String.Heading);
+                        tag += Android.App.Application.Context.Resources.GetText(Resource.String.Common_Heading);
                         tag += $" {GpsUtils.Normalize360((_context.Heading)):F0}°";
                     }
 

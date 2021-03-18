@@ -17,7 +17,7 @@
           android:padding="10dp"
           android:background="@drawable/bg_activity">
             <TextView
-              android:text="@string/ChooseLanguage"
+              android:text="@string/Settings_ChooseLanguage"
               android:textAppearance="?android:attr/textAppearanceMedium"
               android:layout_width="match_parent"
               android:layout_height="wrap_content" />
@@ -36,7 +36,7 @@
           android:background="@drawable/bg_activity">
             
             <TextView
-              android:text="@string/CameraViewAngle"
+              android:text="@string/Settings_CameraViewAngle"
               android:textAppearance="?android:attr/textAppearanceMedium"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"/>
@@ -44,12 +44,12 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceSmall"
-              android:text="@string/SetViewAngleManually"
+              android:text="@string/Settings_SetViewAngleManually"
               android:id="@+id/switchManualViewAngle" />
 
             <TextView
               android:paddingTop="10dp"
-              android:text="@string/HorizontalViewAngle"
+              android:text="@string/Common_HorizontalViewAngle"
               android:textAppearance="?android:attr/textAppearanceSmall"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"/>
@@ -62,7 +62,7 @@
               android:max="100"
               android:progress="0" />
             <TextView
-              android:text="@string/DefaultViewAngleHorizontal"
+              android:text="@string/Settings_DefaultViewAngleHorizontal"
               android:textAppearance="?android:attr/textAppearanceSmall"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
 
             <TextView
               android:paddingTop="10dp"
-              android:text="@string/VerticalViewAngle"
+              android:text="@string/Common_VerticalViewAngle"
               android:textAppearance="?android:attr/textAppearanceSmall"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"/>
@@ -83,7 +83,7 @@
               android:max="100"
               android:progress="0" />
             <TextView
-              android:text="@string/DefaultViewAngleVertical"
+              android:text="@string/Settings_DefaultViewAngleVertical"
               android:textAppearance="?android:attr/textAppearanceSmall"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
           android:padding="10dp"
           android:background="@drawable/bg_activity">
           <TextView
-            android:text="@string/GPSLocation"
+            android:text="@string/Common_GPSLocation"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -110,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/SetGPSManually"
+            android:text="@string/Settings_SetGPSManually"
             android:id="@+id/switchManualGpsLocation" />
           <GridLayout
             android:paddingTop="10dp"
@@ -123,7 +123,7 @@
             <TextView
               android:paddingTop="10dp"
               android:layout_columnWeight="3"
-              android:text="Latitude: "
+              android:text="@string/Common_Latitude"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:id="@+id/latitudeTitle" />
@@ -140,7 +140,7 @@
             <TextView
               android:paddingTop="10dp"
               android:layout_columnWeight="3"
-              android:text="Longitude: "
+              android:text="@string/Common_Longitude"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:id="@+id/longitudeTitle" />
@@ -157,7 +157,7 @@
             <TextView
               android:paddingTop="10dp"
               android:layout_columnWeight="3"
-              android:text="Altitude: "
+              android:text="@string/Common_Altitude"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:id="@+id/altitudeTitle" />
@@ -180,12 +180,12 @@
           android:padding="10dp"
           android:background="@drawable/bg_activity">
           <TextView
-            android:text="@string/ElevationProfile"
+            android:text="@string/Settings_ElevationProfile"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
           <TextView
-            android:text="@string/ElevationProfileExplenation"
+            android:text="@string/Settings_ElevationProfileExplenation"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -193,7 +193,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/AutomaticElevationProfile"
+            android:text="@string/Settings_AutomaticElevationProfile"
             android:id="@+id/switchAutoElevationProfile" />
         </LinearLayout>
         <LinearLayout
@@ -203,12 +203,12 @@
           android:padding="10dp"
           android:background="@drawable/bg_activity">
           <TextView
-            android:text="@string/MyAltitude"
+            android:text="@string/Settings_MyAltitude"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
           <TextView
-            android:text="@string/AltitudeExplenation"
+            android:text="@string/Settings_AltitudeExplenation"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -216,7 +216,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/AltitudeFromElevationMap"
+            android:text="@string/Settings_AltitudeFromElevationMap"
             android:id="@+id/switchAltitudeFromElevationMap" />
         </LinearLayout>
         <LinearLayout
@@ -226,7 +226,7 @@
           android:padding="10dp"
           android:background="@drawable/bg_activity">
             <TextView
-              android:text="@string/PhotoResolution"
+              android:text="@string/Settings_PhotoResolution"
               android:textAppearance="?android:attr/textAppearanceMedium"
               android:layout_width="match_parent"
               android:layout_height="wrap_content" />

@@ -34,7 +34,7 @@
                 android:gravity="center_horizontal">
 
                 <TextView
-                android:text="@string/Name"
+                android:text="@string/Common_Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/NameTitle" />
@@ -47,7 +47,6 @@
 
                   <EditText
                     android:layout_weight="100"
-                    android:text="@string/DefaultTextAddPoi"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -94,7 +93,7 @@
                               android:paddingTop="10dp"
                               android:paddingRight="10dp"
                               android:layout_columnWeight="0"
-                              android:text="@string/Latitude"
+                              android:text="@string/Common_Latitude"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:id="@+id/latitudeTitle" />
@@ -112,7 +111,7 @@
                               android:paddingTop="10dp"
                               android:paddingRight="10dp"
                               android:layout_columnWeight="0"
-                              android:text="@string/Longitude"
+                              android:text="@string/Common_Longitude"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:id="@+id/longitudeTitle" />
@@ -130,7 +129,7 @@
                               android:paddingTop="10dp"
                               android:paddingRight="10dp"
                               android:layout_columnWeight="0"
-                              android:text="@string/Altitude"
+                              android:text="@string/Common_Altitude"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:id="@+id/altitudeTitle" />
@@ -157,7 +156,7 @@
                       android:layout_height="wrap_content"
                       android:id="@+id/linearLayoutName">
                         <TextView
-                          android:text="@string/Category"
+                          android:text="@string/Common_Category"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:id="@+id/categoryTitle" />
@@ -171,7 +170,7 @@
                           android:id="@+id/spinnerCategory" />
 
                         <TextView
-                          android:text="@string/Country"
+                          android:text="@string/Common_Country"
                           android:paddingTop="5dp"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -205,7 +204,7 @@
                         android:id="@+id/buttonTeleport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Teleport"
+                        android:text="@string/Common_Teleport"
                         android:paddingLeft="20dp"
                         android:background="@android:color/transparent"
                         android:layout_alignParentLeft="true"
@@ -216,7 +215,7 @@
                         android:id="@+id/buttonWiki"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Details"
+                        android:text="@string/Common_Details"
                         android:paddingLeft="20dp"
                         android:background="@android:color/transparent"
                         android:layout_alignParentLeft="true"
@@ -227,7 +226,7 @@
                         android:id="@+id/buttonMap"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Map"
+                        android:text="@string/Common_Map"
                         android:paddingLeft="20dp"
                         android:background="@android:color/transparent"
                         android:layout_alignParentLeft="true"

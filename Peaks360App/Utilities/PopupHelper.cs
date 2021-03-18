@@ -10,7 +10,7 @@ namespace Peaks360App.Utilities
         {
             using (var builder = new AlertDialog.Builder(context))
             {
-                builder.SetTitle(context.Resources.GetText(Resource.String.Error));
+                builder.SetTitle(context.Resources.GetText(Resource.String.Common_Error));
                 builder.SetMessage(message + " " + details);
                 builder.SetIcon(Android.Resource.Drawable.IcDialogAlert);
                 builder.SetPositiveButton("OK", (senderAlert, args) => { }); 
@@ -22,7 +22,7 @@ namespace Peaks360App.Utilities
         {
             using (var builder = new AlertDialog.Builder(context))
             {
-                builder.SetTitle(context.Resources.GetText(Resource.String.Information));
+                builder.SetTitle(context.Resources.GetText(Resource.String.Common_Information));
                 builder.SetMessage(message);
                 builder.SetIcon(Android.Resource.Drawable.IcDialogInfo);
                 builder.Show();

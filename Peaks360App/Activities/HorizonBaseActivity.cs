@@ -153,7 +153,7 @@ namespace Peaks360App.Activities
                 _textViewNotification.Visibility = ViewStates.Invisible;
                 if (e.PoiData.Count == 0)
                 {
-                    new ShowToastRunnable(this, Resources.GetText(Resource.String.NoDataToDisplay)).Run();
+                    new ShowToastRunnable(this, Resources.GetText(Resource.String.Common_NoDataToDisplay)).Run();
                 }
                 OnDataChanged(sender, e);
 
@@ -506,14 +506,14 @@ namespace Peaks360App.Activities
                     HideControls();
                     _poiInfo.Visibility = ViewStates.Visible;
                     
-                    var altitudeText = $"{Resources.GetText(Resource.String.Altitude)} {Context.SelectedPoi.Poi.Altitude} m";
-                    var distanceText = $"{Resources.GetText(Resource.String.Distance)} {(Context.SelectedPoi.GpsLocation.Distance / 1000):F2} km";
-                    var verticalAngleText = $"{Resources.GetText(Resource.String.VerticalViewAngle)}: {(Context.SelectedPoi.VerticalViewAngle > 0 ? "+" : "")}{Context.SelectedPoi.VerticalViewAngle:F3}°";
-                    var bearingText = $"{Resources.GetText(Resource.String.Bearing)}{(Context.SelectedPoi.GpsLocation.Bearing > 0 ? "+" : "")}{Context.SelectedPoi.GpsLocation.Bearing:F0}°";
+                    var altitudeText = $"{Resources.GetText(Resource.String.Common_Altitude)}: {Context.SelectedPoi.Poi.Altitude} m";
+                    var distanceText = $"{Resources.GetText(Resource.String.Common_Distance)}: {(Context.SelectedPoi.GpsLocation.Distance / 1000):F2} km";
+                    var verticalAngleText = $"{Resources.GetText(Resource.String.Common_VerticalViewAngle)}: {(Context.SelectedPoi.VerticalViewAngle > 0 ? "+" : "")}{Context.SelectedPoi.VerticalViewAngle:F3}°";
+                    var bearingText = $"{Resources.GetText(Resource.String.Common_Bearing)}: {(Context.SelectedPoi.GpsLocation.Bearing > 0 ? "+" : "")}{Context.SelectedPoi.GpsLocation.Bearing:F0}°";
                     FindViewById<TextView>(Resource.Id.textViewPoiName).Text = Context.SelectedPoi.Poi.Name;
                     FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = bearingText + " / " + verticalAngleText;
                     FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = altitudeText + " / " + distanceText;
-                    FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Resources.GetText(Resource.String.GPSLocation)}: {Context.SelectedPoi.GpsLocation.LocationAsString()}";
+                    FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Resources.GetText(Resource.String.Common_GPSLocation)}: {Context.SelectedPoi.GpsLocation.LocationAsString()}";
                     FindViewById<Button>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(Context.SelectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
                 }
                 else

@@ -171,11 +171,11 @@ namespace Peaks360App
             if (isFirstStart && !gpsAvailable)
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
                 {
                     DependencyService.Get<IGpsService>().OpenSettings();
                 });
-                alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+                alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
                 alert.SetMessage(Resources.GetText(Resource.String.Main_EnableGpsQuestion));
                 var answer = alert.Show();
 
@@ -184,13 +184,13 @@ namespace Peaks360App
             if (isFirstStart && !Context.Database.IsAnyDownloadedPois())
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
                 {
                     Intent downloadActivityIntent = new Intent(ctx, typeof(DownloadActivity));
                     StartActivity(downloadActivityIntent);
                     //_adapter.NotifyDataSetChanged();
                 });
-                alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+                alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
                 alert.SetMessage(Resources.GetText(Resource.String.Main_DownloadDataQuestion));
                 var answer = alert.Show();
             }

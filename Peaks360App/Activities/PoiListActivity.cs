@@ -248,13 +248,13 @@ namespace Peaks360App.Views.ListOfPoiView
         public void OnPoiDelete(int position)
         {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
-            alert.SetPositiveButton(Resources.GetText(Resource.String.Yes), (senderAlert, args) =>
+            alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
             {
                 PoiViewItem item = _adapter[position];
                 Context.Database.DeleteItemAsync(item.Poi);
                 _adapter.RemoveAt(position);
             });
-            alert.SetNegativeButton(Resources.GetText(Resource.String.No), (senderAlert, args) => { });
+            alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
             alert.SetMessage(Resources.GetText(Resource.String.PoiListDeleteQuestion));
             var answer = alert.Show();
 
