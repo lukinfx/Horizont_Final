@@ -10288,134 +10288,134 @@ namespace Peaks360App
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7F0F006D
+			public const int abc_action_bar_home_description = 2131689581;
+			
+			// aapt resource value: 0x7F0F006E
+			public const int abc_action_bar_up_description = 2131689582;
+			
+			// aapt resource value: 0x7F0F006F
+			public const int abc_action_menu_overflow_description = 2131689583;
+			
+			// aapt resource value: 0x7F0F0070
+			public const int abc_action_mode_done = 2131689584;
+			
+			// aapt resource value: 0x7F0F0072
+			public const int abc_activitychooserview_choose_application = 2131689586;
+			
+			// aapt resource value: 0x7F0F0071
+			public const int abc_activity_chooser_view_see_all = 2131689585;
+			
+			// aapt resource value: 0x7F0F0073
+			public const int abc_capital_off = 2131689587;
+			
+			// aapt resource value: 0x7F0F0074
+			public const int abc_capital_on = 2131689588;
+			
+			// aapt resource value: 0x7F0F0075
+			public const int abc_font_family_body_1_material = 2131689589;
+			
+			// aapt resource value: 0x7F0F0076
+			public const int abc_font_family_body_2_material = 2131689590;
+			
+			// aapt resource value: 0x7F0F0077
+			public const int abc_font_family_button_material = 2131689591;
+			
+			// aapt resource value: 0x7F0F0078
+			public const int abc_font_family_caption_material = 2131689592;
+			
+			// aapt resource value: 0x7F0F0079
+			public const int abc_font_family_display_1_material = 2131689593;
+			
 			// aapt resource value: 0x7F0F007A
-			public const int abc_action_bar_home_description = 2131689594;
+			public const int abc_font_family_display_2_material = 2131689594;
 			
 			// aapt resource value: 0x7F0F007B
-			public const int abc_action_bar_up_description = 2131689595;
+			public const int abc_font_family_display_3_material = 2131689595;
 			
 			// aapt resource value: 0x7F0F007C
-			public const int abc_action_menu_overflow_description = 2131689596;
+			public const int abc_font_family_display_4_material = 2131689596;
 			
 			// aapt resource value: 0x7F0F007D
-			public const int abc_action_mode_done = 2131689597;
-			
-			// aapt resource value: 0x7F0F007F
-			public const int abc_activitychooserview_choose_application = 2131689599;
+			public const int abc_font_family_headline_material = 2131689597;
 			
 			// aapt resource value: 0x7F0F007E
-			public const int abc_activity_chooser_view_see_all = 2131689598;
+			public const int abc_font_family_menu_material = 2131689598;
+			
+			// aapt resource value: 0x7F0F007F
+			public const int abc_font_family_subhead_material = 2131689599;
 			
 			// aapt resource value: 0x7F0F0080
-			public const int abc_capital_off = 2131689600;
+			public const int abc_font_family_title_material = 2131689600;
 			
 			// aapt resource value: 0x7F0F0081
-			public const int abc_capital_on = 2131689601;
+			public const int abc_menu_alt_shortcut_label = 2131689601;
 			
 			// aapt resource value: 0x7F0F0082
-			public const int abc_font_family_body_1_material = 2131689602;
+			public const int abc_menu_ctrl_shortcut_label = 2131689602;
 			
 			// aapt resource value: 0x7F0F0083
-			public const int abc_font_family_body_2_material = 2131689603;
+			public const int abc_menu_delete_shortcut_label = 2131689603;
 			
 			// aapt resource value: 0x7F0F0084
-			public const int abc_font_family_button_material = 2131689604;
+			public const int abc_menu_enter_shortcut_label = 2131689604;
 			
 			// aapt resource value: 0x7F0F0085
-			public const int abc_font_family_caption_material = 2131689605;
+			public const int abc_menu_function_shortcut_label = 2131689605;
 			
 			// aapt resource value: 0x7F0F0086
-			public const int abc_font_family_display_1_material = 2131689606;
+			public const int abc_menu_meta_shortcut_label = 2131689606;
 			
 			// aapt resource value: 0x7F0F0087
-			public const int abc_font_family_display_2_material = 2131689607;
+			public const int abc_menu_shift_shortcut_label = 2131689607;
 			
 			// aapt resource value: 0x7F0F0088
-			public const int abc_font_family_display_3_material = 2131689608;
+			public const int abc_menu_space_shortcut_label = 2131689608;
 			
 			// aapt resource value: 0x7F0F0089
-			public const int abc_font_family_display_4_material = 2131689609;
+			public const int abc_menu_sym_shortcut_label = 2131689609;
 			
 			// aapt resource value: 0x7F0F008A
-			public const int abc_font_family_headline_material = 2131689610;
-			
-			// aapt resource value: 0x7F0F008B
-			public const int abc_font_family_menu_material = 2131689611;
+			public const int abc_prepend_shortcut_label = 2131689610;
 			
 			// aapt resource value: 0x7F0F008C
-			public const int abc_font_family_subhead_material = 2131689612;
+			public const int abc_searchview_description_clear = 2131689612;
 			
 			// aapt resource value: 0x7F0F008D
-			public const int abc_font_family_title_material = 2131689613;
+			public const int abc_searchview_description_query = 2131689613;
 			
 			// aapt resource value: 0x7F0F008E
-			public const int abc_menu_alt_shortcut_label = 2131689614;
+			public const int abc_searchview_description_search = 2131689614;
 			
 			// aapt resource value: 0x7F0F008F
-			public const int abc_menu_ctrl_shortcut_label = 2131689615;
+			public const int abc_searchview_description_submit = 2131689615;
 			
 			// aapt resource value: 0x7F0F0090
-			public const int abc_menu_delete_shortcut_label = 2131689616;
+			public const int abc_searchview_description_voice = 2131689616;
+			
+			// aapt resource value: 0x7F0F008B
+			public const int abc_search_hint = 2131689611;
 			
 			// aapt resource value: 0x7F0F0091
-			public const int abc_menu_enter_shortcut_label = 2131689617;
+			public const int abc_shareactionprovider_share_with = 2131689617;
 			
 			// aapt resource value: 0x7F0F0092
-			public const int abc_menu_function_shortcut_label = 2131689618;
+			public const int abc_shareactionprovider_share_with_application = 2131689618;
 			
 			// aapt resource value: 0x7F0F0093
-			public const int abc_menu_meta_shortcut_label = 2131689619;
-			
-			// aapt resource value: 0x7F0F0094
-			public const int abc_menu_shift_shortcut_label = 2131689620;
-			
-			// aapt resource value: 0x7F0F0095
-			public const int abc_menu_space_shortcut_label = 2131689621;
-			
-			// aapt resource value: 0x7F0F0096
-			public const int abc_menu_sym_shortcut_label = 2131689622;
-			
-			// aapt resource value: 0x7F0F0097
-			public const int abc_prepend_shortcut_label = 2131689623;
-			
-			// aapt resource value: 0x7F0F0099
-			public const int abc_searchview_description_clear = 2131689625;
-			
-			// aapt resource value: 0x7F0F009A
-			public const int abc_searchview_description_query = 2131689626;
-			
-			// aapt resource value: 0x7F0F009B
-			public const int abc_searchview_description_search = 2131689627;
-			
-			// aapt resource value: 0x7F0F009C
-			public const int abc_searchview_description_submit = 2131689628;
-			
-			// aapt resource value: 0x7F0F009D
-			public const int abc_searchview_description_voice = 2131689629;
-			
-			// aapt resource value: 0x7F0F0098
-			public const int abc_search_hint = 2131689624;
-			
-			// aapt resource value: 0x7F0F009E
-			public const int abc_shareactionprovider_share_with = 2131689630;
-			
-			// aapt resource value: 0x7F0F009F
-			public const int abc_shareactionprovider_share_with_application = 2131689631;
-			
-			// aapt resource value: 0x7F0F00A0
-			public const int abc_toolbar_collapse_description = 2131689632;
+			public const int abc_toolbar_collapse_description = 2131689619;
 			
 			// aapt resource value: 0x7F0F0000
 			public const int AboutActivity = 2131689472;
 			
-			// aapt resource value: 0x7F0F00A2
-			public const int appbar_scrolling_view_behavior = 2131689634;
+			// aapt resource value: 0x7F0F0095
+			public const int appbar_scrolling_view_behavior = 2131689621;
 			
-			// aapt resource value: 0x7F0F00A1
-			public const int app_name = 2131689633;
+			// aapt resource value: 0x7F0F0094
+			public const int app_name = 2131689620;
 			
-			// aapt resource value: 0x7F0F00A3
-			public const int bottom_sheet_behavior = 2131689635;
+			// aapt resource value: 0x7F0F0096
+			public const int bottom_sheet_behavior = 2131689622;
 			
 			// aapt resource value: 0x7F0F0001
 			public const int Category_Churches = 2131689473;
@@ -10444,11 +10444,11 @@ namespace Peaks360App
 			// aapt resource value: 0x7F0F0009
 			public const int Category_ViewTowers = 2131689481;
 			
-			// aapt resource value: 0x7F0F00A4
-			public const int character_counter_content_description = 2131689636;
+			// aapt resource value: 0x7F0F0097
+			public const int character_counter_content_description = 2131689623;
 			
-			// aapt resource value: 0x7F0F00A5
-			public const int character_counter_pattern = 2131689637;
+			// aapt resource value: 0x7F0F0098
+			public const int character_counter_pattern = 2131689624;
 			
 			// aapt resource value: 0x7F0F000A
 			public const int Common_All = 2131689482;
@@ -10456,332 +10456,332 @@ namespace Peaks360App
 			// aapt resource value: 0x7F0F000B
 			public const int Common_Altitude = 2131689483;
 			
+			// aapt resource value: 0x7F0F000C
+			public const int Common_Bearing = 2131689484;
+			
+			// aapt resource value: 0x7F0F000D
+			public const int Common_Category = 2131689485;
+			
+			// aapt resource value: 0x7F0F000E
+			public const int Common_CategoryFilter = 2131689486;
+			
 			// aapt resource value: 0x7F0F000F
-			public const int Common_Bearing = 2131689487;
+			public const int Common_Close = 2131689487;
+			
+			// aapt resource value: 0x7F0F0010
+			public const int Common_Country = 2131689488;
 			
 			// aapt resource value: 0x7F0F0011
-			public const int Common_Category = 2131689489;
+			public const int Common_Details = 2131689489;
 			
 			// aapt resource value: 0x7F0F0012
-			public const int Common_CategoryFilter = 2131689490;
+			public const int Common_Discard = 2131689490;
+			
+			// aapt resource value: 0x7F0F0013
+			public const int Common_DiscardChanges = 2131689491;
 			
 			// aapt resource value: 0x7F0F0014
-			public const int Common_Close = 2131689492;
+			public const int Common_Distance = 2131689492;
 			
 			// aapt resource value: 0x7F0F0015
-			public const int Common_Country = 2131689493;
+			public const int Common_Error = 2131689493;
+			
+			// aapt resource value: 0x7F0F0016
+			public const int Common_GPSLocation = 2131689494;
+			
+			// aapt resource value: 0x7F0F0017
+			public const int Common_Heading = 2131689495;
 			
 			// aapt resource value: 0x7F0F0018
-			public const int Common_Details = 2131689496;
+			public const int Common_HorizontalViewAngle = 2131689496;
 			
 			// aapt resource value: 0x7F0F0019
-			public const int Common_Discard = 2131689497;
+			public const int Common_Information = 2131689497;
 			
 			// aapt resource value: 0x7F0F001A
-			public const int Common_DiscardChanges = 2131689498;
+			public const int Common_Latitude = 2131689498;
 			
 			// aapt resource value: 0x7F0F001B
-			public const int Common_Distance = 2131689499;
+			public const int Common_Longitude = 2131689499;
+			
+			// aapt resource value: 0x7F0F001C
+			public const int Common_Map = 2131689500;
+			
+			// aapt resource value: 0x7F0F001D
+			public const int Common_Name = 2131689501;
 			
 			// aapt resource value: 0x7F0F001E
-			public const int Common_Error = 2131689502;
+			public const int Common_No = 2131689502;
 			
 			// aapt resource value: 0x7F0F001F
-			public const int Common_GPSLocation = 2131689503;
+			public const int Common_NoDataToDisplay = 2131689503;
 			
 			// aapt resource value: 0x7F0F0020
-			public const int Common_Heading = 2131689504;
+			public const int Common_None = 2131689504;
 			
 			// aapt resource value: 0x7F0F0021
-			public const int Common_HorizontalViewAngle = 2131689505;
+			public const int Common_Question = 2131689505;
 			
 			// aapt resource value: 0x7F0F0022
-			public const int Common_Information = 2131689506;
+			public const int Common_Save = 2131689506;
 			
 			// aapt resource value: 0x7F0F0023
-			public const int Common_Latitude = 2131689507;
+			public const int Common_Search = 2131689507;
 			
 			// aapt resource value: 0x7F0F0024
-			public const int Common_Longitude = 2131689508;
+			public const int Common_Teleport = 2131689508;
 			
 			// aapt resource value: 0x7F0F0025
-			public const int Common_Map = 2131689509;
+			public const int Common_VerticalViewAngle = 2131689509;
+			
+			// aapt resource value: 0x7F0F0026
+			public const int Common_Yes = 2131689510;
 			
 			// aapt resource value: 0x7F0F0027
-			public const int Common_Name = 2131689511;
+			public const int DownloadActivity = 2131689511;
 			
 			// aapt resource value: 0x7F0F0028
-			public const int Common_No = 2131689512;
+			public const int Download_Confirmation = 2131689512;
 			
 			// aapt resource value: 0x7F0F0029
-			public const int Common_NoDataToDisplay = 2131689513;
+			public const int Download_DownloadedOn = 2131689513;
 			
 			// aapt resource value: 0x7F0F002A
-			public const int Common_None = 2131689514;
+			public const int Download_ErrorDownloading = 2131689514;
+			
+			// aapt resource value: 0x7F0F002B
+			public const int Download_ErrorDownloadingElevation = 2131689515;
 			
 			// aapt resource value: 0x7F0F002C
-			public const int Common_Question = 2131689516;
+			public const int Download_ErrorRemoving = 2131689516;
 			
 			// aapt resource value: 0x7F0F002D
-			public const int Common_Save = 2131689517;
+			public const int Download_InfoLoadedElevation = 2131689517;
 			
 			// aapt resource value: 0x7F0F002E
-			public const int Common_Search = 2131689518;
+			public const int Download_InfoLoadedItems = 2131689518;
+			
+			// aapt resource value: 0x7F0F002F
+			public const int Download_InfoRemovedElevation = 2131689519;
+			
+			// aapt resource value: 0x7F0F0030
+			public const int Download_InfoRemovedItems = 2131689520;
 			
 			// aapt resource value: 0x7F0F0031
-			public const int Common_Teleport = 2131689521;
+			public const int Download_LoadingData = 2131689521;
 			
 			// aapt resource value: 0x7F0F0032
-			public const int Common_VerticalViewAngle = 2131689522;
+			public const int Download_NotDownloadedYet = 2131689522;
 			
 			// aapt resource value: 0x7F0F0033
-			public const int Common_Yes = 2131689523;
+			public const int Download_Progress_Downloading = 2131689523;
 			
 			// aapt resource value: 0x7F0F0034
-			public const int DownloadActivity = 2131689524;
+			public const int Download_Progress_DownloadingElevationData = 2131689524;
 			
 			// aapt resource value: 0x7F0F0035
-			public const int Download_Confirmation = 2131689525;
+			public const int Download_Progress_FetchingElevationTilesList = 2131689525;
 			
 			// aapt resource value: 0x7F0F0036
-			public const int Download_DownloadedOn = 2131689526;
+			public const int Download_Progress_Processing = 2131689526;
 			
 			// aapt resource value: 0x7F0F0037
-			public const int Download_ErrorDownloading = 2131689527;
+			public const int Download_Progress_RemovingElevationData = 2131689527;
 			
 			// aapt resource value: 0x7F0F0038
-			public const int Download_ErrorDownloadingElevation = 2131689528;
+			public const int Download_RemovingData = 2131689528;
 			
 			// aapt resource value: 0x7F0F0039
-			public const int Download_ErrorRemoving = 2131689529;
+			public const int EditPoi_AltitudeNotUpdated = 2131689529;
 			
 			// aapt resource value: 0x7F0F003A
-			public const int Download_InfoLoadedElevation = 2131689530;
+			public const int EditPoi_EmptyClipboard = 2131689530;
 			
 			// aapt resource value: 0x7F0F003B
-			public const int Download_InfoLoadedItems = 2131689531;
+			public const int EditPoi_FetchAltitudeFromElevationMap = 2131689531;
 			
 			// aapt resource value: 0x7F0F003C
-			public const int Download_InfoRemovedElevation = 2131689532;
+			public const int EditPoi_MissingElevationData = 2131689532;
 			
 			// aapt resource value: 0x7F0F003D
-			public const int Download_InfoRemovedItems = 2131689533;
+			public const int EditPoi_PasteLocationFromClipboard = 2131689533;
 			
 			// aapt resource value: 0x7F0F003E
-			public const int Download_LoadingData = 2131689534;
+			public const int EditPoi_TeleportationWarning = 2131689534;
 			
 			// aapt resource value: 0x7F0F003F
-			public const int Download_NotDownloadedYet = 2131689535;
+			public const int EditPoi_WrongFormat = 2131689535;
+			
+			// aapt resource value: 0x7F0F0099
+			public const int fab_transformation_scrim_behavior = 2131689625;
+			
+			// aapt resource value: 0x7F0F009A
+			public const int fab_transformation_sheet_behavior = 2131689626;
+			
+			// aapt resource value: 0x7F0F009B
+			public const int hide_bottom_view_on_scroll_behavior = 2131689627;
 			
 			// aapt resource value: 0x7F0F0040
-			public const int Download_Progress_Downloading = 2131689536;
+			public const int MainActivity = 2131689536;
 			
 			// aapt resource value: 0x7F0F0041
-			public const int Download_Progress_DownloadingElevationData = 2131689537;
+			public const int Main_DownloadDataQuestion = 2131689537;
 			
 			// aapt resource value: 0x7F0F0042
-			public const int Download_Progress_FetchingElevationTilesList = 2131689538;
+			public const int Main_EnableGpsQuestion = 2131689538;
 			
 			// aapt resource value: 0x7F0F0043
-			public const int Download_Progress_Processing = 2131689539;
+			public const int Main_ErrorGeneratingElevationProfile = 2131689539;
 			
 			// aapt resource value: 0x7F0F0044
-			public const int Download_Progress_RemovingElevationData = 2131689540;
+			public const int Main_ErrorUnknownAltitude = 2131689540;
 			
 			// aapt resource value: 0x7F0F0045
-			public const int Download_RemovingData = 2131689541;
+			public const int Main_GeneratingElevationProfile = 2131689541;
 			
 			// aapt resource value: 0x7F0F0046
-			public const int EditPoi_AltitudeNotUpdated = 2131689542;
+			public const int Main_WaitingForGps = 2131689542;
 			
 			// aapt resource value: 0x7F0F0047
-			public const int EditPoi_EmptyClipboard = 2131689543;
+			public const int Menu_StatusBarLine1Template = 2131689543;
 			
-			// aapt resource value: 0x7F0F0048
-			public const int EditPoi_FetchAltitudeFromElevationMap = 2131689544;
+			// aapt resource value: 0x7F0F009C
+			public const int mtrl_chip_close_icon_content_description = 2131689628;
 			
-			// aapt resource value: 0x7F0F0049
-			public const int EditPoi_MissingElevationData = 2131689545;
+			// aapt resource value: 0x7F0F009D
+			public const int overflow_tab_title = 2131689629;
 			
-			// aapt resource value: 0x7F0F004A
-			public const int EditPoi_PasteLocationFromClipboard = 2131689546;
+			// aapt resource value: 0x7F0F009E
+			public const int password_toggle_content_description = 2131689630;
 			
-			// aapt resource value: 0x7F0F004B
-			public const int EditPoi_TeleportationWarning = 2131689547;
+			// aapt resource value: 0x7F0F009F
+			public const int path_password_eye = 2131689631;
+			
+			// aapt resource value: 0x7F0F00A0
+			public const int path_password_eye_mask_strike_through = 2131689632;
+			
+			// aapt resource value: 0x7F0F00A1
+			public const int path_password_eye_mask_visible = 2131689633;
+			
+			// aapt resource value: 0x7F0F00A2
+			public const int path_password_strike_through = 2131689634;
 			
 			// aapt resource value: 0x7F0F004C
-			public const int EditPoi_WrongFormat = 2131689548;
+			public const int PhotosActivity = 2131689548;
 			
-			// aapt resource value: 0x7F0F00A6
-			public const int fab_transformation_scrim_behavior = 2131689638;
+			// aapt resource value: 0x7F0F0048
+			public const int PhotoShow_ImageTooSmall = 2131689544;
 			
-			// aapt resource value: 0x7F0F00A7
-			public const int fab_transformation_sheet_behavior = 2131689639;
+			// aapt resource value: 0x7F0F0049
+			public const int PhotoShow_OverwriteQuestion = 2131689545;
 			
-			// aapt resource value: 0x7F0F00A8
-			public const int hide_bottom_view_on_scroll_behavior = 2131689640;
+			// aapt resource value: 0x7F0F004A
+			public const int PhotoShow_PhotoSaved = 2131689546;
+			
+			// aapt resource value: 0x7F0F004B
+			public const int PhotoShow_SaveOrDiscard = 2131689547;
 			
 			// aapt resource value: 0x7F0F004D
-			public const int MainActivity = 2131689549;
+			public const int Photos_DeletePhotoQuestion = 2131689549;
 			
 			// aapt resource value: 0x7F0F004E
-			public const int Main_DownloadDataQuestion = 2131689550;
+			public const int Photos_EditName = 2131689550;
 			
 			// aapt resource value: 0x7F0F004F
-			public const int Main_EnableGpsQuestion = 2131689551;
+			public const int PoiEditActivity = 2131689551;
 			
 			// aapt resource value: 0x7F0F0050
-			public const int Main_ErrorGeneratingElevationProfile = 2131689552;
+			public const int PoiListActivity = 2131689552;
 			
 			// aapt resource value: 0x7F0F0051
-			public const int Main_ErrorUnknownAltitude = 2131689553;
+			public const int PoiListDeleteQuestion = 2131689553;
 			
 			// aapt resource value: 0x7F0F0052
-			public const int Main_GeneratingElevationProfile = 2131689554;
+			public const int PoiListFilter_ByName = 2131689554;
 			
 			// aapt resource value: 0x7F0F0053
-			public const int Main_WaitingForGps = 2131689555;
+			public const int PoiListFilter_My = 2131689555;
 			
 			// aapt resource value: 0x7F0F0054
-			public const int Menu_StatusBarLine1Template = 2131689556;
-			
-			// aapt resource value: 0x7F0F00A9
-			public const int mtrl_chip_close_icon_content_description = 2131689641;
-			
-			// aapt resource value: 0x7F0F00AA
-			public const int overflow_tab_title = 2131689642;
-			
-			// aapt resource value: 0x7F0F00AB
-			public const int password_toggle_content_description = 2131689643;
-			
-			// aapt resource value: 0x7F0F00AC
-			public const int path_password_eye = 2131689644;
-			
-			// aapt resource value: 0x7F0F00AD
-			public const int path_password_eye_mask_strike_through = 2131689645;
-			
-			// aapt resource value: 0x7F0F00AE
-			public const int path_password_eye_mask_visible = 2131689646;
-			
-			// aapt resource value: 0x7F0F00AF
-			public const int path_password_strike_through = 2131689647;
-			
-			// aapt resource value: 0x7F0F0059
-			public const int PhotosActivity = 2131689561;
+			public const int PoiListFilter_Visible = 2131689556;
 			
 			// aapt resource value: 0x7F0F0055
-			public const int PhotoShow_ImageTooSmall = 2131689557;
+			public const int PrivacyPolicy = 2131689557;
 			
 			// aapt resource value: 0x7F0F0056
-			public const int PhotoShow_OverwriteQuestion = 2131689558;
+			public const int PrivacyPolicyAcknowledgement = 2131689558;
 			
 			// aapt resource value: 0x7F0F0057
-			public const int PhotoShow_PhotoSaved = 2131689559;
+			public const int PrivacyPolicyRejection = 2131689559;
 			
 			// aapt resource value: 0x7F0F0058
-			public const int PhotoShow_SaveOrDiscard = 2131689560;
+			public const int PrivacyPolicyStatement = 2131689560;
+			
+			// aapt resource value: 0x7F0F00A3
+			public const int search_menu_title = 2131689635;
+			
+			// aapt resource value: 0x7F0F0059
+			public const int SettingsActivity = 2131689561;
 			
 			// aapt resource value: 0x7F0F005A
-			public const int Photos_DeletePhotoQuestion = 2131689562;
+			public const int Settings_AltitudeExplenation = 2131689562;
 			
 			// aapt resource value: 0x7F0F005B
-			public const int Photos_EditName = 2131689563;
+			public const int Settings_AltitudeFromElevationMap = 2131689563;
 			
 			// aapt resource value: 0x7F0F005C
-			public const int PoiEditActivity = 2131689564;
+			public const int Settings_AutomaticElevationProfile = 2131689564;
 			
 			// aapt resource value: 0x7F0F005D
-			public const int PoiListActivity = 2131689565;
+			public const int Settings_CameraViewAngle = 2131689565;
 			
 			// aapt resource value: 0x7F0F005E
-			public const int PoiListDeleteQuestion = 2131689566;
+			public const int Settings_ChooseLanguage = 2131689566;
 			
 			// aapt resource value: 0x7F0F005F
-			public const int PoiListFilter_ByName = 2131689567;
+			public const int Settings_ClearElevationData = 2131689567;
 			
 			// aapt resource value: 0x7F0F0060
-			public const int PoiListFilter_My = 2131689568;
+			public const int Settings_DefaultViewAngleHorizontal = 2131689568;
 			
 			// aapt resource value: 0x7F0F0061
-			public const int PoiListFilter_Visible = 2131689569;
+			public const int Settings_DefaultViewAngleVertical = 2131689569;
 			
 			// aapt resource value: 0x7F0F0062
-			public const int PrivacyPolicy = 2131689570;
+			public const int Settings_ElevationDataSize = 2131689570;
 			
 			// aapt resource value: 0x7F0F0063
-			public const int PrivacyPolicyAcknowledgement = 2131689571;
+			public const int Settings_ElevationProfile = 2131689571;
 			
 			// aapt resource value: 0x7F0F0064
-			public const int PrivacyPolicyRejection = 2131689572;
+			public const int Settings_ElevationProfileExplenation = 2131689572;
 			
 			// aapt resource value: 0x7F0F0065
-			public const int PrivacyPolicyStatement = 2131689573;
-			
-			// aapt resource value: 0x7F0F00B0
-			public const int search_menu_title = 2131689648;
+			public const int Settings_MyAltitude = 2131689573;
 			
 			// aapt resource value: 0x7F0F0066
-			public const int SettingsActivity = 2131689574;
+			public const int Settings_PhotoResolution = 2131689574;
 			
 			// aapt resource value: 0x7F0F0067
-			public const int Settings_AltitudeExplenation = 2131689575;
+			public const int Settings_SetGPSManually = 2131689575;
 			
 			// aapt resource value: 0x7F0F0068
-			public const int Settings_AltitudeFromElevationMap = 2131689576;
+			public const int Settings_SetViewAngleManually = 2131689576;
+			
+			// aapt resource value: 0x7F0F00A4
+			public const int status_bar_notification_info_overflow = 2131689636;
 			
 			// aapt resource value: 0x7F0F0069
-			public const int Settings_AutomaticElevationProfile = 2131689577;
+			public const int Tutorial_DontShowAgain = 2131689577;
 			
 			// aapt resource value: 0x7F0F006A
-			public const int Settings_CameraViewAngle = 2131689578;
+			public const int Tutorial_PhotoEdit_HeadingCorrection = 2131689578;
 			
 			// aapt resource value: 0x7F0F006B
-			public const int Settings_ChooseLanguage = 2131689579;
+			public const int Tutorial_PhotoEdit_HorizontCorrection = 2131689579;
 			
 			// aapt resource value: 0x7F0F006C
-			public const int Settings_ClearElevationData = 2131689580;
-			
-			// aapt resource value: 0x7F0F006D
-			public const int Settings_DefaultViewAngleHorizontal = 2131689581;
-			
-			// aapt resource value: 0x7F0F006E
-			public const int Settings_DefaultViewAngleVertical = 2131689582;
-			
-			// aapt resource value: 0x7F0F006F
-			public const int Settings_ElevationDataSize = 2131689583;
-			
-			// aapt resource value: 0x7F0F0070
-			public const int Settings_ElevationProfile = 2131689584;
-			
-			// aapt resource value: 0x7F0F0071
-			public const int Settings_ElevationProfileExplenation = 2131689585;
-			
-			// aapt resource value: 0x7F0F0072
-			public const int Settings_MyAltitude = 2131689586;
-			
-			// aapt resource value: 0x7F0F0073
-			public const int Settings_PhotoResolution = 2131689587;
-			
-			// aapt resource value: 0x7F0F0074
-			public const int Settings_SetGPSManually = 2131689588;
-			
-			// aapt resource value: 0x7F0F0075
-			public const int Settings_SetViewAngleManually = 2131689589;
-			
-			// aapt resource value: 0x7F0F00B1
-			public const int status_bar_notification_info_overflow = 2131689649;
-			
-			// aapt resource value: 0x7F0F0076
-			public const int Tutorial_DontShowAgain = 2131689590;
-			
-			// aapt resource value: 0x7F0F0077
-			public const int Tutorial_PhotoEdit_HeadingCorrection = 2131689591;
-			
-			// aapt resource value: 0x7F0F0078
-			public const int Tutorial_PhotoEdit_HorizontCorrection = 2131689592;
-			
-			// aapt resource value: 0x7F0F0079
-			public const int Tutorial_PhotoEdit_ViewAngleCorrection = 2131689593;
+			public const int Tutorial_PhotoEdit_ViewAngleCorrection = 2131689580;
 			
 			static String()
 			{

@@ -1,35 +1,9 @@
 <resources>
     <string name="app_name">Peaks360</string>
 
-  <string name="Common_ChooseLanguage">Wähle eine Sprache</string>
-
-  <string name="Common_CameraViewAngle">Blickwinkel der Kamera</string>
-
-  <string name="Common_SetViewAngleManually">Blickwinkel manuell einstellen</string>
-
-
   <string name="Common_HorizontalViewAngle">Horizontaler Blickwinkel</string>
-  <string name="Common_DefaultViewAngleHorizontal">  Der aktuelle Blickwinkel der Kamera beträgt 40 (manuell eingestellt)</string>
   <string name="Common_VerticalViewAngle">Vertikaler Blickwinkel</string>
-  <string name="Common_DefaultViewAngleVertical">  Der aktuelle Blickwinkel der Kamera beträgt 40 (manuell eingestellt)</string>
-
   <string name="Common_GPSLocation">GPS-Standort</string>
-
-  <string name="Common_SetGPSManually">Stellen Sie den GPS-Standort manuell ein</string>
-
-  <string name="Common_ElevationProfile">Höhenprofil</string>
-
-
-  <string name="Common_ElevationProfileExplenation">Für eine bessere Benutzererfahrung ist es möglich, das Höhenprofil automatisch zu erhalten und anzuzeigen, sobald die Daten verfügbar sind.</string>
-
-  <string name="Common_AutomaticElevationProfile">Automatisches Höhenprofil</string>
-
-  <string name="Common_MyAltitude">Meine Höhe</string>
-  <string name="Common_AltitudeExplenation">Eine genaue Höhe ist für die Benutzererfahrung sehr wichtig. Sie können möglicherweise den Höhenwert aus der Höhenkarte (wenn Höhendaten verfügbar sind) anstelle der Höhe aus dem GPS verwenden.</string>
-
-  <string name="Common_AltitudeFromElevationMap">Verwenden Sie die Höhe von der Höhenkarte</string>
-  <string name="Common_PhotoResolution">Fotoauflösung</string>
-
 
   <string name="Common_Name">Name: </string>
 
@@ -37,7 +11,6 @@
   <string name="Common_Longitude">Längengrad: </string>
   <string name="Common_Altitude">Höhe: </string>
   <string name="Common_Category">Kategorie: </string>
-  <string name="Photos_EditName">Namen bearbeiten</string>
   <string name="Common_Save">Save</string>
 
   <string name="Common_CategoryFilter">Kategoriefilter</string>
@@ -46,9 +19,20 @@
   <string name="Common_Close">Schließen</string>
   <string name="Common_Search">Suche...</string>
 
-  <string-array name="SpinnerItemsArray">
-      <item>Neuer Stil</item>
-      <item>Alter Stil</item>
-    </string-array>
+  <string name="Settings_ChooseLanguage">Wähle eine Sprache</string>
+  <string name="Settings_CameraViewAngle">Blickwinkel der Kamera</string>
+  <string name="Settings_SetViewAngleManually">Blickwinkel manuell einstellen</string>
+  <string name="Settings_DefaultViewAngleHorizontal">  Der aktuelle Blickwinkel der Kamera beträgt 40 (manuell eingestellt)</string>
+  <string name="Settings_DefaultViewAngleVertical">  Der aktuelle Blickwinkel der Kamera beträgt 40 (manuell eingestellt)</string>
+  <string name="Settings_SetGPSManually">Stellen Sie den GPS-Standort manuell ein</string>
+  <string name="Settings_ElevationProfile">Höhenprofil</string>
+  <string name="Settings_ElevationProfileExplenation">Für eine bessere Benutzererfahrung ist es möglich, das Höhenprofil automatisch zu erhalten und anzuzeigen, sobald die Daten verfügbar sind.</string>
+  <string name="Settings_AutomaticElevationProfile">Automatisches Höhenprofil</string>
+  <string name="Settings_MyAltitude">Meine Höhe</string>
+  <string name="Settings_AltitudeExplenation">Eine genaue Höhe ist für die Benutzererfahrung sehr wichtig. Sie können möglicherweise den Höhenwert aus der Höhenkarte (wenn Höhendaten verfügbar sind) anstelle der Höhe aus dem GPS verwenden.</string>
+  <string name="Settings_AltitudeFromElevationMap">Verwenden Sie die Höhe von der Höhenkarte</string>
+  <string name="Settings_PhotoResolution">Fotoauflösung</string>
+
+  <string name="Photos_EditName">Namen bearbeiten</string>
 
 </resources>
