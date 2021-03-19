@@ -1,24 +1,120 @@
 <resources>
     <string name="app_name">Peaks360</string>
 
+  <!--Common-->
+  <string name="Common_Yes">Ja</string>
+  <string name="Common_No">Nein</string>
+
+  <string name="Common_Save">Speichern</string>
+  <string name="Common_Discard">Verwerfen</string>
+  <string name="Common_Reset">Zurücksetzen</string>
+
+  <string name="Common_Details">Einzelheiten</string>
+  <string name="Common_Map">Karte</string>
+  <string name="Common_Teleport">Teleportieren</string>
+
+  <string name="Common_GPSLocation">GPS-Standort</string>
+  <string name="Common_Name">Name</string>
+  <string name="Common_Latitude">Breite</string>
+  <string name="Common_Longitude">Längengrad</string>
+  <string name="Common_Altitude">Höhe</string>
+  <string name="Common_Bearing">Orientierung</string>
+  <string name="Common_Distance">Distanz</string>
+  <string name="Common_Category">Kategorie</string>
+  <string name="Common_Country">Land</string>
+  <string name="Common_Heading">Heading</string>
   <string name="Common_HorizontalViewAngle">Horizontaler Blickwinkel</string>
   <string name="Common_VerticalViewAngle">Vertikaler Blickwinkel</string>
-  <string name="Common_GPSLocation">GPS-Standort</string>
-
-  <string name="Common_Name">Name: </string>
-
-  <string name="Common_Latitude">Breite: </string>
-  <string name="Common_Longitude">Längengrad: </string>
-  <string name="Common_Altitude">Höhe: </string>
-  <string name="Common_Category">Kategorie: </string>
-  <string name="Common_Save">Save</string>
-
-  <string name="Common_CategoryFilter">Kategoriefilter</string>
   <string name="Common_All">Alle</string>
   <string name="Common_None">Keiner</string>
   <string name="Common_Close">Schließen</string>
   <string name="Common_Search">Suche...</string>
 
+  <string name="Common_Question">Anfrage</string>
+  <string name="Common_Information">Information</string>
+  <string name="Common_Error">Error</string>
+
+  <string name="Common_DiscardChanges">Möchten Sie alle Änderungen verwerfen?</string>
+  <string name="Common_NoDataToDisplay">Keine Punkte zum Anzeigen. Ändern Sie die Filtereinstellungen oder laden Sie Daten herunter.</string>
+
+  <string name="Common_CategoryFilter">Kategoriefilter</string>
+
+  <!--Menu Activity-->
+  <string name="MainActivity">Gehe zurück zur Kamera</string>
+  <string name="PoiListActivity">Liste der Punkte</string>
+  <string name="DownloadActivity">Daten herunterladen</string>
+  <string name="PhotosActivity">Fotogallerie</string>
+  <string name="SettingsActivity">Einstellungen</string>
+  <string name="AboutActivity">Über die Anwendung</string>
+
+  <string name="Category_Historic">Historisch</string>
+  <string name="Category_Mountains">Berge</string>
+  <string name="Category_Lakes">Seen</string>
+  <string name="Category_Churches">Kirchen</string>
+  <string name="Category_Cities">Siedlungen</string>
+  <string name="Category_ViewTowers">Türme anzeigen</string>
+  <string name="Category_Transmitters">Sender</string>
+  <string name="Category_Other">Andere</string>
+  <string name="Category_ElevationData">Höhendaten</string>
+
+  <string name="Menu_StatusBarLine1Template">Version: {0} ({1})  Poi Count: {2}</string>
+
+  <!--MainActivity-->
+  <string name="Main_DownloadDataQuestion">Es wurden noch keine Punkte heruntergeladen. Möchten Sie sie jetzt herunterladen?</string>
+  <string name="Main_EnableGpsQuestion">GPS ist nicht aktiviert. Möchten Sie es jetzt aktivieren?</string>
+  <string name="Main_ErrorGeneratingElevationProfile">Fehler beim Generieren des Höhenprofils.</string>
+  <string name="Main_ErrorUnknownAltitude">Es ist nicht möglich, ein Höhenprofil ohne bekannte Höhe zu erstellen.</string>
+  <string name="Main_GeneratingElevationProfile">Höhenprofil generieren...</string>
+  <string name="Main_WaitingForGps">Warten auf GPS-Standort...</string>
+
+  <!--PoiListActivity-->
+  <string name="PoiListFilter_Visible">Sichtbarer</string>
+  <string name="PoiListFilter_My">Meine</string>
+  <string name="PoiListFilter_ByName">Nach Namen</string>
+  <string name="PoiListDeleteQuestion">Möchten Sie diesen Artikel wirklich löschen?</string>
+
+  <!--PoiEditActivity-->
+  <string name="PoiEditActivity">Punkt bearbeiten</string>
+
+  <!--DownloadActivity-->
+  <string name="Download_LoadingData">Daten werden geladen. Warten Sie mal.</string>
+  <string name="Download_InfoLoadedItems">{0} Elemente in die Datenbank geladen.</string>
+  <string name="Download_ErrorDownloading">Fehler beim Herunterladen der Daten.</string>
+  <string name="Download_RemovingData">Daten entfernen. Warten Sie mal.</string>
+  <string name="Download_InfoRemovedItems">Elemente aus der Datenbank entfernt.</string>
+  <string name="Download_ErrorRemoving">Fehler beim Entfernen von Daten.</string>
+  <string name="Download_InfoLoadedElevation">Höhendaten wurden heruntergeladen.</string>
+  <string name="Download_ErrorDownloadingElevation">Fehler beim Herunterladen der Höhendaten.</string>
+  <string name="Download_InfoRemovedElevation">Höhendaten gelöscht.</string>
+  <string name="Download_Progress_Downloading">Daten herunterladen...</string>
+  <string name="Download_Progress_Processing">Daten verarbeiten...</string>
+  <string name="Download_Progress_FetchingElevationTilesList">Liste der Höhenkacheln abrufen...</string>
+  <string name="Download_Progress_DownloadingElevationData">Höhendaten herunterladen...</string>
+  <string name="Download_Progress_RemovingElevationData">Höhendaten entfernen...</string>
+  <string name="Download_Confirmation">Für diese Aktion müssen zusätzliche {0} MByte heruntergeladen werden. Stellen Sie möglicherweise eine geringere Sichtbarkeit ein, um die Menge der heruntergeladenen Daten zu verringern. \n\nWillst du wirklich weitermachen?</string>
+  <string name="Download_DownloadedOn">Heruntergeladen am </string>
+  <string name="Download_NotDownloadedYet">Noch nicht heruntergeladen.</string>
+
+  <!--EditActivity-->
+  <string name="EditPoi_WrongFormat">Verwenden Sie das richtige Format. Beispiel: 12.34567890</string>
+  <string name="EditPoi_EmptyClipboard">Es scheint, dass sich kein Text in Ihrer Zwischenablage befindet.</string>
+  <string name="EditPoi_MissingElevationData">Fehlende Höhendaten.</string>
+  <string name="EditPoi_AltitudeNotUpdated">Die Höhe wurde nicht aktualisiert.</string>
+  <string name="EditPoi_TeleportationWarning">Ihr Standort wird auf die {0} eingestellt. Um Ihren Standort zurückzusetzen, drücken Sie in der Kameraansicht die Taste [Zurücksetzen] oder setzen Sie den manuellen Standort in den Anwendungseinstellungen zurück. \n\nMöchten Sie fortfahren?</string>
+  <string name="EditPoi_PasteLocationFromClipboard">Fügen Sie den GPS-Standort aus der Zwischenablage</string>
+  <string name="EditPoi_FetchAltitudeFromElevationMap">Höhe von der Höhenkarte abrufen</string>
+
+  <!--PhotosActivity -->
+  <string name="Photos_DeletePhotoQuestion">Möchten Sie dieses Foto wirklich löschen?</string>
+  <string name="Photos_EditName">Namen bearbeiten</string>
+
+  <!--PhotoShowActivity-->
+  <string name="PhotoShow_SaveOrDiscard">Fotoparameter wurden geändert. Willst du deine Änderungen speichern?</string>
+  <string name="PhotoShow_OverwriteQuestion">Dieses Foto existiert bereits. Überschreiben?</string>
+  <string name="PhotoShow_PhotoSaved">Foto gespeichert.</string>
+  <string name="PhotoShow_ImageTooSmall">Das zugeschnittene Bild ist zu klein.</string>
+
+  <!--SettingsActivity-->
   <string name="Settings_ChooseLanguage">Wähle eine Sprache</string>
   <string name="Settings_CameraViewAngle">Blickwinkel der Kamera</string>
   <string name="Settings_SetViewAngleManually">Blickwinkel manuell einstellen</string>
@@ -32,7 +128,16 @@
   <string name="Settings_AltitudeExplenation">Eine genaue Höhe ist für die Benutzererfahrung sehr wichtig. Sie können möglicherweise den Höhenwert aus der Höhenkarte (wenn Höhendaten verfügbar sind) anstelle der Höhe aus dem GPS verwenden.</string>
   <string name="Settings_AltitudeFromElevationMap">Verwenden Sie die Höhe von der Höhenkarte</string>
   <string name="Settings_PhotoResolution">Fotoauflösung</string>
+  <string name="Settings_ClearElevationData">Höhendaten löschen</string>
+  <string name="Settings_ElevationDataSize">Zwischengespeicherte Höhendaten belegen {0} MByte Gerätespeicher.</string>
 
-  <string name="Photos_EditName">Namen bearbeiten</string>
+  <string name="Tutorial_PhotoEdit_HeadingCorrection">Bewegen Sie Ihren Finger über den Bildschirm, um die Kompassrichtung anzupassen.</string>
+  <string name="Tutorial_PhotoEdit_HorizontCorrection">Bewegen Sie Ihren Finger am linken / rechten Bildschirmrand, um den künstlichen Horizont anzupassen.</string>
+  <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Verwenden Sie zwei Finger, um den horizontalen und vertikalen Blickwinkel einzustellen.</string>
+  <string name="Tutorial_DontShowAgain">Nicht mehr zeigen</string>
+
+  <string name="PrivacyPolicyStatement">Datenschutzerklärung</string>
+  <string name="PrivacyPolicyAcknowledgement">Ja, ich stimme zu.</string>
+  <string name="PrivacyPolicyRejection">Nein, ich stimme nicht zu. Schließen Sie die Anwendung.</string>
 
 </resources>

@@ -40,12 +40,12 @@
   <string name="Common_CategoryFilter">Category filter</string>
 
   <!--Menu Activity-->
-  <string name="MainActivity">Go back to camera</string>
-  <string name="PoiListActivity">List of POIs</string>
-  <string name="DownloadActivity">Download data</string>
-  <string name="PhotosActivity">Photo gallery</string>
-  <string name="SettingsActivity">Settings</string>
-  <string name="AboutActivity">About</string>
+  <string name="MainActivity">Revenir à la caméra</string>
+  <string name="PoiListActivity">Liste des points</string>
+  <string name="DownloadActivity">Télécharger les données</string>
+  <string name="PhotosActivity">Galerie de photos</string>
+  <string name="SettingsActivity">Réglages</string>
+  <string name="AboutActivity">À propos</string>
 
   <string name="Category_Historic">Historic</string>
   <string name="Category_Mountains">Mountains</string>

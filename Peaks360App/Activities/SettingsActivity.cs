@@ -147,25 +147,6 @@ namespace Peaks360App.Activities
             UpdateElevationDataSize();
         }
 
-        private void SetLanguage()
-        {
-            if (_spinnerLanguages != null)
-            {
-                switch (_listOfLanguages[_spinnerLanguages.SelectedItemPosition])
-                {
-                    case Language.English:
-                        _settings.Language = Language.English;
-                        break;
-                    case Language.German:
-                        _settings.Language = Language.German;
-                        break;
-                    case Language.Czech:
-                        _settings.Language = Language.Czech;
-                        break;
-                }
-            }
-        }
-
         protected override void OnStart()
         {
             base.OnStart();
@@ -277,7 +258,7 @@ namespace Peaks360App.Activities
                 //Altitude from elevation map
                 _settings.AltitudeFromElevationMap = _switchAltitudeFromElevationMap.Checked;
                 _settings.CameraResolutionSelected = _listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition];
-                SetLanguage();
+                _settings.Language = _listOfLanguages[_spinnerLanguages.SelectedItemPosition]; 
 
                 _settings.NotifySettingsChanged(ChangedData.ViewOptions);
                 AppContextLiveData.Instance.SetLocale(this);

@@ -233,6 +233,15 @@ namespace Peaks360App.AppContext
                 case Language.Czech:
                     appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("cz"));
                     break;
+                case Language.French:
+                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("fr"));
+                    break;
+                case Language.Italian:
+                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("it"));
+                    break;
+                case Language.Spanish:
+                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("es"));
+                    break;
             }
 
             appContext.Resources.UpdateConfiguration(appContext.Resources.Configuration, appContext.Resources.DisplayMetrics);

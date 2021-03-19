@@ -89,7 +89,7 @@
               android:layout_height="wrap_content"
               android:id="@+id/textViewAngleVertical" />
             <Button
-              android:text="Reset"
+              android:text="@string/Common_Reset"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:id="@+id/reset" />
