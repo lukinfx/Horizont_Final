@@ -2,145 +2,145 @@
   <string name="app_name">Peaks360</string>
 
   <!--Common-->
-  <string name="Common_Yes">Yes</string>
+  <string name="Common_Yes">Sì</string>
   <string name="Common_No">No</string>
 
-  <string name="Common_Save">Save</string>
-  <string name="Common_Discard">Discard</string>
-  <string name="Common_Reset">Reset</string>
+  <string name="Common_Save">Salvare</string>
+  <string name="Common_Discard">Scartare</string>
+  <string name="Common_Reset">Ripristina</string>
 
-  <string name="Common_Details">Details</string>
-  <string name="Common_Map">Map</string>
-  <string name="Common_Teleport">Teleport</string>
+  <string name="Common_Details">Dettagli</string>
+  <string name="Common_Map">Carta</string>
+  <string name="Common_Teleport">Teletrasporto</string>
 
-  <string name="Common_GPSLocation">GPS Location</string>
-  <string name="Common_Name">Name</string>
-  <string name="Common_Latitude">Latitude</string>
-  <string name="Common_Longitude">Longitude</string>
-  <string name="Common_Altitude">Altitude</string>
+  <string name="Common_GPSLocation">Posizione GPS</string>
+  <string name="Common_Name">Nome</string>
+  <string name="Common_Latitude">Latitudine</string>
+  <string name="Common_Longitude">Longitudine</string>
+  <string name="Common_Altitude">Altitudine</string>
   <string name="Common_Bearing">Bearing</string>
-  <string name="Common_Distance">Distance</string>
-  <string name="Common_Category">Category</string>
-  <string name="Common_Country">Country</string>
+  <string name="Common_Distance">Distanza</string>
+  <string name="Common_Category">Categoria</string>
+  <string name="Common_Country">Nazione</string>
   <string name="Common_Heading">Heading</string>
-  <string name="Common_HorizontalViewAngle">Horizontal view angle</string>
-  <string name="Common_VerticalViewAngle">Vertical view angle</string>
-  <string name="Common_All">All</string>
-  <string name="Common_None">None</string>
-  <string name="Common_Close">Close</string>
-  <string name="Common_Search">Search</string>
+  <string name="Common_HorizontalViewAngle">Angolo di visione orizzontale</string>
+  <string name="Common_VerticalViewAngle">Angolo di visione verticale</string>
+  <string name="Common_All">Tutti</string>
+  <string name="Common_None">Niente</string>
+  <string name="Common_Close">Chiudi</string>
+  <string name="Common_Search">Ricercare</string>
 
-  <string name="Common_Question">Question</string>
-  <string name="Common_Information">Information</string>
-  <string name="Common_Error">Error</string>
+  <string name="Common_Question">Questione</string>
+  <string name="Common_Information">Informazione</string>
+  <string name="Common_Error">Errore</string>
 
-  <string name="Common_DiscardChanges">Do you want to discard all changes?</string>
-  <string name="Common_NoDataToDisplay">No POIs to display. Change filter settings or download POI data.</string>
+  <string name="Common_DiscardChanges">Vuoi annullare tutte le modifiche?</string>
+  <string name="Common_NoDataToDisplay">Nessun dato da visualizzare. Modifica le impostazioni del filtro o scarica i dati.</string>
 
-  <string name="Common_CategoryFilter">Category filter</string>
+  <string name="Common_CategoryFilter">Filtro di categoria</string>
 
   <!--Menu Activity-->
   <string name="MainActivity">Torna alla fotocamera</string>
   <string name="PoiListActivity">Elenco dei punti</string>
   <string name="DownloadActivity">Scarica i dati</string>
   <string name="PhotosActivity">Galleria fotografica</string>
-  <string name="SettingsActivity">Impostazioni</string>
-  <string name="AboutActivity">About</string>
+  <string name="SettingsActivity">Configurazione</string>
+  <string name="AboutActivity">Informazioni</string>
 
-  <string name="Category_Historic">Historic</string>
-  <string name="Category_Mountains">Mountains</string>
-  <string name="Category_Lakes">Lakes</string>
-  <string name="Category_Churches">Churches</string>
-  <string name="Category_Cities">Settlements</string>
-  <string name="Category_ViewTowers">View towers</string>
-  <string name="Category_Transmitters">Transmitters</string>
-  <string name="Category_Other">Other</string>
-  <string name="Category_ElevationData">Elevation data</string>
+  <string name="Category_Historic">Storico</string>
+  <string name="Category_Mountains">Montagne</string>
+  <string name="Category_Lakes">Laghi</string>
+  <string name="Category_Churches">Chiese</string>
+  <string name="Category_Cities">Insediamenti</string>
+  <string name="Category_ViewTowers">Visualizza torri</string>
+  <string name="Category_Transmitters">Trasmettitori</string>
+  <string name="Category_Other">Altro</string>
+  <string name="Category_ElevationData">Dati di elevazione</string>
 
   <string name="Menu_StatusBarLine1Template">Version: {0} ({1})  Poi Count: {2}</string>
 
   <!--MainActivity-->
-  <string name="Main_DownloadDataQuestion">No points of interest have been downloaded yet. Do you want do download them now?</string>
-  <string name="Main_EnableGpsQuestion">GPS is not enabled. Do you want to enable it now?</string>
-  <string name="Main_ErrorGeneratingElevationProfile">Error when generating elevation profile.</string>
-  <string name="Main_ErrorUnknownAltitude">It\'s not possible to generate elevation profile without known altitude.</string>
-  <string name="Main_GeneratingElevationProfile">Generating elevation profile...</string>
-  <string name="Main_WaitingForGps">Waiting for GPS location...</string>
-  <string name="Main_MaxDistanceMinAltitudeTemplate">"Altitudine superiore a {0}m/nDistanza fino a {1}km</string>
+  <string name="Main_DownloadDataQuestion">Nessun punto di interesse è stato ancora scaricato. Vuoi scaricarli adesso?</string>
+  <string name="Main_EnableGpsQuestion">Il GPS non è abilitato. Vuoi abilitarlo adesso?</string>
+  <string name="Main_ErrorGeneratingElevationProfile">Errore durante la generazione del profilo di elevazione.</string>
+  <string name="Main_ErrorUnknownAltitude">Non è possibile generare un profilo altimetrico senza un\'altitudine nota.</string>
+  <string name="Main_GeneratingElevationProfile">Generazione del profilo di elevazione...</string>
+  <string name="Main_WaitingForGps">In attesa della posizione GPS...</string>
+  <string name="Main_MaxDistanceMinAltitudeTemplate">"Altitudine superiore a {0}m\nDistanza fino a {1}km</string>
 
   <!--PoiListActivity-->
-  <string name="PoiListFilter_Visible">Visible</string>
-  <string name="PoiListFilter_My">My POIs</string>
-  <string name="PoiListFilter_ByName">By name</string>
-  <string name="PoiListDeleteQuestion">Are you sure you want to delete this item?</string>
+  <string name="PoiListFilter_Visible">Visibli</string>
+  <string name="PoiListFilter_My">I miei</string>
+  <string name="PoiListFilter_ByName">Per nome</string>
+  <string name="PoiListDeleteQuestion">Sei sicuro di voler eliminare questo articolo?</string>
 
   <!--PoiEditActivity-->
-  <string name="PoiEditActivity">Edit Point Of Interest</string>
+  <string name="PoiEditActivity">Modifica punto di interesse</string>
 
   <!--DownloadActivity-->
-  <string name="Download_LoadingData">Loading data. Please Wait.</string>
-  <string name="Download_InfoLoadedItems">{0} items loaded to database.</string>
-  <string name="Download_ErrorDownloading">Error when downloading POI data.</string>
-  <string name="Download_RemovingData">Removing data. Please Wait.</string>
-  <string name="Download_InfoRemovedItems">POI items removed from database.</string>
-  <string name="Download_ErrorRemoving">Error when removing POI data.</string>
-  <string name="Download_InfoLoadedElevation">Elevation data were downloaded.</string>
-  <string name="Download_ErrorDownloadingElevation">Error when downloading elevation data.</string>
-  <string name="Download_InfoRemovedElevation">Elevation data deleted.</string>
-  <string name="Download_Progress_Downloading">Downloading data...</string>
-  <string name="Download_Progress_Processing">Processing data...</string>
-  <string name="Download_Progress_FetchingElevationTilesList">Fetching list of elevation tiles...</string>
-  <string name="Download_Progress_DownloadingElevationData">Downloading elevation data...</string>
-  <string name="Download_Progress_RemovingElevationData">Removing elevation data...</string>
-  <string name="Download_Confirmation">This action requires to download additional {0} MBytes. Possibly set lower visibility to reduce amount of downloaded data. \n\nDo you really want to continue?</string>
-  <string name="Download_DownloadedOn">Downloaded on </string>
-  <string name="Download_NotDownloadedYet">Not downloaded yet.</string>
+  <string name="Download_LoadingData">Caricamento dati. Attendere prego.</string>
+  <string name="Download_InfoLoadedItems">{0} elementi caricati nel database.</string>
+  <string name="Download_ErrorDownloading">Errore durante il download dei dati POI.</string>
+  <string name="Download_RemovingData">Rimozione dei dati. Attendere prego.</string>
+  <string name="Download_InfoRemovedItems">Punti rimossi dal database.</string>
+  <string name="Download_ErrorRemoving">Errore durante la rimozione dei dati POI.</string>
+  <string name="Download_InfoLoadedElevation">I dati di elevazione sono stati scaricati.</string>
+  <string name="Download_ErrorDownloadingElevation">Errore durante il download dei dati di elevazione.</string>
+  <string name="Download_InfoRemovedElevation">Dati di elevazione eliminati.</string>
+  <string name="Download_Progress_Downloading">Download dei dati...</string>
+  <string name="Download_Progress_Processing">Elaborazione dei dati...</string>
+  <string name="Download_Progress_FetchingElevationTilesList">Recupero dell\'elenco delle tessere elevazione...</string>
+  <string name="Download_Progress_DownloadingElevationData">Download dei dati di elevazione...</string>
+  <string name="Download_Progress_RemovingElevationData">Rimozione dei dati di elevazione...</string>
+  <string name="Download_Confirmation">Questa azione richiede il download di ulteriori {0} MByte. È possibile impostare una visibilità inferiore per ridurre la quantità di dati scaricati.\n\nVuoi davvero continuare?</string>
+  <string name="Download_DownloadedOn">Scaricato il </string>
+  <string name="Download_NotDownloadedYet">Non ancora scaricato.</string>
 
   <!--EditActivity-->
-  <string name="EditPoi_WrongFormat">Use correct format. Example: 12,34567890.</string>
-  <string name="EditPoi_EmptyClipboard">It seems you don\'t have any text in your ClipBoard.</string>
-  <string name="EditPoi_MissingElevationData">Missing elevation data.</string>
-  <string name="EditPoi_AltitudeNotUpdated">The altitude was not updated.</string>
-  <string name="EditPoi_TeleportationWarning">Your location will be set to {0}. To reset your location, press [Reset] button in camera view or reset manual location in application settings.\n\nDo you want to continue?</string>
-  <string name="EditPoi_PasteLocationFromClipboard">Paste GPS location from clipboard</string>
-  <string name="EditPoi_FetchAltitudeFromElevationMap">Fetch altitude from elevation map</string>
+  <string name="EditPoi_WrongFormat">Usa il formato corretto. Esempio: 12.34567890.</string>
+  <string name="EditPoi_EmptyClipboard">Sembra che non ci sia testo negli Appunti.</string>
+  <string name="EditPoi_MissingElevationData">Dati di elevazione mancanti.</string>
+  <string name="EditPoi_AltitudeNotUpdated">L\'altitudine non è stata aggiornata.</string>
+  <string name="EditPoi_TeleportationWarning">La tua posizione sarà impostata su {0}. Per reimpostare la tua posizione, premi il pulsante [Reimposta] nella vista della fotocamera o reimposta manualmente la posizione nelle impostazioni dell\'applicazione.\n\nVuoi continuare?</string>
+  <string name="EditPoi_PasteLocationFromClipboard">Incolla la posizione GPS dagli appunti</string>
+  <string name="EditPoi_FetchAltitudeFromElevationMap">Recupera l\'altitudine dalla mappa di elevazione</string>
 
   <!--PhotosActivity -->
-  <string name="Photos_DeletePhotoQuestion">Are you sure you want to delete this Photo?</string>
-  <string name="Photos_EditName">Edit name</string>
+  <string name="Photos_DeletePhotoQuestion">Sei sicuro di voler eliminare questa foto?</string>
+  <string name="Photos_EditName">Modifica nome</string>
 
   <!--PhotoShowActivity-->
-  <string name="PhotoShow_SaveOrDiscard">Photo parameters have been changed. Do you want to save your changes?</string>
-  <string name="PhotoShow_OverwriteQuestion">This photo already exists. Overwrite?</string>
-  <string name="PhotoShow_PhotoSaved">Photo saved.</string>
-  <string name="PhotoShow_ImageTooSmall">Cropped image is too small.</string>
+  <string name="PhotoShow_SaveOrDiscard">I parametri delle foto sono stati modificati. Vuoi salvare le tue modifiche?</string>
+  <string name="PhotoShow_OverwriteQuestion">Questa foto esiste già. Sovrascrivi?</string>
+  <string name="PhotoShow_PhotoSaved">Foto salvata.</string>
+  <string name="PhotoShow_ImageTooSmall">L\'immagine ritagliata è troppo piccola.</string>
 
   <!--SettingsActivity-->
-  <string name="Settings_ChooseLanguage">Choose a language</string>
-  <string name="Settings_CameraViewAngle">Camera view angle</string>
-  <string name="Settings_SetViewAngleManually">Set view angle manually</string>
-  <string name="Settings_DefaultViewAngleHorizontal">  Current camera view angle is 40 (set manually)</string>
-  <string name="Settings_DefaultViewAngleVertical">  Current camera view angle is 60 (set manually)</string>
-  <string name="Settings_SetGPSManually">Set GPS Location Manually</string>
-  <string name="Settings_ElevationProfile">Elevation profile</string>
-  <string name="Settings_ElevationProfileExplenation">For better user experience it is possible to obtain and show elevation profile automatically whenever the data are available.</string>
-  <string name="Settings_AutomaticElevationProfile">Auto elevation profile</string>
-  <string name="Settings_MyAltitude">My altitude</string>
-  <string name="Settings_AltitudeExplenation">Accurate altitude is very important for user experience. You can possibly use altitude value from elevation map (when elevation data are available) instead of altitude from GPS.</string>
-  <string name="Settings_AltitudeFromElevationMap">Use altitude from elevation map</string>
-  <string name="Settings_PhotoResolution">Photo resolution</string>
-  <string name="Settings_ClearElevationData">Clear elevation data</string>
-  <string name="Settings_ElevationDataSize">Cached elevation data occupy {0} MBytes of device memory.</string>
+  <string name="Settings_ChooseLanguage">Scegli la lingua</string>
+  <string name="Settings_CameraViewAngle">Angolo di visualizzazione della telecamera</string>
+  <string name="Settings_SetViewAngleManually">Imposta manualmente l\'angolo di visualizzazione</string>
+  <string name="Settings_DefaultViewAngleHorizontal">L\'attuale angolo di visuale della telecamera è 40 (impostato manualmente)</string>
+  <string name="Settings_DefaultViewAngleVertical">L\'attuale angolo di visuale della telecamera è 60 (impostato manualmente)</string>
+  <string name="Settings_SetGPSManually">Imposta manualmente la posizione GPS</string>
+  <string name="Settings_ElevationProfile">Profilo di elevazione</string>
+  <string name="Settings_ElevationProfileExplenation">Per una migliore esperienza utente è possibile ottenere e mostrare automaticamente il profilo altimetrico ogni volta che i dati sono disponibili.</string>
+  <string name="Settings_AutomaticElevationProfile">Profilo elevazione automatico</string>
+  <string name="Settings_MyAltitude">La mia altitudine</string>
+  <string name="Settings_AltitudeExplenation">L\'altitudine precisa è molto importante per l\'esperienza dell\'utente. È possibile utilizzare il valore dell\'altitudine dalla mappa di elevazione (quando sono disponibili i dati di elevazione) invece dell\'altitudine dal GPS.</string>
+  <string name="Settings_AltitudeFromElevationMap">Usa l\'altitudine dalla mappa di elevazione</string>
+  <string name="Settings_PhotoResolution">Risoluzione foto</string>
+  <string name="Settings_ClearElevationData">Cancella i dati di elevazione</string>
+  <string name="Settings_ElevationDataSize">I dati di elevazione memorizzati nella cache occupano {0} MByte di memoria del dispositivo.</string>
   
 
-  <string name="Tutorial_PhotoEdit_HeadingCorrection">Move you finger on top of the screen to adjust compass heading.</string>
-  <string name="Tutorial_PhotoEdit_HorizontCorrection">Move you finger on left/right screen edge to to adjust artifical horizon.</string>
-  <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Use two fingers to adjust horizontal and vertical view angle.</string>
-  <string name="Tutorial_DontShowAgain">Don\'t show again</string>
+  <string name="Tutorial_PhotoEdit_HeadingCorrection">Muovi il dito sulla parte superiore dello schermo per regolare la direzione della bussola.</string>
+  <string name="Tutorial_PhotoEdit_HorizontCorrection">Muovi il dito sul bordo sinistro / destro dello schermo per regolare l\'orizzonte artificiale.</string>
+  <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Usa due dita per regolare l\'angolo di visualizzazione orizzontale e verticale.</string>
+  <string name="Tutorial_DontShowAgain">Non mostrarlo più</string>
 
-  <string name="PrivacyPolicyStatement">Privacy policy statement</string>
-  <string name="PrivacyPolicyAcknowledgement">Yes, I consent.</string>
-  <string name="PrivacyPolicyRejection">No, I don\'t agree. Close the application.</string>
+  <string name="PrivacyPolicyStatement">Dichiarazione sulla tutela dei dati personali</string>
+  <string name="PrivacyPolicyAcknowledgement">Sì, acconsento.</string>
+  <string name="PrivacyPolicyRejection">No, non sono d\'accordo. Chiudi l\'applicazione.</string>
 
   <string-array name="SpinnerItemsArray">
     <item>New Style</item>
