@@ -23,8 +23,8 @@
   <string name="Common_Category">Categoria</string>
   <string name="Common_Country">Nazione</string>
   <string name="Common_Heading">Heading</string>
-  <string name="Common_HorizontalViewAngle">Angolo di visione orizzontale</string>
-  <string name="Common_VerticalViewAngle">Angolo di visione verticale</string>
+  <string name="Common_HorizontalViewAngle">Angolo orizzontale</string>
+  <string name="Common_VerticalViewAngle">Angolo verticale</string>
   <string name="Common_All">Tutti</string>
   <string name="Common_None">Niente</string>
   <string name="Common_Close">Chiudi</string>
