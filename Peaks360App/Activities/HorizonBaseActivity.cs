@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using Android.App;
 using Android.Content;
@@ -120,6 +121,8 @@ namespace Peaks360App.Activities
             _compassView.LayoutChange += OnLayoutChanged;
         }
 
+        private string _maxDistanceMinAltitudeTemplate;
+
         protected void Start()
         {
             //Finnaly setup OnDataChanged listener and Load all data
@@ -127,6 +130,12 @@ namespace Peaks360App.Activities
             Context.HeadingChanged += HeadingChanged;
             ElevationProfileProvider.Instance().ElevationProfileChanged += OnElevationProfileChanged;
             UpdateStatusBar();
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            _maxDistanceMinAltitudeTemplate = Resources.GetText(Resource.String.Main_MaxDistanceMinAltitudeTemplate);
         }
 
         protected override void OnDestroy()
@@ -182,18 +191,13 @@ namespace Peaks360App.Activities
 
         private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            _textViewNotification.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
-            _textViewNotification.Visibility = ViewStates.Visible;
-
+            ShowMaxDistanceMinAltitudeText();
             Context.Settings.MinAltitute = _heightSeekBar.Progress;
         }
 
         private void OnMaxDistanceChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            //TODO: Save minAltitude and maxDistance to CompassViewSettings
-            _textViewNotification.Text = "vyska nad " + _heightSeekBar.Progress + "m, do " + _distanceSeekBar.Progress + "km daleko";
-            _textViewNotification.Visibility = ViewStates.Visible;
-
+            ShowMaxDistanceMinAltitudeText();
             Context.Settings.MaxDistance = _distanceSeekBar.Progress;
         }
 
@@ -352,6 +356,12 @@ namespace Peaks360App.Activities
         protected virtual CroppingHandle? GetCroppingHandle(float x, float y)
         {
             return null;
+        }
+
+        protected void ShowMaxDistanceMinAltitudeText()
+        {
+            _textViewNotification.Text = String.Format(_maxDistanceMinAltitudeTemplate, _heightSeekBar.Progress.ToString(), _distanceSeekBar.Progress.ToString());
+            _textViewNotification.Visibility = ViewStates.Visible;
         }
 
         private float DispDistance()

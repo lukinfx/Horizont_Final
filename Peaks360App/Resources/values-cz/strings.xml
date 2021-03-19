@@ -66,6 +66,7 @@
   <string name="Main_ErrorUnknownAltitude">Není možno vygenerovat výškový profil bez známé nadmořské výšky.</string>
   <string name="Main_GeneratingElevationProfile">Generuji výškový profil...</string>
   <string name="Main_WaitingForGps">Čekání na GPS polohu...</string>
+  <string name="Main_MaxDistanceMinAltitudeTemplate">"Nadm. výška nad {0}m/nVzdálenost do {1}km</string>
 
   <!--PoiListActivity-->
   <string name="PoiListFilter_Visible">Viditelné</string>

@@ -55,6 +55,6 @@ namespace Peaks360App.AppContext
         PoiViewItem SelectedPoi { get; set; }
         void Pause();
         void Resume();
-        void SetLocale(Android.Content.ContextWrapper contextWrapper);
+        void SetLocale(Android.Content.Context contextWrapper);
     }
 }

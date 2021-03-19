@@ -219,33 +219,9 @@ namespace Peaks360App.AppContext
         {
         }
 
-        public void SetLocale(ContextWrapper appContext)
+        public void SetLocale(Context appContext)
         {
-            
-            switch (Settings.Language)
-            {
-                case Language.English:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("en"));
-                    break;
-                case Language.German:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
-                    break;
-                case Language.Czech:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("cz"));
-                    break;
-                case Language.French:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("fr"));
-                    break;
-                case Language.Italian:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("it"));
-                    break;
-                case Language.Spanish:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("es"));
-                    break;
-            }
-
-            appContext.Resources.UpdateConfiguration(appContext.Resources.Configuration, appContext.Resources.DisplayMetrics);
+            PoiCountryHelper.SetLocale(appContext, Settings.Language);
         }
-
     }
 }

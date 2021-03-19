@@ -66,6 +66,7 @@
   <string name="Main_ErrorUnknownAltitude">It\'s not possible to generate elevation profile without known altitude.</string>
   <string name="Main_GeneratingElevationProfile">Generating elevation profile...</string>
   <string name="Main_WaitingForGps">Waiting for GPS location...</string>
+  <string name="Main_MaxDistanceMinAltitudeTemplate">Altitud superior a {0}m/nDistancia hasta {1}km</string>
 
   <!--PoiListActivity-->
   <string name="PoiListFilter_Visible">Visible</string>

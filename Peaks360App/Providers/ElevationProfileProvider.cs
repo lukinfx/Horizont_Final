@@ -29,7 +29,7 @@ namespace Peaks360App.Providers
 
         public event ElevationProfileChangedEventHandler ElevationProfileChanged;
 
-        private Resources Resources { get { return Application.Context.Resources; } }
+        //private Resources Resources { get { return Application.Context.Resources; } }
 
         private static ElevationProfileProvider _instance;
         public static ElevationProfileProvider Instance()
@@ -74,7 +74,7 @@ namespace Peaks360App.Providers
                 if (!GpsUtils.HasAltitude(myLocation))
                 {
                     PopupHelper.ErrorDialog(appContext,
-                        Resources.GetText(Resource.String.Main_ErrorUnknownAltitude));
+                        appContext.Resources.GetText(Resource.String.Main_ErrorUnknownAltitude));
                     return;
                 }
 
@@ -91,11 +91,11 @@ namespace Peaks360App.Providers
 
                 using (var builder = new AlertDialog.Builder(appContext))
                 {
-                    builder.SetTitle(Resources.GetText(Resource.String.Common_Question));
-                    builder.SetMessage(String.Format(Resources.GetText(Resource.String.Download_Confirmation), size));
+                    builder.SetTitle(appContext.Resources.GetText(Resource.String.Common_Question));
+                    builder.SetMessage(String.Format(appContext.Resources.GetText(Resource.String.Download_Confirmation), size));
                     builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
-                    builder.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) => { StartDownloadAndCalculateAsync(appContext, ec); });
-                    builder.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { _elevationProfileBeingGenerated = false; });
+                    builder.SetPositiveButton(appContext.Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) => { StartDownloadAndCalculateAsync(appContext, ec); });
+                    builder.SetNegativeButton(appContext.Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { _elevationProfileBeingGenerated = false; });
 
                     var myCustomDialog = builder.Create();
 
@@ -105,7 +105,7 @@ namespace Peaks360App.Providers
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(appContext,
-                    Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile), ex.Message);
+                    appContext.Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile), ex.Message);
             }
         }
 
@@ -115,7 +115,7 @@ namespace Peaks360App.Providers
             var lastProgressUpdate = System.Environment.TickCount;
 
             var pd = new ProgressDialog(appContext);
-            pd.SetMessage(Resources.GetText(Resource.String.Main_GeneratingElevationProfile));
+            pd.SetMessage(appContext.Resources.GetText(Resource.String.Main_GeneratingElevationProfile));
             pd.SetCancelable(false);
             pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
             pd.Max = 100;
@@ -155,7 +155,7 @@ namespace Peaks360App.Providers
             catch (Exception ex)
             {
                 PopupHelper.ErrorDialog(appContext,
-                    Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile), ex.Message);
+                    appContext.Resources.GetText(Resource.String.Main_ErrorGeneratingElevationProfile), ex.Message);
             }
         }
 
