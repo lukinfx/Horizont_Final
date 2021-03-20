@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Android.Content;
+using Android.Content.Res;
 using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.Utilities
@@ -181,32 +182,32 @@ namespace Peaks360App.Utilities
             }
         }
 
-        public static void SetLocale(Context appContext, Language language)
+        public static void SetLocale(Resources resources, Language language)
         {
 
             switch (language)
             {
                 case Language.English:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("en"));
+                    resources.Configuration.SetLocale(new Java.Util.Locale("en"));
                     break;
                 case Language.German:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("de"));
+                    resources.Configuration.SetLocale(new Java.Util.Locale("de"));
                     break;
                 case Language.Czech:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("cz"));
+                    resources.Configuration.SetLocale(new Java.Util.Locale("cz"));
                     break;
                 case Language.French:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("fr"));
+                    resources.Configuration.SetLocale(new Java.Util.Locale("fr"));
                     break;
                 case Language.Italian:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("it"));
+                    resources.Configuration.SetLocale(new Java.Util.Locale("it"));
                     break;
                 case Language.Spanish:
-                    appContext.Resources.Configuration.SetLocale(new Java.Util.Locale("es"));
+                    resources.Configuration.SetLocale(new Java.Util.Locale("es"));
                     break;
             }
 
-            appContext.Resources.UpdateConfiguration(appContext.Resources.Configuration, appContext.Resources.DisplayMetrics);
+            resources.UpdateConfiguration(resources.Configuration, resources.DisplayMetrics);
         }
     }
 }

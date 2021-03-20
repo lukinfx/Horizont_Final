@@ -525,6 +525,8 @@ namespace Peaks360App.Activities
                     FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = altitudeText + " / " + distanceText;
                     FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Resources.GetText(Resource.String.Common_GPSLocation)}: {Context.SelectedPoi.GpsLocation.LocationAsString()}";
                     FindViewById<Button>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(Context.SelectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
+                    FindViewById<Button>(Resource.Id.buttonWiki).Text = Resources.GetText(Resource.String.Common_Details);
+                    FindViewById<Button>(Resource.Id.buttonMap).Text = Resources.GetText(Resource.String.Common_Map);
                 }
                 else
                 {
