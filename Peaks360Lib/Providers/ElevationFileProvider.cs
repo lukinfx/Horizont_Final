@@ -29,6 +29,20 @@ namespace Peaks360Lib.Providers
             return filePath;
         }
 
+        public static long GetElevationFileSize(int lat, int lon)
+        {
+            var filePath = GetElevationFilePath(lat, lon);
+
+            //Have we already downloaded the file?
+            if (!File.Exists(filePath))
+            {
+                return 0;
+            }
+
+            var fi = new FileInfo(filePath);
+            return fi.Length;
+        }
+
         private static string GetElevationFileName(int lat, int lon)
         {
             char latNS = lat >= 0 ? 'N' : 'S';

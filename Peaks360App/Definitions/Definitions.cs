@@ -22,5 +22,6 @@ namespace Peaks360App.Definitions
         public static readonly int PHOTOS_ACTIVITY = 700;
         public static readonly int PHOTO_SHOW_ACTIVITY = 800;
         public static readonly int ABOUT_ACTIVITY = 900;
+        public static readonly int ADDDOWNLOADEDDATA_ACTIVITY = 1000;
     }
 }

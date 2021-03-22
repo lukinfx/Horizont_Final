@@ -1,0 +1,132 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+    <include
+      android:id="@+id/toolbar"
+      layout="@layout/TitleToolbar" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal"
+      android:padding="10dp"
+      android:background="@drawable/background_portrait">
+
+        <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="1">
+
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@drawable/bg_activity">
+                <SearchView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/searchViewPlaceName" />
+            </LinearLayout>
+            <ListView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/listViewPoi"
+              android:background="@drawable/bg_activity"/>
+        </LinearLayout>
+
+        <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:padding="10dp"
+          android:background="@drawable/bg_activity">
+          <TextView
+            android:text="@string/DownloadED_DownloadEleDataInRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/distance" />
+
+          <RadioGroup
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/radioGroup1">
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="100km"
+                    android:id="@+id/radioButton100km" />
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="200km"
+                    android:id="@+id/radioButton200km" />
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="300km"
+                    android:id="@+id/radioButton300km" />
+            </RadioGroup>
+
+            <TextView
+              android:text="@string/DownloadED_ExpectedSize"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:id="@+id/textViewDownloadSize" />
+            
+            <Space 
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_weight="100"/>
+
+            <Button
+              android:id="@+id/buttonSave"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="@string/Common_Download"
+              android:drawablePadding="10dp"
+              android:padding="10dp"
+              android:background="@android:color/transparent"
+              android:layout_alignParentLeft="true"
+              android:layout_alignParentBottom="true"
+              android:drawableLeft="@android:drawable/ic_menu_save" />
+
+        </LinearLayout>
+
+        <!--<LinearLayout
+          android:orientation="horizontal"
+          android:gravity="center"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="0dp"
+          android:background="@drawable/bg_activity">
+
+            <Button
+              android:id="@+id/buttonSave"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="@string/Common_Download"
+              android:drawablePadding="10dp"
+              android:padding="10dp"
+              android:background="@android:color/transparent"
+              android:layout_alignParentLeft="true"
+              android:layout_alignParentBottom="true"
+              android:drawableLeft="@android:drawable/ic_menu_save" />
+
+        </LinearLayout>-->
+
+    </LinearLayout>
+</LinearLayout>

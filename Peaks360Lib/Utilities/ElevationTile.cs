@@ -64,6 +64,12 @@ namespace Peaks360Lib.Utilities
                 return false;
             }
         }
+
+        public long GetEelevationFileSize()
+        {
+            return ElevationFileProvider.GetElevationFileSize((int)StartLocation.Latitude, (int)StartLocation.Longitude);
+        }
+
         public IEnumerator<GpsLocation> GetEnumerator()
         {
             if (_elevationData == null)

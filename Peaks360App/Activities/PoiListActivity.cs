@@ -240,9 +240,7 @@ namespace Peaks360App.Views.ListOfPoiView
             }
 
             items = items.OrderBy(i => i.GpsLocation.Distance).ToList();
-            _adapter = new PoiListItemAdapter(this, items, this);
-            _listViewPoi.Adapter = _adapter;
-            _listViewPoi.Invalidate();
+            _adapter.SetItems(items);
         }
 
         public void OnPoiDelete(int position)

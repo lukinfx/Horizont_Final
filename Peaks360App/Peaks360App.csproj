@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\AboutActivity.cs" />
+    <Compile Include="Activities\AddElevationDataActivity.cs" />
     <Compile Include="Activities\EditTagDialog.cs" />
     <Compile Include="Activities\HorizonBaseActivity.cs">
       <SubType>Code</SubType>
@@ -95,6 +96,7 @@
     <Compile Include="Definitions\Definitions.cs" />
     <Compile Include="HorizontApplication.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Models\DownloadedElevationDataModel.cs" />
     <Compile Include="Models\PhotosModel.cs" />
     <Compile Include="Providers\CompassProvider.cs" />
     <Compile Include="Providers\ElevationProfileProvider.cs" />
@@ -111,9 +113,11 @@
     <Compile Include="Tasks\ElevationCalculation.cs" />
     <Compile Include="AppContext\AppContextBase.cs" />
     <Compile Include="AppContext\IAppContext.cs" />
+    <Compile Include="Tasks\ElevationDownload.cs" />
     <Compile Include="Tasks\FileDownload.cs" />
     <Compile Include="Tasks\PoiFileImport.cs" />
     <Compile Include="Utilities\CameraUtilities.cs" />
+    <Compile Include="Utilities\DownloadedElevationDataAdapter.cs" />
     <Compile Include="Utilities\HeadingStabilizator2.cs" />
     <Compile Include="Utilities\ImageCopySaver.cs" />
     <Compile Include="Utilities\ImageResizer.cs" />
@@ -484,11 +488,6 @@
     <AndroidResource Include="Resources\drawable\wikipedia_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\EditActivityToolbar.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\menu\EditActivityMenu.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -527,12 +526,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\PhotosActivityToolbar.xml">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\PhotosActivityItem.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -562,11 +555,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout-land\DownloadActivityLandscape.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\DownloadActivityToolbar.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\DownloadActivityMenu.xml">
@@ -651,11 +639,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\menu\SettingsActivityMenu.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\SettingsActivityToolbar.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -826,6 +809,26 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values-it\strings.xml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DownloadedElevationDataItem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\AddElevationDataActivityPortrait.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\TitleToolbar.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout-land\AddElevationDataActivityLandscape.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

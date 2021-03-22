@@ -20,10 +20,10 @@ namespace Peaks360App.AppContext
             }
         }
 
-        public AppContextStaticData(GpsLocation myLocation, string myLocationName, double heading)
+        public AppContextStaticData(GpsLocation myLocation, PlaceInfo myLocationPlaceInfo, double heading)
         {
             this.myLocation = myLocation;
-            this.myLocationName = myLocationName;
+            this.myLocationPlaceInfo = new PlaceInfo(myLocationPlaceInfo.PlaceName, myLocationPlaceInfo.Country);
             Heading = heading;
         }
 

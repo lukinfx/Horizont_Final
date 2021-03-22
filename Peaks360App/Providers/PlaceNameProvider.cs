@@ -17,17 +17,6 @@ using Xamarin.Essentials;
 
 namespace Peaks360App.Providers
 {
-    public class PlaceInfo
-    {
-        public PlaceInfo(string placeName, PoiCountry? country)
-        {
-            PlaceName = placeName;
-            Country = country;
-        }
-        public string PlaceName { get; private set; }
-        public PoiCountry? Country { get; private set; }
-    }
-
     public static class PlaceNameProvider
     {
         private static string Append(this string str, string separator, string param)
@@ -61,11 +50,11 @@ namespace Peaks360App.Providers
 
                     return new PlaceInfo(geocodeAddress, PoiCountryHelper.GetCountry(placemark.CountryCode));
                 }
-                return new PlaceInfo("Unknown", null);
+                return new PlaceInfo();
             }
             catch
             {
-                return new PlaceInfo("Unknown", null);
+                return new PlaceInfo();
             }
         }
     }

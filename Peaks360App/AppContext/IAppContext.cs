@@ -29,10 +29,11 @@ namespace Peaks360App.AppContext
 
         Settings Settings { get; }
         PhotosModel PhotosModel { get; }
+        DownloadedElevationDataModel DownloadedElevationDataModel { get; }
         ElevationProfileData ElevationProfileData { get; set; }
         bool CompassPaused { get; }
         GpsLocation MyLocation { get; }
-        string MyLocationName { get; }
+        PlaceInfo MyLocationPlaceInfo { get; }
         double Heading { get; }
         double HeadingCorrector { get; set; }
         double LeftTiltCorrector { get; set; }

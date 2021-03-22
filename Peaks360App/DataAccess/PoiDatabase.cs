@@ -69,6 +69,12 @@ namespace Peaks360App.DataAccess
                         Database.CreateTablesAsync(CreateFlags.None, typeof(PhotoData)).ConfigureAwait(false);
                     }
 
+                    if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(DownloadedElevationData).Name))
+                    {
+                        Database.CreateTablesAsync(CreateFlags.None, typeof(DownloadedElevationData)).ConfigureAwait(false);
+                    }
+                    
+
                     initialized = true;
                 }
             }
@@ -183,6 +189,13 @@ namespace Peaks360App.DataAccess
             var nameNoAccent = name.RemoveDiacritics().ToLower();
 
             return Database.QueryAsync<Poi>($"SELECT * FROM [Poi] WHERE LOWER([NameNoAccent]) LIKE '%{nameNoAccent}%'").Result;
+        }
+
+        public async Task<IEnumerable<Poi>> FindItemsAsync(string name)
+        {
+            var nameNoAccent = name.RemoveDiacritics().ToLower();
+
+            return await Database.QueryAsync<Poi>($"SELECT * FROM [Poi] WHERE LOWER([NameNoAccent]) LIKE '%{nameNoAccent}%'");
         }
 
         public async Task<Poi> GetItemAsync(long id)
@@ -315,5 +328,49 @@ namespace Peaks360App.DataAccess
         }
 
         #endregion PhotoData
+
+        #region DownloadedElevationData
+
+        public int InsertItem(DownloadedElevationData item)
+        {
+            var task = Database.InsertAsync(item);
+            task.Wait();
+            return task.Result;
+        }
+
+        public int UpdateItem(DownloadedElevationData item)
+        {
+            var task = Database.UpdateAsync(item);
+            task.Wait();
+            return task.Result;
+        }
+
+        public int DeleteItem(DownloadedElevationData item)
+        {
+            var task = Database.DeleteAsync(item);
+            task.Wait();
+            return task.Result;
+        }
+
+        public int DeleteAllDownloadedElevationData()
+        {
+            var task = Database.Table<DownloadedElevationData>().DeleteAsync(x => true);
+            task.Wait();
+            return task.Result;
+        }
+
+        public async Task<IEnumerable<DownloadedElevationData>> GetDownloadedElevationDataAsync()
+        {
+            return await Database.Table<DownloadedElevationData>().ToListAsync();
+        }
+
+        public IEnumerable<DownloadedElevationData> GetDownloadedElevationData()
+        {
+            var task = GetDownloadedElevationDataAsync();
+            task.Wait();
+            return task.Result;
+        }
+
+        #endregion DownloadedElevationData
     }
 }

@@ -389,7 +389,7 @@ namespace Peaks360App
             if (GpsUtils.HasLocation(Context.MyLocation))
             {
                 var gpsLocation = $"GPS:{Context.MyLocation.LocationAsString()} Alt:{Context.MyLocation.Altitude:F0}m";
-                SetStatusLineText($"{gpsLocation} ({Context.MyLocationName})");
+                SetStatusLineText($"{gpsLocation} ({Context.MyLocationPlaceInfo.PlaceName})");
             }
             else
             {

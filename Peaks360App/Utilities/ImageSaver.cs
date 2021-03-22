@@ -53,7 +53,7 @@ namespace Peaks360App.Utilities
                     PoiDatabase poiDatabase = new PoiDatabase();
                     string jsonCategories = JsonConvert.SerializeObject(_context.Settings.Categories);
 
-                    var tag = _context.MyLocationName + " -> ";
+                    var tag = _context.MyLocationPlaceInfo.PlaceName + " -> ";
                     if (_context.SelectedPoi != null)
                     {
                         tag += _context.SelectedPoi.Poi.Name;

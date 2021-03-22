@@ -5,7 +5,7 @@
   android:layout_height="match_parent">
     <include
       android:id="@+id/toolbar"
-      layout="@layout/editActivityToolbar" />
+      layout="@layout/TitleToolbar" />
 
     <AbsoluteLayout
       android:layout_width="match_parent"

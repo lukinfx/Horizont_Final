@@ -6,6 +6,7 @@
   <string name="Common_No">Nein</string>
 
   <string name="Common_Save">Speichern</string>
+  <string name="Common_Download">Herunterladen</string>
   <string name="Common_Discard">Verwerfen</string>
   <string name="Common_Reset">Zurücksetzen</string>
 
@@ -29,6 +30,7 @@
   <string name="Common_None">Keiner</string>
   <string name="Common_Close">Schließen</string>
   <string name="Common_Search">Suche...</string>
+  <string name="Common_MyLocation">Mein aktueller Standort</string>
 
   <string name="Common_Question">Anfrage</string>
   <string name="Common_Information">Information</string>
@@ -42,7 +44,9 @@
   <!--Menu Activity-->
   <string name="MainActivity">Gehe zurück zur Kamera</string>
   <string name="PoiListActivity">Liste der Punkte</string>
+  <string name="PoiEditActivity">Punkt bearbeiten</string>
   <string name="DownloadActivity">Daten herunterladen</string>
+  <string name="DownloadElevationDataActivity">Höhendaten herunterladen</string>
   <string name="PhotosActivity">Fotogallerie</string>
   <string name="SettingsActivity">Einstellungen</string>
   <string name="AboutActivity">Über die Anwendung</string>
@@ -74,9 +78,6 @@
   <string name="PoiListFilter_ByName">Nach Namen</string>
   <string name="PoiListDeleteQuestion">Möchten Sie diesen Artikel wirklich löschen?</string>
 
-  <!--PoiEditActivity-->
-  <string name="PoiEditActivity">Punkt bearbeiten</string>
-
   <!--DownloadActivity-->
   <string name="Download_LoadingData">Daten werden geladen. Warten Sie mal.</string>
   <string name="Download_InfoLoadedItems">{0} Elemente in die Datenbank geladen.</string>
@@ -95,6 +96,10 @@
   <string name="Download_Confirmation">Für diese Aktion müssen zusätzliche {0} MByte heruntergeladen werden. Stellen Sie möglicherweise eine geringere Sichtbarkeit ein, um die Menge der heruntergeladenen Daten zu verringern. \n\nWillst du wirklich weitermachen?</string>
   <string name="Download_DownloadedOn">Heruntergeladen am </string>
   <string name="Download_NotDownloadedYet">Noch nicht heruntergeladen.</string>
+
+  <string name="DownloadED_DownloadEleDataInRange">Laden Sie Höhendaten in einer Entfernung von herunter:</string>
+  <string name="DownloadED_ExpectedSize">Erwartete Downloadgröße: {0} MBytes</string>
+  <string name="DownloadED_NoDataToDownload">Alle Höhendaten für diesen Bereich sind bereits heruntergeladen.</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Verwenden Sie das richtige Format. Beispiel: 12.34567890</string>
@@ -131,6 +136,7 @@
   <string name="Settings_PhotoResolution">Fotoauflösung</string>
   <string name="Settings_ClearElevationData">Höhendaten löschen</string>
   <string name="Settings_ElevationDataSize">Zwischengespeicherte Höhendaten belegen {0} MByte Gerätespeicher.</string>
+  <string name="Settings_RemoveElevationDataQuestion">Möchten Sie jetzt wirklich alle Höhendaten entfernen?</string>
 
   <string name="Tutorial_PhotoEdit_HeadingCorrection">Bewegen Sie Ihren Finger über den Bildschirm, um die Kompassrichtung anzupassen.</string>
   <string name="Tutorial_PhotoEdit_HorizontCorrection">Bewegen Sie Ihren Finger am linken / rechten Bildschirmrand, um den künstlichen Horizont anzupassen.</string>

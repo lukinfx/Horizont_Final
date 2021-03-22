@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
 using Android.Views;
@@ -15,32 +16,25 @@ using Peaks360App.DataAccess;
 using Peaks360App.Providers;
 using Peaks360App.Tasks;
 using Peaks360App.Utilities;
+using Android.Content;
+using Peaks360App.Models;
 
 namespace Peaks360App.Activities
 {
     [Activity(Label = "@string/DownloadActivity")]
-    public class DownloadActivity : Activity
+    public class DownloadActivity : TabActivity, View.IOnClickListener, IDownloadedElevationDataActionListener
     {
         private ListView _downloadItemListView;
         private ListView _downloadCountryListView;
+        private ListView _downloadedElevationDataListView;
         private Spinner _downloadCountrySpinner;
         private DownloadCountryAdapter _countryAdapter;
         private DownloadItemAdapter _downloadItemAdapter;
+        private DownloadedElevationDataAdapter _downloadedElevationDataAdapter;
 
         private List<PoisToDownload> _downloadItems;
 
-        private PoiDatabase _database;
-        private PoiDatabase Database
-        {
-            get
-            {
-                if (_database == null)
-                {
-                    _database = new PoiDatabase();
-                }
-                return _database;
-            }
-        }
+        private IAppContext AppContext { get { return AppContextLiveData.Instance; } }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -48,13 +42,43 @@ namespace Peaks360App.Activities
             AppContextLiveData.Instance.SetLocale(this);
 
             InitializeUI();
+
+            AppContext.DownloadedElevationDataModel.DownloadedElevationDataAdded += OnDownloadedElevationDataAdded;
+            AppContext.DownloadedElevationDataModel.DownloadedElevationDataDeleted += OnDownloadedElevationDataDeleted;
+        }
+
+        private void OnDownloadedElevationDataAdded(object sender, DownloadedElevationDataEventArgs e)
+        {
+            _downloadedElevationDataAdapter.Add(e.data);
+        }
+
+        private void OnDownloadedElevationDataDeleted(object sender, DownloadedElevationDataEventArgs e)
+        {
+            var position = _downloadedElevationDataAdapter.GetPosition(e.data);
+            _downloadedElevationDataAdapter.RemoveAt(position);
         }
 
         protected override void OnStart()
         {
             base.OnStart();
 
-            DownloadIndex(result => OnIndexDownloaded(result));
+            if (_downloadItems == null)
+            {
+                DownloadIndex(result => OnIndexDownloaded(result));
+            }
+
+            Task.Run(async () =>
+            {
+                var downloadedElevationData = await AppContext.Database.GetDownloadedElevationDataAsync();
+                _downloadedElevationDataAdapter.SetItems(downloadedElevationData);
+            });
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            SelectDefaultCountry();
         }
 
         private void InitializeUI()
@@ -78,6 +102,20 @@ namespace Peaks360App.Activities
                 _downloadCountryListView.ItemClick += OnCountryListItemClicked;
             }
 
+
+            var page1 = TabHost.NewTabSpec("tab_test1");
+            page1.SetIndicator("Body zájmu");
+            page1.SetContent(Resource.Id.downloadTabPois);
+            TabHost.AddTab(page1);
+
+
+            var page2 = TabHost.NewTabSpec("tab_test2");
+            page2.SetIndicator("Výšková data");
+            page2.SetContent(Resource.Id.downloadTabEleData);
+            TabHost.AddTab(page2);
+
+            TabHost.CurrentTab = 0;
+
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
 
@@ -90,13 +128,21 @@ namespace Peaks360App.Activities
             _downloadItemAdapter = new DownloadItemAdapter(this);
             _downloadItemListView.Adapter = _downloadItemAdapter;
             _downloadItemListView.ItemClick += OnDownloadListItemClicked;
-        }
 
-        protected override void OnResume()
-        {
-            base.OnResume();
+            _downloadedElevationDataListView = FindViewById<ListView>(Resource.Id.listViewDownloadedElevationData);
+            _downloadedElevationDataAdapter = new DownloadedElevationDataAdapter(this, this);
+            _downloadedElevationDataListView.Adapter = _downloadedElevationDataAdapter;
+            _downloadedElevationDataAdapter.SetItems(
+                new List<DownloadedElevationData>()
+                {
+                    new DownloadedElevationData() { PlaceName = "Lysá hora / Czech republic", Latitude = 48.15, Longitude = 18.4545, Distance = 100, SizeInBytes = 28646544},
+                    new DownloadedElevationData() { PlaceName = "Sněžka / Czech republic", Latitude = 51.5454, Longitude = 17.545, Distance = 80, SizeInBytes = 5454654},
+                    new DownloadedElevationData() { PlaceName = "Matterhorn / Switzerland", Latitude = 45.54654, Longitude = 13.1154541, Distance = 130, SizeInBytes = 35435454}
+                });
 
-            SelectDefaultCountry();
+            var _downloadedElevationDataAddButton = FindViewById<Button>(Resource.Id.buttonAddNew);
+            _downloadedElevationDataAddButton.SetOnClickListener(this);
+
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -167,7 +213,7 @@ namespace Peaks360App.Activities
             try
             {
                 //fetch list of already downladed items from database
-                var downloadedTask = Database.GetDownloadedPoisAsync();
+                var downloadedTask = AppContext.Database.GetDownloadedPoisAsync();
                 downloadedTask.Wait();
                 _downloadItems = downloadedTask.Result.ToList();
 
@@ -288,9 +334,9 @@ namespace Peaks360App.Activities
                     pd.Hide();
                     if (result.Count > 0)
                     {
-                        Database.InsertAll(result);
+                        AppContext.Database.InsertAll(result);
                         source.DownloadDate = DateTime.Now;
-                        Database.InsertItem(source);
+                        AppContext.Database.InsertItem(source);
                         new ShowToastRunnable(this,
                             String.Format(Resources.GetText(Resource.String.Download_InfoLoadedItems), result.Count))
                             .Run();
@@ -341,10 +387,10 @@ namespace Peaks360App.Activities
         {
             try
             {
-                Database.DeleteAllFromSource(source.Id);
+                AppContext.Database.DeleteAllFromSource(source.Id);
                 
                 source.DownloadDate = null;
-                Database.DeleteItem(source);
+                AppContext.Database.DeleteItem(source);
 
                 new ShowToastRunnable(this, Resources.GetText(Resource.String.Download_InfoRemovedItems))
                     .Run();
@@ -376,9 +422,8 @@ namespace Peaks360App.Activities
                     if (result == true)
                     {
                         source.DownloadDate = DateTime.Now;
-                        Database.InsertItem(source);
+                        AppContext.Database.InsertItem(source);
 
-                        
                         PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Download_InfoLoadedElevation));
                         
                         _downloadItemAdapter.NotifyDataSetChanged();
@@ -438,7 +483,7 @@ namespace Peaks360App.Activities
                     if (result == true)
                     {
                         source.DownloadDate = null;
-                        Database.DeleteItem(source);
+                        AppContext.Database.DeleteItem(source);
 
                         PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Download_InfoRemovedElevation)); 
                     }
@@ -467,6 +512,23 @@ namespace Peaks360App.Activities
                 PopupHelper.ErrorDialog(this,
                     Resources.GetText(Resource.String.Download_ErrorDownloadingElevation), ex.Message);
             }
+        }
+
+        public void OnClick(View v)
+        {
+            switch (v.Id)
+            {
+                case Resource.Id.buttonAddNew:
+                    Intent editActivityIntent = new Intent(this, typeof(AddElevationDataActivity));
+                    StartActivity(editActivityIntent);
+                    break;
+            }
+        }
+
+        public void OnDedDelete(int position)
+        {
+            var ded = _downloadedElevationDataAdapter[position];
+            AppContext.DownloadedElevationDataModel.DeleteItem(ded);
         }
     }
 }

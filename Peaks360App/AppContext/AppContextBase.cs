@@ -22,6 +22,7 @@ namespace Peaks360App.AppContext
         {
             this.context = context;
             PhotosModel = new PhotosModel(Database);
+            DownloadedElevationDataModel = new DownloadedElevationDataModel(Database);
         }
 
         public event DataChangedEventHandler DataChanged;
@@ -30,6 +31,7 @@ namespace Peaks360App.AppContext
         public Settings Settings { get; private set; }
 
         public PhotosModel PhotosModel { get; private set; }
+        public DownloadedElevationDataModel DownloadedElevationDataModel { get; private set; }
 
         private ElevationProfileData _elevationProfileData;
         public ElevationProfileData ElevationProfileData
@@ -48,9 +50,9 @@ namespace Peaks360App.AppContext
         
         protected GpsLocation myLocation = new GpsLocation();
         public GpsLocation MyLocation { get { return myLocation; } }
-        
-        protected string myLocationName = "unknown location";
-        public string MyLocationName { get { return myLocationName; } }
+
+        protected PlaceInfo myLocationPlaceInfo = new PlaceInfo();
+        public PlaceInfo MyLocationPlaceInfo { get { return myLocationPlaceInfo; } }
 
         public virtual double Heading { get; protected set; }
 

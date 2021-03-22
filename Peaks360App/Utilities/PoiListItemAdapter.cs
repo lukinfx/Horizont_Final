@@ -18,21 +18,29 @@ namespace Peaks360App.Utilities
     public class PoiListItemAdapter : BaseAdapter<PoiViewItem>, View.IOnClickListener
     {
         Activity context;
-        List<PoiViewItem> list;
-        private ImageView Thumbnail;
-        private IPoiActionListener mPoiActionListener;
+        List<PoiViewItem> _list;
+        private ImageView _thumbnail;
+        private IPoiActionListener _poiActionListener;
+        private bool _showOptions;
 
-        public PoiListItemAdapter(Activity _context, IEnumerable<PoiViewItem> _list, IPoiActionListener listener)
+        public PoiListItemAdapter(Activity _context, IEnumerable<PoiViewItem> list, IPoiActionListener listener, bool showOptions = true)
             : base()
         {
             this.context = _context;
-            this.list = _list.ToList();
-            mPoiActionListener = listener;
+            this._list = list.ToList();
+            _poiActionListener = listener;
+            _showOptions = showOptions;
+        }
+
+        public void SetItems(IEnumerable<PoiViewItem> list)
+        {
+            this._list = list.ToList();
+            NotifyDataSetChanged();
         }
 
         public override int Count
         {
-            get { return list.Count; }
+            get { return _list.Count; }
         }
 
         public override long GetItemId(int position)
@@ -42,23 +50,23 @@ namespace Peaks360App.Utilities
 
         public PoiViewItem GetPoiItem(long id)
         {
-            return list.Single(x => x.Poi.Id == id);
+            return _list.Single(x => x.Poi.Id == id);
         }
 
         public override PoiViewItem this[int index]
         {
-            get { return list[index]; }
+            get { return _list[index]; }
         }
 
         public void RemoveAt(int index)
         {
-            list.RemoveAt(index);
+            _list.RemoveAt(index);
             NotifyDataSetChanged();
         }
 
         public void Add(PoiViewItem item)
         {
-            list.Insert(0,item);
+            _list.Insert(0,item);
             NotifyDataSetChanged();
         }
 
@@ -74,44 +82,49 @@ namespace Peaks360App.Utilities
             view.SetOnClickListener(this);
 
             PoiViewItem item = this[position];
-            
+
             view.FindViewById<ImageView>(Resource.Id.InfoAvailable).Visibility = 
                 (String.IsNullOrEmpty(item.Poi.Wikidata) && string.IsNullOrEmpty(item.Poi.Wikipedia)) 
                     ? ViewStates.Invisible : ViewStates.Visible;
-            
+
             view.FindViewById<TextView>(Resource.Id.Title).Text = item.Poi.Name;
 
             view.FindViewById<TextView>(Resource.Id.Country).Text = item.Poi.Country != null ? 
                 PoiCountryHelper.GetCountryName(item.Poi.Country.Value) : "Unknown";
 
-            view.FindViewById<TextView>(Resource.Id.Description).Text = Convert.ToString(item.Poi.Altitude) + "m | " + 
-                Convert.ToString(Math.Round(item.GpsLocation.Distance.Value /1000, 2)) + " km |" +
-                Convert.ToString(Math.Round(item.GpsLocation.Bearing.Value, 2)) + " dg";
+            view.FindViewById<TextView>(Resource.Id.Description).Text = 
+                $"{item.Poi.Altitude:F0} m | {item.GpsLocation.Distance.Value:F2} km | {item.GpsLocation.Bearing.Value:F2}°";
 
-
-            Thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
-            Thumbnail.SetImageResource(PoiCategoryHelper.GetImage(item.Poi.Category));
+            _thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
+            _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(item.Poi.Category));
 
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.PoiDeleteButton);
-            deleteButton.SetOnClickListener(this);
-            deleteButton.Tag = position;
-
             var likeButton = view.FindViewById<ImageButton>(Resource.Id.PoiLikeButton);
-            likeButton.SetOnClickListener(this);
-            likeButton.Tag = position;
 
+            if (_showOptions)
+            {
+                deleteButton.SetOnClickListener(this);
+                deleteButton.Tag = position;
 
-            if (item.Poi.Favorite)
-                likeButton.SetImageResource(Resource.Drawable.f_heart_solid);
+                likeButton.SetOnClickListener(this);
+                likeButton.Tag = position;
+
+                likeButton.SetImageResource(item.Poi.Favorite ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
+            }
             else
-                likeButton.SetImageResource(Resource.Drawable.f_heart_empty);
+            {
+                deleteButton.Visibility = ViewStates.Gone;
+                likeButton.Visibility = ViewStates.Gone;
+            }
 
+            view.SetBackgroundResource(Resource.Drawable.bg_activity);
+            view.Background.Alpha = item.Selected ? 100 : 0;
             return view;
         }
 
         public void OnClick(View v)
         {
-            if (mPoiActionListener == null)
+            if (_poiActionListener == null)
                 return;
 
             int position = (int)v.Tag;
@@ -119,16 +132,14 @@ namespace Peaks360App.Utilities
             switch (v.Id)
             {
                 case Resource.Id.PoiDeleteButton:
-                    mPoiActionListener.OnPoiDelete(position);
+                    _poiActionListener.OnPoiDelete(position);
                     break;
                 case Resource.Id.PoiLikeButton:
-                    mPoiActionListener.OnPoiLike(position);
+                    _poiActionListener.OnPoiLike(position);
                     break;
                 case Resource.Id.linearLayoutItem:
-                    mPoiActionListener.OnPoiEdit(position);
+                    _poiActionListener.OnPoiEdit(position);
                     break;
-
-
             }
         }
     }

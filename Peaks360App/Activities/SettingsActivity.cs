@@ -331,10 +331,23 @@ namespace Peaks360App.Activities
                     SetDirty();
                     break;
                 case Resource.Id.buttonClearElevationData:
-                    ElevationFileProvider.ClearElevationData();
-                    UpdateElevationDataSize();
+                    ClearElevationData();
                     break;
             }
+        }
+
+        private void ClearElevationData()
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
+            {
+                ElevationFileProvider.ClearElevationData();
+                AppContextLiveData.Instance.Database.DeleteAllDownloadedElevationData();
+                UpdateElevationDataSize();
+            });
+            alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
+            alert.SetMessage(Resources.GetText(Resource.String.Settings_RemoveElevationDataQuestion));
+            var answer = alert.Show();
         }
 
         private void InitializeGpsLocationInputs(GpsLocation loc)

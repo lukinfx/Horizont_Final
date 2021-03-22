@@ -26,8 +26,13 @@ namespace Peaks360App.Utilities
             return _countryList;
         }
 
-        public static string GetCountryName(PoiCountry country)
+        public static string GetCountryName(PoiCountry? country)
         {
+            if (country == null)
+            {
+                return "";
+            }
+
             switch (country)
             {
                 case PoiCountry.AUT: return "Austria";

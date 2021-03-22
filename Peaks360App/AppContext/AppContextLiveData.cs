@@ -8,6 +8,7 @@ using Peaks360App.Utilities;
 using Peaks360App.Views.Camera;
 using Peaks360Lib.Utilities;
 using Java.Util;
+using Peaks360Lib.Domain.Models;
 using Xamarin.Essentials;
 
 namespace Peaks360App.AppContext
@@ -191,11 +192,11 @@ namespace Peaks360App.AppContext
                     var poi = Database.GetNearestPoi(myLocation);
                     if (poi != null)
                     {
-                        myLocationName = poi.Poi.Name;
+                        myLocationPlaceInfo = new PlaceInfo( poi.Poi.Name, poi.Poi.Country);
                     }
                     else
                     {
-                        myLocationName = (await PlaceNameProvider.AsyncGetPlaceName(myLocation)).PlaceName;
+                        myLocationPlaceInfo = (await PlaceNameProvider.AsyncGetPlaceName(myLocation));
                     }
                 }
 

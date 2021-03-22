@@ -69,7 +69,9 @@ namespace Peaks360App.Utilities
         {
             View view = convertView;
             if (view == null)
+            {
                 view = _context.LayoutInflater.Inflate(Resource.Layout.PhotosActivityItem, parent, false);
+            }
 
             view.Tag = position;
 

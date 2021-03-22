@@ -6,6 +6,7 @@
   <string name="Common_No">Ne</string>
 
   <string name="Common_Save">Uložit</string>
+  <string name="Common_Download">Stáhnout</string>
   <string name="Common_Discard">Zahodit</string>
   <string name="Common_Reset">Resetovat</string>
 
@@ -29,6 +30,7 @@
   <string name="Common_None">Nic</string>
   <string name="Common_Close">Uložit</string>
   <string name="Common_Search">Vyhledávání</string>
+  <string name="Common_MyLocation">Moje aktuální poloha</string>
 
   <string name="Common_Question">Otázka</string>
   <string name="Common_Information">Informace</string>
@@ -42,7 +44,9 @@
   <!--Menu Activity-->
   <string name="MainActivity">Zpět do fotoaparátu</string>
   <string name="PoiListActivity">Seznam bodů</string>
+  <string name="PoiEditActivity">Editace bodu zájmu</string>
   <string name="DownloadActivity">Stažení dat</string>
+  <string name="DownloadElevationDataActivity">Stažení výškových dat</string>
   <string name="PhotosActivity">Galerie fotografií</string>
   <string name="SettingsActivity">Nastavení</string>
   <string name="AboutActivity">O aplikaci</string>
@@ -74,9 +78,6 @@
   <string name="PoiListFilter_ByName">Podle jména</string>
   <string name="PoiListDeleteQuestion">Opravdu chcete smazat ten bod?</string>
 
-  <!--PoiEditActivity-->
-  <string name="PoiEditActivity">Editace bodu zájmu</string>
-
   <!--DownloadActivity-->
   <string name="Download_LoadingData">Stahuji data. Prosím čekejte.</string>
   <string name="Download_InfoLoadedItems">{0} bodů bylo uloženo do databáze.</string>
@@ -95,6 +96,10 @@
   <string name="Download_Confirmation">Tato akce vyžaduje stažení dodatečných {0} MB dat. Pro snížení množství potřebných dat snižte maximální viditelnost.\n\nChcete opravdu pokračovat?</string>
   <string name="Download_DownloadedOn">Staženo dne </string>
   <string name="Download_NotDownloadedYet">Zatím nestaženo.</string>
+
+  <string name="DownloadED_DownloadEleDataInRange">Stáhnout výškové data v okruhu:</string>
+  <string name="DownloadED_ExpectedSize">Předpokládaná velikost dat: {0} MBytes</string>
+  <string name="DownloadED_NoDataToDownload">Všechna výšková data pro tuto oblast jsou již stažena.</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Použijte správný formát. Například: 12,34567890.</string>
@@ -131,7 +136,8 @@
   <string name="Settings_PhotoResolution">Rozlišení fotografie</string>
   <string name="Settings_ClearElevationData">Vymazat výšková data</string>
   <string name="Settings_ElevationDataSize">Výšková data uložená v mezipaměti zabírají {0} MB paměti zařízení.</string>
-  
+  <string name="Settings_RemoveElevationDataQuestion">Opravdu chcete nyní odstranit veškerá výšková data?</string>
+
   <string name="Tutorial_PhotoEdit_HeadingCorrection">Posouvejte prstem v horní části displeje pro korekci směru pohledu.</string>
   <string name="Tutorial_PhotoEdit_HorizontCorrection">Posouvejte prstem na levém/pravém okraji displeje pro korekci horizontu.</string>
   <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Použijte dva prsty pro korekcí horizontálního a vertikálního zobrazovacího úhlu.</string>

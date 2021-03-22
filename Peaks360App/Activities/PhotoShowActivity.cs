@@ -87,7 +87,7 @@ namespace Peaks360App.Activities
                 }
             }
 
-            _context = new AppContextStaticData(loc, "unknown location", photodata.Heading);
+            _context = new AppContextStaticData(loc, new PlaceInfo(), photodata.Heading);
             _context.LeftTiltCorrector = photodata.LeftTiltCorrector ?? 0;
             _context.RightTiltCorrector = photodata.RightTiltCorrector ?? 0;
             //### This can be removed later

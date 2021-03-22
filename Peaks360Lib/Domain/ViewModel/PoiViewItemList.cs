@@ -47,14 +47,17 @@ namespace Peaks360Lib.Domain.ViewModel
 
         public PoiViewItemList(IEnumerable<Poi> poiList, GpsLocation myLocation)
         {
-            foreach (var item in poiList)
+            if (poiList != null)
             {
-                var poiViewItem = new PoiViewItem(item);
-                poiViewItem.GpsLocation.Bearing = GpsUtils.QuickBearing(myLocation, poiViewItem.GpsLocation);
-                poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(myLocation, poiViewItem.GpsLocation);
-                poiViewItem.GpsLocation.Distance = GpsUtils.QuickDistance(myLocation, poiViewItem.GpsLocation);
-                poiViewItem.GpsLocation.GetVerticalViewAngle(myLocation);
-                Add(poiViewItem);
+                foreach (var item in poiList)
+                {
+                    var poiViewItem = new PoiViewItem(item);
+                    poiViewItem.GpsLocation.Bearing = GpsUtils.QuickBearing(myLocation, poiViewItem.GpsLocation);
+                    poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(myLocation, poiViewItem.GpsLocation);
+                    poiViewItem.GpsLocation.Distance = GpsUtils.QuickDistance(myLocation, poiViewItem.GpsLocation);
+                    poiViewItem.GpsLocation.GetVerticalViewAngle(myLocation);
+                    Add(poiViewItem);
+                }
             }
         }
     }

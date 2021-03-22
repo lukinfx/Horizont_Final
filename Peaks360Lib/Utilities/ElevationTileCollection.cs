@@ -98,7 +98,7 @@ namespace Peaks360Lib.Utilities
             return _elevationTiles;
         }
 
-        public int GetSizeToDownload()
+        public long GetSizeToDownload()
         {
             return _elevationTiles.Count(i => !i.Exists()) * ElevationFileProvider.GetFileSize();
         }
@@ -132,6 +132,17 @@ namespace Peaks360Lib.Utilities
             return isOk;
         }
 
+        public long GetSize()
+        {
+            long totalSize = 0;
+            foreach (var et in _elevationTiles)
+            {
+                totalSize += et.GetEelevationFileSize();
+            }
+            return totalSize;
+        }
+
+
         public bool Remove()
         {
             foreach (var et in _elevationTiles)
@@ -155,6 +166,11 @@ namespace Peaks360Lib.Utilities
 
                     errorsAsString += $"Tile {et.StartLocation.Latitude:F0}/{et.StartLocation.Longitude:F0} : {et.ErrorMessage}, \r\n";
                 }
+            }
+
+            if (string.IsNullOrEmpty(errorsAsString))
+            {
+                return null;
             }
 
             return $"Some tiles were not loaded. The elevation profile may not be complete. \r\n\r\nMissing tiles: \r\n{errorsAsString}";

@@ -6,6 +6,7 @@
   <string name="Common_No">No</string>
 
   <string name="Common_Save">Salvare</string>
+  <string name="Common_Download">Scarica</string>
   <string name="Common_Discard">Scartare</string>
   <string name="Common_Reset">Ripristina</string>
 
@@ -29,6 +30,7 @@
   <string name="Common_None">Niente</string>
   <string name="Common_Close">Chiudi</string>
   <string name="Common_Search">Ricercare</string>
+  <string name="Common_MyLocation">La mia posizione attuale</string>
 
   <string name="Common_Question">Questione</string>
   <string name="Common_Information">Informazione</string>
@@ -42,7 +44,9 @@
   <!--Menu Activity-->
   <string name="MainActivity">Torna alla fotocamera</string>
   <string name="PoiListActivity">Elenco dei punti</string>
+  <string name="PoiEditActivity">Modifica punto di interesse</string>
   <string name="DownloadActivity">Scarica i dati</string>
+  <string name="DownloadElevationDataActivity">Scarica i dati di elevazione</string>
   <string name="PhotosActivity">Galleria fotografica</string>
   <string name="SettingsActivity">Configurazione</string>
   <string name="AboutActivity">Informazioni</string>
@@ -74,9 +78,6 @@
   <string name="PoiListFilter_ByName">Per nome</string>
   <string name="PoiListDeleteQuestion">Sei sicuro di voler eliminare questo articolo?</string>
 
-  <!--PoiEditActivity-->
-  <string name="PoiEditActivity">Modifica punto di interesse</string>
-
   <!--DownloadActivity-->
   <string name="Download_LoadingData">Caricamento dati. Attendere prego.</string>
   <string name="Download_InfoLoadedItems">{0} elementi caricati nel database.</string>
@@ -95,6 +96,10 @@
   <string name="Download_Confirmation">Questa azione richiede il download di ulteriori {0} MByte. È possibile impostare una visibilità inferiore per ridurre la quantità di dati scaricati.\n\nVuoi davvero continuare?</string>
   <string name="Download_DownloadedOn">Scaricato il </string>
   <string name="Download_NotDownloadedYet">Non ancora scaricato.</string>
+
+  <string name="DownloadED_DownloadEleDataInRange">Scarica i dati di elevazione in un raggio di:</string>
+  <string name="DownloadED_ExpectedSize">Dimensioni di download previste: {0} MBytes</string>
+  <string name="DownloadED_NoDataToDownload">Tutti i dati di elevazione per quest\'area sono già stati scaricati.</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Usa il formato corretto. Esempio: 12.34567890.</string>
@@ -131,7 +136,7 @@
   <string name="Settings_PhotoResolution">Risoluzione foto</string>
   <string name="Settings_ClearElevationData">Cancella i dati di elevazione</string>
   <string name="Settings_ElevationDataSize">I dati di elevazione memorizzati nella cache occupano {0} MByte di memoria del dispositivo.</string>
-  
+  <string name="Settings_RemoveElevationDataQuestion">Vuoi davvero rimuovere tutti i dati di elevazione ora?</string>
 
   <string name="Tutorial_PhotoEdit_HeadingCorrection">Muovi il dito sulla parte superiore dello schermo per regolare la direzione della bussola.</string>
   <string name="Tutorial_PhotoEdit_HorizontCorrection">Muovi il dito sul bordo sinistro / destro dello schermo per regolare l\'orizzonte artificiale.</string>

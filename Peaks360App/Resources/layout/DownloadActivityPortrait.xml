@@ -1,41 +1,90 @@
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <include
-      android:id="@+id/toolbar"
-      layout="@layout/downloadActivityToolbar" />
-
-    <LinearLayout
-      android:orientation="vertical"
-      android:padding="10dp"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@drawable/background_portrait">
-
-      <Spinner
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        android:padding="5dp"
-        android:background="@drawable/bg_edittext"
-        android:id="@+id/DownloadCountrySpinner" />
-
-      <Space
-           android:layout_width="match_parent"
-           android:layout_height="10dp"/>
-      <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
+    <TabHost
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5dp"
-        android:background="@drawable/bg_edittext"
-        android:id="@+id/DownloadItemListView" />
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@android:id/tabhost">
 
-    </LinearLayout>
+      <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout1">
+        
+        <include
+          android:id="@+id/toolbar"
+          layout="@layout/TitleToolbar" />
+        <TabWidget
+          android:id="@android:id/tabs"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+              
+              <LinearLayout
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_portrait"
+                android:id="@+id/downloadTabPois">
+
+                <Spinner
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:spinnerMode="dropdown"
+                  android:padding="5dp"
+                  android:background="@drawable/bg_edittext"
+                  android:id="@+id/DownloadCountrySpinner" />
+                <Space
+                  android:layout_width="match_parent"
+                  android:layout_height="10dp"/>
+                <ListView
+                  android:minWidth="25px"
+                  android:minHeight="25px"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="5dp"
+                  android:background="@drawable/bg_edittext"
+                  android:id="@+id/DownloadItemListView" />
+
+              </LinearLayout>
+
+              <LinearLayout
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_portrait"
+                android:id="@+id/downloadTabEleData" >
+               
+                <Button
+                  android:text="Add new"
+                  android:drawableLeft="@android:drawable/ic_menu_add"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:drawablePadding="5dp"
+                  android:padding="10dp"
+                  android:background="@android:color/transparent"
+                  android:textColor="@android:color/white"
+                  android:id="@+id/buttonAddNew" />
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:background="@drawable/bg_edittext"
+                    android:id="@+id/listViewDownloadedElevationData" />
+                
+              </LinearLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
     
-
-</LinearLayout>
