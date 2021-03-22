@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Android.Graphics;
-using SkiaSharp;
 using Peaks360App.AppContext;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Domain.ViewModel;
 using Peaks360Lib.Utilities;
-using Peaks360Lib.Domain.Models;
 using System.Collections.Generic;
 
 namespace Peaks360App.Utilities
@@ -19,13 +17,6 @@ namespace Peaks360App.Utilities
         private float _viewAngleVertical;
         private float _adjustedViewAngleHorizontal;
         private float _adjustedViewAngleVertical;
-
-        private SKPaint _paint = new SKPaint 
-        { 
-        IsAntialias = true,
-        Color = SKColors.Yellow,
-        StrokeWidth = 3
-        };
 
         public ElevationProfileBitmapDrawer(IAppContext context)
         {
