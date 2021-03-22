@@ -58,6 +58,13 @@
       <Project>{44b69304-9ff0-4fce-8809-cc1fc45a35aa}</Project>
       <Name>Peaks360Lib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ReadGeoTiffLib\ReadGeoTiffLib.csproj">
+      <Project>{83d5e939-b098-44a3-9fd1-1adf4234086c}</Project>
+      <Name>ReadGeoTiffLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

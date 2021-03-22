@@ -4,18 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{58A3523D-F534-40B8-8BBB-73AB5910C76E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>GpxAltitudeFixer</RootNamespace>
-    <AssemblyName>GpxAltitudeFixer</AssemblyName>
+    <ProjectGuid>{83D5E939-B098-44A3-9FD1-1ADF4234086C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReadGeoTiffLib</RootNamespace>
+    <AssemblyName>ReadGeoTiffLib</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -47,21 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ElevationTileConvertor.cs" />
+    <Compile Include="GeoTiffReader.cs" />
+    <Compile Include="GeoTiffReaderArray.cs" />
+    <Compile Include="GeoTiffReaderList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Peaks360Lib\Peaks360Lib.csproj">
       <Project>{44b69304-9ff0-4fce-8809-cc1fc45a35aa}</Project>
       <Name>Peaks360Lib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ReadGeoTiffLib\ReadGeoTiffLib.csproj">
-      <Project>{83d5e939-b098-44a3-9fd1-1adf4234086c}</Project>
-      <Name>ReadGeoTiffLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
