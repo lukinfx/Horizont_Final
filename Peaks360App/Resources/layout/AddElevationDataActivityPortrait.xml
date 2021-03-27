@@ -16,34 +16,112 @@
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="0dp"
-          android:background="@drawable/bg_activity">
-            <SearchView
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/searchViewPlaceName" />
-        </LinearLayout>
-
-        <ListView
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
           android:layout_weight="1"
-          android:id="@+id/listViewPoi"
-          android:background="@drawable/bg_activity"/>
-
-        <LinearLayout
           android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
           android:padding="10dp"
           android:background="@drawable/bg_activity">
+            <TextView
+              android:text="@string/DownloadED_SelectedLocation"
+              android:textAppearance="?android:attr/textAppearanceMedium"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:padding="10dp"
+              android:id="@+id/distance" />
+          
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="10dp"
+              android:background="@drawable/bg_activity"
+              android:id="@+id/linearLayoutSelectedPoint">
+
+                <TextView
+                  android:text="Lysa hora"
+                  android:textAppearance="?android:attr/textAppearanceSmall"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textStyle="bold"
+                  android:typeface="sans"
+                  android:singleLine="true"
+                  android:ellipsize="end"
+                  android:id="@+id/textViewPlaceName" />
+
+                <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+
+                    <ImageView
+                      android:id="@+id/Thumbnail"
+                      android:layout_width="70dp"
+                      android:layout_height="70dp"
+                      android:padding="10dp"
+                      android:src="@drawable/c_basic"/>
+
+                    <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:paddingTop="10dp"
+                      android:orientation="vertical">
+
+                        <TextView
+                          android:text="Czech republic"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:singleLine="true"
+                          android:ellipsize="end"
+                          android:textSize="11sp"
+                          android:id="@+id/textViewPlaceCountry" />
+                        <TextView
+                          android:text="1254 m"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:singleLine="true"
+                          android:ellipsize="end"
+                          android:textSize="11sp"
+                          android:id="@id/textViewAltitude" />
+                        <TextView
+                          android:text="48.6545744N, 18.3544654E"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:singleLine="true"
+                          android:ellipsize="end"
+                          android:textSize="11sp"
+                          android:id="@id/textViewGpsLocation" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                  android:id="@+id/buttonSelect"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="right"
+                  android:text="@string/DownloadED_ChangeLocation"
+                  android:drawablePadding="10dp"
+                  android:padding="10dp"
+                  android:background="@android:color/transparent"
+                  android:drawableLeft="@android:drawable/ic_menu_mylocation" />
+            </LinearLayout>
+            <!--
+            <TextView
+            android:text="Selected range"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:id="@+id/distance" />-->
+
           <TextView
             android:text="@string/DownloadED_DownloadEleDataInRange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="30dp"
             android:id="@+id/distance" />
 
           <RadioGroup
@@ -51,7 +129,7 @@
                 android:minHeight="25px"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:gravity="center"
                 android:id="@+id/radioGroup1">
                 <RadioButton
@@ -78,31 +156,27 @@
             <TextView
               android:text="@string/DownloadED_ExpectedSize"
               android:layout_width="wrap_content"
-              android:layout_height="match_parent"
-              android:id="@+id/textViewDownloadSize" />
-        </LinearLayout>
-
-        <LinearLayout
-          android:orientation="horizontal"
-          android:gravity="center"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="0dp"
-          android:background="@drawable/bg_activity">
-
-            <Button
-              android:id="@+id/buttonSave"
-              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:text="@string/Common_Download"
-              android:drawablePadding="10dp"
-              android:padding="10dp"
-              android:background="@android:color/transparent"
-              android:layout_alignParentLeft="true"
-              android:layout_alignParentBottom="true"
-              android:drawableLeft="@android:drawable/ic_menu_save" />
+              android:paddingTop="15dp"
+              android:id="@+id/textViewDownloadSize" />
 
+            <LinearLayout
+              android:orientation="vertical"
+              android:gravity="bottom"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+                <Button
+                  android:id="@+id/buttonSave"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="right"
+                  android:text="@string/Common_Download"
+                  android:drawablePadding="10dp"
+                  android:background="@android:color/transparent"
+                  android:layout_alignParentLeft="true"
+                  android:layout_alignParentBottom="true"
+                  android:drawableTop="@android:drawable/ic_menu_save" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

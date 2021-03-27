@@ -31,6 +31,8 @@
   <string name="Common_Close">Close</string>
   <string name="Common_Search">Search</string>
   <string name="Common_MyLocation">My current location</string>
+  <string name="Common_POIs">Points of interest</string>
+  <string name="Common_ElevationData">Elevation data</string>
 
   <string name="Common_Question">Question</string>
   <string name="Common_Information">Information</string>
@@ -45,12 +47,13 @@
   <string name="MainActivity">Go back to camera</string>
   <string name="PoiListActivity">List of POIs</string>
   <string name="PoiEditActivity">Edit Point Of Interest</string>
+  <string name="PoiSelectActivity">Select POI</string>
   <string name="DownloadActivity">Download data</string>
   <string name="DownloadElevationDataActivity">Download elevation data</string>
   <string name="PhotosActivity">Photo gallery</string>
   <string name="SettingsActivity">Settings</string>
   <string name="AboutActivity">About</string>
-
+  
   <string name="Category_Historic">Historic</string>
   <string name="Category_Mountains">Mountains</string>
   <string name="Category_Lakes">Lakes</string>
@@ -97,10 +100,15 @@
   <string name="Download_DownloadedOn">Downloaded on </string>
   <string name="Download_NotDownloadedYet">Not downloaded yet.</string>
 
+  <!--AddElevationDataActivity-->
   <string name="DownloadED_DownloadEleDataInRange">Download elevation data in a range:</string>
   <string name="DownloadED_ExpectedSize">Expected downloaded size: {0} MBytes</string>
   <string name="DownloadED_NoDataToDownload">All elevation data for this area are already downloaded.</string>
-  
+  <string name="DownloadED_AddNewElevationDataArea">Add new area</string>
+  <string name="DownloadED_SelectedLocation">Selected location</string>
+  <string name="DownloadED_ChangeLocation">Change location</string>
+  <string name="DownloadED_PleaseChooseLocation">Please choose location</string>
+
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Use correct format. Example: 12,34567890.</string>
   <string name="EditPoi_EmptyClipboard">It seems you don\'t have any text in your ClipBoard.</string>

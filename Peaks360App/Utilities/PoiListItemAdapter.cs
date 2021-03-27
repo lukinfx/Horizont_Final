@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Android.App;
+using Android.Content;
 using Android.Views;
 using Android.Widget;
 using Peaks360Lib.Domain.ViewModel;
@@ -17,16 +18,16 @@ namespace Peaks360App.Utilities
 
     public class PoiListItemAdapter : BaseAdapter<PoiViewItem>, View.IOnClickListener
     {
-        Activity context;
+        Activity _activity;
         List<PoiViewItem> _list;
         private ImageView _thumbnail;
         private IPoiActionListener _poiActionListener;
         private bool _showOptions;
 
-        public PoiListItemAdapter(Activity _context, IEnumerable<PoiViewItem> list, IPoiActionListener listener, bool showOptions = true)
+        public PoiListItemAdapter(Activity activity, IEnumerable<PoiViewItem> list, IPoiActionListener listener, bool showOptions = true)
             : base()
         {
-            this.context = _context;
+            this._activity = activity;
             this._list = list.ToList();
             _poiActionListener = listener;
             _showOptions = showOptions;
@@ -75,7 +76,9 @@ namespace Peaks360App.Utilities
             View view = convertView;
 
             if (view == null)
-                view = context.LayoutInflater.Inflate(Resource.Layout.PoiListItemLayout, parent, false);
+            {
+                view = _activity.LayoutInflater.Inflate(Resource.Layout.PoiListItemLayout, parent, false);
+            }
             
             view.Tag = position;
 

@@ -63,7 +63,7 @@
               android:id="@+id/downloadTabEleData" >
                 
                 <Button
-                  android:text="Add new"
+                  android:text="@string/DownloadED_AddNewElevationDataArea"
                   android:drawableLeft="@android:drawable/ic_menu_add"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"

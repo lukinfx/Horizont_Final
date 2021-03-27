@@ -17,6 +17,7 @@ namespace Peaks360App.Definitions
         public static readonly int MENU_ACTIVITY = 200;
         public static readonly int POILIST_ACTIVITY = 300;
         public static readonly int POIEDIT_ACTIVITY = 400;
+        public static readonly int POISELECT_ACTIVITY = 450; 
         public static readonly int DOWNLOAD_ACTIVITY = 500;
         public static readonly int SETTINGS_ACTIVITY = 600;
         public static readonly int PHOTOS_ACTIVITY = 700;

@@ -64,14 +64,13 @@
                 android:id="@+id/downloadTabEleData" >
                
                 <Button
-                  android:text="Add new"
+                  android:text="@string/DownloadED_AddNewElevationDataArea"
                   android:drawableLeft="@android:drawable/ic_menu_add"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:drawablePadding="5dp"
                   android:padding="10dp"
-                  android:background="@android:color/transparent"
-                  android:textColor="@android:color/white"
+                  android:background="@drawable/bg_edittext"
                   android:id="@+id/buttonAddNew" />
 
                 <ListView

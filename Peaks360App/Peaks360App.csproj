@@ -87,6 +87,7 @@
     <Compile Include="Activities\EditActivity.cs" />
     <Compile Include="Activities\MenuActivity.cs" />
     <Compile Include="Activities\PoiFilterDialog.cs" />
+    <Compile Include="Activities\PoiSelectActivity.cs" />
     <Compile Include="Activities\PrivacyPolicyActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Activities\TutorialDialog.cs" />
@@ -829,6 +830,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout-land\AddElevationDataActivityLandscape.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PoiSelectActivity.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

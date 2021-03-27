@@ -104,13 +104,13 @@ namespace Peaks360App.Activities
 
 
             var page1 = TabHost.NewTabSpec("tab_test1");
-            page1.SetIndicator("Body zájmu");
+            page1.SetIndicator(Resources.GetText(Resource.String.Common_POIs));
             page1.SetContent(Resource.Id.downloadTabPois);
             TabHost.AddTab(page1);
 
 
             var page2 = TabHost.NewTabSpec("tab_test2");
-            page2.SetIndicator("Výšková data");
+            page2.SetIndicator(Resources.GetText(Resource.String.Common_ElevationData));
             page2.SetContent(Resource.Id.downloadTabEleData);
             TabHost.AddTab(page2);
 

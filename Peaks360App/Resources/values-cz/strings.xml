@@ -31,6 +31,8 @@
   <string name="Common_Close">Uložit</string>
   <string name="Common_Search">Vyhledávání</string>
   <string name="Common_MyLocation">Moje aktuální poloha</string>
+  <string name="Common_POIs">Body zájmu</string>
+  <string name="Common_ElevationData">Výšková data</string>
 
   <string name="Common_Question">Otázka</string>
   <string name="Common_Information">Informace</string>
@@ -45,6 +47,7 @@
   <string name="MainActivity">Zpět do fotoaparátu</string>
   <string name="PoiListActivity">Seznam bodů</string>
   <string name="PoiEditActivity">Editace bodu zájmu</string>
+  <string name="PoiSelectActivity">Výběr bodu zájmu</string>
   <string name="DownloadActivity">Stažení dat</string>
   <string name="DownloadElevationDataActivity">Stažení výškových dat</string>
   <string name="PhotosActivity">Galerie fotografií</string>
@@ -97,9 +100,14 @@
   <string name="Download_DownloadedOn">Staženo dne </string>
   <string name="Download_NotDownloadedYet">Zatím nestaženo.</string>
 
+  <!--AddElevationDataActivity-->
   <string name="DownloadED_DownloadEleDataInRange">Stáhnout výškové data v okruhu:</string>
   <string name="DownloadED_ExpectedSize">Předpokládaná velikost dat: {0} MBytes</string>
   <string name="DownloadED_NoDataToDownload">Všechna výšková data pro tuto oblast jsou již stažena.</string>
+  <string name="DownloadED_AddNewElevationDataArea">Přidat novou oblast</string>
+  <string name="DownloadED_SelectedLocation">Vybrané umístění</string>
+  <string name="DownloadED_ChangeLocation">Změnit umístění</string>
+  <string name="DownloadED_PleaseChooseLocation">Prosím, vyberte umístění</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Použijte správný formát. Například: 12,34567890.</string>

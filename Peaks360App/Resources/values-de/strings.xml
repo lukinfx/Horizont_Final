@@ -31,6 +31,8 @@
   <string name="Common_Close">Schließen</string>
   <string name="Common_Search">Suche...</string>
   <string name="Common_MyLocation">Mein aktueller Standort</string>
+  <string name="Common_POIs">Sehenswürdigkeiten</string>
+  <string name="Common_ElevationData">Höhendaten</string>
 
   <string name="Common_Question">Anfrage</string>
   <string name="Common_Information">Information</string>
@@ -45,6 +47,7 @@
   <string name="MainActivity">Gehe zurück zur Kamera</string>
   <string name="PoiListActivity">Liste der Punkte</string>
   <string name="PoiEditActivity">Punkt bearbeiten</string>
+  <string name="PoiSelectActivity">Punkt auswählen</string>
   <string name="DownloadActivity">Daten herunterladen</string>
   <string name="DownloadElevationDataActivity">Höhendaten herunterladen</string>
   <string name="PhotosActivity">Fotogallerie</string>
@@ -97,9 +100,14 @@
   <string name="Download_DownloadedOn">Heruntergeladen am </string>
   <string name="Download_NotDownloadedYet">Noch nicht heruntergeladen.</string>
 
+  <!--AddElevationDataActivity-->
   <string name="DownloadED_DownloadEleDataInRange">Laden Sie Höhendaten in einer Entfernung von herunter:</string>
   <string name="DownloadED_ExpectedSize">Erwartete Downloadgröße: {0} MBytes</string>
   <string name="DownloadED_NoDataToDownload">Alle Höhendaten für diesen Bereich sind bereits heruntergeladen.</string>
+  <string name="DownloadED_AddNewElevationDataArea">Neuen Bereich hinzufügen</string>
+  <string name="DownloadED_SelectedLocation">Ausgewählter Ort</string>
+  <string name="DownloadED_ChangeLocation">Den Ort wechseln</string>
+  <string name="DownloadED_PleaseChooseLocation">Bitte wählen Sie den Ort</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Verwenden Sie das richtige Format. Beispiel: 12.34567890</string>
