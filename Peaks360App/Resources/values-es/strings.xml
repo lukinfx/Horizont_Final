@@ -146,9 +146,14 @@
   <string name="Settings_ElevationDataSize">Los datos de elevación almacenados en caché ocupan {0} MBytes de memoria del dispositivo.</string>
   <string name="Settings_RemoveElevationDataQuestion">¿Realmente quieres eliminar todos los datos de elevación ahora?</string>
 
-  <string name="Tutorial_PhotoEdit_HeadingCorrection">Mueva el dedo en la parte superior de la pantalla para ajustar el rumbo de la brújula.</string>
+  <string name="Tutorial_PhotoEdit_HeadingCorrection">Mueva su dedo en la parte superior de la pantalla para ajustar el rumbo de la brújula.</string>
   <string name="Tutorial_PhotoEdit_HorizontCorrection">Mueva el dedo en el borde izquierdo / derecho de la pantalla para ajustar el horizonte artificial.</string>
   <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Use dos dedos para ajustar el ángulo de visión horizontal y vertical.</string>
+
+  <string name="Tutorial_Main_HorizontCorrection">Mueva su dedo hacia arriba o hacia abajo para ajustar el horizonte artificial.</string>
+  <string name="Tutorial_Main_ShowPoiData">Toque el marcador de punto para mostrar información sobre el objeto seleccionado. Posiblemente use botones para navegar a wiki o mapa, o haga clic en el nombre del punto para mostrar o editar los datos del punto.</string>
+  <string name="Tutorial_Main_ARWarning">Preste atención a su entorno siempre que utilice la aplicación. Se recomienda encarecidamente la supervisión de los padres para los niños.</string>
+
   <string name="Tutorial_DontShowAgain">No vuelvas a mostrar esto</string>
 
   <string name="PrivacyPolicyStatement">Declaración de política de privacidad</string>

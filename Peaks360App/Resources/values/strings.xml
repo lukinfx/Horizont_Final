@@ -146,9 +146,14 @@
   <string name="Settings_ElevationDataSize">Cached elevation data occupy {0} MBytes of device memory.</string>
   <string name="Settings_RemoveElevationDataQuestion">Do you really want do remove all elevation data now?</string>
 
-  <string name="Tutorial_PhotoEdit_HeadingCorrection">Move you finger on top of the screen to adjust compass heading.</string>
-  <string name="Tutorial_PhotoEdit_HorizontCorrection">Move you finger on left/right screen edge to to adjust artifical horizon.</string>
+  <string name="Tutorial_PhotoEdit_HeadingCorrection">Move your finger on top of the screen to adjust compass heading.</string>
+  <string name="Tutorial_PhotoEdit_HorizontCorrection">Move your finger on left/right screen edge to to adjust artifical horizon.</string>
   <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Use two fingers to adjust horizontal and vertical view angle.</string>
+
+  <string name="Tutorial_Main_HorizontCorrection">Move your finger up or down to adjust artifical horizon.</string>
+  <string name="Tutorial_Main_ShowPoiData">Tap on point marker to display information about the selected object. Possibly use buttons for navigation to wiki or map, or click on the point name to display or edit point data.</string>
+  <string name="Tutorial_Main_ARWarning">Please pay attention of your surroundings whenever using the application. Parental supervision is highly recommended for children.</string>
+
   <string name="Tutorial_DontShowAgain">Don\'t show again</string>
 
   <string name="PrivacyPolicyStatement">Privacy policy statement</string>

@@ -146,9 +146,13 @@
   <string name="Settings_ElevationDataSize">Výšková data uložená v mezipaměti zabírají {0} MB paměti zařízení.</string>
   <string name="Settings_RemoveElevationDataQuestion">Opravdu chcete nyní odstranit veškerá výšková data?</string>
 
-  <string name="Tutorial_PhotoEdit_HeadingCorrection">Posouvejte prstem v horní části displeje pro korekci směru pohledu.</string>
-  <string name="Tutorial_PhotoEdit_HorizontCorrection">Posouvejte prstem na levém/pravém okraji displeje pro korekci horizontu.</string>
+  <string name="Tutorial_PhotoEdit_HeadingCorrection">Posouvejte prstem doleva nebo doprava v horní části displeje pro korekci směru pohledu.</string>
+  <string name="Tutorial_PhotoEdit_HorizontCorrection">Posouvejte prstem nahoru nebo dolů na levém/pravém okraji displeje pro korekci horizontu.</string>
   <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Použijte dva prsty pro korekcí horizontálního a vertikálního zobrazovacího úhlu.</string>
+
+  <string name="Tutorial_Main_HorizontCorrection">Posouvejte prstem nahoru nebo dolů pro korekci horizontu.</string>
+  <string name="Tutorial_Main_ShowPoiData">Ťukněte na značku bodu pro zobrazení informací o vybraném bodu. Případně použijte tlačítka pro navigaci na wiki nebo do mapy, nebo ťukněte na název bodu pro zobrazení nebo editaci dat.</string>
+  <string name="Tutorial_Main_ARWarning">Prosím věnujte pozornost svému okolí kdykoliv používáte aplikaci. V případě dětí doporučujeme aplikaci používat pouze pod dohledem dospělé osoby.</string>
 
   <string name="Tutorial_DontShowAgain">Nezobrazovat znovu</string>
 
