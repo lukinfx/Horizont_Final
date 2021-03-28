@@ -66,7 +66,19 @@ namespace Peaks360App.Activities
 
             _hintTextView = (TextView)FindViewById(Resource.Id.tutorialHintText);
 
-            ShowNext();
+            DisplayPage(_index);
+        }
+
+        public void DisplayPage(int index)
+        {
+            _imageSwitcher.SetImageResource(_tutorialPages[_index].imageResourceId);
+            _imageSwitcher.Animation = _imageAnimation;
+            _imageSwitcher.Animation.StartNow();
+
+            _hintTextView.SetText(_tutorialPages[_index].textResourceId);
+
+            _checkBoxDontShowAgain.Visibility = (_index == _tutorialPages.Length - 1) 
+                ? ViewStates.Visible : ViewStates.Gone;
         }
 
         public async void OnClick(Android.Views.View v)
@@ -85,34 +97,15 @@ namespace Peaks360App.Activities
 
         private void ShowNext()
         {
-            try
+            _index++; 
+            if (_index >= _tutorialPages.Length)
             {
-                if (_index == _tutorialPages.Length)
-                {
-                    _hintTextView.Visibility = ViewStates.Gone;
-                    _checkBoxDontShowAgain.Visibility = ViewStates.Visible;
-                    return;
-                }
-
-                if (_index > _tutorialPages.Length)
-                {
-                    Hide();
-                    Dismiss();
-                    return;
-                }
-
-                _imageSwitcher.SetImageResource(_tutorialPages[_index].imageResourceId);
-                _imageSwitcher.Animation = _imageAnimation;
-                _imageSwitcher.Animation.StartNow();
-
-                _hintTextView.SetText(_tutorialPages[_index].textResourceId);
-
-                _checkBoxDontShowAgain.Visibility = ViewStates.Gone;
+                Hide();
+                Dismiss();
+                return;
             }
-            finally
-            {
-                _index++;
-            }
+
+            DisplayPage(_index);
         }
 
         public View MakeView()
