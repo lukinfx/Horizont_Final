@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -10,12 +7,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Peaks360App.AppContext;
-using Peaks360App.Providers;
 using Peaks360App.Tasks;
 using Peaks360App.Utilities;
 using Peaks360Lib.Domain.Enums;
 using Peaks360Lib.Domain.Models;
-using Peaks360Lib.Domain.ViewModel;
 using Peaks360Lib.Utilities;
 using Xamarin.Essentials;
 using GpsUtils = Peaks360Lib.Utilities.GpsUtils;
@@ -206,14 +201,13 @@ namespace Peaks360App.Activities
             };
 
             var gpsLocation = new GpsLocation(poi.Longitude, poi.Latitude, poi.Altitude);
-            var ed = new ElevationDownload(gpsLocation, ded.Distance);
+            var ed = new ElevationDataDownload(gpsLocation, ded.Distance);
 
-            if (ed.GetCountToDownload() == 0)
+            /*if (ed.GetCountToDownload() == 0)
             {
                 PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.DownloadED_NoDataToDownload));
                 return;
-            }
-
+            }*/
 
             AppContext.DownloadedElevationDataModel.InsertItem(ded);
 

@@ -93,6 +93,11 @@ namespace Peaks360Lib.Utilities
             }
         }
 
+        public ElevationTileCollection(List<ElevationTile> elevationTiles)
+        {
+            _elevationTiles = elevationTiles;
+        }
+
         public IEnumerable<ElevationTile> AsEnumerable()
         {
             return _elevationTiles;
@@ -215,13 +220,13 @@ namespace Peaks360Lib.Utilities
             return true;
         }
 
-        public bool HasElevation(GpsLocation location)
+        public bool HasElevation(GpsLocation location, bool checkIfLoaded = true )
         {
             foreach (var et in _elevationTiles)
             {
                 if (et.HasElevation(location))
                 {
-                    return et.IsLoaded();
+                    return checkIfLoaded ? et.IsLoaded() : true;
                 }
             }
 

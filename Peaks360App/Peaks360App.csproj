@@ -114,7 +114,7 @@
     <Compile Include="Tasks\ElevationCalculation.cs" />
     <Compile Include="AppContext\AppContextBase.cs" />
     <Compile Include="AppContext\IAppContext.cs" />
-    <Compile Include="Tasks\ElevationDownload.cs" />
+    <Compile Include="Tasks\ElevationDataDownload.cs" />
     <Compile Include="Tasks\FileDownload.cs" />
     <Compile Include="Tasks\PoiFileImport.cs" />
     <Compile Include="Utilities\CameraUtilities.cs" />

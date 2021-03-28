@@ -18,6 +18,7 @@ using Peaks360App.Tasks;
 using Peaks360App.Utilities;
 using Android.Content;
 using Peaks360App.Models;
+using Peaks360Lib.Utilities;
 
 namespace Peaks360App.Activities
 {
@@ -529,6 +530,41 @@ namespace Peaks360App.Activities
         {
             var ded = _downloadedElevationDataAdapter[position];
             AppContext.DownloadedElevationDataModel.DeleteItem(ded);
+
+            var dedTiles = new ElevationTileCollection(new GpsLocation(ded.Longitude, ded.Latitude, 0), ded.Distance);
+            
+            Task.Run(async () =>
+            {
+                var downloadedElevationData = await AppContext.Database.GetDownloadedElevationDataAsync();
+
+                var tilesToBeRemoved = new List<ElevationTile>();
+                foreach (var tile in dedTiles.AsEnumerable())
+                {
+                    var doNotRemove = false;
+                    foreach (var anotherDedItem in downloadedElevationData.AsEnumerable())
+                    {
+                        if (anotherDedItem.Id == ded.Id)
+                        {//skip deleted item (but it is actually already removed)
+                            continue;
+                        }
+
+                        var anotherDedTiles = new ElevationTileCollection(new GpsLocation(anotherDedItem.Longitude, anotherDedItem.Latitude, 0), anotherDedItem.Distance);
+                        if (anotherDedTiles.HasElevation(tile.StartLocation, false))
+                        {
+                            doNotRemove = true;
+                            break;
+                        }
+                    }
+
+                    if (!doNotRemove)
+                    {
+                        tilesToBeRemoved.Add(tile);
+                    }
+                }
+
+                var etc = new ElevationTileCollection(tilesToBeRemoved);
+                etc.Remove();
+            });
         }
     }
 }

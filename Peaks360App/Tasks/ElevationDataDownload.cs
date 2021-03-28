@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Peaks360App.Tasks
 {
-    public class ElevationDownload : AsyncTask<GpsLocation, string, string>
+    public class ElevationDataDownload : AsyncTask<GpsLocation, string, string>
     {
         private ElevationTileCollection _elevationTileCollection;
 
@@ -19,7 +19,7 @@ namespace Peaks360App.Tasks
         public Action<string> OnFinishedAction;
         public Action<int> OnProgressChange;
 
-        public ElevationDownload(GpsLocation myLocation, int maxDistance)
+        public ElevationDataDownload(GpsLocation myLocation, int maxDistance)
         {
             MyLocation = myLocation;
             MaxDistance = maxDistance;
