@@ -171,7 +171,12 @@ namespace Peaks360App.AppContext
                     PoiData = poiData;
                 }
 
-                var args = new DataChangedEventArgs() {PoiData = PoiData};
+                var args = new DataChangedEventArgs() { PoiData = PoiData };
+                DataChanged?.Invoke(this, args);
+            }
+            else
+            {
+                var args = new DataChangedEventArgs() { PoiData = null };
                 DataChanged?.Invoke(this, args);
             }
         }
