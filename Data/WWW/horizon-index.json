@@ -37,11 +37,6 @@
 				"Id":"948268dd-71a7-4696-bb8c-dafdad5e4806",
 				"Url": "PoiData/CZE/czech-republic-churches.gpx",
 				"Category": "Churches"
-			},
-			{
-				"Id":"948268dd-71a7-4696-bb8c-dafdad5e4810",
-				"Url": "PoiData/CZE/czech-republic-elevation.tlx",
-				"Category": "ElevationData"
 			}
 		]
 	},
@@ -78,11 +73,6 @@
 				"Id":"a936b146-ab96-451f-b24b-f270c8373e06",
 				"Url": "PoiData/SVK/churches.gpx",
 				"Category": "Churches"
-			},
-			{
-				"Id":"a936b146-ab96-451f-b24b-f270c8373e10",
-				"Url": "PoiData/SVK/slovakia-elevation.tlx",
-				"Category": "ElevationData"
 			}
 		]
 	},
