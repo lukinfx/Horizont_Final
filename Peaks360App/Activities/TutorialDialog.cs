@@ -31,20 +31,26 @@ namespace Peaks360App.Activities
         private int _index = 0;
         private TutorialPart _tutorialPart;
         private TutorialPage[] _tutorialPages;
+        private Action _onTutorialFinished;
 
-        public static void ShowTutorial(Context context, TutorialPart tp, TutorialPage[] tutorialPages)
+        public static void ShowTutorial(Context context, TutorialPart tp, TutorialPage[] tutorialPages, Action onTutorialFinished = null)
         {
             if (AppContextLiveData.Instance.Settings.IsTutorialNeeded(tp))
             {
-                var dialog = new TutorialDialog(context, tp, tutorialPages);
+                var dialog = new TutorialDialog(context, tp, tutorialPages, onTutorialFinished);
                 dialog.Show();
+            }
+            else
+            {
+                onTutorialFinished?.Invoke();
             }
         }
 
-        private TutorialDialog(Context context, TutorialPart tp, TutorialPage[] tutorialPages) : base(context)
+        private TutorialDialog(Context context, TutorialPart tp, TutorialPage[] tutorialPages, Action onTutorialFinished) : base(context)
         {
             _tutorialPart = tp;
             _tutorialPages = tutorialPages;
+            _onTutorialFinished = onTutorialFinished;
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -102,6 +108,7 @@ namespace Peaks360App.Activities
             {
                 Hide();
                 Dismiss();
+                _onTutorialFinished.Invoke();
                 return;
             }
 

@@ -90,6 +90,7 @@
     <Compile Include="Activities\PoiSelectActivity.cs" />
     <Compile Include="Activities\PrivacyPolicyActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="Activities\StartUpActivity.cs" />
     <Compile Include="Activities\TutorialDialog.cs" />
     <Compile Include="AppContext\AppContextLiveData.cs" />
     <Compile Include="AppContext\AppContextStaticData.cs" />

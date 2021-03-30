@@ -28,11 +28,9 @@ using View = Android.Views.View;
 
 namespace Peaks360App
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/SplashScreenTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name")]
     public class MainActivity : HorizonBaseActivity
     {
-        private static readonly int REQUEST_PERMISSIONS = 0;
-
         //private static readonly int ReqCode_SelectCategoryActivity = 1000;
 
         //UI elements
@@ -58,11 +56,8 @@ namespace Peaks360App
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.SetTheme(Resource.Style.AppTheme);
-
             base.OnCreate(bundle);
             AppContextLiveData.Instance.SetLocale(this);
-            Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.Essentials.Platform.Init(this, bundle);
 
             if (AppContextLiveData.Instance.IsPortrait)
@@ -76,23 +71,9 @@ namespace Peaks360App
 
             InitializeBaseActivityUI();
             InitializeUIElements();
+            InitializeCameraFragment();
 
-            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) != Permission.Granted ||
-                ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation) != Permission.Granted ||
-                ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) != Permission.Granted ||
-                ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) != Permission.Granted ||
-                ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadUserDictionary) != Permission.Granted ||
-                ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteUserDictionary) != Permission.Granted)
-            {
-                RequestGPSLocationPermissions();
-            }
-            else
-            {
-                InitializeCameraFragment();
-                Context.Start();
-            }
-
-
+            Context.Start();
             Start();
 
             if (bundle != null)
@@ -160,41 +141,6 @@ namespace Peaks360App
             bool isFirstStart = _firstStart;
             _firstStart = false;
 
-            if (Context.Settings.IsPrivacyPolicyApprovementNeeded())
-            {
-                Intent privacyPolicyActivityIntent = new Intent(this, typeof(PrivacyPolicyActivity));
-                StartActivity(privacyPolicyActivityIntent);
-            }
-
-            //For checking the GPS Status
-            bool gpsAvailable = DependencyService.Get<IGpsService>().isGpsAvailable();
-            if (isFirstStart && !gpsAvailable)
-            {
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
-                {
-                    DependencyService.Get<IGpsService>().OpenSettings();
-                });
-                alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
-                alert.SetMessage(Resources.GetText(Resource.String.Main_EnableGpsQuestion));
-                var answer = alert.Show();
-
-            }
-
-            if (isFirstStart && !Context.Database.IsAnyDownloadedPois())
-            {
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
-                {
-                    Intent downloadActivityIntent = new Intent(ctx, typeof(DownloadActivity));
-                    StartActivity(downloadActivityIntent);
-                    //_adapter.NotifyDataSetChanged();
-                });
-                alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
-                alert.SetMessage(Resources.GetText(Resource.String.Main_DownloadDataQuestion));
-                var answer = alert.Show();
-            }
-
             if (isFirstStart)
             {
                 TutorialDialog.ShowTutorial(this, TutorialPart.MainActivity,
@@ -204,6 +150,22 @@ namespace Peaks360App
                         new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_horizont_correction_simple, textResourceId = Resource.String.Tutorial_Main_HorizontCorrection},
                         new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_show_poi_data, textResourceId = Resource.String.Tutorial_Main_ShowPoiData},
                         new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_ar_warning, textResourceId = Resource.String.Tutorial_Main_ARWarning},
+                    },
+                    () =>
+                    {
+                        if (!Context.Database.IsAnyDownloadedPois())
+                        {
+                            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                            alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
+                            {
+                                Intent downloadActivityIntent = new Intent(ctx, typeof(DownloadActivity));
+                                StartActivity(downloadActivityIntent);
+                                //_adapter.NotifyDataSetChanged();
+                            });
+                            alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
+                            alert.SetMessage(Resources.GetText(Resource.String.Main_DownloadDataQuestion));
+                            var answer = alert.Show();
+                        }
                     });
             }
         }
@@ -280,55 +242,6 @@ namespace Peaks360App
                 _pauseButton.SetImageResource(Resource.Drawable.ic_pause);
             }
         }
-
-        #region Request Permissions
-
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-        {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
-            InitializeCameraFragment();
-            Context.Start();
-        }
-
-        private void RequestGPSLocationPermissions()
-        {
-            //From: https://docs.microsoft.com/cs-cz/xamarin/android/app-fundamentals/permissions
-            //Sample app: https://github.com/xamarin/monodroid-samples/tree/master/android-m/RuntimePermissions
-
-            var requiredPermissions = new String[]
-            {
-                Manifest.Permission.AccessFineLocation, 
-                Manifest.Permission.Camera, 
-                Manifest.Permission.ReadExternalStorage,
-                Manifest.Permission.WriteExternalStorage,
-                Manifest.Permission.ReadUserDictionary,
-                Manifest.Permission.WriteUserDictionary
-            };
-
-            if (ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.AccessFineLocation) ||
-                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.Camera) ||
-                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadExternalStorage) ||
-                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.WriteExternalStorage) ||
-                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadUserDictionary) ||
-                ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.WriteUserDictionary))
-            {
-                Snackbar.Make(_mainLayout, "Internal storage, location and camera permissions are needed to show relevant data.", Snackbar.LengthIndefinite)
-                    .SetAction("OK", new Action<View>(delegate (View obj) 
-                        {
-                            ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_PERMISSIONS);
-                        })
-                    ).Show();
-            }
-            else
-            {
-                ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_PERMISSIONS);
-            }
-        }
-
-        #endregion Request Permissions
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
