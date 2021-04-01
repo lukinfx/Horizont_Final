@@ -48,7 +48,7 @@ namespace Peaks360App.Activities
 
             Context.PhotosModel.PhotoAdded += OnPhotoAdded;
             Context.PhotosModel.PhotoUpdated += OnPhotoUpdated;
-            Context.PhotosModel.PhotoUpdated += OnPhotoDeleted;
+            Context.PhotosModel.PhotoDeleted += OnPhotoDeleted;
             _photosListView.Adapter = _adapter;
         }
 
@@ -58,7 +58,7 @@ namespace Peaks360App.Activities
 
             Context.PhotosModel.PhotoAdded -= OnPhotoAdded;
             Context.PhotosModel.PhotoUpdated -= OnPhotoUpdated;
-            Context.PhotosModel.PhotoUpdated -= OnPhotoDeleted;
+            Context.PhotosModel.PhotoDeleted -= OnPhotoDeleted;
         }
 
         private void OnPhotoAdded(object sender, PhotoDataEventArgs args)
