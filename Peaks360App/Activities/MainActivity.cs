@@ -147,7 +147,7 @@ namespace Peaks360App
                     {
                         if (!Context.Database.IsAnyDownloadedPois())
                         {
-                            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                            AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
                             alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
                             {
                                 Intent downloadActivityIntent = new Intent(ctx, typeof(DownloadActivity));

@@ -11,10 +11,10 @@ namespace Peaks360App.Utilities
 {
     public interface IPhotoActionListener
     {
-        void OnPhotoDelete(int position);
-        void OnTagEdit(int position);
-        void OnPhotoEdit(int position);
-        void OnFavouriteEdit(int position);
+        void OnPhotoDeleteRequest(int position);
+        void OnTagEditRequest(int position);
+        void OnPhotoEditRequest(int position);
+        void OnFavouriteEditRequest(int position);
     }
 
     [Activity(Label = "PhotosItemAdapter")]
@@ -53,6 +53,11 @@ namespace Peaks360App.Utilities
             get { return _list[index]; }
         }
 
+        public int GetPosition(PhotoData item)
+        {
+            return _list.FindIndex(x => x.Id == item.Id);
+        }
+
         public void RemoveAt(int index)
         {
             _list.RemoveAt(index);
@@ -63,6 +68,15 @@ namespace Peaks360App.Utilities
         {
             _list.Insert(0, item);
             NotifyDataSetChanged();
+        }
+        public void Update(PhotoData item)
+        {
+            var photoItem = GetById(item.Id);
+            if (photoItem != null)
+            {
+                photoItem.Heading = item.Heading;
+                NotifyDataSetChanged();
+            }
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -123,17 +137,16 @@ namespace Peaks360App.Utilities
             switch (v.Id)
             {
                 case Resource.Id.photoDeleteButton:
-                    _poiActionListener.OnPhotoDelete(position);
+                    _poiActionListener.OnPhotoDeleteRequest(position);
                     break;
-
                 case Resource.Id.linearLayoutItem:
-                    _poiActionListener.OnPhotoEdit(position);
+                    _poiActionListener.OnPhotoEditRequest(position);
                     break;
                 case Resource.Id.photoEditButton:
-                    _poiActionListener.OnTagEdit(position);
+                    _poiActionListener.OnTagEditRequest(position);
                     break;
                 case Resource.Id.favouriteButton:
-                    _poiActionListener.OnFavouriteEdit(position);
+                    _poiActionListener.OnFavouriteEditRequest(position);
                     break;
             }
         }

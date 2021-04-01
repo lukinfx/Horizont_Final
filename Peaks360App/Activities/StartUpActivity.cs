@@ -20,7 +20,7 @@ using Peaks360App.Services;
 
 namespace Peaks360App.Activities
 {
-    [Activity(Label = "StartUpActivity", Theme = "@style/SplashScreenTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/SplashScreenTheme", MainLauncher = true)]
     public class StartUpActivity : Activity
     {
         private const int REQUEST_PERMISSIONS = Definitions.BaseResultCode.STARTUP_ACTIVITY + 0;
@@ -72,7 +72,7 @@ namespace Peaks360App.Activities
                 ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.ReadUserDictionary) ||
                 ActivityCompat.ShouldShowRequestPermissionRationale(this, Manifest.Permission.WriteUserDictionary))
             {
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
                 alert.SetPositiveButton(Resources.GetText(Android.Resource.String.Ok), (senderAlert, args) =>
                 {
                     ActivityCompat.RequestPermissions(this, requiredPermissions, REQUEST_PERMISSIONS);
@@ -104,7 +104,7 @@ namespace Peaks360App.Activities
             bool gpsAvailable = DependencyService.Get<IGpsService>().IsGpsAvailable();
             if (!gpsAvailable)
             {
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
                 alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
                 {
                     //DependencyService.Get<IGpsService>().OpenSettings(this);
@@ -159,7 +159,7 @@ namespace Peaks360App.Activities
             {
                 if (permissions[i] == Manifest.Permission.Camera && grantResults[i] == Permission.Denied)
                 {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
                     alert.SetPositiveButton(Resources.GetText(Android.Resource.String.Ok), (senderAlert, args) => { Finish(); });
                     alert.SetMessage("The Peaks360 application is not working properly without access to camera.");
                     var answer = alert.Show();

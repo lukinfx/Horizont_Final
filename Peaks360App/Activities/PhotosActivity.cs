@@ -48,25 +48,35 @@ namespace Peaks360App.Activities
 
             Context.PhotosModel.PhotoAdded += OnPhotoAdded;
             Context.PhotosModel.PhotoUpdated += OnPhotoUpdated;
+            Context.PhotosModel.PhotoUpdated += OnPhotoDeleted;
             _photosListView.Adapter = _adapter;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            Context.PhotosModel.PhotoAdded -= OnPhotoAdded;
+            Context.PhotosModel.PhotoUpdated -= OnPhotoUpdated;
+            Context.PhotosModel.PhotoUpdated -= OnPhotoDeleted;
         }
 
         private void OnPhotoAdded(object sender, PhotoDataEventArgs args)
         {
             _adapter.Add(args.data);
-            _adapter.NotifyDataSetChanged();
         }
 
         private void OnPhotoUpdated(object sender, PhotoDataEventArgs args)
         {
-            var photoItem = _adapter.GetById(args.data.Id);
-            if (photoItem != null)
-            {
-                photoItem.Heading = args.data.Heading;
-                _adapter.NotifyDataSetChanged();
-            }
+            _adapter.Update(args.data);
         }
 
+        private void OnPhotoDeleted(object sender, PhotoDataEventArgs args)
+        {
+            var position = _adapter.GetPosition(args.data);
+            _adapter.RemoveAt(position);
+        }
+        
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.PhotosActivityMenu, menu);
@@ -97,23 +107,20 @@ namespace Peaks360App.Activities
             return base.OnPrepareOptionsMenu(menu);
         }
 
-        public void OnPhotoDelete(int position)
+        public void OnPhotoDeleteRequest(int position)
         {
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
             alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
             {
                 PhotoData item = _adapter[position];
-                Context.Database.DeleteItem(item);
-                _adapter.RemoveAt(position);
+                Context.PhotosModel.DeleteItem(item);
             });
             alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
             alert.SetMessage(Resources.GetText(Resource.String.Photos_DeletePhotoQuestion));
             var answer = alert.Show();
-
-            _adapter.NotifyDataSetChanged();
         }
 
-        public void OnPhotoEdit(int position)
+        public void OnPhotoEditRequest(int position)
         {
             Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
             showIntent.PutExtra("ID", _adapter[position].Id);
@@ -121,7 +128,7 @@ namespace Peaks360App.Activities
             StartActivity(showIntent);
         }
 
-        public void OnFavouriteEdit(int position)
+        public void OnFavouriteEditRequest(int position)
         {
             PhotoData item = _adapter[position];
             item.Favourite = !item.Favourite;
@@ -130,7 +137,7 @@ namespace Peaks360App.Activities
             _adapter.NotifyDataSetChanged();
         }
 
-        public void OnTagEdit(int position)
+        public void OnTagEditRequest(int position)
         {   
             PhotoData item = _adapter[position];
             var dialog = new EditTagDialog(this, item);

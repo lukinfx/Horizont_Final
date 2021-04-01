@@ -22,6 +22,7 @@ namespace Peaks360App.Models
         
         public event PhotoDataEventHandler PhotoAdded;
         public event PhotoDataEventHandler PhotoUpdated;
+        public event PhotoDataEventHandler PhotoDeleted;
 
         public PhotosModel(PoiDatabase database)
         {
@@ -37,6 +38,12 @@ namespace Peaks360App.Models
         {
             _database.InsertItem(item);
             PhotoAdded?.Invoke(this, new PhotoDataEventArgs() {data = item});
+        }
+
+        public void DeleteItem(PhotoData item)
+        {
+            _database.DeleteItem(item);
+            PhotoDeleted?.Invoke(this, new PhotoDataEventArgs() { data = item });
         }
 
         internal void UpdateItem(PhotoData item)

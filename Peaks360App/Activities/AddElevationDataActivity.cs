@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -21,13 +23,14 @@ namespace Peaks360App.Activities
     public class AddElevationDataActivity : Activity, View.IOnClickListener
     {
         public static int REQUEST_ADD_DATA = Definitions.BaseResultCode.ADDDOWNLOADEDDATA_ACTIVITY + 0;
+        public static int REQUEST_EDIT_DATA = Definitions.BaseResultCode.ADDDOWNLOADEDDATA_ACTIVITY + 1;
 
         private IAppContext AppContext { get { return AppContextLiveData.Instance;} }
         private Poi _selectedPoint;
+        private DownloadedElevationData _oldDedItem;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-
             base.OnCreate(savedInstanceState);
             AppContextLiveData.Instance.SetLocale(this);
             Platform.Init(this, savedInstanceState);
@@ -56,7 +59,21 @@ namespace Peaks360App.Activities
             FindViewById<RadioButton>(Resource.Id.radioButton200km).SetOnClickListener(this);
             FindViewById<RadioButton>(Resource.Id.radioButton300km).SetOnClickListener(this);
 
-            if (Peaks360Lib.Utilities.GpsUtils.HasLocation(AppContext.MyLocation))
+            var id = Intent.GetLongExtra("Id", -1);
+            if (id != -1)
+            {
+                _oldDedItem = AppContext.Database.GetDownloadedElevationDataItem(id);
+                _selectedPoint = new Poi()
+                {
+                    Latitude = _oldDedItem.Latitude,
+                    Longitude = _oldDedItem.Longitude,
+                    Altitude = _oldDedItem.Altitude,
+                    Name = _oldDedItem.PlaceName,
+                    Country = _oldDedItem.Country
+                };
+                SetDownloadDistance(_oldDedItem.Distance);
+            }
+            else if (Peaks360Lib.Utilities.GpsUtils.HasLocation(AppContext.MyLocation))
             {
                 _selectedPoint = PoiSelectActivity.GetMyLocationPoi(AppContext);
             }
@@ -95,7 +112,7 @@ namespace Peaks360App.Activities
                     StartActivityForResult(intent, PoiSelectActivity.REQUEST_SELECT_POI);
                     break;
                 case Resource.Id.buttonSave:
-                    DownloadElevationData(_selectedPoint);
+                    SaveElevationData(_selectedPoint);
                     break;
             }
         }
@@ -167,6 +184,26 @@ namespace Peaks360App.Activities
             throw new ApplicationException("Distance is not selected");
         }
 
+        private void SetDownloadDistance(int distance)
+        {
+            if (distance == 100)
+            {
+                FindViewById<RadioButton>(Resource.Id.radioButton100km).Checked = true;
+            }
+            else if (distance == 200)
+            {
+                FindViewById<RadioButton>(Resource.Id.radioButton200km).Checked = true;
+            }
+            else if (distance == 300)
+            {
+                FindViewById<RadioButton>(Resource.Id.radioButton300km).Checked = true;
+            }
+            else //default option (it should never happen)
+            {
+                FindViewById<RadioButton>(Resource.Id.radioButton100km).Checked = true;
+            }
+        }
+
         private void CalculateDownloadSize(Poi poi)
         {
             long size = 0;
@@ -185,7 +222,7 @@ namespace Peaks360App.Activities
                 String.Format(Resources.GetText(Resource.String.DownloadED_ExpectedSize), size.ToString());
         }
 
-        private void DownloadElevationData(Poi poi)
+        private void SaveElevationData(Poi poi)
         {
             if (poi == null)
             {
@@ -196,7 +233,9 @@ namespace Peaks360App.Activities
             {
                 Latitude = poi.Latitude,
                 Longitude = poi.Longitude,
-                PlaceName = $"{poi.Name}/{PoiCountryHelper.GetCountryName(poi.Country.Value)}",
+                Altitude = poi.Altitude,
+                PlaceName = poi.Name,
+                Country = poi.Country,
                 Distance = GetDownloadDistance()
             };
 
@@ -209,7 +248,28 @@ namespace Peaks360App.Activities
                 return;
             }*/
 
-            AppContext.DownloadedElevationDataModel.InsertItem(ded);
+            if (_oldDedItem != null)
+            {
+                ded.Id = _oldDedItem.Id;
+                if (ded.Distance < _oldDedItem.Distance)
+                {
+                    RemoveElevationData(ded, _oldDedItem.Distance);
+                }
+                else
+                {
+                    DownloadElevationData(ded);
+                }
+            }
+            else
+            {
+                AppContext.DownloadedElevationDataModel.InsertItem(ded);
+                DownloadElevationData(ded);
+            }
+        }
+
+        private void DownloadElevationData(DownloadedElevationData ded)
+        {
+            var edd = new ElevationDataDownload(new GpsLocation(ded.Longitude, ded.Latitude, 0), ded.Distance);
 
             var pd = new ProgressDialog(this);
             pd.SetMessage(Resources.GetText(Resource.String.Download_Progress_DownloadingElevationData));
@@ -218,7 +278,7 @@ namespace Peaks360App.Activities
             pd.Max = 100;
             pd.Show();
 
-            ed.OnFinishedAction = (result) =>
+            edd.OnFinishedAction = (result) =>
             {
                 pd.Hide();
                 if (!string.IsNullOrEmpty(result))
@@ -227,18 +287,34 @@ namespace Peaks360App.Activities
                 }
                 else
                 {
-                    ded.SizeInBytes = ed.GetSize();
+                    ded.SizeInBytes = edd.GetSize();
                     AppContext.DownloadedElevationDataModel.UpdateItem(ded);
                     Finish();
                 }
             };
-            ed.OnProgressChange = (progress) =>
+            edd.OnProgressChange = (progress) =>
             {
                 MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
                 Thread.Sleep(50);
             };
 
-            ed.Execute();
+            edd.Execute();
+        }
+
+        private void RemoveElevationData(DownloadedElevationData ded, int oldDedDistance)
+        {
+            Task.Run(async () =>
+            {
+                var allData = await AppContext.Database.GetDownloadedElevationDataAsync();
+                var tilesToBeRemovedAll = ElevationTileCollection.GetTilesForRemoval(ded, oldDedDistance, ded.Distance);
+                var tilesToBeRemovedUnique = ElevationTileCollection.GetUniqueTilesForRemoval(ded.Id, allData, tilesToBeRemovedAll);
+                tilesToBeRemovedUnique.Remove();
+
+                var edd = new ElevationDataDownload(new GpsLocation(ded.Longitude, ded.Latitude, 0), ded.Distance);
+                ded.SizeInBytes = edd.GetSize();
+                AppContext.DownloadedElevationDataModel.UpdateItem(ded);
+                Finish();
+            });
         }
     }
 }

@@ -245,7 +245,7 @@ namespace Peaks360App.Views.ListOfPoiView
 
         public void OnPoiDelete(int position)
         {
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
             alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
             {
                 PoiViewItem item = _adapter[position];

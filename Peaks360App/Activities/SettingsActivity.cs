@@ -203,7 +203,7 @@ namespace Peaks360App.Activities
         {
             if (IsDirty())
             {
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
                 alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
                 {
                     SetResult(RESULT_CANCELED);
@@ -338,7 +338,7 @@ namespace Peaks360App.Activities
 
         private void ClearElevationData()
         {
-            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
             alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
             {
                 ElevationFileProvider.ClearElevationData();

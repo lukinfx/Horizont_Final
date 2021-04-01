@@ -7,12 +7,14 @@ using Android.Views;
 using Android.Widget;
 using Peaks360Lib.Domain.Enums;
 using Peaks360Lib.Domain.Models;
+using Xamarin.Essentials;
 
 namespace Peaks360App.Utilities
 {
     public interface IDownloadedElevationDataActionListener
     {
-        void OnDedDelete(int position);
+        void OnDedDeleteRequest(int position);
+        void OnDedEditRequest(int position);
     }
 
     public class DownloadedElevationDataAdapter : BaseAdapter<DownloadedElevationData>, View.IOnClickListener
@@ -32,12 +34,17 @@ namespace Peaks360App.Utilities
         public void SetItems(IEnumerable<DownloadedElevationData> items)
         {
             _list = items.ToList();
-            NotifyDataSetChanged();
+            MainThread.BeginInvokeOnMainThread(() => { NotifyDataSetChanged(); });
         }
 
         public override int Count
         {
             get { return _list.Count; }
+        }
+
+        public DownloadedElevationData GetById(long id)
+        {
+            return _list.SingleOrDefault(p => p.Id == id);
         }
 
         public override long GetItemId(int position)
@@ -58,13 +65,24 @@ namespace Peaks360App.Utilities
         public void RemoveAt(int index)
         {
             _list.RemoveAt(index);
-            NotifyDataSetChanged();
+            MainThread.BeginInvokeOnMainThread(() => { NotifyDataSetChanged(); });
         }
 
         public void Add(DownloadedElevationData item)
         {
             _list.Insert(0, item);
-            NotifyDataSetChanged();
+            MainThread.BeginInvokeOnMainThread(() => { NotifyDataSetChanged(); });
+        }
+
+        public void Update(DownloadedElevationData item)
+        {
+            var ded = GetById(item.Id);
+            if (ded != null)
+            {
+                ded.Distance = item.Distance;
+                ded.SizeInBytes = item.SizeInBytes;
+                MainThread.BeginInvokeOnMainThread(() => { NotifyDataSetChanged(); });
+            }
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -75,7 +93,8 @@ namespace Peaks360App.Utilities
             {
                 view = _context.LayoutInflater.Inflate(Resource.Layout.DownloadedElevationDataItem, parent, false);
             }
-            
+
+            view.SetOnClickListener(this);
             view.Tag = position;
 
             DownloadedElevationData item = this[position];
@@ -101,8 +120,12 @@ namespace Peaks360App.Utilities
             switch (v.Id)
             {
                 case Resource.Id.PoiDeleteButton:
-                    _actionListener.OnDedDelete(position);
+                    _actionListener.OnDedDeleteRequest(position);
                     break;
+                case Resource.Id.linearLayoutItem:
+                    _actionListener.OnDedEditRequest(position);
+                    break;
+
             }
         }
     }

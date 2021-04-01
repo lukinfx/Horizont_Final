@@ -28,6 +28,7 @@ namespace Peaks360App.Views
         {
             mActivity = Activity;
             return new AlertDialog.Builder(mActivity)
+                .SetCancelable(false)
                 .SetMessage(Arguments.GetString(ARG_MESSAGE))
                 .SetPositiveButton(Android.Resource.String.Ok, new PositiveListener())
                 .Create();

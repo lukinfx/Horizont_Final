@@ -91,6 +91,7 @@ namespace Peaks360App.Providers
 
                 using (var builder = new AlertDialog.Builder(appContext))
                 {
+                    builder.SetCancelable(false);
                     builder.SetTitle(appContext.Resources.GetText(Resource.String.Common_Question));
                     builder.SetMessage(String.Format(appContext.Resources.GetText(Resource.String.Download_Confirmation), size));
                     builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);

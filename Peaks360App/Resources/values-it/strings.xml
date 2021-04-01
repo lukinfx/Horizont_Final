@@ -117,6 +117,7 @@
   <string name="EditPoi_TeleportationWarning">La tua posizione sarà impostata su {0}. Per reimpostare la tua posizione, premi il pulsante [Reimposta] nella vista della fotocamera o reimposta manualmente la posizione nelle impostazioni dell\'applicazione.\n\nVuoi continuare?</string>
   <string name="EditPoi_PasteLocationFromClipboard">Incolla la posizione GPS dagli appunti</string>
   <string name="EditPoi_FetchAltitudeFromElevationMap">Recupera l\'altitudine dalla mappa di elevazione</string>
+  <string name="DownloadED_DeleteQuestion">Sei sicuro di voler eliminare quest\'area?</string>
 
   <!--PhotosActivity -->
   <string name="Photos_DeletePhotoQuestion">Sei sicuro di voler eliminare questa foto?</string>

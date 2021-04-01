@@ -470,7 +470,7 @@ namespace Peaks360App.Activities
             CheckDirtyAndPerformAction(() => base.OnBackPressed());
             /*if (IsDirty())
             {
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
                 alert.SetPositiveButton(Resources.GetText(Resource.String.Discard), (senderAlert, args) => { Finish(); });
                 alert.SetNegativeButton(Resources.GetText(Resource.String.Save), (senderAlert, args) => { SavePhotoData(); Finish(); });
                 alert.SetMessage(Resources.GetText(Resource.String.PhotoShow_SaveOrDiscard));
@@ -486,7 +486,7 @@ namespace Peaks360App.Activities
         {
             if (IsDirty())
             {
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
                 alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Save), (senderAlert, args) => { SavePhotoData(); action.Invoke(); });
                 alert.SetNegativeButton(Resources.GetText(Resource.String.Common_Discard), (senderAlert, args) => { action.Invoke(); }); 
                 alert.SetMessage(Resources.GetText(Resource.String.PhotoShow_SaveOrDiscard));
@@ -586,7 +586,7 @@ namespace Peaks360App.Activities
 
             if (File.Exists(filename))
             {
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
                 alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
                 {
                     File.Delete(filename);

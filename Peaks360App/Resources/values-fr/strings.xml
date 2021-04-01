@@ -108,6 +108,7 @@
   <string name="DownloadED_SelectedLocation">Emplacement sélectionné</string>
   <string name="DownloadED_ChangeLocation">Changer de lieu</string>
   <string name="DownloadED_PleaseChooseLocation">Veuillez choisir l\'emplacement</string>
+  <string name="DownloadED_DeleteQuestion">Voulez-vous vraiment supprimer cette zone?</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Utilisez un format correct. Exemple: 12.34567890.</string>

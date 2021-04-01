@@ -77,6 +77,7 @@ namespace Peaks360App.Views
             _allowRotation = allowRotation;
             _pictureSize = pictureSize;
 
+            //TODO: we should not add OnSettingsChanged, if it was already added
             _context.Settings.SettingsChanged += OnSettingsChanged;
 
             elevationProfileBitmapDrawer = new ElevationProfileBitmapDrawer(_context);

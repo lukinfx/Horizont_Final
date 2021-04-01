@@ -45,18 +45,17 @@ namespace Peaks360App.Activities
             InitializeUI();
 
             AppContext.DownloadedElevationDataModel.DownloadedElevationDataAdded += OnDownloadedElevationDataAdded;
+            AppContext.DownloadedElevationDataModel.DownloadedElevationDataUpdated += OnDownloadedElevationDataUpdated;
             AppContext.DownloadedElevationDataModel.DownloadedElevationDataDeleted += OnDownloadedElevationDataDeleted;
         }
 
-        private void OnDownloadedElevationDataAdded(object sender, DownloadedElevationDataEventArgs e)
+        protected override void OnDestroy()
         {
-            _downloadedElevationDataAdapter.Add(e.data);
-        }
+            base.OnDestroy();
 
-        private void OnDownloadedElevationDataDeleted(object sender, DownloadedElevationDataEventArgs e)
-        {
-            var position = _downloadedElevationDataAdapter.GetPosition(e.data);
-            _downloadedElevationDataAdapter.RemoveAt(position);
+            AppContext.DownloadedElevationDataModel.DownloadedElevationDataAdded -= OnDownloadedElevationDataAdded;
+            AppContext.DownloadedElevationDataModel.DownloadedElevationDataUpdated -= OnDownloadedElevationDataUpdated;
+            AppContext.DownloadedElevationDataModel.DownloadedElevationDataDeleted -= OnDownloadedElevationDataDeleted;
         }
 
         protected override void OnStart()
@@ -133,13 +132,6 @@ namespace Peaks360App.Activities
             _downloadedElevationDataListView = FindViewById<ListView>(Resource.Id.listViewDownloadedElevationData);
             _downloadedElevationDataAdapter = new DownloadedElevationDataAdapter(this, this);
             _downloadedElevationDataListView.Adapter = _downloadedElevationDataAdapter;
-            _downloadedElevationDataAdapter.SetItems(
-                new List<DownloadedElevationData>()
-                {
-                    new DownloadedElevationData() { PlaceName = "Lysá hora / Czech republic", Latitude = 48.15, Longitude = 18.4545, Distance = 100, SizeInBytes = 28646544},
-                    new DownloadedElevationData() { PlaceName = "Sněžka / Czech republic", Latitude = 51.5454, Longitude = 17.545, Distance = 80, SizeInBytes = 5454654},
-                    new DownloadedElevationData() { PlaceName = "Matterhorn / Switzerland", Latitude = 45.54654, Longitude = 13.1154541, Distance = 130, SizeInBytes = 35435454}
-                });
 
             var _downloadedElevationDataAddButton = FindViewById<Button>(Resource.Id.buttonAddNew);
             _downloadedElevationDataAddButton.SetOnClickListener(this);
@@ -526,44 +518,53 @@ namespace Peaks360App.Activities
             }
         }
 
-        public void OnDedDelete(int position)
+        public void OnDedEditRequest(int position)
         {
-            var ded = _downloadedElevationDataAdapter[position];
-            AppContext.DownloadedElevationDataModel.DeleteItem(ded);
+            var item = _downloadedElevationDataAdapter[position];
+            Intent editActivityIntent = new Intent(this, typeof(AddElevationDataActivity));
+            editActivityIntent.PutExtra("Id", item.Id);
+            StartActivityForResult(editActivityIntent, AddElevationDataActivity.REQUEST_EDIT_DATA);
+        }
 
+        public void OnDedDeleteRequest(int position)
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
+            alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
+            {
+                var ded = _downloadedElevationDataAdapter[position];
+                AppContext.DownloadedElevationDataModel.DeleteItem(ded);
+                DeleteElevationTiles(ded);
+            });
+            alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
+            alert.SetMessage(Resources.GetText(Resource.String.DownloadED_DeleteQuestion));
+            var answer = alert.Show();
+        }
+
+        private void OnDownloadedElevationDataAdded(object sender, DownloadedElevationDataEventArgs e)
+        {
+            _downloadedElevationDataAdapter.Add(e.data);
+        }
+
+        private void OnDownloadedElevationDataUpdated(object sender, DownloadedElevationDataEventArgs e)
+        {
+            _downloadedElevationDataAdapter.Update(e.data);
+        }
+
+        private void OnDownloadedElevationDataDeleted(object sender, DownloadedElevationDataEventArgs e)
+        {
+            var position = _downloadedElevationDataAdapter.GetPosition(e.data);
+            _downloadedElevationDataAdapter.RemoveAt(position);
+        }
+
+        private void DeleteElevationTiles(DownloadedElevationData ded)
+        {
             var dedTiles = new ElevationTileCollection(new GpsLocation(ded.Longitude, ded.Latitude, 0), ded.Distance);
-            
+
             Task.Run(async () =>
             {
                 var downloadedElevationData = await AppContext.Database.GetDownloadedElevationDataAsync();
-
-                var tilesToBeRemoved = new List<ElevationTile>();
-                foreach (var tile in dedTiles.AsEnumerable())
-                {
-                    var doNotRemove = false;
-                    foreach (var anotherDedItem in downloadedElevationData.AsEnumerable())
-                    {
-                        if (anotherDedItem.Id == ded.Id)
-                        {//skip deleted item (but it is actually already removed)
-                            continue;
-                        }
-
-                        var anotherDedTiles = new ElevationTileCollection(new GpsLocation(anotherDedItem.Longitude, anotherDedItem.Latitude, 0), anotherDedItem.Distance);
-                        if (anotherDedTiles.HasElevation(tile.StartLocation, false))
-                        {
-                            doNotRemove = true;
-                            break;
-                        }
-                    }
-
-                    if (!doNotRemove)
-                    {
-                        tilesToBeRemoved.Add(tile);
-                    }
-                }
-
-                var etc = new ElevationTileCollection(tilesToBeRemoved);
-                etc.Remove();
+                var tilesToBeRemoved = ElevationTileCollection.GetUniqueTilesForRemoval(ded.Id, downloadedElevationData, dedTiles);
+                tilesToBeRemoved.Remove();
             });
         }
     }

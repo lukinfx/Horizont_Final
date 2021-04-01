@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Providers;
 
@@ -147,7 +148,6 @@ namespace Peaks360Lib.Utilities
             return totalSize;
         }
 
-
         public bool Remove()
         {
             foreach (var et in _elevationTiles)
@@ -207,7 +207,6 @@ namespace Peaks360Lib.Utilities
             return isOk;
         }
 
-
         public bool TryGetElevation(GpsLocation location, out double elevation, int size=1)
         {
             if (!HasElevation(location))
@@ -252,6 +251,54 @@ namespace Peaks360Lib.Utilities
         IEnumerator IEnumerable.GetEnumerator()
         {
             return new ElevationTileCollectionEnumerator(AsEnumerable());
+        }
+
+        public static ElevationTileCollection GetUniqueTilesForRemoval(long dedId, IEnumerable<DownloadedElevationData> allData, ElevationTileCollection tilesToBeRemoved)
+        {
+            //Get only tiles, that are not used by another areas
+            var tilesForRemoval = new List<ElevationTile>();
+            foreach (var tile in tilesToBeRemoved.AsEnumerable())
+            {
+                var doNotRemove = false;
+                foreach (var anotherDedItem in allData)
+                {
+                    if (anotherDedItem.Id == dedId)
+                    {//skip deleted item (but it is actually already removed)
+                        continue;
+                    }
+
+                    var anotherDedTiles = new ElevationTileCollection(new GpsLocation(anotherDedItem.Longitude, anotherDedItem.Latitude, 0), anotherDedItem.Distance);
+                    if (anotherDedTiles.HasElevation(tile.StartLocation, false))
+                    {
+                        doNotRemove = true;
+                        break;
+                    }
+                }
+
+                if (!doNotRemove)
+                {
+                    tilesForRemoval.Add(tile);
+                }
+            }
+
+            return new ElevationTileCollection(tilesForRemoval);
+        }
+
+        public static ElevationTileCollection GetTilesForRemoval(DownloadedElevationData ded, int oldDistance, int newDistance)
+        {
+            var dedTiles = new ElevationTileCollection(new GpsLocation(ded.Longitude, ded.Latitude, 0), newDistance);
+            var dedTilesOld = new ElevationTileCollection(new GpsLocation(ded.Longitude, ded.Latitude, 0), oldDistance);
+
+            var tilesForRemoval = new List<ElevationTile>();
+            foreach (var tile in dedTilesOld.AsEnumerable())
+            {
+                if (!dedTiles.HasElevation(tile.StartLocation, false))
+                {
+                    tilesForRemoval.Add(tile);
+                }
+            }
+
+            return new ElevationTileCollection(tilesForRemoval);
         }
     }
 }

@@ -108,6 +108,7 @@
   <string name="DownloadED_SelectedLocation">Vybrané umístění</string>
   <string name="DownloadED_ChangeLocation">Změnit umístění</string>
   <string name="DownloadED_PleaseChooseLocation">Prosím, vyberte umístění</string>
+  <string name="DownloadED_DeleteQuestion">Opravdu chcete smazat tuto oblast?</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Použijte správný formát. Například: 12,34567890.</string>

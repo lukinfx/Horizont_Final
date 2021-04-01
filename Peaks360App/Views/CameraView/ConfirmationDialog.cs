@@ -34,7 +34,7 @@ namespace Peaks360App.Views.Camera
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
             mParent = ParentFragment;
-            return new AlertDialog.Builder(Activity)
+            return new AlertDialog.Builder(Activity).SetCancelable(false)
                 .SetMessage("This sample needs camera permission.")
                 .SetPositiveButton(Android.Resource.String.Ok, new PositiveListener())
                 .SetNegativeButton(Android.Resource.String.Cancel, new NegativeListener())

@@ -371,6 +371,13 @@ namespace Peaks360App.DataAccess
             return task.Result;
         }
 
+        public DownloadedElevationData GetDownloadedElevationDataItem(long id)
+        {
+            var task = Database.Table<DownloadedElevationData>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            task.Wait();
+            return task.Result;
+        }
+
         #endregion DownloadedElevationData
     }
 }
