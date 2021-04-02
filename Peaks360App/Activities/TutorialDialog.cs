@@ -112,7 +112,7 @@ namespace Peaks360App.Activities
                 IsInProgress = false;
                 Hide();
                 Dismiss();
-                _onTutorialFinished.Invoke();
+                _onTutorialFinished?.Invoke();
                 return;
             }
 
