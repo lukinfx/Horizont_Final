@@ -102,7 +102,8 @@
 
   <!--AddElevationDataActivity-->
   <string name="DownloadED_DownloadEleDataInRange">Stáhnout výškové data v okruhu:</string>
-  <string name="DownloadED_ExpectedSize">Předpokládaná velikost dat: {0} MBytes</string>
+  <string name="DownloadED_ExpectedSizeDownload">Bude staženo {0} MBytes výškových dat.</string>
+  <string name="DownloadED_ExpectedSizeRemove">Bude smazáno {0} MBytes výškových dat.</string>
   <string name="DownloadED_NoDataToDownload">Všechna výšková data pro tuto oblast jsou již stažena.</string>
   <string name="DownloadED_AddNewElevationDataArea">Přidat novou oblast</string>
   <string name="DownloadED_SelectedLocation">Vybrané umístění</string>

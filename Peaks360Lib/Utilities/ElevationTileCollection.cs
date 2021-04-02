@@ -104,7 +104,7 @@ namespace Peaks360Lib.Utilities
             return _elevationTiles;
         }
 
-        public long GetSizeToDownload()
+        public float GetSizeToDownload()
         {
             return _elevationTiles.Count(i => !i.Exists()) * ElevationFileProvider.GetFileSize();
         }
@@ -284,10 +284,10 @@ namespace Peaks360Lib.Utilities
             return new ElevationTileCollection(tilesForRemoval);
         }
 
-        public static ElevationTileCollection GetTilesForRemoval(DownloadedElevationData ded, int oldDistance, int newDistance)
+        public static ElevationTileCollection GetTilesForRemoval(GpsLocation location, int oldDistance, int newDistance)
         {
-            var dedTiles = new ElevationTileCollection(new GpsLocation(ded.Longitude, ded.Latitude, 0), newDistance);
-            var dedTilesOld = new ElevationTileCollection(new GpsLocation(ded.Longitude, ded.Latitude, 0), oldDistance);
+            var dedTiles = new ElevationTileCollection(location, newDistance);
+            var dedTilesOld = new ElevationTileCollection(location, oldDistance);
 
             var tilesForRemoval = new List<ElevationTile>();
             foreach (var tile in dedTilesOld.AsEnumerable())

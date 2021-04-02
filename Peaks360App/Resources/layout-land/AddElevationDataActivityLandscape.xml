@@ -153,7 +153,7 @@
             </RadioGroup>
 
             <TextView
-              android:text="@string/DownloadED_ExpectedSize"
+              android:text="@string/DownloadED_ExpectedSizeDownload"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_weight="1"

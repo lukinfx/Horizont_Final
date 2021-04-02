@@ -28,6 +28,7 @@ namespace Peaks360App.Activities
         private IAppContext AppContext { get { return AppContextLiveData.Instance;} }
         private Poi _selectedPoint;
         private DownloadedElevationData _oldDedItem;
+        private IEnumerable<DownloadedElevationData> _allElevationData;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -84,6 +85,8 @@ namespace Peaks360App.Activities
 
             OnSelectionUpdated(_selectedPoint);
             CalculateDownloadSize(_selectedPoint);
+
+            Task.Run(async () => { _allElevationData = await AppContext.Database.GetDownloadedElevationDataAsync(); });
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -162,8 +165,7 @@ namespace Peaks360App.Activities
             var thumbnail = FindViewById<ImageView>(Resource.Id.Thumbnail);
             thumbnail.SetImageResource(PoiCategoryHelper.GetImage(poi.Category));
 
-            var downloadButton = FindViewById<Button>(Resource.Id.buttonSave);
-            downloadButton.Enabled = (poi.Id >= (long)PoiId.FIRST_VALID_ID) || (poi.Id == (long)PoiId.CURRENT_LOCATION);
+            CalculateDownloadSize(poi);
         }
 
         private int GetDownloadDistance()
@@ -206,20 +208,36 @@ namespace Peaks360App.Activities
 
         private void CalculateDownloadSize(Poi poi)
         {
-            long size = 0;
-            if (poi != null && poi.Id != (long)PoiId.NO_LOCATION)
+            string text = "";
+            bool enableDownloadButton = false;
+
+            if (poi?.Id >= (long) PoiId.FIRST_VALID_ID || poi?.Id == (long) PoiId.CURRENT_LOCATION)
             {
-                var distance = GetDownloadDistance();
+                float size;
+                var newDistance = GetDownloadDistance();
+                if (_oldDedItem == null || newDistance > _oldDedItem.Distance)
+                {
+                    var gpsLocation = new GpsLocation(poi.Longitude, poi.Latitude, poi.Altitude);
+                    var etc = new ElevationTileCollection(gpsLocation, newDistance);
 
-                var gpsLocation = new GpsLocation(poi.Longitude, poi.Latitude, poi.Altitude);
-                var etc = new ElevationTileCollection(gpsLocation, distance);
-
-                size = etc.GetSizeToDownload();
+                    size = etc.GetSizeToDownload();
+                    text = String.Format(Resources.GetText(Resource.String.DownloadED_ExpectedSizeDownload), $"{size:F1}");
+                    enableDownloadButton = true;
+                }
+                else if (newDistance < _oldDedItem.Distance)
+                {
+                    var location = new GpsLocation(_oldDedItem.Longitude, _oldDedItem.Latitude, 0);
+                    var tilesToBeRemovedAll = ElevationTileCollection.GetTilesForRemoval(location, _oldDedItem.Distance, newDistance);
+                    var tilesToBeRemovedUnique = ElevationTileCollection.GetUniqueTilesForRemoval(_oldDedItem.Id, _allElevationData, tilesToBeRemovedAll);
+                    
+                    size = tilesToBeRemovedUnique.GetSize() / 1024f / 1024f;
+                    text = String.Format(Resources.GetText(Resource.String.DownloadED_ExpectedSizeRemove), $"{size:F1}");
+                    enableDownloadButton = true;
+                }
             }
 
-            
-            FindViewById<TextView>(Resource.Id.textViewDownloadSize).Text =
-                String.Format(Resources.GetText(Resource.String.DownloadED_ExpectedSize), size.ToString());
+            FindViewById<TextView>(Resource.Id.textViewDownloadSize).Text = text;
+            FindViewById<Button>(Resource.Id.buttonSave).Enabled = enableDownloadButton;
         }
 
         private void SaveElevationData(Poi poi)
@@ -303,18 +321,15 @@ namespace Peaks360App.Activities
 
         private void RemoveElevationData(DownloadedElevationData ded, int oldDedDistance)
         {
-            Task.Run(async () =>
-            {
-                var allData = await AppContext.Database.GetDownloadedElevationDataAsync();
-                var tilesToBeRemovedAll = ElevationTileCollection.GetTilesForRemoval(ded, oldDedDistance, ded.Distance);
-                var tilesToBeRemovedUnique = ElevationTileCollection.GetUniqueTilesForRemoval(ded.Id, allData, tilesToBeRemovedAll);
-                tilesToBeRemovedUnique.Remove();
+            var location = new GpsLocation(ded.Longitude, ded.Latitude, 0);
+            var tilesToBeRemovedAll = ElevationTileCollection.GetTilesForRemoval(location, oldDedDistance, ded.Distance);
+            var tilesToBeRemovedUnique = ElevationTileCollection.GetUniqueTilesForRemoval(ded.Id, _allElevationData, tilesToBeRemovedAll);
+            tilesToBeRemovedUnique.Remove();
 
-                var edd = new ElevationDataDownload(new GpsLocation(ded.Longitude, ded.Latitude, 0), ded.Distance);
-                ded.SizeInBytes = edd.GetSize();
-                AppContext.DownloadedElevationDataModel.UpdateItem(ded);
-                Finish();
-            });
+            var edd = new ElevationDataDownload(new GpsLocation(ded.Longitude, ded.Latitude, 0), ded.Distance);
+            ded.SizeInBytes = edd.GetSize();
+            AppContext.DownloadedElevationDataModel.UpdateItem(ded);
+            Finish();
         }
     }
 }

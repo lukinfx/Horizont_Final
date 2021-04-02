@@ -26,7 +26,7 @@ namespace Peaks360App.Tasks
             _elevationTileCollection = new ElevationTileCollection(MyLocation, (int)MaxDistance);
         }
 
-        public long GetSizeToDownload()
+        public float GetSizeToDownload()
         {
             return _elevationTileCollection.GetSizeToDownload();
         }

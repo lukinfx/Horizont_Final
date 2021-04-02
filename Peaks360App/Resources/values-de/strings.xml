@@ -102,7 +102,8 @@
 
   <!--AddElevationDataActivity-->
   <string name="DownloadED_DownloadEleDataInRange">Laden Sie Höhendaten in einer Entfernung von herunter:</string>
-  <string name="DownloadED_ExpectedSize">Erwartete Downloadgröße: {0} MBytes</string>
+  <string name="DownloadED_ExpectedSizeDownload">{0} MByte Höhendaten werden heruntergeladen</string>
+  <string name="DownloadED_ExpectedSizeRemove">{0} MByte Höhendaten werden entfernt</string>
   <string name="DownloadED_NoDataToDownload">Alle Höhendaten für diesen Bereich sind bereits heruntergeladen.</string>
   <string name="DownloadED_AddNewElevationDataArea">Neuen Bereich hinzufügen</string>
   <string name="DownloadED_SelectedLocation">Ausgewählter Ort</string>

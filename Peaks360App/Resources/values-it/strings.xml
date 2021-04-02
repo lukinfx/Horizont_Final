@@ -102,7 +102,8 @@
 
   <!--AddElevationDataActivity-->
   <string name="DownloadED_DownloadEleDataInRange">Scarica i dati di elevazione in un raggio di:</string>
-  <string name="DownloadED_ExpectedSize">Dimensioni di download previste: {0} MBytes</string>
+  <string name="DownloadED_ExpectedSizeDownload">Verranno scaricati {0} MByte di dati di elevazione</string>
+  <string name="DownloadED_ExpectedSizeRemove">Verranno rimossi {0} MByte di dati di elevazione</string>
   <string name="DownloadED_NoDataToDownload">Tutti i dati di elevazione per quest\'area sono già stati scaricati.</string>
   <string name="DownloadED_AddNewElevationDataArea">Aggiungi nuova area</string>
   <string name="DownloadED_SelectedLocation">Posizione selezionata</string>

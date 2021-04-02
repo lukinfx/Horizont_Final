@@ -31,7 +31,7 @@ namespace Peaks360App.Tasks
             return _elevationTileCollection.GetCountToDownload();
         }
 
-        public long GetSizeToDownload()
+        public float GetSizeToDownload()
         {
             return _elevationTileCollection.GetSizeToDownload();
         }

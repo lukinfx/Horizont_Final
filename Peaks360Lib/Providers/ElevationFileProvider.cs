@@ -10,7 +10,7 @@ namespace Peaks360Lib.Providers
     {
         private static string ELEVATION_MAPS_FOLDER = "ElevationMaps";
         private static string ELEVATION_MAPS_URL = "http://horizon360.hys.cz/horizont/ElevationData/";
-        private static int ELEVATION_FILE_SIZE = 3;
+        private static float ELEVATION_FILE_SIZE = 2.8f;
 
         public static string GetElevationFile(int lat, int lon)
         {
@@ -80,7 +80,7 @@ namespace Peaks360Lib.Providers
             var filePath = GetElevationFilePath(lat, lon);
             File.Delete(filePath);
         }
-        public static int GetFileSize()
+        public static float GetFileSize()
         {
             return ELEVATION_FILE_SIZE;
         }
