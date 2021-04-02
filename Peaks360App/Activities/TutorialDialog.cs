@@ -32,11 +32,14 @@ namespace Peaks360App.Activities
         private TutorialPart _tutorialPart;
         private TutorialPage[] _tutorialPages;
         private Action _onTutorialFinished;
+        
+        public static bool IsInProgress { get; private set; }
 
         public static void ShowTutorial(Context context, TutorialPart tp, TutorialPage[] tutorialPages, Action onTutorialFinished = null)
         {
             if (AppContextLiveData.Instance.Settings.IsTutorialNeeded(tp))
             {
+                IsInProgress = true;
                 var dialog = new TutorialDialog(context, tp, tutorialPages, onTutorialFinished);
                 dialog.Show();
             }
@@ -106,6 +109,7 @@ namespace Peaks360App.Activities
             _index++; 
             if (_index >= _tutorialPages.Length)
             {
+                IsInProgress = false;
                 Hide();
                 Dismiss();
                 _onTutorialFinished.Invoke();
