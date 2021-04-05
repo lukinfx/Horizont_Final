@@ -130,10 +130,7 @@ namespace Peaks360App
 
             Android.Content.Context ctx = this;
 
-            bool isFirstStart = _firstStart;
-            _firstStart = false;
-
-            if (isFirstStart)
+            if (_firstStart)
             {
                 TutorialDialog.ShowTutorial(this, TutorialPart.MainActivity,
                     new TutorialPage[]
@@ -145,6 +142,7 @@ namespace Peaks360App
                     },
                     () =>
                     {
+                        _firstStart = false;
                         if (!Context.Database.IsAnyDownloadedPois())
                         {
                             AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
