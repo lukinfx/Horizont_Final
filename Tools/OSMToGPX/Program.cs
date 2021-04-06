@@ -157,15 +157,22 @@ namespace OSMToGPX
                         foreach (var poi in groupLat)
                         {
                             var loc = new GpsLocation() { Latitude = poi.Latitude, Longitude = poi.Longitude };
-                            if (ed.IsLoaded())
+                            try
                             {
-                                if (poi.Altitude < -0.0000001 || poi.Altitude > 0.0000001)
-                                    continue;
-
-                                if (ed.TryGetElevation(loc, out var ele))
+                                if (ed.IsLoaded())
                                 {
-                                    poi.Altitude = ele;
+                                    if (poi.Altitude < -0.0000001 || poi.Altitude > 0.0000001)
+                                        continue;
+
+                                    if (ed.TryGetElevation(loc, out var ele))
+                                    {
+                                        poi.Altitude = ele;
+                                    }
                                 }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Exception thrown ({poi.Name}), Details: {ex.Message}");
                             }
                         }
                     }

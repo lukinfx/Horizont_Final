@@ -132,13 +132,23 @@ namespace Peaks360Lib.Utilities
             var py = Math.Abs(myLocation.Latitude - (int)myLocation.Latitude); //decimal part of Y coordinate
             var px = Math.Abs(myLocation.Longitude - (int)myLocation.Longitude); //decimal part of X coordinate
 
+            if (px < 0.0000001)
+            {
+                px = 0.0000001;
+            }
+
+            if (py < 0.0000001)
+            {
+                py = 0.0000001;
+            }
+
             //lower index in Y direction (not solving negative values)
-            var y = (int)(py == 0 ? width - 1 : (1 - py) / stepY);
+            var y = (int)((1 - py) / stepY);
 
             //lower index in X direction
             var x = (myLocation.Longitude >= 0)
                 ? (int)(px / stepX)
-                : (int)(px == 0 ? height - 1 : (1 - px) / stepX);
+                : (int)((1 - px) / stepX);
 
             if (size == 1)
             {
