@@ -130,7 +130,7 @@ namespace Peaks360App
 
             Android.Content.Context ctx = this;
 
-            if (_firstStart)
+            //if (_firstStart)
             {
                 TutorialDialog.ShowTutorial(this, TutorialPart.MainActivity,
                     new TutorialPage[]
@@ -142,22 +142,27 @@ namespace Peaks360App
                     },
                     () =>
                     {
-                        _firstStart = false;
-                        if (!Context.Database.IsAnyDownloadedPois())
+                        if (_firstStart)
                         {
-                            AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
-                            alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
+                            _firstStart = false;
+                            if (!Context.Database.IsAnyDownloadedPois())
                             {
-                                Intent downloadActivityIntent = new Intent(ctx, typeof(DownloadActivity));
-                                StartActivity(downloadActivityIntent);
-                                //_adapter.NotifyDataSetChanged();
-                            });
-                            alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
-                            alert.SetMessage(Resources.GetText(Resource.String.Main_DownloadDataQuestion));
-                            var answer = alert.Show();
+                                AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
+                                alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
+                                {
+                                    Intent downloadActivityIntent = new Intent(ctx, typeof(DownloadActivity));
+                                    StartActivity(downloadActivityIntent);
+                                    //_adapter.NotifyDataSetChanged();
+                                });
+                                alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
+                                alert.SetMessage(Resources.GetText(Resource.String.Main_DownloadDataQuestion));
+                                var answer = alert.Show();
+                            }
+
+                            ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
+
                         }
 
-                        ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
                     });
             }
         }
