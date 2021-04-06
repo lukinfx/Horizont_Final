@@ -330,9 +330,7 @@ namespace Peaks360App.Activities
                         AppContext.Database.InsertAll(result);
                         source.DownloadDate = DateTime.Now;
                         AppContext.Database.InsertItem(source);
-                        new ShowToastRunnable(this,
-                            String.Format(Resources.GetText(Resource.String.Download_InfoLoadedItems), result.Count))
-                            .Run();
+                        //new ShowToastRunnable(this, String.Format(Resources.GetText(Resource.String.Download_InfoLoadedItems), result.Count)).Run();
 
                         _downloadItemAdapter.NotifyDataSetChanged();
                     }
@@ -385,8 +383,7 @@ namespace Peaks360App.Activities
                 source.DownloadDate = null;
                 AppContext.Database.DeleteItem(source);
 
-                new ShowToastRunnable(this, Resources.GetText(Resource.String.Download_InfoRemovedItems))
-                    .Run();
+                //new ShowToastRunnable(this, Resources.GetText(Resource.String.Download_InfoRemovedItems)).Run();
             }
             catch (Exception ex)
             {
