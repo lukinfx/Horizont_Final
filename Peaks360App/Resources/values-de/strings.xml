@@ -64,7 +64,7 @@
   <string name="Category_Other">Andere</string>
   <string name="Category_ElevationData">Höhendaten</string>
 
-  <string name="Menu_StatusBarLine1Template">Version: {0} ({1})  Poi Count: {2}</string>
+  <string name="Menu_StatusBarLine1Template">Version: {0}  Poi Count: {1}</string>
 
   <!--MainActivity-->
   <string name="Main_DownloadDataQuestion">Es wurden noch keine Punkte heruntergeladen. Möchten Sie sie jetzt herunterladen?</string>

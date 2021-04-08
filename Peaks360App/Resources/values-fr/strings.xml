@@ -64,7 +64,7 @@
   <string name="Category_Other">Autre</string>
   <string name="Category_ElevationData">Données d\'élévation</string>
 
-  <string name="Menu_StatusBarLine1Template">Version: {0} ({1})  Poi Count: {2}</string>
+  <string name="Menu_StatusBarLine1Template">Version: {0}  Poi Count: {1}</string>
 
   <!--MainActivity-->
   <string name="Main_DownloadDataQuestion">Aucun point d\'intérêt n\'a encore été téléchargé. Voulez-vous les télécharger maintenant?</string>

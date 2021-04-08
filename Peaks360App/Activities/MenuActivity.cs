@@ -30,6 +30,13 @@ namespace Peaks360App.Activities
             UpdatePoiCount();
         }
 
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            UpdatePoiCount();
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -71,8 +78,6 @@ namespace Peaks360App.Activities
 
             var buttonAbout = FindViewById<LinearLayout>(Resource.Id.aboutLinearLayout);
             buttonAbout.SetOnClickListener(this);
-
-            UpdatePoiCount();
         }
 
         private void UpdatePoiCount()
@@ -81,9 +86,8 @@ namespace Peaks360App.Activities
             {
                 var poiCount = await AppContextLiveData.Instance.Database.GetItemCount();
                 var versionNumber = DependencyService.Get<IAppVersionService>().GetVersionNumber();
-                var buildNumber = DependencyService.Get<IAppVersionService>().GetBuildNumber();
                 
-                var text = String.Format(Resources.GetText(Resource.String.Menu_StatusBarLine1Template), versionNumber, buildNumber, poiCount);
+                var text = String.Format(Resources.GetText(Resource.String.Menu_StatusBarLine1Template), versionNumber, poiCount);
                 FindViewById<TextView>(Resource.Id.textViewStatusLine).Text = text;
             });
         }
