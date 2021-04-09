@@ -5,37 +5,51 @@
 		[
 			{
 				"Id":"948268dd-71a7-4696-bb8c-dafdad5e4800",
-				"Url": "PoiData/CZE/czech-republic-mountains.gpx",
+				"Url": "PoiData/CZE/peaks.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Mountains"
 			},
 			{
 				"Id":"948268dd-71a7-4696-bb8c-dafdad5e4801",
-				"Url": "PoiData/CZE/czech-republic-cities.gpx",
+				"Url": "PoiData/CZE/settlements.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Cities"
 			},
 			{
 				"Id":"948268dd-71a7-4696-bb8c-dafdad5e4802",
-				"Url": "PoiData/CZE/czech-republic-transmitters.gpx",
+				"Url": "PoiData/CZE/transmitters.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Transmitters"
 			},
 			{
 				"Id":"948268dd-71a7-4696-bb8c-dafdad5e4803",
-				"Url": "PoiData/CZE/czech-republic-viewtowers.gpx",
+				"Url": "PoiData/CZE/viewtowers.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "ViewTowers"
 			},
 			{
 				"Id":"948268dd-71a7-4696-bb8c-dafdad5e4804",
-				"Url": "PoiData/CZE/czech-republic-lakes.gpx",
+				"Url": "PoiData/CZE/lakes.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Lakes"
 			},
 			{
 				"Id":"948268dd-71a7-4696-bb8c-dafdad5e4805",
-				"Url": "PoiData/CZE/czech-republic-historic.gpx",
+				"Url": "PoiData/CZE/historic.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Historic"
 			},
 			{
 				"Id":"948268dd-71a7-4696-bb8c-dafdad5e4806",
-				"Url": "PoiData/CZE/czech-republic-churches.gpx",
+				"Url": "PoiData/CZE/churches.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Churches"
 			}
 		]
@@ -46,32 +60,44 @@
 		[
 			{
 				"Id":"a936b146-ab96-451f-b24b-f270c8373e00",
-				"Url": "PoiData/SVK/peaks2.gpx",
+				"Url": "PoiData/SVK/peaks.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Mountains"
 			},
 			{
 				"Id":"a936b146-ab96-451f-b24b-f270c8373e01",
 				"Url": "PoiData/SVK/settlements.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Cities"
 			},
 			{
 				"Id":"a936b146-ab96-451f-b24b-f270c8373e02",
 				"Url": "PoiData/SVK/transmitters.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Transmitters"
 			},
 			{
 				"Id":"a936b146-ab96-451f-b24b-f270c8373e03",
 				"Url": "PoiData/SVK/viewtowers.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "ViewTowers"
 			},
 			{
 				"Id":"a936b146-ab96-451f-b24b-f270c8373e05",
 				"Url": "PoiData/SVK/historic.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Historic"
 			},
 			{
 				"Id":"a936b146-ab96-451f-b24b-f270c8373e06",
 				"Url": "PoiData/SVK/churches.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Churches"
 			}
 		]
@@ -82,32 +108,44 @@
 		[
 			{
 				"Id":"47FCF987-5655-4AE0-9964-367A88E54600",
-				"Url": "PoiData/DEU/germany-peaks.gpx",
+				"Url": "PoiData/DEU/peaks.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Mountains"
 			},
 			{
 				"Id":"47FCF987-5655-4AE0-9964-367A88E54601",
-				"Url": "PoiData/DEU/germany-towns.gpx",
+				"Url": "PoiData/DEU/settlements.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Cities"
 			},
 			{
 				"Id":"47FCF987-5655-4AE0-9964-367A88E54602",
-				"Url": "PoiData/DEU/germany-transmitters.gpx",
+				"Url": "PoiData/DEU/transmitters.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Transmitters"
 			},
 			{
 				"Id":"47FCF987-5655-4AE0-9964-367A88E54603",
-				"Url": "PoiData/DEU/germany-viewtowers.gpx",
+				"Url": "PoiData/DEU/viewtowers.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "ViewTowers"
 			},
 			{
 				"Id":"47FCF987-5655-4AE0-9964-367A88E54605",
-				"Url": "PoiData/DEU/germany-historic.gpx",
+				"Url": "PoiData/DEU/historic.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Historic"
 			},
 			{
 				"Id":"47FCF987-5655-4AE0-9964-367A88E54606",
-				"Url": "PoiData/DEU/germany-churches.gpx",
+				"Url": "PoiData/DEU/churches.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Churches"
 			}
 		]
@@ -118,32 +156,44 @@
 		[
 			{
 				"Id":"3B46C567-83D0-4751-B296-BD6184229D00",
-				"Url": "PoiData/AUT/austria-peaks.gpx",
+				"Url": "PoiData/AUT/peaks.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Mountains"
 			},
 			{
 				"Id":"3B46C567-83D0-4751-B296-BD6184229D01",
-				"Url": "PoiData/AUT/austria-towns.gpx",
+				"Url": "PoiData/AUT/settlements.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Cities"
 			},
 			{
 				"Id":"3B46C567-83D0-4751-B296-BD6184229D02",
-				"Url": "PoiData/AUT/austria-transmitters.gpx",
+				"Url": "PoiData/AUT/transmitters.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Transmitters"
 			},
 			{
 				"Id":"3B46C567-83D0-4751-B296-BD6184229D03",
-				"Url": "PoiData/AUT/austria-viewtowers.gpx",
+				"Url": "PoiData/AUT/viewtowers.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "ViewTowers"
 			},
 			{
 				"Id":"3B46C567-83D0-4751-B296-BD6184229D05",
-				"Url": "PoiData/AUT/austria-historic.gpx",
+				"Url": "PoiData/AUT/historic.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Historic"
 			},
 			{
 				"Id":"3B46C567-83D0-4751-B296-BD6184229D06",
-				"Url": "PoiData/AUT/austria-churches.gpx",
+				"Url": "PoiData/AUT/churches.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Churches"
 			}
 		]
@@ -154,32 +204,44 @@
 		[
 			{
 				"Id":"DEABB987-AA20-46B7-A0C3-9CA94BA03400",
-				"Url": "PoiData/SVN/slovenia-peaks.gpx",
+				"Url": "PoiData/SVN/peaks.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Mountains"
 			},
 			{
 				"Id":"DEABB987-AA20-46B7-A0C3-9CA94BA03401",
-				"Url": "PoiData/SVN/slovenia-towns.gpx",
+				"Url": "PoiData/SVN/settlements.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Cities"
 			},
 			{
 				"Id":"DEABB987-AA20-46B7-A0C3-9CA94BA03402",
-				"Url": "PoiData/SVN/slovenia-transmitters.gpx",
+				"Url": "PoiData/SVN/transmitters.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Transmitters"
 			},
 			{
 				"Id":"DEABB987-AA20-46B7-A0C3-9CA94BA03403",
-				"Url": "PoiData/SVN/slovenia-viewtowers.gpx",
+				"Url": "PoiData/SVN/viewtowers.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "ViewTowers"
 			},
 			{
 				"Id":"DEABB987-AA20-46B7-A0C3-9CA94BA03405",
-				"Url": "PoiData/SVN/slovenia-historic.gpx",
+				"Url": "PoiData/SVN/historic.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Historic"
 			},
 			{
 				"Id":"DEABB987-AA20-46B7-A0C3-9CA94BA03406",
-				"Url": "PoiData/SVN/slovenia-churches.gpx",
+				"Url": "PoiData/SVN/churches.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Churches"
 			}
 		]
@@ -190,32 +252,44 @@
 		[
 			{
 				"Id":"4DBF1E0D-146C-4E12-99CD-BF47C424AA00",
-				"Url": "PoiData/ITA/italy-peaks.gpx",
+				"Url": "PoiData/ITA/peaks.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Mountains"
 			},
 			{
 				"Id":"4DBF1E0D-146C-4E12-99CD-BF47C424AA01",
-				"Url": "PoiData/ITA/italy-towns.gpx",
+				"Url": "PoiData/ITA/settlements.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Cities"
 			},
 			{
 				"Id":"4DBF1E0D-146C-4E12-99CD-BF47C424AA02",
-				"Url": "PoiData/ITA/italy-transmitters.gpx",
+				"Url": "PoiData/ITA/transmitters.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Transmitters"
 			},
 			{
 				"Id":"4DBF1E0D-146C-4E12-99CD-BF47C424AA03",
-				"Url": "PoiData/ITA/italy-viewtowers.gpx",
+				"Url": "PoiData/ITA/viewtowers.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "ViewTowers"
 			},
 			{
 				"Id":"4DBF1E0D-146C-4E12-99CD-BF47C424AA05",
-				"Url": "PoiData/ITA/italy-historic.gpx",
+				"Url": "PoiData/ITA/historic.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Historic"
 			},
 			{
 				"Id":"4DBF1E0D-146C-4E12-99CD-BF47C424AA06",
-				"Url": "PoiData/ITA/italy-churches.gpx",
+				"Url": "PoiData/ITA/churches.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Churches"
 			}
 		]
@@ -226,37 +300,44 @@
 		[
 			{
 				"Id":"827EDFA8-83EA-4D7D-B18C-67518D08DB00",
-				"Url": "PoiData/POL/poland-peaks.gpx",
+				"Url": "PoiData/POL/peaks.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Mountains"
 			},
 			{
 				"Id":"827EDFA8-83EA-4D7D-B18C-67518D08DB01",
-				"Url": "PoiData/POL/poland-towns.gpx",
+				"Url": "PoiData/POL/settlements.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Cities"
 			},
 			{
 				"Id":"827EDFA8-83EA-4D7D-B18C-67518D08DB02",
-				"Url": "PoiData/POL/poland-transmitters.gpx",
+				"Url": "PoiData/POL/transmitters.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Transmitters"
 			},
 			{
 				"Id":"827EDFA8-83EA-4D7D-B18C-67518D08DB03",
-				"Url": "PoiData/POL/poland-viewtowers.gpx",
+				"Url": "PoiData/POL/viewtowers.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "ViewTowers"
 			},
 			{
-				"Id":"827EDFA8-83EA-4D7D-B18C-67518D08DB04",
-				"Url": "PoiData/POL/poland-lakes.gpx",
-				"Category": "Lakes"
-			},
-			{
 				"Id":"827EDFA8-83EA-4D7D-B18C-67518D08DB05",
-				"Url": "PoiData/POL/poland-historic.gpx",
+				"Url": "PoiData/POL/historic.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Historic"
 			},
 			{
 				"Id":"827EDFA8-83EA-4D7D-B18C-67518D08DB06",
-				"Url": "PoiData/POL/poland-churches.gpx",
+				"Url": "PoiData/POL/churches.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Churches"
 			}
 		]
@@ -267,37 +348,44 @@
 		[
 			{
 				"Id":"3E337A9B-27BD-401B-8D53-402144567100",
-				"Url": "PoiData/ROU/romania-peaks.gpx",
+				"Url": "PoiData/ROU/peaks.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Mountains"
 			},
 			{
 				"Id":"3E337A9B-27BD-401B-8D53-402144567101",
-				"Url": "PoiData/ROU/romania-towns.gpx",
+				"Url": "PoiData/ROU/settlements.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Cities"
 			},
 			{
 				"Id":"3E337A9B-27BD-401B-8D53-402144567102",
-				"Url": "PoiData/ROU/romania-transmitters.gpx",
+				"Url": "PoiData/ROU/transmitters.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Transmitters"
 			},
 			{
 				"Id":"3E337A9B-27BD-401B-8D53-402144567103",
-				"Url": "PoiData/ROU/romania-viewtowers.gpx",
+				"Url": "PoiData/ROU/viewtowers.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "ViewTowers"
 			},
 			{
-				"Id":"3E337A9B-27BD-401B-8D53-402144567104",
-				"Url": "PoiData/ROU/romania-lakes.gpx",
-				"Category": "Lakes"
-			},
-			{
 				"Id":"3E337A9B-27BD-401B-8D53-402144567105",
-				"Url": "PoiData/ROU/romania-historic.gpx",
+				"Url": "PoiData/ROU/historic.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Historic"
 			},
 			{
 				"Id":"3E337A9B-27BD-401B-8D53-402144567106",
-				"Url": "PoiData/ROU/romania-churches.gpx",
+				"Url": "PoiData/ROU/churches.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Churches"
 			}
 		]
@@ -308,37 +396,140 @@
 		[
 			{
 				"Id":"627c8265-793d-4450-8071-690d54ad0a00",
-				"Url": "PoiData/ESP/spain-peaks.gpx",
+				"Url": "PoiData/ESP/peaks.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Mountains"
 			},
 			{
 				"Id":"627c8265-793d-4450-8071-690d54ad0a01",
-				"Url": "PoiData/ESP/spain-towns.gpx",
+				"Url": "PoiData/ESP/settlements.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Cities"
 			},
 			{
 				"Id":"627c8265-793d-4450-8071-690d54ad0a02",
-				"Url": "PoiData/ESP/spain-transmitters.gpx",
+				"Url": "PoiData/ESP/transmitters.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Transmitters"
 			},
 			{
 				"Id":"627c8265-793d-4450-8071-690d54ad0a03",
-				"Url": "PoiData/ESP/spain-viewtowers.gpx",
+				"Url": "PoiData/ESP/viewtowers.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "ViewTowers"
 			},
 			{
-				"Id":"627c8265-793d-4450-8071-690d54ad0a04",
-				"Url": "PoiData/ESP/spain-lakes.gpx",
-				"Category": "Lakes"
-			},
-			{
 				"Id":"627c8265-793d-4450-8071-690d54ad0a05",
-				"Url": "PoiData/ESP/spain-historic.gpx",
+				"Url": "PoiData/ESP/historic.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Historic"
 			},
 			{
 				"Id":"627c8265-793d-4450-8071-690d54ad0a06",
-				"Url": "PoiData/ESP/spain-churches.gpx",
+				"Url": "PoiData/ESP/churches.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "Churches"
+			}
+		]
+	},
+	{
+		"Country":"FRA",
+		"PoiData": 
+		[
+			{
+				"Id":"9fa3dd4e-46bf-4a58-bbb8-625ea4755f00",
+				"Url": "PoiData/FRA/peaks.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "Mountains"
+			},
+			{
+				"Id":"9fa3dd4e-46bf-4a58-bbb8-625ea4755f01",
+				"Url": "PoiData/FRA/settlements.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "Cities"
+			},
+			{
+				"Id":"9fa3dd4e-46bf-4a58-bbb8-625ea4755f02",
+				"Url": "PoiData/FRA/transmitters.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "Transmitters"
+			},
+			{
+				"Id":"9fa3dd4e-46bf-4a58-bbb8-625ea4755f03",
+				"Url": "PoiData/FRA/viewtowers.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "ViewTowers"
+			},
+			{
+				"Id":"9fa3dd4e-46bf-4a58-bbb8-625ea4755f05",
+				"Url": "PoiData/FRA/historic.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "Historic"
+			},
+			{
+				"Id":"9fa3dd4e-46bf-4a58-bbb8-625ea4755f06",
+				"Url": "PoiData/FRA/churches.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "Churches"
+			}
+		]
+	},
+		{
+		"Country":"CHE",
+		"PoiData": 
+		[
+			{
+				"Id":"e6963288-eb9d-4e2b-bdc6-40d36ddc1300",
+				"Url": "PoiData/CHE/peaks.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "Mountains"
+			},
+			{
+				"Id":"e6963288-eb9d-4e2b-bdc6-40d36ddc1301",
+				"Url": "PoiData/CHE/settlements.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "Cities"
+			},
+			{
+				"Id":"e6963288-eb9d-4e2b-bdc6-40d36ddc1302",
+				"Url": "PoiData/CHE/transmitters.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "Transmitters"
+			},
+			{
+				"Id":"e6963288-eb9d-4e2b-bdc6-40d36ddc1303",
+				"Url": "PoiData/CHE/viewtowers.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "ViewTowers"
+			},
+			{
+				"Id":"e6963288-eb9d-4e2b-bdc6-40d36ddc1305",
+				"Url": "PoiData/CHE/historic.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
+				"Category": "Historic"
+			},
+			{
+				"Id":"e6963288-eb9d-4e2b-bdc6-40d36ddc1306",
+				"Url": "PoiData/CHE/churches.gpx",
+				"PointCount": "1000",
+				"DateCreated" : "2021-04-08T00:00:00+02:00",
 				"Category": "Churches"
 			}
 		]
