@@ -19,6 +19,7 @@ using Peaks360App.Utilities;
 using Android.Content;
 using Peaks360App.Models;
 using Peaks360Lib.Utilities;
+using Peaks360Lib.Domain.ViewModel;
 
 namespace Peaks360App.Activities
 {
@@ -33,7 +34,7 @@ namespace Peaks360App.Activities
         private DownloadItemAdapter _downloadItemAdapter;
         private DownloadedElevationDataAdapter _downloadedElevationDataAdapter;
 
-        private List<PoisToDownload> _downloadItems;
+        private List<DownloadViewItem> _downloadViewItems;
 
         private IAppContext AppContext { get { return AppContextLiveData.Instance; } }
 
@@ -62,7 +63,7 @@ namespace Peaks360App.Activities
         {
             base.OnStart();
 
-            if (_downloadItems == null)
+            if (_downloadViewItems == null)
             {
                 DownloadIndex(result => OnIndexDownloaded(result));
             }
@@ -157,28 +158,28 @@ namespace Peaks360App.Activities
 
         private void OnDownloadListItemClicked(object sender, AdapterView.ItemClickEventArgs e)
         {
-            PoisToDownload item = _downloadItemAdapter[e.Position];
+            DownloadViewItem item = _downloadItemAdapter[e.Position];
 
-            if (item.Category == PoiCategory.ElevationData)
+            if (item.fromDatabase.Category == PoiCategory.ElevationData)
             {
-                if (item.DownloadDate == null)
+                if (item.fromDatabase.DownloadDate == null)
                 {
-                    DownloadElevationDataFromInternet(item);
+                    DownloadElevationDataFromInternet(item.fromDatabase);
                 }
                 else
                 {
-                    DeleteElevationDataFromInternet(item);
+                    DeleteElevationDataFromInternet(item.fromDatabase);
                 }
             }
             else
             {
-                if (item.DownloadDate == null)
+                if (item.fromDatabase.DownloadDate == null)
                 {
-                    DownloadPoiDataFromInternet(item);
+                    DownloadPoiDataFromInternet(item.fromDatabase);
                 }
                 else
                 {
-                    DeletePoiDataFromInternet(item);
+                    DeletePoiDataFromInternet(item.fromDatabase);
                 }
             }
             _downloadItemAdapter.NotifyDataSetChanged();
@@ -197,7 +198,8 @@ namespace Peaks360App.Activities
         private void OnCountrySelected(int position)
         {
             PoiCountry country = _countryAdapter[position];
-            var items = _downloadItems.Where(x => x.Country == country).OrderBy(x => x.Category).ToList();
+            //###
+            var items = _downloadViewItems.Where(x => x.fromDatabase.Country == country).OrderBy(x => x.fromDatabase.Category).ToList();
             _downloadItemAdapter.SetItems(items);
         }
 
@@ -205,10 +207,12 @@ namespace Peaks360App.Activities
         {
             try
             {
+                _downloadViewItems = new List<DownloadViewItem>();
+
                 //fetch list of already downladed items from database
                 var downloadedTask = AppContext.Database.GetDownloadedPoisAsync();
                 downloadedTask.Wait();
-                _downloadItems = downloadedTask.Result.ToList();
+                var _downloadItems = downloadedTask.Result.ToList();
 
                 if (!String.IsNullOrEmpty(json))
                 {
@@ -219,17 +223,26 @@ namespace Peaks360App.Activities
                     {
                         foreach (var item in country.PoiData)
                         {
-                            if (!_downloadItems.Any(x => x.Id == item.Id))
+                            var fromDB = _downloadItems.Find(x => x.Id == item.Id);
+
+                            if (fromDB == null)
                             {
-                                _downloadItems.Add(new PoisToDownload()
+                                fromDB = new PoisToDownload()
                                 {
                                     Id = item.Id,
                                     Description = item.Description,
                                     Category = item.Category,
                                     Url = item.Url,
                                     Country = country.Country,
-                                });
+                                    PointCount = item.PointCount,
+                                    DateCreated = item.DateCreated,
+                                    DownloadDate = null
+                                };
                             }
+
+                            //###
+                            var x = new DownloadViewItem(fromDB, item);
+                            _downloadViewItems.Add(x);
                         }
                     }
                 }
@@ -245,7 +258,7 @@ namespace Peaks360App.Activities
                 return;
             }
 
-            var countries = _downloadItems.Select(x => x.Country).Distinct().OrderBy(x => x).ToList();
+            var countries = _downloadViewItems.Select(x => x.fromDatabase.Country).Distinct().OrderBy(x => x).ToList();
 
             MainThread.BeginInvokeOnMainThread(() =>
             {

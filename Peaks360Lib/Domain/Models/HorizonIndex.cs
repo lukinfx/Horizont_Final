@@ -12,6 +12,8 @@ namespace Peaks360Lib.Domain.Models
 
         public string Description { get; set; }
         public string Url { get; set; }
+        public int PointCount { get; set; }
+        public DateTime DateCreated { get; set; }
 
         public PoiCategory Category { get; set; }
     }

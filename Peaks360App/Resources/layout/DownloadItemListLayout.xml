@@ -35,4 +35,15 @@
     android:paddingTop="0dp"
     android:textColor="#000000"
     android:textSize="11sp" />
+  <TextView
+    android:text="Created on 2021-01-01"
+    android:id="@+id/PoiItemDateCreated"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/PoiItemDownloadedDate"
+    android:layout_toRightOf="@id/PoiItemCategoryAsIcon"
+    android:paddingLeft="10dp"
+    android:paddingTop="0dp"
+    android:textColor="#000000"
+    android:textSize="11sp" />
 </RelativeLayout>
