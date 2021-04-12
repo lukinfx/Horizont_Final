@@ -7,16 +7,15 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Android.Content;
 using Xamarin.Essentials;
 using Newtonsoft.Json;
 using Peaks360Lib.Domain.Enums;
 using Peaks360Lib.Domain.Models;
 using Peaks360App.AppContext;
-using Peaks360App.DataAccess;
 using Peaks360App.Providers;
 using Peaks360App.Tasks;
 using Peaks360App.Utilities;
-using Android.Content;
 using Peaks360App.Models;
 using Peaks360Lib.Utilities;
 using Peaks360Lib.Domain.ViewModel;
@@ -128,7 +127,6 @@ namespace Peaks360App.Activities
 
             _downloadItemAdapter = new DownloadItemAdapter(this, this);
             _downloadItemListView.Adapter = _downloadItemAdapter;
-            //_downloadItemListView.ItemClick += OnDownloadListItemClicked;
 
             _downloadedElevationDataListView = FindViewById<ListView>(Resource.Id.listViewDownloadedElevationData);
             _downloadedElevationDataAdapter = new DownloadedElevationDataAdapter(this, this);
@@ -156,35 +154,6 @@ namespace Peaks360App.Activities
             return base.OnOptionsItemSelected(item);
         }
 
-        /*private void OnDownloadListItemClicked(object sender, AdapterView.ItemClickEventArgs e)
-        {
-            DownloadViewItem item = _downloadItemAdapter[e.Position];
-
-            if (item.fromDatabase.Category == PoiCategory.ElevationData)
-            {
-                if (item.fromDatabase.DownloadDate == null)
-                {
-                    DownloadElevationDataFromInternet(item.fromDatabase);
-                }
-                else
-                {
-                    DeleteElevationDataFromInternet(item.fromDatabase);
-                }
-            }
-            else
-            {
-                if (item.fromDatabase.DownloadDate == null)
-                {
-                    DownloadPoiDataFromInternet(item.fromDatabase);
-                }
-                else
-                {
-                    DeletePoiDataFromInternet(item.fromDatabase);
-                }
-            }
-            _downloadItemAdapter.NotifyDataSetChanged();
-        }*/
-
         private void OnCountryListItemClicked(object sender, AdapterView.ItemClickEventArgs e)
         {
             OnCountrySelected(e.Position);
@@ -198,7 +167,6 @@ namespace Peaks360App.Activities
         private void OnCountrySelected(int position)
         {
             PoiCountry country = _countryAdapter[position];
-            //###
             var items = _downloadViewItems.Where(x => x.fromDatabase.Country == country).OrderBy(x => x.fromDatabase.Category).ToList();
             _downloadItemAdapter.SetItems(items);
         }
@@ -240,7 +208,6 @@ namespace Peaks360App.Activities
                                 };
                             }
 
-                            //###
                             var x = new DownloadViewItem(fromDB, item);
                             _downloadViewItems.Add(x);
                         }
