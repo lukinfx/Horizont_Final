@@ -97,7 +97,8 @@
   <string name="Download_Progress_DownloadingElevationData">Download dei dati di elevazione...</string>
   <string name="Download_Progress_RemovingElevationData">Rimozione dei dati di elevazione...</string>
   <string name="Download_Confirmation">Questa azione richiede il download di ulteriori {0} MByte. È possibile impostare una visibilità inferiore per ridurre la quantità di dati scaricati.\n\nVuoi davvero continuare?</string>
-  <string name="Download_DownloadedOn">Scaricato il </string>
+  <string name="Download_DownloadedOn">Scaricato il: </string>
+  <string name="Download_PointCount">Conteggio punti: </string>
   <string name="Download_NotDownloadedYet">Non ancora scaricato.</string>
 
   <!--AddElevationDataActivity-->

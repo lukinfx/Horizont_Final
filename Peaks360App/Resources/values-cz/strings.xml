@@ -97,7 +97,8 @@
   <string name="Download_Progress_DownloadingElevationData">Stahuji výšková data...</string>
   <string name="Download_Progress_RemovingElevationData">Odstaňuji výšková data...</string>
   <string name="Download_Confirmation">Tato akce vyžaduje stažení dodatečných {0} MB dat. Pro snížení množství potřebných dat snižte maximální viditelnost.\n\nChcete opravdu pokračovat?</string>
-  <string name="Download_DownloadedOn">Staženo dne </string>
+  <string name="Download_DownloadedOn">Staženo dne: </string>
+  <string name="Download_PointCount">Počet bodů: </string>
   <string name="Download_NotDownloadedYet">Zatím nestaženo.</string>
 
   <!--AddElevationDataActivity-->

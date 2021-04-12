@@ -81,7 +81,6 @@ namespace Peaks360App.Utilities
             }
             
             view.Tag = position;
-
             view.SetOnClickListener(this);
 
             PoiViewItem item = this[position];
