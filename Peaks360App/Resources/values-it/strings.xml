@@ -39,7 +39,7 @@
   <string name="Common_Error">Errore</string>
 
   <string name="Common_DiscardChanges">Vuoi annullare tutte le modifiche?</string>
-  <string name="Common_NoDataToDisplay">Nessun dato da visualizzare. Modifica le impostazioni del filtro o scarica i dati.</string>
+  <string name="Common_NoDataToDisplay">Nessun dato da visualizzare.\nModifica le impostazioni del filtro o scarica i dati.</string>
 
   <string name="Common_CategoryFilter">Filtro di categoria</string>
 

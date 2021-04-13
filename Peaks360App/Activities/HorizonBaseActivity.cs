@@ -160,12 +160,7 @@ namespace Peaks360App.Activities
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 _textViewNotification.Visibility = ViewStates.Invisible;
-                if (e.PoiData !=null && e.PoiData.Count == 0)
-                {
-                    new ShowToastRunnable(this, Resources.GetText(Resource.String.Common_NoDataToDisplay)).Run();
-                }
                 OnDataChanged(sender, e);
-
                 UpdateStatusBar();
             });
         }

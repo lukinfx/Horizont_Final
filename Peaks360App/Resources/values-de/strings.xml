@@ -39,7 +39,7 @@
   <string name="Common_Error">Error</string>
 
   <string name="Common_DiscardChanges">Möchten Sie alle Änderungen verwerfen?</string>
-  <string name="Common_NoDataToDisplay">Keine Punkte zum Anzeigen. Ändern Sie die Filtereinstellungen oder laden Sie Daten herunter.</string>
+  <string name="Common_NoDataToDisplay">Keine Punkte zum Anzeigen.\nÄndern Sie die Filtereinstellungen \n oder laden Sie Daten herunter.</string>
 
   <string name="Common_CategoryFilter">Kategoriefilter</string>
 

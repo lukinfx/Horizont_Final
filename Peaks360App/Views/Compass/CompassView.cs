@@ -41,6 +41,11 @@ namespace Peaks360App.Views
         private ElevationProfileData _elevationProfile;
         private bool _allowRotation = true;
         private System.Drawing.Size _pictureSize;
+        
+        private Paint _textPaint;
+        private Paint _backgroundPaint;
+        private string _textNoGps;
+        private string _textNoPOIs;
 
         public bool ShowElevationProfile
         {
@@ -65,6 +70,17 @@ namespace Peaks360App.Views
         {
             poiCategoryBitmapProvider = new PoiCategoryBitmapProvider();
             compassViewDrawer = new CompassViewDrawer(poiCategoryBitmapProvider);
+
+            _textPaint = new Paint();
+            _textPaint.SetARGB(255, 200, 255, 0);
+            _textPaint.TextSize = 42;
+            _textPaint.AntiAlias = true;
+            _textPaint.TextAlign = Paint.Align.Center;
+
+            _backgroundPaint = new Paint();
+            _backgroundPaint.SetARGB(150, 0, 0, 0);
+            _backgroundPaint.SetStyle(Paint.Style.Fill);
+            _backgroundPaint.StrokeWidth = 0;
         }
 
         public void Initialize(IAppContext context, bool allowRotation, System.Drawing.Size pictureSize)
@@ -148,8 +164,29 @@ namespace Peaks360App.Views
         {
             if (e.ChangedData == ChangedData.ViewOptions)
             {
+                _textNoGps = null;
+                _textNoPOIs = null;
                 InitializeViewDrawer(new System.Drawing.Size(this.Width, this.Height), _pictureSize);
             }
+        }
+
+        private string GetTextNoGPS()
+        {
+            if (_textNoGps == null)
+            {
+                _textNoGps = Resources.GetText(Resource.String.Main_WaitingForGps);
+            }
+            return _textNoGps;
+        }
+
+        private string GetTextNoPOIs()
+        {
+            if (_textNoPOIs == null)
+            {
+                _textNoPOIs = Resources.GetText(Resource.String.Common_NoDataToDisplay);
+            }
+            return _textNoPOIs;
+            
         }
 
         protected override void OnLayout(bool changed, int left, int top, int right, int bottom)
@@ -204,39 +241,66 @@ namespace Peaks360App.Views
 
             compassViewDrawer.OnDrawBackground(canvas);
 
+            //PaintCompass(canvas, heading);
+
             if (ShowElevationProfile)
                 PaintElevationProfileLines(canvas, heading);
 
             if (ShowPointsOfInterest)
-                PaintVisiblePois(canvas, heading);
+            {
+                if (_poisToBeDisplayed == null)
+                {
+                    ShowInfoText(canvas, GetTextNoGPS());
+                }
+                else if (!_poisToBeDisplayed.Any())
+                {
+                    ShowInfoText(canvas, GetTextNoPOIs());
+                }
+                else
+                {
+                    PaintVisiblePois(canvas, heading);
+                }
+            }
+        }
+
+        private void ShowInfoText(Canvas canvas, string text)
+        {
+            var lines = text.Split("\n");
+
+            float textHeight = _textPaint.Descent() - _textPaint.Ascent();
+            float x = canvas.Width / 2f;
+            float y = textHeight;
+
+            canvas.DrawRect(0, 0, canvas.Width, (lines.Length + 3) * textHeight, _backgroundPaint);
+            foreach (var line in lines)
+            {
+                y += textHeight;
+                canvas.DrawText(line, x, y, _textPaint);
+            }
         }
 
         private void PaintVisiblePois(Canvas canvas, double heading)
         {
             lock (syncLock)
             {
-                if (_poisToBeDisplayed != null)
+                canvas.Rotate(90, 0, 0);
+
+                foreach (var item in _poisToBeDisplayed)
                 {
-                    canvas.Rotate(90, 0, 0);
-
-                    foreach (var item in _poisToBeDisplayed)
+                    if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
                     {
-                        if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
-                        {
-                            compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, canvas.Width);
-                        }
+                        compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, canvas.Width);
                     }
+                }
 
-                    canvas.Rotate(-90, 0, 0);
+                canvas.Rotate(-90, 0, 0);
 
-                    foreach (var item in _poisToBeDisplayed)
+                foreach (var item in _poisToBeDisplayed)
+                {
+                    if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
                     {
-                        if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
-                        {
-                            compassViewDrawer.DrawItemIcon(canvas, item, (float)heading, (float)_offsetX, (float)_offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, canvas.Width);
-                        }
+                        compassViewDrawer.DrawItemIcon(canvas, item, (float)heading, (float)_offsetX, (float)_offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, canvas.Width);
                     }
-
                 }
             }
 

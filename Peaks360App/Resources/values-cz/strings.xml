@@ -39,7 +39,7 @@
   <string name="Common_Error">Chyba</string>
 
   <string name="Common_DiscardChanges">Chcete zahodit všechny změny?</string>
-  <string name="Common_NoDataToDisplay">Žádné body k zobrazení. Změňte nastavení filtru nebo stáhněte body zájmu.</string>
+  <string name="Common_NoDataToDisplay">Žádné body k zobrazení.\nZměňte nastavení filtru nebo stáhněte body zájmu.</string>
 
   <string name="Common_CategoryFilter">Filtr kategorie</string>
 

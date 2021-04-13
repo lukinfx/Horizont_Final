@@ -39,7 +39,7 @@
   <string name="Common_Error">Error</string>
 
   <string name="Common_DiscardChanges">Do you want to discard all changes?</string>
-  <string name="Common_NoDataToDisplay">No POIs to display. Change filter settings or download POI data.</string>
+  <string name="Common_NoDataToDisplay">No POIs to display.\nChange filter settings or download POI data.</string>
 
   <string name="Common_CategoryFilter">Category filter</string>
 

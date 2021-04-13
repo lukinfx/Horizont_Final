@@ -39,7 +39,7 @@
   <string name="Common_Error">Error</string>
 
   <string name="Common_DiscardChanges">¿Quieres descartar todos los cambios?</string>
-  <string name="Common_NoDataToDisplay">No hay puntos de interés para mostrar. Cambie la configuración del filtro o descargue datos.</string>
+  <string name="Common_NoDataToDisplay">No hay puntos de interés para mostrar.\nCambie la configuración del filtro o descargue datos.</string>
 
   <string name="Common_CategoryFilter">Filtro de categoría</string>
 
