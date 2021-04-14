@@ -43,7 +43,8 @@ namespace Peaks360App.Activities
         {
             if (AppContextLiveData.Instance.Settings.IsPrivacyPolicyApprovementNeeded())
             {
-                new ShowToastRunnable(this, "We are sorry, but you have to scroll down and express your consent with privacy policy.").Run();
+
+                PopupHelper.Toast(this, "We are sorry, but you have to scroll down and express your consent with privacy policy.");
             }
             else
             {

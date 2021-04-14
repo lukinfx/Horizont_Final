@@ -1,5 +1,6 @@
 using Android.Hardware.Camera2;
 using Android.Util;
+using Peaks360App.Utilities;
 
 namespace Peaks360App.Views.Camera
 {
@@ -18,10 +19,11 @@ namespace Peaks360App.Views.Camera
 
         public override void OnCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result)
         {
+            owner.UnlockFocus();
+
             // If something goes wrong with the save (or the handler isn't even 
             // registered, this code will toast a success message regardless...)
-            owner.ShowToast(Peaks360Application.Context.Resources.GetText(Resource.String.PhotoShow_PhotoSaved));
-            owner.UnlockFocus();
+            PopupHelper.Toast(Peaks360Application.Context, Resource.String.PhotoShow_PhotoSaved);
         }
     }
 }

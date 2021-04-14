@@ -108,15 +108,6 @@ namespace Peaks360App.Views.Camera
         public CameraCaptureListener mCaptureCallback;
         private IAppContext _context { get { return AppContextLiveData.Instance; } }
 
-        // Shows a {@link Toast} on the UI thread.
-        public void ShowToast(string text)
-        {
-            if (Activity != null)
-            {
-                Activity.RunOnUiThread(new ShowToastRunnable(Activity.ApplicationContext, text));
-            }
-        }
-
         public static CameraFragment NewInstance()
         {
             return new CameraFragment();

@@ -444,7 +444,7 @@ namespace Peaks360App.Activities
                 case Resource.Id.confirmButton:
                     if (photoView.IsCroppedImageTooSmall())
                     {
-                        new ShowToastRunnable(this, Resources.GetText(Resource.String.PhotoShow_ImageTooSmall)).Run();
+                        PopupHelper.Toast(this, Resource.String.PhotoShow_ImageTooSmall);
                         return;
                     }
                     SaveCopy();
@@ -593,7 +593,7 @@ namespace Peaks360App.Activities
                     var stream = new FileStream(filename, FileMode.CreateNew);
                     bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
                     Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] {filename}, null, null);
-                    PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.PhotoShow_PhotoSaved));
+                    PopupHelper.Toast(this, Resource.String.PhotoShow_PhotoSaved);
                 });
                 alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
                 alert.SetMessage(Resources.GetText(Resource.String.PhotoShow_OverwriteQuestion));
@@ -604,7 +604,7 @@ namespace Peaks360App.Activities
                 var stream = new FileStream(filename, FileMode.CreateNew);
                 bmp.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
                 Android.Media.MediaScannerConnection.ScanFile(Android.App.Application.Context, new string[] {filename}, null, null);
-                PopupHelper.InfoDialog(this, $"Photo saved.");
+                PopupHelper.Toast(this, Resource.String.PhotoShow_PhotoSaved);
             }
         }
 

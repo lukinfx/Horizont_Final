@@ -1,4 +1,5 @@
 using Android.Hardware.Camera2;
+using Peaks360App.Utilities;
 
 namespace Peaks360App.Views.Camera
 {
@@ -15,7 +16,7 @@ namespace Peaks360App.Views.Camera
 
         public override void OnConfigureFailed(CameraCaptureSession session)
         {
-            owner.ShowToast("Failed");
+            PopupHelper.Toast(Peaks360Application.Context, "Failed");
         }
 
         public override void OnConfigured(CameraCaptureSession session)

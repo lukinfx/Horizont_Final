@@ -218,8 +218,7 @@ namespace Peaks360App.Activities
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    PopupHelper.ErrorDialog(this,
-                        Resources.GetText(Resource.String.Download_ErrorDownloading), e.Message);
+                    PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloading, e.Message);
                 });
 
                 return;
@@ -274,8 +273,7 @@ namespace Peaks360App.Activities
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
                         pd.Hide();
-                        PopupHelper.ErrorDialog(this,
-                            Resources.GetText(Resource.String.Download_ErrorDownloading), message);
+                        PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloading, message);
                     });
                 };
 
@@ -283,8 +281,7 @@ namespace Peaks360App.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Download_ErrorDownloading), ex.Message);
+                PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloading, ex.Message);
             }
         }
 
@@ -317,7 +314,7 @@ namespace Peaks360App.Activities
                         item.fromDatabase.DownloadDate = DateTime.Now;
 
                         AppContext.Database.InsertItem(item.fromDatabase);
-                        //new ShowToastRunnable(this, String.Format(Resources.GetText(Resource.String.Download_InfoLoadedItems), result.Count)).Run();
+                        //PopupHelper.Toast(this, String.Format(Resources.GetText(Resource.String.Download_InfoLoadedItems), result.Count));
 
                         _downloadItemAdapter.NotifyDataSetChanged();
                     }
@@ -347,8 +344,7 @@ namespace Peaks360App.Activities
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        PopupHelper.ErrorDialog(this,
-                            Resources.GetText(Resource.String.Download_ErrorDownloading), message);
+                        PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloading, message);
                     });
                 };
 
@@ -356,8 +352,7 @@ namespace Peaks360App.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Download_ErrorDownloading), ex.Message);
+                PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloading, ex.Message);
             }
         }
 
@@ -370,12 +365,11 @@ namespace Peaks360App.Activities
                 item.fromDatabase.DownloadDate = null;
                 AppContext.Database.DeleteItem(item.fromDatabase);
 
-                //new ShowToastRunnable(this, Resources.GetText(Resource.String.Download_InfoRemovedItems)).Run();
+                //PopupHelper.Toast(this, Resource.String.Download_InfoRemovedItems);
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Download_ErrorRemoving), ex.Message);
+                PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorRemoving, ex.Message);
             }
         }
 
@@ -401,8 +395,8 @@ namespace Peaks360App.Activities
                         source.DownloadDate = DateTime.Now;
                         AppContext.Database.InsertItem(source);
 
-                        PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Download_InfoLoadedElevation));
-                        
+                        PopupHelper.InfoDialog(this, Resource.String.Download_InfoLoadedElevation);
+
                         _downloadItemAdapter.NotifyDataSetChanged();
                     }
                 };
@@ -428,8 +422,7 @@ namespace Peaks360App.Activities
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        PopupHelper.ErrorDialog(this,
-                            Resources.GetText(Resource.String.Download_ErrorDownloadingElevation), message);
+                        PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloadingElevation, message);
                     });
                 };
 
@@ -437,8 +430,7 @@ namespace Peaks360App.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Download_ErrorDownloadingElevation), ex.Message);
+                PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloadingElevation, ex.Message);
             }
         }
 
@@ -462,7 +454,7 @@ namespace Peaks360App.Activities
                         source.DownloadDate = null;
                         AppContext.Database.DeleteItem(source);
 
-                        PopupHelper.InfoDialog(this, Resources.GetText(Resource.String.Download_InfoRemovedElevation)); 
+                        PopupHelper.InfoDialog(this, Resource.String.Download_InfoRemovedElevation); 
                     }
                 };
                 ec.OnStageChange = (resourceStringId, max) =>
@@ -477,8 +469,7 @@ namespace Peaks360App.Activities
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        PopupHelper.ErrorDialog(this,
-                            Resources.GetText(Resource.String.Download_ErrorDownloadingElevation), message);
+                        PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloadingElevation, message);
                     });
                 };
 
@@ -486,8 +477,7 @@ namespace Peaks360App.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.Download_ErrorDownloadingElevation), ex.Message);
+                PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloadingElevation, ex.Message);
             }
         }
 

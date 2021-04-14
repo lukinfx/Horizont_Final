@@ -242,8 +242,7 @@ namespace Peaks360App.Activities
 
             if (!TryGetGpsLocation(out var location))
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
                 return;
             }
 
@@ -273,8 +272,7 @@ namespace Peaks360App.Activities
 
             if (!Clipboard.HasText)
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.EditPoi_EmptyClipboard));
+                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_EmptyClipboard);
                 return;
             }
 
@@ -298,8 +296,7 @@ namespace Peaks360App.Activities
             }
             catch (Exception ex)
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.EditPoi_WrongFormat), ex.Message);
+                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat, ex.Message);
                 return;
             }
 
@@ -321,8 +318,7 @@ namespace Peaks360App.Activities
                 {
                     if (!TryGetGpsLocation(out var location))
                     {
-                        PopupHelper.ErrorDialog(this,
-                            Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                        PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
                         return;
                     }
 
@@ -330,14 +326,12 @@ namespace Peaks360App.Activities
 
                     if (!ok)
                     {
-                        PopupHelper.ErrorDialog(this,
-                            Resources.GetText(Resource.String.EditPoi_AltitudeNotUpdated), Resources.GetText(Resource.String.EditPoi_MissingElevationData));
+                        PopupHelper.ErrorDialog(this, Resource.String.EditPoi_AltitudeNotUpdated, Resources.GetText(Resource.String.EditPoi_MissingElevationData));
                     }
                 }
                 catch (Exception ex)
                 {
-                    PopupHelper.ErrorDialog(this,
-                        Resources.GetText(Resource.String.EditPoi_AltitudeNotUpdated), ex.Message);
+                    PopupHelper.ErrorDialog(this, Resource.String.EditPoi_AltitudeNotUpdated, ex.Message);
                 }
             }
         }
@@ -346,8 +340,7 @@ namespace Peaks360App.Activities
         {
             if (!TryGetGpsLocation(out var manualLocation))
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
                 return;
             }
 
@@ -363,8 +356,7 @@ namespace Peaks360App.Activities
         {
             if (!TryGetGpsLocation(out var manualLocation))
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
                 return;
             }
 
@@ -421,22 +413,19 @@ namespace Peaks360App.Activities
 
             if (string.IsNullOrEmpty(_editTextLongitude.Text) || string.IsNullOrEmpty(_editTextLatitude.Text))
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
                 return false;
             }
 
             if (!double.TryParse(_editTextLongitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out lon))
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
                 return false;
             }
 
             if (!double.TryParse(_editTextLatitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out lat))
             {
-                PopupHelper.ErrorDialog(this,
-                    Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
                 return false;
             }
 
@@ -445,8 +434,7 @@ namespace Peaks360App.Activities
             {
                 if (!double.TryParse(_editTextAltitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out alt))
                 {
-                    PopupHelper.ErrorDialog(this,
-                        Resources.GetText(Resource.String.EditPoi_WrongFormat));
+                    PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
                     return false;
                 }
             }
