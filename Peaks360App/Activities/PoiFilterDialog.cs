@@ -54,9 +54,6 @@ namespace Peaks360App.Activities
             InitializeCategoryFilterButton(Resource.Id.imageButtonSelectViewtower);
             InitializeCategoryFilterButton(Resource.Id.imageButtonSelectChurch);
 
-
-            var buttonSave = FindViewById<Button>(Resource.Id.buttonSavePoiFilter);
-            buttonSave.SetOnClickListener(this);
             var buttonSelectAll = FindViewById<Button>(Resource.Id.buttonSelectAll);
             buttonSelectAll.SetOnClickListener(this);
             var buttonSelectNone = FindViewById<Button>(Resource.Id.buttonSelectNone);
@@ -78,10 +75,6 @@ namespace Peaks360App.Activities
                     case Resource.Id.imageButtonSelectViewtower:
                     case Resource.Id.imageButtonSelectChurch:
                         OnCategoryFilterChanged(v.Id);
-                        break;
-                    case Resource.Id.buttonSavePoiFilter:
-                        Hide();
-                        Dismiss();
                         break;
                     case Resource.Id.buttonSelectAll:
                         OnCategoryFilterSelectAll();
