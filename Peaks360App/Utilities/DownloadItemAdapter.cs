@@ -80,13 +80,13 @@ namespace Peaks360App.Utilities
                     updateAvailable = true;
                 }
 
-                downloadDateText = _context.Resources.GetText(Resource.String.Download_DownloadedOn) + item.fromDatabase.DownloadDate.Value.ToString("yyyy-MM-dd");
-                pointCountText = _context.Resources.GetText(Resource.String.Download_PointCount) + item.fromDatabase.PointCount;
+                downloadDateText = _context.Resources.GetText(Resource.String.Download_DownloadedOn) + ": " + item.fromDatabase.DownloadDate.Value.ToString("yyyy-MM-dd");
+                pointCountText = _context.Resources.GetText(Resource.String.Download_PointCount) + ": " + item.fromDatabase.PointCount;
             }
             else
             {
                 downloadDateText = _context.Resources.GetText(Resource.String.Download_NotDownloadedYet);
-                pointCountText = _context.Resources.GetText(Resource.String.Download_PointCount) + item.fromInternet.PointCount;
+                pointCountText = _context.Resources.GetText(Resource.String.Download_PointCount) + ": " + item.fromInternet.PointCount;
             }
 
             view.FindViewById<TextView>(Resource.Id.PoiItemDownloadedDate).Text = downloadDateText;
