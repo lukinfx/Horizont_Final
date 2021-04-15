@@ -76,9 +76,9 @@ namespace Peaks360App.Utilities
                 case PoiCountry.PRT: return "Portugal";
                 case PoiCountry.RUS: return "Russia";
                 case PoiCountry.AND: return "Andorra";
-                case PoiCountry.FRO: return "Faroe-islands";
+                case PoiCountry.FRO: return "Faroe Islands";
                 case PoiCountry.GEO: return "Georgia";
-                case PoiCountry.GGY: return "Guernsey";
+                case PoiCountry.GGY: return "Guernsey & Jersey";
                 case PoiCountry.IMN: return "Isle of man";
                 case PoiCountry.MNE: return "Montenegro";
                 case PoiCountry.AZO: return "Azores";
@@ -138,7 +138,7 @@ namespace Peaks360App.Utilities
                     return Language.Italian;
 
                 case PoiCountry.ESP: //spain
-                case PoiCountry.PRT: //portugal + join pbf_files\azores
+                case PoiCountry.PRT: //portugal
                 case PoiCountry.AZO: //azores
                 case PoiCountry.AND: //andorra
                     return Language.Spanish;
@@ -299,18 +299,23 @@ namespace Peaks360App.Utilities
                 case PoiCountry.AND:
                     return Resource.Drawable.flag_of_Andorra;
                 case PoiCountry.FRO:
-                    return Resource.Drawable.flag_of_Austria;
+                    return Resource.Drawable.flag_of_FaroeIslands;
                 case PoiCountry.GEO:
                     return Resource.Drawable.flag_of_Georgia;
                 case PoiCountry.MNE:
                     return Resource.Drawable.flag_of_Montenegro;
                 case PoiCountry.MDA:
                     return Resource.Drawable.flag_of_Moldova;
-                case PoiCountry.MKD:
                 case PoiCountry.IRL:
+                    return Resource.Drawable.flag_of_Ireland;
+                case PoiCountry.MKD:
+                    return Resource.Drawable.flag_of_Macedonia;
                 case PoiCountry.GGY:
+                    return Resource.Drawable.flag_of_Guernsey;
                 case PoiCountry.IMN:
+                    return Resource.Drawable.flag_of_IsleOfMan;
                 case PoiCountry.AZO:
+                    return Resource.Drawable.flag_of_Azores;
                 default:
                     return Resource.Drawable.flag_of_Unknown;
             }

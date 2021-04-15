@@ -24,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-              
               <LinearLayout
                 android:orientation="vertical"
                 android:padding="10dp"
@@ -72,13 +71,15 @@
                   android:padding="10dp"
                   android:background="@drawable/bg_edittext"
                   android:id="@+id/buttonAddNew" />
-
+                <Space
+                  android:layout_width="match_parent"
+                  android:layout_height="10dp"/>
                 <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:background="@drawable/bg_edittext"
-                    android:id="@+id/listViewDownloadedElevationData" />
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="5dp"
+                  android:background="@drawable/bg_edittext"
+                  android:id="@+id/listViewDownloadedElevationData" />
                 
               </LinearLayout>
 

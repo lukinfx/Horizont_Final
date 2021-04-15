@@ -224,7 +224,10 @@ namespace Peaks360App.Activities
                 return;
             }
 
-            var countries = _downloadViewItems.Select(x => x.fromDatabase.Country).Distinct().OrderBy(x => x).ToList();
+            var countries = _downloadViewItems.Select(x => x.fromDatabase.Country)
+                .Distinct()
+                .OrderBy(x => PoiCountryHelper.GetCountryName(x))
+                .ToList();
 
             MainThread.BeginInvokeOnMainThread(() =>
             {

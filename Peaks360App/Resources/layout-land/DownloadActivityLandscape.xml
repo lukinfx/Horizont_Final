@@ -55,31 +55,41 @@
             </LinearLayout>
 
             <LinearLayout
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:padding="10dp"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@drawable/background_portrait"
               android:id="@+id/downloadTabEleData" >
                 
-                <Button
-                  android:text="@string/DownloadED_AddNewElevationDataArea"
-                  android:drawableLeft="@android:drawable/ic_menu_add"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:drawablePadding="5dp"
-                  android:padding="10dp"
-                  android:background="@drawable/bg_edittext"
-                  android:textColor="@android:color/white"
-                  android:id="@+id/buttonAddNew" />
-
                 <ListView
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
+                  android:layout_weight="100"
                   android:padding="5dp"
                   android:background="@drawable/bg_edittext"
                   android:id="@+id/listViewDownloadedElevationData" />
+                <Space
+                  android:layout_width="10dp"
+                  android:layout_height="match_parent"/>
+                <LinearLayout
+                  android:orientation="vertical"
+                  android:padding="10dp"
+                  android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:layout_weight="0"
+                  android:gravity="bottom"
+                  android:background="@drawable/bg_edittext">
 
+                    <Button
+                      android:text="@string/DownloadED_AddNewElevationDataArea"
+                      android:drawableTop="@android:drawable/ic_menu_add"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:drawablePadding="5dp"
+                      android:background="@android:color/transparent"
+                      android:id="@+id/buttonAddNew" />
+                </LinearLayout>
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>
