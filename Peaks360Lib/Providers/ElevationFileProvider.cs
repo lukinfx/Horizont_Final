@@ -9,7 +9,7 @@ namespace Peaks360Lib.Providers
     public class ElevationFileProvider
     {
         private static string ELEVATION_MAPS_FOLDER = "ElevationMaps";
-        private static string ELEVATION_MAPS_URL = "http://horizon360.hys.cz/horizont/ElevationData/";
+        private static string ELEVATION_MAPS_URL = "http://peaks360.hys.cz/horizont/ElevationData/";
         private static float ELEVATION_FILE_SIZE = 2.8f;
 
         public static string GetElevationFile(int lat, int lon)

@@ -8,8 +8,8 @@ namespace Peaks360App.Providers
     public class GpxFileProvider
     {
 
-        private static readonly string WebsiteUrl = "http://horizon360.hys.cz/horizont/";
-        private static readonly string IndexFile = "horizon-index.json";
+        private static readonly string WebsiteUrl = "http://peaks360.hys.cz/horizont/";
+        private static readonly string IndexFile = "peaks360-index.json";
 
         public static string GetIndexUrl()
         {
