@@ -54,11 +54,11 @@
   <string name="SettingsActivity">Ajustes</string>
   <string name="AboutActivity">Sobre</string>
 
-  <string name="Category_Historic">Histórico</string>
-  <string name="Category_Mountains">Montañas</string>
-  <string name="Category_Lakes">Lagos</string>
-  <string name="Category_Churches">Iglesias</string>
-  <string name="Category_Cities">Asentamientos</string>
+  <string name="Category_Historic">Castillos y palacios</string>
+  <string name="Category_Mountains">Picos de las montañas</string>
+  <string name="Category_Lakes">Lagos y presas</string>
+  <string name="Category_Churches">Iglesias y catedrales</string>
+  <string name="Category_Cities">Pueblos y aldeas</string>
   <string name="Category_ViewTowers">Ver torres</string>
   <string name="Category_Transmitters">Transmisores</string>
   <string name="Category_Other">Otro</string>

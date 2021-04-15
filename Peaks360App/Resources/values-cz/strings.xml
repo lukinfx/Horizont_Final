@@ -54,11 +54,11 @@
   <string name="SettingsActivity">Nastavení</string>
   <string name="AboutActivity">O aplikaci</string>
 
-  <string name="Category_Historic">Historické objekty</string>
-  <string name="Category_Mountains">Hory</string>
-  <string name="Category_Lakes">Vodní plochy</string>
-  <string name="Category_Churches">Kostely</string>
-  <string name="Category_Cities">Sídla</string>
+  <string name="Category_Historic">Hrady a zámky</string>
+  <string name="Category_Mountains">Vrcholky hor</string>
+  <string name="Category_Lakes">Jezera a přehrady</string>
+  <string name="Category_Churches">Kostely a katedrály</string>
+  <string name="Category_Cities">Města a vesnice</string>
   <string name="Category_ViewTowers">Rozhledny</string>
   <string name="Category_Transmitters">Vysílače</string>
   <string name="Category_Other">Jiné</string>

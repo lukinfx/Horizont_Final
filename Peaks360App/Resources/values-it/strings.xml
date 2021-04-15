@@ -54,11 +54,11 @@
   <string name="SettingsActivity">Configurazione</string>
   <string name="AboutActivity">Informazioni</string>
 
-  <string name="Category_Historic">Storico</string>
-  <string name="Category_Mountains">Montagne</string>
-  <string name="Category_Lakes">Laghi</string>
-  <string name="Category_Churches">Chiese</string>
-  <string name="Category_Cities">Insediamenti</string>
+  <string name="Category_Historic">Castelli e palazzi</string>
+  <string name="Category_Mountains">Picchi di montagna</string>
+  <string name="Category_Lakes">Laghi e dighe</string>
+  <string name="Category_Churches">Chiese e cattedrali</string>
+  <string name="Category_Cities">Città e paesi</string>
   <string name="Category_ViewTowers">Visualizza torri</string>
   <string name="Category_Transmitters">Trasmettitori</string>
   <string name="Category_Other">Altro</string>

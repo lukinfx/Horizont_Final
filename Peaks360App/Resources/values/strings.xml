@@ -54,11 +54,11 @@
   <string name="SettingsActivity">Settings</string>
   <string name="AboutActivity">About</string>
   
-  <string name="Category_Historic">Historic</string>
-  <string name="Category_Mountains">Mountains</string>
-  <string name="Category_Lakes">Lakes</string>
-  <string name="Category_Churches">Churches</string>
-  <string name="Category_Cities">Settlements</string>
+  <string name="Category_Historic">Castles and palaces</string>
+  <string name="Category_Mountains">Maountain peaks</string>
+  <string name="Category_Lakes">Lakes and dams</string>
+  <string name="Category_Churches">Churches and cathedrals</string>
+  <string name="Category_Cities">Towns and villages</string>
   <string name="Category_ViewTowers">View towers</string>
   <string name="Category_Transmitters">Transmitters</string>
   <string name="Category_Other">Other</string>

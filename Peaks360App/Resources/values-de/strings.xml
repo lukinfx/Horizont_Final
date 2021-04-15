@@ -54,11 +54,11 @@
   <string name="SettingsActivity">Einstellungen</string>
   <string name="AboutActivity">Über die Anwendung</string>
 
-  <string name="Category_Historic">Historisch</string>
-  <string name="Category_Mountains">Berge</string>
-  <string name="Category_Lakes">Seen</string>
-  <string name="Category_Churches">Kirchen</string>
-  <string name="Category_Cities">Siedlungen</string>
+  <string name="Category_Historic">Burgen und Paläste</string>
+  <string name="Category_Mountains">Berggipfel</string>
+  <string name="Category_Lakes">Seen und Dämme</string>
+  <string name="Category_Churches">Kirchen und Kathedralen</string>
+  <string name="Category_Cities">Städte und Dörfer</string>
   <string name="Category_ViewTowers">Türme anzeigen</string>
   <string name="Category_Transmitters">Sender</string>
   <string name="Category_Other">Andere</string>
