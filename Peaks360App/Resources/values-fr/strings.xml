@@ -157,6 +157,11 @@
   <string name="Tutorial_Main_ShowPoiData">Appuyez sur le marqueur de point pour afficher des informations sur l\'objet sélectionné. Utilisez éventuellement des boutons pour naviguer vers le wiki ou la carte, ou cliquez sur le nom du point pour afficher ou modifier les données de point.</string>
   <string name="Tutorial_Main_ARWarning">Veuillez faire attention à votre environnement lorsque vous utilisez l\'application. La surveillance parentale est fortement recommandée pour les enfants.</string>
 
+  <string name="Tutorial_PhotoShow_Save">Appuyez sur ce bouton pour enregistrer l\'image sur votre appareil. Ensuite, vous pouvez trouver l\'image dans l\'application galerie (par exemple Google Photos).</string>
+  <string name="Tutorial_PhotoShow_Share">Appuyez sur ce bouton pour partager l\'image avec vos amis sur notre réseau social ou pour l\'envoyer par e-mail.</string>
+  <string name="Tutorial_PhotoShow_Crop">Appuyez sur ce bouton pour recadrer l\'image. Utilisez les doigts pour régler la taille de l\'image. L\'image recadrée est enregistrée dans votre galerie de photos et affichée. L\'image d\'origine n\'est pas supprimée.</string>
+  <string name="Tutorial_PhotoShow_Tilt">Appuyez sur ce bouton pour régler l\'inclinaison de la photo et l\'angle de vue vertical et horizontal de la caméra.</string>
+
   <string name="Tutorial_DontShowAgain">Ne plus montrer ça</string>
 
   <string name="PrivacyPolicyStatement">Déclaration de politique de confidentialité</string>

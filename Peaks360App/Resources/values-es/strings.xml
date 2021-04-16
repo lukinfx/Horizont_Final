@@ -157,6 +157,11 @@
   <string name="Tutorial_Main_ShowPoiData">Toque el marcador de punto para mostrar información sobre el objeto seleccionado. Posiblemente use botones para navegar a wiki o mapa, o haga clic en el nombre del punto para mostrar o editar los datos del punto.</string>
   <string name="Tutorial_Main_ARWarning">Preste atención a su entorno siempre que utilice la aplicación. Se recomienda encarecidamente la supervisión de los padres para los niños.</string>
 
+  <string name="Tutorial_PhotoShow_Save">Toque este botón para guardar la imagen en su dispositivo. Luego, puede encontrar la imagen en la aplicación de galería (por ejemplo, Google Photos).</string>
+  <string name="Tutorial_PhotoShow_Share">Toque este botón para compartir la imagen con sus amigos en nuestra red social o para enviarla por correo electrónico.</string>
+  <string name="Tutorial_PhotoShow_Crop">Toque este botón para recortar la imagen. Use los dedos para ajustar el tamaño de la imagen. La imagen recortada se guarda en su galería de fotos y se muestra. La imagen original no se elimina.</string>
+  <string name="Tutorial_PhotoShow_Tilt">Toque este botón para ajustar la inclinación de la imagen y el ángulo de visión vertical y horizontal de la cámara.</string>
+
   <string name="Tutorial_DontShowAgain">No vuelvas a mostrar esto</string>
 
   <string name="PrivacyPolicyStatement">Declaración de política de privacidad</string>

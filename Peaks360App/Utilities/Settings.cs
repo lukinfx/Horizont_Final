@@ -20,7 +20,8 @@ namespace Peaks360App.Utilities
     public enum TutorialPart
     {
         MainActivity,
-        PhotoEditActivity
+        PhotoEditActivity,
+        PhotoShowActivity,
     }
 
     public class SettingsChangedEventArgs : EventArgs
@@ -61,6 +62,7 @@ namespace Peaks360App.Utilities
             tutorialNeeded=new Dictionary<TutorialPart, bool>();
             tutorialNeeded.Add(TutorialPart.MainActivity, true);
             tutorialNeeded.Add(TutorialPart.PhotoEditActivity, true);
+            tutorialNeeded.Add(TutorialPart.PhotoShowActivity, true);
         }
 
         public bool IsViewAngleCorrection { get; set; }
@@ -201,6 +203,10 @@ namespace Peaks360App.Utilities
                 var isTutorialNeeded = prefs.GetBoolean("ShowTutorialPhotoEditActivity", true);
                 SetTutorialNeeded(TutorialPart.PhotoEditActivity, isTutorialNeeded);
             }
+            {
+                var isTutorialNeeded = prefs.GetBoolean("ShowTutorialPhotoShowActivity", true);
+                SetTutorialNeeded(TutorialPart.PhotoShowActivity, isTutorialNeeded);
+            }
 
             CameraResolutionSelected = new Size (prefs.GetInt("CameraResolutionWidth", 0), prefs.GetInt("CameraResolutionHeight", 0));
             CameraId= prefs.GetString("CameraId", null);
@@ -239,6 +245,7 @@ namespace Peaks360App.Utilities
 
                 editor.PutBoolean("ShowTutorialMainActivity", IsTutorialNeeded(TutorialPart.MainActivity));
                 editor.PutBoolean("ShowTutorialPhotoEditActivity", IsTutorialNeeded(TutorialPart.PhotoEditActivity));
+                editor.PutBoolean("ShowTutorialPhotoShowActivity", IsTutorialNeeded(TutorialPart.PhotoShowActivity));
 
                 editor.PutInt("CameraResolutionWidth", CameraResolutionSelected.Width);
                 editor.PutInt("CameraResolutionHeight", CameraResolutionSelected.Height);

@@ -157,6 +157,11 @@
   <string name="Tutorial_Main_ShowPoiData">Tap on point marker to display information about the selected object. Possibly use buttons for navigation to wiki or map, or click on the point name to display or edit point data.</string>
   <string name="Tutorial_Main_ARWarning">Please pay attention of your surroundings whenever using the application. Parental supervision is highly recommended for children.</string>
 
+  <string name="Tutorial_PhotoShow_Save">Tap this button to save image to you device. Then you can find the image in galery application (for example Google Photos).</string>
+  <string name="Tutorial_PhotoShow_Share">Tap this button to share image with your friends in our social network or to sent it by email.</string>
+  <string name="Tutorial_PhotoShow_Crop">Tap this button to crop image. Use fingers to adjust picture size. Cropped image is saved to your photo gallery and displayed. The original image is not removed. </string>
+  <string name="Tutorial_PhotoShow_Tilt">Tap this button to adjust picture tilt and camera vertical and horizontal view angle.</string>
+
   <string name="Tutorial_DontShowAgain">Don\'t show again</string>
 
   <string name="PrivacyPolicyStatement">Privacy policy statement</string>

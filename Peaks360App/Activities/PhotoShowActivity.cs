@@ -33,6 +33,8 @@ namespace Peaks360App.Activities
 
         private static string TAG = "Horizon-PhotoShowActivity";
 
+        private static bool _firstStart = true;
+
         private ScaleImageView photoView;
 
         private ImageButton _tiltCorrectorButton;
@@ -169,6 +171,25 @@ namespace Peaks360App.Activities
                 null, TimeSpan.FromSeconds(0.1), TimeSpan.FromMilliseconds(-1));
 
             Start();
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            Android.Content.Context ctx = this;
+
+            if (_firstStart)
+            {
+                TutorialDialog.ShowTutorial(this, TutorialPart.PhotoShowActivity,
+                    new TutorialPage[]
+                    {
+                        new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_photoedit_save, textResourceId = Resource.String.Tutorial_PhotoShow_Save},
+                        new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_photoedit_share, textResourceId = Resource.String.Tutorial_PhotoShow_Share},
+                        new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_photoedit_crop, textResourceId = Resource.String.Tutorial_PhotoShow_Crop},
+                        new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_photoedit_tilt, textResourceId = Resource.String.Tutorial_PhotoShow_Tilt},
+                    }, () => { _firstStart = false; });
+            }
         }
 
         private void LoadImageAndProfile()

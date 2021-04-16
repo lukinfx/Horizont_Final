@@ -157,6 +157,11 @@
   <string name="Tutorial_Main_ShowPoiData">Tippen Sie auf Punktmarkierung, um Informationen zum ausgewählten Objekt anzuzeigen. Verwenden Sie möglicherweise Schaltflächen für die Navigation zum Wiki oder zur Karte oder klicken Sie auf den Punktnamen, um Punktdaten anzuzeigen oder zu bearbeiten.</string>
   <string name="Tutorial_Main_ARWarning">Bitte achten Sie bei der Verwendung der Anwendung auf Ihre Umgebung. Die elterliche Aufsicht wird Kindern dringend empfohlen.</string>
 
+  <string name="Tutorial_PhotoShow_Save">Tippen Sie auf diese Schaltfläche, um das Bild auf Ihrem Gerät zu speichern. Dann können Sie das Bild in der Galery-Anwendung finden (zum Beispiel Google Fotos).</string>
+  <string name="Tutorial_PhotoShow_Share">Tippen Sie auf diese Schaltfläche, um ein Bild mit Ihren Freunden in unserem sozialen Netzwerk zu teilen oder es per E-Mail zu senden.</string>
+  <string name="Tutorial_PhotoShow_Crop">Tippen Sie auf diese Schaltfläche, um das Bild zuzuschneiden. Verwenden Sie die Finger, um die Bildgröße anzupassen. Das zugeschnittene Bild wird in Ihrer Fotogalerie gespeichert und angezeigt. Das Originalbild wird nicht entfernt.</string>
+  <string name="Tutorial_PhotoShow_Tilt">Tippen Sie auf diese Schaltfläche, um die Neigung des Drucks und den vertikalen und horizontalen Blickwinkel der Kamera anzupassen.</string>
+
   <string name="Tutorial_DontShowAgain">Nicht mehr zeigen</string>
 
   <string name="PrivacyPolicyStatement">Datenschutzerklärung</string>

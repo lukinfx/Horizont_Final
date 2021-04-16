@@ -157,6 +157,11 @@
   <string name="Tutorial_Main_ShowPoiData">Toccare l\'indicatore del punto per visualizzare le informazioni sull\'oggetto selezionato. Eventualmente utilizzare i pulsanti per la navigazione nel wiki o nella mappa, oppure fare clic sul nome del punto per visualizzare o modificare i dati del punto.</string>
   <string name="Tutorial_Main_ARWarning">Prestare attenzione all\'ambiente circostante ogni volta che si utilizza l\'applicazione. La supervisione dei genitori è altamente raccomandata per i bambini.</string>
 
+  <string name="Tutorial_PhotoShow_Save">Tocca questo pulsante per salvare l\'immagine sul tuo dispositivo. Quindi puoi trovare l\'immagine nell\'applicazione Galleria (ad esempio Google Foto).</string>
+  <string name="Tutorial_PhotoShow_Share">Tocca questo pulsante per condividere l\'immagine con i tuoi amici nel nostro social network o per inviarla tramite e-mail.</string>
+  <string name="Tutorial_PhotoShow_Crop">Tocca questo pulsante per ritagliare l\'immagine. Usa le dita per regolare le dimensioni dell\'immagine. L\'immagine ritagliata viene salvata nella tua galleria fotografica e visualizzata. L\'immagine originale non viene rimossa.</string>
+  <string name="Tutorial_PhotoShow_Tilt">Tocca questo pulsante per regolare l\'inclinazione dell\'immagine e l\'angolo di visualizzazione verticale e orizzontale della videocamera.</string>
+
   <string name="Tutorial_DontShowAgain">Non mostrarlo più</string>
 
   <string name="PrivacyPolicyStatement">Dichiarazione sulla tutela dei dati personali</string>
