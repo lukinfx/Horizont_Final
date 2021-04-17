@@ -52,7 +52,8 @@
               android:text="@string/Common_HorizontalViewAngle"
               android:textAppearance="?android:attr/textAppearanceSmall"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"/>
+              android:layout_height="wrap_content"
+              android:id="@+id/textViewAngleHorizontal"/>
             <SeekBar
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -61,19 +62,14 @@
               android:min="-100"
               android:max="100"
               android:progress="0" />
-            <TextView
-              android:text="@string/Settings_DefaultViewAngleHorizontal"
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/textViewAngleHorizontal" />
 
             <TextView
               android:paddingTop="10dp"
               android:text="@string/Common_VerticalViewAngle"
               android:textAppearance="?android:attr/textAppearanceSmall"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"/>
+              android:layout_height="wrap_content"
+              android:id="@+id/textViewAngleVertical" />
             <SeekBar
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -82,12 +78,6 @@
               android:min="-100"
               android:max="100"
               android:progress="0" />
-            <TextView
-              android:text="@string/Settings_DefaultViewAngleVertical"
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/textViewAngleVertical" />
             <Button
               android:text="@string/Common_Reset"
               android:layout_width="match_parent"

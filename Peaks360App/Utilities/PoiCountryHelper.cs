@@ -110,6 +110,59 @@ namespace Peaks360App.Utilities
             return null;
         }
 
+        public static List<string> GetLanguageNames()
+        {
+            var result = new List<string>();
+            foreach (var language in (Language[])Enum.GetValues(typeof(Language)))
+            {
+                result.Add(GetLanguageName(language));
+            }
+
+            return result;
+        }
+
+        public static string GetLanguageName(Language language)
+        {
+            switch (language)
+            {
+                case Language.English:
+                    return "English";
+                case Language.German:
+                    return "Deutsche";
+                case Language.Czech:
+                    return "Čeština";
+                case Language.French:
+                    return "Français";
+                case Language.Italian:
+                    return "Italino";
+                case Language.Spanish:
+                    return "Español";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(language), language, null);
+            }
+        }
+
+        public static Language GetLanguageCode(string languageName)
+        {
+            switch (languageName)
+            {
+                case "English":
+                    return Language.English;
+                case "Deutsche":
+                    return Language.German;
+                case "Čeština":
+                    return Language.Czech;
+                case "Français":
+                    return Language.French;
+                case "Italino":
+                    return Language.Italian;
+                case "Español":
+                    return Language.Spanish;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(languageName), languageName, null);
+            }
+        }
+
         public static Language GetDefaultLanguage()
         {
             var regionCode = RegionInfo.CurrentRegion;

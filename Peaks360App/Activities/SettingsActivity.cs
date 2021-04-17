@@ -51,7 +51,7 @@ namespace Peaks360App.Activities
         private Spinner _spinnerPhotoResolution;
         private Button _resetButton;
 
-        private readonly Language[] _listOfLanguages = { Language.Czech, Language.English, Language.French, Language.German, Language.Italian, Language.Spanish};
+        private readonly List<string> _listOfLanguages = PoiCountryHelper.GetLanguageNames();
 
         private bool _isDirty = false;
         private List<Size> _listOfCameraResolutions;
@@ -90,9 +90,9 @@ namespace Peaks360App.Activities
             _resetButton = FindViewById<Button>(Resource.Id.reset);
             _resetButton.SetOnClickListener(this);
 
-            var adapterLanguages = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfLanguages.ToList());
+            var adapterLanguages = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, _listOfLanguages);
             _spinnerLanguages.Adapter = adapterLanguages;
-            _spinnerLanguages.SetSelection(_listOfLanguages.ToList().FindIndex(i => i == _settings.Language));
+            _spinnerLanguages.SetSelection(_listOfLanguages.FindIndex(i => i == PoiCountryHelper.GetLanguageName(_settings.Language)));
             _spinnerLanguages.ItemSelected += (sender, args) => { InvalidateOptionsMenu(); };
 
             _listOfCameraResolutions = CameraUtilities.GetCameraResolutions(_settings.CameraId).Where(x => x.Width >= ScaleImageView.MIN_IMAGE_SIZE && x.Height >= ScaleImageView.MIN_IMAGE_SIZE).ToList();
@@ -113,9 +113,8 @@ namespace Peaks360App.Activities
             _seekBarCorrectionViewAngleVertical.Progress = (int)(_settings.CorrectionViewAngleVertical * 10);
             _seekBarCorrectionViewAngleVertical.ProgressChanged += SeekBarProgressChanged;
 
-            _textViewAngleHorizontal.Text = GetViewAngleText(_settings.IsViewAngleCorrection, _settings.CorrectionViewAngleHorizontal, _settings.AutomaticViewAngleHorizontal);
-            _textViewAngleVertical.Text = GetViewAngleText(_settings.IsViewAngleCorrection, _settings.CorrectionViewAngleVertical, _settings.AutomaticViewAngleVertical);
-
+            UpdateViewAngleText(_settings.CorrectionViewAngleHorizontal, _settings.CorrectionViewAngleVertical);
+            
             _switchManualGpsLocation = FindViewById<Switch>(Resource.Id.switchManualGpsLocation);
             _switchManualGpsLocation.Checked = _settings.IsManualLocation;
             _switchManualGpsLocation.SetOnClickListener(this);
@@ -193,7 +192,7 @@ namespace Peaks360App.Activities
             if(!_settings.CameraResolutionSelected.Equals(_listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition]))
                 return true;
 
-            if (_settings.Language != _listOfLanguages[_spinnerLanguages.SelectedItemPosition])
+            if (_settings.Language != PoiCountryHelper.GetLanguageCode(_listOfLanguages[_spinnerLanguages.SelectedItemPosition]))
                 return true;
 
             return false;
@@ -231,11 +230,8 @@ namespace Peaks360App.Activities
 
                 if (_switchManualViewAngle.Checked)
                 {
-                    var viewAngleHorizontal = _seekBarCorrectionViewAngleHorizontal.Progress / (float)10.0;
-                    _settings.CorrectionViewAngleHorizontal = viewAngleHorizontal;
-
-                    var viewAngleVertical = _seekBarCorrectionViewAngleVertical.Progress / (float)10.0;
-                    _settings.CorrectionViewAngleVertical = viewAngleVertical;
+                    _settings.CorrectionViewAngleHorizontal = _seekBarCorrectionViewAngleHorizontal.Progress / (float)10.0; ;
+                    _settings.CorrectionViewAngleVertical = _seekBarCorrectionViewAngleVertical.Progress / (float)10.0;
                 }
 
                 //Manual GPS location
@@ -258,7 +254,7 @@ namespace Peaks360App.Activities
                 //Altitude from elevation map
                 _settings.AltitudeFromElevationMap = _switchAltitudeFromElevationMap.Checked;
                 _settings.CameraResolutionSelected = _listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition];
-                _settings.Language = _listOfLanguages[_spinnerLanguages.SelectedItemPosition]; 
+                _settings.Language = PoiCountryHelper.GetLanguageCode(_listOfLanguages[_spinnerLanguages.SelectedItemPosition]); 
 
                 _settings.NotifySettingsChanged(ChangedData.ViewOptions);
                 AppContextLiveData.Instance.SetLocale(this);
@@ -285,16 +281,20 @@ namespace Peaks360App.Activities
 
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
         {
-            if (_settings.IsViewAngleCorrection)
+            if (_switchManualViewAngle.Checked)
             {
                 SetDirty();
-
-                var viewAngleHorizontal = _seekBarCorrectionViewAngleHorizontal.Progress / (float) 10.0;
-                _textViewAngleHorizontal.Text = GetViewAngleText(_settings.IsViewAngleCorrection, viewAngleHorizontal, _settings.AutomaticViewAngleHorizontal);
-
-                var viewAngleVertical = _seekBarCorrectionViewAngleVertical.Progress / (float)10.0;
-                _textViewAngleVertical.Text = GetViewAngleText(_settings.IsViewAngleCorrection, viewAngleVertical, _settings.AutomaticViewAngleVertical);
+                UpdateViewAngleText(_seekBarCorrectionViewAngleHorizontal.Progress / (float)10.0, _seekBarCorrectionViewAngleVertical.Progress / (float)10.0);
             }
+        }
+
+        public void UpdateViewAngleText(float horizontalCorrection, float verticalCorrection)
+        {
+            _textViewAngleHorizontal.Text = Resources.GetText(Resource.String.Common_HorizontalViewAngle) 
+                + ": " + GetViewAngleText(_switchManualViewAngle.Checked, horizontalCorrection, _settings.AutomaticViewAngleHorizontal);
+
+            _textViewAngleVertical.Text = Resources.GetText(Resource.String.Common_VerticalViewAngle) 
+                + ": " + GetViewAngleText(_switchManualViewAngle.Checked, verticalCorrection, _settings.AutomaticViewAngleVertical);
         }
 
         public void OnClick(View v)
@@ -309,14 +309,7 @@ namespace Peaks360App.Activities
 
                 case Resource.Id.switchManualViewAngle:
                     SetDirty();
-                    _textViewAngleHorizontal.Text = GetViewAngleText(
-                        _switchManualViewAngle.Checked, 
-                        _seekBarCorrectionViewAngleHorizontal.Progress / (float)10.0, 
-                        _settings.AutomaticViewAngleHorizontal);
-                    _textViewAngleVertical.Text = GetViewAngleText(
-                        _switchManualViewAngle.Checked, 
-                        _seekBarCorrectionViewAngleVertical.Progress / (float)10.0, 
-                        _settings.AutomaticViewAngleVertical);
+                    UpdateViewAngleText(_seekBarCorrectionViewAngleHorizontal.Progress / (float)10.0, _seekBarCorrectionViewAngleVertical.Progress / (float)10.0);
                     _seekBarCorrectionViewAngleHorizontal.Enabled = _switchManualViewAngle.Checked;
                     _seekBarCorrectionViewAngleVertical.Enabled = _switchManualViewAngle.Checked;
                     break;
@@ -371,7 +364,8 @@ namespace Peaks360App.Activities
         {
             var viewAngle = manual ? automaticViewAngle + correctionViewAngle : automaticViewAngle;
             var correction = manual ? correctionViewAngle : 0;
-            return $"Correction: {correction:0.0}   View angle: {viewAngle:0.0} ()";
+            var sign = correctionViewAngle < 0 ? '-' : '+';
+            return $"{viewAngle:0.0} ({sign}{correction:0.0})";
         }
 
         private void UpdateElevationDataSize()
