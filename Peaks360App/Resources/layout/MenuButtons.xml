@@ -29,7 +29,7 @@
           android:paddingLeft="10dp"
           android:paddingRight="10dp"
           android:textSize="20dp"
-          android:textColor="#EEEEFF"/>
+          android:textColor="#000000"/>
     </LinearLayout>
 
     <LinearLayout
@@ -56,7 +56,7 @@
           android:paddingLeft="10dp"
           android:paddingRight="10dp"
           android:textSize="20dp"
-          android:textColor="#EEEEFF"/>
+          android:textColor="#000000"/>
     </LinearLayout>
     
     <LinearLayout
@@ -82,7 +82,7 @@
           android:paddingLeft="10dp"
           android:paddingRight="10dp"
           android:textSize="20dp"
-          android:textColor="#EEEEFF"/>
+          android:textColor="#000000"/>
     </LinearLayout>
     
     <LinearLayout
@@ -108,7 +108,7 @@
           android:paddingLeft="10dp"
           android:paddingRight="10dp"
           android:textSize="20dp"
-          android:textColor="#EEEEFF"/>
+          android:textColor="#000000"/>
     </LinearLayout>
     
     <LinearLayout
@@ -134,7 +134,7 @@
           android:paddingLeft="10dp"
           android:paddingRight="10dp"
           android:textSize="20dp"
-          android:textColor="#EEEEFF"/>
+          android:textColor="#000000"/>
     </LinearLayout>
     
     <LinearLayout
@@ -161,6 +161,6 @@
           android:paddingLeft="10dp"
           android:paddingRight="10dp"
           android:textSize="20dp"
-          android:textColor="#EEEEFF"/>
+          android:textColor="#000000"/>
     </LinearLayout>
 </LinearLayout>
