@@ -43,7 +43,8 @@ namespace Peaks360App.Providers
             }
             catch (FeatureNotSupportedException ex)
             {
-                throw new Exception($"Compass not supported. {ex.Message}");
+                //TODO: inform user that Compass is not supported on this device
+                //throw new Exception($"Compass not supported. {ex.Message}");
             }
             catch (Exception ex)
             {
