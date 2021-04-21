@@ -104,11 +104,11 @@ namespace Peaks360App.Views.ListOfPoiView
             _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterSelectionChanged);
 
             _spinnerCountry = FindViewById<Spinner>(Resource.Id.spinnerCountry);
-            _spinnerCountry.Adapter = new CountryAdapter(this);
+            _spinnerCountry.Adapter = new CountryAdapter(this, true);
             _spinnerCountry.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterCountryChanged);
 
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
-            _spinnerCategory.Adapter = new CategoryAdapter(this);
+            _spinnerCategory.Adapter = new CategoryAdapter(this, true);
             _spinnerCategory.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterCategoryChanged);
 
             var expandButton = FindViewById<ImageButton>(Resource.Id.expandButton);

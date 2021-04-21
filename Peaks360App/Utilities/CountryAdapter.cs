@@ -12,13 +12,17 @@ namespace Peaks360App.Utilities
         Activity context;
         List<PoiCountry?> list;
 
-        public CountryAdapter(Activity _context)
+        public CountryAdapter(Activity _context, bool includeAll = false)
             : base()
         {
             this.context = _context;
             list = PoiCountryHelper.GetAllCountries().Select(x => (PoiCountry?)x)
                 .OrderBy(x => PoiCountryHelper.GetCountryName(x)).ToList();
-            list.Insert(0, null);
+            
+            if (includeAll)
+            {
+                list.Insert(0, null);
+            }
         }
 
         public override int Count
@@ -31,7 +35,7 @@ namespace Peaks360App.Utilities
             return position;
         }
 
-        public int GetPosition(PoiCountry country)
+        public int GetPosition(PoiCountry? country)
         {
             return list.IndexOf(country);
         }

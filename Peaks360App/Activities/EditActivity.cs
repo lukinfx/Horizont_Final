@@ -50,9 +50,6 @@ namespace Peaks360App.Activities
         private PoiCountry _country;
         private ElevationTile _elevationTile;
 
-        private List<PoiCategory> _poiCategories = PoiCategoryHelper.GetAllCategories();
-        private List<PoiCountry> _poiCountries = PoiCountryHelper.GetAllCountries().OrderBy(x => PoiCountryHelper.GetCountryName(x)).ToList();
-
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -91,19 +88,21 @@ namespace Peaks360App.Activities
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
             _spinnerCountry = FindViewById<Spinner>(Resource.Id.spinnerCountry);
 
-            var countryList = _poiCountries.Select(x => PoiCountryHelper.GetCountryName(x)).ToList();
-            _spinnerCountry.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, countryList);
+            _spinnerCountry.Adapter = new CountryAdapter(this);
 
-            var categoryList = _poiCategories.Select(x => PoiCategoryHelper.GetCategoryName(this.Resources, x)).ToList();
-            _spinnerCategory.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, categoryList);
+            _spinnerCategory.Adapter = new CategoryAdapter(this);
 
             _thumbnail = FindViewById<ImageView>(Resource.Id.Thumbnail);
             
             if (_id != -1)
             {
                 _item = Context.Database.GetItem(_id);
-                _spinnerCategory.SetSelection(_poiCategories.FindIndex(i => i == _item.Category));
-                _spinnerCountry.SetSelection(_poiCountries.FindIndex(i => i == _item.Country));
+
+                var categoryIndex = (_spinnerCategory.Adapter as CategoryAdapter).GetPosition(_item.Category);
+                _spinnerCategory.SetSelection(categoryIndex);
+
+                var countryIndex = (_spinnerCountry.Adapter as CountryAdapter).GetPosition(_item.Country);
+                _spinnerCountry.SetSelection(countryIndex);
                 _editTextName.Text = _item.Name;
                 _editTextAltitude.Text = $"{_item.Altitude:F0}";
                 _editTextLongitude.Text = $"{_item.Longitude:F7}".Replace(",", ".");
@@ -227,13 +226,17 @@ namespace Peaks360App.Activities
 
         private void OnCategorySelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            _category = _poiCategories[e.Position];
+            _category = (_spinnerCategory.Adapter as CategoryAdapter)[e.Position] ?? PoiCategory.Other;
             _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_category));
         }
 
         private void OnCountrySelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            _country = _poiCountries[e.Position];
+            var country = (_spinnerCountry.Adapter as CountryAdapter)[e.Position];
+            if (country.HasValue)
+            {
+                _country = country.Value;
+            }
         }
 
         private void OnSave()
@@ -291,7 +294,12 @@ namespace Peaks360App.Activities
                 {
                     var placeInfo = await PlaceNameProvider.AsyncGetPlaceName(location);
                     _editTextName.Text = placeInfo.PlaceName;
-                    _spinnerCountry.SetSelection(_poiCountries.FindIndex(i => i == placeInfo.Country));
+
+                    var countryIndex = (_spinnerCountry.Adapter as CountryAdapter).GetPosition(placeInfo.Country);
+                    if (countryIndex >= 0)
+                    {
+                        _spinnerCountry.SetSelection(countryIndex);
+                    }
                 });
             }
             catch (Exception ex)

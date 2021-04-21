@@ -12,12 +12,15 @@ namespace Peaks360App.Utilities
         Activity context;
         List<PoiCategory?> list;
 
-        public CategoryAdapter(Activity _context)
+        public CategoryAdapter(Activity _context, bool includeAll = false)
             : base()
         {
             this.context = _context;
             list = PoiCategoryHelper.GetAllCategories().Select(x => (PoiCategory?)x).ToList();
-            list.Insert(0, null);
+            if (includeAll)
+            {
+                list.Insert(0, null);
+            }
         }
 
         public override int Count
