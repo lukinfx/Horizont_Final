@@ -42,6 +42,8 @@
   <string name="Common_NoDataToDisplay">Žádné body k zobrazení.\nZměňte nastavení filtru nebo stáhněte body zájmu.</string>
 
   <string name="Common_CategoryFilter">Filtr kategorie</string>
+  <string name="Common_AllCategories">Všechny kategorie</string>
+  <string name="Common_AllCountries">Všechny země</string>
 
   <!--Menu Activity-->
   <string name="MainActivity">Zpět do fotoaparátu</string>

@@ -16,11 +16,12 @@ using Peaks360Lib.Utilities;
 using Peaks360App.Activities;
 using Peaks360App.AppContext;
 using Peaks360App.Utilities;
+using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.Views.ListOfPoiView
 {
     [Activity(Label = "PoiListActivity")]
-    public class PoiListActivity : Activity, IPoiActionListener
+    public class PoiListActivity : Activity, IPoiActionListener, View.IOnClickListener
     {
         public static int REQUEST_SHOW_POI_LIST = Definitions.BaseResultCode.POILIST_ACTIVITY;
 
@@ -31,7 +32,10 @@ namespace Peaks360App.Views.ListOfPoiView
 
         private ListView _listViewPoi;
         private Spinner _spinnerSelection;
+        private Spinner _spinnerCountry;
+        private Spinner _spinnerCategory;
         private EditText _editTextSearch;
+        private LinearLayout _expandableLayout;
 
         private PoiListItemAdapter _adapter;
         private GpsLocation _location = new GpsLocation();
@@ -93,12 +97,34 @@ namespace Peaks360App.Views.ListOfPoiView
             _editTextSearch.TextChanged += OnSearchTextChanged;
 
             _spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
-            
 
             var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, GetFilterOptions());
             _spinnerSelection.Adapter = selectionAdapter;
             _spinnerSelection.SetSelection((int)Context.SelectedPoiFilter);
             _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterSelectionChanged);
+
+            _spinnerCountry = FindViewById<Spinner>(Resource.Id.spinnerCountry);
+
+            var countryNames = PoiCountryHelper.GetAllCountries().Select(x => PoiCountryHelper.GetCountryName(x)).ToList();
+            countryNames.Insert(0, Resources.GetText(Resource.String.Common_AllCountries));
+            var countryAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, countryNames);
+            _spinnerCountry.Adapter = countryAdapter;
+            _spinnerCountry.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterCountryChanged);
+
+            _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
+
+            var categoryNames = PoiCategoryHelper.GetAllCategories().Select(x => PoiCategoryHelper.GetCategoryName(Resources, x)).ToList();
+            categoryNames.Insert(0, Resources.GetText(Resource.String.Common_AllCategories));
+            var categoryAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, categoryNames);
+            _spinnerCategory.Adapter = categoryAdapter;
+            _spinnerCategory.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterCategoryChanged);
+
+            var expandButton = FindViewById<ImageButton>(Resource.Id.expandButton);
+            if (expandButton != null)
+            {
+                expandButton.SetOnClickListener(this);
+                _expandableLayout = FindViewById<LinearLayout>(Resource.Id.expandableLayout);
+            }
         }
 
         private List<string> GetFilterOptions()
@@ -160,6 +186,18 @@ namespace Peaks360App.Views.ListOfPoiView
             _searchTimer.Start();
         }
 
+        private void OnFilterCountryChanged(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            _searchTimer.Stop();
+            _searchTimer.Start();
+        }
+
+        private void OnFilterCategoryChanged(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            _searchTimer.Stop();
+            _searchTimer.Start();
+        }
+
         private void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             OnPoiEdit(e.Position);
@@ -171,18 +209,17 @@ namespace Peaks360App.Views.ListOfPoiView
             if (selection == 0)
             {
                 Context.SelectedPoiFilter = PoiFilter.VisiblePoints;
-                _editTextSearch.Visibility = ViewStates.Invisible;
-
+                FindViewById<LinearLayout>(Resource.Id.linearLayoutSearching).Visibility = ViewStates.Gone;
             }
             else if (selection == 1)
             {
                 Context.SelectedPoiFilter = PoiFilter.MyPoints;
-                _editTextSearch.Visibility = ViewStates.Invisible;
+                FindViewById<LinearLayout>(Resource.Id.linearLayoutSearching).Visibility = ViewStates.Gone;
             }
             else if (selection == 2)
             {
                 Context.SelectedPoiFilter = PoiFilter.ByName;
-                _editTextSearch.Visibility = ViewStates.Visible;
+                FindViewById<LinearLayout>(Resource.Id.linearLayoutSearching).Visibility = ViewStates.Visible;
             }
 
             ShowData();
@@ -203,10 +240,28 @@ namespace Peaks360App.Views.ListOfPoiView
 
         private IEnumerable<PoiViewItem> GetByName()
         {
-            IEnumerable<Poi> poiList;
+            PoiCountry? country = null;
+            if (_spinnerCountry.SelectedItemPosition > 0)
+            {
+                country = PoiCountryHelper.GetAllCountries()[_spinnerCountry.SelectedItemPosition - 1];
+            }
+
+            PoiCategory? category = null;
+            if (_spinnerCategory.SelectedItemPosition > 0)
+            {
+                category = PoiCategoryHelper.GetAllCategories()[_spinnerCategory.SelectedItemPosition - 1];
+            }
+
+            string poiName = null;
             if (_editTextSearch.Text.Length > 0)
             {
-                poiList = Context.Database.FindItems(_editTextSearch.Text);
+                poiName = _editTextSearch.Text;
+            }
+
+            IEnumerable<Poi> poiList;
+            if (poiName != null || country != null || category != null)
+            {
+                poiList = Context.Database.FindItems(poiName, category, country);
             }
             else
             {
@@ -320,6 +375,24 @@ namespace Peaks360App.Views.ListOfPoiView
                 {
                     SetResult(RESULT_OK_AND_CLOSE_PARENT);
                     Finish();
+                }
+            }
+        }
+
+        public void OnClick(View v)
+        {
+            if (v.Id == Resource.Id.expandButton)
+            {
+                if (_expandableLayout != null)
+                {
+                    if (_expandableLayout.Visibility == ViewStates.Visible)
+                    {
+                        _expandableLayout.Visibility = ViewStates.Gone;
+                    }
+                    else
+                    {
+                        _expandableLayout.Visibility = ViewStates.Visible;
+                    }
                 }
             }
         }

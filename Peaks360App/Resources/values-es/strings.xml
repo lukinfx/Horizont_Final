@@ -42,6 +42,8 @@
   <string name="Common_NoDataToDisplay">No hay puntos de interés para mostrar.\nCambie la configuración del filtro o descargue datos.</string>
 
   <string name="Common_CategoryFilter">Filtro de categoría</string>
+  <string name="Common_AllCategories">Todos los países</string>
+  <string name="Common_AllCountries">Todas las categorias</string>
 
   <!--Menu Activity-->
   <string name="MainActivity">Volver a la camara</string>

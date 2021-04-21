@@ -9,10 +9,5 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/spinnerSelection" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:singleLine="true"
-            android:hint="@string/Common_Search"
-            android:id="@+id/editTextSearch" />
+
 </Toolbar>

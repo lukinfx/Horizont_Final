@@ -42,6 +42,8 @@
   <string name="Common_NoDataToDisplay">Aucun point à afficher.\nModifiez les paramètres de filtre \n ou téléchargez des données.</string>
 
   <string name="Common_CategoryFilter">Filtre de catégorie</string>
+  <string name="Common_AllCategories">Tous les pays</string>
+  <string name="Common_AllCountries">Toutes catégories</string>
 
   <!--Menu Activity-->
   <string name="MainActivity">Revenir à la caméra</string>

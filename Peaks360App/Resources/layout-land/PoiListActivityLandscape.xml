@@ -8,17 +8,92 @@
     layout="@layout/PoiListActivityToolbar" />
 
   <LinearLayout
-    android:orientation="horizontal"
-    android:minWidth="25px"
-    android:minHeight="25px"
+    android:orientation="vertical"
     android:padding="10dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/background_landscape">
-      
+
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/bg_activity"
+      android:id="@+id/linearLayoutSearching">
+
+      <LinearLayout
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+          android:padding="5dp"
+          android:orientation="vertical"
+          android:layout_weight="10"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:text="@string/Common_Name" />
+
+          <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:singleLine="true"
+            android:hint="@string/Common_Search"
+            android:id="@+id/editTextSearch" />
+        </LinearLayout>
+
+        <LinearLayout
+          android:padding="5dp"
+          android:orientation="vertical"
+          android:layout_weight="9"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+          <TextView
+            android:paddingTop="5dp"
+            android:text="@string/Common_Category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+          <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@id/spinnerCategory" />
+
+        </LinearLayout>
+
+        <LinearLayout
+          android:padding="5dp"
+          android:orientation="vertical"
+          android:layout_weight="9"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+          <TextView
+            android:paddingTop="5dp"
+            android:text="@string/Common_Country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+          <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@id/spinnerCountry" />
+
+        </LinearLayout>
+
+      </LinearLayout>
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
     <ListView
-      android:minWidth="25px"
-      android:minHeight="25px"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:id="@+id/listViewPoi"

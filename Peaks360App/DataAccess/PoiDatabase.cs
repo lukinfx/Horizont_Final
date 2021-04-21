@@ -8,6 +8,7 @@ using Peaks360Lib.Utilities;
 using Peaks360App.Utilities;
 using Peaks360Lib.Domain.ViewModel;
 using SQLite;
+using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.DataAccess
 {
@@ -184,11 +185,27 @@ namespace Peaks360App.DataAccess
             return await Database.QueryAsync<Poi>("SELECT * FROM [Poi] WHERE [Favorite] = true");
         }
 
-        public IEnumerable<Poi> FindItems(string name)
+        public IEnumerable<Poi> FindItems(string name, PoiCategory? category, PoiCountry? country)
         {
-            var nameNoAccent = name.RemoveDiacritics().ToLower();
+            var query = $"SELECT * FROM [Poi] WHERE 1=1";
 
-            return Database.QueryAsync<Poi>($"SELECT * FROM [Poi] WHERE LOWER([NameNoAccent]) LIKE '%{nameNoAccent}%'").Result;
+            if (name != null)
+            {
+                var nameNoAccent = name?.RemoveDiacritics().ToLower();
+                query += $" AND LOWER([NameNoAccent]) LIKE '%{nameNoAccent}%'";
+            }
+
+            if (country != null)
+            {
+                query += $" AND Country = {(int)country}";
+            }
+            
+            if (category != null)
+            {
+                query += $" AND Category = {(int)category}";
+            }
+
+            return Database.QueryAsync<Poi>(query).Result.Take(1000);
         }
 
         public async Task<IEnumerable<Poi>> FindItemsAsync(string name)

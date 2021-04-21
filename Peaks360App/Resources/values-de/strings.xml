@@ -42,6 +42,8 @@
   <string name="Common_NoDataToDisplay">Keine Punkte zum Anzeigen.\nÄndern Sie die Filtereinstellungen \n oder laden Sie Daten herunter.</string>
 
   <string name="Common_CategoryFilter">Kategoriefilter</string>
+  <string name="Common_AllCategories">Alle Länder</string>
+  <string name="Common_AllCountries">Alle Kategorien</string>
 
   <!--Menu Activity-->
   <string name="MainActivity">Gehe zurück zur Kamera</string>
