@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:paddingTop="5dp"
+              android:paddingBottom="5dp"
+              android:paddingLeft="10dp">
+  <ImageView
+    android:id="@id/PoiItemCategoryAsIcon"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_alignParentLeft="true"
+    android:layout_centerVertical="true"
+    android:src="@drawable/c_basic" />
+
+  <TextView
+    android:text="category name"
+    android:id="@id/PoiItemCategoryAsText"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_centerVertical="true"
+    android:paddingTop="5dp"
+    android:paddingLeft="10dp" />
+</LinearLayout>

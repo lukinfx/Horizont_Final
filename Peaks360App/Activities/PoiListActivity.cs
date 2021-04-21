@@ -104,19 +104,11 @@ namespace Peaks360App.Views.ListOfPoiView
             _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterSelectionChanged);
 
             _spinnerCountry = FindViewById<Spinner>(Resource.Id.spinnerCountry);
-
-            var countryNames = PoiCountryHelper.GetAllCountries().Select(x => PoiCountryHelper.GetCountryName(x)).ToList();
-            countryNames.Insert(0, Resources.GetText(Resource.String.Common_AllCountries));
-            var countryAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, countryNames);
-            _spinnerCountry.Adapter = countryAdapter;
+            _spinnerCountry.Adapter = new CountryAdapter(this);
             _spinnerCountry.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterCountryChanged);
 
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
-
-            var categoryNames = PoiCategoryHelper.GetAllCategories().Select(x => PoiCategoryHelper.GetCategoryName(Resources, x)).ToList();
-            categoryNames.Insert(0, Resources.GetText(Resource.String.Common_AllCategories));
-            var categoryAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, categoryNames);
-            _spinnerCategory.Adapter = categoryAdapter;
+            _spinnerCategory.Adapter = new CategoryAdapter(this);
             _spinnerCategory.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterCategoryChanged);
 
             var expandButton = FindViewById<ImageButton>(Resource.Id.expandButton);
@@ -240,17 +232,9 @@ namespace Peaks360App.Views.ListOfPoiView
 
         private IEnumerable<PoiViewItem> GetByName()
         {
-            PoiCountry? country = null;
-            if (_spinnerCountry.SelectedItemPosition > 0)
-            {
-                country = PoiCountryHelper.GetAllCountries()[_spinnerCountry.SelectedItemPosition - 1];
-            }
+            var country = (_spinnerCountry.Adapter as CountryAdapter)[_spinnerCountry.SelectedItemPosition];
 
-            PoiCategory? category = null;
-            if (_spinnerCategory.SelectedItemPosition > 0)
-            {
-                category = PoiCategoryHelper.GetAllCategories()[_spinnerCategory.SelectedItemPosition - 1];
-            }
+            var category = (_spinnerCategory.Adapter as CategoryAdapter)[_spinnerCategory.SelectedItemPosition];
 
             string poiName = null;
             if (_editTextSearch.Text.Length > 0)
@@ -259,7 +243,7 @@ namespace Peaks360App.Views.ListOfPoiView
             }
 
             IEnumerable<Poi> poiList;
-            if (poiName != null || country != null || category != null)
+            if (poiName != null || country.HasValue || category.HasValue)
             {
                 poiList = Context.Database.FindItems(poiName, category, country);
             }

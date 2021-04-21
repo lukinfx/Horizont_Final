@@ -24,15 +24,15 @@
         android:background="@drawable/bg_activity"
         android:id="@+id/linearLayoutSearching">
 
-        <TextView
+        <!--<TextView
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:text="@string/Common_Name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"/>-->
 
         <LinearLayout
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:paddingRight="5dp"
             android:paddingBottom="5dp"
             android:orientation="horizontal"
@@ -56,29 +56,31 @@
           </LinearLayout>
           <LinearLayout
             android:orientation="vertical"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:id="@+id/expandableLayout">
-              <TextView
+              <!--<TextView
                 android:paddingTop="5dp"
                 android:text="@string/Common_Category"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"/>-->
               <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@id/spinnerCategory" />
-              <TextView
+              <!--<TextView
                 android:paddingTop="5dp"
                 android:text="@string/Common_Country"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"/>-->
               <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@id/spinnerCountry" />
+
           </LinearLayout>
       </LinearLayout>
 

@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:paddingTop="5dp"
+              android:paddingBottom="5dp"
+              android:paddingLeft="10dp">
+  <LinearLayout
+    android:orientation="horizontal"
+    android:padding="1dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#c0000000"
+    android:id="@+id/PoiItemCountryIconFrame">
+    <ImageView
+      android:id="@+id/PoiItemCountryAsIcon"
+      android:layout_width="34dp"
+      android:layout_height="20dp"
+      android:layout_alignParentLeft="true"
+      android:layout_centerVertical="true"
+      android:src="@drawable/flag_of_Unknown" />
+  </LinearLayout>
+  <TextView
+    android:text="country name"
+    android:id="@+id/PoiItemCountryAsText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:paddingLeft="10dp" />
+</LinearLayout>

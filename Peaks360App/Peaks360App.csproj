@@ -119,6 +119,7 @@
     <Compile Include="Tasks\FileDownload.cs" />
     <Compile Include="Tasks\PoiFileImport.cs" />
     <Compile Include="Utilities\CameraUtilities.cs" />
+    <Compile Include="Utilities\CategoryAdapter.cs" />
     <Compile Include="Utilities\DownloadedElevationDataAdapter.cs" />
     <Compile Include="Utilities\HeadingStabilizator2.cs" />
     <Compile Include="Utilities\ImageCopySaver.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Views\ErrorDialog.cs" />
     <Compile Include="Activities\PoiListActivity.cs" />
     <Compile Include="Views\ScaleImage\ScaleImageView.cs" />
+    <Compile Include="Utilities\CountryAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -972,6 +974,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\tutorial_photoedit_tilt.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\CountryItem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\CategoryItem.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
