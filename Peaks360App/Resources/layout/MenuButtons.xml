@@ -67,32 +67,6 @@
       android:gravity="center_vertical"
       android:padding="5dp"
       android:background="@drawable/bg_activity"
-      android:id="@+id/downloadDataLinearLayout">
-        <ImageButton
-          android:src="@drawable/ic_download"
-          android:layout_width="50dp"
-          android:layout_height="50dp"
-          android:scaleType="fitCenter"
-          android:background="#00000000"
-          android:id="@+id/buttonDownload" />
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/DownloadActivity"
-          android:paddingLeft="10dp"
-          android:paddingRight="10dp"
-          android:textSize="20dp"
-          android:textColor="#000000"/>
-    </LinearLayout>
-    
-    <LinearLayout
-      android:orientation="horizontal"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:gravity="center_vertical"
-      android:padding="5dp"
-      android:background="@drawable/bg_activity"
       android:id="@+id/photoGalleryLinearLayout">
         <ImageButton
           android:src="@drawable/ic_gallery"
@@ -110,7 +84,33 @@
           android:textSize="20dp"
           android:textColor="#000000"/>
     </LinearLayout>
-    
+
+    <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:gravity="center_vertical"
+      android:padding="5dp"
+      android:background="@drawable/bg_activity"
+      android:id="@+id/downloadDataLinearLayout">
+        <ImageButton
+          android:src="@drawable/ic_download"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:scaleType="fitCenter"
+          android:background="#00000000"
+          android:id="@+id/buttonDownload" />
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/DownloadActivity"
+          android:paddingLeft="10dp"
+          android:paddingRight="10dp"
+          android:textSize="20dp"
+          android:textColor="#000000"/>
+    </LinearLayout>
+
     <LinearLayout
       android:orientation="horizontal"
       android:layout_width="match_parent"
