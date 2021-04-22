@@ -41,7 +41,6 @@ namespace Peaks360App.Activities
         private GestureDetector _gestureDetector;
 
         private SeekBar _distanceSeekBar;
-        private SeekBar _heightSeekBar;
         protected LinearLayout _activityControlBar;
 
         //for gesture detection
@@ -77,7 +76,6 @@ namespace Peaks360App.Activities
         }
 
         protected int MaxDistance { get { return _distanceSeekBar.Progress; } }
-        protected int MinHeight { get { return _heightSeekBar.Progress; } }
         protected void InitializeBaseActivityUI()
         {
             AppContextLiveData.Instance.SetLocale(this);
@@ -92,9 +90,6 @@ namespace Peaks360App.Activities
             _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
             _distanceSeekBar.Progress = Context.Settings.MaxDistance;
             _distanceSeekBar.ProgressChanged += OnMaxDistanceChanged;
-            _heightSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarHeight);
-            _heightSeekBar.Progress = Context.Settings.MinAltitute;
-            _heightSeekBar.ProgressChanged += OnMinAltitudeChanged;
 
             _poiInfo = FindViewById<LinearLayout>(Resource.Id.mainActivityPoiInfo);
             _poiInfo.SetOnClickListener(this);
@@ -182,12 +177,6 @@ namespace Peaks360App.Activities
 
         public virtual void OnTiltChanged()
         {
-        }
-
-        private void OnMinAltitudeChanged(object sender, SeekBar.ProgressChangedEventArgs e)
-        {
-            ShowMaxDistanceMinAltitudeText();
-            Context.Settings.MinAltitute = _heightSeekBar.Progress;
         }
 
         private void OnMaxDistanceChanged(object sender, SeekBar.ProgressChangedEventArgs e)
@@ -355,7 +344,7 @@ namespace Peaks360App.Activities
 
         protected void ShowMaxDistanceMinAltitudeText()
         {
-            _textViewNotification.Text = String.Format(_maxDistanceMinAltitudeTemplate, _heightSeekBar.Progress.ToString(), _distanceSeekBar.Progress.ToString());
+            _textViewNotification.Text = String.Format(_maxDistanceMinAltitudeTemplate, _distanceSeekBar.Progress.ToString());
             _textViewNotification.Visibility = ViewStates.Visible;
         }
 

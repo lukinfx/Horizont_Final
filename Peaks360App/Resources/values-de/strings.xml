@@ -75,7 +75,7 @@
   <string name="Main_ErrorUnknownAltitude">Es ist nicht möglich, ein Höhenprofil ohne bekannte Höhe zu erstellen.</string>
   <string name="Main_GeneratingElevationProfile">Höhenprofil generieren...</string>
   <string name="Main_WaitingForGps">Warten auf GPS-Standort...</string>
-  <string name="Main_MaxDistanceMinAltitudeTemplate">Höhe über {0}m\nEntfernung bis zu {1}km</string>
+  <string name="Main_MaxDistanceMinAltitudeTemplate">Entfernung bis zu {0}km</string>
 
   <!--PoiListActivity-->
   <string name="PoiListFilter_Visible">Sichtbarer</string>

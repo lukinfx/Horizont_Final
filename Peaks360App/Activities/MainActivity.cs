@@ -183,7 +183,6 @@ namespace Peaks360App
                             menuActivityIntent.PutExtra("longitude", Context.MyLocation.Longitude);
                             menuActivityIntent.PutExtra("altitude", Context.MyLocation.Altitude);
                             menuActivityIntent.PutExtra("maxDistance", MaxDistance);
-                            menuActivityIntent.PutExtra("minAltitude", MinHeight);
                             StartActivity(menuActivityIntent);
                             break;
                         }

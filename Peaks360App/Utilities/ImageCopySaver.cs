@@ -13,7 +13,7 @@ namespace Peaks360App.Utilities
 {
     public class ImageCopySaver
     {
-        public static PhotoData Save(Bitmap dstBmp, Rect cropRect, PhotoData photodata, int minHeight, int maxDistance, IAppContext context)
+        public static PhotoData Save(Bitmap dstBmp, Rect cropRect, PhotoData photodata, int maxDistance, IAppContext context)
         {
             var croppedBitmap = Bitmap.CreateBitmap(dstBmp, cropRect.Left, cropRect.Top, cropRect.Width(), cropRect.Height());
 
@@ -51,7 +51,7 @@ namespace Peaks360App.Utilities
                 RightTiltCorrector = rightCorrectionInDegrees + totalCorrectionInDegrees,
                 PictureWidth = croppedBitmap.Width,
                 PictureHeight = croppedBitmap.Height,
-                MinAltitude = minHeight,
+                MinAltitude = 0,
                 MaxDistance = maxDistance,
                 FavouriteFilter = context.ShowFavoritesOnly,
                 ShowElevationProfile = context.Settings.ShowElevationProfile

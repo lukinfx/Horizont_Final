@@ -543,7 +543,6 @@ namespace Peaks360App.Activities
             _photodata.PictureHeight = dstBmp.Height;
 
             _photodata.MaxDistance = MaxDistance;
-            _photodata.MinAltitude = MinHeight;
             _photodata.ViewAngleHorizontal = Context.ViewAngleHorizontal;
             _photodata.ViewAngleVertical = Context.ViewAngleVertical;
             _photodata.LeftTiltCorrector = Context.LeftTiltCorrector;
@@ -559,7 +558,7 @@ namespace Peaks360App.Activities
 
         private void SaveCopy()
         {
-            var newPhotodata = ImageCopySaver.Save(dstBmp, photoView.CroppingRectangle, _photodata, MinHeight, MaxDistance, Context);
+            var newPhotodata = ImageCopySaver.Save(dstBmp, photoView.CroppingRectangle, _photodata, MaxDistance, Context);
             AppContextLiveData.Instance.PhotosModel.InsertItem(newPhotodata);
 
             ReInitialize(newPhotodata);

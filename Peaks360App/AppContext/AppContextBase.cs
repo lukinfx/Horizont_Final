@@ -164,7 +164,7 @@ namespace Peaks360App.AppContext
                 if (poiData is null)
                 {
                     var poiList = Database.GetItems(MyLocation, Settings.MaxDistance);
-                    PoiData = new PoiViewItemList(poiList, MyLocation, Settings.MaxDistance, Settings.MinAltitute, ShowFavoritesOnly, Settings.Categories);
+                    PoiData = new PoiViewItemList(poiList, MyLocation, Settings.MaxDistance, ShowFavoritesOnly, Settings.Categories);
                 }
                 else
                 {

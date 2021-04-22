@@ -19,7 +19,7 @@ namespace Peaks360Lib.Domain.ViewModel
         /// <param name="location">My current location</param>
         /// <param name="maxDistance">Max distance in kilometers</param>
         /// <param name="minAltitude">Min altitude (progress 100 = 1600m)</param>
-        public PoiViewItemList(IEnumerable<Poi> poiList, GpsLocation myLocation, double maxDistance, double minAltitude, bool favourite, List<PoiCategory> categories)
+        public PoiViewItemList(IEnumerable<Poi> poiList, GpsLocation myLocation, double maxDistance, bool favourite, List<PoiCategory> categories)
         {
             foreach (var item in poiList)
             {
@@ -33,9 +33,6 @@ namespace Peaks360Lib.Domain.ViewModel
                     continue;
 
                 if (poiViewItem.GpsLocation.Distance > maxDistance * 1000)
-                    continue;
-
-                if (poiViewItem.Poi.Altitude > 0.1 && poiViewItem.Poi.Altitude < minAltitude)
                     continue;
 
                 if (!categories.Contains(poiViewItem.Poi.Category))
