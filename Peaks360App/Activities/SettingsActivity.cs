@@ -126,6 +126,8 @@ namespace Peaks360App.Activities
             _editTextLongitude = FindViewById<EditText>(Resource.Id.editTextLongitude);
             _editTextAltitude = FindViewById<EditText>(Resource.Id.editTextAltitude);
             _editTextLatitude.TextChanged += ManualGpsLocationChanged;
+            _editTextLongitude.TextChanged += ManualGpsLocationChanged;
+            _editTextAltitude.TextChanged += ManualGpsLocationChanged;
 
             EnableOrDisableGpsLocationInputs(_settings.IsManualLocation);
             InitializeGpsLocationInputs(_settings.IsManualLocation ? _settings.ManualLocation : AppContextLiveData.Instance.MyLocation);
