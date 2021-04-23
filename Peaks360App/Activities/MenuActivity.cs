@@ -10,6 +10,7 @@ using Peaks360Lib.Domain.Models;
 using Peaks360App.Views.ListOfPoiView;
 using Peaks360App.AppContext;
 using Peaks360App.Services;
+using Xamarin.Essentials;
 using static Android.Views.View;
 using View = Android.Views.View;
 
@@ -88,7 +89,11 @@ namespace Peaks360App.Activities
                 var versionNumber = DependencyService.Get<IAppVersionService>().GetVersionNumber();
                 
                 var text = String.Format(Resources.GetText(Resource.String.Menu_StatusBarLine1Template), versionNumber, poiCount);
-                FindViewById<TextView>(Resource.Id.textViewStatusLine).Text = text;
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    FindViewById<TextView>(Resource.Id.textViewStatusLine).Text = text;
+                });
+                
             });
         }
 
