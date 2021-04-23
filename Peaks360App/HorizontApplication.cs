@@ -16,8 +16,8 @@ namespace Peaks360App
         public override void OnCreate()
         {
             base.OnCreate();
-            AppContextLiveData.Instance.Initialize(Context);
-            AppContextLiveData.Instance.SetLocale(this);
+            //AppContextLiveData.Instance.Initialize(Context);
+            //AppContextLiveData.Instance.SetLocale(this);
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Peaks360App.Activities
             }
             else
             {
-                ShowPrivacyPolicy();
+                InitializeContext();
             }
         }
 
@@ -86,8 +86,17 @@ namespace Peaks360App.Activities
             }
         }
 
+        private void InitializeContext()
+        {
+            AppContextLiveData.Instance.Initialize(this);
+            AppContextLiveData.Instance.SetLocale(this);
+
+            ShowPrivacyPolicy();
+        }
+
         private void ShowPrivacyPolicy()
         {
+
             if (Context.Settings.IsPrivacyPolicyApprovementNeeded())
             {
                 Intent privacyPolicyActivityIntent = new Intent(this, typeof(PrivacyPolicyActivity));
@@ -138,7 +147,7 @@ namespace Peaks360App.Activities
             switch(requestCode)
             {
                 case REQUEST_PERMISSIONS:
-                    ShowPrivacyPolicy();
+                    InitializeContext();
                     break;
                 case REQUEST_PRIVACY_POLICY:
                     CheckGpsAvailable();
