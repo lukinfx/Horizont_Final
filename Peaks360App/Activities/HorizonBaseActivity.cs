@@ -121,16 +121,27 @@ namespace Peaks360App.Activities
         protected void Start()
         {
             //Finnaly setup OnDataChanged listener and Load all data
-            Context.DataChanged += DataChanged;
-            Context.HeadingChanged += HeadingChanged;
+            //Context.DataChanged += DataChanged;
+            //Context.HeadingChanged -= HeadingChanged;
+
             ElevationProfileProvider.Instance().ElevationProfileChanged += OnElevationProfileChanged;
             UpdateStatusBar();
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            Context.DataChanged -= DataChanged;
+            Context.HeadingChanged -= HeadingChanged;
         }
 
         protected override void OnResume()
         {
             base.OnResume();
             _maxDistanceMinAltitudeTemplate = Resources.GetText(Resource.String.Main_MaxDistanceMinAltitudeTemplate);
+            
+            Context.DataChanged += DataChanged;
+            Context.HeadingChanged += HeadingChanged;
         }
 
         protected override void OnDestroy()

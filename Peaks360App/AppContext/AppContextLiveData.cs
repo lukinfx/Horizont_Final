@@ -181,7 +181,8 @@ namespace Peaks360App.AppContext
                 }
 
                 //keep old location if new location has no altitude
-                if (!Utilities.GpsUtils.HasAltitude(myLocation) || Utilities.GpsUtils.HasAltitude(newLocation))
+                if (!Utilities.GpsUtils.HasAltitude(myLocation) 
+                    || (Utilities.GpsUtils.HasAltitude(newLocation) && Math.Abs(newLocation.Altitude-myLocation.Altitude)>100))
                 {
                     myLocation.Altitude = newLocation.Altitude;
                     needRefresh = true;

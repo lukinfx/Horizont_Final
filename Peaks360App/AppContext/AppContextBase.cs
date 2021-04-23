@@ -191,6 +191,7 @@ namespace Peaks360App.AppContext
         {
             switch(e.ChangedData)
             {
+                case ChangedData.GpsLocation:
                 case ChangedData.PoiFilterSettings:
                     ReloadData();
                     break;

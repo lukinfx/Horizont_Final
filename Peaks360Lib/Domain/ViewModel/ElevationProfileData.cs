@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Extensions;
@@ -72,6 +73,9 @@ namespace Peaks360Lib.Domain.ViewModel
         {
             //If me move more than 100m
             if (GpsUtils.QuickDistance(newLocation, MyLocation) > 0.1)
+                return false;
+            
+            if (Math.Abs(newLocation.Altitude - MyLocation.Altitude) > 100)
                 return false;
 
             if (newMaxDistance > MaxDistance)
