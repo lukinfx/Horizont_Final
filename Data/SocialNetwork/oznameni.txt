@@ -1,0 +1,3 @@
+Ahoj vám všem. Mám na vás malou prosbu. Dělali jsme s Lukášem (synem) takovou jednu aplikaci na Android a potřebovali by jsme ji ještě předtím, než ji pustíme oficiálně do světa, trochu otestovat na různých zařízeních. Jedná se o aplikaci, kterou podle nás ocení všichni kdo se rádi toulají, zejména pak po horách. A pokud navíc milujete daleké výhledy do okolní krajiny, pak je to aplikace přesně pro vás. Aplikace je už nyní volně ke stažení na Google Play (viz odkaz níže) a vyžaduje Android 7.0 nebo vyšší.
+Prosím, vyzkoušejte a pokud možno nám dejte vědět, jak to šlape u vás. Moc díky předem.
+https://play.google.com/store/apps/details?id=cz.fdevstudio.peaks360
