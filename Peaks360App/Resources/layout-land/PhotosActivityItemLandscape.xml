@@ -1,0 +1,152 @@
+<LinearLayout 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:paddingVertical="5dp">
+
+  <LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="20dp"
+    android:background="@drawable/bg_activity_light"
+    android:id="@+id/linearLayoutItem">
+
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="12dp"
+    android:paddingBottom="10dp">
+
+    <ImageView
+        android:src="@drawable/i_photo"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:paddingRight="5dp" />
+      <TextView
+        android:id="@+id/textViewTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/Thumbnail"
+        android:textColor="#000000"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:typeface="sans"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="Lysa hora -> Radhost"/>
+  </LinearLayout>
+
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="#c8ff00" />
+
+  <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="12dp">
+
+      <LinearLayout 
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="3dp"
+        android:background="@drawable/bg_frame">
+          <ImageView
+            android:id="@+id/Thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:layout_centerVertical="true" />
+      </LinearLayout>
+
+    <LinearLayout 
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:paddingHorizontal="20dp"
+      android:layout_weight="1"
+      android:gravity="right"
+      android:orientation="vertical">
+
+      <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/Thumbnail"
+        android:paddingTop="3dp"
+        android:textColor="#000000"
+        android:typeface="sans"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="11sp" 
+        android:text="2017-02-08 13:58:40"/>
+      <TextView
+        android:id="@+id/textViewAltitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewDate"
+        android:layout_toRightOf="@id/Thumbnail"
+        android:textColor="#000000"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="11sp" 
+        android:text="altitude and direction"/>
+      <TextView
+        android:id="@+id/textViewLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewDate"
+        android:layout_toRightOf="@id/Thumbnail"
+        android:textColor="#000000"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="11sp" 
+        android:text="location"/>
+
+
+      <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:paddingBottom="5dp">
+
+        <ImageButton
+          android:src="@android:drawable/ic_menu_edit"
+          android:scaleType="fitCenter"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:id="@+id/photoEditButton"
+          android:background="#00000000"/>
+        <ImageButton
+          android:src="@drawable/f_heart_empty"
+          android:scaleType="fitCenter"
+          android:layout_width="30dp"
+          android:layout_height="40dp"
+          android:id="@+id/favouriteButton"
+          android:background="#00000000"/>
+        <ImageButton
+          android:src="@android:drawable/ic_menu_delete"
+          android:scaleType="fitCenter"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:id="@+id/photoDeleteButton"
+          android:background="#00000000"/>
+      </LinearLayout>
+
+    </LinearLayout>
+
+
+
+  </LinearLayout>
+
+
+  </LinearLayout>
+</LinearLayout>

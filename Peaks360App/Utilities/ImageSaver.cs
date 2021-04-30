@@ -31,8 +31,8 @@ namespace Peaks360App.Utilities
             var imgWidth = _context.IsPortrait ? _Image.Height : _Image.Width;
             var imgHeight = _context.IsPortrait ? _Image.Width : _Image.Height;
 
-            var thumbWidth = _context.IsPortrait ? 100 : 150;
-            var thumbHeight = _context.IsPortrait ? 150 : 100;
+            var thumbWidth = _context.IsPortrait ? 200 : 300;
+            var thumbHeight = _context.IsPortrait ? 300 : 200;
 
             ByteBuffer buffer = _Image.GetPlanes()[0].Buffer;
             byte[] bytes = new byte[buffer.Remaining()];
@@ -42,7 +42,7 @@ namespace Peaks360App.Utilities
             var filepath = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), filename);
 
             var file = new Java.IO.File(filepath);
-            byte[] thumbnail = ImageResizer.ResizeImageAndroid(bytes, thumbWidth, thumbHeight, 70 );
+            byte[] thumbnail = ImageResizer.ResizeImageAndroid(bytes, thumbWidth, thumbHeight, 80 );
 
             using (var output = new Java.IO.FileOutputStream(file))
             {

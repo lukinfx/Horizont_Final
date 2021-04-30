@@ -18,8 +18,7 @@
     <ListView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:id="@+id/listViewPhotos" 
-      android:background="@drawable/bg_activity" />
+      android:id="@+id/listViewPhotos" />
 
   </LinearLayout>>
 </LinearLayout>

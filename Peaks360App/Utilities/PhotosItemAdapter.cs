@@ -6,6 +6,7 @@ using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using Peaks360Lib.Domain.Models;
+using Xamarin.Essentials;
 
 namespace Peaks360App.Utilities
 {
@@ -84,7 +85,14 @@ namespace Peaks360App.Utilities
             View view = convertView;
             if (view == null)
             {
-                view = _context.LayoutInflater.Inflate(Resource.Layout.PhotosActivityItem, parent, false);
+                if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+                {
+                    view = _context.LayoutInflater.Inflate(Resource.Layout.PhotosActivityItem, parent, false);
+                }
+                else
+                {
+                    view = _context.LayoutInflater.Inflate(Resource.Layout.PhotosActivityItemLandscape, parent, false);
+                }
             }
 
             view.Tag = position;
