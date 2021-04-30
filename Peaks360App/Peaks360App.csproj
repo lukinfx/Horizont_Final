@@ -122,7 +122,6 @@
     <Compile Include="Utilities\CategoryAdapter.cs" />
     <Compile Include="Utilities\DownloadedElevationDataAdapter.cs" />
     <Compile Include="Utilities\HeadingStabilizator2.cs" />
-    <Compile Include="Utilities\ImageCopySaver.cs" />
     <Compile Include="Utilities\ImageResizer.cs" />
     <Compile Include="Utilities\DownloadCountryAdapter.cs" />
     <Compile Include="Utilities\DownloadItemAdapter.cs" />

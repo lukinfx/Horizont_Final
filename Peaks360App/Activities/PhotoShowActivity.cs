@@ -570,7 +570,7 @@ namespace Peaks360App.Activities
 
         private void SaveCopy()
         {
-            var newPhotodata = ImageCopySaver.Save(dstBmp, photoView.CroppingRectangle, _photodata, MaxDistance, Context);
+            var newPhotodata = ImageSaver.SaveCopy(dstBmp, photoView.CroppingRectangle, _photodata, MaxDistance, Context);
             AppContextLiveData.Instance.PhotosModel.InsertItem(newPhotodata);
 
             ReInitialize(newPhotodata);
