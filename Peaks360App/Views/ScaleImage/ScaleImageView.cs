@@ -125,6 +125,11 @@ namespace Peaks360App.Views.ScaleImage
             m_Width = r - l;
             m_Height = b - t;
 
+            if (Drawable == null)
+            {
+                return base.SetFrame(l, t, r, b);
+            }
+
             bool resetScale = false;
             if (m_IntrinsicWidth != Drawable.IntrinsicWidth || m_IntrinsicHeight != Drawable.IntrinsicHeight)
             {

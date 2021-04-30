@@ -69,14 +69,9 @@ namespace Peaks360App.Activities
 
         void InitializeAppContext(PhotoData photodata)
         {
-            Log.WriteLine(LogPriority.Debug, TAG, $"Heading {photodata.Heading:F0}");
-
-            /*if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
-            {
-                heading += 90;
-            }*/
-
             var loc = new GpsLocation(photodata.Longitude, photodata.Latitude, photodata.Altitude);
+            
+            /* Fetching altitude from elevation map if available (this is not needed probably)
             if (AppContextLiveData.Instance.Settings.AltitudeFromElevationMap)
             {
                 var elevationTile = new ElevationTile(loc);
@@ -87,7 +82,7 @@ namespace Peaks360App.Activities
                         loc.Altitude = elevationTile.GetElevation(loc);
                     }
                 }
-            }
+            }*/
 
             _context = new AppContextStaticData(loc, new PlaceInfo(), photodata.Heading);
             _context.LeftTiltCorrector = photodata.LeftTiltCorrector ?? 0;
@@ -115,6 +110,7 @@ namespace Peaks360App.Activities
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Log.WriteLine(LogPriority.Debug, TAG, "OnCreate - Enter");
             base.OnCreate(savedInstanceState);
             AppContextLiveData.Instance.SetLocale(this);
 
@@ -161,23 +157,23 @@ namespace Peaks360App.Activities
             var pictureSize = new System.Drawing.Size(GetPictureWidth(), GetPictureHeight());
             _compassView.Initialize(Context, false, pictureSize);
 
-            if (_photodata.Thumbnail != null)
-            {
-                var bitmap = BitmapFactory.DecodeByteArray(_photodata.Thumbnail, 0, _photodata.Thumbnail.Length);
-                MainThread.BeginInvokeOnMainThread(() => { photoView.SetImageBitmap(bitmap); });
-            }
-
             var delayedAction = new System.Threading.Timer(o => { LoadImageAndProfile(); },
                 null, TimeSpan.FromSeconds(0.1), TimeSpan.FromMilliseconds(-1));
 
             Start();
+            Log.WriteLine(LogPriority.Debug, TAG, "OnCreate - Exit");
         }
 
         protected override void OnStart()
         {
             base.OnStart();
 
-            Android.Content.Context ctx = this;
+            /* Display thumbnail first (this is not needed probably)
+            if (_photodata.Thumbnail != null)
+            {
+                var bitmap = BitmapFactory.DecodeByteArray(_photodata.Thumbnail, 0, _photodata.Thumbnail.Length);
+                MainThread.BeginInvokeOnMainThread(() => { photoView.SetImageBitmap(bitmap); });
+            }*/
 
             if (_firstStart)
             {
