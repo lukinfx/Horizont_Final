@@ -21,7 +21,7 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_activity"
+        android:background="@drawable/bg_activity_light"
         android:id="@+id/linearLayoutSearching">
 
         <!--<TextView
@@ -87,8 +87,7 @@
       <ListView
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:id="@+id/listViewPoi"
-          android:background="@drawable/bg_activity"/>
+          android:id="@+id/listViewPoi" />
 
     </LinearLayout>
 </LinearLayout>

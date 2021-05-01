@@ -95,17 +95,24 @@ namespace Peaks360App.Utilities
                 }
             }
 
-            view.Tag = position;
-
-            view.SetOnClickListener(this);
             PhotoData item = this[position];
 
             _thumbnailImageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
 
             view.FindViewById<TextView>(Resource.Id.textViewTag).Text = item.Tag;
-            view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.Datetime.ToString();
-            view.FindViewById<TextView>(Resource.Id.textViewAltitude).Text = $"{Math.Round(item.Altitude)} m | {Math.Round(item.Heading)}°"; 
-            view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = GpsUtils.LocationAsString(item.Latitude, item.Longitude);
+            
+            view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.Datetime.ToShortDateString();
+            view.FindViewById<TextView>(Resource.Id.textViewTime).Text = item.Datetime.ToLongTimeString();
+            view.FindViewById<TextView>(Resource.Id.textViewAltitude).Text = $"{Math.Round(item.Altitude)}m ";
+            view.FindViewById<TextView>(Resource.Id.textViewDirection).Text = $"{Math.Round(GpsUtils.Normalize360(item.Heading))}°";
+
+            var linearLayoutThumbnail = view.FindViewById<LinearLayout>(Resource.Id.linearLayoutThumbnail);
+            linearLayoutThumbnail.SetOnClickListener(this);
+            linearLayoutThumbnail.Tag = position;
+
+            var linearLayoutName = view.FindViewById<LinearLayout>(Resource.Id.linearLayoutName);
+            linearLayoutName.SetOnClickListener(this);
+            linearLayoutName.Tag = position;
 
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.photoDeleteButton);
             deleteButton.SetOnClickListener(this);
@@ -147,10 +154,11 @@ namespace Peaks360App.Utilities
                 case Resource.Id.photoDeleteButton:
                     _poiActionListener.OnPhotoDeleteRequest(position);
                     break;
-                case Resource.Id.linearLayoutItem:
+                case Resource.Id.linearLayoutThumbnail:
                     _poiActionListener.OnPhotoEditRequest(position);
                     break;
                 case Resource.Id.photoEditButton:
+                case Resource.Id.linearLayoutName:
                     _poiActionListener.OnTagEditRequest(position);
                     break;
                 case Resource.Id.favouriteButton:

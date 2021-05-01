@@ -3,47 +3,16 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:paddingVertical="5dp"
+  android:paddingVertical="2dp"
   android:id="@+id/linearLayoutItem">
 
   <LinearLayout 
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="10dp"
-    android:paddingHorizontal="20dp"
+    android:paddingVertical="5dp"
+    android:paddingHorizontal="15dp"
     android:background="@drawable/bg_activity_light">
-
-    <LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingTop="12dp"
-    android:paddingBottom="10dp">
-
-    <ImageView
-        android:src="@drawable/i_photo"
-        android:layout_width="25dp"
-        android:layout_height="20dp"
-        android:paddingRight="5dp" />
-      <TextView
-        android:id="@+id/textViewTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/Thumbnail"
-        android:textColor="#000000"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        android:typeface="sans"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:text="Lysa hora -> Radhost"/>
-  </LinearLayout>
-
-  <View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="#c8ff00" />
 
   <LinearLayout 
     android:layout_width="match_parent"
@@ -51,72 +20,150 @@
     android:orientation="horizontal"
     android:paddingVertical="12dp">
 
-      <LinearLayout 
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="3dp"
-        android:background="@drawable/bg_frame">
-          <ImageView
-            android:id="@+id/Thumbnail"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:layout_centerVertical="true" />
-      </LinearLayout>
+    <LinearLayout 
+      android:id="@+id/linearLayoutThumbnail"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="3"
+      android:orientation="horizontal"
+      android:padding="3dp"
+      android:background="@drawable/bg_frame">
+        <ImageView
+          android:id="@+id/Thumbnail"
+          android:layout_width="match_parent"
+          android:layout_height="150dp"
+          android:scaleType="centerCrop"
+          android:layout_centerVertical="true" />
+    </LinearLayout>
 
     <LinearLayout 
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
       android:paddingHorizontal="20dp"
-      android:layout_weight="1"
-      android:gravity="right"
+      android:layout_weight="2"
       android:orientation="vertical">
 
-      <TextView
-        android:id="@+id/textViewDate"
-        android:layout_width="wrap_content"
+      <LinearLayout 
+        android:id="@+id/linearLayoutName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/Thumbnail"
-        android:paddingTop="3dp"
-        android:textColor="#000000"
-        android:typeface="sans"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:textSize="11sp" 
-        android:text="2017-02-08 13:58:40"/>
-      <TextView
-        android:id="@+id/textViewAltitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewDate"
-        android:layout_toRightOf="@id/Thumbnail"
-        android:textColor="#000000"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:textSize="11sp" 
-        android:text="altitude and direction"/>
-      <TextView
-        android:id="@+id/textViewLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewDate"
-        android:layout_toRightOf="@id/Thumbnail"
-        android:textColor="#000000"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:textSize="11sp" 
-        android:text="location"/>
+        android:orientation="horizontal"
+        android:paddingTop="2dp"
+        android:paddingBottom="8dp">
 
+        <ImageView
+          android:src="@drawable/i_photo"
+          android:layout_width="25dp"
+          android:layout_height="20dp"
+          android:paddingRight="5dp" />
+        <TextView
+          android:id="@+id/textViewTag"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_toRightOf="@id/Thumbnail"
+          android:textColor="#000000"
+          android:textSize="14dp"
+          android:textStyle="bold"
+          android:typeface="sans"
+          android:singleLine="true"
+          android:ellipsize="end"
+          android:text="Lysa hora -> Radhost"/>
+      </LinearLayout>
+
+      <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#606060" />
+
+      <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:paddingTop="10dp">
+          <ImageView
+            android:src="@drawable/i_calendar"
+            android:layout_width="17dp"
+            android:layout_height="17dp"/>
+          <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:typeface="sans"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="11sp" 
+            android:paddingLeft="3dp"
+            android:paddingTop="1dp"
+            android:paddingRight="10dp"
+            android:textAlignment="viewEnd"
+            android:text="2017-02-08"/>
+          <ImageView
+            android:src="@drawable/i_clock"
+            android:layout_width="17dp"
+            android:layout_height="17dp"/>
+          <TextView
+            android:id="@+id/textViewTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="11sp" 
+            android:paddingLeft="3dp"
+            android:paddingTop="1dp"
+            android:textAlignment="viewEnd"
+            android:text="13:58:40"/>
+        </LinearLayout>
+
+        <LinearLayout 
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:gravity="right"
+          android:paddingTop="5dp">
+          <ImageView
+            android:src="@drawable/i_elevation"
+            android:layout_width="17dp"
+            android:layout_height="17dp"/>
+          <TextView
+            android:id="@+id/textViewAltitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="11sp" 
+            android:paddingLeft="3dp"
+            android:paddingTop="1dp"
+            android:paddingRight="10dp"
+            android:textAlignment="viewEnd"
+            android:text="123 m"/>
+          <ImageView
+            android:src="@drawable/i_compass"
+            android:layout_width="17dp"
+            android:layout_height="17dp"/>
+          <TextView
+            android:id="@+id/textViewDirection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="11sp" 
+            android:paddingLeft="3dp"
+            android:paddingTop="1dp"
+            android:textAlignment="viewEnd"
+            android:text="123"/>
+        </LinearLayout>
 
       <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="20dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="right"
-        android:paddingBottom="5dp">
+        android:paddingTop="28dp">
 
         <ImageButton
           android:src="@android:drawable/ic_menu_edit"

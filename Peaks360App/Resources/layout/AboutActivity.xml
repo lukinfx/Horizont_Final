@@ -26,7 +26,7 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:padding="10dp"
-          android:background="@drawable/bg_activity">
+          android:background="@drawable/bg_activity_light">
 
         <ImageView
           android:src="@drawable/logo_horizon5"
@@ -99,6 +99,7 @@
         <Space
           android:layout_width="match_parent"
           android:layout_height="20dp"/>
+        
         <ImageView
           android:src="@drawable/logo_wiki"
           android:paddingBottom="10dp"
@@ -107,6 +108,23 @@
 
         <TextView
           android:text="The application contains links to Wikipedia. 'Wikipedia' is a registered trademark of the not-for-profit Wikimedia Foundation, which has created a family of free-content projects that are built by user contributions. "
+          android:layout_gravity="center"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+        <Space
+          android:layout_width="match_parent"
+          android:layout_height="20dp"/>
+
+        <ImageView
+          android:src="@drawable/logo_font_awesome"
+          android:paddingBottom="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"/>
+
+        <TextView
+          android:text="The application is using Font Awesome without any further modification to the icons. The icons are licensed under the Creative Commons Attribution 4.0 International license. For more details about the license visit https://fontawesome.com/license."
           android:layout_gravity="center"
           android:textAppearance="?android:attr/textAppearanceSmall"
           android:layout_width="match_parent"
