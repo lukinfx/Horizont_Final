@@ -2,6 +2,9 @@ Datasource - JAXA
 =============================================================
 https://www.eorc.jaxa.jp/ALOS/en/aw3d30/
 
+Download from:
+https://www.eorc.jaxa.jp/ALOS/en/aw3d30/data/index.htm
+
 ID: tomas.frankl@gmail.com
 Password: aw3d30
 
