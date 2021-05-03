@@ -118,10 +118,6 @@ namespace Peaks360App.Utilities
             deleteButton.SetOnClickListener(this);
             deleteButton.Tag = position;
 
-            var editButton = view.FindViewById<ImageButton>(Resource.Id.photoEditButton);
-            editButton.SetOnClickListener(this);
-            editButton.Tag = position;
-
             var favouriteButton = view.FindViewById<ImageButton>(Resource.Id.favouriteButton);
             favouriteButton.SetOnClickListener(this);
             favouriteButton.Tag = position;
@@ -157,7 +153,6 @@ namespace Peaks360App.Utilities
                 case Resource.Id.linearLayoutThumbnail:
                     _poiActionListener.OnPhotoEditRequest(position);
                     break;
-                case Resource.Id.photoEditButton:
                 case Resource.Id.linearLayoutName:
                     _poiActionListener.OnTagEditRequest(position);
                     break;

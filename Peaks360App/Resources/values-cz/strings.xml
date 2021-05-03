@@ -78,9 +78,9 @@
   <string name="Main_MaxDistanceMinAltitudeTemplate">Vzdálenost do {0}km</string>
 
   <!--PoiListActivity-->
-  <string name="PoiListFilter_Visible">Viditelné</string>
-  <string name="PoiListFilter_My">Mé body</string>
-  <string name="PoiListFilter_ByName">Podle jména</string>
+  <string name="PoiListFilter_Visible">Viditelné body</string>
+  <string name="PoiListFilter_My">Moje body</string>
+  <string name="PoiListFilter_ByName">Pokročilé vyhledávání</string>
   <string name="PoiListDeleteQuestion">Opravdu chcete smazat ten bod?</string>
 
   <!--DownloadActivity-->

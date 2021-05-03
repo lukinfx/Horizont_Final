@@ -79,7 +79,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="right">
+            android:paddingLeft="10dp"
+            android:gravity="left">
           <ImageView
             android:src="@drawable/i_calendar"
             android:layout_width="17dp"
@@ -103,7 +104,8 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal"
-          android:gravity="right"
+          android:gravity="left"
+          android:paddingLeft="10dp"
           android:paddingTop="5dp">
           <ImageView
             android:src="@drawable/i_clock"
@@ -127,7 +129,8 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal"
-          android:gravity="right"
+          android:gravity="left"
+          android:paddingLeft="10dp"
           android:paddingTop="5dp">
           <ImageView
             android:src="@drawable/i_elevation"
@@ -170,13 +173,6 @@
           android:orientation="horizontal"
           android:gravity="bottom"
           android:paddingBottom="5dp">
-          <ImageButton
-            android:src="@android:drawable/ic_menu_edit"
-            android:scaleType="fitCenter"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:id="@+id/photoEditButton"
-            android:background="#00000000"/>
           <ImageButton
             android:src="@drawable/f_heart_empty"
             android:scaleType="fitCenter"

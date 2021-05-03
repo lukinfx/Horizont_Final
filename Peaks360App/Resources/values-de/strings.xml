@@ -78,9 +78,9 @@
   <string name="Main_MaxDistanceMinAltitudeTemplate">Entfernung bis zu {0}km</string>
 
   <!--PoiListActivity-->
-  <string name="PoiListFilter_Visible">Sichtbarer</string>
-  <string name="PoiListFilter_My">Meine</string>
-  <string name="PoiListFilter_ByName">Nach Namen</string>
+  <string name="PoiListFilter_Visible">Sichtbare punkte</string>
+  <string name="PoiListFilter_My">Meine punkte</string>
+  <string name="PoiListFilter_ByName">Erweiterte suche</string>
   <string name="PoiListDeleteQuestion">Möchten Sie diesen Artikel wirklich löschen?</string>
 
   <!--DownloadActivity-->
