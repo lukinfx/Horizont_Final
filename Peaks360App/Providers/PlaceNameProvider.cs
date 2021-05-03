@@ -48,7 +48,8 @@ namespace Peaks360App.Providers
                     geocodeAddress = geocodeAddress.Append(", ", placemark.Locality);
                     geocodeAddress = geocodeAddress.Append(", ", placemark.CountryCode);
 
-                    return new PlaceInfo(geocodeAddress, PoiCountryHelper.GetCountry(placemark.CountryCode));
+                    var country = PoiCountryHelper.GetCountry(placemark.CountryCode) ?? PoiCountryHelper.GetDefaultCountry();
+                    return new PlaceInfo(geocodeAddress, country);
                 }
                 return new PlaceInfo();
             }
