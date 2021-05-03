@@ -110,6 +110,12 @@ namespace Peaks360App.Activities
 
                 _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_item.Category));
             }
+            else
+            {
+                var country = PoiCountryHelper.GetDefaultCountry();
+                var countryIndex = (_spinnerCountry.Adapter as CountryAdapter).GetPosition(country);
+                _spinnerCountry.SetSelection(countryIndex);
+            }
 
             _buttonFavourite.SetImageResource(_item.Favorite ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
 
