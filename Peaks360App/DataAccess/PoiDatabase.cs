@@ -167,10 +167,10 @@ namespace Peaks360App.DataAccess
             return task.Result;
         }
 
-        internal PoiViewItem GetNearestPoi(GpsLocation loc)
+        internal PoiViewItem GetNearestPoi(GpsLocation loc, IGpsUtilities iGpsUtilities)
         {
             var candidates = GetItems(loc, 0.2);
-            List<PoiViewItem> items = new PoiViewItemList(candidates, loc);
+            List<PoiViewItem> items = new PoiViewItemList(candidates, loc, iGpsUtilities);
             var item = items.OrderBy(x => x.GpsLocation.Distance).FirstOrDefault();
             return item;
         }

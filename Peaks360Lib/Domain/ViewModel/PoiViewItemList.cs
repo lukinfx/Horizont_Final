@@ -19,14 +19,14 @@ namespace Peaks360Lib.Domain.ViewModel
         /// <param name="location">My current location</param>
         /// <param name="maxDistance">Max distance in kilometers</param>
         /// <param name="minAltitude">Min altitude (progress 100 = 1600m)</param>
-        public PoiViewItemList(IEnumerable<Poi> poiList, GpsLocation myLocation, double maxDistance, bool favourite, List<PoiCategory> categories)
+        public PoiViewItemList(IEnumerable<Poi> poiList, GpsLocation myLocation, double maxDistance, bool favourite, List<PoiCategory> categories, IGpsUtilities iGpsUtilities)
         {
             foreach (var item in poiList)
             {
                 var poiViewItem = new PoiViewItem(item);
-                poiViewItem.GpsLocation.Bearing = GpsUtils.QuickBearing(myLocation, poiViewItem.GpsLocation);
+                poiViewItem.GpsLocation.Bearing = iGpsUtilities.Bearing(myLocation, poiViewItem.GpsLocation);
                 poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(myLocation, poiViewItem.GpsLocation);
-                poiViewItem.GpsLocation.Distance = GpsUtils.QuickDistance(myLocation, poiViewItem.GpsLocation);
+                poiViewItem.GpsLocation.Distance = iGpsUtilities.Distance(myLocation, poiViewItem.GpsLocation);
                 poiViewItem.GpsLocation.GetVerticalViewAngle(myLocation);
 
                 if (favourite && !poiViewItem.Poi.Favorite)
@@ -42,16 +42,16 @@ namespace Peaks360Lib.Domain.ViewModel
             }
         }
 
-        public PoiViewItemList(IEnumerable<Poi> poiList, GpsLocation myLocation)
+        public PoiViewItemList(IEnumerable<Poi> poiList, GpsLocation myLocation, IGpsUtilities iGpsUtilities)
         {
             if (poiList != null)
             {
                 foreach (var item in poiList)
                 {
                     var poiViewItem = new PoiViewItem(item);
-                    poiViewItem.GpsLocation.Bearing = GpsUtils.QuickBearing(myLocation, poiViewItem.GpsLocation);
+                    poiViewItem.GpsLocation.Bearing = iGpsUtilities.Bearing(myLocation, poiViewItem.GpsLocation);
                     poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(myLocation, poiViewItem.GpsLocation);
-                    poiViewItem.GpsLocation.Distance = GpsUtils.QuickDistance(myLocation, poiViewItem.GpsLocation);
+                    poiViewItem.GpsLocation.Distance = iGpsUtilities.Distance(myLocation, poiViewItem.GpsLocation);
                     poiViewItem.GpsLocation.GetVerticalViewAngle(myLocation);
                     Add(poiViewItem);
                 }

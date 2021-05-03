@@ -190,7 +190,7 @@ namespace Peaks360App.AppContext
 
                 if (needRefresh)
                 {
-                    var poi = Database.GetNearestPoi(myLocation);
+                    var poi = Database.GetNearestPoi(myLocation, iGpsUtilities);
                     if (poi != null)
                     {
                         myLocationPlaceInfo = new PlaceInfo( poi.Poi.Name, poi.Poi.Country);

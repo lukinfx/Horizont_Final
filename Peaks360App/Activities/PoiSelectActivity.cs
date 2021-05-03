@@ -12,6 +12,7 @@ using Peaks360App.AppContext;
 using Peaks360App.Utilities;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Domain.ViewModel;
+using Peaks360Lib.Utilities;
 using Xamarin.Essentials;
 using static Android.Views.View;
 
@@ -30,6 +31,7 @@ namespace Peaks360App.Activities
         private SearchView _searchViewPlaceName;
         private PoiListItemAdapter _adapter;
         private Timer _changeFilterTimer = new Timer();
+        private IGpsUtilities _iGpsUtilities = new GpsUtilities();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -58,7 +60,7 @@ namespace Peaks360App.Activities
 
             _listViewPoi = FindViewById<ListView>(Resource.Id.listViewPoi);
 
-            var poiViewItems = new PoiViewItemList(null, AppContext.MyLocation);
+            var poiViewItems = new PoiViewItemList(null, AppContext.MyLocation, _iGpsUtilities);
             if (Peaks360Lib.Utilities.GpsUtils.HasLocation(AppContext.MyLocation))
             {
                 AddMyLocation(poiViewItems);
@@ -99,7 +101,7 @@ namespace Peaks360App.Activities
             Task.Run(async () =>
             {
                 var poiItems = await AppContext.Database.FindItemsAsync(filterText);
-                var poiViewItems = new PoiViewItemList(poiItems.OrderBy(x => x.Name), AppContext.MyLocation);
+                var poiViewItems = new PoiViewItemList(poiItems.OrderBy(x => x.Name), AppContext.MyLocation, _iGpsUtilities);
 
                 /*if (!poiViewItems.Any() && Peaks360Lib.Utilities.GpsUtils.HasLocation(AppContext.MyLocation))
                 {

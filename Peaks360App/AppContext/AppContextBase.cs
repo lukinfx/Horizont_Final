@@ -11,12 +11,15 @@ using Android.Content.Res;
 using Android.Content;
 using Peaks360Lib.Domain.ViewModel;
 using Peaks360App.Models;
+using Peaks360Lib.Utilities;
+using GpsUtils = Peaks360App.Utilities.GpsUtils;
 
 namespace Peaks360App.AppContext
 {
     public abstract class AppContextBase : IAppContext
     {
         protected Context context;
+        protected IGpsUtilities iGpsUtilities = new GpsUtilities();
 
         public virtual void Initialize(Context context)
         {
@@ -164,7 +167,7 @@ namespace Peaks360App.AppContext
                 if (poiData is null)
                 {
                     var poiList = Database.GetItems(MyLocation, Settings.MaxDistance);
-                    PoiData = new PoiViewItemList(poiList, MyLocation, Settings.MaxDistance, ShowFavoritesOnly, Settings.Categories);
+                    PoiData = new PoiViewItemList(poiList, MyLocation, Settings.MaxDistance, ShowFavoritesOnly, Settings.Categories, iGpsUtilities);
                 }
                 else
                 {

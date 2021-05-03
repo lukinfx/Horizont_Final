@@ -5,6 +5,12 @@ using Peaks360Lib.Domain.Models;
 
 namespace Peaks360Lib.Utilities
 {
+    public interface IGpsUtilities
+    {
+        double Distance(GpsLocation loc1, GpsLocation loc2);
+        double Bearing(GpsLocation loc1, GpsLocation loc2);
+    }
+
     public class GpsUtils
     {
         private static readonly double EARTH_MERIDIAN_LENGTH_M = 40075004;
@@ -105,12 +111,6 @@ namespace Peaks360Lib.Utilities
         {
             var x = angle - Math.Floor(angle / 360) * 360;
             return x;
-        }
-
-        public static double VerticalAngle(GpsLocation c1, GpsLocation c2)
-        {
-            var dist = QuickDistance(c1, c2);
-            return VerticalAngle((c2.Altitude - c1.Altitude), dist);
         }
 
         public static double VerticalAngle(double altDif, double distance)

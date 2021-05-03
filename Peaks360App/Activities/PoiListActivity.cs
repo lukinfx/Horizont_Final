@@ -40,6 +40,7 @@ namespace Peaks360App.Views.ListOfPoiView
         private PoiListItemAdapter _adapter;
         private GpsLocation _location = new GpsLocation();
         private Timer _searchTimer = new Timer();
+        private IGpsUtilities _iGpsUtilities = new GpsUtilities();
 
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
@@ -226,7 +227,7 @@ namespace Peaks360App.Views.ListOfPoiView
         private IEnumerable<PoiViewItem> GetMyPois()
         {
             var poiList = Context.Database.GetMyItems();
-            List<PoiViewItem> items = new PoiViewItemList(poiList, _location);
+            List<PoiViewItem> items = new PoiViewItemList(poiList, _location, _iGpsUtilities);
             return items;
         }
 
@@ -251,7 +252,7 @@ namespace Peaks360App.Views.ListOfPoiView
             {
                 poiList = new List<Poi>();
             }
-            List<PoiViewItem> items = new PoiViewItemList(poiList, _location);
+            List<PoiViewItem> items = new PoiViewItemList(poiList, _location, _iGpsUtilities);
             return items;
         }
 
@@ -332,9 +333,9 @@ namespace Peaks360App.Views.ListOfPoiView
                     var item = Context.Database.GetItem(id);
 
                     var poiViewItem = new PoiViewItem(item);
-                    poiViewItem.GpsLocation.Bearing = Utilities.GpsUtils.QuickBearing(Context.MyLocation, poiViewItem.GpsLocation);
+                    poiViewItem.GpsLocation.Bearing = _iGpsUtilities.Bearing(Context.MyLocation, poiViewItem.GpsLocation);
                     poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(Context.MyLocation, poiViewItem.GpsLocation);
-                    poiViewItem.GpsLocation.Distance = Utilities.GpsUtils.QuickDistance(Context.MyLocation, poiViewItem.GpsLocation);
+                    poiViewItem.GpsLocation.Distance = _iGpsUtilities.Distance(Context.MyLocation, poiViewItem.GpsLocation);
                     _adapter.Add(poiViewItem);
                 }
                 if (resultCode == EditActivity.RESULT_OK_AND_CLOSE_PARENT)
