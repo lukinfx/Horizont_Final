@@ -122,11 +122,6 @@ namespace Peaks360App.Activities
             _editTextLongitude.TextChanged += OnTextChanged;
             _editTextAltitude.TextChanged += OnTextChanged;
 
-            _editTextName.SetOnClickListener(this);
-            _editTextLatitude.SetOnClickListener(this);
-            _editTextLongitude.SetOnClickListener(this);
-            _editTextAltitude.SetOnClickListener(this);
-
             _buttonFavourite.SetOnClickListener(this);
             _buttonOpenMap.SetOnClickListener(this);
             _buttonOpenWiki.SetOnClickListener(this);
@@ -180,7 +175,6 @@ namespace Peaks360App.Activities
                 case Resource.Id.menu_paste:
                     OnPasteGpsLocation();
                     break;
-
                 case Resource.Id.menu_fetch_altitude:
                     OnUpdateElevation();
                     break;
@@ -283,7 +277,11 @@ namespace Peaks360App.Activities
             {
                 string ClipBoardText = Clipboard.GetTextAsync().Result;
 
-                if (ClipBoardText == null) ; //nepodarilo se ziskat text, je potreba osetrit?
+                if (ClipBoardText == null)
+                {//nepodarilo se ziskat text, je potreba osetrit?
+                    PopupHelper.ErrorDialog(this, "There are no text data in Clipboard");
+                    return;
+                }
 
                 location = Peaks360Lib.Utilities.GpsUtils.ParseGPSLocationText(ClipBoardText);
                 _editTextAltitude.Text = $"{location.Altitude:F0}";
