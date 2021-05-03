@@ -124,7 +124,7 @@
           android:layout_height="50dp"/>
 
         <TextView
-          android:text="The application is using Font Awesome without any further modification to the icons. The icons are licensed under the Creative Commons Attribution 4.0 International license. For more details about the license visit https://fontawesome.com/license."
+          android:text="The application is using Font Awesome without any further modification to the icons. The icons are licensed under the Creative Commons Attribution 4.0 International license (https://fontawesome.com/license)."
           android:layout_gravity="center"
           android:textAppearance="?android:attr/textAppearanceSmall"
           android:layout_width="match_parent"
