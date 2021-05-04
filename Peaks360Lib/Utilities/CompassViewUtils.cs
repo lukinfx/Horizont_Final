@@ -73,10 +73,13 @@ namespace Peaks360Lib.Utilities
 
             var viewAngleDiff = itemViewAngle - maxViewAngle;
 
-            if (viewAngleDiff > -0.4)
+            var viewAngleVisibilityLimit = -(itemViewAngle * 0.02 + 0.2);
+            var viewAnglePartVisibilityLimit = -(itemViewAngle * 0.2 + 1);
+
+            if (viewAngleDiff > viewAngleVisibilityLimit)
                 return Visibility.Visible;
 
-            if (viewAngleDiff > -1.0 && itemViewAngle > 0)
+            if (viewAngleDiff > viewAnglePartVisibilityLimit)
                 return Visibility.PartialyVisible;
 
             return Visibility.Invisible;
