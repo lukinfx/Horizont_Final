@@ -40,6 +40,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:id="@+id/linearLayout1">
         <TextView
           android:text="Description"
@@ -78,6 +80,7 @@
         android:drawablePadding="5dp"
         android:paddingLeft="20dp"
         android:paddingBottom="10dp"
+        android:paddingTop="5dp"
         android:background="@android:color/transparent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
@@ -92,6 +95,7 @@
         android:drawablePadding="5dp"
         android:paddingLeft="20dp"
         android:paddingBottom="10dp"
+        android:paddingTop="5dp"
         android:background="@android:color/transparent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
