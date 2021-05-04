@@ -92,7 +92,7 @@ namespace Peaks360App.Utilities
                     //paint.StrokeWidth = 5;
 
                     paint2.SetARGB((int)alpha, 50, 50, 0);
-                    paint2.StrokeWidth = 5;
+                    paint2.StrokeWidth = 7;
                     var x1 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.Bearing1, canvas.Width, _adjustedViewAngleHorizontal, offsetX);
                     var x2 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.Bearing2, canvas.Width, _adjustedViewAngleHorizontal, offsetX);
                     if (x1.HasValue && x2.HasValue)
