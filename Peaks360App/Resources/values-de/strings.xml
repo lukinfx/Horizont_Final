@@ -155,6 +155,8 @@
   <string name="Tutorial_PhotoEdit_HorizontCorrection">Bewegen Sie Ihren Finger am linken / rechten Bildschirmrand, um den künstlichen Horizont anzupassen.</string>
   <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Verwenden Sie zwei Finger, um den horizontalen und vertikalen Blickwinkel einzustellen.</string>
 
+  <string name="Tutorial_Main_CompassCalibration">Die Präzision des Kompasses ist entscheidend, damit die Anwendung ordnungsgemäß funktioniert. Kalibrieren Sie Ihren Kompass jederzeit mit der Bewegung wie in der Abbildung oben gezeigt.</string>
+  <string name="Tutorial_Main_HeadingCorrection">Selbst wenn Sie den Kompass kalibriert haben, ist die Blickrichtung möglicherweise nicht genau genug. Bewegen Sie Ihren Finger über den Bildschirm, um die Kompassrichtung anzupassen.</string>
   <string name="Tutorial_Main_HorizontCorrection">Bewegen Sie Ihren Finger nach oben oder unten, um den künstlichen Horizont anzupassen.</string>
   <string name="Tutorial_Main_ShowPoiData">Tippen Sie auf Punktmarkierung, um Informationen zum ausgewählten Objekt anzuzeigen. Verwenden Sie möglicherweise Schaltflächen für die Navigation zum Wiki oder zur Karte oder klicken Sie auf den Punktnamen, um Punktdaten anzuzeigen oder zu bearbeiten.</string>
   <string name="Tutorial_Main_ARWarning">Bitte achten Sie bei der Verwendung der Anwendung auf Ihre Umgebung. Die elterliche Aufsicht wird Kindern dringend empfohlen.</string>

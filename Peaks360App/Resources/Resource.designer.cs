@@ -8860,34 +8860,37 @@ namespace Peaks360App
 			public const int tutorial_ar_warning = 2131230989;
 			
 			// aapt resource value: 0x7F08010E
-			public const int tutorial_heading_correction = 2131230990;
+			public const int tutorial_compass_calibration = 2131230990;
 			
 			// aapt resource value: 0x7F08010F
-			public const int tutorial_horizont_correction = 2131230991;
+			public const int tutorial_heading_correction = 2131230991;
 			
 			// aapt resource value: 0x7F080110
-			public const int tutorial_horizont_correction_simple = 2131230992;
+			public const int tutorial_horizont_correction = 2131230992;
 			
 			// aapt resource value: 0x7F080111
-			public const int tutorial_photoedit_crop = 2131230993;
+			public const int tutorial_horizont_correction_simple = 2131230993;
 			
 			// aapt resource value: 0x7F080112
-			public const int tutorial_photoedit_save = 2131230994;
+			public const int tutorial_photoedit_crop = 2131230994;
 			
 			// aapt resource value: 0x7F080113
-			public const int tutorial_photoedit_share = 2131230995;
+			public const int tutorial_photoedit_save = 2131230995;
 			
 			// aapt resource value: 0x7F080114
-			public const int tutorial_photoedit_tilt = 2131230996;
+			public const int tutorial_photoedit_share = 2131230996;
 			
 			// aapt resource value: 0x7F080115
-			public const int tutorial_show_poi_data = 2131230997;
+			public const int tutorial_photoedit_tilt = 2131230997;
 			
 			// aapt resource value: 0x7F080116
-			public const int tutorial_viewangle_correction = 2131230998;
+			public const int tutorial_show_poi_data = 2131230998;
 			
 			// aapt resource value: 0x7F080117
-			public const int wikipedia_logo = 2131230999;
+			public const int tutorial_viewangle_correction = 2131230999;
+			
+			// aapt resource value: 0x7F080118
+			public const int wikipedia_logo = 2131231000;
 			
 			static Drawable()
 			{
@@ -10507,134 +10510,134 @@ namespace Peaks360App
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7F0F0089
-			public const int abc_action_bar_home_description = 2131689609;
-			
-			// aapt resource value: 0x7F0F008A
-			public const int abc_action_bar_up_description = 2131689610;
-			
 			// aapt resource value: 0x7F0F008B
-			public const int abc_action_menu_overflow_description = 2131689611;
+			public const int abc_action_bar_home_description = 2131689611;
 			
 			// aapt resource value: 0x7F0F008C
-			public const int abc_action_mode_done = 2131689612;
-			
-			// aapt resource value: 0x7F0F008E
-			public const int abc_activitychooserview_choose_application = 2131689614;
+			public const int abc_action_bar_up_description = 2131689612;
 			
 			// aapt resource value: 0x7F0F008D
-			public const int abc_activity_chooser_view_see_all = 2131689613;
+			public const int abc_action_menu_overflow_description = 2131689613;
 			
-			// aapt resource value: 0x7F0F008F
-			public const int abc_capital_off = 2131689615;
+			// aapt resource value: 0x7F0F008E
+			public const int abc_action_mode_done = 2131689614;
 			
 			// aapt resource value: 0x7F0F0090
-			public const int abc_capital_on = 2131689616;
+			public const int abc_activitychooserview_choose_application = 2131689616;
+			
+			// aapt resource value: 0x7F0F008F
+			public const int abc_activity_chooser_view_see_all = 2131689615;
 			
 			// aapt resource value: 0x7F0F0091
-			public const int abc_font_family_body_1_material = 2131689617;
+			public const int abc_capital_off = 2131689617;
 			
 			// aapt resource value: 0x7F0F0092
-			public const int abc_font_family_body_2_material = 2131689618;
+			public const int abc_capital_on = 2131689618;
 			
 			// aapt resource value: 0x7F0F0093
-			public const int abc_font_family_button_material = 2131689619;
+			public const int abc_font_family_body_1_material = 2131689619;
 			
 			// aapt resource value: 0x7F0F0094
-			public const int abc_font_family_caption_material = 2131689620;
+			public const int abc_font_family_body_2_material = 2131689620;
 			
 			// aapt resource value: 0x7F0F0095
-			public const int abc_font_family_display_1_material = 2131689621;
+			public const int abc_font_family_button_material = 2131689621;
 			
 			// aapt resource value: 0x7F0F0096
-			public const int abc_font_family_display_2_material = 2131689622;
+			public const int abc_font_family_caption_material = 2131689622;
 			
 			// aapt resource value: 0x7F0F0097
-			public const int abc_font_family_display_3_material = 2131689623;
+			public const int abc_font_family_display_1_material = 2131689623;
 			
 			// aapt resource value: 0x7F0F0098
-			public const int abc_font_family_display_4_material = 2131689624;
+			public const int abc_font_family_display_2_material = 2131689624;
 			
 			// aapt resource value: 0x7F0F0099
-			public const int abc_font_family_headline_material = 2131689625;
+			public const int abc_font_family_display_3_material = 2131689625;
 			
 			// aapt resource value: 0x7F0F009A
-			public const int abc_font_family_menu_material = 2131689626;
+			public const int abc_font_family_display_4_material = 2131689626;
 			
 			// aapt resource value: 0x7F0F009B
-			public const int abc_font_family_subhead_material = 2131689627;
+			public const int abc_font_family_headline_material = 2131689627;
 			
 			// aapt resource value: 0x7F0F009C
-			public const int abc_font_family_title_material = 2131689628;
+			public const int abc_font_family_menu_material = 2131689628;
 			
 			// aapt resource value: 0x7F0F009D
-			public const int abc_menu_alt_shortcut_label = 2131689629;
+			public const int abc_font_family_subhead_material = 2131689629;
 			
 			// aapt resource value: 0x7F0F009E
-			public const int abc_menu_ctrl_shortcut_label = 2131689630;
+			public const int abc_font_family_title_material = 2131689630;
 			
 			// aapt resource value: 0x7F0F009F
-			public const int abc_menu_delete_shortcut_label = 2131689631;
+			public const int abc_menu_alt_shortcut_label = 2131689631;
 			
 			// aapt resource value: 0x7F0F00A0
-			public const int abc_menu_enter_shortcut_label = 2131689632;
+			public const int abc_menu_ctrl_shortcut_label = 2131689632;
 			
 			// aapt resource value: 0x7F0F00A1
-			public const int abc_menu_function_shortcut_label = 2131689633;
+			public const int abc_menu_delete_shortcut_label = 2131689633;
 			
 			// aapt resource value: 0x7F0F00A2
-			public const int abc_menu_meta_shortcut_label = 2131689634;
+			public const int abc_menu_enter_shortcut_label = 2131689634;
 			
 			// aapt resource value: 0x7F0F00A3
-			public const int abc_menu_shift_shortcut_label = 2131689635;
+			public const int abc_menu_function_shortcut_label = 2131689635;
 			
 			// aapt resource value: 0x7F0F00A4
-			public const int abc_menu_space_shortcut_label = 2131689636;
+			public const int abc_menu_meta_shortcut_label = 2131689636;
 			
 			// aapt resource value: 0x7F0F00A5
-			public const int abc_menu_sym_shortcut_label = 2131689637;
+			public const int abc_menu_shift_shortcut_label = 2131689637;
 			
 			// aapt resource value: 0x7F0F00A6
-			public const int abc_prepend_shortcut_label = 2131689638;
-			
-			// aapt resource value: 0x7F0F00A8
-			public const int abc_searchview_description_clear = 2131689640;
-			
-			// aapt resource value: 0x7F0F00A9
-			public const int abc_searchview_description_query = 2131689641;
-			
-			// aapt resource value: 0x7F0F00AA
-			public const int abc_searchview_description_search = 2131689642;
-			
-			// aapt resource value: 0x7F0F00AB
-			public const int abc_searchview_description_submit = 2131689643;
-			
-			// aapt resource value: 0x7F0F00AC
-			public const int abc_searchview_description_voice = 2131689644;
+			public const int abc_menu_space_shortcut_label = 2131689638;
 			
 			// aapt resource value: 0x7F0F00A7
-			public const int abc_search_hint = 2131689639;
+			public const int abc_menu_sym_shortcut_label = 2131689639;
+			
+			// aapt resource value: 0x7F0F00A8
+			public const int abc_prepend_shortcut_label = 2131689640;
+			
+			// aapt resource value: 0x7F0F00AA
+			public const int abc_searchview_description_clear = 2131689642;
+			
+			// aapt resource value: 0x7F0F00AB
+			public const int abc_searchview_description_query = 2131689643;
+			
+			// aapt resource value: 0x7F0F00AC
+			public const int abc_searchview_description_search = 2131689644;
 			
 			// aapt resource value: 0x7F0F00AD
-			public const int abc_shareactionprovider_share_with = 2131689645;
+			public const int abc_searchview_description_submit = 2131689645;
 			
 			// aapt resource value: 0x7F0F00AE
-			public const int abc_shareactionprovider_share_with_application = 2131689646;
+			public const int abc_searchview_description_voice = 2131689646;
+			
+			// aapt resource value: 0x7F0F00A9
+			public const int abc_search_hint = 2131689641;
 			
 			// aapt resource value: 0x7F0F00AF
-			public const int abc_toolbar_collapse_description = 2131689647;
+			public const int abc_shareactionprovider_share_with = 2131689647;
+			
+			// aapt resource value: 0x7F0F00B0
+			public const int abc_shareactionprovider_share_with_application = 2131689648;
+			
+			// aapt resource value: 0x7F0F00B1
+			public const int abc_toolbar_collapse_description = 2131689649;
 			
 			// aapt resource value: 0x7F0F0000
 			public const int AboutActivity = 2131689472;
 			
-			// aapt resource value: 0x7F0F00B1
-			public const int appbar_scrolling_view_behavior = 2131689649;
-			
-			// aapt resource value: 0x7F0F00B0
-			public const int app_name = 2131689648;
+			// aapt resource value: 0x7F0F00B3
+			public const int appbar_scrolling_view_behavior = 2131689651;
 			
 			// aapt resource value: 0x7F0F00B2
-			public const int bottom_sheet_behavior = 2131689650;
+			public const int app_name = 2131689650;
+			
+			// aapt resource value: 0x7F0F00B4
+			public const int bottom_sheet_behavior = 2131689652;
 			
 			// aapt resource value: 0x7F0F0001
 			public const int Category_Churches = 2131689473;
@@ -10663,11 +10666,11 @@ namespace Peaks360App
 			// aapt resource value: 0x7F0F0009
 			public const int Category_ViewTowers = 2131689481;
 			
-			// aapt resource value: 0x7F0F00B3
-			public const int character_counter_content_description = 2131689651;
+			// aapt resource value: 0x7F0F00B5
+			public const int character_counter_content_description = 2131689653;
 			
-			// aapt resource value: 0x7F0F00B4
-			public const int character_counter_pattern = 2131689652;
+			// aapt resource value: 0x7F0F00B6
+			public const int character_counter_pattern = 2131689654;
 			
 			// aapt resource value: 0x7F0F000A
 			public const int Common_All = 2131689482;
@@ -10885,14 +10888,14 @@ namespace Peaks360App
 			// aapt resource value: 0x7F0F0051
 			public const int EditPoi_WrongFormat = 2131689553;
 			
-			// aapt resource value: 0x7F0F00B5
-			public const int fab_transformation_scrim_behavior = 2131689653;
-			
-			// aapt resource value: 0x7F0F00B6
-			public const int fab_transformation_sheet_behavior = 2131689654;
-			
 			// aapt resource value: 0x7F0F00B7
-			public const int hide_bottom_view_on_scroll_behavior = 2131689655;
+			public const int fab_transformation_scrim_behavior = 2131689655;
+			
+			// aapt resource value: 0x7F0F00B8
+			public const int fab_transformation_sheet_behavior = 2131689656;
+			
+			// aapt resource value: 0x7F0F00B9
+			public const int hide_bottom_view_on_scroll_behavior = 2131689657;
 			
 			// aapt resource value: 0x7F0F0052
 			public const int MainActivity = 2131689554;
@@ -10921,26 +10924,26 @@ namespace Peaks360App
 			// aapt resource value: 0x7F0F005A
 			public const int Menu_StatusBarLine1Template = 2131689562;
 			
-			// aapt resource value: 0x7F0F00B8
-			public const int mtrl_chip_close_icon_content_description = 2131689656;
-			
-			// aapt resource value: 0x7F0F00B9
-			public const int overflow_tab_title = 2131689657;
-			
 			// aapt resource value: 0x7F0F00BA
-			public const int password_toggle_content_description = 2131689658;
+			public const int mtrl_chip_close_icon_content_description = 2131689658;
 			
 			// aapt resource value: 0x7F0F00BB
-			public const int path_password_eye = 2131689659;
+			public const int overflow_tab_title = 2131689659;
 			
 			// aapt resource value: 0x7F0F00BC
-			public const int path_password_eye_mask_strike_through = 2131689660;
+			public const int password_toggle_content_description = 2131689660;
 			
 			// aapt resource value: 0x7F0F00BD
-			public const int path_password_eye_mask_visible = 2131689661;
+			public const int path_password_eye = 2131689661;
 			
 			// aapt resource value: 0x7F0F00BE
-			public const int path_password_strike_through = 2131689662;
+			public const int path_password_eye_mask_strike_through = 2131689662;
+			
+			// aapt resource value: 0x7F0F00BF
+			public const int path_password_eye_mask_visible = 2131689663;
+			
+			// aapt resource value: 0x7F0F00C0
+			public const int path_password_strike_through = 2131689664;
 			
 			// aapt resource value: 0x7F0F005F
 			public const int PhotosActivity = 2131689567;
@@ -10996,8 +10999,8 @@ namespace Peaks360App
 			// aapt resource value: 0x7F0F006C
 			public const int PrivacyPolicyStatement = 2131689580;
 			
-			// aapt resource value: 0x7F0F00BF
-			public const int search_menu_title = 2131689663;
+			// aapt resource value: 0x7F0F00C1
+			public const int search_menu_title = 2131689665;
 			
 			// aapt resource value: 0x7F0F006D
 			public const int SettingsActivity = 2131689581;
@@ -11050,8 +11053,8 @@ namespace Peaks360App
 			// aapt resource value: 0x7F0F007D
 			public const int Settings_SetViewAngleManually = 2131689597;
 			
-			// aapt resource value: 0x7F0F00C0
-			public const int status_bar_notification_info_overflow = 2131689664;
+			// aapt resource value: 0x7F0F00C2
+			public const int status_bar_notification_info_overflow = 2131689666;
 			
 			// aapt resource value: 0x7F0F007E
 			public const int Tutorial_DontShowAgain = 2131689598;
@@ -11060,31 +11063,37 @@ namespace Peaks360App
 			public const int Tutorial_Main_ARWarning = 2131689599;
 			
 			// aapt resource value: 0x7F0F0080
-			public const int Tutorial_Main_HorizontCorrection = 2131689600;
+			public const int Tutorial_Main_CompassCalibration = 2131689600;
 			
 			// aapt resource value: 0x7F0F0081
-			public const int Tutorial_Main_ShowPoiData = 2131689601;
+			public const int Tutorial_Main_HeadingCorrection = 2131689601;
 			
 			// aapt resource value: 0x7F0F0082
-			public const int Tutorial_PhotoEdit_HeadingCorrection = 2131689602;
+			public const int Tutorial_Main_HorizontCorrection = 2131689602;
 			
 			// aapt resource value: 0x7F0F0083
-			public const int Tutorial_PhotoEdit_HorizontCorrection = 2131689603;
+			public const int Tutorial_Main_ShowPoiData = 2131689603;
 			
 			// aapt resource value: 0x7F0F0084
-			public const int Tutorial_PhotoEdit_ViewAngleCorrection = 2131689604;
+			public const int Tutorial_PhotoEdit_HeadingCorrection = 2131689604;
 			
 			// aapt resource value: 0x7F0F0085
-			public const int Tutorial_PhotoShow_Crop = 2131689605;
+			public const int Tutorial_PhotoEdit_HorizontCorrection = 2131689605;
 			
 			// aapt resource value: 0x7F0F0086
-			public const int Tutorial_PhotoShow_Save = 2131689606;
+			public const int Tutorial_PhotoEdit_ViewAngleCorrection = 2131689606;
 			
 			// aapt resource value: 0x7F0F0087
-			public const int Tutorial_PhotoShow_Share = 2131689607;
+			public const int Tutorial_PhotoShow_Crop = 2131689607;
 			
 			// aapt resource value: 0x7F0F0088
-			public const int Tutorial_PhotoShow_Tilt = 2131689608;
+			public const int Tutorial_PhotoShow_Save = 2131689608;
+			
+			// aapt resource value: 0x7F0F0089
+			public const int Tutorial_PhotoShow_Share = 2131689609;
+			
+			// aapt resource value: 0x7F0F008A
+			public const int Tutorial_PhotoShow_Tilt = 2131689610;
 			
 			static String()
 			{

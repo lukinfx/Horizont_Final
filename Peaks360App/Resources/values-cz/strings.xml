@@ -155,8 +155,10 @@
   <string name="Tutorial_PhotoEdit_HorizontCorrection">Posouvejte prstem nahoru nebo dolů na levém/pravém okraji displeje pro korekci horizontu.</string>
   <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Použijte dva prsty pro korekcí horizontálního a vertikálního zobrazovacího úhlu.</string>
 
+  <string name="Tutorial_Main_CompassCalibration">Přesnost kompasu je zásadní pro správné fungování aplikace. Kdykoli proveďte kalibraci kompasu pohybem tak jak je znázorněno na obrázku výše.</string>
+  <string name="Tutorial_Main_HeadingCorrection">I když jste kompas kalibrovali, směr pohledu nemusí být vždy dostatečně přesný. Pohybem prstu v horní části obrazovky upravte směr pohledu.</string>
   <string name="Tutorial_Main_HorizontCorrection">Posouvejte prstem nahoru nebo dolů pro korekci horizontu.</string>
-  <string name="Tutorial_Main_ShowPoiData">Ťukněte na značku bodu pro zobrazení informací o vybraném bodu. Případně použijte tlačítka pro navigaci na wiki nebo do mapy, nebo ťukněte na název bodu pro zobrazení nebo editaci dat.</string>
+  <string name="Tutorial_Main_ShowPoiData">Ťukněte na značku bodu pro zobrazení informací o vybraném bodu. Případně použijte tlačítka pro navigaci na wiki nebo přechod do mapy.</string>
   <string name="Tutorial_Main_ARWarning">Prosím věnujte pozornost svému okolí kdykoliv používáte aplikaci. V případě dětí doporučujeme aplikaci používat pouze pod dohledem dospělé osoby.</string>
 
   <string name="Tutorial_PhotoShow_Save">Použijte toto tlačítko pro uložení fotografie do vašeho zařízení. Poté můžete obrázek najít v galerii fotografií (například Google Fotky).</string>

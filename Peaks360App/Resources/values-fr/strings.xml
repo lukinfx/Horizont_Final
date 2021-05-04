@@ -155,6 +155,8 @@
   <string name="Tutorial_PhotoEdit_HorizontCorrection">Déplacez votre doigt sur le bord gauche / droit de l\'écran pour ajuster l\'horizon artificiel.</string>
   <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Utilisez deux doigts pour régler l\'angle de vue horizontal et vertical.</string>
 
+  <string name="Tutorial_Main_CompassCalibration">La précision de la boussole est cruciale pour que l\'application fonctionne correctement. À tout moment, calibrez votre boussole avec le mouvement comme indiqué sur l\'image ci-dessus.</string>
+  <string name="Tutorial_Main_HeadingCorrection">Même lorsque vous étalonnez la boussole, la direction de la vue peut ne pas être suffisamment précise. Déplacez votre doigt en haut de l\'écran pour régler le cap de la boussole.</string>
   <string name="Tutorial_Main_HorizontCorrection">Déplacez votre doigt vers le haut ou vers le bas pour ajuster l\'horizon artificiel.</string>
   <string name="Tutorial_Main_ShowPoiData">Appuyez sur le marqueur de point pour afficher des informations sur l\'objet sélectionné. Utilisez éventuellement des boutons pour naviguer vers le wiki ou la carte, ou cliquez sur le nom du point pour afficher ou modifier les données de point.</string>
   <string name="Tutorial_Main_ARWarning">Veuillez faire attention à votre environnement lorsque vous utilisez l\'application. La surveillance parentale est fortement recommandée pour les enfants.</string>

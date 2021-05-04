@@ -135,7 +135,8 @@ namespace Peaks360App
                 TutorialDialog.ShowTutorial(this, TutorialPart.MainActivity,
                     new TutorialPage[]
                     {
-                        new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_heading_correction, textResourceId = Resource.String.Tutorial_PhotoEdit_HeadingCorrection},
+                        new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_compass_calibration, textResourceId = Resource.String.Tutorial_Main_CompassCalibration},
+                        new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_heading_correction, textResourceId = Resource.String.Tutorial_Main_HeadingCorrection},
                         new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_horizont_correction_simple, textResourceId = Resource.String.Tutorial_Main_HorizontCorrection},
                         new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_show_poi_data, textResourceId = Resource.String.Tutorial_Main_ShowPoiData},
                         new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_ar_warning, textResourceId = Resource.String.Tutorial_Main_ARWarning},

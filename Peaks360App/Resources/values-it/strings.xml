@@ -155,6 +155,8 @@
   <string name="Tutorial_PhotoEdit_HorizontCorrection">Spostare il dito sul bordo sinistro / destro dello schermo per regolare l\'orizzonte artificiale.</string>
   <string name="Tutorial_PhotoEdit_ViewAngleCorrection">Usa due dita per regolare l\'angolo di visualizzazione orizzontale e verticale.</string>
 
+  <string name="Tutorial_Main_CompassCalibration">La precisione della bussola è fondamentale affinché l\'applicazione funzioni correttamente. In qualsiasi momento calibra la tua bussola con il movimento come mostrato nell\'immagine sopra.</string>
+  <string name="Tutorial_Main_HeadingCorrection">Anche quando hai calibrato la bussola, la direzione della vista potrebbe non essere sufficientemente precisa. Muovi il dito sulla parte superiore dello schermo per regolare la direzione della bussola.</string>
   <string name="Tutorial_Main_HorizontCorrection">Muovi il dito verso l\'alto o verso il basso per regolare l\'orizzonte artificiale.</string>
   <string name="Tutorial_Main_ShowPoiData">Toccare l\'indicatore del punto per visualizzare le informazioni sull\'oggetto selezionato. Eventualmente utilizzare i pulsanti per la navigazione nel wiki o nella mappa, oppure fare clic sul nome del punto per visualizzare o modificare i dati del punto.</string>
   <string name="Tutorial_Main_ARWarning">Prestare attenzione all\'ambiente circostante ogni volta che si utilizza l\'applicazione. La supervisione dei genitori è altamente raccomandata per i bambini.</string>
