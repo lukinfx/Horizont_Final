@@ -73,14 +73,17 @@ namespace Peaks360App.Activities
                     Country = _oldDedItem.Country
                 };
                 SetDownloadDistance(_oldDedItem.Distance);
+                FindViewById<Button>(Resource.Id.buttonSelect).Enabled = false;
             }
             else if (Peaks360Lib.Utilities.GpsUtils.HasLocation(AppContext.MyLocation))
             {
                 _selectedPoint = PoiSelectActivity.GetMyLocationPoi(AppContext);
+                FindViewById<Button>(Resource.Id.buttonSelect).Enabled = true;
             }
             else
             {
                 _selectedPoint = GetUnknownPoi(AppContext);
+                FindViewById<Button>(Resource.Id.buttonSelect).Enabled = true;
             }
 
             OnSelectionUpdated(_selectedPoint);
