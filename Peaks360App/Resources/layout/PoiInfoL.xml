@@ -23,6 +23,11 @@
       android:singleLine="true"
       android:textColor="@android:color/black"
       android:id="@+id/textViewPoiName" />
+    
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="#606060" />
 
     <LinearLayout 
       android:orientation="horizontal"
