@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
+using Java.Lang;
 using Xamarin.Essentials;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Domain.Enums;
@@ -157,6 +158,7 @@ namespace Peaks360App.Activities
             base.OnResume();
             _isDirty = false;
         }
+
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {
             SetDirty();
@@ -297,13 +299,18 @@ namespace Peaks360App.Activities
                 Task.Run(async () =>
                 {
                     var placeInfo = await PlaceNameProvider.AsyncGetPlaceName(location);
-                    _editTextName.Text = placeInfo.PlaceName;
+                    
+                    MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            _editTextName.Text = placeInfo.PlaceName;
 
-                    var countryIndex = (_spinnerCountry.Adapter as CountryAdapter).GetPosition(placeInfo.Country);
-                    if (countryIndex >= 0)
-                    {
-                        _spinnerCountry.SetSelection(countryIndex);
-                    }
+                            var countryIndex = (_spinnerCountry.Adapter as CountryAdapter).GetPosition(placeInfo.Country);
+                            if (countryIndex >= 0)
+                            {
+                                _spinnerCountry.SetSelection(countryIndex);
+                            }
+                        }
+                );
                 });
             }
             catch (Exception ex)
