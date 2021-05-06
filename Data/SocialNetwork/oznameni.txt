@@ -1,3 +1,33 @@
-Ahoj vám všem. Mám na vás malou prosbu. Dělali jsme s Lukášem (synem) takovou jednu aplikaci na Android a potřebovali by jsme ji ještě předtím, než ji pustíme oficiálně do světa, trochu otestovat na různých zařízeních. Jedná se o aplikaci, kterou podle nás ocení všichni kdo se rádi toulají, zejména pak po horách. A pokud navíc milujete daleké výhledy do okolní krajiny, pak je to aplikace přesně pro vás. Aplikace je už nyní volně ke stažení na Google Play (viz odkaz níže) a vyžaduje Android 7.0 nebo vyšší.
+Ahoj vám všem. Mám na vás malou prosbu. Dělali jsme s Lukášem (synem) takovou jednu aplikaci na Android a potřebovali by jsme ji ještě předtím, než ji pustíme oficiálně do světa, trochu otestovat na různých zařízeních. Jedná se o aplikaci, kterou podle nás ocení všichni kdo se rádi toulají, zejména pak po horách. A pokud navíc milujete daleké výhledy do okolní krajiny, pak je to aplikace přesně pro vás. Aplikace je už nyní volně ke stažení na Google Play (viz odkaz níže) a vyžaduje Android 6.0 nebo vyšší.
 Prosím, vyzkoušejte a pokud možno nám dejte vědět, jak to šlape u vás. Moc díky předem.
 https://play.google.com/store/apps/details?id=cz.fdevstudio.peaks360
+
+
+
+
+
+
+
+Ahoj všem. Kdykoliv jsem vylezl na nějaký kopec nebo rozhlednu, tak jsem se snažil zorientovat, který kopec je který a co je asi tamto město v dálce. 
+Ale jelikož jsem jelito, tak jsem si hlavu často lámal marně :-) 
+Proto jsem si říkal že by byla fajn nějaká aplikace do telefonu, která by mi v orientaci trochu pomohla.
+No a když jsme přes zimu kvůli lockdownu seděli pořád doma, tak jsme si konečně tenhle, už několik let oddalovaný, sen splnili. 
+
+Aplikace je ke stažení na Google Play zde: 
+
+Třeba se Vám bude taky líbit. 
+Pokud máte k aplikaci nějaké připomínky, nápady a nebo třeba jen slovíčko podpory a povzbuzení, tak nám klidně napište.
+Případně můžete přidat hodnocení rovnou na Google Play.
+
+Zdraví vás Tomáš a Lukáš Franklovi
+
+
+
+
+
+
+
+Ahoj. Máme na vás malou prosbu. Dělali jsme se synem takovou jednu aplikaci pro Android na rozhledny a hory. Aplikace podle vaší polohy a kompasu ukazuje v náhledu kamery co kde je a jak se který kopec a město jmenuje. Už je to víceméně hotové tak bych potřebovali nějaké dobrovolníky na otestování. Aplikace je ke stažení na Google Play (viz odkaz níže) a vyžaduje Android 6.0 nebo vyšší. Budeme moc rádi za informaci, jestli vám to funguje správně a případně i přímo za recenzi na Google Play. A klidně posílejte i své nápady na rozšíření aplikace. Díky a omlouváme se těm, které tohle zrovna nebere :-)
+
+https://play.google.com/store/apps/details?id=cz.fdevstudio.peaks360
+
