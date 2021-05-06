@@ -21,6 +21,9 @@ namespace Peaks360App.Views.Compass
         protected Paint paintRectSelectedItem;
         protected Paint textpaint;
         protected Paint textpaintSelected;
+        protected Paint textpaintUnimportant;
+        protected Paint paintWhite;
+        protected Paint paintGray;
         protected TextPaint textPaintForEllipsize;
         protected Paint textpaintPartialyVisible;
         protected float viewAngleHorizontal;
@@ -73,6 +76,12 @@ namespace Peaks360App.Views.Compass
             textpaintSelected.AntiAlias = true;
             textpaintSelected.SetTypeface(normal);
 
+            textpaintUnimportant = new Paint();
+            textpaintUnimportant.SetARGB(255, 217, 231, 174);
+            textpaintUnimportant.TextSize = 36;
+            textpaintUnimportant.AntiAlias = true;
+            textpaintUnimportant.SetTypeface(normal); 
+
             textPaintForEllipsize = new TextPaint();
             textPaintForEllipsize.SetARGB(255, 200, 255, 0);
             textPaintForEllipsize.SetStyle(Paint.Style.Fill);
@@ -86,6 +95,16 @@ namespace Peaks360App.Views.Compass
             textpaintPartialyVisible.TextSize = 36;
             textpaintPartialyVisible.SetTypeface(normal);
 
+            paintWhite = new Paint();
+            paintWhite.SetARGB(255, 255, 255, 255);
+            paintWhite.TextSize = 36;
+            paintWhite.SetTypeface(normal);
+
+            paintGray = new Paint();
+            paintGray.SetARGB(255, 128, 128, 128);
+            paintGray.TextSize = 36;
+            paintGray.SetTypeface(normal);
+
             multiplier = 1;
         }
 
@@ -98,6 +117,9 @@ namespace Peaks360App.Views.Compass
         {
             if (item.Selected)
                 return textpaintSelected;
+
+            if (string.IsNullOrEmpty(item.Poi.Wikidata) && string.IsNullOrEmpty(item.Poi.Wikidata))
+                return textpaintUnimportant;
 
             return item.Visibility == Visibility.Visible ? textpaint : textpaintPartialyVisible;
         }

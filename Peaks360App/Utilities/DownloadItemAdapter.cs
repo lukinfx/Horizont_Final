@@ -93,7 +93,7 @@ namespace Peaks360App.Utilities
             view.FindViewById<TextView>(Resource.Id.PoiItemDateCreated).Text = pointCountText;
 
             var image = view.FindViewById<ImageView>(Resource.Id.PoiItemCategoryAsIcon);
-            image.SetColorFilter(ImageViewHelper.GetColorFilter(image, !alreadyDownloaded, updateAvailable));
+            image.SetColorFilter(ImageViewHelper.GetColorFilter(!alreadyDownloaded, updateAvailable));
             image.SetImageResource(PoiCategoryHelper.GetImage(item.fromDatabase.Category));
 
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.PoiDeleteButton);

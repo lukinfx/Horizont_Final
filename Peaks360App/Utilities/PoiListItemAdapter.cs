@@ -98,6 +98,7 @@ namespace Peaks360App.Utilities
                 $"{item.Poi.Altitude:F0} m | {item.GpsLocation.Distance.Value/1000f:F2} km | {item.GpsLocation.Bearing.Value:F2}°";
 
             _thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
+            _thumbnail.SetColorFilter(ImageViewHelper.GetImportanceColorFilter(item.Poi));
             _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(item.Poi.Category));
 
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.PoiDeleteButton);
