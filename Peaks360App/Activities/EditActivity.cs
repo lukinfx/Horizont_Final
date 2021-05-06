@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -9,7 +6,6 @@ using Android.OS;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
-using Java.Lang;
 using Xamarin.Essentials;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Domain.Enums;
@@ -292,26 +288,13 @@ namespace Peaks360App.Activities
                 }
 
                 location = Peaks360Lib.Utilities.GpsUtils.ParseGPSLocationText(ClipBoardText);
-                _editTextAltitude.Text = $"{location.Altitude:F0}";
                 _editTextLongitude.Text = $"{location.Longitude:F7}".Replace(",", ".");
                 _editTextLatitude.Text = $"{location.Latitude:F7}".Replace(",", ".");
 
-                Task.Run(async () =>
+                if (string.IsNullOrEmpty(_editTextName.Text))
                 {
-                    var placeInfo = await PlaceNameProvider.AsyncGetPlaceName(location);
-                    
-                    MainThread.BeginInvokeOnMainThread(() =>
-                        {
-                            _editTextName.Text = placeInfo.PlaceName;
-
-                            var countryIndex = (_spinnerCountry.Adapter as CountryAdapter).GetPosition(placeInfo.Country);
-                            if (countryIndex >= 0)
-                            {
-                                _spinnerCountry.SetSelection(countryIndex);
-                            }
-                        }
-                );
-                });
+                    UpdateLocationName(location);
+                }
             }
             catch (Exception ex)
             {
@@ -321,7 +304,13 @@ namespace Peaks360App.Activities
 
             try
             {
-                GetElevation(location);
+                if (string.IsNullOrEmpty(_editTextAltitude.Text))
+                {
+                    if (TryGetElevation(location, out var altitude))
+                    {
+                        _editTextAltitude.Text = $"{altitude:F0}";
+                    }
+                }
             }
             catch
             {
@@ -341,9 +330,11 @@ namespace Peaks360App.Activities
                         return;
                     }
 
-                    var ok = GetElevation(location);
-
-                    if (!ok)
+                    if (TryGetElevation(location, out var altitude))
+                    {
+                        _editTextAltitude.Text = $"{altitude:F0}";
+                    }
+                    else
                     {
                         PopupHelper.ErrorDialog(this, Resource.String.EditPoi_AltitudeNotUpdated, Resources.GetText(Resource.String.EditPoi_MissingElevationData));
                     }
@@ -398,7 +389,7 @@ namespace Peaks360App.Activities
             SetDirty();
         }
 
-        private bool GetElevation(GpsLocation location)
+        private bool TryGetElevation(GpsLocation location, out double altitude)
         {
             if (_elevationTile == null || !_elevationTile.HasElevation(location))
             {
@@ -415,12 +406,12 @@ namespace Peaks360App.Activities
 
             if (_elevationTile != null)
             {
-                var altitude = _elevationTile.GetElevation(location);
-                _editTextAltitude.Text = $"{altitude:F0}";
+                altitude = _elevationTile.GetElevation(location);
                 return true;
             }
             else
             {
+                altitude = 0;
                 return false;
             }
         }
@@ -464,6 +455,27 @@ namespace Peaks360App.Activities
 
             location = new GpsLocation(lon, lat, alt);
             return true;
+        }
+
+        private void UpdateLocationName(GpsLocation location)
+        {
+            Task.Run(async () =>
+                {
+                    var placeInfo = await PlaceNameProvider.AsyncGetPlaceName(location);
+
+                    MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            _editTextName.Text = placeInfo.PlaceName;
+
+                            var countryIndex = (_spinnerCountry.Adapter as CountryAdapter).GetPosition(placeInfo.Country);
+                            if (countryIndex >= 0)
+                            {
+                                _spinnerCountry.SetSelection(countryIndex);
+                            }
+                        }
+                    );
+                }
+            );
         }
     }
 }
