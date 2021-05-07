@@ -10,6 +10,7 @@ using Peaks360App.Views.Compass;
 using Peaks360App.AppContext;
 using Peaks360App.Providers;
 using System.Collections.Generic;
+using Java.Lang;
 
 namespace Peaks360App.Views
 {
@@ -69,7 +70,7 @@ namespace Peaks360App.Views
             base(context, attrs)
         {
             poiCategoryBitmapProvider = new PoiCategoryBitmapProvider();
-            compassViewDrawer = new CompassViewDrawer(poiCategoryBitmapProvider);
+            compassViewDrawer = new CompassViewDrawerEachPoiSeparate(poiCategoryBitmapProvider);
 
             _textPaint = new Paint();
             _textPaint.SetARGB(255, 200, 255, 0);
@@ -208,26 +209,31 @@ namespace Peaks360App.Views
                 return;
             }
 
-            compassViewDrawer = new CompassViewDrawerEachPoiSeparate(poiCategoryBitmapProvider);
+            try
+            {
+                (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
+                    _context.ViewAngleHorizontal, _context.ViewAngleVertical,
+                    compassViewSize, pictureSize, _allowRotation);
 
-            (ViewAngleHorizontal, ViewAngleVertical) = CompassViewUtils.AdjustViewAngles(
-                _context.ViewAngleHorizontal, _context.ViewAngleVertical,
-                compassViewSize, pictureSize, _allowRotation);
+                //2000 x 1000 px is a default view size. All drawings ale calculated to this size
+                var isPortrait = compassViewSize.Height > compassViewSize.Width;
+                var defaultCompassSize = isPortrait ? 1000f : 2000f;
 
-            //2000 x 1000 px is a default view size. All drawings ale calculated to this size
-            var isPortrait = compassViewSize.Height > compassViewSize.Width;
-            var defaultCompassSize = isPortrait ? 1000f : 2000f;
+                //so we need to calculate mutliplier to adjust them for current resolution
+                float multiplier = compassViewSize.Width / defaultCompassSize;
 
-            //so we need to calculate mutliplier to adjust them for current resolution
-            float multiplier = compassViewSize.Width / defaultCompassSize; 
+                compassViewDrawer.Initialize(Resources, ViewAngleHorizontal, ViewAngleVertical, multiplier);
+                elevationProfileBitmapDrawer.Initialize(ViewAngleHorizontal, ViewAngleVertical, multiplier);
 
-            compassViewDrawer.Initialize(Resources, ViewAngleHorizontal, ViewAngleVertical, multiplier);
-            elevationProfileBitmapDrawer.Initialize(ViewAngleHorizontal, ViewAngleVertical);
+                Log.WriteLine(LogPriority.Debug, TAG, $"ViewAngle: {_context.ViewAngleHorizontal:F1}/{_context.ViewAngleVertical:F1}");
+                Log.WriteLine(LogPriority.Debug, TAG, $"AdjustedViewAngle: {ViewAngleHorizontal:F1}/{ViewAngleVertical:F1}");
 
-            Log.WriteLine(LogPriority.Debug, TAG, $"ViewAngle: {_context.ViewAngleHorizontal:F1}/{_context.ViewAngleVertical:F1}");
-            Log.WriteLine(LogPriority.Debug, TAG, $"AdjustedViewAngle: {ViewAngleHorizontal:F1}/{ViewAngleVertical:F1}");
-
-            RecalculateViewAngles(_scale);
+                RecalculateViewAngles(_scale);
+            }
+            catch (Exception ex)
+            {
+                //TODO: log error Context.Log
+            }
         }
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
