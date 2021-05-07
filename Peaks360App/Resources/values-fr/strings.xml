@@ -76,6 +76,7 @@
   <string name="Main_GeneratingElevationProfile">Générer un profil d\'élévation...</string>
   <string name="Main_WaitingForGps">En attente de la localisation GPS...</string>
   <string name="Main_MaxDistanceMinAltitudeTemplate">Distance jusqu\'à {0}km</string>
+  <string name="Main_HiddenInSurroundingTerrain">L\'objet peut être caché dans le terrain environnant</string>
 
   <!--PoiListActivity-->
   <string name="PoiListFilter_Visible">Points visibles</string>

@@ -18,6 +18,7 @@ using View = Android.Views.View;
 using GpsUtils = Peaks360App.Utilities.GpsUtils;
 using ImageButton = Android.Widget.ImageButton;
 using Peaks360App.Providers;
+using Peaks360Lib.Domain.Enums;
 using SQLitePCL;
 
 namespace Peaks360App.Activities
@@ -516,6 +517,7 @@ namespace Peaks360App.Activities
                     var verticalAngleText = $"{Resources.GetText(Resource.String.Common_VerticalViewAngle)}: {(Context.SelectedPoi.VerticalViewAngle > 0 ? "+" : "")}{Context.SelectedPoi.VerticalViewAngle:F3}°";
                     var bearingText = $"{Resources.GetText(Resource.String.Common_Bearing)}: {(Context.SelectedPoi.GpsLocation.Bearing > 0 ? "+" : "")}{Context.SelectedPoi.GpsLocation.Bearing:F0}°";
                     FindViewById<TextView>(Resource.Id.textViewPoiName).Text = Context.SelectedPoi.Poi.Name;
+                    FindViewById<TextView>(Resource.Id.textViewPoiPartiallyVisible).Visibility = Context.SelectedPoi.Visibility == Visibility.PartialyVisible ? ViewStates.Visible : ViewStates.Gone;
                     FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = bearingText + " / " + verticalAngleText;
                     FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = altitudeText + " / " + distanceText;
                     FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Resources.GetText(Resource.String.Common_GPSLocation)}: {Context.SelectedPoi.GpsLocation.LocationAsString()}";
