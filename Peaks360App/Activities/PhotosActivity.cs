@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.OS;
 using Android.Views;
@@ -43,13 +45,14 @@ namespace Peaks360App.Activities
             ActionBar.SetTitle(Resource.String.PhotosActivity);
 
             _photosListView = FindViewById<ListView>(Resource.Id.listViewPhotos);
+            _adapter = new PhotosItemAdapter(this, new List<PhotoData>(), this);
+            _photosListView.Adapter = _adapter;
 
             ShowPhotos(Context.ShowFavoritePicturesOnly);
 
             Context.PhotosModel.PhotoAdded += OnPhotoAdded;
             Context.PhotosModel.PhotoUpdated += OnPhotoUpdated;
             Context.PhotosModel.PhotoDeleted += OnPhotoDeleted;
-            _photosListView.Adapter = _adapter;
         }
 
         protected override void OnDestroy()
@@ -161,14 +164,12 @@ namespace Peaks360App.Activities
         private void ShowPhotos(bool favoriesOnly)
         {
             var list = Context.PhotosModel.GetPhotoDataItems().AsQueryable();
-            
+
             if (favoriesOnly)
             {
                 list = list.Where(i => i.Favourite);
             }
-
-            _adapter = new PhotosItemAdapter(this, list.OrderByDescending(i => i.Datetime), this);
-            _photosListView.Adapter = _adapter;
+            _adapter.SetItems(list);
         }
     }
 }
