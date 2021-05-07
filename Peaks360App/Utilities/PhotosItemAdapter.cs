@@ -34,6 +34,12 @@ namespace Peaks360App.Utilities
             _poiActionListener = listener;
         }
 
+        public void SetItems(IEnumerable<PhotoData> list)
+        {
+            this._list = list.ToList();
+            NotifyDataSetChanged();
+        }
+
         public override int Count
         {
             get { return _list.Count; }
