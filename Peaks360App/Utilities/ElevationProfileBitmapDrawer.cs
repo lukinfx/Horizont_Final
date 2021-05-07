@@ -11,22 +11,27 @@ namespace Peaks360App.Utilities
 {
     public class ElevationProfileBitmapDrawer
     {
+        private static int LINE_WIDTH = 7;
+
         private IAppContext _context;
         private Bitmap _elevationProfileBitmap;
         private float _viewAngleHorizontal;
         private float _viewAngleVertical;
         private float _adjustedViewAngleHorizontal;
         private float _adjustedViewAngleVertical;
+        private Paint _linePaint = new Paint();
 
         public ElevationProfileBitmapDrawer(IAppContext context)
         {
             _context = context;
         }
 
-        public virtual void Initialize(float viewAngleHorizontal, float viewAngleVertical)
+        public virtual void Initialize(float viewAngleHorizontal, float viewAngleVertical, float multiplier)
         {
             _adjustedViewAngleHorizontal = _viewAngleHorizontal = viewAngleHorizontal;
             _adjustedViewAngleVertical = _viewAngleVertical = viewAngleVertical;
+            
+            _linePaint.StrokeWidth = LINE_WIDTH * multiplier;
         }
 
         public void GenerateElevationProfileLines(ElevationProfileData epd, double displayWidth, double displayHeight)
@@ -74,9 +79,6 @@ namespace Peaks360App.Utilities
         {
             if (_context.ListOfProfileLines != null)
             {
-                //Paint paint = new Paint();
-                Paint paint2 = new Paint();
-
                 foreach (var line in _context.ListOfProfileLines)
                 {
                     double alpha;
@@ -91,8 +93,8 @@ namespace Peaks360App.Utilities
                     //paint.SetARGB((int)alpha, 255, 255, 100 );
                     //paint.StrokeWidth = 5;
 
-                    paint2.SetARGB((int)alpha, 50, 50, 0);
-                    paint2.StrokeWidth = 7;
+                    _linePaint.SetARGB((int)alpha, 50, 50, 0);
+                    
                     var x1 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.Bearing1, canvas.Width, _adjustedViewAngleHorizontal, offsetX);
                     var x2 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.Bearing2, canvas.Width, _adjustedViewAngleHorizontal, offsetX);
                     if (x1.HasValue && x2.HasValue)
@@ -104,9 +106,8 @@ namespace Peaks360App.Utilities
                         var y2 = CompassViewUtils.GetYLocationOnScreen(line.VerticalViewAngle2 + verticalAngleCorrection2, canvas.Height, _adjustedViewAngleVertical);
 
                         //canvas.DrawLine(x1.Value, line.y1, x2.Value, line.y2, paint);
-                        canvas.DrawLine(x1.Value, y1 + offsetY, x2.Value, y2 + offsetY, paint2);
+                        canvas.DrawLine(x1.Value, y1 + offsetY, x2.Value, y2 + offsetY, _linePaint);
                     }
-
                 }
             }
             
