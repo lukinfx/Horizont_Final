@@ -79,6 +79,8 @@ namespace Peaks360App.AppContext
         public bool ShowFavoritesOnly { get; set; }
         public bool ShowFavoritePicturesOnly { get; set; }
         public bool ShowFavoritePoisOnly { get; set; }
+        
+        public PoiSorting PoiSorting { get; set; }
         public PoiFilter SelectedPoiFilter { get; set; }
         public PoiViewItem SelectedPoi { get; set; }
         public PoiViewItemList PoiData { get; protected set; }

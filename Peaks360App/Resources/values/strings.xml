@@ -45,6 +45,10 @@
   <string name="Common_AllCategories">All categories</string>
   <string name="Common_AllCountries">All countries</string>
 
+  <string name="Common_Sort">Sorting</string>
+  <string name="Common_SortByName">Sort by name</string>
+  <string name="Common_SortByDistance">Sort by distance</string>
+
   <!--Menu Activity-->
   <string name="MainActivity">Go back to camera</string>
   <string name="PoiListActivity">List of POIs</string>
@@ -79,6 +83,8 @@
   <string name="Main_HiddenInSurroundingTerrain">Object can be hidden in surrounding terrain</string>
 
   <!--PoiListActivity-->
+  <string name="PoiList_FavouritesOnly">Only favourites</string>
+  <string name="PoiList_AddNewPoint">Add new point</string>
   <string name="PoiListFilter_Visible">Visible points</string>
   <string name="PoiListFilter_My">My points</string>
   <string name="PoiListFilter_ByName">Advanced search</string>

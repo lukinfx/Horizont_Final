@@ -142,6 +142,9 @@ namespace Peaks360App.Views.ListOfPoiView
             var buttonFavourite = menu.FindItem(Resource.Id.menu_favourite);
             buttonFavourite.SetIcon(Context.ShowFavoritePoisOnly ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff);
 
+            var buttonSort = menu.FindItem(Resource.Id.menu_sort);
+            buttonSort.SetIcon(Context.PoiSorting == PoiSorting.ByName ? Android.Resource.Drawable.IcMenuSortAlphabetically : Android.Resource.Drawable.IcMenuSortBySize);
+
             return base.OnPrepareOptionsMenu(menu);
         }
 
@@ -157,6 +160,16 @@ namespace Peaks360App.Views.ListOfPoiView
                     break;
                 case Resource.Id.menu_favourite:
                     Context.ToggleFavouritePois();
+                    ShowData();
+                    InvalidateOptionsMenu();
+                    break;
+                case Resource.Id.menu_sortAlphabetically:
+                    Context.PoiSorting = PoiSorting.ByName;
+                    ShowData();
+                    InvalidateOptionsMenu();
+                    break;
+                case Resource.Id.menu_sortByDistance:
+                    Context.PoiSorting = PoiSorting.ByDistance;
                     ShowData();
                     InvalidateOptionsMenu();
                     break;
@@ -279,7 +292,16 @@ namespace Peaks360App.Views.ListOfPoiView
                 items = items.Where(x => x.Poi.Favorite);
             }
 
-            items = items.OrderBy(i => i.GpsLocation.Distance).ToList();
+            switch (Context.PoiSorting)
+            {
+                case PoiSorting.ByName:
+                    items = items.OrderBy(x => x.Poi.Name);
+                    break;
+                case PoiSorting.ByDistance:
+                    items = items.OrderBy(i => i.GpsLocation.Distance);
+                    break;
+            }
+
             _adapter.SetItems(items);
         }
 
