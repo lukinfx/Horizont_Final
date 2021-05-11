@@ -1,31 +1,25 @@
-﻿using Android.Graphics;
-using Peaks360Lib.Domain.Enums;
-using Peaks360Lib.Domain.ViewModel;
-using Peaks360Lib.Utilities;
-using System;
-using System.Collections.Generic;
-using Android.Content.Res;
+﻿using System;
 using Android.Text;
 using Android.Util;
+using Android.Graphics;
+using Android.Content.Res;
+using Peaks360Lib.Domain.ViewModel;
+using Peaks360Lib.Utilities;
 using Peaks360App.Providers;
-using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.Views.Compass
 {
     public class CompassViewDrawer
     {
-        protected Paint paintVisible;
-        protected Paint paintPartialyVisible;
         protected Paint paintRect;
-        protected Paint paintRectPartialyVisible;
         protected Paint paintRectSelectedItem;
         protected Paint textpaint;
         protected Paint textpaintSelected;
-        protected Paint textpaintUnimportant;
         protected Paint paintWhite;
         protected Paint paintGray;
+        protected Paint paintBlack;
         protected TextPaint textPaintForEllipsize;
-        protected Paint textpaintPartialyVisible;
+
         protected float viewAngleHorizontal;
         protected float viewAngleVertical;
         protected float adjustedViewAngleHorizontal;
@@ -37,25 +31,10 @@ namespace Peaks360App.Views.Compass
         {
             this.poiCategoryBitmapProvider = poiCategoryBitmapProvider;
 
-            paintVisible = new Paint();
-            paintVisible.SetARGB(255, 200, 255, 0);
-            paintVisible.SetStyle(Paint.Style.FillAndStroke);
-            paintVisible.StrokeWidth = 4;
-
-            paintPartialyVisible = new Paint();
-            paintPartialyVisible.SetARGB(120, 200, 255, 0);
-            paintPartialyVisible.SetStyle(Paint.Style.FillAndStroke);
-            paintPartialyVisible.StrokeWidth = 4;
-
             paintRect = new Paint();
             paintRect.SetARGB(150, 0, 0, 0);
             paintRect.SetStyle(Paint.Style.FillAndStroke);
             paintRect.StrokeWidth = 4;
-
-            paintRectPartialyVisible = new Paint();
-            paintRectPartialyVisible.SetARGB(75, 0, 0, 0);
-            paintRectPartialyVisible.SetStyle(Paint.Style.FillAndStroke);
-            paintRectPartialyVisible.StrokeWidth = 4;
 
             Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
 
@@ -76,12 +55,6 @@ namespace Peaks360App.Views.Compass
             textpaintSelected.AntiAlias = true;
             textpaintSelected.SetTypeface(normal);
 
-            textpaintUnimportant = new Paint();
-            textpaintUnimportant.SetARGB(255, 217, 231, 174);
-            textpaintUnimportant.TextSize = 36;
-            textpaintUnimportant.AntiAlias = true;
-            textpaintUnimportant.SetTypeface(normal); 
-
             textPaintForEllipsize = new TextPaint();
             textPaintForEllipsize.SetARGB(255, 200, 255, 0);
             textPaintForEllipsize.SetStyle(Paint.Style.Fill);
@@ -90,20 +63,17 @@ namespace Peaks360App.Views.Compass
             textPaintForEllipsize.TextAlign = Paint.Align.Left;
             textPaintForEllipsize.LinearText = true;
 
-            textpaintPartialyVisible = new Paint();
-            textpaintPartialyVisible.SetARGB(120, 200, 255, 0);
-            textpaintPartialyVisible.TextSize = 36;
-            textpaintPartialyVisible.SetTypeface(normal);
-
             paintWhite = new Paint();
             paintWhite.SetARGB(255, 255, 255, 255);
-            paintWhite.TextSize = 36;
-            paintWhite.SetTypeface(normal);
+            paintWhite.SetStyle(Paint.Style.Fill);
 
             paintGray = new Paint();
             paintGray.SetARGB(255, 128, 128, 128);
-            paintGray.TextSize = 36;
-            paintGray.SetTypeface(normal);
+            paintGray.SetStyle(Paint.Style.Fill);
+
+            paintBlack = new Paint();
+            paintBlack.SetARGB(255, 0, 0, 0);
+            paintBlack.SetStyle(Paint.Style.Fill);
 
             multiplier = 1;
         }
@@ -118,15 +88,7 @@ namespace Peaks360App.Views.Compass
             if (item.Selected)
                 return textpaintSelected;
 
-            if (string.IsNullOrEmpty(item.Poi.Wikidata) && string.IsNullOrEmpty(item.Poi.Wikidata))
-                return textpaintUnimportant;
-
-            return item.Visibility == Visibility.Visible ? textpaint : textpaintPartialyVisible;
-        }
-
-        protected Paint GetPaint(PoiViewItem item)
-        {
-            return item.Visibility == Visibility.Visible ? paintVisible : paintPartialyVisible;
+            return textpaint;
         }
 
         protected Paint GetRectPaint(PoiViewItem item)
@@ -134,7 +96,7 @@ namespace Peaks360App.Views.Compass
             if (item.Selected)
                 return paintRectSelectedItem;
 
-            return item.Visibility == Visibility.Visible ? paintRect : paintRectPartialyVisible;
+            return paintRect;
         }
 
         protected float ToPixels(float dpi)
@@ -151,15 +113,11 @@ namespace Peaks360App.Views.Compass
             adjustedViewAngleHorizontal = viewAngleHorizontal;
             adjustedViewAngleVertical = viewAngleVertical;
 
-            paintVisible.StrokeWidth = ToPixels(4);
-            paintPartialyVisible.StrokeWidth = ToPixels(4);
             paintRect.StrokeWidth = ToPixels(4);
-            paintRectPartialyVisible.StrokeWidth = ToPixels(4);
 
             textpaint.TextSize = ToPixels(36);
-            textpaintPartialyVisible.TextSize = ToPixels(36);
 
-            poiCategoryBitmapProvider.Initialize(resources, new Size((int)ToPixels(60), (int)ToPixels(60)));
+            poiCategoryBitmapProvider.Initialize(resources, new Size((int)ToPixels(66), (int)ToPixels(66)));
         }
 
         public virtual double GetMinItemAngleDiff(int canvasWidth) { return 0; }

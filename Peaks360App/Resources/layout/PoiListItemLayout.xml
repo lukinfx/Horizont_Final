@@ -46,12 +46,13 @@
           android:text="gukjgsdfsdfdfsdffd"/>
         <ImageView
           android:id="@+id/InfoAvailable"
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
+          android:layout_width="20dp"
+          android:layout_height="20dp"
           android:paddingTop="5dp"
           android:paddingLeft="5dp"
+          android:baselineAlignBottom="true"
           android:scaleType="fitStart"
-          android:src="@android:drawable/ic_menu_info_details"/>
+          android:src="@drawable/i_info_black"/>
       </LinearLayout>
 
      <!-- <View

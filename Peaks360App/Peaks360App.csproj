@@ -120,6 +120,7 @@
     <Compile Include="Tasks\PoiFileImport.cs" />
     <Compile Include="Utilities\CameraUtilities.cs" />
     <Compile Include="Utilities\CategoryAdapter.cs" />
+    <Compile Include="Utilities\ColorMatrixBuilder.cs" />
     <Compile Include="Utilities\DownloadedElevationDataAdapter.cs" />
     <Compile Include="Utilities\HeadingStabilizator2.cs" />
     <Compile Include="Utilities\ImageResizer.cs" />
@@ -132,7 +133,7 @@
     <Compile Include="Utilities\HeadingStabilizator.cs" />
     <Compile Include="Utilities\ImageSaver.cs" />
     <Compile Include="Utilities\ImageSaverUtils.cs" />
-    <Compile Include="Utilities\ImageViewHelper.cs" />
+    <Compile Include="Utilities\ColorFilters.cs" />
     <Compile Include="Utilities\PoiListItemAdapter.cs" />
     <Compile Include="Utilities\PoiCountryHelper.cs" />
     <Compile Include="Utilities\MapUtilities.cs" />

@@ -23,6 +23,13 @@
       android:singleLine="true"
       android:textColor="@android:color/black"
       android:id="@+id/textViewPoiName" />
+    <TextView
+      android:text="@string/Main_HiddenInSurroundingTerrain"
+      android:textAppearance="?android:attr/textAppearanceSmall"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="#606060"
+      android:id="@+id/textViewPoiPartiallyVisible" />
     <View
       android:layout_width="match_parent"
       android:layout_height="1dp"
@@ -34,13 +41,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:id="@+id/linearLayout1">
-        <TextView
-          android:text="@string/Main_HiddenInSurroundingTerrain"
-          android:textAppearance="?android:attr/textAppearanceSmall"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="@android:color/holo_red_dark"
-          android:id="@+id/textViewPoiPartiallyVisible" />
         <TextView
           android:text="Description"
           android:textAppearance="?android:attr/textAppearanceSmall"

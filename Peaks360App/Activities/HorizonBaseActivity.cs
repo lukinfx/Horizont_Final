@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -450,6 +451,23 @@ namespace Peaks360App.Activities
             _compassView.SetElevationProfile(e.ElevationProfileData);
         }
 
+        private void OnPointSelected()
+        {
+            var altitudeText = $"{Resources.GetText(Resource.String.Common_Altitude)}: {Context.SelectedPoi.Poi.Altitude} m";
+            var distanceText = $"{Resources.GetText(Resource.String.Common_Distance)}: {(Context.SelectedPoi.GpsLocation.Distance / 1000):F2} km";
+            var verticalAngleText = $"{Resources.GetText(Resource.String.Common_VerticalViewAngle)}: {(Context.SelectedPoi.VerticalViewAngle > 0 ? "+" : "")}{Context.SelectedPoi.VerticalViewAngle:F3}°";
+            var bearingText = $"{Resources.GetText(Resource.String.Common_Bearing)}: {(Context.SelectedPoi.GpsLocation.Bearing > 0 ? "+" : "")}{Context.SelectedPoi.GpsLocation.Bearing:F0}°";
+
+            FindViewById<TextView>(Resource.Id.textViewPoiName).Text = Context.SelectedPoi.Poi.Name;
+            FindViewById<TextView>(Resource.Id.textViewPoiPartiallyVisible).Visibility = Context.SelectedPoi.Visibility == Visibility.PartialyVisible ? ViewStates.Visible : ViewStates.Gone;
+            FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = bearingText + " / " + verticalAngleText;
+            FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = altitudeText + " / " + distanceText;
+            FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Resources.GetText(Resource.String.Common_GPSLocation)}: {Context.SelectedPoi.GpsLocation.LocationAsString()}";
+            FindViewById<Button>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(Context.SelectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
+            FindViewById<Button>(Resource.Id.buttonWiki).Text = Resources.GetText(Resource.String.Common_Details);
+            FindViewById<Button>(Resource.Id.buttonMap).Text = Resources.GetText(Resource.String.Common_Map);
+        }
+
         #region Required abstract methods
         public virtual bool OnDown(MotionEvent e) { return false; }
         public virtual bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
@@ -511,19 +529,8 @@ namespace Peaks360App.Activities
 
                     HideControls();
                     _poiInfo.Visibility = ViewStates.Visible;
-                    
-                    var altitudeText = $"{Resources.GetText(Resource.String.Common_Altitude)}: {Context.SelectedPoi.Poi.Altitude} m";
-                    var distanceText = $"{Resources.GetText(Resource.String.Common_Distance)}: {(Context.SelectedPoi.GpsLocation.Distance / 1000):F2} km";
-                    var verticalAngleText = $"{Resources.GetText(Resource.String.Common_VerticalViewAngle)}: {(Context.SelectedPoi.VerticalViewAngle > 0 ? "+" : "")}{Context.SelectedPoi.VerticalViewAngle:F3}°";
-                    var bearingText = $"{Resources.GetText(Resource.String.Common_Bearing)}: {(Context.SelectedPoi.GpsLocation.Bearing > 0 ? "+" : "")}{Context.SelectedPoi.GpsLocation.Bearing:F0}°";
-                    FindViewById<TextView>(Resource.Id.textViewPoiName).Text = Context.SelectedPoi.Poi.Name;
-                    FindViewById<TextView>(Resource.Id.textViewPoiPartiallyVisible).Visibility = Context.SelectedPoi.Visibility == Visibility.PartialyVisible ? ViewStates.Visible : ViewStates.Gone;
-                    FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = bearingText + " / " + verticalAngleText;
-                    FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = altitudeText + " / " + distanceText;
-                    FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Resources.GetText(Resource.String.Common_GPSLocation)}: {Context.SelectedPoi.GpsLocation.LocationAsString()}";
-                    FindViewById<Button>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(Context.SelectedPoi.Poi) ? ViewStates.Visible : ViewStates.Gone;
-                    FindViewById<Button>(Resource.Id.buttonWiki).Text = Resources.GetText(Resource.String.Common_Details);
-                    FindViewById<Button>(Resource.Id.buttonMap).Text = Resources.GetText(Resource.String.Common_Map);
+
+                    OnPointSelected();
                 }
                 else
                 {

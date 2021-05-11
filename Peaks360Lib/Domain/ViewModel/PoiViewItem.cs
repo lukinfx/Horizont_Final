@@ -30,5 +30,15 @@ namespace Peaks360Lib.Domain.ViewModel
         {
             get { return GpsUtils.Rad2Dg(Math.Atan(AltitudeDifference / GpsLocation.Distance.Value)); }
         }
+
+        public bool IsImportant()
+        {
+            return !string.IsNullOrEmpty(Poi.Wikidata) || !string.IsNullOrEmpty(Poi.Wikipedia);
+        }
+
+        public bool IsFullyVisible()
+        {
+            return Visibility == Visibility.Visible;
+        }
     }
 }

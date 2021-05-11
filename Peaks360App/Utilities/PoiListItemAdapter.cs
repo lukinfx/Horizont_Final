@@ -86,8 +86,7 @@ namespace Peaks360App.Utilities
             PoiViewItem item = this[position];
 
             view.FindViewById<ImageView>(Resource.Id.InfoAvailable).Visibility = 
-                (String.IsNullOrEmpty(item.Poi.Wikidata) && string.IsNullOrEmpty(item.Poi.Wikipedia)) 
-                    ? ViewStates.Invisible : ViewStates.Visible;
+                item.IsImportant() ? ViewStates.Visible : ViewStates.Invisible;
 
             view.FindViewById<TextView>(Resource.Id.Title).Text = item.Poi.Name;
 
@@ -98,7 +97,7 @@ namespace Peaks360App.Utilities
                 $"{item.Poi.Altitude:F0} m | {item.GpsLocation.Distance.Value/1000f:F2} km | {item.GpsLocation.Bearing.Value:F2}°";
 
             _thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
-            _thumbnail.SetColorFilter(ImageViewHelper.GetImportanceColorFilter(item.Poi));
+            _thumbnail.SetColorFilter(ColorFilterPoiItem.GetColorFilter(item));
             _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(item.Poi.Category));
 
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.PoiDeleteButton);
