@@ -107,6 +107,10 @@ namespace Peaks360App.AppContext
                 Settings.CameraId = CameraUtilities.GetDefaultCamera();
                 Settings.CameraResolutionSelected = CameraUtilities.GetDefaultCameraResolution(Settings.CameraId); 
             }
+            if (!CameraUtilities.IsResolutionSupported(Settings.CameraId, Settings.CameraResolutionSelected))
+            {
+                Settings.CameraResolutionSelected = CameraUtilities.GetDefaultCameraResolution(Settings.CameraId);
+            }
 
             var (viewAngleHorizontal, viewAngleVertical) = CameraUtilities.FetchCameraViewAngle(Settings.CameraId);
             var (resolutionHorizontal, resolutionVertical) = CameraUtilities.FetchCameraResolution(Settings.CameraId);

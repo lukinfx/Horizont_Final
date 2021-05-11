@@ -62,7 +62,7 @@ namespace Peaks360App.Utilities
             var imageSizes = map.GetOutputSizes((int)ImageFormatType.Jpeg);
 
             return imageSizes
-                //.Where(x => x.Height * x.Width <= MAX_CAMERA_RESOLUTION)
+                .Where(x => x.Height * x.Width <= MAX_CAMERA_RESOLUTION)
                 .OrderByDescending(x => x.Height * x.Width);
         }
 
@@ -151,6 +151,12 @@ namespace Peaks360App.Utilities
                 //Log.Error(TAG, "Couldn't find any suitable preview size");
                 return choices.First();
             }
+        }
+
+        public static bool IsResolutionSupported(string cameraId, Size resolution)
+        {
+            var supportedResolutions = GetCameraResolutions(cameraId);
+            return supportedResolutions.Any(x => x.Width == resolution.Width && x.Height == resolution.Height);
         }
     }
 }
