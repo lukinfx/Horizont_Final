@@ -81,6 +81,7 @@
   <string name="Main_WaitingForGps">Warten auf GPS-Standort...</string>
   <string name="Main_MaxDistanceMinAltitudeTemplate">Entfernung bis zu {0}km</string>
   <string name="Main_HiddenInSurroundingTerrain">Das Objekt kann im umgebenden Gelände versteckt sein</string>
+  <string name="Main_ReviewAppQuestion">Vielen Dank, dass Sie die Peaks360-Anwendung verwenden. Um die Anwendung zu verbessern, möchten wir Ihr Feedback einholen. Möchten Sie es jetzt bewerten?</string>
 
   <!--PoiListActivity-->
   <string name="PoiList_FavouritesOnly">Nur Favoriten</string>

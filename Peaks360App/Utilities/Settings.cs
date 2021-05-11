@@ -153,6 +153,19 @@ namespace Peaks360App.Utilities
             SaveData();
         }
 
+        private bool _applicationRatingCompleted;
+
+        public bool IsApplicationRatingCompleted()
+        {
+            return _applicationRatingCompleted;
+        }
+
+        public void SetApplicationRatingCompleted()
+        {
+            _applicationRatingCompleted = true;
+            SaveData();
+        }
+
         public void SetManualLocation(GpsLocation location)
         {
             IsManualLocation = true;
@@ -217,6 +230,8 @@ namespace Peaks360App.Utilities
                 Language = PoiCountryHelper.GetDefaultLanguage();
             }
 
+            _applicationRatingCompleted = prefs.GetBoolean("ApplicationRatingCompleted", false);
+
             ShowElevationProfile = AutoElevationProfile;
         }
 
@@ -251,7 +266,9 @@ namespace Peaks360App.Utilities
                 editor.PutInt("CameraResolutionHeight", CameraResolutionSelected.Height);
                 editor.PutString("CameraId", CameraId);
                 editor.PutString("Language", Language.ToString());
-                
+
+                editor.PutBoolean("ApplicationRatingCompleted", _applicationRatingCompleted);
+
                 editor.Apply();
             }
         }

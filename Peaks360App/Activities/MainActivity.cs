@@ -13,6 +13,8 @@ using Peaks360App.Views.Camera;
 using Peaks360App.Activities;
 using Peaks360App.AppContext;
 using Peaks360App.Providers;
+using Peaks360App.Services;
+using Xamarin.Forms;
 using Exception = System.Exception;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
 using ImageButton = Android.Widget.ImageButton;
@@ -132,6 +134,8 @@ namespace Peaks360App
 
             if (_firstStart)
             {
+                CheckAndRequestAppReview();
+
                 TutorialDialog.ShowTutorial(this, TutorialPart.MainActivity,
                     new TutorialPage[]
                     {
@@ -316,6 +320,63 @@ namespace Peaks360App
                 SetStatusLineText(Resources.GetText(Resource.String.Main_WaitingForGps), true);
             }
         }
+
+        private void CheckAndRequestAppReview()
+        {
+            if (!Context.Settings.IsApplicationRatingCompleted())
+            {
+                var firstInstall = DependencyService.Get<IAppVersionService>().GetInstallDate();
+                if (DateTime.Now.Subtract(firstInstall).Days > 10)
+                {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
+                    alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
+                    {
+                        Context.Settings.SetApplicationRatingCompleted();
+                        RequestAppReview();
+                    });
+                    alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) =>
+                    {
+                    });
+                    alert.SetMessage(Resources.GetText(Resource.String.Main_ReviewAppQuestion));
+                    var answer = alert.Show();
+                }
+            }
+        }
+
+        private Intent GetRateIntent(string url)
+        {
+            var intent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(url));
+
+            intent.AddFlags(ActivityFlags.NoHistory);
+            intent.AddFlags(ActivityFlags.MultipleTask);
+            if ((int)Build.VERSION.SdkInt >= 21)
+            {
+                intent.AddFlags(ActivityFlags.NewDocument);
+            }
+            else
+            {
+                intent.AddFlags(ActivityFlags.ClearWhenTaskReset);
+            }
+            intent.SetFlags(ActivityFlags.ClearTop);
+            intent.SetFlags(ActivityFlags.NewTask);
+            return intent;
+        }
+
+        private void RequestAppReview()
+        {
+            var appId = Android.App.Application.Context.ApplicationInfo.ProcessName;
+            var url = $"market://details?id={appId}";
+            try
+            {
+                var intent = GetRateIntent(url);
+                StartActivity(intent);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Unable to launch app store: " + ex.Message);
+            }
+        }
+
 
         protected override void OnMove(int distanceX, int distanceY)
         {

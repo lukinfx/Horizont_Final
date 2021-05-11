@@ -81,6 +81,7 @@
   <string name="Main_WaitingForGps">Čekání na GPS polohu...</string>
   <string name="Main_MaxDistanceMinAltitudeTemplate">Vzdálenost do {0}km</string>
   <string name="Main_HiddenInSurroundingTerrain">Objekt může být skryt v okolním terénu</string>
+  <string name="Main_ReviewAppQuestion">Děkujeme, že používáte aplikaci Peaks360. Abychom mohli aplikaci vylepšovat, rádi bychom získali vaši zpětnou vazbu. Chcete teď hodnotit?</string>
 
   <!--PoiListActivity-->
   <string name="PoiList_FavouritesOnly">Jen oblíbené</string>
