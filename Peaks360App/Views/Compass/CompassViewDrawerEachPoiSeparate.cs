@@ -35,7 +35,7 @@ namespace Peaks360App.Views.Compass
             float y3 = y2 / 2 + 1;
             float y4 = endY - ToPixels(50);
             float y5 = endY;
-            float y6 = ToPixels(85);
+            float y6 = ToPixels(90);
 
             float x1 = startX - ToPixels(35);
             float x2 = startX + ToPixels(35);
@@ -51,8 +51,8 @@ namespace Peaks360App.Views.Compass
             var textWidth = y4 - y2 - 10;
             var text1 = EllipsizeText(item.Poi.Name, textWidth/multiplier);
             var text2 = EllipsizeText($"{item.Poi.Altitude} m / {(item.GpsLocation.Distance / 1000):F2} km", textWidth/multiplier);
-            canvas.DrawText(text1, ToPixels(y6), -startX - ToPixels(4), GetTextPaint(item));
-            canvas.DrawText(text2, ToPixels(y6), -startX + ToPixels(29), GetTextPaint(item));
+            canvas.DrawText(text1, y6, -startX - ToPixels(4), GetTextPaint(item));
+            canvas.DrawText(text2, y6, -startX + ToPixels(29), GetTextPaint(item));
         }
 
         public override void OnDrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY)
