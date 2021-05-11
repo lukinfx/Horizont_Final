@@ -11,7 +11,8 @@ namespace Peaks360App.Utilities
 {
     public class ElevationProfileBitmapDrawer
     {
-        private static int LINE_WIDTH = 7;
+        private static int LINE_WIDTH = 4;
+        private static int LINE_BACK_WIDTH = 6; 
 
         private IAppContext _context;
         private Bitmap _elevationProfileBitmap;
@@ -20,6 +21,7 @@ namespace Peaks360App.Utilities
         private float _adjustedViewAngleHorizontal;
         private float _adjustedViewAngleVertical;
         private Paint _linePaint = new Paint();
+        private Paint _lineBackPaint = new Paint();
 
         public ElevationProfileBitmapDrawer(IAppContext context)
         {
@@ -32,6 +34,7 @@ namespace Peaks360App.Utilities
             _adjustedViewAngleVertical = _viewAngleVertical = viewAngleVertical;
             
             _linePaint.StrokeWidth = LINE_WIDTH * multiplier;
+            _lineBackPaint.StrokeWidth = LINE_BACK_WIDTH * multiplier;
         }
 
         public void GenerateElevationProfileLines(ElevationProfileData epd, double displayWidth, double displayHeight)
@@ -92,9 +95,12 @@ namespace Peaks360App.Utilities
                     }
                     //paint.SetARGB((int)alpha, 255, 255, 100 );
                     //paint.StrokeWidth = 5;
-
-                    _linePaint.SetARGB((int)alpha, 50, 50, 0);
                     
+                    _linePaint.SetARGB((int)alpha, 0x30, 0x30, 0x30);
+                    _linePaint.AntiAlias = true;
+                    _lineBackPaint.SetARGB((int)alpha, 0xE0, 0xE0, 0xE0); 
+                    _lineBackPaint.AntiAlias = true;
+
                     var x1 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.Bearing1, canvas.Width, _adjustedViewAngleHorizontal, offsetX);
                     var x2 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.Bearing2, canvas.Width, _adjustedViewAngleHorizontal, offsetX);
                     if (x1.HasValue && x2.HasValue)
@@ -106,6 +112,7 @@ namespace Peaks360App.Utilities
                         var y2 = CompassViewUtils.GetYLocationOnScreen(line.VerticalViewAngle2 + verticalAngleCorrection2, canvas.Height, _adjustedViewAngleVertical);
 
                         //canvas.DrawLine(x1.Value, line.y1, x2.Value, line.y2, paint);
+                        canvas.DrawLine(x1.Value, y1 + offsetY, x2.Value, y2 + offsetY, _lineBackPaint);
                         canvas.DrawLine(x1.Value, y1 + offsetY, x2.Value, y2 + offsetY, _linePaint);
                     }
                 }
