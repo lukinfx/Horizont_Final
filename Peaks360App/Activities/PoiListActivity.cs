@@ -139,8 +139,8 @@ namespace Peaks360App.Views.ListOfPoiView
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
-            var buttonFavourite = menu.GetItem(1);
-            buttonFavourite.SetIcon(Context.ShowFavoritePoisOnly ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
+            var buttonFavourite = menu.FindItem(Resource.Id.menu_favourite);
+            buttonFavourite.SetIcon(Context.ShowFavoritePoisOnly ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff);
 
             return base.OnPrepareOptionsMenu(menu);
         }

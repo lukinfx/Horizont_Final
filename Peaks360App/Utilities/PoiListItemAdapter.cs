@@ -111,7 +111,7 @@ namespace Peaks360App.Utilities
                 likeButton.SetOnClickListener(this);
                 likeButton.Tag = position;
 
-                likeButton.SetImageResource(item.Poi.Favorite ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
+                likeButton.SetImageResource(item.Poi.Favorite ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff);
             }
             else
             {

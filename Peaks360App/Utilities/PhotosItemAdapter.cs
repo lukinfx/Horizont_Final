@@ -127,11 +127,7 @@ namespace Peaks360App.Utilities
             var favouriteButton = view.FindViewById<ImageButton>(Resource.Id.favouriteButton);
             favouriteButton.SetOnClickListener(this);
             favouriteButton.Tag = position;
-
-            if (item.Favourite)
-                favouriteButton.SetImageResource(Resource.Drawable.f_heart_solid);
-            else
-                favouriteButton.SetImageResource(Resource.Drawable.f_heart_empty);
+            favouriteButton.SetImageResource(item.Favourite ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff);
 
             var path = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), item.PhotoFileName);
 

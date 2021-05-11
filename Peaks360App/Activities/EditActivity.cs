@@ -114,7 +114,7 @@ namespace Peaks360App.Activities
                 _spinnerCountry.SetSelection(countryIndex);
             }
 
-            _buttonFavourite.SetImageResource(_item.Favorite ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
+            _buttonFavourite.SetImageResource(_item.Favorite ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff);
 
             _buttonOpenWiki.Enabled = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikipedia)) ? false : true;
             _buttonOpenWiki.Visibility = (string.IsNullOrEmpty(_item.Wikidata) && string.IsNullOrEmpty(_item.Wikipedia)) ? ViewStates.Gone : ViewStates.Visible;
@@ -385,7 +385,7 @@ namespace Peaks360App.Activities
         private void OnToggleFavouriteClicked()
         {
             _item.Favorite = !_item.Favorite;
-            _buttonFavourite.SetImageResource(_item.Favorite ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
+            _buttonFavourite.SetImageResource(_item.Favorite ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff);
             SetDirty();
         }
 

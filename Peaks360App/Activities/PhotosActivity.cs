@@ -105,7 +105,7 @@ namespace Peaks360App.Activities
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
             var buttonFavourite = menu.GetItem(0);
-            buttonFavourite.SetIcon(Context.ShowFavoritePicturesOnly ? Resource.Drawable.f_heart_solid : Resource.Drawable.f_heart_empty);
+            buttonFavourite.SetIcon(Context.ShowFavoritePicturesOnly ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff);
             
             return base.OnPrepareOptionsMenu(menu);
         }
