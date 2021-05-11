@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
-using Android.Util;
 using Peaks360App.Providers;
 using Peaks360App.Utilities;
-using Peaks360App.Views.Camera;
-using Peaks360Lib.Utilities;
-using Java.Util;
 using Peaks360Lib.Domain.Models;
-using Xamarin.Essentials;
 
 namespace Peaks360App.AppContext
 {

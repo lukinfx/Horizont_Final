@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Threading;
 using Android.App;
 using Android.Content;
-using Android.Graphics;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -11,16 +8,13 @@ using Xamarin.Essentials;
 using Peaks360Lib.Domain.ViewModel;
 using Peaks360App.AppContext;
 using Peaks360App.DataAccess;
-using Peaks360App.Tasks;
 using Peaks360App.Utilities;
 using Peaks360App.Views;
-using static Android.Views.View;
-using View = Android.Views.View;
-using GpsUtils = Peaks360App.Utilities.GpsUtils;
-using ImageButton = Android.Widget.ImageButton;
 using Peaks360App.Providers;
 using Peaks360Lib.Domain.Enums;
-using SQLitePCL;
+using static Android.Views.View;
+using View = Android.Views.View;
+using ImageButton = Android.Widget.ImageButton;
 
 namespace Peaks360App.Activities
 {

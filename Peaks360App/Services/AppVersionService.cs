@@ -1,7 +1,7 @@
 ﻿using System;
 using Android.Content.PM;
-using Peaks360App.Services;
 using Xamarin.Forms;
+using Peaks360App.Services;
 
 [assembly: Dependency(typeof(AppVersionService))]
 namespace Peaks360App.Services

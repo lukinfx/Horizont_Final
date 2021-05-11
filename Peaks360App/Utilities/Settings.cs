@@ -2,11 +2,11 @@
 using System.Timers;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Android.Util;
 using Android.Content;
 using Android.Preferences;
 using Peaks360Lib.Domain.Enums;
 using Peaks360Lib.Domain.Models;
-using Android.Util;
 
 namespace Peaks360App.Utilities
 {

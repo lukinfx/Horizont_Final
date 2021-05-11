@@ -5,8 +5,8 @@ using Android.App;
 using Android.Graphics;
 using Android.Views;
 using Android.Widget;
-using Peaks360Lib.Domain.Models;
 using Xamarin.Essentials;
+using Peaks360Lib.Domain.Models;
 
 namespace Peaks360App.Utilities
 {

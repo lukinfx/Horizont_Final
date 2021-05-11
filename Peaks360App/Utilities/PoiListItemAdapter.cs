@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Android.App;
-using Android.Content;
 using Android.Views;
 using Android.Widget;
 using Peaks360Lib.Domain.ViewModel;

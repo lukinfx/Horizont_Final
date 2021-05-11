@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Newtonsoft.Json;
 using Java.Lang;
 using Java.Nio;
 using Android.Media;
@@ -7,7 +8,6 @@ using Android.Graphics;
 using Peaks360App.DataAccess;
 using Peaks360Lib.Domain.Models;
 using Peaks360App.AppContext;
-using Newtonsoft.Json;
 
 namespace Peaks360App.Utilities
 {

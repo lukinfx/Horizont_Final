@@ -1,8 +1,6 @@
 ﻿using System;
 using Android.App;
 using Android.Runtime;
-using Peaks360App.AppContext;
-using Peaks360App.Views.Camera;
 
 namespace Peaks360App
 {

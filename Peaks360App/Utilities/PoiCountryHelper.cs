@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Android.Content;
 using Android.Content.Res;
 using Peaks360Lib.Domain.Enums;
 

@@ -106,7 +106,6 @@
     <Compile Include="Providers\GpxFileProvider.cs" />
     <Compile Include="Providers\PlaceNameProvider.cs" />
     <Compile Include="Providers\PoiCategoryBitmapProvider.cs" />
-    <Compile Include="Providers\ViewAngleProvider.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppVersionService.cs" />
@@ -411,7 +410,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
-    <Folder Include="Views\ListOfPoiView\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MenuActivityPortrait.xml">

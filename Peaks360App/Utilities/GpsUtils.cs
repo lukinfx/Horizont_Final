@@ -1,9 +1,5 @@
-﻿using System;
-using System.Linq;
-using Peaks360Lib.Domain.Models;
-using System.Threading.Tasks;
+﻿using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Utilities;
-using Xamarin.Essentials;
 
 namespace Peaks360App.Utilities
 {

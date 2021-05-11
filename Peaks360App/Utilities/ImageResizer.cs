@@ -1,9 +1,9 @@
-﻿using Android.Graphics;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
+using Android.Graphics;
 
 namespace Peaks360App.Utilities
 {

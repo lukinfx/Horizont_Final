@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Collections.Generic;
 using Android.App;
-using Android.Content.Res;
-using Android.Graphics;
 using Android.Views;
 using Android.Widget;
-using Peaks360Lib.Domain.Enums;
-using Peaks360Lib.Domain.Models;
 using Xamarin.Essentials;
+using Peaks360Lib.Domain.Models;
 
 namespace Peaks360App.Utilities
 {

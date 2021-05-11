@@ -1,19 +1,11 @@
-﻿using Android.App;
+﻿using System;
+using System.Threading;
+using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.Content.Res;
+using Xamarin.Essentials;
 using Peaks360App.AppContext;
 using Peaks360App.Tasks;
 using Peaks360App.Utilities;
-using Xamarin.Essentials;
-using System.Threading;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Domain.ViewModel;
 

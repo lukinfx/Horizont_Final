@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using Android.OS;
 using Peaks360Lib.Utilities;
 using Peaks360Lib.Domain.Models;
 using Peaks360App.Utilities;
 using Peaks360Lib.Domain.ViewModel;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Peaks360App.Tasks
 {

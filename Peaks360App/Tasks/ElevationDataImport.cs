@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
 using Android.OS;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Utilities;
 using Peaks360App.Providers;
-using Peaks360Lib.Domain.Models;
 using Peaks360App.Utilities;
-using Peaks360Lib.Domain.ViewModel;
-using Peaks360Lib.Utilities;
-using Newtonsoft.Json;
 
 namespace Peaks360App.Tasks
 {

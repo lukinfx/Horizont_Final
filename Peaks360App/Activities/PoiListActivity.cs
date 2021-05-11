@@ -16,7 +16,6 @@ using Peaks360Lib.Utilities;
 using Peaks360App.Activities;
 using Peaks360App.AppContext;
 using Peaks360App.Utilities;
-using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.Views.ListOfPoiView
 {

@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Timers;
 using Android.App;
 using Android.Content;
-using Android.Content.Res;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -14,7 +13,6 @@ using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Domain.ViewModel;
 using Peaks360Lib.Utilities;
 using Xamarin.Essentials;
-using static Android.Views.View;
 
 namespace Peaks360App.Activities
 {

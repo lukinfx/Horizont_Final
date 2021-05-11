@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using SQLite;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Utilities;
-using Peaks360App.Utilities;
 using Peaks360Lib.Domain.ViewModel;
-using SQLite;
 using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.DataAccess

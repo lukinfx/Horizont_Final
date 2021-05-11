@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using Android.OS;
 using Java.Lang;
-using Peaks360Lib.Utilities;
+using Android.OS;
 using Peaks360App.Providers;
-using Peaks360Lib.Domain.Models;
 using Peaks360App.Utilities;
-using Peaks360Lib.Domain.ViewModel;
-using Peaks360Lib.Utilities;
 using Exception = System.Exception;
 
 namespace Peaks360App.Tasks

@@ -13,7 +13,6 @@ using Peaks360Lib.Domain.Enums;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Domain.ViewModel;
 using Peaks360Lib.Extensions;
-using Peaks360Lib.Utilities;
 using Peaks360App.AppContext;
 using Peaks360App.Providers;
 using Peaks360App.Utilities;

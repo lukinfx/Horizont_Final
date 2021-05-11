@@ -1,18 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using Android.Views;
+using Android.Views.Animations;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using Peaks360Lib.Domain.Enums;
 using Peaks360App.AppContext;
 using Peaks360App.Utilities;
 using static Android.Views.View;
-using System;
-using Android.Content.Res;
-using Java.Interop;
-using Android.Views;
-using Android.Views.Animations;
 
 namespace Peaks360App.Activities
 {

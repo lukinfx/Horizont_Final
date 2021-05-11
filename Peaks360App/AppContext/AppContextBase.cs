@@ -1,15 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using Android.Content;
+using Xamarin.Essentials;
 using Peaks360App.DataAccess;
 using Peaks360Lib.Domain.ViewModel;
 using Peaks360App.Utilities;
 using Peaks360Lib.Domain.Models;
-using System.Collections.Generic;
-using Peaks360Lib.Domain.Models;
-using Xamarin.Essentials;
-using Peaks360Lib.Domain.Enums;
-using Android.Content.Res;
-using Android.Content;
-using Peaks360Lib.Domain.ViewModel;
 using Peaks360App.Models;
 using Peaks360Lib.Utilities;
 using GpsUtils = Peaks360App.Utilities.GpsUtils;

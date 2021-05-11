@@ -9,7 +9,6 @@ using Android.Text;
 using Android.Widget;
 using Android.Views;
 using Peaks360Lib.Domain.Models;
-using Peaks360Lib.Domain.Enums;
 using Peaks360App.Utilities;
 using Peaks360App.AppContext;
 using Peaks360App.Views.ScaleImage;
