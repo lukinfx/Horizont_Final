@@ -28,6 +28,11 @@ namespace Peaks360App.AppContext
 
         private float GetViewAngleHorizontal()
         {
+            if (Settings.CameraPictureSize.Width == 0 || Settings.CameraPictureSize.Height == 0)
+            {
+                return Settings.AViewAngleHorizontal;
+            }
+
             var dx = Settings.CameraResolutionSelected.Width / (float)Settings.CameraPictureSize.Width;
             var dy = Settings.CameraResolutionSelected.Height / (float)Settings.CameraPictureSize.Height;
 
@@ -37,6 +42,11 @@ namespace Peaks360App.AppContext
 
         private float GetViewAngleVertical()
         {
+            if (Settings.CameraPictureSize.Width == 0 || Settings.CameraPictureSize.Height == 0)
+            {
+                return Settings.AViewAngleVertical;
+            }
+
             var dx = Settings.CameraResolutionSelected.Width / (float)Settings.CameraPictureSize.Width;
             var dy = Settings.CameraResolutionSelected.Height / (float)Settings.CameraPictureSize.Height;
 
