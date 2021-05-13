@@ -95,7 +95,7 @@ namespace Peaks360App.Utilities
                 $"{item.Poi.Altitude:F0} m | {item.GpsLocation.Distance.Value/1000f:F2} km | {item.GpsLocation.Bearing.Value:F2}°";
 
             _thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
-            _thumbnail.SetColorFilter(ColorFilterPoiItem.GetColorFilter(item));
+            //_thumbnail.SetColorFilter(ColorFilterPoiItem.GetColorFilter(item));
             _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(item.Poi.Category));
 
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.PoiDeleteButton);

@@ -19,6 +19,9 @@ namespace Peaks360App.Views.Compass
         protected Paint paintGray;
         protected Paint paintBlack;
         protected TextPaint textPaintForEllipsize;
+        protected Bitmap infoBitmapYellow;
+        protected Bitmap infoBitmapBlack;
+        protected Bitmap favouriteBitmap;
 
         protected float viewAngleHorizontal;
         protected float viewAngleVertical;
@@ -68,7 +71,7 @@ namespace Peaks360App.Views.Compass
             paintWhite.SetStyle(Paint.Style.Fill);
 
             paintGray = new Paint();
-            paintGray.SetARGB(255, 128, 128, 128);
+            paintGray.SetARGB(255, 186, 186, 186);
             paintGray.SetStyle(Paint.Style.Fill);
 
             paintBlack = new Paint();
@@ -116,8 +119,25 @@ namespace Peaks360App.Views.Compass
             paintRect.StrokeWidth = ToPixels(4);
 
             textpaint.TextSize = ToPixels(36);
+            textpaintSelected.TextSize = ToPixels(36);
 
             poiCategoryBitmapProvider.Initialize(resources, new Size((int)ToPixels(66), (int)ToPixels(66)));
+
+            {
+                var img = BitmapFactory.DecodeResource(Android.App.Application.Context.Resources, Resource.Drawable.i_info_yellow);
+                infoBitmapYellow = Bitmap.CreateScaledBitmap(img, (int)ToPixels(28), (int)ToPixels(28), false);
+            }
+
+            {
+                var img = BitmapFactory.DecodeResource(Android.App.Application.Context.Resources, Resource.Drawable.i_info_black);
+                infoBitmapBlack = Bitmap.CreateScaledBitmap(img, (int)ToPixels(28), (int)ToPixels(28), false);
+            }
+
+            {
+                var img = BitmapFactory.DecodeResource(Android.App.Application.Context.Resources, Android.Resource.Drawable.StarOn);
+                favouriteBitmap = Bitmap.CreateScaledBitmap(img, (int)ToPixels(48), (int)ToPixels(48), false); 
+            }
+
         }
 
         public virtual double GetMinItemAngleDiff(int canvasWidth) { return 0; }

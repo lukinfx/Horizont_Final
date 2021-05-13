@@ -1020,6 +1020,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_star_on.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\i_info_yellow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

@@ -37,27 +37,38 @@ namespace Peaks360App.Utilities
     {
         private static ColorMatrixColorFilter _cfPoiCommon;
         private static ColorMatrixColorFilter _cfPoiImportant;
+        private static ColorMatrixColorFilter _cfPoiFavourite;
         private static Paint _pPoiCommon;
         private static Paint _pPoiImportant;
+        private static Paint _pPoiFavourite;
 
         private static ColorMatrixColorFilter GetImportantColorFilter()
         {
             if (_cfPoiImportant == null)
             {
-                var cm = new ColorMatrixBuilder().Hue(-30).Create(); //gold
+                var cm = new ColorMatrixBuilder().Create();
                 _cfPoiImportant = new ColorMatrixColorFilter(cm);
             }
 
             return _cfPoiImportant;
+        }
+        
+        private static ColorMatrixColorFilter GetFavouriteColorFilter()
+        {
+            if (_cfPoiFavourite == null)
+            {
+                var cm = new ColorMatrixBuilder().Hue(-30).Create();
+                _cfPoiFavourite = new ColorMatrixColorFilter(cm);
+            }
+
+            return _cfPoiFavourite;
         }
 
         private static ColorMatrixColorFilter GetCommonColorFilter()
         {
             if (_cfPoiCommon == null)
             {
-                //light green var cm = new ColorMatrixBuilder().Contrast(0.9f).Brightness(-50f).Alpha(0.9f).Hue(20f).Saturation(0.5f).Create();
-                //gray var cm = new ColorMatrixBuilder().Brightness(-50f).Saturation(0f).Create();
-                var cm = new ColorMatrixBuilder().Create();
+                var cm = new ColorMatrixBuilder().Hue(+30).Brightness(-100).Saturation(0.4f).Create();
                 _cfPoiCommon = new ColorMatrixColorFilter(cm);
             }
 
@@ -74,13 +85,24 @@ namespace Peaks360App.Utilities
                 _pPoiImportant = new Paint();
                 _pPoiImportant.SetColorFilter(GetImportantColorFilter());
 
+                _pPoiFavourite = new Paint();
+                _pPoiFavourite.SetColorFilter(GetFavouriteColorFilter());
             }
 
+            if (item.Poi.Favorite)
+            {
+                return _pPoiFavourite;
+            }
             return item.IsImportant() ? _pPoiImportant : _pPoiCommon;
         }
 
         public static ColorMatrixColorFilter GetColorFilter(PoiViewItem item)
         {
+            if (item.Poi.Favorite)
+            {
+                return GetFavouriteColorFilter();
+            }
+
             return item.IsImportant() ? GetImportantColorFilter() : GetCommonColorFilter();
         }
 

@@ -51,18 +51,36 @@ namespace Peaks360App.Views.Compass
             var textWidth = y4 - y2 - 10;
             var text1 = EllipsizeText(item.Poi.Name, textWidth/multiplier);
             var text2 = EllipsizeText($"{item.Poi.Altitude} m / {(item.GpsLocation.Distance / 1000):F2} km", textWidth/multiplier);
-            canvas.DrawText(text1, y6, -startX - ToPixels(4), GetTextPaint(item));
-            canvas.DrawText(text2, y6, -startX + ToPixels(29), GetTextPaint(item));
+
+            var textPaint = GetTextPaint(item);
+            canvas.DrawText(text1, y6, -startX - ToPixels(4), textPaint);
+            canvas.DrawText(text2, y6, -startX + ToPixels(29), textPaint);
+
+            Rect bounds = new Rect();
+            textPaint.GetTextBounds(text1.ToCharArray(), 0, text1.Length, bounds);
+
+            float iconOffset = y6 + bounds.Width() + ToPixels(10);
+            if (item.IsImportant())
+            {
+                canvas.DrawBitmap(item.Selected ? infoBitmapBlack : infoBitmapYellow, iconOffset, -startX - ToPixels(30), null);
+                iconOffset += ToPixels(28 + 5);
+            }
+
+            if (item.Poi.Favorite)
+            {
+                canvas.DrawBitmap(favouriteBitmap, iconOffset, -startX - ToPixels(40), null);
+            }
+
         }
 
         public override void OnDrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY)
         {
             int circleSize = 42;
             canvas.DrawCircle(startX, ToPixels(circleSize), ToPixels(circleSize), paintBlack);
-            canvas.DrawCircle(startX, ToPixels(circleSize), ToPixels(circleSize - 3), paintWhite /*item.IsFullyVisible() ? paintWhite : paintGray*/);
+            canvas.DrawCircle(startX, ToPixels(circleSize), ToPixels(circleSize - 3), item.Selected ? paintWhite : paintGray);
 
             var bmp = poiCategoryBitmapProvider.GetCategoryIcon(item.Poi.Category);
-            canvas.DrawBitmap(bmp, startX - ToPixels(33), ToPixels(circleSize - 33), ColorFilterPoiItem.GetPaintFilter(item));
+            canvas.DrawBitmap(bmp, startX - ToPixels(33), ToPixels(circleSize - 33), null/*ColorFilterPoiItem.GetPaintFilter(item)*/);
         }
 
         public override double GetMinItemAngleDiff(int canvasWidth)
