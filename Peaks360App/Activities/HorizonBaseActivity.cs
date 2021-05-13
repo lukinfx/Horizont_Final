@@ -100,7 +100,7 @@ namespace Peaks360App.Activities
 
             _favouriteButton = FindViewById<ImageButton>(Resource.Id.favouriteFilterButton);
             _favouriteButton.SetOnClickListener(this);
-            _favouriteButton.SetImageResource(Context.ShowFavoritesOnly ? Resource.Drawable.ic_heart2_on : Resource.Drawable.ic_heart2);
+            _favouriteButton.SetImageResource(Context.ShowFavoritesOnly ? Resource.Drawable.ic_star_on : Resource.Drawable.ic_star_off);
 
             var _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
             _selectCategoryButton.SetOnClickListener(this);
@@ -402,7 +402,7 @@ namespace Peaks360App.Activities
         protected virtual void OnFavouriteButtonClicked()
         {
             Context.ToggleFavourite();
-            _favouriteButton.SetImageResource(Context.ShowFavoritesOnly ? Resource.Drawable.ic_heart2_on : Resource.Drawable.ic_heart2);
+            _favouriteButton.SetImageResource(Context.ShowFavoritesOnly ? Resource.Drawable.ic_star_on : Resource.Drawable.ic_star_off);
             Context.ReloadData();
         }
 

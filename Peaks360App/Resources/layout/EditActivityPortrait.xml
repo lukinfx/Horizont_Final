@@ -57,7 +57,7 @@
                         <ImageView
                           android:src="@android:drawable/btn_star_big_off"
                           android:layout_weight="100"
-                          android:layout_width="60dp"
+                          android:layout_width="80dp"
                           android:layout_height="match_parent"
                           android:padding="0px"
                           android:id="@+id/buttonFavourite"/>
