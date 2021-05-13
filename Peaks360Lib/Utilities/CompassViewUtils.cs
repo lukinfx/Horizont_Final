@@ -65,21 +65,34 @@ namespace Peaks360Lib.Utilities
             if (leftPoints == null || rightPoints == null)
                 return Visibility.Visible;
 
+            var maxLeft = new GpsLocation() {VerticalViewAngle = -100, Distance = 100};
+            var leftPoints2 = leftPoints.GetPoints().Where(p => p.Distance < item.GpsLocation.Distance);
+            if (leftPoints2.Any())
+            {
+                maxLeft = leftPoints2.Aggregate((max, item2) => item2?.VerticalViewAngle > max?.VerticalViewAngle ? item2 : max);
+            }
+
+            var maxRight = new GpsLocation() {VerticalViewAngle = -100, Distance = 100};
+            var rightPoints2 = rightPoints.GetPoints().Where(p => p.Distance < item.GpsLocation.Distance);
+            if (rightPoints2.Any())
+            {
+                maxRight = rightPoints2.Aggregate((max, item2) => item2?.VerticalViewAngle > max?.VerticalViewAngle ? item2 : max);
+            }
+
+            var maxViewAngle = maxRight.VerticalViewAngle > maxLeft.VerticalViewAngle ? maxRight : maxLeft;
+
             var itemViewAngle = item.VerticalViewAngle;
-
-            var maxLeft = leftPoints.GetPoints().Where(p => p.Distance < item.GpsLocation.Distance).Max(p => p.VerticalViewAngle) ?? -100;
-            var maxRight = rightPoints.GetPoints().Where(p => p.Distance < item.GpsLocation.Distance).Max(p => p.VerticalViewAngle) ?? -100;;
-            var maxViewAngle = Math.Max(maxLeft, maxRight);
-
-            var viewAngleDiff = itemViewAngle - maxViewAngle;
+            var viewAngleDiff = item.VerticalViewAngle - maxViewAngle.VerticalViewAngle;
+            var viewAngleDistance = item.GpsLocation.Distance - maxViewAngle.Distance;
 
             var viewAngleVisibilityLimit = -(itemViewAngle * 0.02 + 0.2);
             var viewAnglePartVisibilityLimit = -(itemViewAngle * 0.2 + 1);
+            var distancePartVisibilityLimit = 2000;//m
 
             if (viewAngleDiff > viewAngleVisibilityLimit)
                 return Visibility.Visible;
 
-            if (viewAngleDiff > viewAnglePartVisibilityLimit)
+            if (viewAngleDiff > viewAnglePartVisibilityLimit && viewAngleDistance < distancePartVisibilityLimit)
                 return Visibility.PartialyVisible;
 
             return Visibility.Invisible;
