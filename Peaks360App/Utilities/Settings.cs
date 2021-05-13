@@ -5,8 +5,10 @@ using System.Collections.ObjectModel;
 using Android.Util;
 using Android.Content;
 using Android.Preferences;
+using Peaks360App.Services;
 using Peaks360Lib.Domain.Enums;
 using Peaks360Lib.Domain.Models;
+using Xamarin.Forms;
 
 namespace Peaks360App.Utilities
 {
@@ -47,7 +49,7 @@ namespace Peaks360App.Utilities
 
         public Language Language;
 
-        public Size CameraResolutionSelected { get; set; }
+        public Android.Util.Size CameraResolutionSelected { get; set; }
 
         public Settings()
         {
@@ -154,10 +156,30 @@ namespace Peaks360App.Utilities
         }
 
         private bool _applicationRatingCompleted;
+        private DateTime? _applicationRatingQuestionDate;
 
-        public bool IsApplicationRatingCompleted()
+        public bool IsReviewRequired()
         {
-            return _applicationRatingCompleted;
+            if (_applicationRatingCompleted)
+            {
+                return false;
+            }
+
+            if (!_applicationRatingQuestionDate.HasValue)
+            {
+                var firstInstall = DependencyService.Get<IAppVersionService>().GetInstallDate();
+                _applicationRatingQuestionDate = firstInstall;
+            }
+
+            if (DateTime.Now.Subtract(_applicationRatingQuestionDate.Value).Days < 10)
+            {
+                return false;
+            }
+
+            _applicationRatingQuestionDate = DateTime.Now;
+            
+            SaveData();
+            return true;
         }
 
         public void SetApplicationRatingCompleted()
@@ -221,7 +243,7 @@ namespace Peaks360App.Utilities
                 SetTutorialNeeded(TutorialPart.PhotoShowActivity, isTutorialNeeded);
             }
 
-            CameraResolutionSelected = new Size (prefs.GetInt("CameraResolutionWidth", 0), prefs.GetInt("CameraResolutionHeight", 0));
+            CameraResolutionSelected = new Android.Util.Size(prefs.GetInt("CameraResolutionWidth", 0), prefs.GetInt("CameraResolutionHeight", 0));
             CameraId= prefs.GetString("CameraId", null);
 
             string lan = prefs.GetString("Language", "");
@@ -231,6 +253,12 @@ namespace Peaks360App.Utilities
             }
 
             _applicationRatingCompleted = prefs.GetBoolean("ApplicationRatingCompleted", false);
+            string applicationRatingQuestionDateAsString = prefs.GetString("ApplicationRatingQuestionDate", null);
+            if (DateTime.TryParse(applicationRatingQuestionDateAsString, out var applicationRatingQuestionDateAsDate))
+            {
+                _applicationRatingQuestionDate = applicationRatingQuestionDateAsDate;
+            }
+
 
             ShowElevationProfile = AutoElevationProfile;
         }
@@ -268,6 +296,7 @@ namespace Peaks360App.Utilities
                 editor.PutString("Language", Language.ToString());
 
                 editor.PutBoolean("ApplicationRatingCompleted", _applicationRatingCompleted);
+                editor.PutString("ApplicationRatingQuestionDate", _applicationRatingQuestionDate?.ToString());
 
                 editor.Apply();
             }

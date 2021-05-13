@@ -323,23 +323,19 @@ namespace Peaks360App
 
         private void CheckAndRequestAppReview()
         {
-            if (!Context.Settings.IsApplicationRatingCompleted())
+            if (Context.Settings.IsReviewRequired())
             {
-                var firstInstall = DependencyService.Get<IAppVersionService>().GetInstallDate();
-                if (DateTime.Now.Subtract(firstInstall).Days > 10)
+                AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
+                alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
                 {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
-                    alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
-                    {
-                        Context.Settings.SetApplicationRatingCompleted();
-                        RequestAppReview();
-                    });
-                    alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) =>
-                    {
-                    });
-                    alert.SetMessage(Resources.GetText(Resource.String.Main_ReviewAppQuestion));
-                    var answer = alert.Show();
-                }
+                    Context.Settings.SetApplicationRatingCompleted();
+                    RequestAppReview();
+                });
+                alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) =>
+                {
+                });
+                alert.SetMessage(Resources.GetText(Resource.String.Main_ReviewAppQuestion));
+                var answer = alert.Show();
             }
         }
 
