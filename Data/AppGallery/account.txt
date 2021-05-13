@@ -1,2 +1,4 @@
+https://developer.huawei.com/consumer/en/service/josp/agc/index.html#/myApp
+
 email: fdevstudiocz
 pwd: Lutofr1973
