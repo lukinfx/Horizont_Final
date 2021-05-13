@@ -256,9 +256,9 @@ namespace Peaks360App.Views.ListOfPoiView
             }
 
             IEnumerable<Poi> poiList;
-            if (poiName != null || country.HasValue || category.HasValue)
+            if (poiName != null || country.HasValue || category.HasValue || Context.ShowFavoritePoisOnly)
             {
-                poiList = Context.Database.FindItems(poiName, category, country);
+                poiList = Context.Database.FindItems(poiName, category, country, Context.ShowFavoritePoisOnly);
             }
             else
             {

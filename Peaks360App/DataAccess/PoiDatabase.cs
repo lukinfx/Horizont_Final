@@ -184,7 +184,7 @@ namespace Peaks360App.DataAccess
             return await Database.QueryAsync<Poi>("SELECT * FROM [Poi] WHERE [Favorite] = true");
         }
 
-        public IEnumerable<Poi> FindItems(string name, PoiCategory? category, PoiCountry? country)
+        public IEnumerable<Poi> FindItems(string name, PoiCategory? category, PoiCountry? country, bool favourites)
         {
             var query = $"SELECT * FROM [Poi] WHERE 1=1";
 
@@ -202,6 +202,11 @@ namespace Peaks360App.DataAccess
             if (category != null)
             {
                 query += $" AND Category = {(int)category}";
+            }
+
+            if (favourites)
+            {
+                query += $" AND [Favorite] = true";
             }
 
             return Database.QueryAsync<Poi>(query).Result.Take(1000);
