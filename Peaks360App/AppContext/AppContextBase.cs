@@ -176,7 +176,15 @@ namespace Peaks360App.AppContext
                 if (SelectedPoi != null)
                 {
                     var selectedPoi = PoiData.Find(x => x.Poi.Id == SelectedPoi.Poi.Id);
-                    SelectedPoi = selectedPoi;
+                    if (selectedPoi != null)
+                    {
+                        selectedPoi.Selected = true;
+                        SelectedPoi = selectedPoi;
+                    }
+                    else
+                    {
+                        SelectedPoi = null;
+                    }
                 }
 
                 var args = new DataChangedEventArgs() { PoiData = PoiData };
