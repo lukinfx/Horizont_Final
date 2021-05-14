@@ -87,11 +87,12 @@ namespace Peaks360App.Activities
 
         private void InitializeUI()
         {
-            _countryAdapter = new DownloadCountryAdapter(this);
+            
             if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
                 SetContentView(Resource.Layout.DownloadActivityPortrait);
 
+                _countryAdapter = new DownloadCountryAdapter(this, false);
                 _downloadCountrySpinner = FindViewById<Spinner>(Resource.Id.DownloadCountrySpinner);
                 _downloadCountrySpinner.Adapter = _countryAdapter;
                 _downloadCountrySpinner.ItemSelected += OnCountrySpinnerItemSelected;
@@ -101,6 +102,7 @@ namespace Peaks360App.Activities
             {
                 SetContentView(Resource.Layout.DownloadActivityLandscape);
 
+                _countryAdapter = new DownloadCountryAdapter(this, true);
                 _downloadCountryListView = FindViewById<ListView>(Resource.Id.DownloadCountryListView);
                 _downloadCountryListView.Adapter = _countryAdapter;
                 _downloadCountryListView.ItemClick += OnCountryListItemClicked;
@@ -170,11 +172,16 @@ namespace Peaks360App.Activities
         private void OnCountrySelected(int position)
         {
             PoiCountry country = _countryAdapter[position];
+            _countryAdapter.Selection = country;
+            
             var items = _downloadViewItems
                 .Where(x => x.fromDatabase.Country == country)
                 .OrderBy(x => x.fromDatabase.Category);
 
-            MainThread.BeginInvokeOnMainThread(() => _downloadItemAdapter.SetItems(items) ); 
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                _downloadItemAdapter.SetItems(items);
+            }); 
         }
 
         private void OnIndexDownloaded(string json)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using Android.App;
 using Android.Views;
@@ -9,14 +10,27 @@ namespace Peaks360App.Utilities
 {
     public class DownloadCountryAdapter : BaseAdapter<PoiCountry>
     {
-        Activity context;
-        List<PoiCountry> list;
+        private Activity context;
+        private List<PoiCountry> list;
+        private bool _highlightSelection;
+        private Android.Graphics.Color highlightedColor = new Android.Graphics.Color(0, 0, 0, 32);
+        private Android.Graphics.Color normalColor = new Android.Graphics.Color(0, 0, 0, 0);
 
-        public DownloadCountryAdapter(Activity _context)
+
+        private PoiCountry? _selection;
+        public PoiCountry? Selection
+        {
+            set { _selection = value; NotifyDataSetChanged(); } private get { return _selection; }
+        }
+         
+        //public PoiCountry? Selection { set; private get; }
+
+        public DownloadCountryAdapter(Activity _context, bool highlightSelection)
             : base()
         {
             this.context = _context;
             list = new List<PoiCountry>();
+            _highlightSelection = highlightSelection;
         }
 
         public void SetItems(IEnumerable<PoiCountry> items)
@@ -55,6 +69,11 @@ namespace Peaks360App.Utilities
             PoiCountry item = this[position];
             view.FindViewById<TextView>(Resource.Id.PoiItemCountryAsText).Text = PoiCountryHelper.GetCountryName(item);
             view.FindViewById<ImageView>(Resource.Id.PoiItemCountryAsIcon).SetImageResource(PoiCountryHelper.GetCountryIcon(item));
+
+            if (_highlightSelection)
+            {
+                view.SetBackgroundColor(item == Selection ? highlightedColor : normalColor);
+            }
 
             return view;
         }
