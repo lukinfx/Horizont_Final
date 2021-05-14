@@ -15,6 +15,7 @@ namespace Peaks360App.Activities
     {
         private PoiCategory[] supportedCategories = new PoiCategory[] { PoiCategory.Historic, PoiCategory.Mountains, PoiCategory.Churches, PoiCategory.Cities, PoiCategory.Lakes, PoiCategory.Other, PoiCategory.Transmitters, PoiCategory.ViewTowers };
         private Dictionary<PoiCategory, ImageButton> _imageButtonCategoryFilter = new Dictionary<PoiCategory, ImageButton>();
+        private ImageButton _favouriteButton;
         private IAppContext _context;
         public PoiFilterDialog(Context context, IAppContext Context) : base(context)
         {
@@ -28,6 +29,11 @@ namespace Peaks360App.Activities
 
             SetContentView(Resource.Layout.MainActivityPoiFilter);
             InitializeCategoryFilterButtons();
+            
+            _favouriteButton = FindViewById<ImageButton>(Resource.Id.buttonFavourites);
+            _favouriteButton.SetOnClickListener(this);
+            _favouriteButton.SetImageResource(_context.ShowFavoritesOnly ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff);
+
         }
 
         private void InitializeCategoryFilterButton(int resourceId)
@@ -60,6 +66,14 @@ namespace Peaks360App.Activities
             buttonSelectNone.SetOnClickListener(this);
         }
 
+        protected virtual void OnFavouriteButtonClicked()
+        {
+            _context.ToggleFavourite();
+            _favouriteButton.SetImageResource(_context.ShowFavoritesOnly ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff);
+            //_context.ReloadData();
+            _context.Settings.NotifySettingsChanged(ChangedData.PoiFilterSettings);
+        }
+
         public async void OnClick(Android.Views.View v)
         {
             try
@@ -75,6 +89,9 @@ namespace Peaks360App.Activities
                     case Resource.Id.imageButtonSelectViewtower:
                     case Resource.Id.imageButtonSelectChurch:
                         OnCategoryFilterChanged(v.Id);
+                        break;
+                    case Resource.Id.buttonFavourites:
+                        OnFavouriteButtonClicked();
                         break;
                     case Resource.Id.buttonSelectAll:
                         OnCategoryFilterSelectAll();

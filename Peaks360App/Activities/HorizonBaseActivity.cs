@@ -98,10 +98,6 @@ namespace Peaks360App.Activities
             _displayTerrainButton.SetOnClickListener(this);
             _displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
 
-            _favouriteButton = FindViewById<ImageButton>(Resource.Id.favouriteFilterButton);
-            _favouriteButton.SetOnClickListener(this);
-            _favouriteButton.SetImageResource(Context.ShowFavoritesOnly ? Resource.Drawable.ic_star_on : Resource.Drawable.ic_star_off);
-
             var _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
             _selectCategoryButton.SetOnClickListener(this);
 
@@ -367,10 +363,6 @@ namespace Peaks360App.Activities
                 case Resource.Id.buttonDisplayTerrain:
                     OnDisplayTarrainButtonClicked();
                     break;
-
-                case Resource.Id.favouriteFilterButton:
-                    OnFavouriteButtonClicked();
-                    break;
                 case Resource.Id.buttonCategorySelect:
                     OnCategoryButtonClicked();
                     break;
@@ -397,13 +389,6 @@ namespace Peaks360App.Activities
         {
                 var dialog = new PoiFilterDialog(this, Context);
                 dialog.Show();
-        }
-
-        protected virtual void OnFavouriteButtonClicked()
-        {
-            Context.ToggleFavourite();
-            _favouriteButton.SetImageResource(Context.ShowFavoritesOnly ? Resource.Drawable.ic_star_on : Resource.Drawable.ic_star_off);
-            Context.ReloadData();
         }
 
         protected virtual void OnDisplayTarrainButtonClicked()

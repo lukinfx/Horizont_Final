@@ -9,7 +9,8 @@
     <LinearLayout android:orientation="vertical"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:background="#A0A0A0">
 
       <TextView
         android:padding="10dp"
@@ -18,7 +19,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF"
-        android:background="#E0404040"
+        android:background="#404040"
         />
 
       <GridLayout
@@ -26,7 +27,6 @@
           android:layout_height="wrap_content"
           android:rowCount="2"
           android:columnCount="4"
-          android:background="#E0808080"
           android:orientation="horizontal">
                 <ImageButton
                   android:layout_columnWeight="1"
@@ -109,6 +109,35 @@
                   android:background="#00000000"
                   android:id="@+id/imageButtonSelectOther" /> 
         </GridLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1">
+          <ImageButton
+            android:layout_columnWeight="1"
+            android:src="@android:drawable/btn_star_big_off"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:padding="5dp"
+            android:background="#00000000"
+            android:id="@+id/buttonFavourites" />
+          <TextView
+            android:text="@string/PoiList_FavouritesOnly"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="#000000"
+            android:id="@+id/textView1" />
+
+        </LinearLayout>
+
         <LinearLayout android:orientation="horizontal"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
