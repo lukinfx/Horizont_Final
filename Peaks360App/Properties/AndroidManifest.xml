@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
-  android:versionCode="54" 
-  android:versionName="1.02.54" 
+  android:versionCode="56" 
+  android:versionName="1.02.56" 
   package="cz.fdevstudio.peaks360" 
   android:installLocation="auto">
 
