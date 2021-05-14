@@ -7,10 +7,10 @@
     android:id="@+id/linearLayoutSelectCategory">
 
     <LinearLayout android:orientation="vertical"
-        android:layout_width="300dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:background="#A0A0A0">
+        android:background="#909090">
 
       <TextView
         android:padding="10dp"
@@ -19,12 +19,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF"
-        android:background="#404040"
-        />
+        android:background="#404040"/>
 
       <GridLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:paddingTop="10dp"
+          android:paddingHorizontal="10dp"
           android:rowCount="2"
           android:columnCount="4"
           android:orientation="horizontal">
@@ -35,7 +36,7 @@
                   android:layout_gravity="bottom"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
-                  android:padding="5dp"
+                  android:padding="2dp"
                   android:background="#00000000"
                   android:id="@+id/imageButtonSelectMountain" />
                 <ImageButton
@@ -45,7 +46,7 @@
                   android:layout_gravity="bottom"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
-                  android:padding="5dp"
+                  android:padding="2dp"
                   android:background="#00000000"
                   android:id="@+id/imageButtonSelectHistoric" />
                 <ImageButton
@@ -55,7 +56,7 @@
                   android:layout_gravity="bottom"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
-                  android:padding="5dp"
+                  android:padding="2dp"
                   android:background="#00000000"
                   android:id="@+id/imageButtonSelectChurch" />
                 <ImageButton
@@ -65,7 +66,7 @@
                   android:layout_gravity="bottom"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
-                  android:padding="5dp"
+                  android:padding="2dp"
                   android:background="#00000000"
                   android:id="@+id/imageButtonSelectLake" />
                 <ImageButton
@@ -75,7 +76,7 @@
                   android:layout_gravity="bottom"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
-                  android:padding="5dp"
+                  android:padding="2dp"
                   android:background="#00000000"
                   android:id="@+id/imageButtonSelectCity" />
                 <ImageButton
@@ -85,7 +86,7 @@
                   android:layout_gravity="bottom"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
-                  android:padding="5dp"
+                  android:padding="2dp"
                   android:background="#00000000"
                   android:id="@+id/imageButtonSelectTransmitter" />
                 <ImageButton
@@ -95,7 +96,7 @@
                   android:layout_gravity="bottom"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
-                  android:padding="5dp"
+                  android:padding="2dp"
                   android:background="#00000000"
                   android:id="@+id/imageButtonSelectViewtower" />
                 <ImageButton
@@ -105,16 +106,15 @@
                   android:layout_gravity="bottom"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
-                  android:padding="5dp"
+                  android:padding="2dp"
                   android:background="#00000000"
                   android:id="@+id/imageButtonSelectOther" /> 
         </GridLayout>
         <LinearLayout
             android:orientation="horizontal"
-            android:minWidth="25px"
-            android:minHeight="25px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
             android:id="@+id/linearLayout1">
           <ImageButton
             android:layout_columnWeight="1"
@@ -124,7 +124,6 @@
             android:layout_gravity="bottom"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:padding="5dp"
             android:background="#00000000"
             android:id="@+id/buttonFavourites" />
           <TextView
