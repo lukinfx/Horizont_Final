@@ -163,7 +163,9 @@ namespace Peaks360App.Activities
 
         private void ShowPhotos(bool favoriesOnly)
         {
-            var list = Context.PhotosModel.GetPhotoDataItems().AsQueryable();
+            var list = Context.PhotosModel.GetPhotoDataItems()
+                .OrderByDescending(x => x.Datetime)
+                .AsQueryable();
 
             if (favoriesOnly)
             {
