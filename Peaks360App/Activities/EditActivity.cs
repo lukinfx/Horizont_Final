@@ -109,7 +109,7 @@ namespace Peaks360App.Activities
             }
             else
             {
-                var country = PoiCountryHelper.GetDefaultCountry();
+                var country = PoiCountryHelper.GetDefaultCountryByPhoneSettings();
                 var countryIndex = (_spinnerCountry.Adapter as CountryAdapter).GetPosition(country);
                 _spinnerCountry.SetSelection(countryIndex);
             }

@@ -38,6 +38,16 @@ namespace Peaks360App.Utilities
             return converted;
         }
 
+        public static GpsLocation Convert(Xamarin.Essentials.Location loc)
+        {
+            GpsLocation converted = new GpsLocation();
+
+            converted.Altitude = loc.Altitude ?? 0;
+            converted.Longitude = loc.Longitude;
+            converted.Latitude = loc.Latitude;
+            return converted;
+        }
+
         public static GpsLocation ConvertFromXamarin(Xamarin.Essentials.Location loc)
         {
             GpsLocation converted = new GpsLocation();

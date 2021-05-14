@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Peaks360App.AppContext;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Utilities;
@@ -94,6 +95,17 @@ namespace Peaks360App.Providers
             {
                 waitingForResponse = false;
             }
+        }
+
+        public static async Task<GpsLocation> GetLastKnownLocationAsync()
+        {
+            var location = await Geolocation.GetLastKnownLocationAsync();
+            if (location != null)
+            {
+                return Peaks360App.Utilities.GpsUtils.Convert(location);
+            }
+
+            return null;
         }
 
         /*public GpsLocation GetLocation()

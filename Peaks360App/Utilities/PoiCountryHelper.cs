@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Android.Content.Res;
+using Peaks360App.Providers;
 using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.Utilities
@@ -98,7 +100,7 @@ namespace Peaks360App.Utilities
             return poiCountry;
         }
 
-        public static PoiCountry? GetDefaultCountry()
+        public static PoiCountry? GetDefaultCountryByPhoneSettings()
         {
             var regionCode = RegionInfo.CurrentRegion;
             if (PoiCountry.TryParse<PoiCountry>(regionCode.ThreeLetterISORegionName, out var poiCountry))
@@ -107,6 +109,24 @@ namespace Peaks360App.Utilities
             }
 
             return null;
+        }
+
+        public static async Task<PoiCountry?> GetDefaultCountryByPhoneLocation()
+        {
+            PoiCountry? defaultCountry = null;
+            var location = await GpsLocationProvider.GetLastKnownLocationAsync();
+            if (location != null)
+            {
+                var placeInfo = await PlaceNameProvider.AsyncGetPlaceName(location);
+                defaultCountry = placeInfo?.Country;
+            }
+
+            if (!defaultCountry.HasValue)
+            {
+                defaultCountry = PoiCountryHelper.GetDefaultCountryByPhoneSettings();
+            }
+
+            return defaultCountry;
         }
 
         public static List<string> GetLanguageNames()

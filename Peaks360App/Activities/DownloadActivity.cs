@@ -78,7 +78,11 @@ namespace Peaks360App.Activities
         {
             base.OnResume();
 
-            SelectDefaultCountry();
+            Task.Run(async () =>
+            {
+                var defaultCountry = await PoiCountryHelper.GetDefaultCountryByPhoneLocation();
+                MainThread.BeginInvokeOnMainThread(() => SelectCountry(defaultCountry));
+            });
         }
 
         private void InitializeUI()
@@ -134,7 +138,6 @@ namespace Peaks360App.Activities
 
             var _downloadedElevationDataAddButton = FindViewById<Button>(Resource.Id.buttonAddNew);
             _downloadedElevationDataAddButton.SetOnClickListener(this);
-
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -167,8 +170,11 @@ namespace Peaks360App.Activities
         private void OnCountrySelected(int position)
         {
             PoiCountry country = _countryAdapter[position];
-            var items = _downloadViewItems.Where(x => x.fromDatabase.Country == country).OrderBy(x => x.fromDatabase.Category).ToList();
-            _downloadItemAdapter.SetItems(items);
+            var items = _downloadViewItems
+                .Where(x => x.fromDatabase.Country == country)
+                .OrderBy(x => x.fromDatabase.Category);
+
+            MainThread.BeginInvokeOnMainThread(() => _downloadItemAdapter.SetItems(items) ); 
         }
 
         private void OnIndexDownloaded(string json)
@@ -229,20 +235,22 @@ namespace Peaks360App.Activities
                 .OrderBy(x => PoiCountryHelper.GetCountryName(x))
                 .ToList();
 
-            MainThread.BeginInvokeOnMainThread(() =>
+            Task.Run(async () =>
             {
-                _countryAdapter.SetItems(countries);
-
-                SelectDefaultCountry();
+                var defaultCountry = await PoiCountryHelper.GetDefaultCountryByPhoneLocation();
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    _countryAdapter.SetItems(countries);
+                    SelectCountry(defaultCountry);
+                });
             });
         }
 
-        private void SelectDefaultCountry()
+        private void SelectCountry(PoiCountry? country)
         {
-            var defaultCountry = PoiCountryHelper.GetDefaultCountry();
-            if (defaultCountry != null)
+            if (country.HasValue)
             {
-                var pos = _countryAdapter.GetPosition(defaultCountry.Value);
+                var pos = _countryAdapter.GetPosition(country.Value);
                 if (pos >= 0)
                 {
                     _downloadCountrySpinner?.SetSelection(pos);
