@@ -84,7 +84,7 @@
   <string name="Main_ReviewAppQuestion">Grazie per aver utilizzato l\'applicazione Peaks360. Per migliorare l\'applicazione vorremmo ricevere il tuo feedback. Vuoi valutarlo adesso?</string>
 
   <!--PoiListActivity-->
-  <string name="PoiList_FavouritesOnly">Solo preferiti</string>
+  <string name="PoiList_FavouritesOnly">Mostra solo preferiti</string>
   <string name="PoiList_AddNewPoint">Aggiungi un nuovo punto</string>
   <string name="PoiListFilter_Visible">Punti visibili</string>
   <string name="PoiListFilter_My">I miei punti</string>

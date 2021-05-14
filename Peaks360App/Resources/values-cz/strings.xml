@@ -84,7 +84,7 @@
   <string name="Main_ReviewAppQuestion">Děkujeme, že používáte aplikaci Peaks360. Abychom mohli aplikaci vylepšovat, rádi bychom získali vaši zpětnou vazbu. Chcete teď hodnotit?</string>
 
   <!--PoiListActivity-->
-  <string name="PoiList_FavouritesOnly">Jen oblíbené</string>
+  <string name="PoiList_FavouritesOnly">Zobrazit jen oblíbené</string>
   <string name="PoiList_AddNewPoint">Přidat nový bod</string>
   <string name="PoiListFilter_Visible">Viditelné body</string>
   <string name="PoiListFilter_My">Moje body</string>
