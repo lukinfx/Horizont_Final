@@ -34,8 +34,9 @@ namespace Peaks360App.Views.Compass
             float y2 = ToPixels(70);
             float y3 = y2 / 2 + 1;
             float y4 = endY - ToPixels(50);
+            float yDrawableAreaEnd = endY - ToPixels(25);
             float y5 = endY;
-            float y6 = ToPixels(90);
+            float yDrawableAreaStart = ToPixels(90);
 
             float x1 = startX - ToPixels(35);
             float x2 = startX + ToPixels(35);
@@ -48,27 +49,33 @@ namespace Peaks360App.Views.Compass
             path.LineTo(y3, -x2);
             canvas.DrawPath(path, GetRectPaint(item));
 
-            var textWidth = y4 - y2 - 10;
+            var dyTextSpace = ToPixels(10);
+            var dyImportantIcon = ToPixels(30);
+            var dyFavouriteIcon = ToPixels(40);
+            var dyIconSpace = ToPixels(3);
+
+            var textWidth = yDrawableAreaEnd - yDrawableAreaStart - dyTextSpace - (item.IsImportant()? dyImportantIcon+dyIconSpace : 0) - (item.Poi.Favorite? dyFavouriteIcon+dyIconSpace : 0);
             var text1 = EllipsizeText(item.Poi.Name, textWidth/multiplier);
             var text2 = EllipsizeText($"{item.Poi.Altitude} m / {(item.GpsLocation.Distance / 1000):F2} km", textWidth/multiplier);
 
             var textPaint = GetTextPaint(item);
-            canvas.DrawText(text1, y6, -startX - ToPixels(4), textPaint);
-            canvas.DrawText(text2, y6, -startX + ToPixels(29), textPaint);
+            canvas.DrawText(text1, yDrawableAreaStart, -startX - ToPixels(4), textPaint);
+            canvas.DrawText(text2, yDrawableAreaStart, -startX + ToPixels(29), textPaint);
 
             Rect bounds = new Rect();
             textPaint.GetTextBounds(text1.ToCharArray(), 0, text1.Length, bounds);
 
-            float iconOffset = y6 + bounds.Width() + ToPixels(10);
-            if (item.IsImportant())
+            float iconOffset = yDrawableAreaStart + bounds.Width() + dyTextSpace;
+            if (item.IsImportant() && iconOffset + dyImportantIcon <= yDrawableAreaEnd)
             {
                 canvas.DrawBitmap(item.Selected ? infoBitmapBlack : infoBitmapYellow, iconOffset, -startX - ToPixels(30), null);
-                iconOffset += ToPixels(28 + 5);
+                iconOffset += dyImportantIcon + dyIconSpace;
             }
 
-            if (item.Poi.Favorite)
+            if (item.Poi.Favorite && iconOffset + dyFavouriteIcon <= yDrawableAreaEnd)
             {
                 canvas.DrawBitmap(favouriteBitmap, iconOffset, -startX - ToPixels(40), null);
+                iconOffset += dyFavouriteIcon + dyIconSpace;
             }
 
         }
