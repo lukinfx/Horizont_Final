@@ -323,20 +323,27 @@ namespace Peaks360App
 
         private void CheckAndRequestAppReview()
         {
-            if (Context.Settings.IsReviewRequired())
+            try
             {
-                AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
-                alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
+                if (Context.Settings.IsReviewRequired())
                 {
-                    Context.Settings.SetApplicationRatingCompleted();
-                    RequestAppReview();
-                });
-                alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) =>
-                {
-                });
-                alert.SetMessage(Resources.GetText(Resource.String.Main_ReviewAppQuestion));
-                var answer = alert.Show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(this).SetCancelable(false);
+                    alert.SetPositiveButton(Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) =>
+                    {
+                        Context.Settings.SetApplicationRatingCompleted();
+                        RequestAppReview();
+                    });
+                    alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) =>
+                    {
+                    });
+                    alert.SetMessage(Resources.GetText(Resource.String.Main_ReviewAppQuestion));
+                    var answer = alert.Show();
+                }
             }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, ex.Message);
+            } 
         }
 
         private Intent GetRateIntent(string url)
@@ -369,7 +376,7 @@ namespace Peaks360App
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Unable to launch app store: " + ex.Message);
+                PopupHelper.ErrorDialog(this, ex.Message);
             }
         }
 
