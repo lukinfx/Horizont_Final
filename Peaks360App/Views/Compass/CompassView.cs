@@ -25,6 +25,7 @@ namespace Peaks360App.Views
     {
         private readonly object syncLock = new object(); 
         private static string TAG = "Horizon-CompassView";
+        private static float MIN_DISTANCE_METERS = 100;
 
         private List<PoiViewItem> _poisInVisibilityRange;
         private IOrderedEnumerable<PoiViewItem> _poisToBeDisplayed;
@@ -293,10 +294,14 @@ namespace Peaks360App.Views
 
                 foreach (var item in _poisToBeDisplayed)
                 {
-                    if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
-                    {
-                        compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, canvas.Width);
-                    }
+                    if (item.Visibility == Peaks360Lib.Domain.Enums.Visibility.Invisible)
+                        continue;
+                    if (item.Overlapped)
+                        continue;
+                    if (item.GpsLocation.Distance < MIN_DISTANCE_METERS)
+                        continue;
+                    
+                    compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, canvas.Width);
                 }
 
                 canvas.Rotate(-90, 0, 0);
