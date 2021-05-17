@@ -20,33 +20,33 @@ namespace Peaks360App.Views.Compass
         public override void OnDrawItem(Canvas canvas, PoiViewItem item, float startX, float endY)
         {
             //   x1   x2
-            //    ----  y1
-            //   /    \ y3
-            //   |    | y2
-            //   | T  | y6
+            //    /--\  yIconStart
+            //   |ICON| yIconMiddle
+            //   |\__/| yIconEnd
+            //   | T  | yTextAreaEnd
             //   | e  |
-            //   | x  | y4
-            //   \ t /
+            //   | x  | yTipBend
+            //   \ t /  yTextAreaEnd
             //    \ /
-            //     V    y5
+            //     V    yTipEnd
 
-            float y1 = 0;
-            float y2 = ToPixels(70);
-            float y3 = y2 / 2 + 1;
-            float y4 = endY - ToPixels(50);
-            float yDrawableAreaEnd = endY - ToPixels(25);
-            float y5 = endY;
-            float yDrawableAreaStart = ToPixels(90);
+            float yIconStart = 0;
+            float yIconEnd = ToPixels(70);
+            float yIconMiddle = yIconEnd / 2 + 1;
+            float yTextAreaStart = ToPixels(90);
+            float yTextAreaEnd = endY - ToPixels(25);
+            float yTipBend = endY - ToPixels(50);
+            float yTipEnd = endY;
 
             float x1 = startX - ToPixels(35);
             float x2 = startX + ToPixels(35);
 
             var path = new Path();
-            path.MoveTo(y3, -x1);
-            path.LineTo(y4, -x1);
-            path.LineTo(y5, -startX);
-            path.LineTo(y4, -x2);
-            path.LineTo(y3, -x2);
+            path.MoveTo(yIconMiddle, -x1);
+            path.LineTo(yTipBend, -x1);
+            path.LineTo(yTipEnd, -startX);
+            path.LineTo(yTipBend, -x2);
+            path.LineTo(yIconMiddle, -x2);
             canvas.DrawPath(path, GetRectPaint(item));
 
             var dyTextSpace = ToPixels(10);
@@ -54,25 +54,25 @@ namespace Peaks360App.Views.Compass
             var dyFavouriteIcon = ToPixels(40);
             var dyIconSpace = ToPixels(3);
 
-            var textWidth = yDrawableAreaEnd - yDrawableAreaStart - dyTextSpace - (item.IsImportant()? dyImportantIcon+dyIconSpace : 0) - (item.Poi.Favorite? dyFavouriteIcon+dyIconSpace : 0);
+            var textWidth = yTextAreaEnd - yTextAreaStart - dyTextSpace - (item.IsImportant()? dyImportantIcon+dyIconSpace : 0) - (item.Poi.Favorite? dyFavouriteIcon+dyIconSpace : 0);
             var text1 = EllipsizeText(item.Poi.Name, textWidth/multiplier);
             var text2 = EllipsizeText($"{item.Poi.Altitude} m / {(item.GpsLocation.Distance / 1000):F2} km", textWidth/multiplier);
 
             var textPaint = GetTextPaint(item);
-            canvas.DrawText(text1, yDrawableAreaStart, -startX - ToPixels(4), textPaint);
-            canvas.DrawText(text2, yDrawableAreaStart, -startX + ToPixels(29), textPaint);
+            canvas.DrawText(text1, yTextAreaStart, -startX - ToPixels(4), textPaint);
+            canvas.DrawText(text2, yTextAreaStart, -startX + ToPixels(29), textPaint);
 
             Rect bounds = new Rect();
             textPaint.GetTextBounds(text1.ToCharArray(), 0, text1.Length, bounds);
 
-            float iconOffset = yDrawableAreaStart + bounds.Width() + dyTextSpace;
-            if (item.IsImportant() && iconOffset + dyImportantIcon <= yDrawableAreaEnd)
+            float iconOffset = yTextAreaStart + bounds.Width() + dyTextSpace;
+            if (item.IsImportant() && iconOffset + dyImportantIcon <= yTextAreaEnd)
             {
                 canvas.DrawBitmap(item.Selected ? infoBitmapBlack : infoBitmapYellow, iconOffset, -startX - ToPixels(30), null);
                 iconOffset += dyImportantIcon + dyIconSpace;
             }
 
-            if (item.Poi.Favorite && iconOffset + dyFavouriteIcon <= yDrawableAreaEnd)
+            if (item.Poi.Favorite && iconOffset + dyFavouriteIcon <= yTextAreaEnd)
             {
                 canvas.DrawBitmap(favouriteBitmap, iconOffset, -startX - ToPixels(40), null);
                 iconOffset += dyFavouriteIcon + dyIconSpace;
