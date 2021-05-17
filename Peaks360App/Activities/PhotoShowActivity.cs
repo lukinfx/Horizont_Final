@@ -191,16 +191,23 @@ namespace Peaks360App.Activities
         {
             LoadImage(_photodata.PhotoFileName);
 
-            if (Context.Settings.ShowElevationProfile)
+            try
             {
-                if (_photodata.JsonElevationProfileData != null)
+                if (Context.Settings.ShowElevationProfile)
                 {
-                    Context.ElevationProfileData = ElevationProfileData.Deserialize(_photodata.JsonElevationProfileData);
-                    if (Context.ElevationProfileData != null)
+                    if (_photodata.JsonElevationProfileData != null)
                     {
-                        ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
+                        Context.ElevationProfileData = ElevationProfileData.Deserialize(_photodata.JsonElevationProfileData);
+                        if (Context.ElevationProfileData != null)
+                        {
+                            ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, ex.Message);
             }
         }
 
@@ -584,7 +591,6 @@ namespace Peaks360App.Activities
             _compassView.Initialize(Context, false, pictureSize);
             _compassView.InitializeViewDrawer(drawingSize, pictureSize);
 
-            
             LoadImageAndProfile();
 
             Start();
