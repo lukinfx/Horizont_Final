@@ -393,11 +393,14 @@ namespace Peaks360App.Activities
             {
                 //TODO: use Poi model
                 Context.ReloadData();
-                
-                var id = data.GetLongExtra("Id", 0);
-                if (Context.SelectedPoi?.Poi.Id == id)
+
+                if (Context.SelectedPoi != null)
                 {
                     OnPointSelected(Context.SelectedPoi);
+                }
+                else
+                {
+                    HideControls();
                 }
             }
         }
@@ -449,20 +452,32 @@ namespace Peaks360App.Activities
 
         private void OnPointSelected(PoiViewItem item)
         {
-            var altitudeText = $"{Resources.GetText(Resource.String.Common_Altitude)}: {item.Poi.Altitude} m";
-            var distanceText = $"{Resources.GetText(Resource.String.Common_Distance)}: {(item.GpsLocation.Distance / 1000):F2} km";
-            var verticalAngleText = $"{Resources.GetText(Resource.String.Common_VerticalViewAngle)}: {(item.VerticalViewAngle > 0 ? "+" : "")}{item.VerticalViewAngle:F3}°";
-            var bearingText = $"{Resources.GetText(Resource.String.Common_Bearing)}: {(item.GpsLocation.Bearing > 0 ? "+" : "")}{item.GpsLocation.Bearing:F0}°";
+            if (item == null)
+            {
+                ShowControls();
+                _poiInfo.Visibility = ViewStates.Gone;
+            }
+            else
+            {
+                HideControls();
+                _poiInfo.Visibility = ViewStates.Visible;
 
-            FindViewById<TextView>(Resource.Id.textViewPoiName).Text = item.Poi.Name;
-            FindViewById<ImageView>(Resource.Id.imageViewInfoAvailable).Visibility = item.IsImportant() ? ViewStates.Visible : ViewStates.Gone;
-            FindViewById<TextView>(Resource.Id.textViewPoiPartiallyVisible).Visibility = item.IsFullyVisible() ? ViewStates.Gone : ViewStates.Visible;
-            FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = bearingText + " / " + verticalAngleText;
-            FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = altitudeText + " / " + distanceText;
-            FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Resources.GetText(Resource.String.Common_GPSLocation)}: {item.GpsLocation.LocationAsString()}";
-            FindViewById<Button>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(item.Poi) ? ViewStates.Visible : ViewStates.Gone;
-            FindViewById<Button>(Resource.Id.buttonWiki).Text = Resources.GetText(Resource.String.Common_Details);
-            FindViewById<Button>(Resource.Id.buttonMap).Text = Resources.GetText(Resource.String.Common_Map);
+                var altitudeText = $"{Resources.GetText(Resource.String.Common_Altitude)}: {item.Poi.Altitude} m";
+                var distanceText = $"{Resources.GetText(Resource.String.Common_Distance)}: {(item.GpsLocation.Distance / 1000):F2} km";
+                var verticalAngleText = $"{Resources.GetText(Resource.String.Common_VerticalViewAngle)}: {(item.VerticalViewAngle > 0 ? "+" : "")}{item.VerticalViewAngle:F3}°";
+                var bearingText = $"{Resources.GetText(Resource.String.Common_Bearing)}: {(item.GpsLocation.Bearing > 0 ? "+" : "")}{item.GpsLocation.Bearing:F0}°";
+
+                FindViewById<TextView>(Resource.Id.textViewPoiName).Text = item.Poi.Name;
+                FindViewById<ImageView>(Resource.Id.imageViewInfoAvailable).Visibility = item.IsImportant() ? ViewStates.Visible : ViewStates.Gone;
+                FindViewById<TextView>(Resource.Id.textViewPoiPartiallyVisible).Visibility = item.IsFullyVisible() ? ViewStates.Gone : ViewStates.Visible;
+                FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = bearingText + " / " + verticalAngleText;
+                FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = altitudeText + " / " + distanceText;
+                FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Resources.GetText(Resource.String.Common_GPSLocation)}: {item.GpsLocation.LocationAsString()}";
+                FindViewById<Button>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(item.Poi) ? ViewStates.Visible : ViewStates.Gone;
+                FindViewById<Button>(Resource.Id.buttonWiki).Text = Resources.GetText(Resource.String.Common_Details);
+                FindViewById<Button>(Resource.Id.buttonMap).Text = Resources.GetText(Resource.String.Common_Map);
+            }
+
         }
 
         #region Required abstract methods
@@ -523,19 +538,13 @@ namespace Peaks360App.Activities
                 {
                     Context.SelectedPoi = newSelectedPoi;
                     Context.SelectedPoi.Selected = true;
-
-                    HideControls();
-                    _poiInfo.Visibility = ViewStates.Visible;
-
-                    OnPointSelected(Context.SelectedPoi);
                 }
                 else
                 {
                     Context.SelectedPoi = null;
-
-                    ShowControls();
-                    _poiInfo.Visibility = ViewStates.Gone;
                 }
+
+                OnPointSelected(Context.SelectedPoi);
 
                 _compassView.Invalidate();
             }
