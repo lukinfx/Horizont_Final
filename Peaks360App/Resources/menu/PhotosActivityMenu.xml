@@ -6,10 +6,6 @@
     android:showAsAction="ifRoom"
     android:title="Import photo" />
   <item
-    android:id="@+id/menu_addNew"
-    android:icon="@android:drawable/ic_menu_add"
-    android:showAsAction="ifRoom"
-    android:title="Import photo" />  <item
     android:id="@+id/menu_favourite"
     android:icon="@android:drawable/btn_star_big_off"
     android:background="#00000000"
