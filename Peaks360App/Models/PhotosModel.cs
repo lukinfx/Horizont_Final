@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using Peaks360App.DataAccess;
 using Peaks360Lib.Domain.Models;
+using Xamarin.Essentials;
 
 namespace Peaks360App.Models
 {
@@ -37,19 +38,26 @@ namespace Peaks360App.Models
         public void InsertItem(PhotoData item)
         {
             _database.InsertItem(item);
-            PhotoAdded?.Invoke(this, new PhotoDataEventArgs() {data = item});
+            MainThread.BeginInvokeOnMainThread( () => 
+                PhotoAdded?.Invoke(this, new PhotoDataEventArgs() { data = item })
+            );
         }
 
         public void DeleteItem(PhotoData item)
         {
+            System.IO.File.Delete(item.PhotoFileName);
             _database.DeleteItem(item);
-            PhotoDeleted?.Invoke(this, new PhotoDataEventArgs() { data = item });
+            MainThread.BeginInvokeOnMainThread(() =>
+                PhotoDeleted?.Invoke(this, new PhotoDataEventArgs() {data = item})
+            );
         }
 
         internal void UpdateItem(PhotoData item)
         {
             _database.UpdateItem(item);
-            PhotoUpdated?.Invoke(this, new PhotoDataEventArgs() { data = item });
+            MainThread.BeginInvokeOnMainThread(() =>
+                PhotoUpdated?.Invoke(this, new PhotoDataEventArgs() {data = item})
+            );
         }
     }
 }
