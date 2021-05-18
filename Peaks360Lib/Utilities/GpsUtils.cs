@@ -31,7 +31,7 @@ namespace Peaks360Lib.Utilities
 
         public static bool HasLocation(GpsLocation loc)
         {
-            return (loc.Latitude < -0.0000001 || loc.Latitude > 0.0000001) && (loc.Longitude < -0.0000001 || loc.Longitude> 0.0000001);
+            return (loc != null) && (loc.Latitude < -0.0000001 || loc.Latitude > 0.0000001) && (loc.Longitude < -0.0000001 || loc.Longitude> 0.0000001);
         }
 
         public static double QuickDistance(GpsLocation loc1, GpsLocation loc2)

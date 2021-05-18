@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Runtime;
 using Android.Content;
+using Android.Provider;
 using Xamarin.Essentials;
 using Peaks360Lib.Domain.Models;
 using Peaks360App.AppContext;
@@ -18,6 +19,8 @@ namespace Peaks360App.Activities
     [Activity(Label = "@string/PhotosActivity")]
     public class PhotosActivity : Activity, IPhotoActionListener
     {
+        public static int REQUEST_IMPORT_PHOTO = Definitions.BaseResultCode.PHOTOS_ACTIVITY;
+        
         private ListView _photosListView;
         private PhotosItemAdapter _adapter;
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
@@ -86,12 +89,24 @@ namespace Peaks360App.Activities
             return base.OnCreateOptionsMenu(menu);
         }
 
+        public void InitializeMediaPicker()
+        {
+            Intent = new Intent();
+            Intent.SetType("image/*");
+            Intent.AddCategory(Intent.CategoryOpenable);
+            Intent.SetAction(Intent.ActionGetContent);
+            StartActivityForResult(Intent.CreateChooser(Intent, "Select Picture"), REQUEST_IMPORT_PHOTO);
+        }
+
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
                     Finish();
+                    break;
+                case Resource.Id.menu_addNew:
+                    InitializeMediaPicker();
                     break;
                 case Resource.Id.menu_favourite:
                     Context.ToggleFavouritePictures();
@@ -155,9 +170,19 @@ namespace Peaks360App.Activities
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
-            base.OnActivityResult(requestCode, resultCode, data);
-            if (requestCode == PhotoShowActivity.REQUEST_SHOW_PHOTO)
+            if (resultCode == Result.Ok && requestCode == REQUEST_IMPORT_PHOTO)
             {
+                var uri = data.Data;
+
+                try
+                {
+                    ImageSaverCopy imageSaver = new ImageSaverCopy(this, uri, Context);
+                    imageSaver.Run();
+                }
+                catch (Exception ex)
+                {
+                    PopupHelper.ErrorDialog(this, "Unable to import image. Error details: " + ex.Message);
+                }
             }
         }
 
