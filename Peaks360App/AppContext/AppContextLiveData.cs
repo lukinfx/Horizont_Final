@@ -83,7 +83,7 @@ namespace Peaks360App.AppContext
             }
         }
 
-        private AppContextLiveData()
+        private AppContextLiveData() : base()
         {
             _locationProvider = new GpsLocationProvider();
             _compassProvider = new CompassProvider();
