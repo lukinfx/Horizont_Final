@@ -12,7 +12,8 @@ namespace Peaks360Lib.Domain.Models
         public long Id { get; set; }
 
         public string PhotoFileName { get; set; }
-        public DateTime Datetime { get; set; }
+        public DateTime Datetime { get; set; } //DatetimeSaved
+        public DateTime? DatetimeTaken { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
         public double Altitude { get; set; }

@@ -26,7 +26,7 @@ namespace Peaks360Lib.Utilities
 
         public static bool HasAltitude(GpsLocation loc)
         {
-            return (loc.Altitude < -0.0000001 || loc.Altitude > 0.0000001);
+            return (loc != null) && (loc.Altitude < -0.0000001 || loc.Altitude > 0.0000001);
         }
 
         public static bool HasLocation(GpsLocation loc)
@@ -238,9 +238,15 @@ namespace Peaks360Lib.Utilities
 
             return poi;
         }
+
         public static string LocationAsString(double latitude, double longitude)
         {
-            return $"{latitude:F7}{(latitude >= 0 ? 'N' : 'S')}, {longitude:F7}{(longitude >= 0 ? 'E' : 'W')}";
+            return $"{latitude:F6}{(latitude >= 0 ? 'N' : 'S')}, {longitude:F6}{(longitude >= 0 ? 'E' : 'W')}";
+        }
+
+        public static string LocationAsShortString(double latitude, double longitude)
+        {
+            return $"{latitude:F3}{(latitude >= 0 ? 'N' : 'S')}, {longitude:F3}{(longitude >= 0 ? 'E' : 'W')}";
         }
     }
 }

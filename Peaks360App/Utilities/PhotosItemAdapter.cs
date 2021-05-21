@@ -5,6 +5,7 @@ using Android.App;
 using Android.Graphics;
 using Android.Views;
 using Android.Widget;
+using Peaks360App.Extensions;
 using Xamarin.Essentials;
 using Peaks360Lib.Domain.Models;
 
@@ -36,7 +37,7 @@ namespace Peaks360App.Utilities
 
         public void SetItems(IEnumerable<PhotoData> list)
         {
-            this._list = list.ToList();
+            this._list = list.OrderByDescending(x => x.GetPhotoTakenDateTime()).ThenByDescending(x => x.Datetime).ToList();
             NotifyDataSetChanged();
         }
 
@@ -74,8 +75,11 @@ namespace Peaks360App.Utilities
         public void Add(PhotoData item)
         {
             _list.Insert(0, item);
+            _list = _list.OrderByDescending(x => x.GetPhotoTakenDateTime()).ThenByDescending(x => x.Datetime).ToList();
+
             NotifyDataSetChanged();
         }
+
         public void Update(PhotoData item)
         {
             var photoItem = GetById(item.Id);
@@ -102,15 +106,16 @@ namespace Peaks360App.Utilities
             }
 
             PhotoData item = this[position];
-
-            _thumbnailImageView = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
+            var gpsLocation = item.GetPhotoGpsLocation();
 
             view.FindViewById<TextView>(Resource.Id.textViewTag).Text = item.Tag;
-            
-            view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.Datetime.ToShortDateString();
-            view.FindViewById<TextView>(Resource.Id.textViewTime).Text = item.Datetime.ToLongTimeString();
+            view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.GetPhotoTakenDateTime().ToShortDateString();
+            view.FindViewById<TextView>(Resource.Id.textViewTime).Text = item.GetPhotoTakenDateTime().ToLongTimeString();
             view.FindViewById<TextView>(Resource.Id.textViewAltitude).Text = $"{Math.Round(item.Altitude)}m ";
+            view.FindViewById<TextView>(Resource.Id.textViewAltitude).SetTextColor(GpsUtils.HasAltitude(gpsLocation) ? Color.Black : Color.Red);
             view.FindViewById<TextView>(Resource.Id.textViewDirection).Text = $"{Math.Round(GpsUtils.Normalize360(item.Heading))}°";
+            view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = gpsLocation.LocationAsShortString();
+            view.FindViewById<TextView>(Resource.Id.textViewLocation).SetTextColor(GpsUtils.HasLocation(gpsLocation) ? Color.Black : Color.Red);
 
             var linearLayoutThumbnail = view.FindViewById<LinearLayout>(Resource.Id.linearLayoutThumbnail);
             linearLayoutThumbnail.SetOnClickListener(this);
@@ -129,12 +134,10 @@ namespace Peaks360App.Utilities
             favouriteButton.Tag = position;
             favouriteButton.SetImageResource(item.Favourite ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff);
 
-            var path = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), item.PhotoFileName);
-
             if (item.Thumbnail != null)
             {
                 var bitmap = BitmapFactory.DecodeByteArray(item.Thumbnail, 0, item.Thumbnail.Length);
-                _thumbnailImageView.SetImageBitmap(bitmap);
+                view.FindViewById<ImageView>(Resource.Id.Thumbnail).SetImageBitmap(bitmap);
             }
 
             return view;

@@ -63,7 +63,7 @@
           <ImageView
             android:id="@+id/Thumbnail"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="130dp"
             android:scaleType="centerCrop"
             android:layout_centerVertical="true" />
       </LinearLayout>
@@ -73,7 +73,14 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:orientation="vertical"
-        android:gravity="right">
+        android:gravity="right"
+        android:id="@+id/linearLayoutPhotoData">
+
+      <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
 
         <LinearLayout 
             android:layout_width="match_parent"
@@ -166,6 +173,32 @@
             android:textAlignment="viewEnd"
             android:text="123"/>
         </LinearLayout>
+
+      <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="left"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp">
+        <ImageView
+          android:src="@drawable/i_location"
+          android:layout_width="17dp"
+          android:layout_height="17dp"/>
+        <TextView
+          android:id="@+id/textViewLocation"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="#000000"
+          android:singleLine="true"
+          android:ellipsize="end"
+          android:textSize="11sp" 
+          android:paddingLeft="3dp"
+          android:paddingTop="1dp"
+          android:textAlignment="viewEnd"
+          android:text="49.123N 149.123E"/>
+      </LinearLayout>
+      </LinearLayout>
 
         <LinearLayout 
           android:layout_width="wrap_content"

@@ -128,5 +128,10 @@ namespace Peaks360Lib.Domain.Models
         {
             return GpsUtils.LocationAsString(Latitude, Longitude);
         }
+
+        public string LocationAsShortString()
+        {
+            return GpsUtils.LocationAsShortString(Latitude, Longitude);
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Peaks360App.Extensions;
 using SQLite;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Utilities;
@@ -330,8 +331,8 @@ namespace Peaks360App.DataAccess
 
         public PhotoData GetPreviousPhotoDataItem(PhotoData current)
         {
-            var task = Database.Table<PhotoData>().Where(i => i.Datetime < current.Datetime)
-                .OrderByDescending(i => i.Datetime)
+            var task = Database.Table<PhotoData>().Where(i => i.GetPhotoTakenDateTime() <= current.GetPhotoTakenDateTime() && i.Datetime < current.Datetime)
+                .OrderByDescending(i => i.GetPhotoTakenDateTime()).ThenByDescending(i => i.Datetime)
                 .FirstOrDefaultAsync();
             task.Wait();
 
@@ -340,8 +341,8 @@ namespace Peaks360App.DataAccess
 
         public PhotoData GetNextPhotoDataItem(PhotoData current)
         {
-            var task = Database.Table<PhotoData>().Where(i => i.Datetime > current.Datetime)
-                .OrderBy(i => i.Datetime)
+            var task = Database.Table<PhotoData>().Where(i => i.GetPhotoTakenDateTime() >= current.GetPhotoTakenDateTime() && i.Datetime > current.Datetime)
+                .OrderByDescending(i => i.GetPhotoTakenDateTime()).ThenByDescending(i => i.Datetime)
                 .FirstOrDefaultAsync();
             task.Wait();
 

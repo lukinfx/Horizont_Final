@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
 using Android.Views;
@@ -13,6 +14,7 @@ using Peaks360Lib.Domain.Models;
 using Peaks360App.AppContext;
 using Peaks360App.Utilities;
 using Peaks360App.Models;
+using Peaks360Lib.Utilities;
 
 namespace Peaks360App.Activities
 {
@@ -70,6 +72,8 @@ namespace Peaks360App.Activities
         private void OnPhotoAdded(object sender, PhotoDataEventArgs args)
         {
             _adapter.Add(args.data);
+            var position = _adapter.GetPosition(args.data);
+            _photosListView.SetSelection(position);
         }
 
         private void OnPhotoUpdated(object sender, PhotoDataEventArgs args)
@@ -174,10 +178,36 @@ namespace Peaks360App.Activities
             {
                 var uri = data.Data;
 
+                var path = PathUtil.GetPath(this, uri);
+                if (path == null)
+                {
+                    PopupHelper.ErrorDialog(this, "Unable to load image. Download image into your device first.");
+                    return;
+                }
+
+                var exifData = ExifDataReader.ReadExifData(path);
+
+                if (!Peaks360Lib.Utilities.GpsUtils.HasLocation(exifData.location))
+                {
+                    PopupHelper.ErrorDialog(this, "The image has no GPS location stored in the image data. Remember to set GPS location manually.");
+                }
+                else if (!Peaks360Lib.Utilities.GpsUtils.HasAltitude(exifData.location))
+                {
+                    if (TryGetElevation(exifData.location, out var altitude))
+                    {
+                        exifData.location.Altitude = altitude;
+                    }
+                    
+                    if (!Peaks360Lib.Utilities.GpsUtils.HasAltitude(exifData.location))
+                    {
+                        PopupHelper.ErrorDialog(this, "The image has no altitude set and elevation data for given area are not downloaded.  Remember to set GPS location manually.");
+                        return;
+                    }
+                }
+
                 try
                 {
-                    ImageSaverCopy imageSaver = new ImageSaverCopy(this, uri, Context);
-                    imageSaver.Run();
+                    Task.Run(async () => { ImageSaver.Import(path, exifData, Context); });
                 }
                 catch (Exception ex)
                 {
@@ -189,7 +219,6 @@ namespace Peaks360App.Activities
         private void ShowPhotos(bool favoriesOnly)
         {
             var list = Context.PhotosModel.GetPhotoDataItems()
-                .OrderByDescending(x => x.Datetime)
                 .AsQueryable();
 
             if (favoriesOnly)
@@ -197,6 +226,22 @@ namespace Peaks360App.Activities
                 list = list.Where(i => i.Favourite);
             }
             _adapter.SetItems(list);
+        }
+
+        private bool TryGetElevation(GpsLocation location, out double altitude)
+        {
+            var et = new ElevationTile(location);
+            if (et.Exists())
+            {
+                if (et.LoadFromZip())
+                {
+                    altitude = et.GetElevation(location);
+                    return true;
+                }
+            }
+
+            altitude = 0;
+            return false;
         }
     }
 }

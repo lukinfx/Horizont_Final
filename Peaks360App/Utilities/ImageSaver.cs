@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Java.Lang;
 using Java.Nio;
@@ -8,6 +9,8 @@ using Android.Graphics;
 using Peaks360App.DataAccess;
 using Peaks360Lib.Domain.Models;
 using Peaks360App.AppContext;
+using Android.Content;
+using Peaks360App.Providers;
 
 namespace Peaks360App.Utilities
 {
@@ -73,6 +76,7 @@ namespace Peaks360App.Utilities
                     {
                         Tag = tag,
                         Datetime = DateTime.Now,
+                        DatetimeTaken = DateTime.Now,
                         PhotoFileName = filename,
                         Longitude = _context.MyLocation.Longitude,
                         Latitude = _context.MyLocation.Latitude,
@@ -135,7 +139,8 @@ namespace Peaks360App.Utilities
             PhotoData newPhotodata = new PhotoData
             {
                 Tag = "Copy of " + photodata.Tag,
-                Datetime = now,
+                Datetime = DateTime.Now,
+                DatetimeTaken = photodata.DatetimeTaken,
                 PhotoFileName = ImageSaverUtils.GetPhotoFileName(now),
                 Longitude = photodata.Longitude,
                 Latitude = photodata.Latitude,
@@ -171,6 +176,75 @@ namespace Peaks360App.Utilities
             croppedBitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
 
             return newPhotodata;
+        }
+
+        public static async Task<PhotoData> Import(string path, ExifData exifData, IAppContext appContext)
+        {
+            using (FileStream fs = System.IO.File.OpenRead(path))
+            {
+                byte[] bytes;
+                using (BinaryReader br = new BinaryReader(fs))
+                {
+                    bytes = br.ReadBytes((int)fs.Length);
+                }
+
+                var bmp = BitmapFactory.DecodeByteArray(bytes, 0, bytes.Length);
+
+                var imgWidth = bmp.Width;
+                var imgHeight = bmp.Height;
+                var thumbWidth = THUMBNAIL_WIDTH;
+                var thumbHeight = THUMBNAIL_HEIGHT;
+
+                var filename = ImageSaverUtils.GetPhotoFileName();
+                var filepath = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), filename);
+
+                var file = new Java.IO.File(filepath);
+                byte[] thumbnail = ImageResizer.ResizeImageAndroid(bytes, thumbWidth, thumbHeight, THUMBNAIL_QUALITY);
+
+                using (var output = new Java.IO.FileOutputStream(file))
+                {
+                    output.Write(bytes);
+                }
+
+                PoiDatabase poiDatabase = new PoiDatabase();
+                string jsonCategories = JsonConvert.SerializeObject(appContext.Settings.Categories);
+
+                PhotoData photodata = new PhotoData
+                {
+                    Datetime = DateTime.Now,
+                    DatetimeTaken = exifData?.timeTaken ?? DateTime.Now,
+                    PhotoFileName = filename,
+                    Longitude = exifData?.location?.Longitude ?? 0,
+                    Latitude = exifData?.location?.Latitude ?? 0,
+                    Altitude = exifData?.location?.Altitude ?? 0,
+                    Heading = exifData?.bearing ?? 0,
+                    LeftTiltCorrector = 0,
+                    RightTiltCorrector = 0,
+                    Thumbnail = thumbnail,
+                    JsonCategories = jsonCategories,
+                    ViewAngleVertical = appContext.ViewAngleVertical,
+                    ViewAngleHorizontal = appContext.ViewAngleHorizontal,
+                    PictureWidth = imgWidth,
+                    PictureHeight = imgHeight,
+                    MinAltitude = appContext.Settings.MinAltitute,
+                    MaxDistance = appContext.Settings.MaxDistance,
+                    FavouriteFilter = appContext.ShowFavoritesOnly,
+                    ShowElevationProfile = appContext.Settings.ShowElevationProfile
+                };
+
+                if (GpsUtils.HasLocation(exifData.location))
+                {
+                    var placeInfo = await PlaceNameProvider.AsyncGetPlaceName(exifData.location);
+                    photodata.Tag = placeInfo.PlaceName + " -> ?";
+                }
+                else
+                {
+                    photodata.Tag = "? -> ?";
+                }
+
+                appContext.PhotosModel.InsertItem(photodata);
+                return photodata;
+            }
         }
     }
 }

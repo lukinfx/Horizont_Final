@@ -96,6 +96,7 @@
     <Compile Include="AppContext\AppContextStaticData.cs" />
     <Compile Include="DataAccess\PoiDatabase.cs" />
     <Compile Include="Definitions\Definitions.cs" />
+    <Compile Include="Extensions\PhotoDataExtension.cs" />
     <Compile Include="HorizontApplication.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Models\DownloadedElevationDataModel.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Utilities\CategoryAdapter.cs" />
     <Compile Include="Utilities\ColorMatrixBuilder.cs" />
     <Compile Include="Utilities\DownloadedElevationDataAdapter.cs" />
+    <Compile Include="Utilities\ExifDataReader.cs" />
     <Compile Include="Utilities\HeadingStabilizator2.cs" />
     <Compile Include="Utilities\ImageResizer.cs" />
     <Compile Include="Utilities\DownloadCountryAdapter.cs" />
@@ -130,7 +132,6 @@
     <Compile Include="Utilities\ExceptionHelper.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
     <Compile Include="Utilities\HeadingStabilizator.cs" />
-    <Compile Include="Utilities\ImageSaverCopy.cs" />
     <Compile Include="Utilities\ImageSaver.cs" />
     <Compile Include="Utilities\ImageSaverUtils.cs" />
     <Compile Include="Utilities\ColorFilters.cs" />
@@ -934,6 +935,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\i_info_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\i_location.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
