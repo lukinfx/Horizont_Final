@@ -199,6 +199,7 @@ namespace Peaks360App
                     case Resource.Id.buttonRecord:
                         {
                             _recordButton.SetImageResource(Resource.Drawable.ic_photo2);
+                            _recordButton.Enabled = false;
                             _cameraFragment.TakePicture(Context);
                             Timer timer = new Timer(500);
                             timer.Elapsed += OnTakePictureTimerElapsed;
@@ -250,7 +251,11 @@ namespace Peaks360App
 
         private void OnTakePictureTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            _recordButton.SetImageResource(Resource.Drawable.ic_photo1);
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                _recordButton.SetImageResource(Resource.Drawable.ic_photo1);
+                _recordButton.Enabled = true;
+            });
         }
 
         private void RefreshHeading()
