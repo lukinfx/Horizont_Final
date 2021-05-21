@@ -45,7 +45,6 @@ namespace Peaks360App.Activities
         private bool _isDirty = false;
         private PoiCategory _category;
         private PoiCountry _country;
-        private ElevationTile _elevationTile;
 
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
@@ -391,29 +390,18 @@ namespace Peaks360App.Activities
 
         private bool TryGetElevation(GpsLocation location, out double altitude)
         {
-            if (_elevationTile == null || !_elevationTile.HasElevation(location))
+            var et = new ElevationTile(location);
+            if (et.Exists())
             {
-                _elevationTile = null;
-                var et = new ElevationTile(location);
-                if (et.Exists())
+                if (et.LoadFromZip())
                 {
-                    if (et.LoadFromZip())
-                    {
-                        _elevationTile = et;
-                    }
+                    altitude = et.GetElevation(location);
+                    return true;
                 }
             }
 
-            if (_elevationTile != null)
-            {
-                altitude = _elevationTile.GetElevation(location);
-                return true;
-            }
-            else
-            {
-                altitude = 0;
-                return false;
-            }
+            altitude = 0;
+            return false;
         }
 
         private bool TryGetGpsLocation(out GpsLocation location)
