@@ -318,8 +318,7 @@ namespace Peaks360App.Activities
             {
                 base.OnDataChanged(sender, e);
 
-                Log.WriteLine(LogPriority.Debug, TAG, $"PoiCount: {e.PoiData.Count}");
-                _compassView.SetPoiViewItemList(e.PoiData);
+                _compassView.SetPoiViewItemList(e.PoiData ?? new PoiViewItemList());
 
                 //TODO: check is the following call is really needed
                 ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
