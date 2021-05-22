@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Peaks360App.Utilities;
 using Peaks360App.DataAccess;
 using Peaks360Lib.Domain.ViewModel;
@@ -37,6 +38,7 @@ namespace Peaks360App.AppContext
         double LeftTiltCorrector { get; set; }
         double RightTiltCorrector { get; set; }
         PoiViewItemList PoiData { get; }
+        public PhotosItemAdapter PhotosItemAdapter { get; set; }
         bool IsPortrait { get; }
         float ViewAngleHorizontal { get; }
         float ViewAngleVertical { get; }

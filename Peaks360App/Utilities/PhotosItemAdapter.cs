@@ -58,12 +58,24 @@ namespace Peaks360App.Utilities
 
         public override PhotoData this[int index]
         {
-            get { return _list[index]; }
+            get { return (index < 0 || index >= _list.Count) ? (PhotoData) null : _list[index]; }
         }
 
         public int GetPosition(PhotoData item)
         {
             return _list.FindIndex(x => x.Id == item.Id);
+        }
+
+        public PhotoData GetNextPhotoDataItem(PhotoData current)
+        {
+            int pos = GetPosition(current);
+            return this[++pos];
+        }
+        
+        public PhotoData GetPreviousPhotoDataItem(PhotoData current)
+        {
+            int pos = GetPosition(current);
+            return this[--pos];
         }
 
         public void RemoveAt(int index)

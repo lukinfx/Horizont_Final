@@ -385,13 +385,13 @@ namespace Peaks360App.Activities
 
         protected void ShowPreviousImage()
         {
-            if (photoView.Scale > photoView.StdScale * 1.1)
+            if (photoView.Scale > photoView.StdScale * 1.1 || CroppingOn || EditingOn)
             {
                 //the image is zoomed, so user is rather moving the image -> do not swap images
                 return;
             }
 
-            var newPhotodata = Context.Database.GetPreviousPhotoDataItem(_photodata);
+            var newPhotodata = AppContextLiveData.Instance.PhotosItemAdapter?.GetPreviousPhotoDataItem(_photodata);
 
             if (newPhotodata != null)
             {
@@ -409,13 +409,13 @@ namespace Peaks360App.Activities
 
         protected void ShowNextImage()
         {
-            if (photoView.Scale > photoView.StdScale * 1.1)
+            if (photoView.Scale > photoView.StdScale * 1.1 || CroppingOn || EditingOn)
             {
                 //the image is zoomed, so user is rather moving the image -> do not swap images
                 return;
             }
 
-            var newPhotodata = Context.Database.GetNextPhotoDataItem(_photodata);
+            var newPhotodata = AppContextLiveData.Instance.PhotosItemAdapter?.GetNextPhotoDataItem(_photodata);
 
             if (newPhotodata != null)
             {

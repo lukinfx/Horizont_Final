@@ -80,6 +80,7 @@ namespace Peaks360App.AppContext
         public PoiFilter SelectedPoiFilter { get; set; }
         public PoiViewItem SelectedPoi { get; set; }
         public PoiViewItemList PoiData { get; protected set; }
+        public PhotosItemAdapter PhotosItemAdapter { get; set; }
 
         public bool IsPortrait
         {

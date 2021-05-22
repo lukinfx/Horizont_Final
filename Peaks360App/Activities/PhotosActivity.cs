@@ -52,6 +52,7 @@ namespace Peaks360App.Activities
             _photosListView = FindViewById<ListView>(Resource.Id.listViewPhotos);
             _adapter = new PhotosItemAdapter(this, new List<PhotoData>(), this);
             _photosListView.Adapter = _adapter;
+            Context.PhotosItemAdapter = _adapter;
 
             ShowPhotos(Context.ShowFavoritePicturesOnly);
 
@@ -225,6 +226,7 @@ namespace Peaks360App.Activities
             {
                 list = list.Where(i => i.Favourite);
             }
+
             _adapter.SetItems(list);
         }
 

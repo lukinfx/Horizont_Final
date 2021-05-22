@@ -329,26 +329,6 @@ namespace Peaks360App.DataAccess
             return task.Result;
         }
 
-        public PhotoData GetPreviousPhotoDataItem(PhotoData current)
-        {
-            var task = Database.Table<PhotoData>().Where(i => i.GetPhotoTakenDateTime() <= current.GetPhotoTakenDateTime() && i.Datetime < current.Datetime)
-                .OrderByDescending(i => i.GetPhotoTakenDateTime()).ThenByDescending(i => i.Datetime)
-                .FirstOrDefaultAsync();
-            task.Wait();
-
-            return task.Result;
-        }
-
-        public PhotoData GetNextPhotoDataItem(PhotoData current)
-        {
-            var task = Database.Table<PhotoData>().Where(i => i.GetPhotoTakenDateTime() >= current.GetPhotoTakenDateTime() && i.Datetime > current.Datetime)
-                .OrderByDescending(i => i.GetPhotoTakenDateTime()).ThenByDescending(i => i.Datetime)
-                .FirstOrDefaultAsync();
-            task.Wait();
-
-            return task.Result;
-        }
-
         #endregion PhotoData
 
         #region DownloadedElevationData
