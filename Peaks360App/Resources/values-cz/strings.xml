@@ -5,6 +5,7 @@
   <string name="Common_Yes">Ano</string>
   <string name="Common_No">Ne</string>
 
+  <string name="Common_Cancel">Zrušit</string>
   <string name="Common_Save">Uložit</string>
   <string name="Common_Download">Stáhnout</string>
   <string name="Common_Discard">Zahodit</string>

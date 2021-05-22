@@ -5,6 +5,7 @@
   <string name="Common_Yes">Sí</string>
   <string name="Common_No">No</string>
 
+  <string name="Common_Cancel">Cancelar</string>
   <string name="Common_Save">Guardar</string>
   <string name="Common_Download">Descargar</string>
   <string name="Common_Discard">Descarte</string>
