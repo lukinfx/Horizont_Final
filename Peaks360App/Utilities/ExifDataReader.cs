@@ -9,7 +9,8 @@ namespace Peaks360App.Utilities
     {
         public GpsLocation location { get; set; }
         public DateTime? timeTaken { get; set; }
-        public double? bearing { get; set; }
+        public double? heading { get; set; }
+        public int? focalLength35mm { get; set; }
     }
 
     public class ExifDataReader
@@ -20,22 +21,23 @@ namespace Peaks360App.Utilities
             using (FileStream fs = System.IO.File.OpenRead(path))
             {
                 var exifReader = new ExifReader(fs);
-                DateTime datePictureTaken;
-                if (exifReader.GetTagValue<DateTime>(ExifTags.DateTimeDigitized, out datePictureTaken))
+                if (exifReader.GetTagValue<DateTime>(ExifTags.DateTimeDigitized, out DateTime datePictureTaken))
                 {
                     exifData.timeTaken = datePictureTaken;
                 }
 
-                double exifBearing;
-                if (exifReader.GetTagValue<double>(ExifTags.GPSImgDirection, out exifBearing))
+                if (exifReader.GetTagValue<double>(ExifTags.GPSImgDirection, out double exifHeading))
                 {
-                    exifData.bearing = exifBearing;
+                    exifData.heading = exifHeading;
                 }
 
-                double[] exifGpsLongArray;
-                double[] exifGpsLatArray;
-                if (exifReader.GetTagValue<double[]>(ExifTags.GPSLongitude, out exifGpsLongArray)
-                    && exifReader.GetTagValue<double[]>(ExifTags.GPSLatitude, out exifGpsLatArray))
+                if (exifReader.GetTagValue<UInt16>(ExifTags.FocalLengthIn35mmFilm, out UInt16 exifFocalLength35mm))
+                {
+                    exifData.focalLength35mm = exifFocalLength35mm;
+                }
+
+                if (exifReader.GetTagValue<double[]>(ExifTags.GPSLongitude, out double[] exifGpsLongArray)
+                    && exifReader.GetTagValue<double[]>(ExifTags.GPSLatitude, out double[] exifGpsLatArray))
                 {
                     double exifGpsLongDouble = exifGpsLongArray[0] + exifGpsLongArray[1] / 60 + exifGpsLongArray[2] / 3600;
                     double exifGpsLatDouble = exifGpsLatArray[0] + exifGpsLatArray[1] / 60 + exifGpsLatArray[2] / 3600;

@@ -143,12 +143,18 @@ namespace Peaks360App.Activities
             var answer = alert.Show();
         }
 
-        public void OnPhotoEditRequest(int position)
+        public void OnPhotoShowRequest(int position)
         {
             Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
             showIntent.PutExtra("ID", _adapter[position].Id);
-
             StartActivity(showIntent);
+        }
+
+        public void OnPhotoEditRequest(int position)
+        {
+            Intent importActivityIntent = new Intent(this, typeof(PhotoImportActivity));
+            importActivityIntent.PutExtra("Id", _adapter[position].Id);
+            StartActivity(importActivityIntent);
         }
 
         public void OnFavouriteEditRequest(int position)
@@ -188,9 +194,11 @@ namespace Peaks360App.Activities
 
                 var exifData = ExifDataReader.ReadExifData(path);
 
+
+                //update location and altitude
                 if (!Peaks360Lib.Utilities.GpsUtils.HasLocation(exifData.location))
                 {
-                    PopupHelper.ErrorDialog(this, "The image has no GPS location stored in the image data. Remember to set GPS location manually.");
+                    PopupHelper.InfoDialog(this, "The image has no GPS location stored in the image data. Remember to set GPS location manually.");
                 }
                 else if (!Peaks360Lib.Utilities.GpsUtils.HasAltitude(exifData.location))
                 {
@@ -198,22 +206,17 @@ namespace Peaks360App.Activities
                     {
                         exifData.location.Altitude = altitude;
                     }
-                    
-                    if (!Peaks360Lib.Utilities.GpsUtils.HasAltitude(exifData.location))
-                    {
-                        PopupHelper.ErrorDialog(this, "The image has no altitude set and elevation data for given area are not downloaded.  Remember to set GPS location manually.");
-                        return;
-                    }
                 }
 
-                try
+                Task.Run(async () =>
                 {
-                    Task.Run(async () => { ImageSaver.Import(path, exifData, Context); });
-                }
-                catch (Exception ex)
-                {
-                    PopupHelper.ErrorDialog(this, "Unable to import image. Error details: " + ex.Message);
-                }
+                    var photoData = await ImageSaver.Import(path, exifData, Context);
+
+                    Intent importActivityIntent = new Intent(this, typeof(PhotoImportActivity));
+                    importActivityIntent.PutExtra("Id", photoData.Id);
+                    StartActivity(importActivityIntent);
+                });
+
             }
         }
 
@@ -245,5 +248,6 @@ namespace Peaks360App.Activities
             altitude = 0;
             return false;
         }
+
     }
 }

@@ -11,6 +11,7 @@ using Peaks360Lib.Domain.Models;
 using Peaks360App.AppContext;
 using Android.Content;
 using Peaks360App.Providers;
+using Peaks360Lib.Utilities;
 
 namespace Peaks360App.Utilities
 {
@@ -212,18 +213,16 @@ namespace Peaks360App.Utilities
                 PhotoData photodata = new PhotoData
                 {
                     Datetime = DateTime.Now,
-                    DatetimeTaken = exifData?.timeTaken ?? DateTime.Now,
+                    DatetimeTaken = exifData.timeTaken ?? DateTime.Now,
                     PhotoFileName = filename,
-                    Longitude = exifData?.location?.Longitude ?? 0,
-                    Latitude = exifData?.location?.Latitude ?? 0,
-                    Altitude = exifData?.location?.Altitude ?? 0,
-                    Heading = exifData?.bearing ?? 0,
+                    Longitude = exifData.location?.Longitude ?? 0,
+                    Latitude = exifData.location?.Latitude ?? 0,
+                    Altitude = exifData.location?.Altitude?? 0,
+                    Heading = exifData.heading ?? 0,
                     LeftTiltCorrector = 0,
                     RightTiltCorrector = 0,
                     Thumbnail = thumbnail,
                     JsonCategories = jsonCategories,
-                    ViewAngleVertical = appContext.ViewAngleVertical,
-                    ViewAngleHorizontal = appContext.ViewAngleHorizontal,
                     PictureWidth = imgWidth,
                     PictureHeight = imgHeight,
                     MinAltitude = appContext.Settings.MinAltitute,
@@ -231,6 +230,19 @@ namespace Peaks360App.Utilities
                     FavouriteFilter = appContext.ShowFavoritesOnly,
                     ShowElevationProfile = appContext.Settings.ShowElevationProfile
                 };
+
+                //calculate view angle from focal length equivalent on 35mm camera, or use default viev angle 60dg
+                    var viewAngle = exifData.focalLength35mm.HasValue ? 2 * System.Math.Tan(35d / 2d / (double)exifData.focalLength35mm.Value) / System.Math.PI * 180 : 60;
+                if (imgWidth > imgHeight)
+                {
+                    photodata.ViewAngleHorizontal = viewAngle;
+                    photodata.ViewAngleVertical = viewAngle / imgWidth * imgHeight;
+                }
+                else
+                {
+                    photodata.ViewAngleHorizontal = viewAngle / imgHeight * imgWidth;
+                    photodata.ViewAngleVertical = viewAngle;
+                }
 
                 if (GpsUtils.HasLocation(exifData.location))
                 {

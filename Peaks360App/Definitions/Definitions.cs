@@ -14,5 +14,6 @@
         public const int PHOTO_SHOW_ACTIVITY = 800;
         public const int ABOUT_ACTIVITY = 900;
         public const int ADDDOWNLOADEDDATA_ACTIVITY = 1000;
+        public const int PHOTO_IMPORT_ACTIVITY = 1100;
     }
 }

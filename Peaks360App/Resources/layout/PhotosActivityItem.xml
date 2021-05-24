@@ -63,7 +63,7 @@
           <ImageView
             android:id="@+id/Thumbnail"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="135dp"
             android:scaleType="centerCrop"
             android:layout_centerVertical="true" />
       </LinearLayout>
@@ -174,44 +174,44 @@
             android:text="123"/>
         </LinearLayout>
 
-      <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="left"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp">
-        <ImageView
-          android:src="@drawable/i_location"
-          android:layout_width="17dp"
-          android:layout_height="17dp"/>
-        <TextView
-          android:id="@+id/textViewLocation"
-          android:layout_width="wrap_content"
+        <LinearLayout 
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:textColor="#000000"
-          android:singleLine="true"
-          android:ellipsize="end"
-          android:textSize="11sp" 
-          android:paddingLeft="3dp"
-          android:paddingTop="1dp"
-          android:textAlignment="viewEnd"
-          android:text="49.123N 149.123E"/>
-      </LinearLayout>
+          android:orientation="horizontal"
+          android:gravity="left"
+          android:paddingLeft="10dp"
+          android:paddingTop="5dp">
+          <ImageView
+            android:src="@drawable/i_location"
+            android:layout_width="17dp"
+            android:layout_height="17dp"/>
+          <TextView
+            android:id="@+id/textViewLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="11sp" 
+            android:paddingLeft="3dp"
+            android:paddingTop="1dp"
+            android:textAlignment="viewEnd"
+            android:text="49.123N 149.123E"/>
+        </LinearLayout>
       </LinearLayout>
 
-        <LinearLayout 
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:orientation="horizontal"
-          android:gravity="bottom"
-          android:paddingBottom="5dp">
+      <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:paddingBottom="5dp">
           <ImageButton
-            android:src="@android:drawable/btn_star_big_off"
+            android:src="@android:drawable/ic_menu_edit"
             android:scaleType="fitCenter"
-            android:layout_width="30dp"
+            android:layout_width="35dp"
             android:layout_height="40dp"
-            android:id="@+id/favouriteButton"
+            android:id="@+id/editButton"
             android:background="#00000000"/>
           <ImageButton
             android:src="@android:drawable/ic_menu_delete"
@@ -219,6 +219,13 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/photoDeleteButton"
+            android:background="#00000000"/>
+          <ImageButton
+            android:src="@android:drawable/btn_star_big_off"
+            android:scaleType="fitCenter"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:id="@+id/favouriteButton"
             android:background="#00000000"/>
         </LinearLayout>
 

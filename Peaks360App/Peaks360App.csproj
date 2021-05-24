@@ -81,6 +81,7 @@
     <Compile Include="Activities\HorizonBaseActivity.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Activities\PhotoImportActivity.cs" />
     <Compile Include="Activities\PhotoShowActivity.cs" />
     <Compile Include="Activities\PhotosActivity.cs" />
     <Compile Include="Activities\DownloadActivity.cs" />
@@ -938,6 +939,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\i_location.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PhotoImportActivityPortrait.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
