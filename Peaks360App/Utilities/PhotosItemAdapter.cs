@@ -138,6 +138,10 @@ namespace Peaks360App.Utilities
             linearLayoutName.SetOnClickListener(this);
             linearLayoutName.Tag = position;
 
+            var linearLayoutPhotoData = view.FindViewById<LinearLayout>(Resource.Id.linearLayoutPhotoData);
+            linearLayoutPhotoData.SetOnClickListener(this);
+            linearLayoutPhotoData.Tag = position;
+
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.photoDeleteButton);
             deleteButton.SetOnClickListener(this);
             deleteButton.Tag = position;
@@ -173,6 +177,7 @@ namespace Peaks360App.Utilities
                     _poiActionListener.OnPhotoDeleteRequest(position);
                     break;
                 case Resource.Id.editButton:
+                case Resource.Id.linearLayoutPhotoData:
                     _poiActionListener.OnPhotoEditRequest(position);
                     break;
                 case Resource.Id.linearLayoutThumbnail:

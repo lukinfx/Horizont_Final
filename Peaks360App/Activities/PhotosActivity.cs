@@ -195,16 +195,15 @@ namespace Peaks360App.Activities
                 var exifData = ExifDataReader.ReadExifData(path);
 
 
-                //update location and altitude
-                if (!Peaks360Lib.Utilities.GpsUtils.HasLocation(exifData.location))
+                //update altitude
+                if (Peaks360Lib.Utilities.GpsUtils.HasLocation(exifData.location))
                 {
-                    PopupHelper.InfoDialog(this, "The image has no GPS location stored in the image data. Remember to set GPS location manually.");
-                }
-                else if (!Peaks360Lib.Utilities.GpsUtils.HasAltitude(exifData.location))
-                {
-                    if (TryGetElevation(exifData.location, out var altitude))
+                    if (!Peaks360Lib.Utilities.GpsUtils.HasAltitude(exifData.location))
                     {
-                        exifData.location.Altitude = altitude;
+                        if (TryGetElevation(exifData.location, out var altitude))
+                        {
+                            exifData.location.Altitude = altitude;
+                        }
                     }
                 }
 

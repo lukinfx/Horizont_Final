@@ -73,13 +73,13 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:orientation="vertical"
-        android:gravity="right"
-        android:id="@+id/linearLayoutPhotoData">
+        android:gravity="right">
 
       <LinearLayout
           android:orientation="vertical"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content">
+          android:layout_height="wrap_content"
+          android:id="@+id/linearLayoutPhotoData">
 
 
         <LinearLayout 
