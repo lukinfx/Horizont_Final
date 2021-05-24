@@ -124,7 +124,7 @@
   <string name="DownloadED_DeleteQuestion">Opravdu chcete smazat tuto oblast?</string>
 
   <!--EditActivity-->
-  <string name="EditPoi_WrongFormat">Použijte správný formát. Například: 12,34567890.</string>
+  <string name="EditPoi_WrongFormat">Použijte správný formát. Například: 12.34567890.</string>
   <string name="EditPoi_EmptyClipboard">Zdá že ve schránce není žádný text.</string>
   <string name="EditPoi_MissingElevationData">Chybějící výšková data.</string>
   <string name="EditPoi_AltitudeNotUpdated">Nadmořská výška nebyla aktualizována.</string>

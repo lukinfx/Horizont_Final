@@ -124,7 +124,7 @@
   <string name="DownloadED_DeleteQuestion">Are you sure you want to delete this area?</string>
 
   <!--EditActivity-->
-  <string name="EditPoi_WrongFormat">Use correct format. Example: 12,34567890.</string>
+  <string name="EditPoi_WrongFormat">Use correct format. Example: 12.34567890.</string>
   <string name="EditPoi_EmptyClipboard">It seems you don\'t have any text in your ClipBoard.</string>
   <string name="EditPoi_MissingElevationData">Missing elevation data.</string>
   <string name="EditPoi_AltitudeNotUpdated">The altitude was not updated.</string>
