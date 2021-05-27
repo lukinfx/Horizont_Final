@@ -16,7 +16,6 @@ namespace Peaks360App.Providers
 
     public class ElevationProfileProvider
     {
-        private IAppContext Context;
         private bool _elevationProfileBeingGenerated = false;
 
         public event ElevationProfileChangedEventHandler ElevationProfileChanged;

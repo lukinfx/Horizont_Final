@@ -79,7 +79,7 @@ namespace Peaks360App.DataAccess
                     initialized = true;
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 throw;
             }

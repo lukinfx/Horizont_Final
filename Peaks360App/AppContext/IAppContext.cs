@@ -33,7 +33,7 @@ namespace Peaks360App.AppContext
         bool CompassPaused { get; }
         GpsLocation MyLocation { get; }
         PlaceInfo MyLocationPlaceInfo { get; }
-        double Heading { get; }
+        double? HeadingX { get; }
         double HeadingCorrector { get; set; }
         double LeftTiltCorrector { get; set; }
         double RightTiltCorrector { get; set; }

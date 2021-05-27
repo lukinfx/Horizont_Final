@@ -69,8 +69,9 @@ namespace Peaks360App.Utilities
                         return cursor.GetString(column_index);
                     }
                 }
-                catch (System.Exception ex)
+                catch (System.Exception)
                 {
+                    //TODO: error handling
                 }
             }
             else if ("file".Equals(uri.Scheme.ToLower()))

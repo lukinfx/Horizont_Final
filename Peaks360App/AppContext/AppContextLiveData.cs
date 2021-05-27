@@ -18,7 +18,7 @@ namespace Peaks360App.AppContext
 
         private static object synchLock = new object();
 
-        public override double Heading { get { return _compassProvider.Heading; } }
+        public override double? HeadingX { get { return _compassProvider.Heading; } }
 
         private float GetViewAngleHorizontal()
         {

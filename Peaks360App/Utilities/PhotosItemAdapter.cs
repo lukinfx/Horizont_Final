@@ -25,7 +25,6 @@ namespace Peaks360App.Utilities
     {
         private Activity _context;
         private List<PhotoData> _list;
-        private ImageView _thumbnailImageView;
         private IPhotoActionListener _poiActionListener;
 
 
@@ -126,7 +125,8 @@ namespace Peaks360App.Utilities
             view.FindViewById<TextView>(Resource.Id.textViewTime).Text = item.GetPhotoTakenDateTime().ToLongTimeString();
             view.FindViewById<TextView>(Resource.Id.textViewAltitude).Text = $"{Math.Round(item.Altitude)}m ";
             view.FindViewById<TextView>(Resource.Id.textViewAltitude).SetTextColor(GpsUtils.HasAltitude(gpsLocation) ? Color.Black : Color.Red);
-            view.FindViewById<TextView>(Resource.Id.textViewDirection).Text = $"{Math.Round(GpsUtils.Normalize360(item.Heading))}°";
+            view.FindViewById<TextView>(Resource.Id.textViewDirection).Text = item.Heading.HasValue ? $"{Math.Round(GpsUtils.Normalize360(item.Heading.Value))}°" : "0°";
+            view.FindViewById<TextView>(Resource.Id.textViewDirection).SetTextColor(item.Heading.HasValue ? Color.Black : Color.Red);
             view.FindViewById<TextView>(Resource.Id.textViewLocation).Text = gpsLocation.LocationAsShortString();
             view.FindViewById<TextView>(Resource.Id.textViewLocation).SetTextColor(GpsUtils.HasLocation(gpsLocation) ? Color.Black : Color.Red);
 

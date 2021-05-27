@@ -15,7 +15,6 @@ namespace Peaks360App.Utilities
         private static int LINE_BACK_WIDTH = 6; 
 
         private IAppContext _context;
-        private Bitmap _elevationProfileBitmap;
         private float _viewAngleHorizontal;
         private float _viewAngleVertical;
         private float _adjustedViewAngleHorizontal;

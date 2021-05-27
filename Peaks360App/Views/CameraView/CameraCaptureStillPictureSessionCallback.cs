@@ -6,7 +6,7 @@ namespace Peaks360App.Views.Camera
 {
     public class CameraCaptureStillPictureSessionCallback : CameraCaptureSession.CaptureCallback
     {
-        private static readonly string TAG = "CameraCaptureStillPictureSessionCallback";
+        //private static readonly string TAG = "CameraCaptureStillPictureSessionCallback";
 
         private readonly CameraFragment owner;
 

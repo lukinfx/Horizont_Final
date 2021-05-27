@@ -20,11 +20,11 @@ namespace Peaks360App.AppContext
             }
         }
 
-        public AppContextStaticData(GpsLocation myLocation, PlaceInfo myLocationPlaceInfo, double heading) : base()
+        public AppContextStaticData(GpsLocation myLocation, PlaceInfo myLocationPlaceInfo, double? heading) : base()
         {
             this.myLocation = myLocation;
             this.myLocationPlaceInfo = new PlaceInfo(myLocationPlaceInfo.PlaceName, myLocationPlaceInfo.Country);
-            Heading = heading;
+            HeadingX = heading;
         }
 
         public override void Start()

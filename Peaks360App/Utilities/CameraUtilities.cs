@@ -39,8 +39,9 @@ namespace Peaks360App.Utilities
                     result.Add(cameraId);
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
+                //TODO: error handling
             }
 
             return result;
@@ -74,7 +75,7 @@ namespace Peaks360App.Utilities
                 return (camera.GetParameters().HorizontalViewAngle, camera.GetParameters().VerticalViewAngle);
                 //camera.GetParameters().PictureSize.Width, camera.GetParameters().PictureSize.Height);
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 //Default values
                 return (60, 40); //, 1920, 1080);
@@ -88,7 +89,7 @@ namespace Peaks360App.Utilities
                 var camera = Android.Hardware.Camera.Open(Int32.Parse(cameraId));
                 return (camera.GetParameters().PictureSize.Width, camera.GetParameters().PictureSize.Height);
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 //Default values
                 return (1920, 1080);

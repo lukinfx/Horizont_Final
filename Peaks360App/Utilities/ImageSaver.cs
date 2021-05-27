@@ -70,7 +70,7 @@ namespace Peaks360App.Utilities
                     else
                     {
                         tag += Android.App.Application.Context.Resources.GetText(Resource.String.Common_Heading);
-                        tag += $" {GpsUtils.Normalize360((_context.Heading)):F0}°";
+                        tag += _context.HeadingX.HasValue ? $" {GpsUtils.Normalize360((_context.HeadingX.Value)):F0}°" : "?°";
                     }
 
                     PhotoData photodata = new PhotoData
@@ -82,7 +82,7 @@ namespace Peaks360App.Utilities
                         Longitude = _context.MyLocation.Longitude,
                         Latitude = _context.MyLocation.Latitude,
                         Altitude = _context.MyLocation.Altitude,
-                        Heading = _context.Heading + _context.HeadingCorrector,
+                        Heading = _context.HeadingX ?? 0 + _context.HeadingCorrector,
                         LeftTiltCorrector = _context.LeftTiltCorrector,
                         RightTiltCorrector = _context.RightTiltCorrector,
                         Thumbnail = thumbnail,
@@ -146,7 +146,7 @@ namespace Peaks360App.Utilities
                 Longitude = photodata.Longitude,
                 Latitude = photodata.Latitude,
                 Altitude = photodata.Altitude,
-                Heading = context.Heading + context.HeadingCorrector + hdgCorrectionInDegrees,
+                Heading = context.HeadingX.HasValue? context.HeadingX.Value + context.HeadingCorrector + hdgCorrectionInDegrees : (double?)null,
                 JsonCategories = JsonConvert.SerializeObject(context.Settings.Categories),
                 ViewAngleVertical = viewAngleVertical,
                 ViewAngleHorizontal = viewAngleHorizontal,
@@ -218,7 +218,7 @@ namespace Peaks360App.Utilities
                     Longitude = exifData.location?.Longitude ?? 0,
                     Latitude = exifData.location?.Latitude ?? 0,
                     Altitude = exifData.location?.Altitude?? 0,
-                    Heading = exifData.heading ?? 0,
+                    Heading = exifData.heading,
                     LeftTiltCorrector = 0,
                     RightTiltCorrector = 0,
                     Thumbnail = thumbnail,

@@ -48,7 +48,6 @@ namespace Peaks360App.Activities
         private float m_PreviousDistanceX;
         private float m_PreviousDistanceY;
         private bool m_IsScaling;
-        private int m_startTime;
         private CroppingHandle? m_croppingHandle;
 
         protected abstract bool MoveingAndZoomingEnabled { get; }

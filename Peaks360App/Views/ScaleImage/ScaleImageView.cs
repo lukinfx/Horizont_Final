@@ -375,7 +375,7 @@ namespace Peaks360App.Views.ScaleImage
                 croppingRectangle.Bottom = m_IntrinsicHeight;
         }
 
-        protected override void OnDraw(Canvas? canvas)
+        protected override void OnDraw(Canvas canvas)
         {
             base.OnDraw(canvas);
 

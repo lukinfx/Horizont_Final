@@ -73,15 +73,11 @@ namespace Peaks360App.Activities
             _editTextViewAngleVertical = FindViewById<EditText>(Resource.Id.editTextViewAngleVertical);
             _imageViewThumbnail = FindViewById<ImageView>(Resource.Id.Thumbnail);
 
-            FindViewById<Button>(Resource.Id.buttonSave).SetOnClickListener(this);
             FindViewById<Button>(Resource.Id.buttonBearing).SetOnClickListener(this);
-            FindViewById<Button>(Resource.Id.buttonMap).SetOnClickListener(this);
-
-            
+            FindViewById<Button>(Resource.Id.buttonLocation).SetOnClickListener(this);
 
             long id = Intent.GetLongExtra("Id", -1);
             _photoData = Context.Database.GetPhotoDataItem(id);
-
 
             var bmp = BitmapFactory.DecodeByteArray(_photoData.Thumbnail, 0, _photoData.Thumbnail.Length);
             _imageViewThumbnail.SetImageBitmap(bmp);
@@ -91,7 +87,14 @@ namespace Peaks360App.Activities
             _editTextLongitude.Text = $"{_photoData.Longitude:F7}".Replace(",", ".");
             _editTextLatitude.Text = $"{_photoData.Latitude:F7}".Replace(",", ".");
             _editTextAltitude.Text = $"{_photoData.Altitude:F0}";
-            _editTextHeading.Text = $"{_photoData.Heading:F1}";
+
+            _editTextHeading.Text = _photoData.Heading.HasValue ? $"{_photoData.Heading.Value:F1}" : "";
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.PhotoImportActivityMenu, menu);
+            return base.OnCreateOptionsMenu(menu);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -101,6 +104,18 @@ namespace Peaks360App.Activities
                 case Android.Resource.Id.Home:
                     Finish();
                     break;
+                case Resource.Id.menu_save:
+                    OnSaveClicked();
+                    break;
+                case Resource.Id.menu_paste:
+                    OnPasteGpsLocation();
+                    break;
+                case Resource.Id.menu_fetch_altitude:
+                    OnUpdateElevation();
+                    break;
+                /*case Resource.Id.menu_show_on_map:
+                    OnOpenMapClicked();
+                    break;*/
             }
             return base.OnOptionsItemSelected(item);
         }
@@ -126,28 +141,40 @@ namespace Peaks360App.Activities
         {
             try
             {
-                double heading = 0;
-                double viewAngleHorizontal = 0;
-                double viewAngleVertical = 0;
                 if (!TryGetGpsLocation(out GpsLocation location))
                 {
                     return;
                 }
+                _photoData.Latitude = location.Latitude;
+                _photoData.Longitude = location.Longitude;
+                _photoData.Altitude = location.Altitude;
 
-                if (!double.TryParse(_editTextHeading.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out heading)
-                    || !double.TryParse(_editTextViewAngleHorizontal.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out viewAngleHorizontal)
-                    || !double.TryParse(_editTextViewAngleVertical.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out viewAngleVertical))
+
+                if (!string.IsNullOrEmpty(_editTextHeading.Text))
+                {
+                    double heading = 0;
+                    if (!double.TryParse(_editTextHeading.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out heading))
+                    {
+                        PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
+                        return;
+                    }
+                    _photoData.Heading = heading;
+                }
+
+
+                if (!double.TryParse(_editTextViewAngleHorizontal.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var viewAngleHorizontal))
                 {
                     PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
                     return;
                 }
-                
-                _photoData.Latitude = location.Latitude;
-                _photoData.Longitude = location.Longitude;
-                _photoData.Altitude = location.Altitude;
                 _photoData.ViewAngleHorizontal = viewAngleHorizontal;
+
+                if (!double.TryParse(_editTextViewAngleVertical.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var viewAngleVertical))
+                {
+                    PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
+                    return;
+                }
                 _photoData.ViewAngleVertical = viewAngleVertical;
-                _photoData.Heading = heading;
 
                 Context.Database.UpdateItem(_photoData);
 
@@ -159,18 +186,94 @@ namespace Peaks360App.Activities
             }
         }
 
+        private void OnPasteGpsLocation()
+        {
+            GpsLocation location;
+
+            if (!Clipboard.HasText)
+            {
+                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_EmptyClipboard);
+                return;
+            }
+
+            try
+            {
+                string ClipBoardText = Clipboard.GetTextAsync().Result;
+
+                if (ClipBoardText == null)
+                {//nepodarilo se ziskat text, je potreba osetrit?
+                    PopupHelper.ErrorDialog(this, "There are no text data in Clipboard");
+                    return;
+                }
+
+                location = Peaks360Lib.Utilities.GpsUtils.ParseGPSLocationText(ClipBoardText);
+                _editTextLongitude.Text = $"{location.Longitude:F7}".Replace(",", ".");
+                _editTextLatitude.Text = $"{location.Latitude:F7}".Replace(",", ".");
+
+                /*if (string.IsNullOrEmpty(_editTextName.Text))
+                {
+                    UpdateLocationName(location);
+                }*/
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat, ex.Message);
+                return;
+            }
+
+            try
+            {
+                if (string.IsNullOrEmpty(_editTextAltitude.Text))
+                {
+                    if (TryGetElevation(location, out var altitude))
+                    {
+                        _editTextAltitude.Text = $"{altitude:F0}";
+                    }
+                }
+            }
+            catch
+            {
+                //ignore error since the GetElevation is not a mandatory part of pasting GPS location from clipboard
+            }
+        }
+
+        private void OnUpdateElevation()
+        {
+            if (Peaks360Lib.Utilities.GpsUtils.IsGPSLocation(_editTextLatitude.Text, _editTextLongitude.Text, _editTextAltitude.Text))
+            {
+                try
+                {
+                    if (!TryGetGpsLocation(out var location))
+                    {
+                        PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
+                        return;
+                    }
+
+                    if (TryGetElevation(location, out var altitude))
+                    {
+                        _editTextAltitude.Text = $"{altitude:F0}";
+                    }
+                    else
+                    {
+                        PopupHelper.ErrorDialog(this, Resource.String.EditPoi_AltitudeNotUpdated, Resources.GetText(Resource.String.EditPoi_MissingElevationData));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    PopupHelper.ErrorDialog(this, Resource.String.EditPoi_AltitudeNotUpdated, ex.Message);
+                }
+            }
+        }
+
         public void OnClick(View v)
         {
             switch (v.Id)
             {
-                case Resource.Id.buttonMap:
-                    OnOpenMapClicked();
+                case Resource.Id.buttonLocation:
+                    //###
                     break;
                 case Resource.Id.buttonBearing:
                     OnBearingClicked();
-                    break;
-                case Resource.Id.buttonSave:
-                    OnSaveClicked();
                     break;
             }
         }

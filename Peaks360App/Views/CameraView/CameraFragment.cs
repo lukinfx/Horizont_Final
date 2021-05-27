@@ -273,7 +273,7 @@ namespace Peaks360App.Views.Camera
             {
                 e.PrintStackTrace();
             }
-            catch (NullPointerException e)
+            catch (NullPointerException)
             {
                 //###
                 // Currently an NPE is thrown when the Camera2API is used but not supported on the

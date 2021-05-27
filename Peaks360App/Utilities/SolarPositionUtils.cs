@@ -4,17 +4,6 @@ namespace Peaks360App.Utilities
 {
     class SolarPositionUtils
     {
-        private double _solarAzimut;
-        public double SolarAzimuth
-        {
-            get { return _solarAzimut; }
-            set { }
-        }
-        private double longitude = 48;
-        private double latitude = 17;
-        private double timeZone = 2;
-
-
         public static double _calculateSolarPosition(double longitude, double latitude, double timeZone)
         {
             DateTime now = DateTime.Now;

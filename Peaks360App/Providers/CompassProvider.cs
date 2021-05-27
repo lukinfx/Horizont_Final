@@ -41,7 +41,7 @@ namespace Peaks360App.Providers
                     return;
                 Compass.Start(SensorSpeed.UI, applyLowPassFilter: true);
             }
-            catch (FeatureNotSupportedException ex)
+            catch (FeatureNotSupportedException)
             {
                 //TODO: inform user that Compass is not supported on this device
                 //throw new Exception($"Compass not supported. {ex.Message}");

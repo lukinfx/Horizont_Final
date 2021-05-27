@@ -30,7 +30,7 @@ namespace Peaks360App.Views.Compass
             //    \ /
             //     V    yTipEnd
 
-            float yIconStart = 0;
+            //float yIconStart = 0;
             float yIconEnd = ToPixels(70);
             float yIconMiddle = yIconEnd / 2 + 1;
             float yTextAreaStart = ToPixels(90);

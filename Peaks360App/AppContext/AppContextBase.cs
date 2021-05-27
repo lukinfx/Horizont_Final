@@ -53,7 +53,7 @@ namespace Peaks360App.AppContext
         protected PlaceInfo myLocationPlaceInfo = new PlaceInfo();
         public PlaceInfo MyLocationPlaceInfo { get { return myLocationPlaceInfo; } }
 
-        public virtual double Heading { get; protected set; }
+        public virtual double? HeadingX { get; protected set; }
 
         private double _headingCorrector = 0;
         public double HeadingCorrector
@@ -65,7 +65,7 @@ namespace Peaks360App.AppContext
             set
             {
                 _headingCorrector = GpsUtils.Normalize180(value);
-                NotifyHeadingChanged(Heading, HeadingCorrector);
+                NotifyHeadingChanged(HeadingX ?? 0, HeadingCorrector);
             }
         }
 

@@ -27,8 +27,6 @@ namespace Peaks360App.Views.Camera
         private IAppContext _context;
         private readonly Java.IO.File file;
         private readonly CameraFragment owner;
-        private GpsLocation _location;
-        private double _heading;
 
         //public File File { get; private set; }
         //public CameraFragment Owner { get; private set; }

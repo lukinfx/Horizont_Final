@@ -307,7 +307,7 @@ namespace Peaks360App
                     ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO: Possibly log the failure
             }

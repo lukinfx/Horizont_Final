@@ -241,9 +241,9 @@ namespace Peaks360App.Activities
                     dstBmp = bmp.Copy(Bitmap.Config.Argb8888, true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                //TODO: error handling
             }
         }
 
@@ -323,7 +323,7 @@ namespace Peaks360App.Activities
                 //TODO: check is the following call is really needed
                 ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //TODO: Possibly log the failure
             }
@@ -342,7 +342,7 @@ namespace Peaks360App.Activities
             }
 
             var sign = Context.HeadingCorrector < 0 ? '-' : '+';
-            var heading = $"Hdg:{Context.Heading:F1}{sign}{Math.Abs(Context.HeadingCorrector):F1}";
+            var heading = $"Hdg:{Context.HeadingX ?? 0:F1}{sign}{Math.Abs(Context.HeadingCorrector):F1}";
 
             var zoomAndTiltCorrection = $"Scale:{photoView.Scale:F2} ,LT:{Context.LeftTiltCorrector:F2}, RT:{Context.RightTiltCorrector:F2}";
 
@@ -546,7 +546,7 @@ namespace Peaks360App.Activities
                 || !_photodata.ViewAngleVertical.IsEqual(Context.ViewAngleVertical, 0.1)
                 || !(_photodata.LeftTiltCorrector?.IsEqual(Context.LeftTiltCorrector, 0.01) ?? true)
                 || !(_photodata.RightTiltCorrector?.IsEqual(Context.RightTiltCorrector, 0.01) ?? true)
-                || !_photodata.Heading.IsEqual(Context.Heading + Context.HeadingCorrector, 0.1)
+                || !(_photodata.Heading ?? 0).IsEqual(Context.HeadingX ?? 0 + Context.HeadingCorrector, 0.1)
                 || (_photodata.ShowElevationProfile && !elevationProfileData.MaxDistance.IsEqual(Context.ElevationProfileData.MaxDistance, 0.1));
         }
 
@@ -561,7 +561,7 @@ namespace Peaks360App.Activities
             _photodata.ViewAngleVertical = Context.ViewAngleVertical;
             _photodata.LeftTiltCorrector = Context.LeftTiltCorrector;
             _photodata.RightTiltCorrector = Context.RightTiltCorrector;
-            _photodata.Heading = Context.Heading + Context.HeadingCorrector;
+            _photodata.Heading = Context.HeadingX ?? 0 + Context.HeadingCorrector;
             _photodata.ShowElevationProfile = Context.Settings.ShowElevationProfile;
             _photodata.FavouriteFilter = Context.ShowFavoritesOnly;
             _photodata.JsonCategories = JsonConvert.SerializeObject(Context.Settings.Categories);
