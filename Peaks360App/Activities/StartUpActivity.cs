@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Android;
 using Android.App;
 using Android.Content;
@@ -10,6 +11,7 @@ using Android.Support.V4.App;
 using Xamarin.Forms;
 using Peaks360App.AppContext;
 using Peaks360App.Services;
+using Application = Android.App.Application;
 
 /*
  * 1) Request permissions
@@ -27,10 +29,16 @@ namespace Peaks360App.Activities
         private const int REQUEST_GPS_SETTINGS = Definitions.BaseResultCode.STARTUP_ACTIVITY + 1;
         private const int REQUEST_PRIVACY_POLICY = Definitions.BaseResultCode.STARTUP_ACTIVITY + 2;
 
+        private static string _externalFilesDir;
+
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
         protected override void OnCreate(Bundle bundle)
         {
+            _externalFilesDir = Application.Context.GetExternalFilesDir(null).AbsolutePath;
+            AppDomain.CurrentDomain.UnhandledException += OnAppDomainUnhandledException;
+            TaskScheduler.UnobservedTaskException += OnTaskSchedulerOnUnobservedTaskException;
+
             //base.SetTheme(Resource.Style.AppTheme);
             base.OnCreate(bundle);
             Xamarin.Forms.Forms.Init(this, bundle);
@@ -47,6 +55,40 @@ namespace Peaks360App.Activities
             else
             {
                 InitializeContext();
+            }
+        }
+
+        static void OnAppDomainUnhandledException(object sender, UnhandledExceptionEventArgs args)
+        {
+            Exception e = (Exception)args.ExceptionObject;
+            Console.WriteLine("Unhandled exception: " + e.Message);
+            Console.WriteLine("Runtime terminating: {0}", args.IsTerminating);
+            string filename = System.IO.Path.Combine(_externalFilesDir, "peaks360-app-crash-report.txt");
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(filename))
+            {
+                file.WriteLine($"Date and time: {DateTime.Now}");
+                file.WriteLine($"Runtime terminating: {args.IsTerminating}");
+                file.WriteLine("Exception message:\r\n==============================================");
+                file.WriteLine(e.Message);
+                file.WriteLine("Stack trace:\r\n==============================================");
+                file.WriteLine(e.StackTrace);
+            }
+        }
+
+        private void OnTaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs args)
+        {
+            Exception e = (Exception)args.Exception;
+            Console.WriteLine("Task exception: " + e.Message);
+            string filename = System.IO.Path.Combine(_externalFilesDir, "peaks360-task-crash-report.txt");
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(filename))
+            {
+                file.WriteLine($"Date and time: {DateTime.Now}");
+                file.WriteLine("Exception message:\r\n==============================================");
+                file.WriteLine(e.Message);
+                file.WriteLine("Stack trace:\r\n==============================================");
+                file.WriteLine(e.StackTrace);
             }
         }
 
