@@ -1,10 +1,17 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--For all properties see: https://aka.ms/android-menu-resource-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
   <item
     android:id="@+id/menu_save"
     android:icon="@android:drawable/ic_menu_save"
     android:showAsAction="ifRoom"
     android:title="@string/Common_Save" />
+  <item
+    android:id="@+id/menu_show_on_map"
+    android:icon="@android:drawable/ic_menu_mapmode"
+    android:showAsAction="never"
+    android:title="Show camera location on map" />
   <item
     android:id="@+id/menu_paste"
     android:showAsAction="never"
@@ -13,10 +20,28 @@
     android:id="@+id/menu_fetch_altitude"
     android:showAsAction="never"
     android:title="@string/EditPoi_FetchAltitudeFromElevationMap" />
-  <item
-    android:id="@+id/menu_show_on_map"
-    android:icon="@android:drawable/ic_menu_mapmode"
-    android:showAsAction="never"
-    android:title="Show camera location on map" />
   
 </menu>
+
+<!-- Code to implement into Activity:
+
+Android.Widget.SearchView searchView;
+public override bool OnCreateOptionsMenu(IMenu menu)
+{
+  this.MenuInflater.Inflate(Resource.Menu.PhotoImportActivityMenu, menu);
+
+  var searchItem = menu.FindItem(Resource.Id.action_search);
+
+  searchView = searchItem.ActionProvider.JavaCast<Android.Widget.SearchView>();
+
+  searchView.QueryTextSubmit += (sender, args) =>
+  {
+    Toast.MakeText(this, "You searched: " + args.Query, ToastLength.Short).Show();
+
+  };
+
+
+  return base.OnCreateOptionsMenu(menu);
+}
+
+-->

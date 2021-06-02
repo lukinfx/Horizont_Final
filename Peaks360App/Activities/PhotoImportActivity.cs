@@ -9,9 +9,11 @@ using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using Peaks360App.AppContext;
+using Peaks360App.Extensions;
 using Peaks360App.Tasks;
 using Peaks360App.Utilities;
 using Peaks360Lib.Domain.Enums;
@@ -75,6 +77,16 @@ namespace Peaks360App.Activities
 
             FindViewById<Button>(Resource.Id.buttonBearing).SetOnClickListener(this);
             FindViewById<Button>(Resource.Id.buttonLocation).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.buttonCameraLocationInfo).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.buttonViewDirectionInfo).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.buttonViewAnglesInfo).SetOnClickListener(this);
+
+            _editTextLatitude.TextChanged += OnTextChanged;
+            _editTextLongitude.TextChanged += OnTextChanged;
+            _editTextAltitude.TextChanged += OnTextChanged;
+            _editTextHeading.TextChanged += OnTextChanged;
+            _editTextViewAngleVertical.TextChanged += OnTextChanged;
+            _editTextViewAngleHorizontal.TextChanged += OnTextChanged;
 
             long id = Intent.GetLongExtra("Id", -1);
             _photoData = Context.Database.GetPhotoDataItem(id);
@@ -82,18 +94,74 @@ namespace Peaks360App.Activities
             var bmp = BitmapFactory.DecodeByteArray(_photoData.Thumbnail, 0, _photoData.Thumbnail.Length);
             _imageViewThumbnail.SetImageBitmap(bmp);
 
-            _editTextViewAngleHorizontal.Text = $"{_photoData.ViewAngleHorizontal:F1}";
-            _editTextViewAngleVertical.Text = $"{_photoData.ViewAngleVertical:F1}";
-            _editTextLongitude.Text = $"{_photoData.Longitude:F7}".Replace(",", ".");
-            _editTextLatitude.Text = $"{_photoData.Latitude:F7}".Replace(",", ".");
-            _editTextAltitude.Text = $"{_photoData.Altitude:F0}";
+            UpdateCameraLocation(_photoData.GetPhotoGpsLocation());
+            UpdateCameraAltitude(_photoData.GetPhotoGpsLocation());
+            UpdateViewAngles(_photoData.GetPhotoGpsLocation());
+            UpdateHeading(_photoData.Heading);
+        }
 
-            _editTextHeading.Text = _photoData.Heading.HasValue ? $"{_photoData.Heading.Value:F1}" : "";
+        private void OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            EditText et = sender as EditText;
+            if (string.IsNullOrEmpty(e.Text.ToString()))
+            {
+                et.SetBackgroundResource(Resource.Drawable.bg_edittext_warning);
+            }
+            else
+            {
+                et.SetBackgroundResource(Resource.Drawable.bg_edittext);
+            }
+        }
+
+        private void UpdateCameraLocation(GpsLocation location)
+        {
+            if (GpsUtils.HasLocation(location))
+            {
+                _editTextLongitude.Text = $"{location.Longitude:F7}".Replace(",", ".");
+                _editTextLatitude.Text = $"{location.Latitude:F7}".Replace(",", ".");
+            }
+            else
+            {
+                _editTextLongitude.Text = "";
+                _editTextLatitude.Text = "";
+            }
+        }
+
+        private void UpdateCameraAltitude(GpsLocation location)
+        {
+            if (GpsUtils.HasAltitude(location))
+            {
+                _editTextAltitude.Text = $"{location.Altitude:F0}";
+            }
+            else
+            {
+                _editTextAltitude.Text = "";
+            }
+        }
+
+        private void UpdateViewAngles(GpsLocation location)
+        {
+            _editTextViewAngleHorizontal.Text = $"{_photoData.ViewAngleHorizontal:F1}".Replace(",", ".");
+            _editTextViewAngleVertical.Text = $"{_photoData.ViewAngleVertical:F1}".Replace(",", ".");
+        }
+
+        private void UpdateHeading(double? heading)
+        {
+            if (heading.HasValue)
+            {
+                
+                _editTextHeading.Text = $"{GpsUtils.Normalize360(heading.Value):F1}".Replace(",", ".");
+            }
+            else
+            {
+                _editTextHeading.Text = "";
+            }
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.PhotoImportActivityMenu, menu);
+            //MenuInflater.Inflate(Resource.Menu.EditActivityMenu, menu);
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -113,9 +181,9 @@ namespace Peaks360App.Activities
                 case Resource.Id.menu_fetch_altitude:
                     OnUpdateElevation();
                     break;
-                /*case Resource.Id.menu_show_on_map:
+                case Resource.Id.menu_show_on_map:
                     OnOpenMapClicked();
-                    break;*/
+                    break;
             }
             return base.OnOptionsItemSelected(item);
         }
@@ -131,10 +199,22 @@ namespace Peaks360App.Activities
             MapUtilities.OpenMap(double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture), double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture));
         }
 
-        private void OnBearingClicked()
+        private void OnCameraDirectionClicked()
+        {
+            if (!TryGetGpsLocation(out GpsLocation _))
+            {
+                PopupHelper.ErrorDialog(this, "Set camera location first.");
+            }
+
+            Intent intent = new Intent(this, typeof(PoiSelectActivity));
+            intent.SetAction(PoiSelectActivity.REQUEST_SELECT_CAMERADIRECTION.ToString());
+            StartActivityForResult(intent, PoiSelectActivity.REQUEST_SELECT_CAMERADIRECTION);
+        }
+
+        private void OnCameraLocationClicked()
         {
             Intent intent = new Intent(this, typeof(PoiSelectActivity));
-            StartActivityForResult(intent, PoiSelectActivity.REQUEST_SELECT_POI);
+            StartActivityForResult(intent, PoiSelectActivity.REQUEST_SELECT_CAMERALOCATION);
         }
 
         private void OnSaveClicked()
@@ -158,7 +238,11 @@ namespace Peaks360App.Activities
                         PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
                         return;
                     }
-                    _photoData.Heading = heading;
+                    _photoData.Heading = GpsUtils.Normalize180(heading);
+                }
+                else
+                {
+                    _photoData.Heading = null;
                 }
 
 
@@ -175,8 +259,7 @@ namespace Peaks360App.Activities
                     return;
                 }
                 _photoData.ViewAngleVertical = viewAngleVertical;
-
-                Context.Database.UpdateItem(_photoData);
+                Context.PhotosModel.UpdateItem(_photoData);
 
                 Finish();
             }
@@ -207,8 +290,7 @@ namespace Peaks360App.Activities
                 }
 
                 location = Peaks360Lib.Utilities.GpsUtils.ParseGPSLocationText(ClipBoardText);
-                _editTextLongitude.Text = $"{location.Longitude:F7}".Replace(",", ".");
-                _editTextLatitude.Text = $"{location.Latitude:F7}".Replace(",", ".");
+                UpdateCameraLocation(location);
 
                 /*if (string.IsNullOrEmpty(_editTextName.Text))
                 {
@@ -227,7 +309,8 @@ namespace Peaks360App.Activities
                 {
                     if (TryGetElevation(location, out var altitude))
                     {
-                        _editTextAltitude.Text = $"{altitude:F0}";
+                        location.Altitude = altitude;
+                        UpdateCameraAltitude(location);
                     }
                 }
             }
@@ -251,7 +334,8 @@ namespace Peaks360App.Activities
 
                     if (TryGetElevation(location, out var altitude))
                     {
-                        _editTextAltitude.Text = $"{altitude:F0}";
+                        location.Altitude = altitude;
+                        UpdateCameraAltitude(location);
                     }
                     else
                     {
@@ -269,11 +353,21 @@ namespace Peaks360App.Activities
         {
             switch (v.Id)
             {
+                case Resource.Id.buttonCameraLocationInfo:
+                    PopupHelper.InfoDialog(this, Resource.String.PhotoImport_CameraLocationInfo);
+                    break;
+                case Resource.Id.buttonViewDirectionInfo:
+                    PopupHelper.InfoDialog(this, Resource.String.PhotoImport_ViewDirectionInfo);
+                    break;
+                case Resource.Id.buttonViewAnglesInfo:
+                    PopupHelper.InfoDialog(this, Resource.String.PhotoImport_ViewAnglesInfo);
+                    break;
+
                 case Resource.Id.buttonLocation:
-                    //###
+                    OnCameraLocationClicked();
                     break;
                 case Resource.Id.buttonBearing:
-                    OnBearingClicked();
+                    OnCameraDirectionClicked();
                     break;
             }
         }
@@ -282,21 +376,28 @@ namespace Peaks360App.Activities
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-            if (requestCode == PoiSelectActivity.REQUEST_SELECT_POI)
+            if (resultCode == PoiSelectActivity.RESULT_OK)
             {
-                if (resultCode == PoiSelectActivity.RESULT_OK)
+                var id = data.GetLongExtra("Id", 0);
+
+                var selectedPoint = (id == (long)PoiId.CURRENT_LOCATION)
+                    ? PoiSelectActivity.GetMyLocationPoi(AppContext)
+                    : AppContext.Database.GetItem(id);
+
+                if (requestCode == PoiSelectActivity.REQUEST_SELECT_CAMERADIRECTION)
                 {
-                    var id = data.GetLongExtra("Id", 0);
-
-                    var selectedPoint = (id == (long)PoiId.CURRENT_LOCATION)
-                        ? PoiSelectActivity.GetMyLocationPoi(AppContext)
-                        : AppContext.Database.GetItem(id);
-
-                    if (TryGetGpsLocation(out GpsLocation location))
+                    if (!TryGetGpsLocation(out GpsLocation location))
                     {
-                        var bearing = GpsUtils.QuickBearing(location, new GpsLocation(selectedPoint.Longitude, selectedPoint.Latitude, selectedPoint.Altitude));
-                        _editTextHeading.Text = $"{bearing:F1}";
+                        PopupHelper.ErrorDialog(this, "Set camera location first.");
                     }
+                    var bearing = GpsUtils.QuickBearing(location, new GpsLocation(selectedPoint.Longitude, selectedPoint.Latitude, selectedPoint.Altitude));
+                    UpdateHeading(bearing);
+                }
+                else if (requestCode == PoiSelectActivity.REQUEST_SELECT_CAMERALOCATION)
+                {
+                    var location = new GpsLocation(selectedPoint.Longitude, selectedPoint.Latitude, selectedPoint.Altitude);
+                    UpdateCameraLocation(location);
+                    UpdateCameraAltitude(location);
                 }
             }
         }

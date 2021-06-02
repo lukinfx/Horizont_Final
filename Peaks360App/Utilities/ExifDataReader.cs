@@ -33,7 +33,7 @@ namespace Peaks360App.Utilities
 
                 if (exifReader.GetTagValue<UInt16>(ExifTags.FocalLengthIn35mmFilm, out UInt16 exifFocalLength35mm))
                 {
-                    exifData.focalLength35mm = exifFocalLength35mm;
+                    exifData.focalLength35mm = exifFocalLength35mm > 0 ? exifFocalLength35mm : (int?)null;
                 }
 
                 if (exifReader.GetTagValue<double[]>(ExifTags.GPSLongitude, out double[] exifGpsLongArray)

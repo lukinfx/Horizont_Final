@@ -12,9 +12,11 @@ using Android.Provider;
 using Xamarin.Essentials;
 using Peaks360Lib.Domain.Models;
 using Peaks360App.AppContext;
+using Peaks360App.Extensions;
 using Peaks360App.Utilities;
 using Peaks360App.Models;
 using Peaks360Lib.Utilities;
+using GpsUtils = Peaks360Lib.Utilities.GpsUtils;
 
 namespace Peaks360App.Activities
 {
@@ -145,6 +147,12 @@ namespace Peaks360App.Activities
 
         public void OnPhotoShowRequest(int position)
         {
+            var photoData = _adapter[position];
+            if (!GpsUtils.HasLocation(photoData.GetPhotoGpsLocation()) || !GpsUtils.HasAltitude(photoData.GetPhotoGpsLocation()) || !photoData.Heading.HasValue)
+            {
+                PopupHelper.ErrorDialog(this, "Set camera location and view direction first.");
+                return;
+            }
             Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
             showIntent.PutExtra("ID", _adapter[position].Id);
             StartActivity(showIntent);

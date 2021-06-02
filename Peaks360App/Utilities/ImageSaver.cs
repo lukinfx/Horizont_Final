@@ -82,7 +82,7 @@ namespace Peaks360App.Utilities
                         Longitude = _context.MyLocation.Longitude,
                         Latitude = _context.MyLocation.Latitude,
                         Altitude = _context.MyLocation.Altitude,
-                        Heading = _context.HeadingX ?? 0 + _context.HeadingCorrector,
+                        Heading = (_context.HeadingX ?? 0) + _context.HeadingCorrector,
                         LeftTiltCorrector = _context.LeftTiltCorrector,
                         RightTiltCorrector = _context.RightTiltCorrector,
                         Thumbnail = thumbnail,
@@ -232,7 +232,7 @@ namespace Peaks360App.Utilities
                 };
 
                 //calculate view angle from focal length equivalent on 35mm camera, or use default viev angle 60dg
-                    var viewAngle = exifData.focalLength35mm.HasValue ? 2 * System.Math.Tan(35d / 2d / (double)exifData.focalLength35mm.Value) / System.Math.PI * 180 : 60;
+                var viewAngle = exifData.focalLength35mm.HasValue ? 2 * System.Math.Tan(35d / 2d / (double)exifData.focalLength35mm.Value) / System.Math.PI * 180 : 60;
                 if (imgWidth > imgHeight)
                 {
                     photodata.ViewAngleHorizontal = viewAngle;

@@ -1,245 +1,260 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent">
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <include
-      android:id="@+id/toolbar"
-      layout="@layout/TitleToolbar" />
+        android:id="@+id/toolbar"
+        layout="@layout/TitleToolbar" />
 
     <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      android:padding="10dp"
-      android:background="@drawable/background_portrait">
-
-      <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/background_portrait">
 
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:orientation="vertical"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
+        <ScrollView
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:padding="10dp"
-              android:background="@drawable/bg_activity"
-              android:id="@+id/linearLayoutSelectedPoint">
-
-                <ImageView
-                  android:id="@+id/Thumbnail"
-                  android:layout_width="match_parent"
-                  android:layout_height="50dp"
-                  android:src="@drawable/tutorial_compass_calibration"/>
-
-            </LinearLayout>
-            <TextView
-              android:text="Camera location"
-              android:textAppearance="?android:attr/textAppearanceLarge"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/textView2" />
-
-            <TextView
-              android:text="In order to display all the points and artificial horizon correctly, it is necessary to know the place where the picture was made from. To adjust this location, update the GPS coordinates manually or select from points database."
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/textView1" />
-
-            <GridLayout
-              android:paddingTop="10dp"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:rowCount="3"
-              android:columnCount="2">
-              <TextView
-                android:paddingTop="10dp"
-                android:layout_columnWeight="2"
-                android:text="@string/Common_Latitude"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/latitudeTitle" />
-              <EditText
-                android:layout_columnWeight="8"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:digits="0123456789.,"
-                android:padding="10px"
-                android:background="@drawable/bg_edittext"
-                android:id="@+id/editTextLatitude" />
-              <TextView
-                android:paddingTop="10dp"
-                android:layout_columnWeight="2"
-                android:text="@string/Common_Longitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/longitudeTitle" />
-              <EditText
-                android:layout_columnWeight="8"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:digits="0123456789.,"
-                android:padding="10px"
-                android:background="@drawable/bg_edittext"
-                android:id="@+id/editTextLongitude" />
-              <TextView
-                android:paddingTop="10dp"
-                android:layout_columnWeight="2"
-                android:text="@string/Common_Altitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/altitudeTitle" />
-              <EditText
-                android:layout_columnWeight="8"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:digits="0123456789.,"
-                android:padding="10px"
-                android:background="@drawable/bg_edittext"
-                android:id="@+id/editTextAltitude" />
-            </GridLayout>
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/bg_activity">
 
-          <Button
-            android:id="@+id/buttonLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select camera location"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@android:drawable/ic_menu_mylocation" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_activity"
+                    android:id="@+id/linearLayoutSelectedPoint">
 
-            <View
-              android:layout_width="match_parent"
-              android:layout_height="1dp"
-              android:background="#606060" />
+                    <ImageView
+                        android:id="@+id/Thumbnail"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:src="@drawable/tutorial_compass_calibration"/>
 
-            <TextView
-              android:text="View direction"
-              android:textAppearance="?android:attr/textAppearanceLarge"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/textView2" />
+                </LinearLayout>
+                
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                  <TextView
+                    android:text="Camera location"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2" />
+                    <ImageButton
+                        android:src="@android:drawable/ic_menu_info_details"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/buttonCameraLocationInfo" />
+                </LinearLayout>
 
-            <TextView
-              android:text="View direction is not usually stored within an image data. You can adjust view direction in photo editing mode. Anyway you can set camera direction at least approximately by seleting an object from the database."
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/textView1" />
+                <GridLayout
+                    android:paddingTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:rowCount="3"
+                    android:columnCount="2">
+                    <TextView
+                        android:paddingTop="10dp"
+                        android:layout_columnWeight="2"
+                        android:text="@string/Common_Latitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/latitudeTitle" />
+                    <EditText
+                        android:layout_columnWeight="8"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789.,"
+                        android:padding="10px"
+                        android:background="@drawable/bg_edittext"
+                        android:id="@+id/editTextLatitude" />
+                    <TextView
+                        android:paddingTop="10dp"
+                        android:layout_columnWeight="2"
+                        android:text="@string/Common_Longitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/longitudeTitle" />
+                    <EditText
+                        android:layout_columnWeight="8"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789.,"
+                        android:padding="10px"
+                        android:background="@drawable/bg_edittext"
+                        android:id="@+id/editTextLongitude" />
+                    <TextView
+                        android:paddingTop="10dp"
+                        android:layout_columnWeight="2"
+                        android:text="@string/Common_Altitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/altitudeTitle" />
+                    <EditText
+                        android:layout_columnWeight="8"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789.,"
+                        android:padding="10px"
+                        android:background="@drawable/bg_edittext"
+                        android:id="@+id/editTextAltitude" />
+                </GridLayout>
 
-            <GridLayout
-              android:paddingTop="10dp"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:rowCount="1"
-              android:columnCount="2">
-                <TextView
-                  android:layout_columnWeight="2"
-                  android:paddingTop="10dp"
-                  android:text="@string/Common_Heading"
+                <Button
+                    android:id="@+id/buttonLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Select camera location"
+                    android:background="@android:color/transparent"
+                    android:drawableLeft="@android:drawable/ic_menu_mylocation" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#606060" />
+
+                <LinearLayout
+                  android:orientation="horizontal"
                   android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/altitudeTitle" />
-                <EditText
-                  android:layout_columnWeight="8"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
+                  android:layout_height="wrap_content">
+                  <TextView
+                    android:text="View direction"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                  <ImageButton
+                    android:src="@android:drawable/ic_menu_info_details"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/buttonViewDirectionInfo" />
+                </LinearLayout>
+
+                <GridLayout
+                    android:paddingTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:rowCount="1"
+                    android:columnCount="2">
+                    <TextView
+                        android:layout_columnWeight="2"
+                        android:paddingTop="10dp"
+                        android:text="@string/Common_Heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/altitudeTitle" />
+                    <EditText
+                        android:layout_columnWeight="8"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789.,"
+                        android:padding="10px"
+                        android:background="@drawable/bg_edittext"
+                        android:id="@+id/editTextHeading" />
+                </GridLayout>
+
+
+                <Button
+                    android:id="@+id/buttonBearing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Select view direction"
+                    android:background="@android:color/transparent"
+                    android:drawableLeft="@android:drawable/ic_menu_compass" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#606060" />
+
+                <LinearLayout
+                  android:orientation="horizontal"
                   android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:inputType="numberDecimal"
-                  android:digits="0123456789.,"
-                  android:padding="10px"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/editTextHeading" />
-              </GridLayout>
+                  android:layout_height="wrap_content">
+                  <TextView
+                    android:text="View angles"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                  <ImageButton
+                    android:src="@android:drawable/ic_menu_info_details"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/buttonViewAnglesInfo" />
+                </LinearLayout>
 
-
-          <Button
-            android:id="@+id/buttonBearing"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select view direction"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@android:drawable/ic_menu_compass" />
-
-            <View
-              android:layout_width="match_parent"
-              android:layout_height="1dp"
-              android:background="#606060" />
-
-            <TextView
-              android:text="View angles"
-              android:textAppearance="?android:attr/textAppearanceLarge"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/textView2" />
-
-            <TextView
-              android:text="View angles are automatically calculated from focal length and image size, but this information might not be precise enough. Feel free to adjust camera view angle here or in image editing mode."
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/textView1" />
-
-            <GridLayout
-              android:paddingTop="10dp"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:rowCount="2"
-              android:columnCount="2">
-                <TextView
-                  android:paddingTop="10dp"
-                  android:layout_columnWeight="2"
-                  android:text="@string/Common_HorizontalViewAngle"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/altitudeTitle" />
-                <EditText
-                  android:layout_columnWeight="8"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:inputType="numberDecimal"
-                  android:digits="0123456789.,"
-                  android:padding="10px"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/editTextViewAngleHorizontal" />
-                <TextView
-                  android:paddingTop="10dp"
-                  android:layout_columnWeight="2"
-                  android:text="@string/Common_VerticalViewAngle"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/altitudeTitle" />
-                <EditText
-                  android:layout_columnWeight="8"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:inputType="numberDecimal"
-                  android:digits="0123456789.,"
-                  android:padding="10px"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/editTextViewAngleVertical" />
-            </GridLayout>
+                <GridLayout
+                    android:paddingTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:rowCount="2"
+                    android:columnCount="2">
+                    <TextView
+                        android:paddingTop="10dp"
+                        android:layout_columnWeight="2"
+                        android:text="@string/Common_HorizontalViewAngle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/altitudeTitle" />
+                    <EditText
+                        android:layout_columnWeight="8"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789.,"
+                        android:padding="10px"
+                        android:background="@drawable/bg_edittext"
+                        android:id="@+id/editTextViewAngleHorizontal" />
+                    <TextView
+                        android:paddingTop="10dp"
+                        android:layout_columnWeight="2"
+                        android:text="@string/Common_VerticalViewAngle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/altitudeTitle" />
+                    <EditText
+                        android:layout_columnWeight="8"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:digits="0123456789.,"
+                        android:padding="10px"
+                        android:background="@drawable/bg_edittext"
+                        android:id="@+id/editTextViewAngleVertical" />
+                </GridLayout>
 
             </LinearLayout>
         </ScrollView>

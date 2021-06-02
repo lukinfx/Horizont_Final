@@ -546,7 +546,7 @@ namespace Peaks360App.Activities
                 || !_photodata.ViewAngleVertical.IsEqual(Context.ViewAngleVertical, 0.1)
                 || !(_photodata.LeftTiltCorrector?.IsEqual(Context.LeftTiltCorrector, 0.01) ?? true)
                 || !(_photodata.RightTiltCorrector?.IsEqual(Context.RightTiltCorrector, 0.01) ?? true)
-                || !(_photodata.Heading ?? 0).IsEqual(Context.HeadingX ?? 0 + Context.HeadingCorrector, 0.1)
+                || !(_photodata.Heading ?? 0).IsEqual((Context.HeadingX ?? 0) + Context.HeadingCorrector, 0.1)
                 || (_photodata.ShowElevationProfile && !elevationProfileData.MaxDistance.IsEqual(Context.ElevationProfileData.MaxDistance, 0.1));
         }
 
@@ -561,7 +561,7 @@ namespace Peaks360App.Activities
             _photodata.ViewAngleVertical = Context.ViewAngleVertical;
             _photodata.LeftTiltCorrector = Context.LeftTiltCorrector;
             _photodata.RightTiltCorrector = Context.RightTiltCorrector;
-            _photodata.Heading = Context.HeadingX ?? 0 + Context.HeadingCorrector;
+            _photodata.Heading = (Context.HeadingX ?? 0) + Context.HeadingCorrector;
             _photodata.ShowElevationProfile = Context.Settings.ShowElevationProfile;
             _photodata.FavouriteFilter = Context.ShowFavoritesOnly;
             _photodata.JsonCategories = JsonConvert.SerializeObject(Context.Settings.Categories);

@@ -19,7 +19,9 @@ namespace Peaks360App.Activities
     [Activity(Label = "@string/PoiSelectActivity")]
     public class PoiSelectActivity : Activity, IPoiActionListener, SearchView.IOnQueryTextListener
     {
-        public static int REQUEST_SELECT_POI = Definitions.BaseResultCode.POISELECT_ACTIVITY + 0;
+        public static int REQUEST_SELECT_DOWNLOADELEVATIONDATAAREA = Definitions.BaseResultCode.POISELECT_ACTIVITY + 0;
+        public static int REQUEST_SELECT_CAMERALOCATION = Definitions.BaseResultCode.POISELECT_ACTIVITY + 1;
+        public static int REQUEST_SELECT_CAMERADIRECTION = Definitions.BaseResultCode.POISELECT_ACTIVITY + 2;
 
         public static Result RESULT_CANCELED { get { return Result.Canceled; } }
         public static Result RESULT_OK { get { return Result.Ok; } }
@@ -59,9 +61,13 @@ namespace Peaks360App.Activities
             _listViewPoi = FindViewById<ListView>(Resource.Id.listViewPoi);
 
             var poiViewItems = new PoiViewItemList(null, AppContext.MyLocation, _iGpsUtilities);
-            if (Peaks360Lib.Utilities.GpsUtils.HasLocation(AppContext.MyLocation))
+            
+            if (Intent.Action == REQUEST_SELECT_DOWNLOADELEVATIONDATAAREA.ToString())
             {
-                AddMyLocation(poiViewItems);
+                if (Peaks360Lib.Utilities.GpsUtils.HasLocation(AppContext.MyLocation))
+                {
+                    AddMyLocation(poiViewItems);
+                }
             }
 
             _adapter = new PoiListItemAdapter(this, poiViewItems, this, false);

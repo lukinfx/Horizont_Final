@@ -244,7 +244,7 @@ namespace Peaks360App.Views
                 return;
             }
 
-            var heading = _context.HeadingX ?? 0 + _context.HeadingCorrector;
+            var heading = (_context.HeadingX ?? 0) + _context.HeadingCorrector;
 
             compassViewDrawer.OnDrawBackground(canvas);
 
@@ -407,7 +407,7 @@ namespace Peaks360App.Views
             {
                 (x, y) = ToLocationOnScreen(x, y);
                 
-                var heading = _context.HeadingX ?? 0 + _context.HeadingCorrector;
+                var heading = (_context.HeadingX ?? 0) + _context.HeadingCorrector;
 
                 foreach (var item in _poisToBeDisplayed)
                 {

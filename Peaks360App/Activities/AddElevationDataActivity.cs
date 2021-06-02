@@ -115,7 +115,7 @@ namespace Peaks360App.Activities
                 case Resource.Id.buttonSelect:
                 case Resource.Id.linearLayoutSelectedPoint:
                     Intent intent = new Intent(this, typeof(PoiSelectActivity));
-                    StartActivityForResult(intent, PoiSelectActivity.REQUEST_SELECT_POI);
+                    StartActivityForResult(intent, PoiSelectActivity.REQUEST_SELECT_DOWNLOADELEVATIONDATAAREA);
                     break;
                 case Resource.Id.buttonSave:
                     SaveElevationData(_selectedPoint);
@@ -142,7 +142,7 @@ namespace Peaks360App.Activities
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-            if (requestCode == PoiSelectActivity.REQUEST_SELECT_POI)
+            if (requestCode == PoiSelectActivity.REQUEST_SELECT_DOWNLOADELEVATIONDATAAREA)
             {
                 if (resultCode == PoiSelectActivity.RESULT_OK)
                 {

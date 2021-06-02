@@ -8,6 +8,7 @@ using Android.Widget;
 using Peaks360App.Extensions;
 using Xamarin.Essentials;
 using Peaks360Lib.Domain.Models;
+using Peaks360Lib.Extensions;
 
 namespace Peaks360App.Utilities
 {
@@ -97,7 +98,7 @@ namespace Peaks360App.Utilities
             var photoItem = GetById(item.Id);
             if (photoItem != null)
             {
-                photoItem.Heading = item.Heading;
+                photoItem.CopyFrom(item);
                 NotifyDataSetChanged();
             }
         }

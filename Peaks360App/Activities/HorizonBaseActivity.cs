@@ -111,11 +111,6 @@ namespace Peaks360App.Activities
 
         protected void Start()
         {
-            //Finnaly setup OnDataChanged listener and Load all data
-            //Context.DataChanged += DataChanged;
-            //Context.HeadingChanged -= HeadingChanged;
-
-            ElevationProfileProvider.Instance().ElevationProfileChanged += OnElevationProfileChanged;
             UpdateStatusBar();
         }
 
@@ -124,6 +119,7 @@ namespace Peaks360App.Activities
             base.OnPause();
             Context.DataChanged -= DataChanged;
             Context.HeadingChanged -= HeadingChanged;
+            ElevationProfileProvider.Instance().ElevationProfileChanged -= OnElevationProfileChanged;
         }
 
         protected override void OnResume()
@@ -133,6 +129,7 @@ namespace Peaks360App.Activities
             
             Context.DataChanged += DataChanged;
             Context.HeadingChanged += HeadingChanged;
+            ElevationProfileProvider.Instance().ElevationProfileChanged += OnElevationProfileChanged;
         }
 
         protected override void OnDestroy()
