@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Android.App;
@@ -8,7 +7,6 @@ using Android.Views;
 using Android.Widget;
 using Android.Runtime;
 using Android.Content;
-using Android.Provider;
 using Xamarin.Essentials;
 using Peaks360Lib.Domain.Models;
 using Peaks360App.AppContext;
@@ -21,11 +19,13 @@ using GpsUtils = Peaks360Lib.Utilities.GpsUtils;
 namespace Peaks360App.Activities
 {
     [Activity(Label = "@string/PhotosActivity")]
-    public class PhotosActivity : Activity, IPhotoActionListener
+    public class PhotosActivity : Activity, IPhotoActionListener, SearchView.IOnQueryTextListener
     {
         public static int REQUEST_IMPORT_PHOTO = Definitions.BaseResultCode.PHOTOS_ACTIVITY;
         
         private ListView _photosListView;
+        private SearchView _searchViewText;
+        private LinearLayout _searchViewLayout;
         private PhotosItemAdapter _adapter;
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
@@ -56,7 +56,16 @@ namespace Peaks360App.Activities
             _photosListView.Adapter = _adapter;
             Context.PhotosItemAdapter = _adapter;
 
-            ShowPhotos(Context.ShowFavoritePicturesOnly);
+            _searchViewLayout = FindViewById<LinearLayout>(Resource.Id.searchViewLayout);
+            _searchViewLayout.Visibility = ViewStates.Gone;
+
+            _searchViewText = FindViewById<SearchView>(Resource.Id.searchViewPhotoName);
+            _searchViewText.Iconified = false;
+            _searchViewText.SetQueryHint(Resources.GetText(Resource.String.Common_Search));
+            _searchViewText.SetOnQueryTextListener(this);
+            _searchViewText.ClearFocus();
+
+            ShowPhotos(Context.ShowFavoritePicturesOnly, GetSearchText());
 
             Context.PhotosModel.PhotoAdded += OnPhotoAdded;
             Context.PhotosModel.PhotoUpdated += OnPhotoUpdated;
@@ -112,16 +121,25 @@ namespace Peaks360App.Activities
                 case Android.Resource.Id.Home:
                     Finish();
                     break;
+                case Resource.Id.menu_search:
+                    ToogleSearch();
+                    break;
                 case Resource.Id.menu_addNew:
                     InitializeMediaPicker();
                     break;
                 case Resource.Id.menu_favourite:
                     Context.ToggleFavouritePictures();
-                    ShowPhotos(Context.ShowFavoritePicturesOnly);
+                    ShowPhotos(Context.ShowFavoritePicturesOnly, GetSearchText());
                     InvalidateOptionsMenu();
                     break;
             }
             return base.OnOptionsItemSelected(item);
+        }
+
+        private void ToogleSearch()
+        {
+            _searchViewLayout.Visibility = _searchViewLayout.Visibility == ViewStates.Visible ? ViewStates.Gone : ViewStates.Visible;
+            ShowPhotos(Context.ShowFavoritePicturesOnly, GetSearchText());
         }
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
@@ -227,7 +245,7 @@ namespace Peaks360App.Activities
             }
         }
 
-        private void ShowPhotos(bool favoriesOnly)
+        private void ShowPhotos(bool favoriesOnly, string searchText)
         {
             var list = Context.PhotosModel.GetPhotoDataItems()
                 .AsQueryable();
@@ -235,6 +253,12 @@ namespace Peaks360App.Activities
             if (favoriesOnly)
             {
                 list = list.Where(i => i.Favourite);
+            }
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                var temp = searchText.RemoveDiacritics().ToLower();
+                list = list.Where(i => i.Tag.RemoveDiacritics().ToLower().Contains(temp));
             }
 
             _adapter.SetItems(list);
@@ -254,6 +278,22 @@ namespace Peaks360App.Activities
 
             altitude = 0;
             return false;
+        }
+
+        public bool OnQueryTextChange(string newText)
+        {
+            ShowPhotos(Context.ShowFavoritePicturesOnly, GetSearchText());
+            return true;
+        }
+
+        public bool OnQueryTextSubmit(string query)
+        {
+            return true;
+        }
+
+        private string GetSearchText()
+        {
+            return _searchViewLayout.Visibility == ViewStates.Visible ? _searchViewText.Query : null;
         }
 
     }

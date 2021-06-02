@@ -28,7 +28,7 @@ namespace Peaks360App.Activities
 
         private IAppContext AppContext { get { return AppContextLiveData.Instance; } }
         private ListView _listViewPoi;
-        private SearchView _searchViewPlaceName;
+        private SearchView _searchViewText;
         private PoiListItemAdapter _adapter;
         private Timer _changeFilterTimer = new Timer();
         private IGpsUtilities _iGpsUtilities = new GpsUtilities();
@@ -52,11 +52,11 @@ namespace Peaks360App.Activities
             _changeFilterTimer.AutoReset = false;
 
 
-            _searchViewPlaceName = FindViewById<SearchView>(Resource.Id.searchViewPlaceName);
-            _searchViewPlaceName.Iconified = false;
-            _searchViewPlaceName.SetQueryHint(Resources.GetText(Resource.String.Common_Search));
-            _searchViewPlaceName.SetOnQueryTextListener(this);
-            _searchViewPlaceName.FocusableViewAvailable(_listViewPoi);
+            _searchViewText = FindViewById<SearchView>(Resource.Id.searchViewPlaceName);
+            _searchViewText.Iconified = false;
+            _searchViewText.SetQueryHint(Resources.GetText(Resource.String.Common_Search));
+            _searchViewText.SetOnQueryTextListener(this);
+            _searchViewText.FocusableViewAvailable(_listViewPoi);
 
             _listViewPoi = FindViewById<ListView>(Resource.Id.listViewPoi);
 
@@ -162,7 +162,7 @@ namespace Peaks360App.Activities
         private void OnChangeFilterTimerElapsed(object sender, ElapsedEventArgs e)
         {
             _changeFilterTimer.Stop();
-            FilterPlaces(_searchViewPlaceName.Query);
+            FilterPlaces(_searchViewText.Query);
         }
     }
 }
