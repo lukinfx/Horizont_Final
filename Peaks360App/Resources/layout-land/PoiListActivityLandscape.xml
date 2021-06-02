@@ -28,12 +28,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Common_Name" />-->
-      <EditText
+      <SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-android:textAppearance="?android:attr/textAppearanceSmall"
-        android:singleLine="true"
         android:hint="@string/Common_Search"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:singleLine="true"
         android:id="@+id/editTextSearch" />
 
       <!--<TextView

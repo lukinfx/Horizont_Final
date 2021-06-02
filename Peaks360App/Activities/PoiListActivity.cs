@@ -20,7 +20,7 @@ using Peaks360App.Utilities;
 namespace Peaks360App.Views.ListOfPoiView
 {
     [Activity(Label = "PoiListActivity")]
-    public class PoiListActivity : Activity, IPoiActionListener, View.IOnClickListener
+    public class PoiListActivity : Activity, IPoiActionListener, View.IOnClickListener, SearchView.IOnQueryTextListener
     {
         public static int REQUEST_SHOW_POI_LIST = Definitions.BaseResultCode.POILIST_ACTIVITY;
 
@@ -33,7 +33,7 @@ namespace Peaks360App.Views.ListOfPoiView
         private Spinner _spinnerSelection;
         private Spinner _spinnerCountry;
         private Spinner _spinnerCategory;
-        private EditText _editTextSearch;
+        private SearchView _editTextSearch;
         private LinearLayout _expandableLayout;
 
         private PoiListItemAdapter _adapter;
@@ -93,8 +93,11 @@ namespace Peaks360App.Views.ListOfPoiView
             ActionBar.SetDisplayShowTitleEnabled(false);
 
 
-            _editTextSearch = FindViewById<EditText>(Resource.Id.editTextSearch);
-            _editTextSearch.TextChanged += OnSearchTextChanged;
+            _editTextSearch = FindViewById<SearchView>(Resource.Id.editTextSearch);
+            _editTextSearch.Iconified = false;
+            _editTextSearch.SetQueryHint(Resources.GetText(Resource.String.Common_Search));
+            _editTextSearch.SetOnQueryTextListener(this);
+            _editTextSearch.FocusableViewAvailable(_listViewPoi);
 
             _spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
 
@@ -176,6 +179,12 @@ namespace Peaks360App.Views.ListOfPoiView
             return base.OnOptionsItemSelected(item);
         }
 
+        private void RestartTimer()
+        {
+            _searchTimer.Stop();
+            _searchTimer.Start();
+        }
+
         private void OnSearchTimerTimerElapsed(object sender, ElapsedEventArgs e)
         {
             _searchTimer.Stop();
@@ -185,22 +194,14 @@ namespace Peaks360App.Views.ListOfPoiView
             });
         }
 
-        private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
-        {
-            _searchTimer.Stop();
-            _searchTimer.Start();
-        }
-
         private void OnFilterCountryChanged(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            _searchTimer.Stop();
-            _searchTimer.Start();
+            RestartTimer();
         }
 
         private void OnFilterCategoryChanged(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            _searchTimer.Stop();
-            _searchTimer.Start();
+            RestartTimer();
         }
 
         private void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -250,9 +251,9 @@ namespace Peaks360App.Views.ListOfPoiView
             var category = (_spinnerCategory.Adapter as CategoryAdapter)[_spinnerCategory.SelectedItemPosition];
 
             string poiName = null;
-            if (_editTextSearch.Text.Length > 0)
+            if (_editTextSearch.Query.Length > 0)
             {
-                poiName = _editTextSearch.Text;
+                poiName = _editTextSearch.Query;
             }
 
             IEnumerable<Poi> poiList;
@@ -401,6 +402,18 @@ namespace Peaks360App.Views.ListOfPoiView
                     }
                 }
             }
+        }
+
+        public bool OnQueryTextChange(string newText)
+        {
+            RestartTimer();
+            return true;
+        }
+
+        public bool OnQueryTextSubmit(string query)
+        {
+            _editTextSearch.ClearFocus();
+            return true;
         }
     }
 }

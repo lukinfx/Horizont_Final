@@ -201,6 +201,7 @@ namespace Peaks360App.Activities
 
         public bool OnQueryTextSubmit(string query)
         {
+            _searchViewText.ClearFocus();
             return true;
         }
 
