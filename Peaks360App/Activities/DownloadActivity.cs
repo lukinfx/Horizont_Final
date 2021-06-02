@@ -229,11 +229,7 @@ namespace Peaks360App.Activities
             }
             catch (Exception e)
             {
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloading, e.Message);
-                });
-
+                PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloading, e.Message);
                 return;
             }
 
@@ -360,10 +356,7 @@ namespace Peaks360App.Activities
                 };
                 ec.OnError = (message) =>
                 {
-                    MainThread.BeginInvokeOnMainThread(() =>
-                    {
-                        PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloading, message);
-                    });
+                    PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloading, message);
                 };
 
                 ec.Execute(item.fromInternet.Url);
@@ -438,10 +431,7 @@ namespace Peaks360App.Activities
                 };
                 ec.OnError = (message) =>
                 {
-                    MainThread.BeginInvokeOnMainThread(() =>
-                    {
-                        PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloadingElevation, message);
-                    });
+                    PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloadingElevation, message);
                 };
 
                 ec.Execute(ElevationDataImport.COMMAND_DOWNLOAD);
@@ -485,10 +475,7 @@ namespace Peaks360App.Activities
                 };
                 ec.OnError = (message) =>
                 {
-                    MainThread.BeginInvokeOnMainThread(() =>
-                    {
-                        PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloadingElevation, message);
-                    });
+                    PopupHelper.ErrorDialog(this, Resource.String.Download_ErrorDownloadingElevation, message);
                 };
 
                 ec.Execute(ElevationDataImport.COMMAND_REMOVE);
