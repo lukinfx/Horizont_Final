@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using Android.App;
@@ -19,6 +21,8 @@ namespace Peaks360App.Activities
     [Activity(Label = "@string/PoiSelectActivity")]
     public class PoiSelectActivity : Activity, IPoiActionListener, SearchView.IOnQueryTextListener
     {
+        public enum SortBy { Name, Distance }
+
         public static int REQUEST_SELECT_DOWNLOADELEVATIONDATAAREA = Definitions.BaseResultCode.POISELECT_ACTIVITY + 0;
         public static int REQUEST_SELECT_CAMERALOCATION = Definitions.BaseResultCode.POISELECT_ACTIVITY + 1;
         public static int REQUEST_SELECT_CAMERADIRECTION = Definitions.BaseResultCode.POISELECT_ACTIVITY + 2;
@@ -29,15 +33,27 @@ namespace Peaks360App.Activities
         private IAppContext AppContext { get { return AppContextLiveData.Instance; } }
         private ListView _listViewPoi;
         private SearchView _searchViewText;
+        private Spinner _spinnerCountry;
+        private Spinner _spinnerCategory;
         private PoiListItemAdapter _adapter;
         private Timer _changeFilterTimer = new Timer();
         private IGpsUtilities _iGpsUtilities = new GpsUtilities();
+        private GpsLocation _centerGpsLocation;
+        private SortBy _sortBy;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.PoiSelectActivity);
+            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+            {
+                SetContentView(Resource.Layout.PoiSelectActivityPortrait);
+            }
+            else
+            {
+                SetContentView(Resource.Layout.PoiSelectActivityLandscape);
+            }
+            
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
@@ -51,12 +67,33 @@ namespace Peaks360App.Activities
             _changeFilterTimer.Elapsed += OnChangeFilterTimerElapsed;
             _changeFilterTimer.AutoReset = false;
 
+            var longitude = Intent.GetDoubleExtra("Longitude", Double.NaN);
+            var latitude = Intent.GetDoubleExtra("Latitude", Double.NaN);
+            var sortBy = Intent.GetStringExtra("SortBy");
 
-            _searchViewText = FindViewById<SearchView>(Resource.Id.searchViewPlaceName);
+            if (longitude != Double.NaN && latitude != Double.NaN)
+            {
+                _centerGpsLocation = new GpsLocation(longitude, latitude, 0);
+            }
+
+            if (!Enum.TryParse(sortBy, out _sortBy))
+            {
+                _sortBy = SortBy.Name;
+            }
+
+            _searchViewText = FindViewById<SearchView>(Resource.Id.editTextSearch);
             _searchViewText.Iconified = false;
             _searchViewText.SetQueryHint(Resources.GetText(Resource.String.Common_Search));
             _searchViewText.SetOnQueryTextListener(this);
             _searchViewText.FocusableViewAvailable(_listViewPoi);
+
+            _spinnerCountry = FindViewById<Spinner>(Resource.Id.spinnerCountry);
+            _spinnerCountry.Adapter = new CountryAdapter(this, true);
+            _spinnerCountry.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterCountryChanged);
+
+            _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
+            _spinnerCategory.Adapter = new CategoryAdapter(this, true);
+            _spinnerCategory.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterCategoryChanged);
 
             _listViewPoi = FindViewById<ListView>(Resource.Id.listViewPoi);
 
@@ -100,19 +137,23 @@ namespace Peaks360App.Activities
             Finish();
         }
 
-        public void FilterPlaces(string filterText)
+        public void FilterPlaces(string name, PoiCountry? country, PoiCategory? category)
         {
-            Task.Run(async () =>
+            Task.Run(() =>
             {
-                var poiItems = await AppContext.Database.FindItemsAsync(filterText);
-                var poiViewItems = new PoiViewItemList(poiItems.OrderBy(x => x.Name), AppContext.MyLocation, _iGpsUtilities);
-
-                /*if (!poiViewItems.Any() && Peaks360Lib.Utilities.GpsUtils.HasLocation(AppContext.MyLocation))
+                IEnumerable<Poi> poiList;
+                if (!string.IsNullOrEmpty(name) || country.HasValue || category.HasValue)
                 {
-                    AddMyLocation(poiViewItems);
-                }*/
-
-                MainThread.BeginInvokeOnMainThread(() => _adapter.SetItems(poiViewItems));
+                    poiList = AppContext.Database.FindItems(name, category, country, false);
+                }
+                else
+                {
+                    poiList = new List<Poi>();
+                }
+                
+                IEnumerable<PoiViewItem> items = new PoiViewItemList(poiList, _centerGpsLocation ?? AppContext.MyLocation, _iGpsUtilities);
+                items = (_sortBy == SortBy.Name) ? items.OrderBy(x => x.Poi.Name) : items.OrderBy(x => x.GpsLocation.Distance);
+                MainThread.BeginInvokeOnMainThread(() => _adapter.SetItems(items));
             });
         }
 
@@ -142,6 +183,16 @@ namespace Peaks360App.Activities
             return poi;
         }
 
+        private void OnFilterCountryChanged(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            RestartTimer();
+        }
+
+        private void OnFilterCategoryChanged(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            RestartTimer();
+        }
+
         public bool OnQueryTextChange(string newText)
         {
             RestartTimer();
@@ -162,7 +213,13 @@ namespace Peaks360App.Activities
         private void OnChangeFilterTimerElapsed(object sender, ElapsedEventArgs e)
         {
             _changeFilterTimer.Stop();
-            FilterPlaces(_searchViewText.Query);
+            
+            var country = (_spinnerCountry.Adapter as CountryAdapter)[_spinnerCountry.SelectedItemPosition];
+
+            var category = (_spinnerCategory.Adapter as CategoryAdapter)[_spinnerCategory.SelectedItemPosition];
+            var name = _searchViewText.Query;
+
+            FilterPlaces(name, country, category);
         }
     }
 }

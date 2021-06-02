@@ -710,7 +710,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\PoiSelectActivity.xml">
+    <AndroidResource Include="Resources\layout\PoiSelectActivityPortrait.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -950,6 +950,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\bg_edittext_warning.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout-land\PoiSelectActivityLandscape.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

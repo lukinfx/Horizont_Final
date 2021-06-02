@@ -190,9 +190,9 @@ namespace Peaks360App.Activities
 
         private void OnOpenMapClicked()
         {
-            if (!TryGetGpsLocation(out var manualLocation))
+            if (!TryGetGpsLocation(out var manualLocation, false))
             {
-                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
+                PopupHelper.ErrorDialog(this, "Set camera location first.");
                 return;
             }
 
@@ -201,19 +201,34 @@ namespace Peaks360App.Activities
 
         private void OnCameraDirectionClicked()
         {
-            if (!TryGetGpsLocation(out GpsLocation _))
+            if (!TryGetGpsLocation(out GpsLocation gpsLocation, false))
             {
                 PopupHelper.ErrorDialog(this, "Set camera location first.");
+                return;
             }
 
             Intent intent = new Intent(this, typeof(PoiSelectActivity));
+            intent.PutExtra("Longitude", gpsLocation.Longitude);
+            intent.PutExtra("Latitude", gpsLocation.Latitude);
+            intent.PutExtra("SortBy", PoiSelectActivity.SortBy.Distance.ToString());
+
             intent.SetAction(PoiSelectActivity.REQUEST_SELECT_CAMERADIRECTION.ToString());
             StartActivityForResult(intent, PoiSelectActivity.REQUEST_SELECT_CAMERADIRECTION);
         }
 
         private void OnCameraLocationClicked()
         {
+            GpsLocation location = _photoData.GetPhotoGpsLocation();
+            if (!GpsUtils.HasLocation(location))
+            {
+                location = AppContext.MyLocation;
+            }
+
             Intent intent = new Intent(this, typeof(PoiSelectActivity));
+            intent.SetAction(PoiSelectActivity.REQUEST_SELECT_CAMERALOCATION.ToString());
+            intent.PutExtra("Longitude", location.Longitude);
+            intent.PutExtra("Latitude", location.Latitude);
+            intent.PutExtra("SortBy", PoiSelectActivity.SortBy.Name.ToString());
             StartActivityForResult(intent, PoiSelectActivity.REQUEST_SELECT_CAMERALOCATION);
         }
 
@@ -259,6 +274,10 @@ namespace Peaks360App.Activities
                     return;
                 }
                 _photoData.ViewAngleVertical = viewAngleVertical;
+                
+                _photoData.JsonElevationProfileData = null;
+                //_photoData.ShowElevationProfile = true;
+
                 Context.PhotosModel.UpdateItem(_photoData);
 
                 Finish();
@@ -326,9 +345,9 @@ namespace Peaks360App.Activities
             {
                 try
                 {
-                    if (!TryGetGpsLocation(out var location))
+                    if (!TryGetGpsLocation(out var location, false))
                     {
-                        PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
+                        PopupHelper.ErrorDialog(this, "Set camera location first.");
                         return;
                     }
 
@@ -386,7 +405,7 @@ namespace Peaks360App.Activities
 
                 if (requestCode == PoiSelectActivity.REQUEST_SELECT_CAMERADIRECTION)
                 {
-                    if (!TryGetGpsLocation(out GpsLocation location))
+                    if (!TryGetGpsLocation(out GpsLocation location, false))
                     {
                         PopupHelper.ErrorDialog(this, "Set camera location first.");
                     }
@@ -402,26 +421,26 @@ namespace Peaks360App.Activities
             }
         }
 
-        private bool TryGetGpsLocation(out GpsLocation location)
+        private bool TryGetGpsLocation(out GpsLocation location, bool showError = true)
         {
             location = new GpsLocation();
             double lat, lon, alt;
 
             if (string.IsNullOrEmpty(_editTextLongitude.Text) || string.IsNullOrEmpty(_editTextLatitude.Text))
             {
-                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
+                if (showError) { PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat); }
                 return false;
             }
 
             if (!double.TryParse(_editTextLongitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out lon))
             {
-                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
+                if (showError) { PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat); }
                 return false;
             }
 
             if (!double.TryParse(_editTextLatitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out lat))
             {
-                PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
+                if (showError) { PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat); }
                 return false;
             }
 
@@ -430,7 +449,7 @@ namespace Peaks360App.Activities
             {
                 if (!double.TryParse(_editTextAltitude.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out alt))
                 {
-                    PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat);
+                    if (showError) { PopupHelper.ErrorDialog(this, Resource.String.EditPoi_WrongFormat); }
                     return false;
                 }
             }

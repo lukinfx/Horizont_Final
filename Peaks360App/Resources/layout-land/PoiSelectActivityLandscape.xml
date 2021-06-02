@@ -1,0 +1,75 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+  <include
+    android:id="@+id/toolbar"
+    layout="@layout/TitleToolbar" />
+
+  <LinearLayout
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_landscape">
+
+    
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_weight="15"
+      android:padding="10dp"
+      android:background="@drawable/bg_activity_light"
+      android:id="@+id/linearLayoutSearching">
+
+      <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Common_Name" />-->
+      <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Common_Search"
+        android:singleLine="true"
+        android:id="@+id/editTextSearch" />
+
+      <!--<TextView
+        android:paddingTop="5dp"
+        android:text="@string/Common_Category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>-->
+      <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/spinnerCategory" />
+
+      <!--<TextView
+        android:paddingTop="5dp"
+        android:text="@string/Common_Country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>-->
+      <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/spinnerCountry" />
+
+      <Space
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <Space
+      android:layout_width="5dp"
+      android:layout_height="match_parent"/>
+
+    <ListView
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_weight="10"
+      android:id="@+id/listViewPoi"/>
+
+  </LinearLayout>
+</LinearLayout>

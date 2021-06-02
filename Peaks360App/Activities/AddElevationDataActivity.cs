@@ -114,12 +114,24 @@ namespace Peaks360App.Activities
                     break;
                 case Resource.Id.buttonSelect:
                 case Resource.Id.linearLayoutSelectedPoint:
-                    Intent intent = new Intent(this, typeof(PoiSelectActivity));
-                    StartActivityForResult(intent, PoiSelectActivity.REQUEST_SELECT_DOWNLOADELEVATIONDATAAREA);
+                    OnSelectLocationClicked();
                     break;
                 case Resource.Id.buttonSave:
                     SaveElevationData(_selectedPoint);
                     break;
+            }
+        }
+
+        private void OnSelectLocationClicked()
+        {
+            if (_oldDedItem == null)
+            {
+                Intent intent = new Intent(this, typeof(PoiSelectActivity));
+                intent.SetAction(PoiSelectActivity.REQUEST_SELECT_DOWNLOADELEVATIONDATAAREA.ToString());
+                intent.PutExtra("Longitude", AppContext.MyLocation.Longitude);
+                intent.PutExtra("Latitude", AppContext.MyLocation.Latitude);
+                intent.PutExtra("SortBy", PoiSelectActivity.SortBy.Name.ToString());
+                StartActivityForResult(intent, PoiSelectActivity.REQUEST_SELECT_DOWNLOADELEVATIONDATAAREA);
             }
         }
 
