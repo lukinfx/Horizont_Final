@@ -10352,88 +10352,91 @@ namespace Peaks360App
 			public const int notification_template_part_time = 2131492951;
 			
 			// aapt resource value: 0x7F0C0059
-			public const int PhotoImportActivityPortrait = 2131492953;
+			public const int PhotoImportActivityLandscape = 2131492953;
 			
 			// aapt resource value: 0x7F0C005A
-			public const int PhotosActivityItem = 2131492954;
+			public const int PhotoImportActivityPortrait = 2131492954;
 			
 			// aapt resource value: 0x7F0C005B
-			public const int PhotosActivityItemLandscape = 2131492955;
+			public const int PhotosActivityItem = 2131492955;
 			
 			// aapt resource value: 0x7F0C005C
-			public const int PhotosActivityLandscape = 2131492956;
+			public const int PhotosActivityItemLandscape = 2131492956;
 			
 			// aapt resource value: 0x7F0C005D
-			public const int PhotosActivityPortrait = 2131492957;
+			public const int PhotosActivityLandscape = 2131492957;
 			
 			// aapt resource value: 0x7F0C005E
-			public const int PhotoShowActivityControlBar = 2131492958;
+			public const int PhotosActivityPortrait = 2131492958;
 			
 			// aapt resource value: 0x7F0C005F
-			public const int PhotoShowActivityLandscape = 2131492959;
+			public const int PhotoShowActivityControlBar = 2131492959;
 			
 			// aapt resource value: 0x7F0C0060
-			public const int PhotoShowActivityPortrait = 2131492960;
+			public const int PhotoShowActivityLandscape = 2131492960;
 			
 			// aapt resource value: 0x7F0C0061
-			public const int PoiInfoL = 2131492961;
+			public const int PhotoShowActivityPortrait = 2131492961;
 			
 			// aapt resource value: 0x7F0C0062
-			public const int PoiInfoP = 2131492962;
+			public const int PoiInfoL = 2131492962;
 			
 			// aapt resource value: 0x7F0C0063
-			public const int PoiListActivityLandscape = 2131492963;
+			public const int PoiInfoP = 2131492963;
 			
 			// aapt resource value: 0x7F0C0064
-			public const int PoiListActivityPortrait = 2131492964;
+			public const int PoiListActivityLandscape = 2131492964;
 			
 			// aapt resource value: 0x7F0C0065
-			public const int PoiListActivityToolbar = 2131492965;
+			public const int PoiListActivityPortrait = 2131492965;
 			
 			// aapt resource value: 0x7F0C0066
-			public const int PoiListItemLayout = 2131492966;
+			public const int PoiListActivityToolbar = 2131492966;
 			
 			// aapt resource value: 0x7F0C0067
-			public const int PoiSelectActivityLandscape = 2131492967;
+			public const int PoiListItemLayout = 2131492967;
 			
 			// aapt resource value: 0x7F0C0068
-			public const int PoiSelectActivityPortrait = 2131492968;
+			public const int PoiSelectActivityLandscape = 2131492968;
 			
 			// aapt resource value: 0x7F0C0069
-			public const int PrivacyPolicyActivityPortrait = 2131492969;
+			public const int PoiSelectActivityPortrait = 2131492969;
 			
 			// aapt resource value: 0x7F0C006A
-			public const int RootLayout = 2131492970;
+			public const int PrivacyPolicyActivityPortrait = 2131492970;
 			
 			// aapt resource value: 0x7F0C006B
-			public const int select_dialog_item_material = 2131492971;
+			public const int RootLayout = 2131492971;
 			
 			// aapt resource value: 0x7F0C006C
-			public const int select_dialog_multichoice_material = 2131492972;
+			public const int select_dialog_item_material = 2131492972;
 			
 			// aapt resource value: 0x7F0C006D
-			public const int select_dialog_singlechoice_material = 2131492973;
+			public const int select_dialog_multichoice_material = 2131492973;
 			
 			// aapt resource value: 0x7F0C006E
-			public const int SettingsActivity = 2131492974;
+			public const int select_dialog_singlechoice_material = 2131492974;
 			
 			// aapt resource value: 0x7F0C006F
-			public const int SettingsActivityLandscape = 2131492975;
+			public const int SettingsActivity = 2131492975;
 			
 			// aapt resource value: 0x7F0C0070
-			public const int SettingsActivityPortrait = 2131492976;
+			public const int SettingsActivityLandscape = 2131492976;
 			
 			// aapt resource value: 0x7F0C0071
-			public const int ShellContent = 2131492977;
+			public const int SettingsActivityPortrait = 2131492977;
 			
 			// aapt resource value: 0x7F0C0072
-			public const int support_simple_spinner_dropdown_item = 2131492978;
+			public const int ShellContent = 2131492978;
 			
 			// aapt resource value: 0x7F0C0073
-			public const int TitleToolbar = 2131492979;
+			public const int support_simple_spinner_dropdown_item = 2131492979;
 			
 			// aapt resource value: 0x7F0C0074
-			public const int Tutorial = 2131492980;
+			public const int TitleToolbar = 2131492980;
+			
+			// aapt resource value: 0x7F0C0075
+			public const int Tutorial = 2131492981;
 			
 			static Layout()
 			{

@@ -55,7 +55,7 @@ namespace Peaks360App.Activities
             }
             else
             {
-                SetContentView(Resource.Layout.PhotoImportActivityPortrait);
+                SetContentView(Resource.Layout.PhotoImportActivityLandscape);
             }
 
 
