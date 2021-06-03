@@ -10358,10 +10358,10 @@ namespace Peaks360App
 			public const int PhotoImportActivityPortrait = 2131492954;
 			
 			// aapt resource value: 0x7F0C005B
-			public const int PhotosActivityItem = 2131492955;
+			public const int PhotosActivityItemLandscape = 2131492955;
 			
 			// aapt resource value: 0x7F0C005C
-			public const int PhotosActivityItemLandscape = 2131492956;
+			public const int PhotosActivityItemPortrait = 2131492956;
 			
 			// aapt resource value: 0x7F0C005D
 			public const int PhotosActivityLandscape = 2131492957;

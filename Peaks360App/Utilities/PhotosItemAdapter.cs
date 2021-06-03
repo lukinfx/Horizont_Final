@@ -110,7 +110,7 @@ namespace Peaks360App.Utilities
             {
                 if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
                 {
-                    view = _context.LayoutInflater.Inflate(Resource.Layout.PhotosActivityItem, parent, false);
+                    view = _context.LayoutInflater.Inflate(Resource.Layout.PhotosActivityItemPortrait, parent, false);
                 }
                 else
                 {

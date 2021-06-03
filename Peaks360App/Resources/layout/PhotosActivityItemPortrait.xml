@@ -207,9 +207,9 @@
         android:gravity="bottom"
         android:paddingBottom="5dp">
           <ImageButton
-            android:src="@android:drawable/ic_menu_edit"
+            android:src="@android:drawable/ic_menu_preferences"
             android:scaleType="fitCenter"
-            android:layout_width="35dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/editButton"
             android:background="#00000000"/>

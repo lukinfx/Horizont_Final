@@ -424,7 +424,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\PhotosActivityItem.xml">
+    <AndroidResource Include="Resources\layout\PhotosActivityItemPortrait.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
