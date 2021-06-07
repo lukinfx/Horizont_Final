@@ -12,6 +12,7 @@ namespace Peaks360Lib.Utilities
     
     public class ElevationTile : IEnumerable<GpsLocation>
     {
+        private const double MAX_ELEVATION = 65000;
         protected ushort[,] _elevationData;
         protected int width, height;
         private bool? _fileExists;
@@ -167,6 +168,9 @@ namespace Peaks360Lib.Utilities
                     ? (px - (x * stepX)) / stepX
                     :((1 - px) - (x * stepX)) / stepX;
 
+                if (ele00 > MAX_ELEVATION || ele01 > MAX_ELEVATION || ele10 > MAX_ELEVATION || ele11 > MAX_ELEVATION)
+                    return 0;
+
                 //e1 = average between points x,y and x+1,y
                 var e1 = ele00 + px2 * (ele10 - ele00);
                 //e2 = average between points x,y+1 and x+1,y+1
@@ -183,42 +187,40 @@ namespace Peaks360Lib.Utilities
                 {
                     for (int dy = 0; dy < size; dy++)
                     {
-                        double ele;
                         if (y - dy >= 0 && x - dx >= 0)
                         {
-                            if (_elevationData[y - dy, x - dx] > maxEle)
-                            {
-                                maxEle = _elevationData[y - dy, x - dx];
-                            }
+                            CheckMaxElevation(ref maxEle, _elevationData[y - dy, x - dx]);
                         }
 
                         if (y + dy < height && x + dx < width)
                         {
-                            if (_elevationData[y + dy, x + dx] > maxEle)
-                            {
-                                maxEle = _elevationData[y + dy, x + dx];
-                            }
+                            CheckMaxElevation(ref maxEle, _elevationData[y + dy, x + dx]);
                         }
 
                         if (y + dy < height && x - dx >= 0)
                         {
-                            if (_elevationData[y + dy, x - dx] > maxEle)
-                            {
-                                maxEle = _elevationData[y + dy, x - dx];
-                            }
+                            CheckMaxElevation(ref maxEle, _elevationData[y + dy, x - dx]);
                         }
 
                         if (y - dy >= 0 && x + dx < width)
                         {
-                            if (_elevationData[y - dy, x + dx] > maxEle)
-                            {
-                                maxEle = _elevationData[y - dy, x + dx];
-                            }
+                            CheckMaxElevation(ref maxEle, _elevationData[y - dy, x + dx]);
                         }
                     }
                 }
 
                 return maxEle;
+            }
+        }
+
+        private void CheckMaxElevation(ref double maxElevation, ushort elevation)
+        {
+            if (elevation > MAX_ELEVATION)
+                return;
+
+            if (elevation > maxElevation)
+            {
+                maxElevation = elevation;
             }
         }
 

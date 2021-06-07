@@ -43,7 +43,7 @@ namespace Peaks360Lib.Utilities
                     }
                 }
 
-                //Change order (now from the farthest to the nearest) 
+                //Change order (now from the furthest to the nearest) 
                 tmpVisiblePoints.Reverse();
 
                 //... and ignore points on descending slope 
@@ -60,8 +60,9 @@ namespace Peaks360Lib.Utilities
                         continue;
                     }
 
-
-                    if (lastPoint.Distance.Value - point.Distance.Value < 500)// || lastAddedPoint.VerticalViewAngle.Value-point.VerticalViewAngle.Value <= 0.00) 
+                    //TODO: comment-out the folowing if for full rendering
+                    var distanceDiff = lastPoint.Distance.Value - point.Distance.Value;
+                    if (distanceDiff < lastPoint.Distance/100+50)
                     {
                         lastPoint = point;
                         continue;

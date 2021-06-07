@@ -60,63 +60,13 @@ namespace Peaks360Lib.Utilities
         private ElevationData GetElevationDataForAngle(ushort angle, GpsLocation myLocation, double maxDistance, ElevationTileCollection etc)
         {
             var ed = new ElevationData(angle);
-            for (int d = 500; d < Math.Min(maxDistance, 3000); d += 50)
+
+            for (double d = 500; d < maxDistance; d += Math.Min(100,d/100))
             {
                 var x = GpsUtils.QuickGetGeoLocation(myLocation, d, angle);
-                if (etc.TryGetElevation(x, out var elevation, 1))
-                {
-                    x.Altitude = elevation;
-                    x.Distance = d;
-                    x.Bearing = angle;
-                    x.GetVerticalViewAngle(myLocation);
-
-                    ed.Add(x);
-                }
-            }
-            for (int d = 3000; d < Math.Min(maxDistance, 8000); d += 100)
-            {
-                var x = GpsUtils.QuickGetGeoLocation(myLocation, d, angle);
-                if (etc.TryGetElevation(x, out var elevation, 2))
-                {
-                    x.Altitude = elevation;
-                    x.Distance = d;
-                    x.Bearing = angle;
-                    x.GetVerticalViewAngle(myLocation);
-
-                    ed.Add(x);
-                }
-            }
-
-            for (int d = 8000; d < Math.Min(maxDistance, 15000); d += 200)
-            {
-                var x = GpsUtils.QuickGetGeoLocation(myLocation, d, angle);
-                if (etc.TryGetElevation(x, out var elevation, 3))
-                {
-                    x.Altitude = elevation;
-                    x.Distance = d;
-                    x.Bearing = angle;
-                    x.GetVerticalViewAngle(myLocation);
-
-                    ed.Add(x);
-                }
-            }
-            for (int d = 15000; d < Math.Min(maxDistance, 50000); d += 400)
-            {
-                var x = GpsUtils.QuickGetGeoLocation(myLocation, d, angle);
-                if (etc.TryGetElevation(x, out var elevation, 5))
-                {
-                    x.Altitude = elevation;
-                    x.Distance = d;
-                    x.Bearing = angle;
-                    x.GetVerticalViewAngle(myLocation);
-
-                    ed.Add(x);
-                }
-            }
-            for (int d = 50000; d < Math.Min(maxDistance, 100000); d += 800)
-            {
-                var x = GpsUtils.QuickGetGeoLocation(myLocation, d, angle);
-                if (etc.TryGetElevation(x, out var elevation, 10))
+                //int size = d < 5000 ? 1 : 3;
+                int size = Math.Min(((int)d / 20000) + 1, 4);//0-20:1 20-40:2 40-60:3 60-100:4
+                if (etc.TryGetElevation(x, out var elevation, size))
                 {
                     x.Altitude = elevation;
                     x.Distance = d;
