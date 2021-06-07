@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -14,19 +10,17 @@ using Android.Views;
 using Android.Widget;
 using Peaks360App.AppContext;
 using Peaks360App.Extensions;
-using Peaks360App.Tasks;
 using Peaks360App.Utilities;
 using Peaks360Lib.Domain.Enums;
 using Peaks360Lib.Domain.Models;
-using Peaks360Lib.Domain.ViewModel;
 using Peaks360Lib.Utilities;
 using Xamarin.Essentials;
 using GpsUtils = Peaks360Lib.Utilities.GpsUtils;
 
 namespace Peaks360App.Activities
 {
-    [Activity(Label = "PhotoImportActivity")]
-    public class PhotoImportActivity : Activity, View.IOnClickListener
+    [Activity(Label = "PhotoParametersActivity")]
+    public class PhotoParametersActivity : Activity, View.IOnClickListener
     {
         public static int REQUEST_IMPORT_IMAGE = Definitions.BaseResultCode.PHOTO_IMPORT_ACTIVITY + 0;
 
@@ -51,11 +45,11 @@ namespace Peaks360App.Activities
 
             if (AppContextLiveData.Instance.IsPortrait)
             {
-                SetContentView(Resource.Layout.PhotoImportActivityPortrait);
+                SetContentView(Resource.Layout.PhotoParametersActivityPortrait);
             }
             else
             {
-                SetContentView(Resource.Layout.PhotoImportActivityLandscape);
+                SetContentView(Resource.Layout.PhotoParametersActivityLandscape);
             }
 
 
@@ -65,7 +59,7 @@ namespace Peaks360App.Activities
             ActionBar.SetDisplayShowHomeEnabled(true);
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetDisplayShowTitleEnabled(true);
-            //ActionBar.SetTitle("Photo Import");
+            ActionBar.SetTitle(Resource.String.PhotoParametersActivity);
 
             _editTextLatitude = FindViewById<EditText>(Resource.Id.editTextLatitude);
             _editTextLongitude = FindViewById<EditText>(Resource.Id.editTextLongitude);
@@ -77,6 +71,7 @@ namespace Peaks360App.Activities
 
             FindViewById<Button>(Resource.Id.buttonBearing).SetOnClickListener(this);
             FindViewById<Button>(Resource.Id.buttonLocation).SetOnClickListener(this);
+            FindViewById<Button>(Resource.Id.buttonMap).SetOnClickListener(this);
             FindViewById<ImageButton>(Resource.Id.buttonCameraLocationInfo).SetOnClickListener(this);
             FindViewById<ImageButton>(Resource.Id.buttonViewDirectionInfo).SetOnClickListener(this);
             FindViewById<ImageButton>(Resource.Id.buttonViewAnglesInfo).SetOnClickListener(this);
@@ -160,7 +155,7 @@ namespace Peaks360App.Activities
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            MenuInflater.Inflate(Resource.Menu.PhotoImportActivityMenu, menu);
+            MenuInflater.Inflate(Resource.Menu.PhotoParametersActivityMenu, menu);
             //MenuInflater.Inflate(Resource.Menu.EditActivityMenu, menu);
             return base.OnCreateOptionsMenu(menu);
         }
@@ -181,9 +176,6 @@ namespace Peaks360App.Activities
                 case Resource.Id.menu_fetch_altitude:
                     OnUpdateElevation();
                     break;
-                case Resource.Id.menu_show_on_map:
-                    OnOpenMapClicked();
-                    break;
             }
             return base.OnOptionsItemSelected(item);
         }
@@ -192,7 +184,7 @@ namespace Peaks360App.Activities
         {
             if (!TryGetGpsLocation(out var manualLocation, false))
             {
-                PopupHelper.ErrorDialog(this, "Set camera location first.");
+                PopupHelper.ErrorDialog(this, Resource.String.PhotoParameters_SetCameraLocationFirst);
                 return;
             }
 
@@ -203,7 +195,7 @@ namespace Peaks360App.Activities
         {
             if (!TryGetGpsLocation(out GpsLocation gpsLocation, false))
             {
-                PopupHelper.ErrorDialog(this, "Set camera location first.");
+                PopupHelper.ErrorDialog(this, Resource.String.PhotoParameters_SetCameraLocationFirst);
                 return;
             }
 
@@ -347,7 +339,7 @@ namespace Peaks360App.Activities
                 {
                     if (!TryGetGpsLocation(out var location, false))
                     {
-                        PopupHelper.ErrorDialog(this, "Set camera location first.");
+                        PopupHelper.ErrorDialog(this, Resource.String.PhotoParameters_SetCameraLocationFirst);
                         return;
                     }
 
@@ -373,17 +365,20 @@ namespace Peaks360App.Activities
             switch (v.Id)
             {
                 case Resource.Id.buttonCameraLocationInfo:
-                    PopupHelper.InfoDialog(this, Resource.String.PhotoImport_CameraLocationInfo);
+                    PopupHelper.InfoDialog(this, Resource.String.PhotoParameters_CameraLocationInfo);
                     break;
                 case Resource.Id.buttonViewDirectionInfo:
-                    PopupHelper.InfoDialog(this, Resource.String.PhotoImport_ViewDirectionInfo);
+                    PopupHelper.InfoDialog(this, Resource.String.PhotoParameters_ViewDirectionInfo);
                     break;
                 case Resource.Id.buttonViewAnglesInfo:
-                    PopupHelper.InfoDialog(this, Resource.String.PhotoImport_ViewAnglesInfo);
+                    PopupHelper.InfoDialog(this, Resource.String.PhotoParameters_ViewAnglesInfo);
                     break;
 
                 case Resource.Id.buttonLocation:
                     OnCameraLocationClicked();
+                    break;
+                case Resource.Id.buttonMap:
+                    OnOpenMapClicked();
                     break;
                 case Resource.Id.buttonBearing:
                     OnCameraDirectionClicked();
@@ -407,7 +402,7 @@ namespace Peaks360App.Activities
                 {
                     if (!TryGetGpsLocation(out GpsLocation location, false))
                     {
-                        PopupHelper.ErrorDialog(this, "Set camera location first.");
+                        PopupHelper.ErrorDialog(this, Resource.String.PhotoParameters_SetCameraLocationFirst);
                     }
                     var bearing = GpsUtils.QuickBearing(location, new GpsLocation(selectedPoint.Longitude, selectedPoint.Latitude, selectedPoint.Altitude));
                     UpdateHeading(bearing);

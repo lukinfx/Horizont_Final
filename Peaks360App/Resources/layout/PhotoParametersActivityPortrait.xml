@@ -46,7 +46,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content">
                 <TextView
-                  android:text="Camera location"
+                  android:text="@string/PhotoParameters_CameraLocation"
                   android:textAppearance="?android:attr/textAppearanceMedium"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -120,14 +120,30 @@
                   android:id="@+id/editTextAltitude" />
             </GridLayout>
 
+          <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <Button
+              android:id="@+id/buttonMap"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:paddingHorizontal="10dp"
+              android:text="@string/Common_Map"
+              android:background="@android:color/transparent"
+              android:drawableLeft="@android:drawable/ic_menu_mapmode" />
+
             <Button
               android:id="@+id/buttonLocation"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_gravity="right"
-              android:text="Select camera location"
+              android:text="@string/Common_Select"
               android:background="@android:color/transparent"
               android:drawableLeft="@android:drawable/ic_menu_mylocation" />
+
+          </LinearLayout>
 
         </LinearLayout>
 
@@ -143,7 +159,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content">
               <TextView
-                android:text="View direction"
+                android:text="@string/PhotoParameters_ViewDirection"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -188,7 +204,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="right"
-              android:text="Select view direction"
+              android:text="@string/Common_Select"
               android:background="@android:color/transparent"
               android:drawableLeft="@android:drawable/ic_menu_compass" />
 
@@ -206,7 +222,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content">
                 <TextView
-                  android:text="View angles"
+                  android:text="@string/PhotoParameters_CameraViewAngles"
                   android:textAppearance="?android:attr/textAppearanceMedium"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"/>

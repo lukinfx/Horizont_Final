@@ -8,11 +8,6 @@
     android:showAsAction="ifRoom"
     android:title="@string/Common_Save" />
   <item
-    android:id="@+id/menu_show_on_map"
-    android:icon="@android:drawable/ic_menu_mapmode"
-    android:showAsAction="never"
-    android:title="Show camera location on map" />
-  <item
     android:id="@+id/menu_paste"
     android:showAsAction="never"
     android:title="@string/EditPoi_PasteLocationFromClipboard" />

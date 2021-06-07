@@ -31,6 +31,7 @@
   <string name="Common_None">None</string>
   <string name="Common_Close">Close</string>
   <string name="Common_Search">Search</string>
+  <string name="Common_Select">Select</string>
   <string name="Common_MyLocation">My current location</string>
   <string name="Common_POIs">Points of interest</string>
   <string name="Common_ElevationData">Elevation data</string>
@@ -58,6 +59,7 @@
   <string name="DownloadActivity">Download data</string>
   <string name="DownloadElevationDataActivity">Download elevation data</string>
   <string name="PhotosActivity">Photo gallery</string>
+  <string name="PhotoParametersActivity">Photo parameters</string>
   <string name="SettingsActivity">Settings</string>
   <string name="AboutActivity">About</string>
   
@@ -142,9 +144,14 @@
   <string name="PhotoShow_PhotoSaved">Photo saved.</string>
   <string name="PhotoShow_ImageTooSmall">Cropped image is too small.</string>
 
-  <string name="PhotoImport_CameraLocationInfo">In order to display all the points and artificial horizon correctly, it is necessary to know the place where the picture was made from. To adjust this location, update the GPS coordinates manually or select from points database.</string>
-  <string name="PhotoImport_ViewDirectionInfo">View direction is not usually stored within an image data. You can adjust view direction in photo editing mode. Anyway you can set camera direction at least approximately by seleting an object from the database.</string>
-  <string name="PhotoImport_ViewAnglesInfo">View angles are automatically calculated from focal length and image size, but this information might not be precise enough. Feel free to adjust camera view angle here or in image editing mode.</string>
+  <string name="PhotoParameters_CameraLocation">Camera location</string>
+  <string name="PhotoParameters_ViewDirection">View direction</string>
+  <string name="PhotoParameters_CameraViewAngles">Camera view angles</string>
+  <string name="PhotoParameters_CantLoadImage">Unable to load image. Download image into your device first.</string>
+  <string name="PhotoParameters_CameraLocationInfo">In order to display all the points and artificial horizon correctly, it is necessary to know the place where the picture was made from. To adjust this location, update the GPS coordinates manually or select from points database.</string>
+  <string name="PhotoParameters_ViewDirectionInfo">View direction is not usually stored within an image data. You can adjust view direction in photo editing mode. Anyway you can set camera direction at least approximately by seleting an object from the database.</string>
+  <string name="PhotoParameters_ViewAnglesInfo">View angles are automatically calculated from focal length and image size, but this information might not be precise enough. Feel free to adjust camera view angle here or in image editing mode.</string>
+  <string name="PhotoParameters_SetCameraLocationFirst">Set camera location first.</string>
 
   <!--SettingsActivity-->
   <string name="Settings_ChooseLanguage">Choose a language</string>

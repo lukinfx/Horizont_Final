@@ -105,13 +105,20 @@ namespace Peaks360App.Activities
             return base.OnCreateOptionsMenu(menu);
         }
 
-        public void InitializeMediaPicker()
+        public void OnPhotoImportClicked()
         {
             Intent = new Intent();
             Intent.SetType("image/*");
             Intent.AddCategory(Intent.CategoryOpenable);
             Intent.SetAction(Intent.ActionGetContent);
             StartActivityForResult(Intent.CreateChooser(Intent, "Select Picture"), REQUEST_IMPORT_PHOTO);
+        }
+
+        public void OnFavouriteClicked()
+        {
+            Context.ToggleFavouritePictures();
+            ShowPhotos(Context.ShowFavoritePicturesOnly, GetSearchText());
+            InvalidateOptionsMenu();
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -125,12 +132,10 @@ namespace Peaks360App.Activities
                     ToogleSearch();
                     break;
                 case Resource.Id.menu_addNew:
-                    InitializeMediaPicker();
+                    OnPhotoImportClicked();
                     break;
                 case Resource.Id.menu_favourite:
-                    Context.ToggleFavouritePictures();
-                    ShowPhotos(Context.ShowFavoritePicturesOnly, GetSearchText());
-                    InvalidateOptionsMenu();
+                    OnFavouriteClicked();
                     break;
             }
             return base.OnOptionsItemSelected(item);
@@ -166,9 +171,9 @@ namespace Peaks360App.Activities
         public void OnPhotoShowRequest(int position)
         {
             var photoData = _adapter[position];
-            if (!GpsUtils.HasLocation(photoData.GetPhotoGpsLocation()) || !GpsUtils.HasAltitude(photoData.GetPhotoGpsLocation()) || !photoData.Heading.HasValue)
+            if (!GpsUtils.HasLocation(photoData.GetPhotoGpsLocation()) || !GpsUtils.HasAltitude(photoData.GetPhotoGpsLocation()))
             {
-                PopupHelper.ErrorDialog(this, "Set camera location and view direction first.");
+                PopupHelper.ErrorDialog(this, Resource.String.PhotoParameters_SetCameraLocationFirst);
                 return;
             }
             Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
@@ -178,7 +183,7 @@ namespace Peaks360App.Activities
 
         public void OnPhotoEditRequest(int position)
         {
-            Intent importActivityIntent = new Intent(this, typeof(PhotoImportActivity));
+            Intent importActivityIntent = new Intent(this, typeof(PhotoParametersActivity));
             importActivityIntent.PutExtra("Id", _adapter[position].Id);
             StartActivity(importActivityIntent);
         }
@@ -214,17 +219,16 @@ namespace Peaks360App.Activities
                 var path = PathUtil.GetPath(this, uri);
                 if (path == null)
                 {
-                    PopupHelper.ErrorDialog(this, "Unable to load image. Download image into your device first.");
+                    PopupHelper.ErrorDialog(this, Resources.GetText(Resource.String.PhotoParameters_CantLoadImage));
                     return;
                 }
 
                 var exifData = ExifDataReader.ReadExifData(path);
 
-
                 //update altitude
-                if (Peaks360Lib.Utilities.GpsUtils.HasLocation(exifData.location))
+                if (GpsUtils.HasLocation(exifData.location))
                 {
-                    if (!Peaks360Lib.Utilities.GpsUtils.HasAltitude(exifData.location))
+                    if (!GpsUtils.HasAltitude(exifData.location))
                     {
                         if (TryGetElevation(exifData.location, out var altitude))
                         {
@@ -237,7 +241,7 @@ namespace Peaks360App.Activities
                 {
                     var photoData = await ImageSaver.Import(path, exifData, Context);
 
-                    Intent importActivityIntent = new Intent(this, typeof(PhotoImportActivity));
+                    Intent importActivityIntent = new Intent(this, typeof(PhotoParametersActivity));
                     importActivityIntent.PutExtra("Id", photoData.Id);
                     StartActivity(importActivityIntent);
                 });

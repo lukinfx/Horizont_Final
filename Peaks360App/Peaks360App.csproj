@@ -81,7 +81,7 @@
     <Compile Include="Activities\HorizonBaseActivity.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Activities\PhotoImportActivity.cs" />
+    <Compile Include="Activities\PhotoParametersActivity.cs" />
     <Compile Include="Activities\PhotoShowActivity.cs" />
     <Compile Include="Activities\PhotosActivity.cs" />
     <Compile Include="Activities\DownloadActivity.cs" />
@@ -941,12 +941,12 @@
     <AndroidResource Include="Resources\drawable\i_location.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\PhotoImportActivityPortrait.xml">
+    <AndroidResource Include="Resources\layout\PhotoParametersActivityPortrait.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\menu\PhotoImportActivityMenu.xml" />
+    <AndroidResource Include="Resources\menu\PhotoParametersActivityMenu.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\bg_edittext_warning.xml">
@@ -959,7 +959,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout-land\PhotoImportActivityLandscape.xml">
+    <AndroidResource Include="Resources\layout-land\PhotoParametersActivityLandscape.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
