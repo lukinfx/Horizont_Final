@@ -20,35 +20,44 @@ namespace Peaks360App.Utilities
             var exifData = new ExifData();
             using (FileStream fs = System.IO.File.OpenRead(path))
             {
-                var exifReader = new ExifReader(fs);
-                if (exifReader.GetTagValue<DateTime>(ExifTags.DateTimeDigitized, out DateTime datePictureTaken))
+                try
                 {
-                    exifData.timeTaken = datePictureTaken;
+                    var exifReader = new ExifReader(fs);
+
+                    if (exifReader.GetTagValue<DateTime>(ExifTags.DateTimeDigitized, out DateTime datePictureTaken))
+                    {
+                        exifData.timeTaken = datePictureTaken;
+                    }
+
+                    if (exifReader.GetTagValue<double>(ExifTags.GPSImgDirection, out double exifHeading))
+                    {
+                        exifData.heading = exifHeading;
+                    }
+
+                    if (exifReader.GetTagValue<UInt16>(ExifTags.FocalLengthIn35mmFilm, out UInt16 exifFocalLength35mm))
+                    {
+                        exifData.focalLength35mm = exifFocalLength35mm > 0 ? exifFocalLength35mm : (int?) null;
+                    }
+
+                    if (exifReader.GetTagValue<double[]>(ExifTags.GPSLongitude, out double[] exifGpsLongArray)
+                        && exifReader.GetTagValue<double[]>(ExifTags.GPSLatitude, out double[] exifGpsLatArray))
+                    {
+                        double exifGpsLongDouble = exifGpsLongArray[0] + exifGpsLongArray[1] / 60 + exifGpsLongArray[2] / 3600;
+                        double exifGpsLatDouble = exifGpsLatArray[0] + exifGpsLatArray[1] / 60 + exifGpsLatArray[2] / 3600;
+
+                        exifData.location = new GpsLocation(exifGpsLongDouble, exifGpsLatDouble, 0);
+                    }
+
+                    double exifAltitude;
+                    if (exifData.location != null && exifReader.GetTagValue<double>(ExifTags.GPSAltitude, out exifAltitude))
+                    {
+                        exifData.location.Altitude = exifAltitude;
+                    }
                 }
-
-                if (exifReader.GetTagValue<double>(ExifTags.GPSImgDirection, out double exifHeading))
+                catch (Exception)
                 {
-                    exifData.heading = exifHeading;
-                }
-
-                if (exifReader.GetTagValue<UInt16>(ExifTags.FocalLengthIn35mmFilm, out UInt16 exifFocalLength35mm))
-                {
-                    exifData.focalLength35mm = exifFocalLength35mm > 0 ? exifFocalLength35mm : (int?)null;
-                }
-
-                if (exifReader.GetTagValue<double[]>(ExifTags.GPSLongitude, out double[] exifGpsLongArray)
-                    && exifReader.GetTagValue<double[]>(ExifTags.GPSLatitude, out double[] exifGpsLatArray))
-                {
-                    double exifGpsLongDouble = exifGpsLongArray[0] + exifGpsLongArray[1] / 60 + exifGpsLongArray[2] / 3600;
-                    double exifGpsLatDouble = exifGpsLatArray[0] + exifGpsLatArray[1] / 60 + exifGpsLatArray[2] / 3600;
-
-                    exifData.location = new GpsLocation(exifGpsLongDouble, exifGpsLatDouble, 0);
-                }
-
-                double exifAltitude;
-                if (exifData.location != null && exifReader.GetTagValue<double>(ExifTags.GPSAltitude, out exifAltitude))
-                {
-                    exifData.location.Altitude = exifAltitude;
+                    //not a critical error
+                    //user can set location, view direction etc manually
                 }
 
             }
