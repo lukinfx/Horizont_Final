@@ -31,7 +31,7 @@
   <string name="Common_None">None</string>
   <string name="Common_Close">Close</string>
   <string name="Common_Search">Search</string>
-  <string name="Common_Select">Select</string>
+  <string name="Common_Choose">Choose</string>
   <string name="Common_MyLocation">My current location</string>
   <string name="Common_POIs">Points of interest</string>
   <string name="Common_ElevationData">Elevation data</string>
@@ -144,6 +144,7 @@
   <string name="PhotoShow_PhotoSaved">Photo saved.</string>
   <string name="PhotoShow_ImageTooSmall">Cropped image is too small.</string>
 
+  <!--PhotoParametersActivity-->
   <string name="PhotoParameters_CameraLocation">Camera location</string>
   <string name="PhotoParameters_ViewDirection">View direction</string>
   <string name="PhotoParameters_CameraViewAngles">Camera view angles</string>

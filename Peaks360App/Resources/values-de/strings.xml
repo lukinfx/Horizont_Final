@@ -31,6 +31,7 @@
   <string name="Common_None">Keiner</string>
   <string name="Common_Close">Schließen</string>
   <string name="Common_Search">Suche...</string>
+  <string name="Common_Choose">Wählen</string>
   <string name="Common_MyLocation">Mein aktueller Standort</string>
   <string name="Common_POIs">Sehenswürdigkeiten</string>
   <string name="Common_ElevationData">Höhendaten</string>
@@ -58,6 +59,7 @@
   <string name="DownloadActivity">Daten herunterladen</string>
   <string name="DownloadElevationDataActivity">Höhendaten herunterladen</string>
   <string name="PhotosActivity">Fotogallerie</string>
+  <string name="PhotoParametersActivity">Fotoeigenschaften</string>
   <string name="SettingsActivity">Einstellungen</string>
   <string name="AboutActivity">Über die Anwendung</string>
 
@@ -141,6 +143,16 @@
   <string name="PhotoShow_OverwriteQuestion">Dieses Foto existiert bereits. Überschreiben?</string>
   <string name="PhotoShow_PhotoSaved">Foto gespeichert.</string>
   <string name="PhotoShow_ImageTooSmall">Das zugeschnittene Bild ist zu klein.</string>
+
+  <!--PhotoParametersActivity-->
+  <string name="PhotoParameters_CameraLocation">Kamerastandort</string>
+  <string name="PhotoParameters_ViewDirection">Meine Ansichtsrichtung</string>
+  <string name="PhotoParameters_CameraViewAngles">Blickwinkel der Kamera</string>
+  <string name="PhotoParameters_CantLoadImage">Bild kann nicht geladen werden. Laden Sie zuerst das Bild auf Ihr Gerät herunter.</string>
+  <string name="PhotoParameters_CameraLocationInfo">Um alle Punkte und den künstlichen Horizont korrekt anzuzeigen, ist es notwendig, den Ort zu kennen, von dem aus das Bild aufgenommen wurde. Um diesen Standort anzupassen, aktualisieren Sie die GPS-Koordinaten manuell oder wählen Sie aus der Punktedatenbank aus.</string>
+  <string name="PhotoParameters_ViewDirectionInfo">Die Blickrichtung wird normalerweise nicht in Bilddaten gespeichert. Sie können die Blickrichtung im Fotobearbeitungsmodus anpassen. Auf jeden Fall können Sie die Kamerarichtung zumindest ungefähr festlegen, indem Sie ein Objekt aus der Datenbank auswählen.</string>
+  <string name="PhotoParameters_ViewAnglesInfo">Blickwinkel werden automatisch aus Brennweite und Bildgröße berechnet, aber diese Informationen sind möglicherweise nicht genau genug. Sie können den Blickwinkel der Kamera hier oder im Bildbearbeitungsmodus anpassen.</string>
+  <string name="PhotoParameters_SetCameraLocationFirst">Stellen Sie zuerst den Kamerastandort ein.</string>
 
   <!--SettingsActivity-->
   <string name="Settings_ChooseLanguage">Wähle eine Sprache</string>

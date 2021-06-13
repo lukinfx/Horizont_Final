@@ -31,6 +31,7 @@
   <string name="Common_None">Ninguno</string>
   <string name="Common_Close">Cerrar</string>
   <string name="Common_Search">Buscar</string>
+  <string name="Common_Choose">Escoger</string>
   <string name="Common_MyLocation">Mi ubicación actual</string>
   <string name="Common_POIs">Puntos de interés</string>
   <string name="Common_ElevationData">Datos de elevación</string>
@@ -58,6 +59,7 @@
   <string name="DownloadActivity">Descargar datos</string>
   <string name="DownloadElevationDataActivity">Descargar datos de elevación</string>
   <string name="PhotosActivity">Galería de fotos</string>
+  <string name="PhotoParametersActivity">Propiedades de la foto</string>
   <string name="SettingsActivity">Ajustes</string>
   <string name="AboutActivity">Sobre</string>
 
@@ -141,6 +143,16 @@
   <string name="PhotoShow_OverwriteQuestion">Esta foto ya existe. ¿Sobrescribir?</string>
   <string name="PhotoShow_PhotoSaved">Foto guardada.</string>
   <string name="PhotoShow_ImageTooSmall">La imagen recortada es demasiado pequeña.</string>
+
+  <!--PhotoParametersActivity-->
+  <string name="PhotoParameters_CameraLocation">Ubicación de la cámara</string>
+  <string name="PhotoParameters_ViewDirection">Mi dirección de vista</string>
+  <string name="PhotoParameters_CameraViewAngles">Ángulos de visión de la cámara</string>
+  <string name="PhotoParameters_CantLoadImage">No se pudo cargar la imagen. Primero descargue la imagen en su dispositivo.</string>
+  <string name="PhotoParameters_CameraLocationInfo">Para visualizar correctamente todos los puntos y el horizonte artificial, es necesario conocer el lugar desde donde se hizo la imagen. Para ajustar esta ubicación, actualice las coordenadas GPS manualmente o seleccione de la base de datos de puntos.</string>
+  <string name="PhotoParameters_ViewDirectionInfo">La dirección de la vista generalmente no se almacena dentro de los datos de una imagen. Puede ajustar la dirección de la vista en el modo de edición de fotos. De todos modos, puede establecer la dirección de la cámara al menos aproximadamente seleccionando un objeto de la base de datos.</string>
+  <string name="PhotoParameters_ViewAnglesInfo">Los ángulos de visión se calculan automáticamente a partir de la distancia focal y el tamaño de la imagen, pero es posible que esta información no sea lo suficientemente precisa. Siéntase libre de ajustar el ángulo de visión de la cámara aquí o en el modo de edición de imágenes.</string>
+  <string name="PhotoParameters_SetCameraLocationFirst">Primero, establezca la ubicación de la cámara.</string>
 
   <!--SettingsActivity-->
   <string name="Settings_ChooseLanguage">Elige un idioma</string>

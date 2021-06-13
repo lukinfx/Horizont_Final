@@ -31,6 +31,7 @@
   <string name="Common_None">Niente</string>
   <string name="Common_Close">Chiudi</string>
   <string name="Common_Search">Ricercare</string>
+  <string name="Common_Choose">Scegliere</string>
   <string name="Common_MyLocation">La mia posizione attuale</string>
   <string name="Common_POIs">Punti di interesse</string>
   <string name="Common_ElevationData">Dati di elevazione</string>
@@ -58,6 +59,7 @@
   <string name="DownloadActivity">Scarica i dati</string>
   <string name="DownloadElevationDataActivity">Scarica i dati di elevazione</string>
   <string name="PhotosActivity">Galleria fotografica</string>
+  <string name="PhotoParametersActivity">Proprietà foto</string>
   <string name="SettingsActivity">Configurazione</string>
   <string name="AboutActivity">Informazioni</string>
 
@@ -141,6 +143,16 @@
   <string name="PhotoShow_OverwriteQuestion">Questa foto esiste già. Sovrascrivi?</string>
   <string name="PhotoShow_PhotoSaved">Foto salvata.</string>
   <string name="PhotoShow_ImageTooSmall">L\'immagine ritagliata è troppo piccola.</string>
+
+  <!--PhotoParametersActivity-->
+  <string name="PhotoParameters_CameraLocation">Posizione della fotocamera</string>
+  <string name="PhotoParameters_ViewDirection">La mia direzione di vista</string>
+  <string name="PhotoParameters_CameraViewAngles">Angoli di visualizzazione della telecamera</string>
+  <string name="PhotoParameters_CantLoadImage">Impossibile caricare l\'immagine. Scarica prima l\'immagine sul tuo dispositivo.</string>
+  <string name="PhotoParameters_CameraLocationInfo">Per visualizzare correttamente tutti i punti e l\'orizzonte artificiale, è necessario conoscere il luogo da cui è stata realizzata l\'immagine. Per regolare questa posizione, aggiorna le coordinate GPS manualmente o seleziona dal database dei punti.</string>
+  <string name="PhotoParameters_ViewDirectionInfo">La direzione della vista di solito non viene memorizzata all\'interno di dati di immagine. È possibile regolare la direzione di visualizzazione in modalità di modifica delle foto. In ogni caso è possibile impostare la direzione della telecamera almeno approssimativamente selezionando un oggetto dal database.</string>
+  <string name="PhotoParameters_ViewAnglesInfo">Gli angoli di visualizzazione vengono calcolati automaticamente dalla lunghezza focale e dalle dimensioni dell\'immagine, ma queste informazioni potrebbero non essere sufficientemente precise. Sentiti libero di regolare l\'angolo di visualizzazione della fotocamera qui o in modalità di modifica delle immagini.</string>
+  <string name="PhotoParameters_SetCameraLocationFirst">Imposta prima la posizione della fotocamera.</string>
 
   <!--SettingsActivity-->
   <string name="Settings_ChooseLanguage">Scegli la lingua</string>

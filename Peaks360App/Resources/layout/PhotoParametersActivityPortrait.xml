@@ -139,7 +139,7 @@
               android:id="@+id/buttonLocation"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="@string/Common_Select"
+              android:text="@string/Common_Choose"
               android:background="@android:color/transparent"
               android:drawableLeft="@android:drawable/ic_menu_mylocation" />
 
@@ -204,18 +204,9 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="right"
-              android:text="@string/Common_Select"
+              android:text="@string/Common_Choose"
               android:background="@android:color/transparent"
               android:drawableLeft="@android:drawable/ic_menu_compass" />
-
-        </LinearLayout>
-
-        <LinearLayout
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
 
             <LinearLayout
               android:orientation="horizontal"

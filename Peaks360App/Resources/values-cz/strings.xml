@@ -31,6 +31,7 @@
   <string name="Common_None">Nic</string>
   <string name="Common_Close">Uložit</string>
   <string name="Common_Search">Vyhledávání</string>
+  <string name="Common_Choose">Vybrat</string>
   <string name="Common_MyLocation">Moje aktuální poloha</string>
   <string name="Common_POIs">Body zájmu</string>
   <string name="Common_ElevationData">Výšková data</string>
@@ -58,6 +59,7 @@
   <string name="DownloadActivity">Stažení dat</string>
   <string name="DownloadElevationDataActivity">Stažení výškových dat</string>
   <string name="PhotosActivity">Galerie fotografií</string>
+  <string name="PhotoParametersActivity">Vlastnosti fotografie</string>
   <string name="SettingsActivity">Nastavení</string>
   <string name="AboutActivity">O aplikaci</string>
 
@@ -141,6 +143,16 @@
   <string name="PhotoShow_OverwriteQuestion">Fotografie již existuje. Chcete ji přepsat?</string>
   <string name="PhotoShow_PhotoSaved">Fotografile uložena.</string>
   <string name="PhotoShow_ImageTooSmall">Oříznutá fotografie je příliš malá.</string>
+
+  <!--PhotoParametersActivity-->
+  <string name="PhotoParameters_CameraLocation">Umístění kamery</string>
+  <string name="PhotoParameters_ViewDirection">Směr pohledu</string>
+  <string name="PhotoParameters_CameraViewAngles">Zobrazovací úhly</string>
+  <string name="PhotoParameters_CantLoadImage">Nelze načíst obrázek. Nejprve si stáhněte obrázek do zařízení.</string>
+  <string name="PhotoParameters_CameraLocationInfo">Pro správné zobrazení všech bodů a umělého horizontu je nutné znát místo, odkud byl snímek pořízen. Chcete-li toto umístění upravit, aktualizujte souřadnice GPS ručně nebo vyberte z databáze bodů.</string>
+  <string name="PhotoParameters_ViewDirectionInfo">Směr pohledu není obvykle uložen v obrazových datech. V režimu úprav fotografií můžete upravit směr pohledu. Nicméně můžete nastavit směr alespoň přibližně výběrem objektu z databáze.</string>
+  <string name="PhotoParameters_ViewAnglesInfo">Úhly pohledu se automaticky počítají z ohniskové vzdálenosti a velikosti obrazu, ale tato informace nemusí být dostatečně přesná. Proto můžete upravit úhel pohledu kamery zde nebo v režimu úprav obrazu.</string>
+  <string name="PhotoParameters_SetCameraLocationFirst">Nejprve nastavte umístění kamery.</string>
 
   <!--SettingsActivity-->
   <string name="Settings_ChooseLanguage">Vyber jazyk</string>

@@ -10694,85 +10694,85 @@ namespace Peaks360App
 			public const int Common_CategoryFilter = 2131689489;
 			
 			// aapt resource value: 0x7F0F0012
-			public const int Common_Close = 2131689490;
+			public const int Common_Choose = 2131689490;
 			
 			// aapt resource value: 0x7F0F0013
-			public const int Common_Country = 2131689491;
+			public const int Common_Close = 2131689491;
 			
 			// aapt resource value: 0x7F0F0014
-			public const int Common_Details = 2131689492;
+			public const int Common_Country = 2131689492;
 			
 			// aapt resource value: 0x7F0F0015
-			public const int Common_Discard = 2131689493;
+			public const int Common_Details = 2131689493;
 			
 			// aapt resource value: 0x7F0F0016
-			public const int Common_DiscardChanges = 2131689494;
+			public const int Common_Discard = 2131689494;
 			
 			// aapt resource value: 0x7F0F0017
-			public const int Common_Distance = 2131689495;
+			public const int Common_DiscardChanges = 2131689495;
 			
 			// aapt resource value: 0x7F0F0018
-			public const int Common_Download = 2131689496;
+			public const int Common_Distance = 2131689496;
 			
 			// aapt resource value: 0x7F0F0019
-			public const int Common_ElevationData = 2131689497;
+			public const int Common_Download = 2131689497;
 			
 			// aapt resource value: 0x7F0F001A
-			public const int Common_Error = 2131689498;
+			public const int Common_ElevationData = 2131689498;
 			
 			// aapt resource value: 0x7F0F001B
-			public const int Common_GPSLocation = 2131689499;
+			public const int Common_Error = 2131689499;
 			
 			// aapt resource value: 0x7F0F001C
-			public const int Common_Heading = 2131689500;
+			public const int Common_GPSLocation = 2131689500;
 			
 			// aapt resource value: 0x7F0F001D
-			public const int Common_HorizontalViewAngle = 2131689501;
+			public const int Common_Heading = 2131689501;
 			
 			// aapt resource value: 0x7F0F001E
-			public const int Common_Information = 2131689502;
+			public const int Common_HorizontalViewAngle = 2131689502;
 			
 			// aapt resource value: 0x7F0F001F
-			public const int Common_Latitude = 2131689503;
+			public const int Common_Information = 2131689503;
 			
 			// aapt resource value: 0x7F0F0020
-			public const int Common_Longitude = 2131689504;
+			public const int Common_Latitude = 2131689504;
 			
 			// aapt resource value: 0x7F0F0021
-			public const int Common_Map = 2131689505;
+			public const int Common_Longitude = 2131689505;
 			
 			// aapt resource value: 0x7F0F0022
-			public const int Common_MyLocation = 2131689506;
+			public const int Common_Map = 2131689506;
 			
 			// aapt resource value: 0x7F0F0023
-			public const int Common_Name = 2131689507;
+			public const int Common_MyLocation = 2131689507;
 			
 			// aapt resource value: 0x7F0F0024
-			public const int Common_No = 2131689508;
+			public const int Common_Name = 2131689508;
 			
 			// aapt resource value: 0x7F0F0025
-			public const int Common_NoDataToDisplay = 2131689509;
+			public const int Common_No = 2131689509;
 			
 			// aapt resource value: 0x7F0F0026
-			public const int Common_None = 2131689510;
+			public const int Common_NoDataToDisplay = 2131689510;
 			
 			// aapt resource value: 0x7F0F0027
-			public const int Common_POIs = 2131689511;
+			public const int Common_None = 2131689511;
 			
 			// aapt resource value: 0x7F0F0028
-			public const int Common_Question = 2131689512;
+			public const int Common_POIs = 2131689512;
 			
 			// aapt resource value: 0x7F0F0029
-			public const int Common_Reset = 2131689513;
+			public const int Common_Question = 2131689513;
 			
 			// aapt resource value: 0x7F0F002A
-			public const int Common_Save = 2131689514;
+			public const int Common_Reset = 2131689514;
 			
 			// aapt resource value: 0x7F0F002B
-			public const int Common_Search = 2131689515;
+			public const int Common_Save = 2131689515;
 			
 			// aapt resource value: 0x7F0F002C
-			public const int Common_Select = 2131689516;
+			public const int Common_Search = 2131689516;
 			
 			// aapt resource value: 0x7F0F002D
 			public const int Common_Sort = 2131689517;
