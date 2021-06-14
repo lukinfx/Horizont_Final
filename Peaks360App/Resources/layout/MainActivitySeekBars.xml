@@ -3,11 +3,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="10dp"
-    android:gravity="bottom">
-  <SeekBar
+    android:gravity="bottom"
+    android:background="#50000000">
+  <Peaks360App.Views.DistanceSeekBar
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="40dp"
     android:layout_gravity="bottom"
     android:padding="5dp"
     android:max="100"

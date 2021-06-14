@@ -36,7 +36,7 @@ namespace Peaks360App.Activities
 
         private GestureDetector _gestureDetector;
 
-        private SeekBar _distanceSeekBar;
+        private DistanceSeekBar _distanceSeekBar;
         protected LinearLayout _activityControlBar;
 
         //for gesture detection
@@ -82,7 +82,7 @@ namespace Peaks360App.Activities
             _textViewStatusLine = FindViewById<TextView>(Resource.Id.textViewStatusLine);
             _textViewStatusLine.Selected = true;
 
-            _distanceSeekBar = FindViewById<SeekBar>(Resource.Id.seekBarDistance);
+            _distanceSeekBar = FindViewById<DistanceSeekBar>(Resource.Id.seekBarDistance);
             _distanceSeekBar.Progress = Context.Settings.MaxDistance;
             _distanceSeekBar.ProgressChanged += OnMaxDistanceChanged;
 
@@ -111,6 +111,8 @@ namespace Peaks360App.Activities
 
         protected void Start()
         {
+            _maxDistanceMinAltitudeTemplate = Resources.GetText(Resource.String.Main_MaxDistanceMinAltitudeTemplate);
+
             UpdateStatusBar();
         }
 
@@ -125,7 +127,6 @@ namespace Peaks360App.Activities
         protected override void OnResume()
         {
             base.OnResume();
-            _maxDistanceMinAltitudeTemplate = Resources.GetText(Resource.String.Main_MaxDistanceMinAltitudeTemplate);
             
             Context.DataChanged += DataChanged;
             Context.HeadingChanged += HeadingChanged;

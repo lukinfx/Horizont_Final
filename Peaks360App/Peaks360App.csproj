@@ -161,6 +161,7 @@
     <Compile Include="Views\Compass\CompassDrawer.cs" />
     <Compile Include="Views\Compass\CompassView.cs" />
     <Compile Include="Views\Compass\CompassViewFilter.cs" />
+    <Compile Include="Views\DistanceSeekBar.cs" />
     <Compile Include="Views\ErrorDialog.cs" />
     <Compile Include="Activities\PoiListActivity.cs" />
     <Compile Include="Views\ScaleImage\ScaleImageView.cs" />
