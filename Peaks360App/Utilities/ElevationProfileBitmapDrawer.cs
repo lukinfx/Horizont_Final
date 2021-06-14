@@ -83,22 +83,10 @@ namespace Peaks360App.Utilities
             {
                 foreach (var line in _context.ListOfProfileLines)
                 {
-                    double alpha;
                     if (line.distance / 1000 > _context.Settings.MaxDistance)
                     {
-                        alpha = 0;
+                        continue;
                     }
-                    else
-                    {
-                        alpha = 255 - ((line.distance / 1000) / _context.Settings.MaxDistance) / 2 * 400;
-                    }
-                    //paint.SetARGB((int)alpha, 255, 255, 100 );
-                    //paint.StrokeWidth = 5;
-                    
-                    _linePaint.SetARGB((int)alpha, 0x30, 0x30, 0x30);
-                    _linePaint.AntiAlias = true;
-                    _lineBackPaint.SetARGB((int)alpha, 0xE0, 0xE0, 0xE0); 
-                    _lineBackPaint.AntiAlias = true;
 
                     var x1 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.Bearing1, canvas.Width, _adjustedViewAngleHorizontal, offsetX);
                     var x2 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.Bearing2, canvas.Width, _adjustedViewAngleHorizontal, offsetX);
@@ -110,7 +98,13 @@ namespace Peaks360App.Utilities
                         var y1 = CompassViewUtils.GetYLocationOnScreen(line.VerticalViewAngle1 + verticalAngleCorrection1, canvas.Height, _adjustedViewAngleVertical);
                         var y2 = CompassViewUtils.GetYLocationOnScreen(line.VerticalViewAngle2 + verticalAngleCorrection2, canvas.Height, _adjustedViewAngleVertical);
 
-                        //canvas.DrawLine(x1.Value, line.y1, x2.Value, line.y2, paint);
+                        double alpha = 255 - ((line.distance / 1000) / _context.Settings.MaxDistance) / 2 * 400;
+                        
+                        _linePaint.SetARGB((int)alpha, 0x30, 0x30, 0x30);
+                        _linePaint.AntiAlias = true;
+                        _lineBackPaint.SetARGB((int)alpha, 0xE0, 0xE0, 0xE0);
+                        _lineBackPaint.AntiAlias = true;
+
                         canvas.DrawLine(x1.Value, y1 + offsetY, x2.Value, y2 + offsetY, _lineBackPaint);
                         canvas.DrawLine(x1.Value, y1 + offsetY, x2.Value, y2 + offsetY, _linePaint);
                     }
