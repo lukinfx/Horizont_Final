@@ -82,7 +82,7 @@
   <string name="Main_ErrorUnknownAltitude">Il n\'est pas possible de générer un profil d\'élévation sans altitude connue.</string>
   <string name="Main_GeneratingElevationProfile">Générer un profil d\'élévation...</string>
   <string name="Main_WaitingForGps">En attente de la localisation GPS...</string>
-  <string name="Main_MaxDistanceMinAltitudeTemplate">Distance jusqu\'à {0}km</string>
+  <string name="Main_MaxDistanceMinAltitudeTemplate">Visibilité: {0}km</string>
   <string name="Main_HiddenInSurroundingTerrain">L\'objet peut être caché dans le terrain environnant</string>
   <string name="Main_ReviewAppQuestion">Merci d\'utiliser l\'application Peaks360. Afin d\'améliorer l\'application, nous aimerions obtenir vos commentaires. Voulez-vous l\'évaluer maintenant?</string>
 
