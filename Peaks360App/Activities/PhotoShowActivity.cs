@@ -539,6 +539,7 @@ namespace Peaks360App.Activities
 
             return
                 _photodata.ShowElevationProfile != Context.Settings.ShowElevationProfile
+                || _photodata.JsonCategories != JsonConvert.SerializeObject(Context.Settings.Categories)
                 || _photodata.FavouriteFilter != Context.ShowFavoritesOnly
                 || !_photodata.MaxDistance.IsEqual(Context.Settings.MaxDistance, 0.1)
                 || !_photodata.MinAltitude.IsEqual(Context.Settings.MinAltitute, 0.1)
