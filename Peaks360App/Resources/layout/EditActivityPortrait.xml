@@ -83,7 +83,7 @@
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:inputType="numberDecimal"
-                          android:digits="0123456789.,"
+                          android:digits="0123456789."
                           android:padding="10px"
                           android:background="@drawable/bg_edittext"
                           android:id="@+id/editTextLatitude" />
@@ -100,7 +100,7 @@
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:inputType="numberDecimal"
-                          android:digits="0123456789.,"
+                          android:digits="0123456789."
                           android:padding="10px"
                           android:background="@drawable/bg_edittext"
                           android:id="@+id/editTextLongitude" />
@@ -117,7 +117,7 @@
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:inputType="numberDecimal"
-                          android:digits="0123456789.,"
+                          android:digits="0123456789."
                           android:padding="10px"
                           android:background="@drawable/bg_edittext"
                           android:id="@+id/editTextAltitude" />
