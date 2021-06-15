@@ -25,8 +25,18 @@
           android:background="@drawable/bg_activity"
           android:id="@+id/linearLayoutSelectedPoint">
 
+            <EditText
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:inputType="textMultiLine"
+              android:padding="10px"
+              android:background="@drawable/bg_edittext"
+              android:id="@+id/editTextTag" />
+
             <ImageView
               android:id="@+id/Thumbnail"
+              android:paddingTop="10dp"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:scaleType="fitCenter"

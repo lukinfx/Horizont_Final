@@ -25,6 +25,7 @@ namespace Peaks360App.Activities
         public static int REQUEST_IMPORT_IMAGE = Definitions.BaseResultCode.PHOTO_IMPORT_ACTIVITY + 0;
 
         private IAppContext AppContext { get { return AppContextLiveData.Instance; } }
+        private EditText _editTextTag;
         private EditText _editTextLatitude;
         private EditText _editTextLongitude;
         private EditText _editTextAltitude;
@@ -61,6 +62,7 @@ namespace Peaks360App.Activities
             ActionBar.SetDisplayShowTitleEnabled(true);
             ActionBar.SetTitle(Resource.String.PhotoParametersActivity);
 
+            _editTextTag = FindViewById<EditText>(Resource.Id.editTextTag);
             _editTextLatitude = FindViewById<EditText>(Resource.Id.editTextLatitude);
             _editTextLongitude = FindViewById<EditText>(Resource.Id.editTextLongitude);
             _editTextAltitude = FindViewById<EditText>(Resource.Id.editTextAltitude);
@@ -89,9 +91,10 @@ namespace Peaks360App.Activities
             var bmp = BitmapFactory.DecodeByteArray(_photoData.Thumbnail, 0, _photoData.Thumbnail.Length);
             _imageViewThumbnail.SetImageBitmap(bmp);
 
+            UpdateName(_photoData.Tag);
             UpdateCameraLocation(_photoData.GetPhotoGpsLocation());
             UpdateCameraAltitude(_photoData.GetPhotoGpsLocation());
-            UpdateViewAngles(_photoData.GetPhotoGpsLocation());
+            UpdateViewAngles(_photoData.ViewAngleVertical, _photoData.ViewAngleHorizontal);
             UpdateHeading(_photoData.Heading);
         }
 
@@ -134,10 +137,15 @@ namespace Peaks360App.Activities
             }
         }
 
-        private void UpdateViewAngles(GpsLocation location)
+        private void UpdateViewAngles(double viewAngleVertical, double viewAngleHorizontal)
         {
-            _editTextViewAngleHorizontal.Text = $"{_photoData.ViewAngleHorizontal:F1}".Replace(",", ".");
-            _editTextViewAngleVertical.Text = $"{_photoData.ViewAngleVertical:F1}".Replace(",", ".");
+            _editTextViewAngleHorizontal.Text = $"{viewAngleHorizontal:F1}".Replace(",", ".");
+            _editTextViewAngleVertical.Text = $"{viewAngleVertical:F1}".Replace(",", ".");
+        }
+
+        private void UpdateName(string tag)
+        {
+            _editTextTag.Text = tag;
         }
 
         private void UpdateHeading(double? heading)
@@ -228,6 +236,8 @@ namespace Peaks360App.Activities
         {
             try
             {
+                _photoData.Tag = _editTextTag.Text;
+
                 if (!TryGetGpsLocation(out GpsLocation location))
                 {
                     return;
