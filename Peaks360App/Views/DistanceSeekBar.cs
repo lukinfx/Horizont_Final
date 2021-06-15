@@ -15,8 +15,11 @@ namespace Peaks360App.Views
 {
     public class DistanceSeekBar : SeekBar
     {
-        protected Paint paintGreenLine;
-        protected Paint paintText;
+        private Paint _paintSeekbarHandle;
+        private Paint _paintGridLines;
+        private Paint _paintCurrentLine;
+        private Paint _paintText;
+        private Bitmap _seekbarHandleBitmap;
 
         public DistanceSeekBar(Context context) : base(context)
         {
@@ -26,17 +29,25 @@ namespace Peaks360App.Views
         {
             Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
 
-            paintText = new Paint();
-            paintText.SetARGB(255, 200, 255, 0);
-            paintText.TextSize = 32;
-            paintText.TextAlign = Paint.Align.Center;
-            paintText.AntiAlias = true;
-            paintText.SetTypeface(normal);
+            _paintText = new Paint();
+            _paintText.SetARGB(255, 200, 255, 0);
+            _paintText.TextSize = 32;
+            _paintText.TextAlign = Paint.Align.Center;
+            _paintText.AntiAlias = true;
+            _paintText.SetTypeface(normal);
 
-            paintGreenLine = new Paint();
-            paintGreenLine.SetARGB(150, 200, 255, 0);
-            paintGreenLine.SetStyle(Paint.Style.Stroke);
-            paintGreenLine.StrokeWidth = 4;
+            _paintGridLines = new Paint();
+            _paintGridLines.SetARGB(150, 200, 255, 0);
+            _paintGridLines.SetStyle(Paint.Style.Stroke);
+            _paintGridLines.StrokeWidth = 4;
+
+            _paintCurrentLine = new Paint();
+            _paintCurrentLine.SetStyle(Paint.Style.Stroke);
+            _paintCurrentLine.StrokeWidth = 6;
+
+            _paintSeekbarHandle = new Paint();
+
+            _seekbarHandleBitmap = BitmapFactory.DecodeResource(Resources, Resource.Drawable.seekbar_handle);
         }
 
         public DistanceSeekBar(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
@@ -48,9 +59,15 @@ namespace Peaks360App.Views
             var xStart = Left + PaddingLeft;
             var xEnd = Right - PaddingRight;
             var xTotal = xEnd - xStart;
+            var xCurrent = xStart + (xTotal / (float)Max * Progress);
 
             var yTotal = Height - PaddingTop - PaddingBottom;
             var yMiddle = this.Height / 2f;
+
+            _paintCurrentLine.SetARGB(255, 200, 255, 0); 
+            canvas.DrawLine(xStart, yMiddle, xCurrent, yMiddle, _paintCurrentLine);
+            _paintCurrentLine.SetARGB(120, 180, 180, 180);
+            canvas.DrawLine(xCurrent, yMiddle, xEnd, yMiddle, _paintCurrentLine);
 
             int step = xTotal > 1000 ? 2 : 5;
             for (int i = 0; i <= this.Max; i += step)
@@ -61,16 +78,23 @@ namespace Peaks360App.Views
 
                 if (majorGrid)
                 {
-                    canvas.DrawLine(x, yMiddle - (yTotal * 0.1f), x, yMiddle - (yTotal * 0.4f), paintGreenLine);
-                    canvas.DrawText(i.ToString(), x, this.Bottom - 15, paintText);
+                    canvas.DrawLine(x, yMiddle - (yTotal * 0.1f), x, yMiddle - (yTotal * 0.4f), _paintGridLines);
+                    canvas.DrawText(i.ToString(), x, this.Bottom - 25, _paintText);
                 }
                 else
                 {
-                    canvas.DrawLine(x, yMiddle - (yTotal * 0.1f), x, yMiddle - (yTotal * 0.2f), paintGreenLine);
+                    canvas.DrawLine(x, yMiddle - (yTotal * 0.1f), x, yMiddle - (yTotal * 0.2f), _paintGridLines);
                 }
             }
 
-            base.OnDraw(canvas);
+            
+
+            canvas.DrawBitmap(_seekbarHandleBitmap, 
+                new Rect(0,0,_seekbarHandleBitmap.Width, Height),
+                new RectF(xCurrent - 30, 0, xCurrent + 30, yMiddle + (yTotal * 0.1f)),
+                null);
+
+            //base.OnDraw(canvas);
         }
     }
 }
