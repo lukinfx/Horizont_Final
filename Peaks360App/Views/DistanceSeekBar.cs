@@ -90,8 +90,8 @@ namespace Peaks360App.Views
             
 
             canvas.DrawBitmap(_seekbarHandleBitmap, 
-                new Rect(0,0,_seekbarHandleBitmap.Width, Height),
-                new RectF(xCurrent - 30, 0, xCurrent + 30, yMiddle + (yTotal * 0.1f)),
+                new Rect(0,0,_seekbarHandleBitmap.Width, _seekbarHandleBitmap.Height),
+                new RectF(xCurrent - 35, yTotal * 0.1f, xCurrent + 35, yMiddle),
                 null);
 
             //base.OnDraw(canvas);
