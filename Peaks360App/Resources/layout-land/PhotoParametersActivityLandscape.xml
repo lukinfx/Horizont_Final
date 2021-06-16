@@ -23,8 +23,7 @@
 
             <LinearLayout
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:layout_weight="1"
+              android:layout_height="wrap_content"
               android:orientation="vertical"
               android:padding="10dp"
               android:background="@drawable/bg_activity"
@@ -35,10 +34,18 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:inputType="textMultiLine"
-                  android:padding="10px"
+                  android:padding="15px"
                   android:background="@drawable/bg_edittext"
                   android:id="@+id/editTextTag" />
+            </LinearLayout>
 
+          <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:background="@drawable/bg_activity">
                 <ImageView
                   android:id="@+id/Thumbnail"
                   android:paddingTop="10dp"
@@ -74,7 +81,7 @@
                   android:rowCount="2"
                   android:columnCount="2">
                   <TextView
-                      android:paddingTop="10dp"
+                    android:paddingTop="5dp"
                       android:layout_columnWeight="2"
                       android:text="@string/Common_HorizontalViewAngle"
                       android:layout_width="wrap_content"
@@ -87,11 +94,11 @@
                       android:layout_height="wrap_content"
                       android:inputType="numberDecimal"
                       android:digits="0123456789."
-                      android:padding="10px"
+                      android:padding="5px"
                       android:background="@drawable/bg_edittext"
                       android:id="@+id/editTextViewAngleHorizontal" />
                   <TextView
-                      android:paddingTop="10dp"
+                      android:paddingTop="5dp"
                       android:layout_columnWeight="2"
                       android:text="@string/Common_VerticalViewAngle"
                       android:layout_width="wrap_content"
@@ -104,7 +111,7 @@
                       android:layout_height="wrap_content"
                       android:inputType="numberDecimal"
                       android:digits="0123456789."
-                      android:padding="10px"
+                      android:padding="5px"
                       android:background="@drawable/bg_edittext"
                       android:id="@+id/editTextViewAngleVertical" />
               </GridLayout>
@@ -125,7 +132,7 @@
 
         <LinearLayout
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
+          android:layout_height="wrap_content"
           android:orientation="vertical"
           android:padding="10dp"
           android:background="@drawable/bg_activity">
@@ -169,11 +176,11 @@
                       android:layout_height="wrap_content"
                       android:inputType="numberDecimal"
                       android:digits="0123456789."
-                      android:padding="10px"
+                      android:padding="5px"
                       android:background="@drawable/bg_edittext"
                       android:id="@+id/editTextLatitude" />
                   <TextView
-                      android:paddingTop="10dp"
+                      android:paddingTop="5dp"
                       android:layout_columnWeight="2"
                       android:text="@string/Common_Longitude"
                       android:layout_width="wrap_content"
@@ -186,11 +193,11 @@
                       android:layout_height="wrap_content"
                       android:inputType="numberDecimal"
                       android:digits="0123456789."
-                      android:padding="10px"
+                      android:padding="5px"
                       android:background="@drawable/bg_edittext"
                       android:id="@+id/editTextLongitude" />
                   <TextView
-                      android:paddingTop="10dp"
+                      android:paddingTop="5dp"
                       android:layout_columnWeight="2"
                       android:text="@string/Common_Altitude"
                       android:layout_width="wrap_content"
@@ -203,7 +210,7 @@
                       android:layout_height="wrap_content"
                       android:inputType="numberDecimal"
                       android:digits="0123456789."
-                      android:padding="10px"
+                      android:padding="5px"
                       android:background="@drawable/bg_edittext"
                       android:id="@+id/editTextAltitude" />
               </GridLayout>
@@ -236,7 +243,14 @@
                   android:drawableLeft="@android:drawable/ic_menu_mylocation" />
 
               </LinearLayout>
+        </LinearLayout>
 
+        <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:padding="10dp"
+          android:background="@drawable/bg_activity">
               <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
@@ -263,7 +277,6 @@
                   android:columnCount="2">
                   <TextView
                       android:layout_columnWeight="2"
-                      android:paddingTop="10dp"
                       android:text="@string/Common_Heading"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
@@ -275,7 +288,7 @@
                       android:layout_height="wrap_content"
                       android:inputType="numberDecimal"
                       android:digits="0123456789."
-                      android:padding="10px"
+                      android:padding="5px"
                       android:background="@drawable/bg_edittext"
                       android:id="@+id/editTextHeading" />
               </GridLayout>
