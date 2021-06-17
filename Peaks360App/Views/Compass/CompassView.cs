@@ -11,6 +11,7 @@ using Peaks360App.AppContext;
 using Peaks360App.Providers;
 using System.Collections.Generic;
 using Java.Lang;
+using Peaks360Lib.Domain.Models;
 
 namespace Peaks360App.Views
 {
@@ -117,6 +118,16 @@ namespace Peaks360App.Views
             Invalidate();
         }
 
+        public void RefreshPoisDoBeDisplayed()
+        {
+            lock (syncLock)
+            {
+                _poisToBeDisplayed = FilterPoisDoBeDisplayed(_poisInVisibilityRange);
+            }
+
+            Invalidate(); 
+        }
+
         public void SetElevationProfile(ElevationProfileData elevationProfile)
         {
             _elevationProfile = elevationProfile;
@@ -141,7 +152,12 @@ namespace Peaks360App.Views
                 item.Visibility = CompassViewUtils.IsPoiVisible(item, _context.ElevationProfileData);
             }
 
-            _poisToBeDisplayed = listCopy.Where(poi => poi.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible).OrderByDescending(poi => poi.Priority).ThenByDescending(poi => poi.GpsLocation.VerticalViewAngle);
+            _poisToBeDisplayed = listCopy.Where(poi => 
+                poi.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible
+                && (!_context.ShowFavoritesOnly || poi.Poi.Favorite))
+                .OrderByDescending(poi => poi.Priority)
+                .ThenByDescending(poi => poi.GpsLocation.VerticalViewAngle);
+
             CheckOverlappingItems(_poisToBeDisplayed);
             return _poisToBeDisplayed;
         }
@@ -431,6 +447,12 @@ namespace Peaks360App.Views
             x = x - windowLocationOnScreen[0];
             y = y - windowLocationOnScreen[1];
             return (x, y);
+        }
+
+        internal void Update(Poi poi)
+        {
+            var item = _poisToBeDisplayed.Single(x => x.Poi.Id == poi.Id);
+            item.Poi = poi;
         }
     }
 } 

@@ -12,40 +12,58 @@
     android:background="@drawable/bg_activity_light"
     android:paddingHorizontal="10dp"
     android:gravity="bottom">
-
     <LinearLayout
       android:orientation="horizontal"
-      android:minWidth="25px"
-      android:minHeight="25px"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/linearLayout2">
-      <TextView
-        android:text="Name can be very very very very long"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+      <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:paddingRight="5dp"
-        android:textStyle="bold"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:textColor="@android:color/black"
-        android:id="@+id/textViewPoiName" />
+        android:layout_weight="1">
+        <LinearLayout
+          android:orientation="horizontal"
+          android:minWidth="25px"
+          android:minHeight="25px"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/linearLayout2">
+          <TextView
+            android:text="Name can be very very very very long"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="5dp"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            android:id="@+id/textViewPoiName" />
+          <ImageView
+            android:src="@drawable/i_info_black"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/imageViewInfoAvailable" />
+        </LinearLayout>
+        <TextView
+          android:text="@string/Main_HiddenInSurroundingTerrain"
+          android:textAppearance="?android:attr/textAppearanceSmall"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="12dp"
+          android:textColor="#606060"
+          android:id="@+id/textViewPoiPartiallyVisible" />
+      </LinearLayout>
       <ImageView
-        android:src="@drawable/i_info_black"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
-        android:layout_gravity="center_vertical"
-        android:id="@+id/imageViewInfoAvailable" />
+        android:src="@android:drawable/btn_star_big_off"
+        android:layout_weight="1"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:padding="0px"
+        android:id="@+id/buttonFavourite"/>
     </LinearLayout>
-    <TextView
-      android:text="@string/Main_HiddenInSurroundingTerrain"
-      android:textAppearance="?android:attr/textAppearanceSmall"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textColor="#606060"
-      android:id="@+id/textViewPoiPartiallyVisible" />
     <View
       android:layout_width="match_parent"
       android:layout_height="1dp"

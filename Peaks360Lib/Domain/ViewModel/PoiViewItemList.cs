@@ -19,7 +19,7 @@ namespace Peaks360Lib.Domain.ViewModel
         /// <param name="location">My current location</param>
         /// <param name="maxDistance">Max distance in kilometers</param>
         /// <param name="minAltitude">Min altitude (progress 100 = 1600m)</param>
-        public PoiViewItemList(IEnumerable<Poi> poiList, GpsLocation myLocation, double maxDistance, bool favourite, List<PoiCategory> categories, IGpsUtilities iGpsUtilities)
+        public PoiViewItemList(IEnumerable<Poi> poiList, GpsLocation myLocation, double maxDistance, List<PoiCategory> categories, IGpsUtilities iGpsUtilities)
         {
             foreach (var item in poiList)
             {
@@ -28,9 +28,6 @@ namespace Peaks360Lib.Domain.ViewModel
                 poiViewItem.AltitudeDifference = CompassViewUtils.GetAltitudeDifference(myLocation, poiViewItem.GpsLocation);
                 poiViewItem.GpsLocation.Distance = iGpsUtilities.Distance(myLocation, poiViewItem.GpsLocation);
                 poiViewItem.GpsLocation.GetVerticalViewAngle(myLocation);
-
-                if (favourite && !poiViewItem.Poi.Favorite)
-                    continue;
 
                 if (poiViewItem.GpsLocation.Distance > maxDistance * 1000)
                     continue;

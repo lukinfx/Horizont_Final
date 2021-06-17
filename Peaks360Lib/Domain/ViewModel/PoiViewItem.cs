@@ -23,7 +23,7 @@ namespace Peaks360Lib.Domain.ViewModel
 
         public int Priority
         {
-            get { return (int)Visibility; }
+            get { return (int)Visibility + (Poi.Favorite ? 10 : 0); }
         }
 
         public double VerticalViewAngle

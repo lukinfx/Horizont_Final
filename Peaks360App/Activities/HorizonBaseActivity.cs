@@ -15,6 +15,7 @@ using Peaks360App.Providers;
 using static Android.Views.View;
 using View = Android.Views.View;
 using ImageButton = Android.Widget.ImageButton;
+using Peaks360Lib.Domain.Models;
 
 namespace Peaks360App.Activities
 {
@@ -102,7 +103,7 @@ namespace Peaks360App.Activities
 
             FindViewById<Button>(Resource.Id.buttonWiki).SetOnClickListener(this);
             FindViewById<Button>(Resource.Id.buttonMap).SetOnClickListener(this);
-
+            FindViewById<ImageView>(Resource.Id.buttonFavourite).SetOnClickListener(this); 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.LayoutChange += OnLayoutChanged;
         }
@@ -379,7 +380,20 @@ namespace Peaks360App.Activities
                 case Resource.Id.buttonWiki:
                     WikiUtilities.OpenWiki(Context.SelectedPoi.Poi);
                     break;
+                case Resource.Id.buttonFavourite:
+                    OnPoiFavouriteButtonClicked(Context.SelectedPoi.Poi);
+                    break;
             }
+        }
+
+        private void OnPoiFavouriteButtonClicked(Poi poi)
+        {
+            poi.Favorite = !poi.Favorite;
+            ImageView favouriteButton = FindViewById<ImageView>(Resource.Id.buttonFavourite);
+            favouriteButton.SetImageResource(poi.Favorite ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff);
+            Context.Database.UpdateItemAsync(poi);
+            _compassView.Update(poi);
+            _compassView.RefreshPoisDoBeDisplayed();
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
@@ -390,6 +404,8 @@ namespace Peaks360App.Activities
             {
                 //TODO: use Poi model
                 Context.ReloadData();
+                _compassView.Update(Context.SelectedPoi.Poi);
+                _compassView.RefreshPoisDoBeDisplayed();
 
                 if (Context.SelectedPoi != null)
                 {
@@ -466,13 +482,16 @@ namespace Peaks360App.Activities
 
                 FindViewById<TextView>(Resource.Id.textViewPoiName).Text = item.Poi.Name;
                 FindViewById<ImageView>(Resource.Id.imageViewInfoAvailable).Visibility = item.IsImportant() ? ViewStates.Visible : ViewStates.Gone;
-                FindViewById<TextView>(Resource.Id.textViewPoiPartiallyVisible).Visibility = item.IsFullyVisible() ? ViewStates.Gone : ViewStates.Visible;
+                FindViewById<TextView>(Resource.Id.textViewPoiPartiallyVisible).Visibility = item.IsFullyVisible() ? ViewStates.Invisible : ViewStates.Visible;
                 FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = bearingText + " / " + verticalAngleText;
                 FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = altitudeText + " / " + distanceText;
                 FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Resources.GetText(Resource.String.Common_GPSLocation)}: {item.GpsLocation.LocationAsString()}";
                 FindViewById<Button>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(item.Poi) ? ViewStates.Visible : ViewStates.Gone;
                 FindViewById<Button>(Resource.Id.buttonWiki).Text = Resources.GetText(Resource.String.Common_Details);
                 FindViewById<Button>(Resource.Id.buttonMap).Text = Resources.GetText(Resource.String.Common_Map);
+
+                var favouriteResId = item.Poi.Favorite ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff;
+                FindViewById<ImageView>(Resource.Id.buttonFavourite).SetImageResource(favouriteResId);
             }
 
         }
