@@ -85,8 +85,8 @@ namespace Peaks360Lib.Utilities
             var viewAngleDiff = item.VerticalViewAngle - maxViewAngle.VerticalViewAngle;
             var viewAngleDistance = item.GpsLocation.Distance - maxViewAngle.Distance;
 
-            var viewAngleVisibilityLimit = -(itemViewAngle * 0.02 + 0.2);
-            var viewAnglePartVisibilityLimit = -(itemViewAngle * 0.2 + 1);
+            var viewAngleVisibilityLimit = -(itemViewAngle * 0.01 + 0.0);
+            var viewAnglePartVisibilityLimit = -(itemViewAngle * 0.2 + 1.0);
             var distancePartVisibilityLimit = 2000;//m
 
             if (viewAngleDiff > viewAngleVisibilityLimit)
