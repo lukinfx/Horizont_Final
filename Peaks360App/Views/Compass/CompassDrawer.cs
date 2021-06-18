@@ -11,6 +11,8 @@ namespace Peaks360App.Views.Compass
 {
     public class CompassViewDrawer
     {
+        protected Paint paintTapArea;
+        protected Paint paintTapFavourite;
         protected Paint paintRect;
         protected Paint paintRectSelectedItem;
         protected Paint textpaint;
@@ -32,6 +34,8 @@ namespace Peaks360App.Views.Compass
 
         public CompassViewDrawer(IPoiCategoryBitmapProvider poiCategoryBitmapProvider)
         {
+            Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
+
             this.poiCategoryBitmapProvider = poiCategoryBitmapProvider;
 
             paintRect = new Paint();
@@ -39,7 +43,13 @@ namespace Peaks360App.Views.Compass
             paintRect.SetStyle(Paint.Style.FillAndStroke);
             paintRect.StrokeWidth = 4;
 
-            Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
+            paintTapArea = new Paint();
+            paintTapArea.SetARGB(100, 0, 0, 0);
+            paintTapArea.SetStyle(Paint.Style.Fill);
+
+            paintTapFavourite = new Paint();
+            paintTapFavourite.SetARGB(150, 255, 195, 0);
+            paintTapFavourite.SetStyle(Paint.Style.Fill);
 
             paintRectSelectedItem = new Paint();
             paintRectSelectedItem.SetARGB(150, 255, 255, 255);
@@ -152,7 +162,7 @@ namespace Peaks360App.Views.Compass
         /// <param name="canvas"></param>
         /// <param name="item"></param>
         /// <param name="heading"></param>
-        public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY) { }
+        public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY, bool displayOverlapped) { }
 
         public virtual void OnDrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY) { }
 
@@ -166,16 +176,16 @@ namespace Peaks360App.Views.Compass
             double verticalAngleCorrection = CompassViewUtils.GetTiltCorrection(item.GpsLocation.Bearing.Value, heading, viewAngleHorizontal, leftTiltCorrector, rightTiltCorrector);
             double verticalAngle = item.VerticalViewAngle;
 
-            float endY = CompassViewUtils.GetYLocationOnScreen(verticalAngle + verticalAngleCorrection, canvasHeight, adjustedViewAngleVertical);
+            float endY = CompassViewUtils.GetYLocationOnScreen(verticalAngle + verticalAngleCorrection, canvasHeight, adjustedViewAngleVertical) + offsetY;
             return (startX, endY);
         }
 
-        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, double canvasWidth)
+        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, bool displayOverlapped, double canvasWidth)
         {
             var (x, y) = GetXY(item, heading, offsetX, offsetY, leftTiltCorrector, rightTiltCorrector, canvas.Width, canvas.Height);
             if (x != null && y != null)
             {
-                OnDrawItem(canvas, item, x.Value, y.Value + offsetY);
+                OnDrawItem(canvas, item, x.Value, y.Value, displayOverlapped);
             }
         }
 
@@ -184,7 +194,7 @@ namespace Peaks360App.Views.Compass
             var (x, y) = GetXY(item, heading, offsetX, offsetY, leftTiltCorrector, rightTiltCorrector, canvas.Width, canvas.Height);
             if (x != null && y != null)
             {
-                OnDrawItemIcon(canvas, item, x.Value, y.Value + offsetY);
+                OnDrawItemIcon(canvas, item, x.Value, y.Value);
             }
         }
 
@@ -193,13 +203,26 @@ namespace Peaks360App.Views.Compass
             return 0;
         }
 
+        public float GetClickDistance(PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, float canvasWidth, float canvasHeight, float clickX, float clickY)
+        {
+            var (itemX, itemY) = GetXY(item, heading, offsetX, offsetY, leftTiltCorrector, rightTiltCorrector, canvasWidth, canvasHeight);
+            if (itemX.HasValue && itemY.HasValue)
+            {
+                float xDiff = itemX.Value - clickX;
+                float yDiff = itemY.Value - clickY;
+                return FloatMath.Sqrt(xDiff * xDiff + yDiff * yDiff);
+            }
+
+            return float.MaxValue;
+        }
+
         public bool IsItemClicked(PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, float canvasWidth, float canvasHeight, float clickX, float clickY)
         {
             var (itemX, itemY) = GetXY(item, heading, offsetX, offsetY, leftTiltCorrector, rightTiltCorrector, canvasWidth, canvasHeight);
             if (itemX.HasValue && itemY.HasValue)
             { 
                 float xDiff = itemX.Value - clickX;
-                if (Math.Abs(xDiff) < GetItemWidth() && clickY < itemY + offsetY)
+                if (Math.Abs(xDiff) < GetItemWidth() && clickY < itemY)
                 {
                     return true;
                 }

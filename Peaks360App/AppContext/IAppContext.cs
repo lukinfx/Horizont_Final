@@ -31,6 +31,7 @@ namespace Peaks360App.AppContext
         DownloadedElevationDataModel DownloadedElevationDataModel { get; }
         ElevationProfileData ElevationProfileData { get; set; }
         bool CompassPaused { get; }
+        bool DisplayOverlapped { get; }
         GpsLocation MyLocation { get; }
         PlaceInfo MyLocationPlaceInfo { get; }
         double? HeadingX { get; }
@@ -44,6 +45,7 @@ namespace Peaks360App.AppContext
         float ViewAngleVertical { get; }
         PoiDatabase Database { get; }
         void ToggleCompassPaused();
+        void ToggleDisplayOverlapped(); 
         void ToggleFavourite();
         void ToggleFavouritePictures();
         void ToggleFavouritePois();

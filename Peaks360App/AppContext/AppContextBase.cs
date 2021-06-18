@@ -46,7 +46,8 @@ namespace Peaks360App.AppContext
         }
 
         public bool CompassPaused { get; private set; }
-        
+        public bool DisplayOverlapped { get; private set; }
+
         protected GpsLocation myLocation = new GpsLocation();
         public GpsLocation MyLocation { get { return myLocation; } }
 
@@ -121,6 +122,11 @@ namespace Peaks360App.AppContext
             {
                 StartProviders();
             }
+        }
+
+        public void ToggleDisplayOverlapped()
+        {
+            DisplayOverlapped = !DisplayOverlapped;
         }
 
         public void ToggleFavourite()

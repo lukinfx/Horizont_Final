@@ -529,7 +529,7 @@ namespace Peaks360App.Activities
         {
             if (!ImageCroppingEnabled)
             {
-                var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0));
+                var newSelectedPoi = _compassView.GetPoiByScreenLocation(e.GetX(0), e.GetY(0), Context.DisplayOverlapped);
 
                 if (Context.SelectedPoi == null && newSelectedPoi == null)
                 {

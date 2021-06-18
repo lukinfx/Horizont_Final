@@ -17,7 +17,7 @@ namespace Peaks360App.Views.Compass
         {
         }
 
-        public override void OnDrawItem(Canvas canvas, PoiViewItem item, float startX, float endY)
+        public override void OnDrawItem(Canvas canvas, PoiViewItem item, float startX, float endY, bool displayOverlapped)
         {
             //   x1   x2
             //    /--\  yIconStart
@@ -38,44 +38,67 @@ namespace Peaks360App.Views.Compass
             float yTipBend = endY - ToPixels(50);
             float yTipEnd = endY;
 
-            float x1 = startX - ToPixels(35);
-            float x2 = startX + ToPixels(35);
-
-            var path = new Path();
-            path.MoveTo(yIconMiddle, -x1);
-            path.LineTo(yTipBend, -x1);
-            path.LineTo(yTipEnd, -startX);
-            path.LineTo(yTipBend, -x2);
-            path.LineTo(yIconMiddle, -x2);
-            canvas.DrawPath(path, GetRectPaint(item));
-
-            var dyTextSpace = ToPixels(10);
-            var dyImportantIcon = ToPixels(30);
-            var dyFavouriteIcon = ToPixels(40);
-            var dyIconSpace = ToPixels(3);
-
-            var textWidth = yTextAreaEnd - yTextAreaStart - dyTextSpace - (item.IsImportant()? dyImportantIcon+dyIconSpace : 0) - (item.Poi.Favorite? dyFavouriteIcon+dyIconSpace : 0);
-            var text1 = EllipsizeText(item.Poi.Name, textWidth/multiplier);
-            var text2 = EllipsizeText($"{item.Poi.Altitude} m / {(item.GpsLocation.Distance / 1000):F2} km", textWidth/multiplier);
-
-            var textPaint = GetTextPaint(item);
-            canvas.DrawText(text1, yTextAreaStart, -startX - ToPixels(4), textPaint);
-            canvas.DrawText(text2, yTextAreaStart, -startX + ToPixels(29), textPaint);
-
-            Rect bounds = new Rect();
-            textPaint.GetTextBounds(text1.ToCharArray(), 0, text1.Length, bounds);
-
-            float iconOffset = yTextAreaStart + bounds.Width() + dyTextSpace;
-            if (item.IsImportant() && iconOffset + dyImportantIcon <= yTextAreaEnd)
+            if (!item.Overlapped)
             {
-                canvas.DrawBitmap(item.Selected ? infoBitmapBlack : infoBitmapYellow, iconOffset, -startX - ToPixels(30), null);
-                iconOffset += dyImportantIcon + dyIconSpace;
+
+                float x1 = startX - ToPixels(35);
+                float x2 = startX + ToPixels(35);
+
+                var path = new Path();
+                path.MoveTo(yIconMiddle, -x1);
+                path.LineTo(yTipBend, -x1);
+                path.LineTo(yTipEnd, -startX);
+                path.LineTo(yTipBend, -x2);
+                path.LineTo(yIconMiddle, -x2);
+                canvas.DrawPath(path, GetRectPaint(item));
+
+                var dyTextSpace = ToPixels(10);
+                var dyImportantIcon = ToPixels(30);
+                var dyFavouriteIcon = ToPixels(40);
+                var dyIconSpace = ToPixels(3);
+
+                var textWidth = yTextAreaEnd - yTextAreaStart - dyTextSpace - (item.IsImportant() ? dyImportantIcon + dyIconSpace : 0) - (item.Poi.Favorite ? dyFavouriteIcon + dyIconSpace : 0);
+                var text1 = EllipsizeText(item.Poi.Name, textWidth / multiplier);
+                var text2 = EllipsizeText($"{item.Poi.Altitude} m / {(item.GpsLocation.Distance / 1000):F2} km", textWidth / multiplier);
+
+                var textPaint = GetTextPaint(item);
+                canvas.DrawText(text1, yTextAreaStart, -startX - ToPixels(4), textPaint);
+                canvas.DrawText(text2, yTextAreaStart, -startX + ToPixels(29), textPaint);
+
+                Rect bounds = new Rect();
+                textPaint.GetTextBounds(text1.ToCharArray(), 0, text1.Length, bounds);
+
+                float iconOffset = yTextAreaStart + bounds.Width() + dyTextSpace;
+                if (item.IsImportant() && iconOffset + dyImportantIcon <= yTextAreaEnd)
+                {
+                    canvas.DrawBitmap(item.Selected ? infoBitmapBlack : infoBitmapYellow, iconOffset, -startX - ToPixels(30), null);
+                    iconOffset += dyImportantIcon + dyIconSpace;
+                }
+
+                if (item.Poi.Favorite && iconOffset + dyFavouriteIcon <= yTextAreaEnd)
+                {
+                    canvas.DrawBitmap(favouriteBitmap, iconOffset, -startX - ToPixels(40), null);
+                    iconOffset += dyFavouriteIcon + dyIconSpace;
+                }
             }
 
-            if (item.Poi.Favorite && iconOffset + dyFavouriteIcon <= yTextAreaEnd)
+            if (displayOverlapped)
             {
-                canvas.DrawBitmap(favouriteBitmap, iconOffset, -startX - ToPixels(40), null);
-                iconOffset += dyFavouriteIcon + dyIconSpace;
+                if (item.Poi.Favorite)
+                {
+                    canvas.DrawCircle(endY, -startX, ToPixels(30), paintTapFavourite);
+                    canvas.DrawCircle(endY, -startX, ToPixels(6), paintWhite);
+                }
+                else if (item.Selected)
+                {
+                    canvas.DrawCircle(endY, -startX, ToPixels(30), paintRectSelectedItem);
+                    canvas.DrawCircle(endY, -startX, ToPixels(6), paintBlack);
+                }
+                else
+                {
+                    canvas.DrawCircle(endY, -startX, ToPixels(30), paintTapArea);
+                    canvas.DrawCircle(endY, -startX, ToPixels(6), paintWhite);
+                }
             }
 
         }

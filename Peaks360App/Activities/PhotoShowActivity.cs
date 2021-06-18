@@ -38,6 +38,7 @@ namespace Peaks360App.Activities
 
         private ImageButton _tiltCorrectorButton;
         private ImageButton _cropButton;
+        private ImageButton _displayOverlappedButton;
         private ImageButton _saveToDeviceButton;
         private ImageButton _shareButton;
 
@@ -129,6 +130,9 @@ namespace Peaks360App.Activities
             InitializeBaseActivityUI();
 
             FindViewById<ImageButton>(Resource.Id.menuButton).SetOnClickListener(this);
+
+            _displayOverlappedButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayOverlapped);
+            _displayOverlappedButton.SetOnClickListener(this);
 
             _saveToDeviceButton = FindViewById<ImageButton>(Resource.Id.buttonSaveToDevice);
             _saveToDeviceButton.SetOnClickListener(this);
@@ -488,7 +492,11 @@ namespace Peaks360App.Activities
                 case Resource.Id.closeButton:
                     DisableCropping();
                     break;
-
+                case Resource.Id.buttonDisplayOverlapped:
+                    Context.ToggleDisplayOverlapped();
+                    _displayOverlappedButton.SetImageResource(Context.DisplayOverlapped ? Resource.Drawable.ic_star_on : Resource.Drawable.ic_star_off);
+                    _compassView.Invalidate();
+                    break;
                 case Resource.Id.buttonSaveToDevice:
                     _handleButtonSaveClicked();
                     break;

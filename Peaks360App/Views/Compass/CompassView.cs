@@ -310,24 +310,28 @@ namespace Peaks360App.Views
 
                 foreach (var item in _poisToBeDisplayed)
                 {
-                    if (item.Visibility == Peaks360Lib.Domain.Enums.Visibility.Invisible)
-                        continue;
-                    if (item.Overlapped)
-                        continue;
                     if (item.GpsLocation.Distance < MIN_DISTANCE_METERS)
                         continue;
+                    if (item.Visibility == Peaks360Lib.Domain.Enums.Visibility.Invisible)
+                        continue;
+                    if (!_context.DisplayOverlapped && item.Overlapped)
+                        continue;
                     
-                    compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, canvas.Width);
+                    compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, _context.DisplayOverlapped, canvas.Width);
                 }
 
                 canvas.Rotate(-90, 0, 0);
 
                 foreach (var item in _poisToBeDisplayed)
                 {
-                    if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
-                    {
-                        compassViewDrawer.DrawItemIcon(canvas, item, (float)heading, (float)_offsetX, (float)_offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, canvas.Width);
-                    }
+                    if (item.GpsLocation.Distance < MIN_DISTANCE_METERS)
+                        continue;
+                    if (item.Visibility == Peaks360Lib.Domain.Enums.Visibility.Invisible)
+                        continue;
+                    if (item.Overlapped)
+                        continue;
+                    
+                    compassViewDrawer.DrawItemIcon(canvas, item, (float)heading, (float)_offsetX, (float)_offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, canvas.Width);
                 }
             }
 
@@ -417,7 +421,7 @@ namespace Peaks360App.Views
             Invalidate();
         }
 
-        public PoiViewItem GetPoiByScreenLocation(float x, float y)
+        public PoiViewItem GetPoiByScreenLocation(float x, float y, bool displayOverlapped)
         {
             if (ShowPointsOfInterest && _poisToBeDisplayed != null)
             {
@@ -425,13 +429,35 @@ namespace Peaks360App.Views
                 
                 var heading = (_context.HeadingX ?? 0) + _context.HeadingCorrector;
 
-                foreach (var item in _poisToBeDisplayed)
+                if (displayOverlapped)
                 {
-                    if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
+                    PoiViewItem selectedItem = null;
+                    float selectedItemDistance = float.MaxValue;
+                    foreach (var item in _poisToBeDisplayed)
                     {
-                        if (compassViewDrawer.IsItemClicked(item, (float) heading, (float) _offsetX, (float) _offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, Width, Height, x, y))
+                        if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible)
                         {
-                            return item;
+                            var dist = compassViewDrawer.GetClickDistance(item, (float)heading, (float)_offsetX, (float)_offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, Width, Height, x, y);
+                            if (dist < selectedItemDistance)
+                            {
+                                selectedItemDistance = dist;
+                                selectedItem = item;
+                            }
+                        }
+                    }
+
+                    return selectedItemDistance < 30 ? selectedItem : null;
+                }
+                else
+                {
+                    foreach (var item in _poisToBeDisplayed)
+                    {
+                        if (item.Visibility != Peaks360Lib.Domain.Enums.Visibility.Invisible && !item.Overlapped)
+                        {
+                            if (compassViewDrawer.IsItemClicked(item, (float)heading, (float)_offsetX, (float)_offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, Width, Height, x, y))
+                            {
+                                return item;
+                            }
                         }
                     }
                 }
