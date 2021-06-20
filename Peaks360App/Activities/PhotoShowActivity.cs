@@ -107,7 +107,6 @@ namespace Peaks360App.Activities
             Context.ElevationProfileData = ElevationProfileData.Deserialize(photodata.JsonElevationProfileData);
         }
 
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             Log.WriteLine(LogPriority.Debug, TAG, "OnCreate - Enter");
@@ -249,71 +248,6 @@ namespace Peaks360App.Activities
             {
                 //TODO: error handling
             }
-        }
-
-        protected void ToggleEditing()
-        {
-            if (EditingOn)
-            {
-                SavePhotoData();
-                _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_edit);
-                EditingOn = false;
-            }
-            else
-            {
-                _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_save);
-                EditingOn = true;
-
-                TutorialDialog.ShowTutorial(this, TutorialPart.PhotoEditActivity,
-                    new TutorialPage[] {
-                        new TutorialPage() { imageResourceId = Resource.Drawable.tutorial_heading_correction, textResourceId = Resource.String.Tutorial_PhotoEdit_HeadingCorrection },
-                        new TutorialPage() { imageResourceId = Resource.Drawable.tutorial_horizont_correction, textResourceId = Resource.String.Tutorial_PhotoEdit_HorizontCorrection },
-                        new TutorialPage() { imageResourceId = Resource.Drawable.tutorial_viewangle_correction, textResourceId = Resource.String.Tutorial_PhotoEdit_ViewAngleCorrection },
-                    });
-            }
-        }
-
-        protected void EnableCropping()
-        {
-            CroppingOn = true;
-
-            Matrix inverseMatrix = new Matrix();
-            if (photoView.m_Matrix.Invert(inverseMatrix))
-            {
-                var cr = CroppingOn
-                    ? new RectF(
-                        GetScreenWidth() / 5, GetScreenHeight() / 5,
-                        GetScreenWidth() * 4 / 5, GetScreenHeight() * 4 / 5)
-                    : null;
-                var dst = new RectF();
-                inverseMatrix.MapRect(dst, cr);
-
-                photoView.CroppingRectangle = new Rect((int) (int) dst.Left, (int) dst.Top, (int) dst.Right, (int) dst.Bottom);
-
-                _confirmCloseButtons.Visibility = ViewStates.Visible;
-                _seekBars.Visibility = ViewStates.Gone;
-                _poiInfo.Visibility = ViewStates.Gone;
-                _activityControlBar.Visibility = ViewStates.Gone;
-                _mainActivityStatusBar.Visibility = ViewStates.Gone;
-
-                _compassView.ShowPointsOfInterest = false;
-                _compassView.ShowElevationProfile = false;
-            }
-        }
-
-        protected void DisableCropping()
-        {
-            CroppingOn = false;
-
-            photoView.CroppingRectangle = null;
-
-            _confirmCloseButtons.Visibility = ViewStates.Gone;
-            _seekBars.Visibility = ViewStates.Visible;
-            _activityControlBar.Visibility = ViewStates.Visible;
-            _mainActivityStatusBar.Visibility = ViewStates.Visible;
-
-            _compassView.ShowPointsOfInterest = true;
-            _compassView.ShowElevationProfile = Context.Settings.ShowElevationProfile;
         }
 
         public override void OnDataChanged(object sender, DataChangedEventArgs e)
@@ -470,37 +404,26 @@ namespace Peaks360App.Activities
                 case Resource.Id.menuButton:
                     OnBackPressed();
                     break;
-
                 case Resource.Id.buttonTiltCorrector:
-                    ToggleEditing();
+                    HandleEditAndSaveButtonClicked();
                     break;
-
                 case Resource.Id.buttonCropImage:
-                    EnableCropping();
+                    HandleCropButtonClicked();
                     break;
-
                 case Resource.Id.confirmButton:
-                    if (photoView.IsCroppedImageTooSmall())
-                    {
-                        PopupHelper.Toast(this, Resource.String.PhotoShow_ImageTooSmall);
-                        return;
-                    }
-                    SaveCopy();
-                    DisableCropping();
+                    HandleCropAcceptedButtonClicked();
                     break;
-
                 case Resource.Id.closeButton:
-                    DisableCropping();
+                    HandleCropRejectedButtonClicked();
                     break;
                 case Resource.Id.buttonDisplayOverlapped:
-                    HandleDisplayOverlapped();
+                    HandleDisplayOverlappedButtonClicked();
                     break;
                 case Resource.Id.buttonSaveToDevice:
-                    _handleButtonSaveClicked();
+                    HandleButtonSaveClicked();
                     break;
-
                 case Resource.Id.buttonShare:
-                    _handleButtonShareClicked();
+                    HandleButtonShareClicked();
                     break;
             }
         }
@@ -603,7 +526,22 @@ namespace Peaks360App.Activities
             Start();
         }
 
-        private void _handleButtonSaveClicked()
+        private void DisableCropping()
+        {
+            CroppingOn = false;
+
+            photoView.CroppingRectangle = null;
+
+            _confirmCloseButtons.Visibility = ViewStates.Gone;
+            _seekBars.Visibility = ViewStates.Visible;
+            _activityControlBar.Visibility = ViewStates.Visible;
+            _mainActivityStatusBar.Visibility = ViewStates.Visible;
+
+            _compassView.ShowPointsOfInterest = true;
+            _compassView.ShowElevationProfile = Context.Settings.ShowElevationProfile;
+        }
+
+        private void HandleButtonSaveClicked()
         {
             var bmp = Bitmap.CreateBitmap(dstBmp);
             Canvas canvas = new Canvas(bmp);
@@ -648,7 +586,7 @@ namespace Peaks360App.Activities
             }
         }
 
-        private void _handleButtonShareClicked()
+        private void HandleButtonShareClicked()
         {
             var bmp = Bitmap.CreateBitmap(dstBmp);
             Canvas canvas = new Canvas(bmp);
@@ -685,11 +623,77 @@ namespace Peaks360App.Activities
             });
         }
 
-        private void HandleDisplayOverlapped()
+        private void HandleDisplayOverlappedButtonClicked()
         {
             Context.ToggleDisplayOverlapped();
             _displayOverlappedButton.SetImageResource(Context.DisplayOverlapped ? Resource.Drawable.ic_eye_on : Resource.Drawable.ic_eye_off);
             _compassView.Invalidate();
+        }
+
+        private void HandleCropAcceptedButtonClicked()
+        {
+            if (photoView.IsCroppedImageTooSmall())
+            {
+                PopupHelper.Toast(this, Resource.String.PhotoShow_ImageTooSmall);
+                return;
+            }
+            SaveCopy();
+            DisableCropping();
+        }
+
+        private void HandleCropRejectedButtonClicked()
+        {
+            DisableCropping();
+        }
+
+        protected void HandleCropButtonClicked()
+        {
+            CroppingOn = true;
+
+            Matrix inverseMatrix = new Matrix();
+            if (photoView.m_Matrix.Invert(inverseMatrix))
+            {
+                var cr = CroppingOn
+                    ? new RectF(
+                        GetScreenWidth() / 5, GetScreenHeight() / 5,
+                        GetScreenWidth() * 4 / 5, GetScreenHeight() * 4 / 5)
+                    : null;
+                var dst = new RectF();
+                inverseMatrix.MapRect(dst, cr);
+
+                photoView.CroppingRectangle = new Rect((int)(int)dst.Left, (int)dst.Top, (int)dst.Right, (int)dst.Bottom);
+
+                _confirmCloseButtons.Visibility = ViewStates.Visible;
+                _seekBars.Visibility = ViewStates.Gone;
+                _poiInfo.Visibility = ViewStates.Gone;
+                _activityControlBar.Visibility = ViewStates.Gone;
+                _mainActivityStatusBar.Visibility = ViewStates.Gone;
+
+                _compassView.ShowPointsOfInterest = false;
+                _compassView.ShowElevationProfile = false;
+            }
+        }
+
+        protected void HandleEditAndSaveButtonClicked()
+        {
+            if (EditingOn)
+            {
+                SavePhotoData();
+                _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_edit);
+                EditingOn = false;
+            }
+            else
+            {
+                _tiltCorrectorButton.SetImageResource(Resource.Drawable.ic_save);
+                EditingOn = true;
+
+                TutorialDialog.ShowTutorial(this, TutorialPart.PhotoEditActivity,
+                    new TutorialPage[] {
+                        new TutorialPage() { imageResourceId = Resource.Drawable.tutorial_heading_correction, textResourceId = Resource.String.Tutorial_PhotoEdit_HeadingCorrection },
+                        new TutorialPage() { imageResourceId = Resource.Drawable.tutorial_horizont_correction, textResourceId = Resource.String.Tutorial_PhotoEdit_HorizontCorrection },
+                        new TutorialPage() { imageResourceId = Resource.Drawable.tutorial_viewangle_correction, textResourceId = Resource.String.Tutorial_PhotoEdit_ViewAngleCorrection },
+                    });
+            }
         }
 
         #region Required abstract methods
