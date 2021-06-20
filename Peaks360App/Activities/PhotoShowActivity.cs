@@ -493,9 +493,7 @@ namespace Peaks360App.Activities
                     DisableCropping();
                     break;
                 case Resource.Id.buttonDisplayOverlapped:
-                    Context.ToggleDisplayOverlapped();
-                    _displayOverlappedButton.SetImageResource(Context.DisplayOverlapped ? Resource.Drawable.ic_star_on : Resource.Drawable.ic_star_off);
-                    _compassView.Invalidate();
+                    HandleDisplayOverlapped();
                     break;
                 case Resource.Id.buttonSaveToDevice:
                     _handleButtonSaveClicked();
@@ -685,6 +683,13 @@ namespace Peaks360App.Activities
                 Title = Title,
                 File = new ShareFile(filename)
             });
+        }
+
+        private void HandleDisplayOverlapped()
+        {
+            Context.ToggleDisplayOverlapped();
+            _displayOverlappedButton.SetImageResource(Context.DisplayOverlapped ? Resource.Drawable.ic_eye_on : Resource.Drawable.ic_eye_off);
+            _compassView.Invalidate();
         }
 
         #region Required abstract methods
