@@ -260,7 +260,7 @@ namespace Peaks360App.Views
                 return;
             }
 
-            var heading = (_context.HeadingX ?? 0) + _context.HeadingCorrector;
+            var heading = Peaks360Lib.Utilities.GpsUtils.Normalize180((_context.HeadingX ?? 0) + _context.HeadingCorrector);
 
             compassViewDrawer.OnDrawBackground(canvas);
 
@@ -340,7 +340,7 @@ namespace Peaks360App.Views
         public void OnHeadingCorrection(float distanceX)
         {
             var viewAngleHorizontal = _context.ViewAngleHorizontal;
-            _context.HeadingCorrector = _context.HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX / _scale);
+            _context.HeadingCorrector = Peaks360Lib.Utilities.GpsUtils.Normalize180(_context.HeadingCorrector + CompassViewUtils.GetHeadingDifference(viewAngleHorizontal, Width, distanceX / _scale));
             Invalidate();
         }
 
