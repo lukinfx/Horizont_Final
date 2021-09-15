@@ -111,6 +111,10 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppVersionService.cs" />
+    <Compile Include="Services\ElevationProfileBinder.cs" />
+    <Compile Include="Services\ElevationProfileImpl.cs" />
+    <Compile Include="Services\ElevationProfileService.cs" />
+    <Compile Include="Services\ElevationProfileServiceConnection.cs" />
     <Compile Include="Services\GpsService.cs" />
     <Compile Include="Tasks\ElevationDataImport.cs" />
     <Compile Include="Tasks\ElevationCalculation.cs" />

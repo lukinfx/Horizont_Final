@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Android.App;
+using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Util;
@@ -15,6 +16,7 @@ using Peaks360Lib.Domain.ViewModel;
 using Peaks360Lib.Extensions;
 using Peaks360App.AppContext;
 using Peaks360App.Providers;
+using Peaks360App.Services;
 using Peaks360App.Utilities;
 using Peaks360App.Views;
 using Peaks360App.Views.ScaleImage;
@@ -49,6 +51,7 @@ namespace Peaks360App.Activities
 
         private Bitmap dstBmp;
 
+        private ElevationProfileServiceConnection _elevationProfileServiceConnection;
         private AppContextStaticData _context;
 
         protected override IAppContext Context
@@ -188,6 +191,27 @@ namespace Peaks360App.Activities
                         new TutorialPage() {imageResourceId = Resource.Drawable.tutorial_photoedit_tilt, textResourceId = Resource.String.Tutorial_PhotoShow_Tilt},
                     }, () => { _firstStart = false; });
             }
+
+            /*###Service
+            if (_elevationProfileServiceConnection == null)
+            {
+                _elevationProfileServiceConnection = new ElevationProfileServiceConnection(this);
+            }
+            DoBindService();*/
+        }
+
+        void DoBindService()
+        {
+            Intent serviceToStart = new Intent(this, typeof(ElevationProfileService));
+            BindService(serviceToStart, _elevationProfileServiceConnection, Bind.AutoCreate);
+            //timestampMessageTextView.Text = "";
+        }
+
+        void DoUnBindService()
+        {
+            UnbindService(_elevationProfileServiceConnection);
+            //restartServiceButton.Enabled = true;
+            //timestampMessageTextView.Text = "";
         }
 
         private void LoadImageAndProfile()
@@ -424,6 +448,8 @@ namespace Peaks360App.Activities
                     break;
                 case Resource.Id.buttonShare:
                     HandleButtonShareClicked();
+                    //###Service
+                    //_elevationProfileServiceConnection.AddElevationProfile(0, 10, 1);
                     break;
             }
         }
