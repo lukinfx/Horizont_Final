@@ -200,6 +200,24 @@ namespace Peaks360App.Activities
             DoBindService();*/
         }
 
+        public override void OnWindowFocusChanged(bool hasFocus)
+        {
+            base.OnWindowFocusChanged(hasFocus);
+
+            if (hasFocus)
+            {
+                var uiOptions =
+                    SystemUiFlags.HideNavigation |
+                    SystemUiFlags.LayoutHideNavigation |
+                    SystemUiFlags.LayoutFullscreen |
+                    SystemUiFlags.Fullscreen |
+                    SystemUiFlags.LayoutStable |
+                    SystemUiFlags.ImmersiveSticky;
+
+                Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
+            }
+        }
+
         void DoBindService()
         {
             Intent serviceToStart = new Intent(this, typeof(ElevationProfileService));

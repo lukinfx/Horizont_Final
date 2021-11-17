@@ -104,6 +104,24 @@ namespace Peaks360App
             // killed and restarted.
         }
 
+        public override void OnWindowFocusChanged(bool hasFocus)
+        {
+            base.OnWindowFocusChanged(hasFocus);
+
+            if (hasFocus)
+            {
+                var uiOptions =
+                    SystemUiFlags.HideNavigation |
+                    SystemUiFlags.LayoutHideNavigation |
+                    SystemUiFlags.LayoutFullscreen |
+                    SystemUiFlags.Fullscreen |
+                    SystemUiFlags.LayoutStable |
+                    SystemUiFlags.ImmersiveSticky;
+
+                Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
+            }
+        }
+
         private void InitializeUIElements()
         {
             _activityControlBar = FindViewById<LinearLayout>(Resource.Id.mainActivityControlBar);
