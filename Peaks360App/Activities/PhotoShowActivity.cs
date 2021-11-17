@@ -227,7 +227,8 @@ namespace Peaks360App.Activities
                         Context.ElevationProfileData = ElevationProfileData.Deserialize(_photodata.JsonElevationProfileData);
                         if (Context.ElevationProfileData != null)
                         {
-                            ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
+                            MainThread.BeginInvokeOnMainThread(() => 
+                                { ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context); });
                         }
                     }
                 }
