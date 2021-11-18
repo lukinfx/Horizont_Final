@@ -125,6 +125,7 @@ namespace Peaks360App
         private void InitializeUIElements()
         {
             _activityControlBar = FindViewById<LinearLayout>(Resource.Id.mainActivityControlBar);
+            _activityControlBar2 = FindViewById<LinearLayout>(Resource.Id.mainActivityControlBar2);
 
             _menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
             _menuButton.SetOnClickListener(this);

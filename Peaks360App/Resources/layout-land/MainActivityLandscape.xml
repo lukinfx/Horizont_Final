@@ -55,7 +55,13 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="bottom">
-          
+
+          <include
+            android:id="@+id/mainActivityPoiInfo"
+            layout="@layout/PoiInfoL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
             <LinearLayout
               android:orientation="horizontal"
               android:layout_width="match_parent"
@@ -65,6 +71,7 @@
                 <include
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
+                  android:layout_weight="1"
                   android:id="@+id/mainActivityControlBar"
                   layout="@layout/MainActivityControlBar"
                   android:gravity="bottom" />
@@ -73,12 +80,15 @@
                   layout="@layout/MainActivitySeekBars" 
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
+                  android:layout_weight="100"
                   android:gravity="bottom"/>
                 <include
-                  android:id="@+id/mainActivityPoiInfo"
-                  layout="@layout/PoiInfoL"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"/>
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/mainActivityControlBar2"
+                  layout="@layout/MainActivityControlBar2"
+                  android:layout_weight="1"
+                  android:gravity="bottom" />
 
             </LinearLayout>
 

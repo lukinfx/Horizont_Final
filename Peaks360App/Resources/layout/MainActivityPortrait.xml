@@ -61,12 +61,24 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"/>
 
-            <include
+            <LinearLayout
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:id="@+id/mainActivityControlBar"
-              layout="@layout/MainActivityControlBar"
-              android:gravity="bottom" />
+              android:gravity="bottom">
+              <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/mainActivityControlBar"
+                layout="@layout/MainActivityControlBar"/>
+              <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/mainActivityControlBar2"
+                layout="@layout/MainActivityControlBar2"/>
+            </LinearLayout>
+            
 
             <include
               android:id="@+id/mainActivityStatusBar"

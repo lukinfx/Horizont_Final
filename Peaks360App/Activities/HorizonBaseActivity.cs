@@ -39,6 +39,7 @@ namespace Peaks360App.Activities
 
         private DistanceSeekBar _distanceSeekBar;
         protected LinearLayout _activityControlBar;
+        protected LinearLayout _activityControlBar2;
 
         //for gesture detection
         private int m_PreviousMoveX;
@@ -443,12 +444,16 @@ namespace Peaks360App.Activities
         {
             _seekBars.Visibility = ViewStates.Gone;
             _activityControlBar.Visibility = ViewStates.Gone;
+            if (_activityControlBar2 != null)
+                _activityControlBar2.Visibility = ViewStates.Gone;
         }
 
         protected void ShowControls()
         {
             _seekBars.Visibility = ViewStates.Visible;
             _activityControlBar.Visibility = ViewStates.Visible;
+            if (_activityControlBar2 != null)
+                _activityControlBar2.Visibility = ViewStates.Visible;
         }
 
         protected void SetStatusLineText(string text, bool alert = false)

@@ -14,16 +14,7 @@
                 android:scaleType="fitCenter"
                 android:padding="0dp"
                 android:id="@+id/menuButton" />
-            <ImageButton
-                android:src="@drawable/ic_pause"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="bottom"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:padding="0dp"
-                android:id="@+id/buttonPause" />
-            
+
             <ImageButton
                 android:src="@drawable/ic_filter"
                 android:layout_width="40dp"
@@ -33,24 +24,15 @@
                 android:scaleType="fitCenter"
                 android:padding="0dp"
                 android:id="@+id/buttonCategorySelect" />
-            
-            <ImageButton
-              android:src="@drawable/ic_terrain"
-              android:layout_width="40dp"
-              android:layout_height="40dp"
-              android:layout_gravity="bottom"
-              android:adjustViewBounds="true"
-              android:scaleType="fitCenter"
-              android:padding="0dp"
-              android:id="@+id/buttonDisplayTerrain" />
 
             <ImageButton
-                android:src="@drawable/ic_refresh2"
+                android:src="@drawable/ic_terrain"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="bottom"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:padding="0dp"
-                android:id="@+id/buttonResetCorrector" />
+                android:id="@+id/buttonDisplayTerrain" />
+
 </LinearLayout>
