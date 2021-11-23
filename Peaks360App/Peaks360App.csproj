@@ -128,7 +128,8 @@
     <Compile Include="Utilities\ColorMatrixBuilder.cs" />
     <Compile Include="Utilities\DownloadedElevationDataAdapter.cs" />
     <Compile Include="Utilities\ExifDataReader.cs" />
-    <Compile Include="Utilities\HeadingStabilizator2.cs" />
+    <Compile Include="Utilities\HeadingStabilizator\SimpleHeadingStabilizator.cs" />
+    <Compile Include="Utilities\HeadingStabilizator\IHeadingStabilizator.cs" />
     <Compile Include="Utilities\ImageResizer.cs" />
     <Compile Include="Utilities\DownloadCountryAdapter.cs" />
     <Compile Include="Utilities\DownloadItemAdapter.cs" />
@@ -136,7 +137,7 @@
     <Compile Include="Utilities\GeoLocationExtension.cs" />
     <Compile Include="Utilities\ExceptionHelper.cs" />
     <Compile Include="Utilities\GpsUtils.cs" />
-    <Compile Include="Utilities\HeadingStabilizator.cs" />
+    <Compile Include="Utilities\HeadingStabilizator\QueuedHeadingStabilizator.cs" />
     <Compile Include="Utilities\ImageSaver.cs" />
     <Compile Include="Utilities\ImageSaverUtils.cs" />
     <Compile Include="Utilities\ColorFilters.cs" />

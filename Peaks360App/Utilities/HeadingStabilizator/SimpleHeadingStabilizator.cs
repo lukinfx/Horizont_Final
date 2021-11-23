@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Peaks360App.Utilities
+namespace Peaks360App.Utilities.HeadingStabilizator
 {
-    public class HeadingStabilizator2
+    public class SimpleHeadingStabilizator : IHeadingStabilizator
     {
-        private double smoothingFactor = 0.9;
+        private double smoothingFactor = 0.95;
         private double lastSin;
         private double lastCos;
 
