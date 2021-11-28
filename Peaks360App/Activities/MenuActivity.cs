@@ -121,9 +121,11 @@ namespace Peaks360App.Activities
                 case Resource.Id.aboutLinearLayout:
                     Intent aboutActivityIntent = new Intent(this, typeof(AboutActivity));
                     StartActivity(aboutActivityIntent);
-                    //Intent paymentActivityIntent = new Intent(this, typeof(PaymentActivity));
-                    //StartActivity(paymentActivityIntent);
                     break;
+                /*case Resource.Id.paymentLinearLayout:
+                    Intent paymentActivityIntent = new Intent(this, typeof(PaymentActivity));
+                    StartActivity(paymentActivityIntent);
+                    break;*/
             }
         }
 
