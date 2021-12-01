@@ -60,8 +60,7 @@ namespace Peaks360App
             base.OnCreate(bundle);
             AppContextLiveData.Instance.SetLocale(this);
             Xamarin.Essentials.Platform.Init(this, bundle);
-            MobileAds.Initialize(ApplicationContext);
-            //MobileAds.Initialize(ApplicationContext, "ca-app-pub-3111498881810771~8996939842");
+            MobileAds.Initialize(this);
 
             if (AppContextLiveData.Instance.IsPortrait)
             {

@@ -32,16 +32,6 @@
           layout="@layout/NotificationBar"
           android:gravity="center" />
 
-        <com.google.android.gms.ads.AdView
-          android:id="@+id/adView"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerHorizontal="true"
-          android:layout_alignParentBottom="true"
-          android:background="#D000C0"
-          ads:adSize="BANNER"
-          ads:adUnitId="ca-app-pub-3111498881810771/1290674361" />
-
         <LinearLayout
           android:orientation="vertical"
           android:layout_width="match_parent"
@@ -65,6 +55,16 @@
               layout="@layout/PoiInfoP"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"/>
+
+            <com.google.android.gms.ads.AdView
+              android:id="@+id/adView"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_centerHorizontal="true"
+              android:layout_alignParentBottom="true"
+              android:background="#00000000"
+              ads:adSize="BANNER"
+              ads:adUnitId="ca-app-pub-3111498881810771/1290674361" />
 
             <include
               android:id="@+id/mainActivitySeekBars"
