@@ -104,6 +104,7 @@ namespace Peaks360App.Providers
             _elevationProfileBeingGenerated = true;
             var lastProgressUpdate = System.Environment.TickCount;
 
+            //#Progress#
             var pd = new ProgressDialog(appContext);
             pd.SetMessage(appContext.Resources.GetText(Resource.String.Main_GeneratingElevationProfile));
             pd.SetCancelable(false);
@@ -113,7 +114,9 @@ namespace Peaks360App.Providers
 
             ec.OnFinishedAction = (result) =>
             {
-                pd.Hide();
+                //#Progress#
+                pd.Dismiss();
+                
                 if (!string.IsNullOrEmpty(result.ErrorMessage))
                 {
                     PopupHelper.ErrorDialog(appContext, result.ErrorMessage);
@@ -127,6 +130,7 @@ namespace Peaks360App.Providers
                 var tickCount = System.Environment.TickCount;
                 if (tickCount - lastProgressUpdate > 100)
                 {
+                    //#Progress#
                     MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
                     Thread.Sleep(50);
                     lastProgressUpdate = tickCount;

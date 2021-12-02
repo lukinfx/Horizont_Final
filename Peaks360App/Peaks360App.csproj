@@ -153,6 +153,8 @@
     <Compile Include="Utilities\ShowToastRunnable.cs" />
     <Compile Include="Utilities\SolarPositionUtils.cs" />
     <Compile Include="Utilities\WikiUtilities.cs" />
+    <Compile Include="Views\Advertisment\CompletitionCallback.cs" />
+    <Compile Include="Views\Advertisment\AdvertismentLoader.cs" />
     <Compile Include="Views\CameraView\AutoFitTextureView.cs" />
     <Compile Include="Views\CameraView\CameraFragment.cs" />
     <Compile Include="Views\CameraView\CameraSurfaceTextureListener.cs" />
@@ -170,6 +172,7 @@
     <Compile Include="Views\DistanceSeekBar.cs" />
     <Compile Include="Views\ErrorDialog.cs" />
     <Compile Include="Activities\PoiListActivity.cs" />
+    <Compile Include="Views\Advertisment\InterstitialCallback.cs" />
     <Compile Include="Views\ScaleImage\ScaleImageView.cs" />
     <Compile Include="Utilities\CountryAdapter.cs" />
   </ItemGroup>

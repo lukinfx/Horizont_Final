@@ -1,6 +1,10 @@
 <resources>
   <string name="app_name">Peaks360</string>
 
+  <string name="GoogleAdsId_MainActivity_Banner">ca-app-pub-3111498881810771/1290674361</string>
+  <string name="GoogleAdsId_MenuActivity_Interstitial">ca-app-pub-3111498881810771/3787020043</string>
+  <string name="GoogleAdsId_MainActivity_Interstitial">ca-app-pub-3111498881810771/4777039215</string>
+
   <!--Common-->
   <string name="Common_Yes">Yes</string>
   <string name="Common_No">No</string>

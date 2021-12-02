@@ -6,9 +6,6 @@ using Android.Runtime;
 using Android.Widget;
 using Android.Content;
 using Android.Gms.Ads;
-using Android.Support.V13.App;
-using Android.Support.Design.Widget;
-using Android.Support.V4.Content;
 using Android.Views;
 using Xamarin.Essentials;
 using Peaks360Lib.Domain.ViewModel;
@@ -17,8 +14,7 @@ using Peaks360App.Views.Camera;
 using Peaks360App.Activities;
 using Peaks360App.AppContext;
 using Peaks360App.Providers;
-using Peaks360App.Services;
-using Xamarin.Forms;
+using Peaks360App.Views.Advertisment;
 using Exception = System.Exception;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
 using ImageButton = Android.Widget.ImageButton;
@@ -41,8 +37,8 @@ namespace Peaks360App
         
         private CameraFragment _cameraFragment;
 
-        protected AdView mAdView;
-        //protected InterstitialAd mInterstitialAd;
+        private AdView _advertismentView;
+        private AdvertismentLoader _advertismentLoader;
 
         private static bool _firstStart = true;
 
@@ -93,7 +89,7 @@ namespace Peaks360App
         {
             base.OnPause();
             Context.Pause(); 
-            mAdView?.Pause();
+            _advertismentView?.Pause();
         }
 
         protected override void OnResume()
@@ -103,19 +99,19 @@ namespace Peaks360App
             Context.ReloadData();
             ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
             
-            mAdView?.Resume();
+            _advertismentView?.Resume();
             
-            /*if (!mInterstitialAd.IsLoaded)
+            if (!_advertismentLoader.IsLoaded())
             {
-                RequestNewInterstitial();
-            }*/
+                _advertismentLoader.RequestNew();
+            }
         }
 
         protected override void OnDestroy()
         {
-            if (mAdView != null)
+            if (_advertismentView != null)
             {
-                mAdView.Destroy();
+                _advertismentView.Destroy();
             }
             base.OnDestroy();
         }
@@ -149,18 +145,11 @@ namespace Peaks360App
 
         private void InitializeUIElements()
         {
-            mAdView = FindViewById<AdView>(Resource.Id.adView);
+            _advertismentView = FindViewById<AdView>(Resource.Id.adView);
             var adRequest = new AdRequest.Builder().Build();
-            mAdView.LoadAd(adRequest);
+            _advertismentView.LoadAd(adRequest);
 
-            /*mInterstitialAd = new InterstitialAd(this);
-            mInterstitialAd.AdUnitId = "ca-app-pub-3111498881810771/1290674361";
-
-            mInterstitialAd.AdListener = new AdListener(this);*/
-
-            //mLoadInterstitialButton = FindViewById<Button>(Resource.Id.load_interstitial_button);
-            //mLoadInterstitialButton.SetOnClickListener(new OnClickListener(this));
-
+            _advertismentLoader = new AdvertismentLoader(this, Resources.GetText(Resource.String.GoogleAdsId_MainActivity_Interstitial));
 
             _activityControlBar = FindViewById<LinearLayout>(Resource.Id.mainActivityControlBar);
             _activityControlBar2 = FindViewById<LinearLayout>(Resource.Id.mainActivityControlBar2);
@@ -182,12 +171,6 @@ namespace Peaks360App
 
             _mainLayout = FindViewById(Resource.Id.sample_main_layout);
         }
-
-        /*protected void RequestNewInterstitial()
-        {
-            var adRequest = new AdRequest.Builder().Build();
-            mInterstitialAd.LoadAd(adRequest);
-        }*/
 
         protected override void OnStart()
         {
@@ -289,16 +272,8 @@ namespace Peaks360App
         {
             Context.ToggleCompassPaused();
             UpdatePauseButton();
-            /*if (mInterstitialAd.IsLoaded)
-            {
-                mInterstitialAd.Show();
-            }
-            else
-            {
-                var adRequest = new AdRequest.Builder().Build();
-                mInterstitialAd.LoadAd(adRequest);
-            }*/
-
+            
+            _advertismentLoader.Show();
         }
 
         private void UpdatePauseButton()
