@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Device.Location;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,9 @@ namespace PaintSkyLine
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var lat = double.Parse(textBoxLat.Text.Replace(",","."));
-            var lon = double.Parse(textBoxLon.Text.Replace(",", "."));
-            var alt = double.Parse(textBoxAlt.Text);
+            var lat = double.Parse(textBoxLat.Text.Replace(",","."), CultureInfo.InvariantCulture);
+            var lon = double.Parse(textBoxLon.Text.Replace(",", "."), CultureInfo.InvariantCulture);
+            var alt = double.Parse(textBoxAlt.Text, CultureInfo.InvariantCulture);
             var visibility = int.Parse(textBoxVisibility.Text);
             var minDist = int.Parse(textBoxMinDist.Text);
             skyLine1.SetMyLocation(new GpsLocation(lon, lat, alt));
@@ -34,7 +35,7 @@ namespace PaintSkyLine
             skyLine1.CalculateProfile();
             var end = Environment.TickCount;
             labelTime.Text = (end - start).ToString();
-            labelCount.Text = skyLine1.GetElevationPointCount().ToString();
+            //labelCount.Text = skyLine1.GetElevationPointCount().ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
