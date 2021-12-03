@@ -101,7 +101,7 @@ namespace Peaks360App
             
             _advertismentView?.Resume();
             
-            if (!_advertismentLoader.IsLoaded())
+            if (_advertismentLoader != null && !_advertismentLoader.IsLoaded())
             {
                 _advertismentLoader.RequestNew();
             }
@@ -109,10 +109,7 @@ namespace Peaks360App
 
         protected override void OnDestroy()
         {
-            if (_advertismentView != null)
-            {
-                _advertismentView.Destroy();
-            }
+            _advertismentView?.Destroy();
             base.OnDestroy();
         }
 
@@ -145,11 +142,11 @@ namespace Peaks360App
 
         private void InitializeUIElements()
         {
-            _advertismentView = FindViewById<AdView>(Resource.Id.adView);
-            var adRequest = new AdRequest.Builder().Build();
-            _advertismentView.LoadAd(adRequest);
+            //_advertismentView = FindViewById<AdView>(Resource.Id.adView);
+            //AdRequest adRequest = new AdRequest.Builder().Build();
+            //_advertismentView.LoadAd(adRequest);
 
-            _advertismentLoader = new AdvertismentLoader(this, Resources.GetText(Resource.String.GoogleAdsId_MainActivity_Interstitial));
+            //_advertismentLoader = new AdvertismentLoader(this, Resources.GetText(Resource.String.GoogleAdsId_MainActivity_Interstitial));
 
             _activityControlBar = FindViewById<LinearLayout>(Resource.Id.mainActivityControlBar);
             _activityControlBar2 = FindViewById<LinearLayout>(Resource.Id.mainActivityControlBar2);
@@ -273,7 +270,7 @@ namespace Peaks360App
             Context.ToggleCompassPaused();
             UpdatePauseButton();
             
-            _advertismentLoader.Show();
+            _advertismentLoader?.Show();
         }
 
         private void UpdatePauseButton()
