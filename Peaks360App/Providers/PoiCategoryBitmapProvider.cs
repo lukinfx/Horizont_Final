@@ -49,7 +49,7 @@ namespace Peaks360App.Providers
 
         private Bitmap GetCategoryBitmap(Resources resources, PoiCategory category, Size size)
         {
-            var resourceId = Utilities.PoiCategoryHelper.GetImage(category);
+            var resourceId = Utilities.PoiCategoryHelper.GetImageInCircle(category);
             var img = BitmapFactory.DecodeResource(resources, resourceId);
             return Bitmap.CreateScaledBitmap(img, size.Width, size.Height, false);
         }

@@ -102,8 +102,8 @@ namespace Peaks360App.Activities
             var _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
             _selectCategoryButton.SetOnClickListener(this);
 
-            FindViewById<Button>(Resource.Id.buttonWiki).SetOnClickListener(this);
-            FindViewById<Button>(Resource.Id.buttonMap).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.buttonWiki).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.buttonMap).SetOnClickListener(this);
             FindViewById<ImageView>(Resource.Id.buttonFavourite).SetOnClickListener(this); 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.LayoutChange += OnLayoutChanged;
@@ -459,7 +459,7 @@ namespace Peaks360App.Activities
         protected void SetStatusLineText(string text, bool alert = false)
         {
             _textViewStatusLine.Text = text;
-            _textViewStatusLine.SetTextColor(alert ? Android.Graphics.Color.Yellow : Android.Graphics.Color.GreenYellow);
+            _textViewStatusLine.SetTextColor(alert ? Android.Graphics.Color.Red : Android.Graphics.Color.DarkGray);
         }
 
         public void OnElevationProfileChanged(object sender, ElevationProfileChangedEventArgs e)
@@ -491,9 +491,9 @@ namespace Peaks360App.Activities
                 FindViewById<TextView>(Resource.Id.textViewPoiDescription).Text = bearingText + " / " + verticalAngleText;
                 FindViewById<TextView>(Resource.Id.textViewPoiGpsLocation).Text = altitudeText + " / " + distanceText;
                 FindViewById<TextView>(Resource.Id.textViewPoiData).Text = $"{Resources.GetText(Resource.String.Common_GPSLocation)}: {item.GpsLocation.LocationAsString()}";
-                FindViewById<Button>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(item.Poi) ? ViewStates.Visible : ViewStates.Gone;
-                FindViewById<Button>(Resource.Id.buttonWiki).Text = Resources.GetText(Resource.String.Common_Details);
-                FindViewById<Button>(Resource.Id.buttonMap).Text = Resources.GetText(Resource.String.Common_Map);
+                FindViewById<ImageButton>(Resource.Id.buttonWiki).Visibility = WikiUtilities.HasWiki(item.Poi) ? ViewStates.Visible : ViewStates.Gone;
+                //FindViewById<ImageButton>(Resource.Id.buttonWiki).Text = Resources.GetText(Resource.String.Common_Details);
+                //FindViewById<ImageButton>(Resource.Id.buttonMap).Text = Resources.GetText(Resource.String.Common_Map);
 
                 var favouriteResId = item.Poi.Favorite ? Android.Resource.Drawable.ButtonStarBigOn : Android.Resource.Drawable.ButtonStarBigOff;
                 FindViewById<ImageView>(Resource.Id.buttonFavourite).SetImageResource(favouriteResId);

@@ -91,7 +91,32 @@ namespace Peaks360App.Utilities
                 case PoiCategory.Other:
                     return enabled ? Resource.Drawable.c_other : Resource.Drawable.c_other_grey;
                 case PoiCategory.Mountains:
-                    return enabled ? Resource.Drawable.c_mountain : Resource.Drawable.c_mountain_grey;
+                    return enabled ? Resource.Drawable.i_elevation : Resource.Drawable.i_elevation;
+                case PoiCategory.Lakes:
+                    return enabled ? Resource.Drawable.c_lake : Resource.Drawable.c_lake_grey;
+                case PoiCategory.ViewTowers:
+                    return enabled ? Resource.Drawable.c_viewtower : Resource.Drawable.c_viewtower_grey;
+                case PoiCategory.Transmitters:
+                    return enabled ? Resource.Drawable.c_transmitter : Resource.Drawable.c_transmitter_grey;
+                case PoiCategory.Churches:
+                    return enabled ? Resource.Drawable.c_church : Resource.Drawable.c_church_grey;
+                default:
+                    return Resource.Drawable.c_basic;
+            }
+        }
+
+        public static int GetImageInCircle(PoiCategory category, bool enabled = true)
+        {
+            switch (category)
+            {
+                case PoiCategory.Historic:
+                    return enabled ? Resource.Drawable.c_castle : Resource.Drawable.c_castle_grey;
+                case PoiCategory.Cities:
+                    return enabled ? Resource.Drawable.c_city : Resource.Drawable.c_city_grey;
+                case PoiCategory.Other:
+                    return enabled ? Resource.Drawable.c_other : Resource.Drawable.c_other_grey;
+                case PoiCategory.Mountains:
+                    return enabled ? Resource.Drawable.c_mountain: Resource.Drawable.c_mountain;
                 case PoiCategory.Lakes:
                     return enabled ? Resource.Drawable.c_lake : Resource.Drawable.c_lake_grey;
                 case PoiCategory.ViewTowers:

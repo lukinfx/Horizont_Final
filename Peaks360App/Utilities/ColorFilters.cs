@@ -38,9 +38,11 @@ namespace Peaks360App.Utilities
         private static ColorMatrixColorFilter _cfPoiCommon;
         private static ColorMatrixColorFilter _cfPoiImportant;
         private static ColorMatrixColorFilter _cfPoiFavourite;
+        private static ColorMatrixColorFilter _cfPoiGrayScale;
         private static Paint _pPoiCommon;
         private static Paint _pPoiImportant;
         private static Paint _pPoiFavourite;
+        private static Paint _pPoiGrayScale;
 
         private static ColorMatrixColorFilter GetImportantColorFilter()
         {
@@ -73,6 +75,28 @@ namespace Peaks360App.Utilities
             }
 
             return _cfPoiCommon;
+        }
+
+        private static ColorMatrixColorFilter GetGrayScaleFilter()
+        {
+            if (_cfPoiGrayScale == null)
+            {
+                var cm = new ColorMatrixBuilder().Saturation(0).Create();
+                _cfPoiGrayScale = new ColorMatrixColorFilter(cm);
+            }
+
+            return _cfPoiGrayScale;
+        }
+
+        public static Paint GetGrayScalePaint()
+        {
+            if (_pPoiGrayScale == null)
+            {
+                _pPoiGrayScale = new Paint();
+                _pPoiGrayScale.SetColorFilter(GetGrayScaleFilter());
+            }
+
+            return _pPoiGrayScale;
         }
 
         public static Paint GetPaintFilter(PoiViewItem item)

@@ -316,8 +316,8 @@ namespace Peaks360App.Views
                         continue;
                     if (!_context.DisplayOverlapped && item.Overlapped)
                         continue;
-                    
-                    compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, _context.DisplayOverlapped, canvas.Width);
+
+                    compassViewDrawer.DrawItem(canvas, item, (float) heading, (float) _offsetX, (float) _offsetY, _context.LeftTiltCorrector, _context.RightTiltCorrector, _context.DisplayOverlapped, canvas.Width, _context.SelectedPoi != null);
                 }
 
                 canvas.Rotate(-90, 0, 0);

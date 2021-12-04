@@ -17,7 +17,7 @@ namespace Peaks360App.Views.Compass
         {
         }
 
-        public override void OnDrawItem(Canvas canvas, PoiViewItem item, float startX, float endY, bool displayOverlapped)
+        public override void OnDrawItem(Canvas canvas, PoiViewItem item, float startX, float endY, bool displayOverlapped, bool highLightSelected)
         {
             //   x1   x2
             //    /--\  yIconStart
@@ -40,7 +40,6 @@ namespace Peaks360App.Views.Compass
 
             if (!item.Overlapped)
             {
-
                 float x1 = startX - ToPixels(35);
                 float x2 = startX + ToPixels(35);
 
@@ -50,7 +49,7 @@ namespace Peaks360App.Views.Compass
                 path.LineTo(yTipEnd, -startX);
                 path.LineTo(yTipBend, -x2);
                 path.LineTo(yIconMiddle, -x2);
-                canvas.DrawPath(path, GetRectPaint(item));
+                canvas.DrawPath(path, GetRectPaint(item, highLightSelected));
 
                 var dyTextSpace = ToPixels(10);
                 var dyImportantIcon = ToPixels(30);
@@ -105,12 +104,27 @@ namespace Peaks360App.Views.Compass
 
         public override void OnDrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY)
         {
-            int circleSize = 42;
-            canvas.DrawCircle(startX, ToPixels(circleSize), ToPixels(circleSize), paintBlack);
-            canvas.DrawCircle(startX, ToPixels(circleSize), ToPixels(circleSize - 3), item.Selected ? paintWhite : paintGray);
+            {
+                int circleSize = 42;
+                canvas.DrawCircle(startX, ToPixels(circleSize), ToPixels(circleSize), paintBlack);
+                canvas.DrawCircle(startX, ToPixels(circleSize), ToPixels(circleSize - 3), item.Selected ? paintWhite : paintGray);
+                var bmp = poiCategoryBitmapProvider.GetCategoryIcon(item.Poi.Category);
+                canvas.DrawBitmap(bmp, startX - ToPixels(33), ToPixels(circleSize - 33), ColorFilterPoiItem.GetGrayScalePaint());
+            }
 
-            var bmp = poiCategoryBitmapProvider.GetCategoryIcon(item.Poi.Category);
-            canvas.DrawBitmap(bmp, startX - ToPixels(33), ToPixels(circleSize - 33), null/*ColorFilterPoiItem.GetPaintFilter(item)*/);
+            //{
+            //    int circleSize = 42;
+            //    canvas.DrawCircle(startX, ToPixels(circleSize), ToPixels(circleSize), paintBlack);
+            //    canvas.DrawCircle(startX, ToPixels(circleSize), ToPixels(circleSize - 3), item.Selected ? paintWhite : paintGray);
+            //    canvas.DrawCircle(startX, ToPixels(circleSize), ToPixels(circleSize - 8), paintBlack);
+            //    canvas.DrawCircle(startX, ToPixels(circleSize), ToPixels(circleSize - 14), GetRectPaint(item, false));
+
+            //    var bmp = poiCategoryBitmapProvider.GetCategoryIcon(item.Poi.Category);
+
+            //    var bmpStartX = (int) (startX - ToPixels(20));
+            //    var bmpStartY = (int) (ToPixels(circleSize - 20));
+            //    canvas.DrawBitmap(bmp, null, new Rect(bmpStartX, bmpStartY, bmpStartX + (int) ToPixels(40), bmpStartY + (int) ToPixels(40)), null /*ColorFilterPoiItem.GetPaintFilter(item)*/);
+            //}
         }
 
         public override double GetMinItemAngleDiff(int canvasWidth)

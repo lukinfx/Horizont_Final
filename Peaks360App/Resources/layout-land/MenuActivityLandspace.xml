@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_landscape">
+    android:background="#ffffff">
   
   <LinearLayout
       android:orientation="vertical"
@@ -16,7 +16,7 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="50dp"
         android:id="@+id/imageView1" />
     <include
         android:id="@+id/menuActivityStatusBar"

@@ -30,14 +30,14 @@ namespace Peaks360App.Views
             Typeface normal = Typeface.Create("Arial", TypefaceStyle.Normal);
 
             _paintText = new Paint();
-            _paintText.SetARGB(255, 200, 255, 0);
+            _paintText.SetARGB(255, 255, 255, 255);
             _paintText.TextSize = 32;
             _paintText.TextAlign = Paint.Align.Center;
             _paintText.AntiAlias = true;
             _paintText.SetTypeface(normal);
 
             _paintGridLines = new Paint();
-            _paintGridLines.SetARGB(150, 200, 255, 0);
+            _paintGridLines.SetARGB(150, 200, 200, 200);
             _paintGridLines.SetStyle(Paint.Style.Stroke);
             _paintGridLines.StrokeWidth = 4;
 
@@ -64,7 +64,7 @@ namespace Peaks360App.Views
             var yTotal = Height - PaddingTop - PaddingBottom;
             var yMiddle = this.Height / 2f;
 
-            _paintCurrentLine.SetARGB(255, 200, 255, 0); 
+            _paintCurrentLine.SetARGB(255, 255, 255, 255); 
             canvas.DrawLine(xStart, yMiddle, xCurrent, yMiddle, _paintCurrentLine);
             _paintCurrentLine.SetARGB(120, 180, 180, 180);
             canvas.DrawLine(xCurrent, yMiddle, xEnd, yMiddle, _paintCurrentLine);

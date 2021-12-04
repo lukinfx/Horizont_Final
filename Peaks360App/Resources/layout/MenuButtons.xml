@@ -12,13 +12,13 @@
       android:layout_weight="1"
       android:gravity="center_vertical"
       android:padding="5dp"
-      android:background="@drawable/bg_activity"
+      android:background="#ffffff"
       android:id="@+id/cameraLinearLayout">
         <ImageButton
           android:src="@drawable/ic_camera"
           android:layout_columnWeight="1"
-          android:layout_width="50dp"
-          android:layout_height="50dp"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
           android:scaleType="fitCenter"
           android:background="#00000000"
           android:id="@+id/buttonHome" />
@@ -39,13 +39,13 @@
       android:layout_weight="1"
       android:padding="5dp"
       android:gravity="center_vertical"
-      android:background="@drawable/bg_activity"
+      android:background="#ffffff"
       android:id="@+id/listOfPoisLinearLayout">
         <ImageButton
           android:src="@drawable/ic_notesalt"
           android:layout_columnWeight="1"
-          android:layout_width="50dp"
-          android:layout_height="50dp"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
           android:scaleType="fitCenter"
           android:background="#00000000"
           android:id="@+id/buttonList" />
@@ -66,12 +66,12 @@
       android:layout_weight="1"
       android:gravity="center_vertical"
       android:padding="5dp"
-      android:background="@drawable/bg_activity"
+      android:background="#ffffff"
       android:id="@+id/photoGalleryLinearLayout">
         <ImageButton
           android:src="@drawable/ic_gallery"
-          android:layout_width="50dp"
-          android:layout_height="50dp"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
           android:scaleType="fitCenter"
           android:background="#00000000"
           android:id="@+id/buttonPhotos" />
@@ -92,12 +92,12 @@
       android:layout_weight="1"
       android:gravity="center_vertical"
       android:padding="5dp"
-      android:background="@drawable/bg_activity"
+      android:background="#ffffff"
       android:id="@+id/downloadDataLinearLayout">
         <ImageButton
           android:src="@drawable/ic_download"
-          android:layout_width="50dp"
-          android:layout_height="50dp"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
           android:scaleType="fitCenter"
           android:background="#00000000"
           android:id="@+id/buttonDownload" />
@@ -118,12 +118,12 @@
       android:layout_weight="1"
       android:gravity="center_vertical"
       android:padding="5dp"
-      android:background="@drawable/bg_activity"
+      android:background="#ffffff"
       android:id="@+id/settingsLinearLayout">
         <ImageButton
           android:src="@drawable/ic_settingsalt2"
-          android:layout_width="50dp"
-          android:layout_height="50dp"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
           android:scaleType="fitCenter"
           android:background="#00000000"
           android:id="@+id/buttonSettings" />
@@ -144,13 +144,13 @@
       android:layout_weight="1"
       android:padding="5dp"
       android:gravity="center_vertical"
-      android:background="@drawable/bg_activity"
+      android:background="#ffffff"
       android:id="@+id/aboutLinearLayout">
         <ImageButton
           android:src="@drawable/ic_systeminfo"
           android:layout_columnWeight="1"
-          android:layout_width="50dp"
-          android:layout_height="50dp"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
           android:scaleType="fitCenter"
           android:background="#00000000"
           android:id="@+id/buttonAbout" />

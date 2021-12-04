@@ -104,7 +104,7 @@
       android:layout_height="wrap_content"
       android:gravity="right">
 
-      <Button
+      <ImageButton
         android:id="@+id/buttonWiki"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
         android:layout_alignParentBottom="true"
         android:drawableLeft="@android:drawable/ic_menu_info_details" />
 
-      <Button
+      <ImageButton
         android:id="@+id/buttonMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

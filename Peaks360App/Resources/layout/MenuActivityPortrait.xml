@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_portrait">
+    android:background="#ffffff">
   
   <ImageView
       android:src="@drawable/logo_horizon5"
@@ -11,7 +11,7 @@
       android:layout_width="match_parent"
       android:layout_height="200dp"
       android:minHeight="400dp"
-      android:padding="10dp"
+      android:padding="60dp"
       android:id="@+id/imageView1" />
   <include
       layout="@layout/MenuButtons"

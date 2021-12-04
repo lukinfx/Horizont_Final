@@ -38,11 +38,6 @@ namespace Peaks360App.Views.Compass
 
             this.poiCategoryBitmapProvider = poiCategoryBitmapProvider;
 
-            paintRect = new Paint();
-            paintRect.SetARGB(150, 0, 0, 0);
-            paintRect.SetStyle(Paint.Style.FillAndStroke);
-            paintRect.StrokeWidth = 4;
-
             paintTapArea = new Paint();
             paintTapArea.SetARGB(100, 0, 0, 0);
             paintTapArea.SetStyle(Paint.Style.Fill);
@@ -51,13 +46,20 @@ namespace Peaks360App.Views.Compass
             paintTapFavourite.SetARGB(150, 255, 195, 0);
             paintTapFavourite.SetStyle(Paint.Style.Fill);
 
+            //pozadi bodu
+            paintRect = new Paint();
+            paintRect.SetARGB(100, 200, 200, 200);
+            paintRect.SetStyle(Paint.Style.FillAndStroke);
+            paintRect.StrokeWidth = 4;
+
             paintRectSelectedItem = new Paint();
-            paintRectSelectedItem.SetARGB(150, 255, 255, 255);
+            paintRectSelectedItem.SetARGB(255, 255, 255, 255);
             paintRectSelectedItem.SetStyle(Paint.Style.FillAndStroke);
             paintRectSelectedItem.StrokeWidth = 4;
 
+            //text bodu
             textpaint = new Paint();
-            textpaint.SetARGB(255, 200, 255, 0);
+            textpaint.SetARGB(255, 0, 0, 0);
             textpaint.TextSize = 36;
             textpaint.AntiAlias = true;
             textpaint.SetTypeface(normal);
@@ -104,8 +106,11 @@ namespace Peaks360App.Views.Compass
             return textpaint;
         }
 
-        protected Paint GetRectPaint(PoiViewItem item)
+        protected Paint GetRectPaint(PoiViewItem item, bool highLightSelected)
         {
+            if (!highLightSelected)
+                return paintRectSelectedItem;
+
             if (item.Selected)
                 return paintRectSelectedItem;
 
@@ -156,13 +161,8 @@ namespace Peaks360App.Views.Compass
         /// </summary>
         /// <param name="canvas"></param>
         public virtual void OnDrawBackground(Android.Graphics.Canvas canvas) { }
-        /// <summary>
-        /// Draws item into given canvas
-        /// </summary>
-        /// <param name="canvas"></param>
-        /// <param name="item"></param>
-        /// <param name="heading"></param>
-        public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY, bool displayOverlapped) { }
+
+        public virtual void OnDrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY, bool displayOverlapped, bool highLightSelected) { }
 
         public virtual void OnDrawItemIcon(Android.Graphics.Canvas canvas, PoiViewItem item, float startX, float endY) { }
 
@@ -180,12 +180,12 @@ namespace Peaks360App.Views.Compass
             return (startX, endY);
         }
 
-        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, bool displayOverlapped, double canvasWidth)
+        public void DrawItem(Android.Graphics.Canvas canvas, PoiViewItem item, float heading, float offsetX, float offsetY, double leftTiltCorrector, double rightTiltCorrector, bool displayOverlapped, double canvasWidth, bool highLightSelected)
         {
             var (x, y) = GetXY(item, heading, offsetX, offsetY, leftTiltCorrector, rightTiltCorrector, canvas.Width, canvas.Height);
             if (x != null && y != null)
             {
-                OnDrawItem(canvas, item, x.Value, y.Value, displayOverlapped);
+                OnDrawItem(canvas, item, x.Value, y.Value, displayOverlapped, highLightSelected);
             }
         }
 
