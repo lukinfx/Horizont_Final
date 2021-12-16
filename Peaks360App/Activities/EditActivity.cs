@@ -39,7 +39,6 @@ namespace Peaks360App.Activities
         private Button _buttonOpenWiki;
         private Button _buttonTeleport;
         private ImageView _buttonFavourite;
-        private ImageView _thumbnail;
         private Poi _item = new Poi();
         private long _id;
         private bool _isDirty = false;
@@ -88,8 +87,6 @@ namespace Peaks360App.Activities
 
             _spinnerCategory.Adapter = new CategoryAdapter(this);
 
-            _thumbnail = FindViewById<ImageView>(Resource.Id.Thumbnail);
-            
             if (_id != -1)
             {
                 _item = Context.Database.GetItem(_id);
@@ -103,8 +100,6 @@ namespace Peaks360App.Activities
                 _editTextAltitude.Text = $"{_item.Altitude:F0}";
                 _editTextLongitude.Text = $"{_item.Longitude:F7}".Replace(",", ".");
                 _editTextLatitude.Text = $"{_item.Latitude:F7}".Replace(",", ".");
-
-                _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_item.Category));
             }
             else
             {
@@ -224,7 +219,6 @@ namespace Peaks360App.Activities
         private void OnCategorySelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             _category = (_spinnerCategory.Adapter as CategoryAdapter)[e.Position] ?? PoiCategory.Other;
-            _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(_category));
         }
 
         private void OnCountrySelected(object sender, AdapterView.ItemSelectedEventArgs e)

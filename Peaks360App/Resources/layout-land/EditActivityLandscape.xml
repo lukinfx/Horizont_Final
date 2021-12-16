@@ -6,31 +6,12 @@
     <include
       android:id="@+id/toolbar"
       layout="@layout/TitleToolbar" />
-    <AbsoluteLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:padding="10dp"
-      android:background="@drawable/background_landscape">
-        <LinearLayout
-          android:orientation="horizontal"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:paddingLeft="35dp">
-
-            <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:paddingTop="10dp"
-              android:paddingBottom="0dp"
-              android:paddingRight="30dp"
-              android:paddingLeft="50dp"
-              android:background="@drawable/bg_activity_light">
 
               <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:paddingHorizontal="10dp"
                 android:gravity="center_horizontal">
 
                 <TextView
@@ -50,9 +31,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10px"
                     android:singleLine="false"
-                    android:background="@drawable/bg_edittext"
                     android:id="@+id/editTextName" />
                   <Space
                     android:layout_width="5dp"
@@ -104,8 +83,6 @@
                               android:layout_height="wrap_content"
                               android:inputType="numberDecimal"
                               android:digits="0123456789."
-                              android:padding="10px"
-                              android:background="@drawable/bg_edittext"
                               android:id="@+id/editTextLatitude" />
                             <TextView
                               android:paddingTop="10dp"
@@ -122,8 +99,6 @@
                               android:layout_height="wrap_content"
                               android:inputType="numberDecimal"
                               android:digits="0123456789."
-                              android:padding="10px"
-                              android:background="@drawable/bg_edittext"
                               android:id="@+id/editTextLongitude" />
                             <TextView
                               android:paddingTop="10dp"
@@ -140,8 +115,6 @@
                               android:layout_height="wrap_content"
                               android:inputType="numberDecimal"
                               android:digits="0123456789."
-                              android:padding="10px"
-                              android:background="@drawable/bg_edittext"
                               android:id="@+id/editTextAltitude" />
                         </GridLayout>
                     </LinearLayout>
@@ -166,7 +139,6 @@
                           android:layout_height="wrap_content"
                           android:spinnerMode="dropdown"
                           android:entries="@array/CategoryItemsArray"
-                          android:background="@drawable/bg_edittext"
                           android:id="@+id/spinnerCategory" />
 
                         <TextView
@@ -181,7 +153,6 @@
                           android:layout_height="wrap_content"
                           android:spinnerMode="dropdown"
                           android:entries="@array/CategoryItemsArray"
-                          android:background="@drawable/bg_edittext"
                           android:id="@+id/spinnerCountry" />
 
 
@@ -237,14 +208,4 @@
               </LinearLayout>
 
 
-          </LinearLayout>
-
-
-        </LinearLayout>
-        <ImageView
-          android:id="@+id/Thumbnail"
-          android:layout_width="70dp"
-          android:layout_height="match_parent"
-          android:src="@drawable/c_basic"/>
-    </AbsoluteLayout>
 </LinearLayout>
