@@ -59,7 +59,7 @@ namespace Peaks360App.Utilities
             else
             {
                 view.FindViewById<TextView>(Resource.Id.PoiItemCategoryAsText).Text = context.Resources.GetText(Resource.String.Common_AllCategories);
-                view.FindViewById<ImageView>(Resource.Id.PoiItemCategoryAsIcon).SetImageResource(Resource.Drawable.c_basic);
+                view.FindViewById<ImageView>(Resource.Id.PoiItemCategoryAsIcon).SetImageResource(Resource.Drawable.c_all);
             }
 
             return view;

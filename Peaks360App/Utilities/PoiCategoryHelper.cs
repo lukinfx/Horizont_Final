@@ -91,7 +91,7 @@ namespace Peaks360App.Utilities
                 case PoiCategory.Other:
                     return enabled ? Resource.Drawable.c_other : Resource.Drawable.c_other_grey;
                 case PoiCategory.Mountains:
-                    return enabled ? Resource.Drawable.i_elevation : Resource.Drawable.i_elevation;
+                    return enabled ? Resource.Drawable.c_mountain : Resource.Drawable.c_mountain_grey;
                 case PoiCategory.Lakes:
                     return enabled ? Resource.Drawable.c_lake : Resource.Drawable.c_lake_grey;
                 case PoiCategory.ViewTowers:

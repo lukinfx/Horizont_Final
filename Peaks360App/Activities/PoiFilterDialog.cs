@@ -2,6 +2,8 @@
 using System.Linq;
 using Android.App;
 using Android.Content;
+using Android.Content.Res;
+using Android.Graphics;
 using Android.OS;
 using Android.Widget;
 using Peaks360Lib.Domain.Enums;
@@ -44,7 +46,8 @@ namespace Peaks360App.Activities
             imageButton.SetOnClickListener(this);
             bool enabled = _context.Settings.Categories.Contains(category);
 
-            imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, enabled));
+            //imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, enabled));
+            imageButton.SetBackgroundColor(Context.Resources.GetColor(enabled ? Resource.Color.SelectionEnabled : Resource.Color.SelectionDisabled));
 
             _imageButtonCategoryFilter.Add(category, imageButton);
         }
@@ -111,12 +114,14 @@ namespace Peaks360App.Activities
             if (_context.Settings.Categories.Contains(poiCategory))
             {
                 _context.Settings.Categories.Remove(poiCategory);
-                imageButton.SetImageResource(PoiCategoryHelper.GetImage(poiCategory, false));
+                //imageButton.SetImageResource(PoiCategoryHelper.GetImage(poiCategory, false));
+                imageButton.SetBackgroundColor(Context.Resources.GetColor(Resource.Color.SelectionDisabled));
             }
             else
             {
                 _context.Settings.Categories.Add(poiCategory);
-                imageButton.SetImageResource(PoiCategoryHelper.GetImage(poiCategory, true));
+                //imageButton.SetImageResource(PoiCategoryHelper.GetImage(poiCategory, true));
+                imageButton.SetBackgroundColor(Context.Resources.GetColor(Resource.Color.SelectionEnabled));
             }
 
             _context.Settings.NotifySettingsChanged(ChangedData.PoiFilterSettings);
@@ -134,7 +139,8 @@ namespace Peaks360App.Activities
                 {
                     var imageButton = _imageButtonCategoryFilter[category];
                     _context.Settings.Categories.Add(category);
-                    imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, true));
+                    //imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, true));
+                    imageButton.SetBackgroundColor(Context.Resources.GetColor(Resource.Color.SelectionEnabled));
                 }
             }
             _context.Settings.NotifySettingsChanged(ChangedData.PoiFilterSettings);
@@ -147,7 +153,8 @@ namespace Peaks360App.Activities
                 if (supportedCategories.Contains(category))
                 {
                     var imageButton = _imageButtonCategoryFilter[category];
-                    imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, false));
+                    //imageButton.SetImageResource(PoiCategoryHelper.GetImage(category, false));
+                    imageButton.SetBackgroundColor(Context.Resources.GetColor(Resource.Color.SelectionDisabled));
                 }
             }
 
