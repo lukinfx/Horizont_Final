@@ -1,295 +1,307 @@
-
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent">
-
-    <include
-      android:id="@+id/toolbar"
-      layout="@layout/TitleToolbar" />
-
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      android:padding="10dp"
-      android:background="@drawable/background_portrait">
-
-        <LinearLayout
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity"
-          android:id="@+id/linearLayoutSelectedPoint">
-
-            <EditText
-              android:textAppearance="?android:attr/textAppearanceSmall"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:inputType="textMultiLine"
-              android:padding="15px"
-              android:background="@drawable/bg_edittext"
-              android:id="@+id/editTextTag" />
-        </LinearLayout>
-
-        <LinearLayout
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
-            <ImageView
-              android:id="@+id/Thumbnail"
-              android:paddingTop="10dp"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:layout_weight="1"
-              android:scaleType="fitCenter"
-              android:src="@drawable/tutorial_compass_calibration"/>
-
-            <LinearLayout
-              android:orientation="horizontal"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:paddingTop="10dp">
-                <TextView
-                  android:text="@string/PhotoParameters_CameraViewAngles"
-                  android:textAppearance="?android:attr/textAppearanceMedium"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"/>
-                <ImageButton
-                  android:src="@android:drawable/ic_menu_info_details"
-                  android:layout_width="40dp"
-                  android:layout_height="25dp"
-                  android:scaleType="fitCenter"
-                  android:background="@android:color/transparent"
-                  android:id="@+id/buttonViewAnglesInfo" />
-            </LinearLayout>
-
-            <GridLayout
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:rowCount="2"
-              android:columnCount="2">
-                <TextView
-                  android:paddingTop="5dp"
-                  android:layout_columnWeight="2"
-                  android:text="@string/Common_HorizontalViewAngle"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/altitudeTitle" />
-                <EditText
-                  android:layout_columnWeight="8"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:inputType="numberDecimal"
-                  android:digits="0123456789."
-                  android:padding="5px"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/editTextViewAngleHorizontal" />
-                <TextView
-                  android:paddingTop="5dp"
-                  android:layout_columnWeight="2"
-                  android:text="@string/Common_VerticalViewAngle"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/altitudeTitle" />
-                <EditText
-                  android:layout_columnWeight="8"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:inputType="numberDecimal"
-                  android:digits="0123456789."
-                  android:padding="5px"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/editTextViewAngleVertical" />
-            </GridLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
-
-            <LinearLayout
-              android:orientation="horizontal"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
-                <TextView
-                  android:text="@string/PhotoParameters_CameraLocation"
-                  android:textAppearance="?android:attr/textAppearanceMedium"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/textView2" />
-                <ImageButton
-                  android:src="@android:drawable/ic_menu_info_details"
-                  android:layout_width="40dp"
-                  android:layout_height="25dp"
-                  android:scaleType="fitCenter"
-                  android:background="@android:color/transparent"
-                  android:id="@+id/buttonCameraLocationInfo" />
-            </LinearLayout>
-
-            <GridLayout
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:rowCount="3"
-              android:columnCount="2">
-                <TextView
-                  android:paddingTop="5dp"
-                  android:layout_columnWeight="2"
-                  android:text="@string/Common_Latitude"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/latitudeTitle" />
-                <EditText
-                  android:layout_columnWeight="8"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:inputType="numberDecimal"
-                  android:digits="0123456789.+-"
-                  android:padding="5px"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/editTextLatitude" />
-                <TextView
-                  android:paddingTop="5dp"
-                  android:layout_columnWeight="2"
-                  android:text="@string/Common_Longitude"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/longitudeTitle" />
-                <EditText
-                  android:layout_columnWeight="8"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:inputType="numberDecimal"
-                  android:digits="0123456789.+-"
-                  android:padding="5px"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/editTextLongitude" />
-                <TextView
-                  android:paddingTop="5dp"
-                  android:layout_columnWeight="2"
-                  android:text="@string/Common_Altitude"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/altitudeTitle" />
-                <EditText
-                  android:layout_columnWeight="8"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:inputType="numberDecimal"
-                  android:digits="0123456789."
-                  android:padding="5px"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/editTextAltitude" />
-            </GridLayout>
-
-          <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right">
-
-            <Button
-              android:id="@+id/buttonMap"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:scaleX="0.9"
-              android:scaleY="0.9"
-              android:paddingHorizontal="10dp"
-              android:text="@string/Common_Map"
-              android:background="@android:color/transparent"
-              android:drawableLeft="@android:drawable/ic_menu_mapmode" />
-
-            <Button
-              android:id="@+id/buttonLocation"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:scaleX="0.9"
-              android:scaleY="0.9"
-              android:text="@string/Common_Choose"
-              android:background="@android:color/transparent"
-              android:drawableLeft="@android:drawable/ic_menu_mylocation" />
-
-          </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
-           <LinearLayout
-              android:orientation="horizontal"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
-              <TextView
-                android:text="@string/PhotoParameters_ViewDirection"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+              android:layout_height="match_parent">
+    <include android:id="@+id/toolbar"
+             layout="@layout/TitleToolbar"/>
+    <ScrollView android:minWidth="25px"
+                android:minHeight="25px"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-              <ImageButton
-                android:src="@android:drawable/ic_menu_info_details"
-                android:layout_width="40dp"
-                android:layout_height="25dp"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:id="@+id/buttonViewDirectionInfo" />
+                android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+            <LinearLayout android:orientation="horizontal"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:gravity="center">
+                <ImageView android:id="@+id/Thumbnail"
+                           android:layout_width="match_parent"
+                           android:layout_height="250dp"
+                           android:scaleType="centerCrop"
+                           android:src="@drawable/tutorial_compass_calibration"/>
             </LinearLayout>
-
-            <GridLayout
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:rowCount="1"
-              android:columnCount="2">
-                <TextView
-                  android:layout_columnWeight="2"
-                  android:paddingTop="5dp"
-                  android:text="@string/Common_Heading"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/altitudeTitle" />
-                <EditText
-                  android:layout_columnWeight="8"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:inputType="numberDecimal"
-                  android:digits="0123456789.+-"
-                  android:padding="5px"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/editTextHeading" />
-            </GridLayout>
-
-
-            <Button
-              android:id="@+id/buttonBearing"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:scaleX="0.9"
-              android:scaleY="0.9"
-              android:layout_gravity="right"
-              android:text="@string/Common_Choose"
-              android:background="@android:color/transparent"
-              android:drawableLeft="@android:drawable/ic_menu_compass" />
+            <LinearLayout android:orientation="vertical"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:background="@drawable/bg_activity_light"
+                          android:id="@+id/linearLayoutSelectedPoint">
+                <EditText android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:background="@drawable/bg_activity_light"
+                          android:layout_width="match_parent"
+                          android:layout_height="60dp"
+                          android:inputType="textMultiLine"
+                          android:id="@+id/editTextTag"/>
+            </LinearLayout>
+            <androidx.cardview.widget.CardView android:minWidth="25px"
+                                               android:minHeight="25px"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:id="@+id/cardViewAngles">
+                <LinearLayout android:orientation="vertical"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content">
+                    <View android:layout_width="match_parent"
+                          android:layout_height="1dp"
+                          android:background="#606060"/>
+                    <LinearLayout android:orientation="horizontal"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:padding="10dp">
+                        <TextView android:text="@string/PhotoParameters_CameraViewAngles"
+                                  android:textAppearance="?android:attr/textAppearanceMedium"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="0"/>
+                        <ImageButton android:src="@android:drawable/ic_menu_info_details"
+                                     android:layout_width="40dp"
+                                     android:layout_height="25dp"
+                                     android:layout_weight="0"
+                                     android:scaleType="fitCenter"
+                                     android:background="@android:color/transparent"
+                                     android:id="@+id/buttonViewAnglesInfo"/>
+                        <Space android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:layout_weight="100"/>
+                        <ImageButton android:layout_width="wrap_content"
+                                     android:layout_height="match_parent"
+                                     android:layout_weight="0"
+                                     android:src="@drawable/baseline_expand_more_black_24dp"
+                                     android:background="@android:color/transparent"
+                                     android:id="@+id/cardViewAnglesButton"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:id="@+id/cardViewAnglesContent"
+                              android:orientation="vertical"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:visibility="gone"
+                              android:padding="20dp">
+                    <GridLayout android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="30dp"
+                                android:rowCount="2"
+                                android:columnCount="2">
+                        <TextView android:paddingTop="5dp"
+                                  android:layout_columnWeight="2"
+                                  android:text="@string/Common_HorizontalViewAngle"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:id="@+id/altitudeTitle"/>
+                        <EditText android:layout_columnWeight="8"
+                                  android:textAppearance="?android:attr/textAppearanceSmall"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:inputType="numberDecimal"
+                                  android:digits="0123456789."
+                                  android:id="@+id/editTextViewAngleHorizontal"/>
+                        <TextView android:paddingTop="5dp"
+                                  android:layout_columnWeight="2"
+                                  android:text="@string/Common_VerticalViewAngle"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:id="@+id/altitudeTitle"/>
+                        <EditText android:layout_columnWeight="8"
+                                  android:textAppearance="?android:attr/textAppearanceSmall"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:inputType="numberDecimal"
+                                  android:digits="0123456789."
+                                  android:id="@+id/editTextViewAngleVertical"/>
+                    </GridLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView android:minWidth="25px"
+                                               android:minHeight="25px"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:id="@+id/cardLocation">
+                <LinearLayout android:orientation="vertical"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content">
+                    <View android:layout_width="match_parent"
+                          android:layout_height="1dp"
+                          android:background="#606060"/>
+                    <LinearLayout android:orientation="horizontal"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:padding="10dp">
+                        <TextView android:text="@string/PhotoParameters_CameraLocation"
+                                  android:textAppearance="?android:attr/textAppearanceMedium"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="0"/>
+                        <ImageButton android:src="@android:drawable/ic_menu_info_details"
+                                     android:layout_width="40dp"
+                                     android:layout_height="25dp"
+                                     android:layout_weight="0"
+                                     android:scaleType="fitCenter"
+                                     android:background="@android:color/transparent"
+                                     android:id="@+id/buttonCameraLocationInfo"/>
+                        <Space android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_weight="100"/>
+                        <ImageButton android:layout_width="wrap_content"
+                                     android:layout_height="match_parent"
+                                     android:layout_weight="0"
+                                     android:src="@drawable/baseline_expand_more_black_24dp"
+                                     android:background="@android:color/transparent"
+                                     android:id="@+id/cardLocationButton"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:id="@+id/cardLocationContent"
+                              android:orientation="vertical"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:visibility="gone"
+                              android:padding="20dp">
+                    <GridLayout android:id="@+id/cardLocationContent"
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="30dp"
+                                android:rowCount="3"
+                                android:columnCount="2">
+                        <TextView android:paddingTop="5dp"
+                                  android:layout_columnWeight="2"
+                                  android:text="@string/Common_Latitude"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:id="@+id/latitudeTitle"/>
+                        <EditText android:layout_columnWeight="8"
+                                  android:textAppearance="?android:attr/textAppearanceSmall"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:inputType="numberDecimal"
+                                  android:digits="0123456789.+-"
+                                  android:id="@+id/editTextLatitude"/>
+                        <TextView android:paddingTop="5dp"
+                                  android:layout_columnWeight="2"
+                                  android:text="@string/Common_Longitude"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:id="@+id/longitudeTitle"/>
+                        <EditText android:layout_columnWeight="8"
+                                  android:textAppearance="?android:attr/textAppearanceSmall"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:inputType="numberDecimal"
+                                  android:digits="0123456789.+-"
+                                  android:id="@+id/editTextLongitude"/>
+                        <TextView android:paddingTop="5dp"
+                                  android:layout_columnWeight="2"
+                                  android:text="@string/Common_Altitude"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:id="@+id/altitudeTitle"/>
+                        <EditText android:layout_columnWeight="8"
+                                  android:textAppearance="?android:attr/textAppearanceSmall"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:inputType="numberDecimal"
+                                  android:digits="0123456789."
+                                  android:id="@+id/editTextAltitude"/>
+                    </GridLayout>
+                    <LinearLayout android:orientation="horizontal"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:gravity="right">
+                        <Button android:id="@+id/buttonMap"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleX="0.9"
+                                android:scaleY="0.9"
+                                android:paddingHorizontal="10dp"
+                                android:text="@string/Common_Map"
+                                android:background="@android:color/transparent"
+                                android:drawableLeft="@android:drawable/ic_menu_mapmode"/>
+                        <Button android:id="@+id/buttonLocation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleX="0.9"
+                                android:scaleY="0.9"
+                                android:text="@string/Common_Choose"
+                                android:background="@android:color/transparent"
+                                android:drawableLeft="@android:drawable/ic_menu_mylocation"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView android:minWidth="25px"
+                                               android:minHeight="25px"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:id="@+id/cardDirection">
+                <LinearLayout android:orientation="vertical"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content">
+                    <View android:layout_width="match_parent"
+                          android:layout_height="1dp"
+                          android:background="#606060"/>
+                    <LinearLayout android:orientation="horizontal"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:padding="10dp">
+                        <TextView android:text="@string/PhotoParameters_ViewDirection"
+                                  android:textAppearance="?android:attr/textAppearanceMedium"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_weight="0"/>
+                        <ImageButton android:src="@android:drawable/ic_menu_info_details"
+                                     android:layout_width="40dp"
+                                     android:layout_height="25dp"
+                                     android:layout_weight="0"
+                                     android:scaleType="fitCenter"
+                                     android:background="@android:color/transparent"
+                                     android:id="@+id/buttonViewDirectionInfo"/>
+                        <Space android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:layout_weight="100"/>
+                        <ImageButton android:layout_width="wrap_content"
+                                     android:layout_height="match_parent"
+                                     android:layout_weight="0"
+                                     android:src="@drawable/baseline_expand_more_black_24dp"
+                                     android:background="@android:color/transparent"
+                                     android:id="@+id/cardDirectionButton"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:id="@+id/cardDirectionContent"
+                              android:orientation="vertical"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:visibility="gone"
+                              android:padding="20dp">
+                    <GridLayout android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="30dp"
+                                android:rowCount="1"
+                                android:columnCount="2">
+                        <TextView android:layout_columnWeight="2"
+                                  android:paddingTop="5dp"
+                                  android:text="@string/Common_Heading"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:id="@+id/altitudeTitle"/>
+                        <EditText android:layout_columnWeight="8"
+                                  android:textAppearance="?android:attr/textAppearanceSmall"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:inputType="numberDecimal"
+                                  android:digits="0123456789.+-"
+                                  android:id="@+id/editTextHeading"/>
+                    </GridLayout>
+                    <Button android:id="@+id/buttonBearing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:layout_gravity="right"
+                            android:text="@string/Common_Choose"
+                            android:background="@android:color/transparent"
+                            android:drawableLeft="@android:drawable/ic_menu_compass"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

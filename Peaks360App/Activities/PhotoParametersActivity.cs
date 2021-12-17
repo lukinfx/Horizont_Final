@@ -6,8 +6,10 @@ using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Text;
+using Android.Transitions;
 using Android.Views;
 using Android.Widget;
+using AndroidX.CardView.Widget;
 using Peaks360App.AppContext;
 using Peaks360App.Extensions;
 using Peaks360App.Utilities;
@@ -44,15 +46,7 @@ namespace Peaks360App.Activities
             AppContextLiveData.Instance.SetLocale(this);
             Platform.Init(this, savedInstanceState);
 
-            if (AppContextLiveData.Instance.IsPortrait)
-            {
-                SetContentView(Resource.Layout.PhotoParametersActivityPortrait);
-            }
-            else
-            {
-                SetContentView(Resource.Layout.PhotoParametersActivityLandscape);
-            }
-
+            SetContentView(Resource.Layout.PhotoParametersActivityPortrait);
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
@@ -96,18 +90,42 @@ namespace Peaks360App.Activities
             UpdateCameraAltitude(_photoData.GetPhotoGpsLocation());
             UpdateViewAngles(_photoData.ViewAngleVertical, _photoData.ViewAngleHorizontal);
             UpdateHeading(_photoData.Heading);
+            FindViewById<ImageButton>(Resource.Id.cardViewAnglesButton).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.cardLocationButton).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.cardDirectionButton).SetOnClickListener(this);
+
         }
 
+        private void OnToggleView(int buttonResId, int cardResId, int contentResId)
+        {
+            var button = FindViewById<ImageButton>(buttonResId);
+            var cardView = FindViewById<CardView>(cardResId);
+            var hiddenView = FindViewById<LinearLayout>(contentResId);
+            
+            if (hiddenView.Visibility == ViewStates.Visible)
+            {
+                TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
+                hiddenView.Visibility = ViewStates.Gone;
+                button.SetImageResource(Resource.Drawable.baseline_expand_more_black_24dp);
+            }
+            else
+            {
+                TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
+                hiddenView.Visibility = ViewStates.Visible;
+                button.SetImageResource(Resource.Drawable.baseline_expand_less_black_24dp);
+            }
+
+        }
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {
             EditText et = sender as EditText;
             if (string.IsNullOrEmpty(e.Text.ToString()))
             {
-                et.SetBackgroundResource(Resource.Drawable.bg_edittext_warning);
+                et.SetBackgroundColor(this.Resources.GetColor(Resource.Color.EditTextWarning));
             }
             else
             {
-                et.SetBackgroundResource(Resource.Drawable.bg_edittext);
+                et.SetBackgroundColor(Color.Transparent);
             }
         }
 
@@ -392,6 +410,15 @@ namespace Peaks360App.Activities
                     break;
                 case Resource.Id.buttonBearing:
                     OnCameraDirectionClicked();
+                    break;
+                case Resource.Id.cardViewAnglesButton:
+                    OnToggleView(Resource.Id.cardViewAnglesButton, Resource.Id.cardViewAngles, Resource.Id.cardViewAnglesContent);
+                    break;
+                case Resource.Id.cardLocationButton:
+                    OnToggleView(Resource.Id.cardLocationButton, Resource.Id.cardLocation, Resource.Id.cardLocationContent);
+                    break;
+                case Resource.Id.cardDirectionButton:
+                    OnToggleView(Resource.Id.cardDirectionButton, Resource.Id.cardDirection, Resource.Id.cardDirectionContent);
                     break;
             }
         }

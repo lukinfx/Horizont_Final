@@ -6,5 +6,7 @@
     
     <color name="SelectionEnabled">#80ff00</color>
     <color name="SelectionDisabled">#d0d0d0</color>
+
+    <color name="EditTextWarning">#ffe8e8</color>
   
 </resources>

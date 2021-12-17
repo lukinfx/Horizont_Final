@@ -8,13 +8,6 @@
     android:id="@+id/toolbar"
     layout="@layout/TitleToolbar" />
 
-    <LinearLayout android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background_portrait"
-        android:gravity="center_horizontal">
-
       <LinearLayout
         android:orientation="vertical"
         android:minWidth="25px"
@@ -62,6 +55,11 @@
           </LinearLayout>
       </LinearLayout>
 
+      <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#606060" />
+
       <Space
           android:layout_width="match_parent"
           android:layout_height="10dp"/>
@@ -71,5 +69,4 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:id="@+id/listViewPoi"/>
-    </LinearLayout>
 </LinearLayout>
