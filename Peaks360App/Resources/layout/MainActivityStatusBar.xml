@@ -9,7 +9,6 @@
       android:layout_height="wrap_content"
       android:id="@+id/textViewStatusLine"
       android:textColor="#000000"
-      android:background="#ffffff"
       android:maxLines="1"
       
       android:focusable="true"

@@ -4,8 +4,7 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:layout_gravity="bottom"
-  android:gravity="right"
-  android:background="#ffffff">
+  android:gravity="right">
 
             <ImageButton
                 android:src="@drawable/ic_refresh2"

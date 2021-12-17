@@ -1006,6 +1006,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\baseline_expand_more_black_24dp.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_menu_button.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
