@@ -43,9 +43,7 @@ namespace Peaks360App.Activities
         private ImageButton _displayOverlappedButton;
         private ImageButton _saveToDeviceButton;
         private ImageButton _shareButton;
-
         private LinearLayout _confirmCloseButtons;
-        private LinearLayout _mainActivityStatusBar;
 
         private PhotoData _photodata;
 
@@ -153,8 +151,7 @@ namespace Peaks360App.Activities
             FindViewById<ImageButton>(Resource.Id.confirmButton).SetOnClickListener(this);
             FindViewById<ImageButton>(Resource.Id.closeButton).SetOnClickListener(this);
 
-            _activityControlBar = FindViewById<LinearLayout>(Resource.Id.PhotoShowActivityControlBar);
-            _mainActivityStatusBar = FindViewById<LinearLayout>(Resource.Id.mainActivityStatusBar);
+            _activityControlArea = FindViewById<LinearLayout>(Resource.Id.photoShowActivityControlArea);
             photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);
 
             HideControls();
@@ -332,7 +329,6 @@ namespace Peaks360App.Activities
             var photoMatrix = $"im-X:{photoView.TranslateX:F1}, im-Y:{photoView.TranslateY:F1}, Sc:{photoView.DisplayScale:F2}/{photoView.Scale:F2}";
 
             //_GPSTextView.Text = heading + "  /  " + zoomAndTiltCorrection + "  /  " + viewAngle;// + "  /  " + photoMatrix;
-            SetStatusLineText(zoomAndTiltCorrection + "  /  " + viewAngle + "  /  " + photoMatrix);
         }
 
         protected override void OnMove(int distanceX, int distanceY)
@@ -578,9 +574,7 @@ namespace Peaks360App.Activities
             photoView.CroppingRectangle = null;
 
             _confirmCloseButtons.Visibility = ViewStates.Gone;
-            _seekBars.Visibility = ViewStates.Visible;
-            _activityControlBar.Visibility = ViewStates.Visible;
-            _mainActivityStatusBar.Visibility = ViewStates.Visible;
+            _activityControlArea.Visibility = ViewStates.Visible;
 
             _compassView.ShowPointsOfInterest = true;
             _compassView.ShowElevationProfile = Context.Settings.ShowElevationProfile;
@@ -709,10 +703,8 @@ namespace Peaks360App.Activities
                 photoView.CroppingRectangle = new Rect((int)(int)dst.Left, (int)dst.Top, (int)dst.Right, (int)dst.Bottom);
 
                 _confirmCloseButtons.Visibility = ViewStates.Visible;
-                _seekBars.Visibility = ViewStates.Gone;
                 _poiInfo.Visibility = ViewStates.Gone;
-                _activityControlBar.Visibility = ViewStates.Gone;
-                _mainActivityStatusBar.Visibility = ViewStates.Gone;
+                _activityControlArea.Visibility = ViewStates.Gone;
 
                 _compassView.ShowPointsOfInterest = false;
                 _compassView.ShowElevationProfile = false;

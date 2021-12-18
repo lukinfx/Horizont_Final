@@ -27,7 +27,6 @@ namespace Peaks360App.Activities
 
         protected CompassView _compassView;
         private TextView _textViewNotification;
-        private TextView _textViewStatusLine;
 
         protected ImageButton _favouriteButton;
         protected ImageButton _displayTerrainButton;
@@ -38,8 +37,7 @@ namespace Peaks360App.Activities
         private GestureDetector _gestureDetector;
 
         private DistanceSeekBar _distanceSeekBar;
-        protected LinearLayout _activityControlBar;
-        protected LinearLayout _activityControlBar2;
+        protected LinearLayout _activityControlArea;
 
         //for gesture detection
         private int m_PreviousMoveX;
@@ -81,9 +79,6 @@ namespace Peaks360App.Activities
 
             _textViewNotification = FindViewById<TextView>(Resource.Id.textViewNotification);
             
-            _textViewStatusLine = FindViewById<TextView>(Resource.Id.textViewStatusLine);
-            _textViewStatusLine.Selected = true;
-
             _distanceSeekBar = FindViewById<DistanceSeekBar>(Resource.Id.seekBarDistance);
             _distanceSeekBar.Progress = Context.Settings.MaxDistance;
             _distanceSeekBar.ProgressChanged += OnMaxDistanceChanged;
@@ -91,9 +86,6 @@ namespace Peaks360App.Activities
             _poiInfo = FindViewById<LinearLayout>(Resource.Id.mainActivityPoiInfo);
             _poiInfo.SetOnClickListener(this);
             _poiInfo.Visibility = ViewStates.Gone;
-
-            _seekBars = FindViewById<LinearLayout>(Resource.Id.mainActivitySeekBars);
-            _seekBars.Visibility = ViewStates.Visible;
 
             _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
             _displayTerrainButton.SetOnClickListener(this);
@@ -437,29 +429,19 @@ namespace Peaks360App.Activities
 
         protected bool IsControlsVisible()
         {
-            return (_seekBars.Visibility == ViewStates.Visible && _activityControlBar.Visibility == ViewStates.Visible);
+            return _activityControlArea.Visibility == ViewStates.Visible;
         }
 
         protected void HideControls()
         {
-            _seekBars.Visibility = ViewStates.Gone;
-            _activityControlBar.Visibility = ViewStates.Gone;
-            if (_activityControlBar2 != null)
-                _activityControlBar2.Visibility = ViewStates.Gone;
+            //_seekBars.Visibility = ViewStates.Gone;
+            _activityControlArea.Visibility = ViewStates.Gone;
         }
 
         protected void ShowControls()
         {
-            _seekBars.Visibility = ViewStates.Visible;
-            _activityControlBar.Visibility = ViewStates.Visible;
-            if (_activityControlBar2 != null)
-                _activityControlBar2.Visibility = ViewStates.Visible;
-        }
-
-        protected void SetStatusLineText(string text, bool alert = false)
-        {
-            _textViewStatusLine.Text = text;
-            _textViewStatusLine.SetTextColor(alert ? Android.Graphics.Color.Red : Android.Graphics.Color.DarkGray);
+            //_seekBars.Visibility = ViewStates.Visible;
+            _activityControlArea.Visibility = ViewStates.Visible;
         }
 
         public void OnElevationProfileChanged(object sender, ElevationProfileChangedEventArgs e)

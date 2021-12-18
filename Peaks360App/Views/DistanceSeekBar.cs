@@ -64,7 +64,7 @@ namespace Peaks360App.Views
             var yTotal = Height - PaddingTop - PaddingBottom;
             var yMiddle = this.Height / 2f;
 
-            _paintCurrentLine.SetARGB(255, 0, 0, 0); 
+            _paintCurrentLine.SetARGB(255, 01, 43, 101); 
             canvas.DrawLine(xStart, yMiddle, xCurrent, yMiddle, _paintCurrentLine);
             _paintCurrentLine.SetARGB(120, 70, 70, 70);
             canvas.DrawLine(xCurrent, yMiddle, xEnd, yMiddle, _paintCurrentLine);

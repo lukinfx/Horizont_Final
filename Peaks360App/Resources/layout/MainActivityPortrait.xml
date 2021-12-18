@@ -36,6 +36,7 @@
           android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_gravity="bottom"
           android:gravity="bottom">
 
             <ImageButton
@@ -52,6 +53,7 @@
 
             <com.google.android.gms.ads.AdView
               android:id="@+id/adView"
+              android:visibility="gone"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_centerHorizontal="true"
@@ -66,60 +68,61 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"/>
 
-            <include
-              android:id="@+id/mainActivitySeekBars"
-              layout="@layout/MainActivitySeekBars" 
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"/>
-
             <LinearLayout
+              android:id="@+id/mainActivityControlArea"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:gravity="bottom"
+              android:orientation="vertical"
               android:background="#90FFFFFF">
-                <ImageButton
-                  android:src="@drawable/ic_menu_button"
-                  android:layout_width="60dp"
-                  android:layout_height="60dp"
-                  android:layout_gravity="center_horizontal"
-                  android:adjustViewBounds="true"
-                  android:scaleType="fitCenter"
-                  android:layout_marginLeft="3px"
-                  android:layout_marginBottom="3px"
-                  android:padding="0dp"
-                  android:background="@android:color/transparent"
-                  android:id="@+id/menuButton" />
+
+                <include
+                  layout="@layout/MainActivitySeekBars" 
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+                    <ImageButton
+                      android:src="@drawable/ic_menu_button"
+                      android:layout_width="60dp"
+                      android:layout_height="60dp"
+                      android:layout_gravity="center_horizontal"
+                      android:adjustViewBounds="true"
+                      android:scaleType="fitCenter"
+                      android:layout_marginLeft="3px"
+                      android:layout_marginBottom="3px"
+                      android:padding="0dp"
+                      android:background="@android:color/transparent"
+                      android:id="@+id/menuButton" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                          <include
+                        android:orientation="vertical">
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/mainActivityControlBar"
-                            layout="@layout/MainActivityControlBar"/>
-                          <include
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:id="@+id/mainActivityControlBar2"
-                            layout="@layout/MainActivityControlBar2"/>
+                            android:orientation="horizontal">
+                              <include
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                layout="@layout/MainActivityControlBar"/>
+                              <include
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                layout="@layout/MainActivityControlBar2"/>
+                        </LinearLayout>
+                        <include
+                          layout="@layout/MainActivityStatusBar" 
+                          android:gravity="bottom"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
                     </LinearLayout>
-                    <include
-                      android:id="@+id/mainActivityStatusBar"
-                      layout="@layout/MainActivityStatusBar" 
-                      android:gravity="bottom"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
     </AbsoluteLayout>
 </LinearLayout>

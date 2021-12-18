@@ -42,38 +42,28 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:gravity="bottom">
+        <include
+            android:id="@+id/mainActivityPoiInfo"
+            layout="@layout/PoiInfoL" 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
           <LinearLayout
+            android:id="@+id/photoShowActivityControlArea"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="bottom">
-                
+            android:background="#90FFFFFF">
               <include
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/PhotoShowActivityControlBar"
                 layout="@layout/PhotoShowActivityControlBar"
                 android:gravity="bottom" />
               <include
-                android:id="@+id/mainActivitySeekBars"
                 layout="@layout/MainActivitySeekBars" 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-              <include
-                android:id="@+id/mainActivityPoiInfo"
-                layout="@layout/PoiInfoL" 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
           </LinearLayout>
-            
-          <include
-            android:id="@+id/mainActivityStatusBar"
-            layout="@layout/MainActivityStatusBar" 
-            android:gravity="bottom"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

@@ -51,8 +51,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="bottom"/>
 
+            <LinearLayout
+                android:id="@+id/photoShowActivityControlArea"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#90FFFFFF">
+
               <include
-                android:id="@+id/mainActivitySeekBars"
                 layout="@layout/MainActivitySeekBars"
                 android:gravity="bottom"
                 android:layout_width="match_parent"
@@ -61,17 +67,10 @@
               <include
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/PhotoShowActivityControlBar"
                 layout="@layout/PhotoShowActivityControlBar"
                 android:gravity="bottom" />
 
-              <include
-                android:id="@+id/mainActivityStatusBar"
-                layout="@layout/MainActivityStatusBar" 
-                android:gravity="bottom"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
 
         <include

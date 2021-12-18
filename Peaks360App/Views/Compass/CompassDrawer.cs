@@ -83,7 +83,7 @@ namespace Peaks360App.Views.Compass
             paintWhite.SetStyle(Paint.Style.Fill);
 
             paintGray = new Paint();
-            paintGray.SetARGB(255, 186, 186, 186);
+            paintGray.SetARGB(255, 99, 166, 233);
             paintGray.SetStyle(Paint.Style.Fill);
 
             paintBlack = new Paint();
