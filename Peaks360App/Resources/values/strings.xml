@@ -213,4 +213,10 @@
     <item>Others</item>
   </string-array>
 
+  <string-array name="PhotoEditMenu">
+    <item>Visible points</item>
+    <item>Image adjustment</item>
+    <item>Image Sharing</item>
+  </string-array>
+  
 </resources>
