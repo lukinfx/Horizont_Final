@@ -19,7 +19,7 @@
       android:layout_height="match_parent"
       android:layout_weight="15"
       android:padding="10dp"
-      android:background="@drawable/bg_activity_light"
+      android:background="@drawable/bg_activity_lightgray"
       android:id="@+id/linearLayoutSearching">
 
       <!--<TextView

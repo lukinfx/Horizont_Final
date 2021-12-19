@@ -475,7 +475,7 @@ namespace Peaks360App
         protected void SetStatusLineText(string text, bool alert = false)
         {
             _textViewStatusLine.Text = text;
-            _textViewStatusLine.SetTextColor(alert ? Android.Graphics.Color.Red : Android.Graphics.Color.DarkGray);
+            _textViewStatusLine.SetTextColor(alert ? Android.Graphics.Color.Black : Android.Graphics.Color.DarkGray);
         }
 
         /*class AdListener : Android.Gms.Ads.AdListener

@@ -24,10 +24,10 @@
             <LinearLayout android:orientation="vertical"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:background="@drawable/bg_activity_light"
+                          android:background="@drawable/bg_activity_lightgray"
                           android:id="@+id/linearLayoutSelectedPoint">
                 <EditText android:textAppearance="?android:attr/textAppearanceSmall"
-                          android:background="@drawable/bg_activity_light"
+                          android:background="@drawable/bg_activity_lightgray"
                           android:layout_width="match_parent"
                           android:layout_height="60dp"
                           android:inputType="textMultiLine"

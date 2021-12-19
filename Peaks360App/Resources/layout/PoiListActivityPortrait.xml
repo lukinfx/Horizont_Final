@@ -14,7 +14,7 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_activity_light"
+        android:background="@drawable/bg_activity_lightgray"
         android:id="@+id/linearLayoutSearching">
 
         <LinearLayout

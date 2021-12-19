@@ -13,12 +13,12 @@
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:textColor="#c8ff00"
+      android:textColor="@color/PeaksDarkBlue"
       android:layout_centerHorizontal="true"
       android:padding="20dp"
       android:textSize="20dp"
       android:visibility="invisible"
-      android:background="@drawable/bg_activity_dark"
+      android:background="@drawable/bg_activity_light"
       android:id="@+id/textViewNotification" />
   </RelativeLayout>
 </LinearLayout>

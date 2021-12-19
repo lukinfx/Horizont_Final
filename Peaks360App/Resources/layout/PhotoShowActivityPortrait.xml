@@ -56,7 +56,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#90FFFFFF">
+                android:background="@color/BackgroundTransparentLight">
 
               <include
                 layout="@layout/MainActivitySeekBars"

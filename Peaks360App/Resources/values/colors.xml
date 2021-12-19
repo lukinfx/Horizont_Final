@@ -3,10 +3,16 @@
     <color name="colorPrimary">#2c3e50</color>
     <color name="colorPrimaryDark">#1B3147</color>
     <color name="colorAccent">#3498db</color>
-    
+
+    <color name="PeaksDarkBlue">#012865</color>
+    <color name="PeaksLightBlue">#3890E3</color>
+
     <color name="SelectionEnabled">#80ff00</color>
     <color name="SelectionDisabled">#d0d0d0</color>
 
     <color name="EditTextWarning">#ffe8e8</color>
-  
+
+    <color name="BackgroundTransparentLight">#90FFFFFF</color>
+
+
 </resources>

@@ -74,16 +74,21 @@ namespace Peaks360App.Views
             poiCategoryBitmapProvider = new PoiCategoryBitmapProvider();
             compassViewDrawer = new CompassViewDrawerEachPoiSeparate(poiCategoryBitmapProvider);
 
-            _textPaint = new Paint();
-            _textPaint.SetARGB(255, 200, 255, 0);
-            _textPaint.TextSize = 42;
-            _textPaint.AntiAlias = true;
-            _textPaint.TextAlign = Paint.Align.Center;
+            {
+                _textPaint = new Paint();
+                _textPaint.Color = this.Resources.GetColor(Resource.Color.PeaksDarkBlue);
+                _textPaint.TextSize = 42;
+                _textPaint.AntiAlias = true;
+                _textPaint.TextAlign = Paint.Align.Center;
+            }
 
-            _backgroundPaint = new Paint();
-            _backgroundPaint.SetARGB(150, 0, 0, 0);
-            _backgroundPaint.SetStyle(Paint.Style.Fill);
-            _backgroundPaint.StrokeWidth = 0;
+            {
+                _backgroundPaint = new Paint();
+                _backgroundPaint.Color = this.Resources.GetColor(Resource.Color.BackgroundTransparentLight);
+                _backgroundPaint.SetStyle(Paint.Style.Fill);
+                _backgroundPaint.StrokeWidth = 0;
+            }
+
         }
 
         public void Initialize(IAppContext context, bool allowRotation, System.Drawing.Size pictureSize)
