@@ -11253,7 +11253,10 @@ namespace Peaks360App
 			public const int CategoryItemsArray = 2130903040;
 			
 			// aapt resource value: 0x7F030001
-			public const int SpinnerItemsArray = 2130903041;
+			public const int PhotoEditMenu = 2130903041;
+			
+			// aapt resource value: 0x7F030002
+			public const int SpinnerItemsArray = 2130903042;
 			
 			static Array()
 			{

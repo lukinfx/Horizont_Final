@@ -21,6 +21,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:padding="0dp"
+                android:background="@android:color/transparent"
                 android:id="@+id/buttonCategorySelect" />
             <ImageButton
               android:src="@drawable/ic_terrain"
@@ -30,6 +31,7 @@
               android:adjustViewBounds="true"
               android:scaleType="fitCenter"
               android:padding="0dp"
+              android:background="@android:color/transparent"
               android:id="@+id/buttonDisplayTerrain" />
             <ImageButton
               android:src="@drawable/ic_eye_off"
@@ -39,15 +41,17 @@
               android:adjustViewBounds="true"
               android:scaleType="fitCenter"
               android:padding="0dp"
+              android:background="@android:color/transparent"
               android:id="@+id/buttonDisplayOverlapped" />
             <ImageButton
-              android:src="@drawable/ic_savetodevice"
+              android:src="@drawable/ic_download"
               android:layout_width="40dp"
               android:layout_height="40dp"
               android:layout_gravity="bottom"
               android:adjustViewBounds="true"
               android:scaleType="fitCenter"
               android:padding="0dp"
+              android:background="@android:color/transparent"
               android:id="@+id/buttonSaveToDevice" />
             <ImageButton
               android:src="@drawable/ic_share"
@@ -57,6 +61,7 @@
               android:adjustViewBounds="true"
               android:scaleType="fitCenter"
               android:padding="0dp"
+              android:background="@android:color/transparent"
               android:id="@+id/buttonShare" />
             <ImageButton
               android:src="@drawable/ic_crop"
@@ -66,6 +71,7 @@
               android:adjustViewBounds="true"
               android:scaleType="fitCenter"
               android:padding="0dp"
+              android:background="@android:color/transparent"
               android:id="@+id/buttonCropImage"/>
             <ImageButton
               android:src="@drawable/ic_edit"
@@ -75,5 +81,6 @@
               android:adjustViewBounds="true"
               android:scaleType="fitCenter"
               android:padding="0dp"
+              android:background="@android:color/transparent"
               android:id="@+id/buttonTiltCorrector"/>
 </LinearLayout>
