@@ -32,7 +32,7 @@ namespace Peaks360App
         private ImageButton _recordButton;
         private ImageButton _menuButton;
         private ImageButton _resetCorrectionButton;
-        private TextView _textViewStatusLine;
+        //private TextView _textViewStatusLine;
 
         private View _mainLayout;
         
@@ -150,8 +150,8 @@ namespace Peaks360App
             //_advertismentLoader = new AdvertismentLoader(this, Resources.GetText(Resource.String.GoogleAdsId_MainActivity_Interstitial));
 
             _activityControlArea = FindViewById<LinearLayout>(Resource.Id.mainActivityControlArea);
-            _textViewStatusLine = FindViewById<TextView>(Resource.Id.textViewStatusLine);
-            _textViewStatusLine.Selected = true;
+            //_textViewStatusLine = FindViewById<TextView>(Resource.Id.textViewStatusLine);
+            //_textViewStatusLine.Selected = true;
 
             _menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
             _menuButton.SetOnClickListener(this);
@@ -474,8 +474,8 @@ namespace Peaks360App
 
         protected void SetStatusLineText(string text, bool alert = false)
         {
-            _textViewStatusLine.Text = text;
-            _textViewStatusLine.SetTextColor(alert ? Android.Graphics.Color.Black : Android.Graphics.Color.DarkGray);
+            // _textViewStatusLine.Text = text;
+            // _textViewStatusLine.SetTextColor(alert ? Android.Graphics.Color.Black : Android.Graphics.Color.DarkGray);
         }
 
         /*class AdListener : Android.Gms.Ads.AdListener
