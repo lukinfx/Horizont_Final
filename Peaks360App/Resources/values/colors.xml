@@ -14,5 +14,8 @@
 
     <color name="BackgroundTransparentLight">#90FFFFFF</color>
 
+    <color name="ActivitySelectionArea">#f0f0f0</color>
+  
+
 
 </resources>

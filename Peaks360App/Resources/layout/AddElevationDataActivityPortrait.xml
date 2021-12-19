@@ -9,103 +9,101 @@
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:orientation="vertical"
-      android:padding="10dp"
-      android:background="@drawable/background_portrait">
+      android:orientation="vertical">
 
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_weight="1"
           android:orientation="vertical"
           android:padding="10dp"
-          android:background="@drawable/bg_activity">
-            <TextView
-              android:text="@string/DownloadED_SelectedLocation"
-              android:textAppearance="?android:attr/textAppearanceMedium"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center"
-              android:padding="10dp"
-              android:id="@+id/distance" />
-          
-            <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:padding="10dp"
-              android:background="@drawable/bg_activity"
-              android:id="@+id/linearLayoutSelectedPoint">
+          android:background="@drawable/bg_activity_lightgray">
 
                 <TextView
-                  android:text="Lysa hora"
-                  android:textAppearance="?android:attr/textAppearanceSmall"
-                  android:layout_width="match_parent"
+                  android:text="@string/DownloadED_SelectedLocation"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:textStyle="bold"
-                  android:typeface="sans"
-                  android:singleLine="true"
-                  android:ellipsize="end"
-                  android:id="@+id/textViewPlaceName" />
-
+                  android:layout_gravity="center"
+                  android:padding="10dp"
+                  android:id="@+id/distance" />
+          
                 <LinearLayout
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:orientation="horizontal">
+                  android:orientation="vertical"
+                  android:padding="10dp"
+                  android:id="@+id/linearLayoutSelectedPoint">
 
-                    <ImageView
-                      android:id="@+id/Thumbnail"
-                      android:layout_width="70dp"
-                      android:layout_height="70dp"
-                      android:padding="10dp"
-                      android:src="@drawable/c_basic"/>
+                    <TextView
+                      android:text="Lysa hora"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textStyle="bold"
+                      android:typeface="sans"
+                      android:singleLine="true"
+                      android:ellipsize="end"
+                      android:id="@+id/textViewPlaceName" />
 
                     <LinearLayout
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:paddingTop="10dp"
-                      android:orientation="vertical">
+                      android:orientation="horizontal">
 
-                        <TextView
-                          android:text="Czech republic"
-                          android:textAppearance="?android:attr/textAppearanceSmall"
+                        <ImageView
+                          android:id="@+id/Thumbnail"
+                          android:layout_width="70dp"
+                          android:layout_height="70dp"
+                          android:padding="10dp"
+                          android:src="@drawable/c_basic"/>
+
+                        <LinearLayout
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:singleLine="true"
-                          android:ellipsize="end"
-                          android:textSize="11sp"
-                          android:id="@+id/textViewPlaceCountry" />
-                        <TextView
-                          android:text="1254 m"
-                          android:textAppearance="?android:attr/textAppearanceSmall"
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:singleLine="true"
-                          android:ellipsize="end"
-                          android:textSize="11sp"
-                          android:id="@id/textViewAltitude" />
-                        <TextView
-                          android:text="48.6545744N, 18.3544654E"
-                          android:textAppearance="?android:attr/textAppearanceSmall"
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:singleLine="true"
-                          android:ellipsize="end"
-                          android:textSize="11sp"
-                          android:id="@id/textViewGpsLocation" />
+                          android:paddingTop="10dp"
+                          android:orientation="vertical">
+
+                            <TextView
+                              android:text="Czech republic"
+                              android:textAppearance="?android:attr/textAppearanceSmall"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:singleLine="true"
+                              android:ellipsize="end"
+                              android:textSize="11sp"
+                              android:id="@+id/textViewPlaceCountry" />
+                            <TextView
+                              android:text="1254 m"
+                              android:textAppearance="?android:attr/textAppearanceSmall"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:singleLine="true"
+                              android:ellipsize="end"
+                              android:textSize="11sp"
+                              android:id="@id/textViewAltitude" />
+                            <TextView
+                              android:text="48.6545744N, 18.3544654E"
+                              android:textAppearance="?android:attr/textAppearanceSmall"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:singleLine="true"
+                              android:ellipsize="end"
+                              android:textSize="11sp"
+                              android:id="@id/textViewGpsLocation" />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
 
-                <Button
-                  android:id="@+id/buttonSelect"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_gravity="right"
-                  android:text="@string/DownloadED_ChangeLocation"
-                  android:drawablePadding="10dp"
-                  android:padding="10dp"
-                  android:background="@android:color/transparent"
-                  android:drawableLeft="@android:drawable/ic_menu_mylocation" />
+                    <Button
+                      android:id="@+id/buttonSelect"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="right"
+                      android:text="@string/DownloadED_ChangeLocation"
+                      android:drawablePadding="10dp"
+                      android:padding="10dp"
+                      android:background="@android:color/transparent"
+                      android:drawableLeft="@android:drawable/ic_menu_mylocation" />
+                </LinearLayout>
             </LinearLayout>
             <!--
             <TextView
@@ -116,6 +114,12 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:id="@+id/distance" />-->
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:padding="10dp"
+          android:orientation="vertical">
 
           <TextView
             android:text="@string/DownloadED_DownloadEleDataInRange"
@@ -178,6 +182,5 @@
                   android:drawableTop="@android:drawable/ic_menu_save" />
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>

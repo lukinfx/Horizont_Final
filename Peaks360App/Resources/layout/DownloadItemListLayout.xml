@@ -55,20 +55,27 @@
     </LinearLayout>
 
     <ImageButton
-      android:src="@drawable/ic_menu_refresh"
+      android:src="@drawable/ic_refresh2"
       android:layout_width="40dp"
       android:scaleType="fitCenter"
       android:layout_height="match_parent"
       android:id="@+id/PoiRefreshButton" 
       android:layout_weight="0"
       android:background="#00000000"/>
-
     <ImageButton
-      android:src="@android:drawable/ic_menu_delete"
+      android:src="@drawable/ic_delete"
       android:layout_width="40dp"
       android:scaleType="fitCenter"
       android:layout_height="match_parent"
       android:id="@+id/PoiDeleteButton" 
+      android:layout_weight="0"
+      android:background="#00000000"/>
+    <ImageButton
+      android:src="@drawable/ic_download"
+      android:layout_width="40dp"
+      android:scaleType="fitCenter"
+      android:layout_height="match_parent"
+      android:id="@+id/PoiDownloadButton" 
       android:layout_weight="0"
       android:background="#00000000"/>
 

@@ -26,32 +26,31 @@
 
               <LinearLayout
                 android:orientation="vertical"
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/background_portrait"
                 android:id="@+id/downloadTabPois">
+                  <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:background="@drawable/bg_activity_lightgray">
 
-                <Spinner
-                  android:textAppearance="?android:attr/textAppearanceMedium"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:spinnerMode="dropdown"
-                  android:padding="5dp"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/DownloadCountrySpinner" />
-                <Space
-                  android:layout_width="match_parent"
-                  android:layout_height="10dp"/>
-                <ListView
-                  android:minWidth="25px"
-                  android:minHeight="25px"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:padding="5dp"
-                  android:background="@drawable/bg_edittext"
-                  android:id="@+id/DownloadItemListView" />
-
+                    <Spinner
+                      android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:spinnerMode="dropdown"
+                      android:padding="5dp"
+                      android:id="@+id/DownloadCountrySpinner" />
+                    <ListView
+                      android:minWidth="25px"
+                      android:minHeight="25px"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:padding="5dp"
+                      android:id="@+id/DownloadItemListView" />
+                  </LinearLayout>
               </LinearLayout>
 
               <LinearLayout
@@ -59,7 +58,6 @@
                 android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/background_portrait"
                 android:id="@+id/downloadTabEleData" >
                
                 <Button
@@ -69,7 +67,6 @@
                   android:layout_height="wrap_content"
                   android:drawablePadding="5dp"
                   android:padding="10dp"
-                  android:background="@drawable/bg_edittext"
                   android:id="@+id/buttonAddNew" />
                 <Space
                   android:layout_width="match_parent"
@@ -78,7 +75,6 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:padding="5dp"
-                  android:background="@drawable/bg_edittext"
                   android:id="@+id/listViewDownloadedElevationData" />
                 
               </LinearLayout>

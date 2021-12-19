@@ -4,6 +4,7 @@ using Android.App;
 using Android.Views;
 using Android.Widget;
 using Peaks360Lib.Domain.ViewModel;
+using Android.Graphics;
 
 namespace Peaks360App.Utilities
 {
@@ -73,8 +74,6 @@ namespace Peaks360App.Utilities
 
             if (item.fromDatabase.DownloadDate.HasValue)
             {
-                alreadyDownloaded = true;
-
                 if (item.fromInternet.DateCreated > item.fromDatabase.DateCreated)
                 {
                     updateAvailable = true;
@@ -91,6 +90,8 @@ namespace Peaks360App.Utilities
 
             view.FindViewById<TextView>(Resource.Id.PoiItemDownloadedDate).Text = downloadDateText;
             view.FindViewById<TextView>(Resource.Id.PoiItemDateCreated).Text = pointCountText;
+            view.FindViewById<TextView>(Resource.Id.PoiItemDownloadedDate).SetTextColor(alreadyDownloaded ? Color.Black : Color.Gray);
+            view.FindViewById<TextView>(Resource.Id.PoiItemDateCreated).SetTextColor(alreadyDownloaded ? Color.Black : Color.Gray);
 
             var image = view.FindViewById<ImageView>(Resource.Id.PoiItemCategoryAsIcon);
             image.SetColorFilter(ColorFilterDownloadItem.GetColorFilter(!alreadyDownloaded, updateAvailable));
@@ -99,8 +100,13 @@ namespace Peaks360App.Utilities
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.PoiDeleteButton);
             deleteButton.SetOnClickListener(this);
             deleteButton.Tag = position;
-            deleteButton.Enabled = alreadyDownloaded;
+            deleteButton.Visibility = alreadyDownloaded ? ViewStates.Visible : ViewStates.Gone;
 
+            var downloadButton = view.FindViewById<ImageButton>(Resource.Id.PoiDownloadButton);
+            downloadButton.SetOnClickListener(this);
+            downloadButton.Tag = position;
+            downloadButton.Visibility = alreadyDownloaded ? ViewStates.Gone : ViewStates.Visible;
+            
             var refreshButton = view.FindViewById<ImageButton>(Resource.Id.PoiRefreshButton);
             refreshButton.SetOnClickListener(this);
             refreshButton.Tag = position;
@@ -120,6 +126,9 @@ namespace Peaks360App.Utilities
             {
                 case Resource.Id.PoiDeleteButton:
                     _downloadItemActionListener.OnDownloadItemDelete(position);
+                    break;
+                case Resource.Id.PoiDownloadButton:
+                    _downloadItemActionListener.OnDownloadItemEdit(position);
                     break;
                 case Resource.Id.PoiRefreshButton:
                     _downloadItemActionListener.OnDownloadItemRefresh(position);

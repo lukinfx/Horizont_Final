@@ -12,7 +12,7 @@ namespace Peaks360App.Utilities
         {
             if (_cdDownloadItemGrayscale == null)
             {
-                var cm = new ColorMatrixBuilder().Saturation(0.0f).Create();
+                var cm = new ColorMatrixBuilder().Brightness(+180).Saturation(0.0f).Create();
                 _cdDownloadItemGrayscale = new ColorMatrixColorFilter(cm);
             }
 
