@@ -12,8 +12,7 @@
       android:orientation="vertical"
       android:padding="10dp"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@drawable/background_portrait">
+      android:layout_height="match_parent">
     <ScrollView
       xmlns:android="http://schemas.android.com/apk/res/android"
       android:minWidth="25px"
@@ -25,8 +24,7 @@
           android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity_light">
+          android:padding="10dp">
 
         <ImageView
           android:src="@drawable/logo_horizon5"
