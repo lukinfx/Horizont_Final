@@ -14,8 +14,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="vertical"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
+          android:padding="10dp">
             <TextView
               android:text="@string/Settings_ChooseLanguage"
               android:textAppearance="?android:attr/textAppearanceMedium"
@@ -32,8 +31,7 @@
           android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
+          android:padding="10dp">
             
             <TextView
               android:text="@string/Settings_CameraViewAngle"
@@ -89,8 +87,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="vertical"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
+          android:padding="10dp">
           <TextView
             android:text="@string/Common_GPSLocation"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -167,8 +164,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="vertical"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
+          android:padding="10dp">
           <TextView
             android:text="@string/Settings_ElevationProfile"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -190,8 +186,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="vertical"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
+          android:padding="10dp">
           <TextView
             android:text="@string/Settings_MyAltitude"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -213,8 +208,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="vertical"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
+          android:padding="10dp">
             <TextView
               android:text="@string/Settings_PhotoResolution"
               android:textAppearance="?android:attr/textAppearanceMedium"
@@ -230,8 +224,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="vertical"
-          android:padding="10dp"
-          android:background="@drawable/bg_activity">
+          android:padding="10dp">
           <TextView
             android:text="@string/Category_ElevationData"
             android:textAppearance="?android:attr/textAppearanceMedium"

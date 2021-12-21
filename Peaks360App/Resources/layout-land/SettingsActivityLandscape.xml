@@ -12,8 +12,7 @@
   <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/background_landscape">
+    android:layout_height="wrap_content">
 
       <include layout="@layout/SettingsActivity" />
 
