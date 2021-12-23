@@ -114,8 +114,8 @@ namespace Peaks360App.Activities
                 hiddenView.Visibility = ViewStates.Visible;
                 button.SetImageResource(Resource.Drawable.baseline_expand_less_black_24dp);
             }
-
         }
+
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {
             EditText et = sender as EditText;

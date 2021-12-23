@@ -1,247 +1,514 @@
 <ScrollView
   xmlns:android="http://schemas.android.com/apk/res/android"
-  android:minWidth="25px"
-  android:minHeight="25px"
   android:layout_width="match_parent"
   android:layout_height="wrap_content">
     <LinearLayout
       android:orientation="vertical"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:padding="10dp">
+      android:layout_height="wrap_content">
 
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="10dp">
-            <TextView
-              android:text="@string/Settings_ChooseLanguage"
-              android:textAppearance="?android:attr/textAppearanceMedium"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content" />
-            <Spinner
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textAppearance="?android:attr/textAppearanceMedium"
-              android:id="@+id/spinnerLanguage" />
-        </LinearLayout>
-        
-        <LinearLayout
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:padding="10dp">
-            
-            <TextView
-              android:text="@string/Settings_CameraViewAngle"
-              android:textAppearance="?android:attr/textAppearanceMedium"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"/>
-            <Switch
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:text="@string/Settings_SetViewAngleManually"
-              android:id="@+id/switchManualViewAngle" />
+        <androidx.cardview.widget.CardView 
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardLanguage">
+            <LinearLayout 
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+                <View 
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#606060"/>
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                    <ImageView
+                    android:src="@drawable/ic_language"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"/>
+                    <TextView
+                    android:text="@string/Settings_ChooseLanguage"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/PeaksDarkBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                    <Space android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="100"/>
+                    <ImageButton android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:src="@drawable/baseline_expand_more_black_24dp"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/cardLanguageButton"/>
+                </LinearLayout>
+                <LinearLayout
+                android:id="@+id/cardLanguageContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:padding="10dp">
+                    <Spinner
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:id="@+id/spinnerLanguage" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <TextView
-              android:paddingTop="10dp"
-              android:text="@string/Common_HorizontalViewAngle"
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/textViewAngleHorizontal"/>
-            <SeekBar
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_gravity="bottom"
-              android:id="@+id/seekBarCorrectionViewAngleHorizontal"
-              android:min="-100"
-              android:max="100"
-              android:progress="0" />
+        <androidx.cardview.widget.CardView 
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardViewAngle">
+            <LinearLayout 
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+                <View 
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#606060"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+                        <ImageView
+                        android:src="@drawable/ic_viewangle"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"/>
+                        <TextView
+                        android:text="@string/Settings_CameraViewAngle"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/PeaksDarkBlue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                        <Space android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100"/>
+                        <ImageButton android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0"
+                        android:src="@drawable/baseline_expand_more_black_24dp"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/cardViewAngleButton"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/cardViewAngleContent"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:padding="10dp">
+                    <Switch
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:text="@string/Settings_SetViewAngleManually"
+                      android:id="@+id/switchManualViewAngle" />
 
-            <TextView
-              android:paddingTop="10dp"
-              android:text="@string/Common_VerticalViewAngle"
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/textViewAngleVertical" />
-            <SeekBar
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_gravity="bottom"
-              android:id="@+id/seekBarCorrectionViewAngleVertical"
-              android:min="-100"
-              android:max="100"
-              android:progress="0" />
-            <Button
-              android:text="@string/Common_Reset"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/reset" />
-        </LinearLayout>
+                    <TextView
+                      android:paddingTop="10dp"
+                      android:text="@string/Common_HorizontalViewAngle"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/textViewAngleHorizontal"/>
+                    <SeekBar
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="bottom"
+                      android:id="@+id/seekBarCorrectionViewAngleHorizontal"
+                      android:min="-100"
+                      android:max="100"
+                      android:progress="0" />
 
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="10dp">
-          <TextView
-            android:text="@string/Common_GPSLocation"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-          <Switch
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/Settings_SetGPSManually"
-            android:id="@+id/switchManualGpsLocation" />
-          <GridLayout
-            android:paddingTop="10dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="30dp"
-            android:rowCount="3"
-            android:columnCount="2">
-            <TextView
-              android:paddingTop="10dp"
-              android:layout_columnWeight="3"
-              android:text="@string/Common_Latitude"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:id="@+id/latitudeTitle" />
-            <EditText
-              android:layout_columnWeight="8"
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:inputType="numberDecimal"
-              android:digits="0123456789."
-              android:padding="10px"
-              android:background="@drawable/bg_edittext"
-              android:id="@+id/editTextLatitude" />
-            <TextView
-              android:paddingTop="10dp"
-              android:layout_columnWeight="3"
-              android:text="@string/Common_Longitude"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:id="@+id/longitudeTitle" />
-            <EditText
-              android:layout_columnWeight="8"
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:inputType="numberDecimal"
-              android:digits="0123456789."
-              android:padding="10px"
-              android:background="@drawable/bg_edittext"
-              android:id="@+id/editTextLongitude" />
-            <TextView
-              android:paddingTop="10dp"
-              android:layout_columnWeight="3"
-              android:text="@string/Common_Altitude"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:id="@+id/altitudeTitle" />
-            <EditText
-              android:layout_columnWeight="8"
-              android:textAppearance="?android:attr/textAppearanceSmall"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:inputType="numberDecimal"
-              android:digits="0123456789."
-              android:padding="10px"
-              android:background="@drawable/bg_edittext"
-              android:id="@+id/editTextAltitude" />
-          </GridLayout>
-        </LinearLayout>
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="10dp">
-          <TextView
-            android:text="@string/Settings_ElevationProfile"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-          <TextView
-            android:text="@string/Settings_ElevationProfileExplenation"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-          <Switch
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/Settings_AutomaticElevationProfile"
-            android:id="@+id/switchAutoElevationProfile" />
-        </LinearLayout>
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="10dp">
-          <TextView
-            android:text="@string/Settings_MyAltitude"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-          <TextView
-            android:text="@string/Settings_AltitudeExplenation"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-          <Switch
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/Settings_AltitudeFromElevationMap"
-            android:id="@+id/switchAltitudeFromElevationMap" />
-        </LinearLayout>
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="10dp">
-            <TextView
-              android:text="@string/Settings_PhotoResolution"
-              android:textAppearance="?android:attr/textAppearanceMedium"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content" />
-            <Spinner
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textAppearance="?android:attr/textAppearanceMedium"
-              android:id="@+id/spinnerResolution" />
-        </LinearLayout>
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="10dp">
-          <TextView
-            android:text="@string/Category_ElevationData"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-          <TextView
-            android:text="Cached elevation data occupy 28.2 MBytes of device memory."
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
-            android:id="@+id/textViewElevationDataSize" />
-          <Button
-            android:text="@string/Settings_ClearElevationData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonClearElevationData" />
+                    <TextView
+                      android:paddingTop="10dp"
+                      android:text="@string/Common_VerticalViewAngle"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/textViewAngleVertical" />
+                    <SeekBar
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="bottom"
+                      android:id="@+id/seekBarCorrectionViewAngleVertical"
+                      android:min="-100"
+                      android:max="100"
+                      android:progress="0" />
+                    <Button
+                      android:text="@string/Common_Reset"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/reset" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
+        <androidx.cardview.widget.CardView 
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardLocation">
+            <LinearLayout 
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+                <View 
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#606060"/>
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                    <ImageView
+                    android:src="@drawable/i_location"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"/>
+                    <TextView
+                    android:text="@string/Common_GPSLocation"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/PeaksDarkBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                    <Space android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="100"/>
+                    <ImageButton android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:src="@drawable/baseline_expand_more_black_24dp"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/cardLocationButton"/>
+                </LinearLayout>
+                <LinearLayout
+                  android:id="@+id/cardLocationContent"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:visibility="gone"
+                  android:padding="10dp">
+                      <Switch
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/Settings_SetGPSManually"
+                        android:id="@+id/switchManualGpsLocation" />
+                      <GridLayout
+                        android:paddingTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="30dp"
+                        android:rowCount="3"
+                        android:columnCount="2">
+                        <TextView
+                          android:paddingTop="10dp"
+                          android:layout_columnWeight="3"
+                          android:text="@string/Common_Latitude"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/latitudeTitle" />
+                        <EditText
+                          android:layout_columnWeight="8"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:inputType="numberDecimal"
+                          android:digits="0123456789."
+                          android:padding="10px"
+                          android:background="@drawable/bg_edittext"
+                          android:id="@+id/editTextLatitude" />
+                        <TextView
+                          android:paddingTop="10dp"
+                          android:layout_columnWeight="3"
+                          android:text="@string/Common_Longitude"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/longitudeTitle" />
+                        <EditText
+                          android:layout_columnWeight="8"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:inputType="numberDecimal"
+                          android:digits="0123456789."
+                          android:padding="10px"
+                          android:background="@drawable/bg_edittext"
+                          android:id="@+id/editTextLongitude" />
+                        <TextView
+                          android:paddingTop="10dp"
+                          android:layout_columnWeight="3"
+                          android:text="@string/Common_Altitude"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/altitudeTitle" />
+                        <EditText
+                          android:layout_columnWeight="8"
+                          android:textAppearance="?android:attr/textAppearanceSmall"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:inputType="numberDecimal"
+                          android:digits="0123456789."
+                          android:padding="10px"
+                          android:background="@drawable/bg_edittext"
+                          android:id="@+id/editTextAltitude" />
+                      </GridLayout>
+                  </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView 
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardElevationProfile">
+            <LinearLayout 
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+                <View 
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#606060"/>
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+                    <ImageView
+                    android:src="@drawable/ic_terrain"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"/>
+                    <TextView
+                    android:text="@string/Settings_ElevationProfile"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/PeaksDarkBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                    <Space android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="100"/>
+                    <ImageButton android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:src="@drawable/baseline_expand_more_black_24dp"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/cardElevationProfileButton"/>
+                </LinearLayout>
+                <LinearLayout
+                  android:id="@+id/cardElevationProfileContent"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:visibility="gone"
+                  android:padding="10dp">
+                      <TextView
+                        android:text="@string/Settings_ElevationProfileExplenation"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                      <Switch
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/Settings_AutomaticElevationProfile"
+                        android:id="@+id/switchAutoElevationProfile" />
+                </LinearLayout>
+            </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+             <androidx.cardview.widget.CardView 
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardAltitude">
+                    <LinearLayout 
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <View 
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#606060"/>
+                        <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+                            <ImageView
+                            android:src="@drawable/i_elevation"
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"/>
+                            <TextView
+                            android:text="@string/Settings_MyAltitude"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/PeaksDarkBlue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                            <Space android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"/>
+                            <ImageButton android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0"
+                            android:src="@drawable/baseline_expand_more_black_24dp"
+                            android:background="@android:color/transparent"
+                            android:id="@+id/cardAltitudeButton"/>
+                      </LinearLayout>
+                <LinearLayout
+                  android:id="@+id/cardAltitudeContent"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:visibility="gone"
+                  android:padding="10dp">
+                  <TextView
+                    android:text="@string/Settings_AltitudeExplenation"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                  <Switch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/Settings_AltitudeFromElevationMap"
+                    android:id="@+id/switchAltitudeFromElevationMap" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+         <androidx.cardview.widget.CardView 
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardPhotoResolution">
+                    <LinearLayout 
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <View 
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#606060"/>
+                        <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+                            <ImageView
+                            android:src="@drawable/ic_camera"
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"/>
+                            <TextView
+                            android:text="@string/Settings_PhotoResolution"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/PeaksDarkBlue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                            <Space android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"/>
+                            <ImageButton android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0"
+                            android:src="@drawable/baseline_expand_more_black_24dp"
+                            android:background="@android:color/transparent"
+                            android:id="@+id/cardPhotoResolutionButton"/>
+                        </LinearLayout>
+                <LinearLayout
+                  android:id="@+id/cardPhotoResolutionContent"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:visibility="gone"
+                  android:padding="10dp">
+                    <Spinner
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:id="@+id/spinnerResolution" />
+                </LinearLayout>
+             </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView 
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardElevationData">
+                    <LinearLayout 
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <View 
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#606060"/>
+                        <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+                            <ImageView
+                            android:src="@drawable/ic_decrease_size"
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"/>
+                            <TextView
+                            android:text="@string/Category_ElevationData"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/PeaksDarkBlue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                            <Space android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"/>
+                            <ImageButton android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0"
+                            android:src="@drawable/baseline_expand_more_black_24dp"
+                            android:background="@android:color/transparent"
+                            android:id="@+id/cardElevationDataButton"/>
+                        </LinearLayout>
+                <LinearLayout
+                  android:id="@+id/cardElevationDataContent"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:visibility="gone"
+                  android:padding="10dp">
+                  <TextView
+                    android:text="Cached elevation data occupy 28.2 MBytes of device memory."
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" 
+                    android:id="@+id/textViewElevationDataSize" />
+                  <Button
+                    android:text="@string/Settings_ClearElevationData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonClearElevationData" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 </ScrollView>

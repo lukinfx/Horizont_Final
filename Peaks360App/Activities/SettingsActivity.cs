@@ -14,6 +14,8 @@ using Peaks360App.AppContext;
 using Peaks360App.Views.ScaleImage;
 using Peaks360Lib.Providers;
 using static Android.Views.View;
+using AndroidX.CardView.Widget;
+using Android.Transitions;
 
 namespace Peaks360App.Activities
 {
@@ -143,6 +145,14 @@ namespace Peaks360App.Activities
             buttonClearElevationData.SetOnClickListener(this);
 
             _textViewElevationDataSize = FindViewById<TextView>(Resource.Id.textViewElevationDataSize);
+
+            FindViewById<ImageButton>(Resource.Id.cardLanguageButton).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.cardViewAngleButton).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.cardLocationButton).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.cardElevationProfileButton).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.cardAltitudeButton).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.cardPhotoResolutionButton).SetOnClickListener(this);
+            FindViewById<ImageButton>(Resource.Id.cardElevationDataButton).SetOnClickListener(this);
 
             UpdateElevationDataSize();
         }
@@ -298,6 +308,26 @@ namespace Peaks360App.Activities
                 + ": " + GetViewAngleText(_switchManualViewAngle.Checked, verticalCorrection, _settings.AutomaticViewAngleVertical);
         }
 
+        private void OnToggleView(int buttonResId, int cardResId, int contentResId)
+        {
+            var button = FindViewById<ImageButton>(buttonResId);
+            var cardView = FindViewById<CardView>(cardResId);
+            var hiddenView = FindViewById<LinearLayout>(contentResId);
+
+            if (hiddenView.Visibility == ViewStates.Visible)
+            {
+                TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
+                hiddenView.Visibility = ViewStates.Gone;
+                button.SetImageResource(Resource.Drawable.baseline_expand_more_black_24dp);
+            }
+            else
+            {
+                TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
+                hiddenView.Visibility = ViewStates.Visible;
+                button.SetImageResource(Resource.Drawable.baseline_expand_less_black_24dp);
+            }
+        }
+
         public void OnClick(View v)
         {
             switch (v.Id)
@@ -326,6 +356,28 @@ namespace Peaks360App.Activities
                     break;
                 case Resource.Id.buttonClearElevationData:
                     ClearElevationData();
+                    break;
+
+                case Resource.Id.cardLanguageButton:
+                    OnToggleView(Resource.Id.cardLanguageButton, Resource.Id.cardLanguage, Resource.Id.cardLanguageContent);
+                    break;
+                case Resource.Id.cardViewAngleButton:
+                    OnToggleView(Resource.Id.cardViewAngleButton, Resource.Id.cardViewAngle, Resource.Id.cardViewAngleContent);
+                    break;
+                case Resource.Id.cardLocationButton:
+                    OnToggleView(Resource.Id.cardLocationButton, Resource.Id.cardLocation, Resource.Id.cardLocationContent);
+                    break;
+                case Resource.Id.cardElevationProfileButton:
+                    OnToggleView(Resource.Id.cardElevationProfileButton, Resource.Id.cardElevationProfile, Resource.Id.cardElevationProfileContent);
+                    break;
+                case Resource.Id.cardAltitudeButton:
+                    OnToggleView(Resource.Id.cardAltitudeButton, Resource.Id.cardAltitude, Resource.Id.cardAltitudeContent);
+                    break;
+                case Resource.Id.cardPhotoResolutionButton:
+                    OnToggleView(Resource.Id.cardPhotoResolutionButton, Resource.Id.cardPhotoResolution, Resource.Id.cardPhotoResolutionContent);
+                    break;
+                case Resource.Id.cardElevationDataButton:
+                    OnToggleView(Resource.Id.cardElevationDataButton, Resource.Id.cardElevationData, Resource.Id.cardElevationDataContent);
                     break;
             }
         }
