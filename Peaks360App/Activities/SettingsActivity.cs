@@ -57,6 +57,30 @@ namespace Peaks360App.Activities
         private bool _isDirty = false;
         private List<Size> _listOfCameraResolutions;
 
+        private class CardItem
+        {
+            public CardItem(int CardId, int ButtonId, int LayoutId, int ContentId)
+            {
+                this.CardId = CardId;
+                this.ButtonId = ButtonId;
+                this.LayoutId = LayoutId;
+                this.ContentId = ContentId;
+            }
+            public int CardId;
+            public int ButtonId;
+            public int LayoutId;
+            public int ContentId;
+        }
+        private List<CardItem> _cardItems = new List<CardItem>() {
+            new CardItem(Resource.Id.cardLanguage, Resource.Id.cardLanguageButton,Resource.Id.cardLanguageLayout, Resource.Id.cardLanguageContent),
+            new CardItem(Resource.Id.cardViewAngle, Resource.Id.cardViewAngleButton,Resource.Id.cardViewAngleLayout, Resource.Id.cardViewAngleContent),
+            new CardItem(Resource.Id.cardLocation, Resource.Id.cardLocationButton,Resource.Id.cardLocationLayout, Resource.Id.cardLocationContent),
+            new CardItem(Resource.Id.cardElevationProfile, Resource.Id.cardElevationProfileButton,Resource.Id.cardElevationProfileLayout, Resource.Id.cardElevationProfileContent),
+            new CardItem(Resource.Id.cardAltitude, Resource.Id.cardAltitudeButton,Resource.Id.cardAltitudeLayout, Resource.Id.cardAltitudeContent),
+            new CardItem(Resource.Id.cardPhotoResolution, Resource.Id.cardPhotoResolutionButton,Resource.Id.cardPhotoResolutionLayout, Resource.Id.cardPhotoResolutionContent),
+            new CardItem(Resource.Id.cardElevationData, Resource.Id.cardElevationDataButton,Resource.Id.cardElevationDataLayout, Resource.Id.cardElevationDataContent),
+        };
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -146,14 +170,10 @@ namespace Peaks360App.Activities
 
             _textViewElevationDataSize = FindViewById<TextView>(Resource.Id.textViewElevationDataSize);
 
-            FindViewById<ImageButton>(Resource.Id.cardLanguageButton).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.cardViewAngleButton).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.cardLocationButton).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.cardElevationProfileButton).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.cardAltitudeButton).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.cardPhotoResolutionButton).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.cardElevationDataButton).SetOnClickListener(this);
-
+            foreach (var cardItem in _cardItems)
+            {
+                FindViewById<LinearLayout>(cardItem.LayoutId).SetOnClickListener(this);
+            }
             UpdateElevationDataSize();
         }
 
@@ -308,23 +328,39 @@ namespace Peaks360App.Activities
                 + ": " + GetViewAngleText(_switchManualViewAngle.Checked, verticalCorrection, _settings.AutomaticViewAngleVertical);
         }
 
-        private void OnToggleView(int buttonResId, int cardResId, int contentResId)
+        private void OnSelectViewCard(int layoutResId)
         {
-            var button = FindViewById<ImageButton>(buttonResId);
-            var cardView = FindViewById<CardView>(cardResId);
-            var hiddenView = FindViewById<LinearLayout>(contentResId);
+            foreach (var cardItem in _cardItems)
+            {
+                var button = FindViewById<ImageView>(cardItem.ButtonId);
+                var cardView = FindViewById<CardView>(cardItem.CardId);
+                var hiddenView = FindViewById<LinearLayout>(cardItem.ContentId);
 
-            if (hiddenView.Visibility == ViewStates.Visible)
-            {
-                TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
-                hiddenView.Visibility = ViewStates.Gone;
-                button.SetImageResource(Resource.Drawable.baseline_expand_more_black_24dp);
+                if (layoutResId != cardItem.LayoutId && hiddenView.Visibility == ViewStates.Visible)
+                {
+                    hiddenView.Visibility = ViewStates.Gone;
+                    button.SetImageResource(Resource.Drawable.baseline_expand_more_black_24dp);
+                }
             }
-            else
+
             {
-                TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
-                hiddenView.Visibility = ViewStates.Visible;
-                button.SetImageResource(Resource.Drawable.baseline_expand_less_black_24dp);
+                var selectedCardItem = _cardItems.Single(x => x.LayoutId == layoutResId);
+                var button = FindViewById<ImageView>(selectedCardItem.ButtonId);
+                var cardView = FindViewById<CardView>(selectedCardItem.CardId);
+                var hiddenView = FindViewById<LinearLayout>(selectedCardItem.ContentId);
+
+                if (hiddenView.Visibility == ViewStates.Visible)
+                {
+                    TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
+                    hiddenView.Visibility = ViewStates.Gone;
+                    button.SetImageResource(Resource.Drawable.baseline_expand_more_black_24dp);
+                }
+                else
+                {
+                    TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
+                    hiddenView.Visibility = ViewStates.Visible;
+                    button.SetImageResource(Resource.Drawable.baseline_expand_less_black_24dp);
+                }
             }
         }
 
@@ -358,26 +394,14 @@ namespace Peaks360App.Activities
                     ClearElevationData();
                     break;
 
-                case Resource.Id.cardLanguageButton:
-                    OnToggleView(Resource.Id.cardLanguageButton, Resource.Id.cardLanguage, Resource.Id.cardLanguageContent);
-                    break;
-                case Resource.Id.cardViewAngleButton:
-                    OnToggleView(Resource.Id.cardViewAngleButton, Resource.Id.cardViewAngle, Resource.Id.cardViewAngleContent);
-                    break;
-                case Resource.Id.cardLocationButton:
-                    OnToggleView(Resource.Id.cardLocationButton, Resource.Id.cardLocation, Resource.Id.cardLocationContent);
-                    break;
-                case Resource.Id.cardElevationProfileButton:
-                    OnToggleView(Resource.Id.cardElevationProfileButton, Resource.Id.cardElevationProfile, Resource.Id.cardElevationProfileContent);
-                    break;
-                case Resource.Id.cardAltitudeButton:
-                    OnToggleView(Resource.Id.cardAltitudeButton, Resource.Id.cardAltitude, Resource.Id.cardAltitudeContent);
-                    break;
-                case Resource.Id.cardPhotoResolutionButton:
-                    OnToggleView(Resource.Id.cardPhotoResolutionButton, Resource.Id.cardPhotoResolution, Resource.Id.cardPhotoResolutionContent);
-                    break;
-                case Resource.Id.cardElevationDataButton:
-                    OnToggleView(Resource.Id.cardElevationDataButton, Resource.Id.cardElevationData, Resource.Id.cardElevationDataContent);
+                case Resource.Id.cardLanguageLayout:
+                case Resource.Id.cardViewAngleLayout:
+                case Resource.Id.cardLocationLayout:
+                case Resource.Id.cardElevationProfileLayout:
+                case Resource.Id.cardAltitudeLayout:
+                case Resource.Id.cardPhotoResolutionLayout:
+                case Resource.Id.cardElevationDataLayout:
+                    OnSelectViewCard(v.Id);
                     break;
             }
         }

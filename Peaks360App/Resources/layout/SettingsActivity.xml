@@ -22,6 +22,7 @@
                 android:layout_height="1dp"
                 android:background="#606060"/>
                 <LinearLayout
+                android:id="@+id/cardLanguageLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -32,14 +33,12 @@
                     android:layout_height="match_parent"/>
                     <TextView
                     android:text="@string/Settings_ChooseLanguage"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/PeaksDarkBlue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                     <Space android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="100"/>
-                    <ImageButton android:layout_width="wrap_content"
+                    <ImageView android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
                     android:src="@drawable/baseline_expand_more_black_24dp"
@@ -56,7 +55,6 @@
                     <Spinner
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:textAppearance="?android:attr/textAppearanceMedium"
                       android:id="@+id/spinnerLanguage" />
                 </LinearLayout>
             </LinearLayout>
@@ -77,6 +75,7 @@
                 android:layout_height="1dp"
                 android:background="#606060"/>
                 <LinearLayout
+                    android:id="@+id/cardViewAngleLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -87,14 +86,12 @@
                         android:layout_height="match_parent"/>
                         <TextView
                         android:text="@string/Settings_CameraViewAngle"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/PeaksDarkBlue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                         <Space android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="100"/>
-                        <ImageButton android:layout_width="wrap_content"
+                        <ImageView android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0"
                         android:src="@drawable/baseline_expand_more_black_24dp"
@@ -170,6 +167,7 @@
                 android:layout_height="1dp"
                 android:background="#606060"/>
                 <LinearLayout
+                android:id="@+id/cardLocationLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -180,14 +178,12 @@
                     android:layout_height="match_parent"/>
                     <TextView
                     android:text="@string/Common_GPSLocation"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/PeaksDarkBlue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                     <Space android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="100"/>
-                    <ImageButton android:layout_width="wrap_content"
+                    <ImageView android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
                     android:src="@drawable/baseline_expand_more_black_24dp"
@@ -286,6 +282,7 @@
                 android:layout_height="1dp"
                 android:background="#606060"/>
                 <LinearLayout
+                android:id="@+id/cardElevationProfileLayout"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content"
@@ -296,14 +293,12 @@
                     android:layout_height="match_parent"/>
                     <TextView
                     android:text="@string/Settings_ElevationProfile"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/PeaksDarkBlue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                     <Space android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="100"/>
-                    <ImageButton android:layout_width="wrap_content"
+                    <ImageView android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0"
                     android:src="@drawable/baseline_expand_more_black_24dp"
@@ -347,6 +342,7 @@
                         android:layout_height="1dp"
                         android:background="#606060"/>
                         <LinearLayout
+                        android:id="@+id/cardAltitudeLayout"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -357,14 +353,12 @@
                             android:layout_height="match_parent"/>
                             <TextView
                             android:text="@string/Settings_MyAltitude"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/PeaksDarkBlue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                             <Space android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="100"/>
-                            <ImageButton android:layout_width="wrap_content"
+                            <ImageView android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="0"
                             android:src="@drawable/baseline_expand_more_black_24dp"
@@ -409,6 +403,7 @@
                         android:layout_height="1dp"
                         android:background="#606060"/>
                         <LinearLayout
+                        android:id="@+id/cardPhotoResolutionLayout"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -419,14 +414,12 @@
                             android:layout_height="match_parent"/>
                             <TextView
                             android:text="@string/Settings_PhotoResolution"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/PeaksDarkBlue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                             <Space android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="100"/>
-                            <ImageButton android:layout_width="wrap_content"
+                            <ImageView android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="0"
                             android:src="@drawable/baseline_expand_more_black_24dp"
@@ -443,7 +436,6 @@
                     <Spinner
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:textAppearance="?android:attr/textAppearanceMedium"
                       android:id="@+id/spinnerResolution" />
                 </LinearLayout>
              </LinearLayout>
@@ -464,6 +456,7 @@
                         android:layout_height="1dp"
                         android:background="#606060"/>
                         <LinearLayout
+                        android:id="@+id/cardElevationDataLayout"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -474,14 +467,12 @@
                             android:layout_height="match_parent"/>
                             <TextView
                             android:text="@string/Category_ElevationData"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/PeaksDarkBlue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                             <Space android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="100"/>
-                            <ImageButton android:layout_width="wrap_content"
+                            <ImageView android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="0"
                             android:src="@drawable/baseline_expand_more_black_24dp"
