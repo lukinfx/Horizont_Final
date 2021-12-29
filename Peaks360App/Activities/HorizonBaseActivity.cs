@@ -71,6 +71,25 @@ namespace Peaks360App.Activities
         }
 
         protected int MaxDistance { get { return _distanceSeekBar.Progress; } }
+        
+        protected void InitializeMenu()
+        {
+            var buttonList = FindViewById<LinearLayout>(Resource.Id.listOfPoisLinearLayout);
+            buttonList.SetOnClickListener(this);
+
+            var buttonDownload = FindViewById<LinearLayout>(Resource.Id.downloadDataLinearLayout);
+            buttonDownload.SetOnClickListener(this);
+
+            var buttonSettings = FindViewById<LinearLayout>(Resource.Id.settingsLinearLayout);
+            buttonSettings.SetOnClickListener(this);
+
+            var buttonPhotos = FindViewById<LinearLayout>(Resource.Id.photoGalleryLinearLayout);
+            buttonPhotos.SetOnClickListener(this);
+
+            var buttonAbout = FindViewById<LinearLayout>(Resource.Id.aboutLinearLayout);
+            buttonAbout.SetOnClickListener(this);
+        }
+
         protected void InitializeBaseActivityUI()
         {
             AppContextLiveData.Instance.SetLocale(this);
@@ -193,6 +212,7 @@ namespace Peaks360App.Activities
 
         public override bool OnTouchEvent(MotionEvent e)
         {
+            bool handled = false;
             base.OnTouchEvent(e);
             _gestureDetector.OnTouchEvent(e);
 
@@ -236,24 +256,35 @@ namespace Peaks360App.Activities
                             if (ImageCroppingEnabled && m_croppingHandle != null)
                             {
                                 OnCropAdjustment(m_croppingHandle.Value, -distanceX, -distanceY);
+                                handled = true;
                             }
                             else if (MoveingAndZoomingEnabled && !m_IsScaling)
                             {
-                                OnMove(-distanceX, -distanceY);
+                                if (m_FirstMoveX > 100)
+                                {
+                                    OnMove(-distanceX, -distanceY);
+                                    handled = true;
+                                }
                             }
                             else if (HeadingCorrectionEnabled && Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
                             {
-                                _compassView.OnHeadingCorrection(distanceX);
+                                if (m_FirstMoveX > 100)
+                                {
+                                    _compassView.OnHeadingCorrection(distanceX);
+                                    handled = true;
+                                }
                             }
                             else if (OnePointTiltCorrectionEnabled && Math.Abs(m_FirstMoveY - e.GetY()) > Math.Abs(m_FirstMoveX - e.GetX()))
                             {
                                 _compassView.OnTiltCorrection(distanceY, TiltCorrectionType.Both);
                                 OnTiltChanged();
+                                handled = true;
                             }
                             else if (TwoPointTiltCorrectionEnabled)
                             {
                                 _compassView.OnTiltCorrection(distanceY, (e.RawX < Resources.DisplayMetrics.WidthPixels / 2) ? TiltCorrectionType.Left : TiltCorrectionType.Right);
                                 OnTiltChanged();
+                                handled = true;
                             }
                         }
                         else if (touchCount >= 2)
@@ -269,6 +300,7 @@ namespace Peaks360App.Activities
                                 scale = scale * scale;
 
                                 OnZoom(scale, GetScreenWidth() / 2, GetScreenHeight() / 2);
+                                handled = true;
                             }
                             else if (ViewAngleCorrectionEnabled)
                             {
@@ -282,6 +314,7 @@ namespace Peaks360App.Activities
                                     _compassView.ScaleHorizontalViewAngle(scale);
                                     //OnVerticalViewAngleChange();
                                     Log.WriteLine(LogPriority.Debug, TAG, $"Horizontal VA correction: {scale}");
+                                    handled = true;
                                 }
                                 else
                                 {
@@ -291,6 +324,7 @@ namespace Peaks360App.Activities
                                     _compassView.ScaleVerticalViewAngle(scale);
                                     //OnHorizontalViewAngleChange();
                                     Log.WriteLine(LogPriority.Debug, TAG, $"Vertical VA correction: {scale}");
+                                    handled = true;
                                 }
                             }
                         }
@@ -312,7 +346,7 @@ namespace Peaks360App.Activities
             }
 
             UpdateStatusBar();
-            return true;
+            return handled;
         }
 
         protected abstract void UpdateStatusBar();
@@ -379,6 +413,23 @@ namespace Peaks360App.Activities
             }
         }
 
+        protected void StartPoisListActivity()
+        {
+            Intent listActivityIntent = new Intent(this, typeof(PoiListActivity));
+            listActivityIntent.PutExtra("latitude", Context.MyLocation.Latitude);
+            listActivityIntent.PutExtra("longitude", Context.MyLocation.Longitude);
+            listActivityIntent.PutExtra("altitude", Context.MyLocation.Altitude);
+            listActivityIntent.PutExtra("maxDistance", MaxDistance);
+            listActivityIntent.PutExtra("minAltitude", 0);
+            StartActivityForResult(listActivityIntent, PoiListActivity.REQUEST_SHOW_POI_LIST);
+        }
+
+        protected void StartSettingsActivity()
+        {
+            Intent settingsActivityIntent = new Intent(this, typeof(SettingsActivity));
+            StartActivityForResult(settingsActivityIntent, SettingsActivity.REQUEST_SHOW_SETTINGS);
+        }
+
         private void OnPoiFavouriteButtonClicked(Poi poi)
         {
             poi.Favorite = !poi.Favorite;
@@ -393,20 +444,28 @@ namespace Peaks360App.Activities
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            if (resultCode == EditActivity.RESULT_OK || resultCode == EditActivity.RESULT_OK_AND_CLOSE_PARENT)
+            if (requestCode == SettingsActivity.REQUEST_SHOW_SETTINGS && resultCode == EditActivity.RESULT_OK_AND_CLOSE_PARENT)
             {
-                //TODO: use Poi model
-                Context.ReloadData();
-                _compassView.Update(Context.SelectedPoi.Poi);
-                _compassView.RefreshPoisDoBeDisplayed();
+                Recreate();
+            }
 
-                if (Context.SelectedPoi != null)
+            if (requestCode == EditActivity.REQUEST_EDIT_POI)
+            {
+                if (resultCode == EditActivity.RESULT_OK || resultCode == EditActivity.RESULT_OK_AND_CLOSE_PARENT)
                 {
-                    OnPointSelected(Context.SelectedPoi);
-                }
-                else
-                {
-                    HideControls();
+                    //TODO: use Poi model
+                    Context.ReloadData();
+                    _compassView.RefreshPoisDoBeDisplayed();
+
+                    if (Context.SelectedPoi != null)
+                    {
+                        _compassView.Update(Context.SelectedPoi.Poi);
+                        OnPointSelected(Context.SelectedPoi);
+                    }
+                    else
+                    {
+                        HideControls();
+                    }
                 }
             }
         }

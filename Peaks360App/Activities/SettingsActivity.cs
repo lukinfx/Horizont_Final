@@ -254,6 +254,8 @@ namespace Peaks360App.Activities
 
         private void OnSave()
         {
+            Result result = RESULT_OK;
+
             try
             {
                 //View angle correction
@@ -285,7 +287,13 @@ namespace Peaks360App.Activities
                 //Altitude from elevation map
                 _settings.AltitudeFromElevationMap = _switchAltitudeFromElevationMap.Checked;
                 _settings.CameraResolutionSelected = _listOfCameraResolutions[_spinnerPhotoResolution.SelectedItemPosition];
-                _settings.Language = PoiCountryHelper.GetLanguageCode(_listOfLanguages[_spinnerLanguages.SelectedItemPosition]); 
+
+                var newLanguage = PoiCountryHelper.GetLanguageCode(_listOfLanguages[_spinnerLanguages.SelectedItemPosition]);
+                if (_settings.Language != newLanguage)
+                {
+                    result = RESULT_OK_AND_CLOSE_PARENT;
+                }
+                _settings.Language = newLanguage; 
 
                 _settings.NotifySettingsChanged(ChangedData.ViewOptions);
                 AppContextLiveData.Instance.SetLocale(this);
@@ -293,9 +301,10 @@ namespace Peaks360App.Activities
             catch(Exception ex)
             {
                 PopupHelper.ErrorDialog(this, "Error when saving settings.", ex.Message);
+                return;
             }
 
-            SetResult(RESULT_OK);
+            SetResult(result);
             Finish();
         }
 

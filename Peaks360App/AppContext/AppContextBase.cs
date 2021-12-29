@@ -252,7 +252,7 @@ namespace Peaks360App.AppContext
 
         public void SetLocale(Context appContext)
         {
-            PoiCountryHelper.SetLocale(appContext.Resources, Settings.Language);
+            PoiCountryHelper.SetLocale(appContext, Settings.Language);
         }
     }
 }

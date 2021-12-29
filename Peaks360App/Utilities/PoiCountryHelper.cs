@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Android.Content;
 using Android.Content.Res;
 using Peaks360App.Providers;
 using Peaks360Lib.Domain.Enums;
@@ -259,32 +260,41 @@ namespace Peaks360App.Utilities
             }
         }
 
-        public static void SetLocale(Resources resources, Language language)
+        public static Java.Util.Locale GetLocale(Language language)
         {
-
             switch (language)
             {
                 case Language.English:
-                    resources.Configuration.SetLocale(new Java.Util.Locale("en"));
-                    break;
+                    return new Java.Util.Locale("en");
                 case Language.German:
-                    resources.Configuration.SetLocale(new Java.Util.Locale("de"));
-                    break;
+                    return new Java.Util.Locale("de");
                 case Language.Czech:
-                    resources.Configuration.SetLocale(new Java.Util.Locale("cz"));
-                    break;
+                    return new Java.Util.Locale("cz");
                 case Language.French:
-                    resources.Configuration.SetLocale(new Java.Util.Locale("fr"));
-                    break;
+                    return new Java.Util.Locale("fr");
                 case Language.Italian:
-                    resources.Configuration.SetLocale(new Java.Util.Locale("it"));
-                    break;
+                    return new Java.Util.Locale("it");
                 case Language.Spanish:
-                    resources.Configuration.SetLocale(new Java.Util.Locale("es"));
-                    break;
+                    return new Java.Util.Locale("es");
+                default:
+                    return new Java.Util.Locale("en");
             }
+        }
 
-            resources.UpdateConfiguration(resources.Configuration, resources.DisplayMetrics);
+        public static void SetLocale(Context context, Language language)
+        {
+            context.Resources.Configuration.SetLocale(GetLocale(language));
+
+            //context.Resources.UpdateConfiguration(context.Resources.Configuration, context.Resources.DisplayMetrics);
+
+            //var locale = new Java.Util.Locale(AppContextLiveData.Instance.Settings.Language);
+            //locale.Language = ..setDefault(locale);
+            var config = new Android.Content.Res.Configuration();
+            config.Locale = GetLocale(language);
+            context.Resources.UpdateConfiguration(config, context.Resources.DisplayMetrics);
+
+            //context.CreateConfigurationContext(context.Resources.Configuration);
+            //context.Resources.DisplayMetrics.SetTo(context.Resources.DisplayMetrics);
         }
 
         public static int GetCountryIcon(PoiCountry country)

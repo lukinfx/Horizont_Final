@@ -1,7 +1,7 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
+  android:layout_height="wrap_content"
   android:orientation="vertical"
   android:padding="10dp">
 
@@ -11,35 +11,6 @@
       android:layout_height="wrap_content"
       android:layout_weight="1"
       android:gravity="center_vertical"
-      android:padding="5dp"
-      android:background="#ffffff"
-      android:id="@+id/cameraLinearLayout">
-        <ImageButton
-          android:src="@drawable/ic_camera"
-          android:layout_columnWeight="1"
-          android:layout_width="30dp"
-          android:layout_height="30dp"
-          android:scaleType="fitCenter"
-          android:background="#00000000"
-          android:id="@+id/buttonHome" />
-        <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/MainActivity"
-          android:paddingLeft="10dp"
-          android:paddingRight="10dp"
-          android:textSize="20dp"
-          android:textColor="#000000"/>
-    </LinearLayout>
-
-    <LinearLayout
-      android:orientation="horizontal"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:padding="5dp"
-      android:gravity="center_vertical"
-      android:background="#ffffff"
       android:id="@+id/listOfPoisLinearLayout">
         <ImageButton
           android:src="@drawable/ic_notesalt"
@@ -47,16 +18,13 @@
           android:layout_width="30dp"
           android:layout_height="30dp"
           android:scaleType="fitCenter"
-          android:background="#00000000"
+          android:background="@android:color/transparent"
           android:id="@+id/buttonList" />
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/PoiListActivity"
-          android:paddingLeft="10dp"
-          android:paddingRight="10dp"
-          android:textSize="20dp"
-          android:textColor="#000000"/>
+          android:paddingLeft="5dp"/>
     </LinearLayout>
     
     <LinearLayout
@@ -65,24 +33,19 @@
       android:layout_height="wrap_content"
       android:layout_weight="1"
       android:gravity="center_vertical"
-      android:padding="5dp"
-      android:background="#ffffff"
       android:id="@+id/photoGalleryLinearLayout">
         <ImageButton
           android:src="@drawable/ic_gallery"
           android:layout_width="30dp"
           android:layout_height="30dp"
           android:scaleType="fitCenter"
-          android:background="#00000000"
+          android:background="@android:color/transparent"
           android:id="@+id/buttonPhotos" />
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/PhotosActivity"
-          android:paddingLeft="10dp"
-          android:paddingRight="10dp"
-          android:textSize="20dp"
-          android:textColor="#000000"/>
+          android:paddingLeft="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -91,24 +54,19 @@
       android:layout_height="wrap_content"
       android:layout_weight="1"
       android:gravity="center_vertical"
-      android:padding="5dp"
-      android:background="#ffffff"
       android:id="@+id/downloadDataLinearLayout">
         <ImageButton
           android:src="@drawable/ic_download"
           android:layout_width="30dp"
           android:layout_height="30dp"
           android:scaleType="fitCenter"
-          android:background="#00000000"
+          android:background="@android:color/transparent"
           android:id="@+id/buttonDownload" />
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/DownloadActivity"
-          android:paddingLeft="10dp"
-          android:paddingRight="10dp"
-          android:textSize="20dp"
-          android:textColor="#000000"/>
+          android:paddingLeft="5dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -117,24 +75,19 @@
       android:layout_height="wrap_content"
       android:layout_weight="1"
       android:gravity="center_vertical"
-      android:padding="5dp"
-      android:background="#ffffff"
       android:id="@+id/settingsLinearLayout">
         <ImageButton
           android:src="@drawable/ic_settingsalt2"
           android:layout_width="30dp"
           android:layout_height="30dp"
           android:scaleType="fitCenter"
-          android:background="#00000000"
+          android:background="@android:color/transparent"
           android:id="@+id/buttonSettings" />
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/SettingsActivity"
-          android:paddingLeft="10dp"
-          android:paddingRight="10dp"
-          android:textSize="20dp"
-          android:textColor="#000000"/>
+          android:paddingLeft="5dp"/>
     </LinearLayout>
     
     <LinearLayout
@@ -142,9 +95,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_weight="1"
-      android:padding="5dp"
       android:gravity="center_vertical"
-      android:background="#ffffff"
       android:id="@+id/aboutLinearLayout">
         <ImageButton
           android:src="@drawable/ic_systeminfo"
@@ -152,15 +103,12 @@
           android:layout_width="30dp"
           android:layout_height="30dp"
           android:scaleType="fitCenter"
-          android:background="#00000000"
+          android:background="@android:color/transparent"
           android:id="@+id/buttonAbout" />
         <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/AboutActivity"
-          android:paddingLeft="10dp"
-          android:paddingRight="10dp"
-          android:textSize="20dp"
-          android:textColor="#000000"/>
+          android:paddingLeft="5dp"/>
     </LinearLayout>
 </LinearLayout>

@@ -8,14 +8,22 @@
     android:orientation="vertical"
     android:id="@+id/sample_main_layout">
 
-    <AbsoluteLayout
+    <Peaks360App.Views.SlidingMenuControl
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    <AbsoluteLayout
+        android:id="@+id/content_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
 
         <LinearLayout
-          android:orientation=    "horizontal"
-          android:layout_width=    "match_parent"
-          android:layout_height=    "match_parent"
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
           android:layout_weight="1"
           android:id="@+id/container">
         </LinearLayout>
@@ -31,6 +39,17 @@
           android:id="@+id/notificationArea"
           layout="@layout/NotificationBar"
           android:gravity="center" />
+
+        <LinearLayout
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu_handle_gray"/>
+        </LinearLayout>
 
         <LinearLayout
           android:orientation="vertical"
@@ -76,48 +95,42 @@
               android:background="@color/BackgroundTransparentLight">
 
                 <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="horizontal">
-                    <ImageButton
-                      android:src="@drawable/ic_menu_button"
-                      android:layout_width="60dp"
-                      android:layout_height="match_parent"
-                      android:layout_gravity="center_horizontal"
-                      android:adjustViewBounds="true"
-                      android:scaleType="fitCenter"
-                      android:layout_marginLeft="3px"
-                      android:layout_marginBottom="3px"
-                      android:padding="0dp"
-                      android:background="@android:color/transparent"
-                      android:id="@+id/menuButton" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <include
+                        layout="@layout/MainActivitySeekBars" 
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <include
-                          layout="@layout/MainActivitySeekBars" 
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content"/>
-                        <LinearLayout
+                        android:orientation="horizontal">
+                            <include
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-                              <include
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                layout="@layout/MainActivityControlBar"/>
-                              <include
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                layout="@layout/MainActivityControlBar2"/>
-                        </LinearLayout>
-
+                            android:layout_weight="1"
+                            layout="@layout/MainActivityControlBar"/>
+                            <include
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            layout="@layout/MainActivityControlBar2"/>
                     </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </AbsoluteLayout>
+
+        <LinearLayout
+            android:id="@+id/drawer_content"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:gravity="center">
+            <include layout="@layout/MenuActivityPortrait" />
+        </LinearLayout>
+    
+    </Peaks360App.Views.SlidingMenuControl>
 </LinearLayout>

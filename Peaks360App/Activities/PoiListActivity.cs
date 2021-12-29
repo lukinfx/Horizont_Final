@@ -17,7 +17,7 @@ using Peaks360App.Activities;
 using Peaks360App.AppContext;
 using Peaks360App.Utilities;
 
-namespace Peaks360App.Views.ListOfPoiView
+namespace Peaks360App.Activities
 {
     [Activity(Label = "PoiListActivity")]
     public class PoiListActivity : Activity, IPoiActionListener, View.IOnClickListener, SearchView.IOnQueryTextListener

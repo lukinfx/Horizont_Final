@@ -87,7 +87,6 @@
     <Compile Include="Activities\PhotosActivity.cs" />
     <Compile Include="Activities\DownloadActivity.cs" />
     <Compile Include="Activities\EditActivity.cs" />
-    <Compile Include="Activities\MenuActivity.cs" />
     <Compile Include="Activities\PoiFilterDialog.cs" />
     <Compile Include="Activities\PoiSelectActivity.cs" />
     <Compile Include="Activities\PrivacyPolicyActivity.cs" />
@@ -170,6 +169,7 @@
     <Compile Include="Views\Compass\CompassView.cs" />
     <Compile Include="Views\Compass\CompassViewFilter.cs" />
     <Compile Include="Views\DistanceSeekBar.cs" />
+    <Compile Include="Views\SlidingMenu\SlidingMenuControl.cs" />
     <Compile Include="Views\ErrorDialog.cs" />
     <Compile Include="Activities\PoiListActivity.cs" />
     <Compile Include="Views\Advertisment\InterstitialCallback.cs" />
@@ -238,6 +238,9 @@
     <PackageReference Include="Xamarin.Android.Support.v13">
       <Version>28.0.0.3</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.DrawerLayout">
+      <Version>1.1.1.5</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V13">
       <Version>1.0.0.10</Version>
     </PackageReference>
@@ -302,11 +305,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\c_church.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout-land\MenuActivityLandspace.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\i_info_black.png" />
@@ -649,11 +647,6 @@
       <Project>{44b69304-9ff0-4fce-8809-cc1fc45a35aa}</Project>
       <Name>Peaks360Lib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\MenuActivityStatusBar.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\PoiInfoL.xml">
@@ -1025,6 +1018,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_decrease_size.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\menu_handle_gray.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

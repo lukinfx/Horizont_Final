@@ -19,19 +19,21 @@ using Exception = System.Exception;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
 using ImageButton = Android.Widget.ImageButton;
 using View = Android.Views.View;
+using AndroidX.DrawerLayout.Widget;
+using Peaks360App.Views;
 
 namespace Peaks360App
 {
     [Activity(Label = "@string/app_name")]
-    public class MainActivity : HorizonBaseActivity
+    public class MainActivity : HorizonBaseActivity, /*DrawerLayout.IDrawerListener,*/ View.IOnTouchListener
     {
         //private static readonly int ReqCode_SelectCategoryActivity = 1000;
 
         //UI elements
         private ImageButton _pauseButton;
         private ImageButton _recordButton;
-        private ImageButton _menuButton;
         private ImageButton _resetCorrectionButton;
+        private SlidingMenuControl _slidingMenu;
         //private TextView _textViewStatusLine;
 
         private View _mainLayout;
@@ -55,7 +57,8 @@ namespace Peaks360App
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            AppContextLiveData.Instance.SetLocale(this);
+            AppContextLiveData.Instance.SetLocale(BaseContext);
+            
             Xamarin.Essentials.Platform.Init(this, bundle);
             MobileAds.Initialize(this);
 
@@ -68,6 +71,7 @@ namespace Peaks360App
                 SetContentView(Resource.Layout.MainActivityLandscape);
             }
 
+            InitializeMenu();
             InitializeBaseActivityUI();
             InitializeUIElements();
             InitializeCameraFragment();
@@ -96,6 +100,7 @@ namespace Peaks360App
         protected override void OnResume()
         {
             base.OnResume();
+
             Context.Resume();
             Context.ReloadData();
             ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
@@ -153,8 +158,8 @@ namespace Peaks360App
             //_textViewStatusLine = FindViewById<TextView>(Resource.Id.textViewStatusLine);
             //_textViewStatusLine.Selected = true;
 
-            _menuButton = FindViewById<ImageButton>(Resource.Id.menuButton);
-            _menuButton.SetOnClickListener(this);
+            _slidingMenu = FindViewById<SlidingMenuControl>(Resource.Id.drawer_layout);
+            _slidingMenu.SetOnTouchListener(this);
 
             _pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
             _pauseButton.SetOnClickListener(this);
@@ -226,16 +231,6 @@ namespace Peaks360App
             {
                 switch (v.Id)
                 {
-                    case Resource.Id.menuButton:
-                        {
-                            Intent menuActivityIntent = new Intent(this, typeof(MenuActivity));
-                            menuActivityIntent.PutExtra("latitude", Context.MyLocation.Latitude);
-                            menuActivityIntent.PutExtra("longitude", Context.MyLocation.Longitude);
-                            menuActivityIntent.PutExtra("altitude", Context.MyLocation.Altitude);
-                            menuActivityIntent.PutExtra("maxDistance", MaxDistance);
-                            StartActivity(menuActivityIntent);
-                            break;
-                        }
                     case Resource.Id.buttonPause:
                         {
                             HandleButtonPauseClicked();
@@ -259,6 +254,32 @@ namespace Peaks360App
                             Context.Settings.SetAutoLocation();
                         break;
                     }
+
+
+                    case Resource.Id.downloadDataLinearLayout:
+                        _slidingMenu.CloseMenu();
+                        Intent downloadActivityIntent = new Intent(this, typeof(DownloadActivity));
+                        StartActivity(downloadActivityIntent);
+                        break;
+                    case Resource.Id.listOfPoisLinearLayout:
+                        _slidingMenu.CloseMenu();
+                        StartPoisListActivity();
+                        break;
+                    case Resource.Id.settingsLinearLayout:
+                        _slidingMenu.CloseMenu();
+                        StartSettingsActivity();
+                        break;
+                    case Resource.Id.photoGalleryLinearLayout:
+                        _slidingMenu.CloseMenu();
+                        Intent photosActivityIntent = new Intent(this, typeof(PhotosActivity));
+                        StartActivity(photosActivityIntent);
+                        break;
+                    case Resource.Id.aboutLinearLayout:
+                        _slidingMenu.CloseMenu();
+                        Intent aboutActivityIntent = new Intent(this, typeof(AboutActivity));
+                        StartActivity(aboutActivityIntent);
+                        break;
+
                 }
             }
             catch (Exception ex)
@@ -477,6 +498,34 @@ namespace Peaks360App
             // _textViewStatusLine.Text = text;
             // _textViewStatusLine.SetTextColor(alert ? Android.Graphics.Color.Black : Android.Graphics.Color.DarkGray);
         }
+
+        /*public void OnDrawerClosed(View drawerView)
+        {
+        }
+
+        public void OnDrawerOpened(View drawerView)
+        {
+        }
+
+        public void OnDrawerSlide(View drawerView, float slideOffset)
+        {
+        }
+
+        public void OnDrawerStateChanged(int newState)
+        {
+        }*/
+
+        public bool OnTouch(View v, MotionEvent e)
+        {
+            if (_slidingMenu.IsMenuOpened())
+                return _slidingMenu.OnTouchEvent(e);
+
+            if (OnTouchEvent(e))
+                return true;
+
+            return _slidingMenu.OnTouchEvent(e);
+        }
+
 
         /*class AdListener : Android.Gms.Ads.AdListener
         {
