@@ -32,18 +32,10 @@ namespace Peaks360App.Activities
         private Settings _settings { get { return AppContextLiveData.Instance.Settings; } }
 
         private Switch _switchManualViewAngle;
-        private Switch _switchManualGpsLocation;
         private Switch _switchAltitudeFromElevationMap;
         private Switch _switchAutoElevationProfile;
 
-        private EditText _editTextLatitude;
-        private EditText _editTextLongitude;
-        private EditText _editTextAltitude;
-        private TextView _textViewLatitude;
-        private TextView _textViewLongitude;
-        private TextView _textViewAltitude;
         private TextView _textViewElevationDataSize;
-
         private TextView _textViewAngleHorizontal;
         private SeekBar _seekBarCorrectionViewAngleHorizontal;
         private TextView _textViewAngleVertical;
@@ -74,7 +66,6 @@ namespace Peaks360App.Activities
         private List<CardItem> _cardItems = new List<CardItem>() {
             new CardItem(Resource.Id.cardLanguage, Resource.Id.cardLanguageButton,Resource.Id.cardLanguageLayout, Resource.Id.cardLanguageContent),
             new CardItem(Resource.Id.cardViewAngle, Resource.Id.cardViewAngleButton,Resource.Id.cardViewAngleLayout, Resource.Id.cardViewAngleContent),
-            new CardItem(Resource.Id.cardLocation, Resource.Id.cardLocationButton,Resource.Id.cardLocationLayout, Resource.Id.cardLocationContent),
             new CardItem(Resource.Id.cardElevationProfile, Resource.Id.cardElevationProfileButton,Resource.Id.cardElevationProfileLayout, Resource.Id.cardElevationProfileContent),
             new CardItem(Resource.Id.cardAltitude, Resource.Id.cardAltitudeButton,Resource.Id.cardAltitudeLayout, Resource.Id.cardAltitudeContent),
             new CardItem(Resource.Id.cardPhotoResolution, Resource.Id.cardPhotoResolutionButton,Resource.Id.cardPhotoResolutionLayout, Resource.Id.cardPhotoResolutionContent),
@@ -139,23 +130,6 @@ namespace Peaks360App.Activities
             _seekBarCorrectionViewAngleVertical.ProgressChanged += SeekBarProgressChanged;
 
             UpdateViewAngleText(_settings.CorrectionViewAngleHorizontal, _settings.CorrectionViewAngleVertical);
-            
-            _switchManualGpsLocation = FindViewById<Switch>(Resource.Id.switchManualGpsLocation);
-            _switchManualGpsLocation.Checked = _settings.IsManualLocation;
-            _switchManualGpsLocation.SetOnClickListener(this);
-
-            _textViewLatitude = FindViewById<TextView>(Resource.Id.latitudeTitle);
-            _textViewLongitude = FindViewById<TextView>(Resource.Id.longitudeTitle);
-            _textViewAltitude = FindViewById<TextView>(Resource.Id.altitudeTitle);
-            _editTextLatitude = FindViewById<EditText>(Resource.Id.editTextLatitude);
-            _editTextLongitude = FindViewById<EditText>(Resource.Id.editTextLongitude);
-            _editTextAltitude = FindViewById<EditText>(Resource.Id.editTextAltitude);
-            _editTextLatitude.TextChanged += ManualGpsLocationChanged;
-            _editTextLongitude.TextChanged += ManualGpsLocationChanged;
-            _editTextAltitude.TextChanged += ManualGpsLocationChanged;
-
-            EnableOrDisableGpsLocationInputs(_settings.IsManualLocation);
-            InitializeGpsLocationInputs(_settings.IsManualLocation ? _settings.ManualLocation : AppContextLiveData.Instance.MyLocation);
 
             _switchAltitudeFromElevationMap = FindViewById<Switch>(Resource.Id.switchAltitudeFromElevationMap);
             _switchAltitudeFromElevationMap.Checked = _settings.AltitudeFromElevationMap;
@@ -267,20 +241,6 @@ namespace Peaks360App.Activities
                     _settings.CorrectionViewAngleVertical = _seekBarCorrectionViewAngleVertical.Progress / (float)10.0;
                 }
 
-                //Manual GPS location
-                if (_switchManualGpsLocation.Checked)
-                {
-                    var loc = new GpsLocation(
-                        double.Parse(_editTextLongitude.Text, CultureInfo.InvariantCulture),
-                        double.Parse(_editTextLatitude.Text, CultureInfo.InvariantCulture),
-                        double.Parse(_editTextAltitude.Text, CultureInfo.InvariantCulture));
-                    _settings.SetManualLocation(loc);
-                }
-                else
-                {
-                    _settings.SetAutoLocation();
-                }
-
                 //Auto elevation profile
                 _settings.AutoElevationProfile = _switchAutoElevationProfile.Checked;
 
@@ -312,11 +272,6 @@ namespace Peaks360App.Activities
         {
             _isDirty = true;
             InvalidateOptionsMenu();
-        }
-
-        private void ManualGpsLocationChanged(object sender, TextChangedEventArgs e)
-        {
-            SetDirty();
         }
 
         private void SeekBarProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
@@ -389,10 +344,6 @@ namespace Peaks360App.Activities
                     _seekBarCorrectionViewAngleHorizontal.Enabled = _switchManualViewAngle.Checked;
                     _seekBarCorrectionViewAngleVertical.Enabled = _switchManualViewAngle.Checked;
                     break;
-                case Resource.Id.switchManualGpsLocation:
-                    SetDirty();
-                    EnableOrDisableGpsLocationInputs(_switchManualGpsLocation.Checked);
-                    break;
                 case Resource.Id.switchAltitudeFromElevationMap:
                     SetDirty();
                     break;
@@ -405,7 +356,6 @@ namespace Peaks360App.Activities
 
                 case Resource.Id.cardLanguageLayout:
                 case Resource.Id.cardViewAngleLayout:
-                case Resource.Id.cardLocationLayout:
                 case Resource.Id.cardElevationProfileLayout:
                 case Resource.Id.cardAltitudeLayout:
                 case Resource.Id.cardPhotoResolutionLayout:
@@ -427,23 +377,6 @@ namespace Peaks360App.Activities
             alert.SetNegativeButton(Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { });
             alert.SetMessage(Resources.GetText(Resource.String.Settings_RemoveElevationDataQuestion));
             var answer = alert.Show();
-        }
-
-        private void InitializeGpsLocationInputs(GpsLocation loc)
-        {
-            _editTextAltitude.Text = $"{loc.Altitude:F0}";
-            _editTextLongitude.Text = $"{loc.Longitude:F7}".Replace(",", ".");
-            _editTextLatitude.Text = $"{loc.Latitude:F7}".Replace(",", ".");
-        }
-
-        private void EnableOrDisableGpsLocationInputs(bool enabled)
-        {
-            _editTextLongitude.Enabled = enabled;
-            _editTextLatitude.Enabled = enabled;
-            _editTextAltitude.Enabled = enabled;
-            _textViewLongitude.Enabled = enabled;
-            _textViewLatitude.Enabled = enabled;
-            _textViewAltitude.Enabled = enabled;
         }
 
         private string GetViewAngleText(bool manual, float? correctionViewAngle, float? automaticViewAngle)
