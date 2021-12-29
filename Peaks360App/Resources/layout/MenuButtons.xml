@@ -13,7 +13,7 @@
       android:gravity="center_vertical"
       android:id="@+id/listOfPoisLinearLayout">
         <ImageButton
-          android:src="@drawable/ic_notesalt"
+          android:src="@drawable/ic_poi_list"
           android:layout_columnWeight="1"
           android:layout_width="30dp"
           android:layout_height="30dp"
