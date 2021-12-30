@@ -39,14 +39,17 @@
           android:gravity="center" />
 
         <LinearLayout
-          android:orientation="horizontal"
+          android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:gravity="center_vertical">
+          android:gravity="bottom">
             <ImageView
                 android:layout_width="20dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:src="@drawable/menu_handle_gray"/>
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="120dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -131,7 +134,7 @@
 
         <LinearLayout
             android:id="@+id/drawer_content"
-            android:layout_width="240dp"
+            android:layout_width="260dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:gravity="center">

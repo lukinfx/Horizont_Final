@@ -121,7 +121,7 @@ namespace Peaks360App.Activities
             _compassView.LayoutChange += OnLayoutChanged;
 
             _progressBar = FindViewById<ProgressBar>(Resource.Id.MainActivityProgressBar);
-            _progressBar.Visibility = ViewStates.Gone;
+            _progressBar.Visibility = ViewStates.Invisible;
         }
 
         private string _maxDistanceMinAltitudeTemplate;
@@ -554,7 +554,7 @@ namespace Peaks360App.Activities
 
         public void OnProgressFinish()
         {
-            _progressBar.Visibility = ViewStates.Gone;
+            _progressBar.Visibility = ViewStates.Invisible;
         }
 
         public void OnProgressChange(int percent)

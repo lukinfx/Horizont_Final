@@ -13,13 +13,13 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:layout_weight="0"
-            android:background="@drawable/bg_gradient">
+            android:background="@drawable/bg_gradient_gray">
             <ImageView
                 android:src="@drawable/logo_horizon5"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="90dp"
                 android:id="@+id/imageView1" />
         </LinearLayout>
         <View
@@ -37,15 +37,18 @@
             android:layout_height="match_parent"
             android:background="#808080"/>
     <LinearLayout
-          android:orientation="horizontal"
+          android:orientation="vertical"
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
           android:layout_weight="1"
-          android:gravity="center_vertical">
+          android:gravity="bottom">
             <ImageView
                 android:layout_width="20dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:src="@drawable/menu_handle_gray"/>
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="120dp"/>
         </LinearLayout>
 
 </LinearLayout>

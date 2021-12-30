@@ -6,8 +6,11 @@
 
     <color name="PeaksDarkBlue">#012865</color>
     <color name="PeaksLightBlue">#3890E3</color>
+    <color name="PeaksExtraLightBlue1">#A6CDF2</color>
+    <color name="PeaksExtraLightBlue2">#E9F3FC</color>
+  
 
-    <color name="SelectionEnabled">#80ff00</color>
+  <color name="SelectionEnabled">#80ff00</color>
     <color name="SelectionDisabled">#d0d0d0</color>
 
     <color name="EditTextWarning">#ffe8e8</color>
