@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#000000"
-        android:background="#F0F0F0"/>
+        android:background="@drawable/bg_gradient"/>
 
       <GridLayout
           android:layout_width="match_parent"
@@ -31,98 +31,98 @@
                 <ImageButton
                   android:src="@drawable/c_mountain"
                   android:layout_columnWeight="1"
-                  android:layout_height="60dp"
+                  android:layout_height="50dp"
                   android:layout_gravity="bottom"
                   android:layout_marginBottom="3dp"
                   android:layout_marginLeft="3dp"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
                   android:padding="2dp"
-                  android:background="@color/SelectionEnabled"
+                  android:background="@android:color/transparent"
                   android:id="@+id/imageButtonSelectMountain" />
                 <ImageButton
                   android:src="@drawable/c_castle"
                   android:layout_columnWeight="1"
-                  android:layout_height="60dp"
+                  android:layout_height="50dp"
                   android:layout_gravity="bottom"
                   android:layout_marginBottom="3dp"
                   android:layout_marginLeft="3dp"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
                   android:padding="2dp"
-                  android:background="@color/SelectionDisabled"
+                  android:background="@android:color/transparent"
                   android:id="@+id/imageButtonSelectHistoric" />
                 <ImageButton
                   android:src="@drawable/c_church"
                   android:layout_columnWeight="1"
-                  android:layout_height="60dp"
+                  android:layout_height="50dp"
                   android:layout_gravity="bottom"
                   android:layout_marginBottom="3dp"
                   android:layout_marginLeft="3dp"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
                   android:padding="2dp"
-                  android:background="@color/SelectionDisabled"
+                  android:background="@android:color/transparent"
                   android:id="@+id/imageButtonSelectChurch" />
                 <ImageButton
                   android:src="@drawable/c_lake"
                   android:layout_columnWeight="1"
-                  android:layout_height="60dp"
+                  android:layout_height="50dp"
                   android:layout_gravity="bottom"
                   android:layout_marginBottom="3dp"
                   android:layout_marginLeft="3dp"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
                   android:padding="2dp"
-                  android:background="@color/SelectionDisabled"
+                  android:background="@android:color/transparent"
                   android:id="@+id/imageButtonSelectLake" />
                 <ImageButton
                   android:src="@drawable/c_city"
                   android:layout_columnWeight="1"
-                  android:layout_height="60dp"
+                  android:layout_height="50dp"
                   android:layout_gravity="bottom"
                   android:layout_marginBottom="3dp"
                   android:layout_marginLeft="3dp"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
                   android:padding="2dp"
-                  android:background="@color/SelectionDisabled"
+                  android:background="@android:color/transparent"
                   android:id="@+id/imageButtonSelectCity" />
                 <ImageButton
                   android:layout_columnWeight="1"
                   android:src="@drawable/c_transmitter"
-                  android:layout_height="60dp"
+                  android:layout_height="50dp"
                   android:layout_gravity="bottom"
                   android:layout_marginBottom="3dp"
                   android:layout_marginLeft="3dp"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
                   android:padding="2dp"
-                  android:background="@color/SelectionDisabled"
+                  android:background="@android:color/transparent"
                   android:id="@+id/imageButtonSelectTransmitter" />
                 <ImageButton
                   android:layout_columnWeight="1"
                   android:src="@drawable/c_viewtower"
-                  android:layout_height="60dp"
+                  android:layout_height="50dp"
                   android:layout_gravity="bottom"
                   android:layout_marginBottom="3dp"
                   android:layout_marginLeft="3dp"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
                   android:padding="2dp"
-                  android:background="@color/SelectionDisabled"
+                  android:background="@android:color/transparent"
                   android:id="@+id/imageButtonSelectViewtower" />
                 <ImageButton
                   android:layout_columnWeight="1"
                   android:src="@drawable/c_other"
-                  android:layout_height="60dp"
+                  android:layout_height="50dp"
                   android:layout_gravity="bottom"
                   android:layout_marginBottom="3dp"
                   android:layout_marginLeft="3dp"
                   android:adjustViewBounds="true"
                   android:scaleType="fitCenter"
                   android:padding="2dp"
-                  android:background="@color/SelectionDisabled"
+                  android:background="@android:color/transparent"
                   android:id="@+id/imageButtonSelectOther" /> 
         </GridLayout>
         <LinearLayout
