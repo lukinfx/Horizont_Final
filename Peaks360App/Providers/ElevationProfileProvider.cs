@@ -14,6 +14,13 @@ namespace Peaks360App.Providers
     public class ElevationProfileChangedEventArgs : EventArgs { public ElevationProfileData ElevationProfileData; }
     public delegate void ElevationProfileChangedEventHandler(object sender, ElevationProfileChangedEventArgs e);
 
+    public interface IProgressReceiver
+    {
+        void OnProgressStart();
+        void OnProgressFinish();
+        void OnProgressChange(int percent);
+    }
+
     public class ElevationProfileProvider
     {
         private bool _elevationProfileBeingGenerated = false;
@@ -37,7 +44,7 @@ namespace Peaks360App.Providers
 
         }
 
-        public void CheckAndReloadElevationProfile(Context appContext, int maxDistance, IAppContext context)
+        public void CheckAndReloadElevationProfile(Context appContext, int maxDistance, IAppContext context, IProgressReceiver progressReceiver)
         {
             if (context.Settings.ShowElevationProfile)
             {
@@ -47,7 +54,7 @@ namespace Peaks360App.Providers
                     {
                         if (context.ElevationProfileData == null || !context.ElevationProfileData.IsValid(context.MyLocation, context.Settings.MaxDistance))
                         {
-                            GenerateElevationProfile(appContext, maxDistance, context.MyLocation);
+                            GenerateElevationProfile(appContext, maxDistance, context.MyLocation, progressReceiver);
                         }
                         else
                         {
@@ -58,7 +65,7 @@ namespace Peaks360App.Providers
             }
         }
 
-        private void GenerateElevationProfile(Context appContext, int maxDistance, GpsLocation myLocation)
+        private void GenerateElevationProfile(Context appContext, int maxDistance, GpsLocation myLocation, IProgressReceiver progressReceiver)
         {
             try
             {
@@ -75,7 +82,7 @@ namespace Peaks360App.Providers
                 var size = ec.GetSizeToDownload();
                 if (size == 0)
                 {
-                    StartDownloadAndCalculate(appContext, ec);
+                    StartDownloadAndCalculate(appContext, ec, progressReceiver);
                     return;
                 }
 
@@ -85,7 +92,7 @@ namespace Peaks360App.Providers
                     builder.SetTitle(appContext.Resources.GetText(Resource.String.Common_Question));
                     builder.SetMessage(String.Format(appContext.Resources.GetText(Resource.String.Download_Confirmation), size));
                     builder.SetIcon(Android.Resource.Drawable.IcMenuHelp);
-                    builder.SetPositiveButton(appContext.Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) => { StartDownloadAndCalculateAsync(appContext, ec); });
+                    builder.SetPositiveButton(appContext.Resources.GetText(Resource.String.Common_Yes), (senderAlert, args) => { StartDownloadAndCalculateAsync(appContext, ec, progressReceiver); });
                     builder.SetNegativeButton(appContext.Resources.GetText(Resource.String.Common_No), (senderAlert, args) => { _elevationProfileBeingGenerated = false; });
 
                     var myCustomDialog = builder.Create();
@@ -99,24 +106,27 @@ namespace Peaks360App.Providers
             }
         }
 
-        private void StartDownloadAndCalculate(Context appContext, ElevationCalculation ec)
+        private void StartDownloadAndCalculate(Context appContext, ElevationCalculation ec, IProgressReceiver progressReceiver)
         {
             _elevationProfileBeingGenerated = true;
             var lastProgressUpdate = System.Environment.TickCount;
 
             //#Progress#
-            var pd = new ProgressDialog(appContext);
+            progressReceiver.OnProgressStart();
+            /*var pd = new ProgressDialog(appContext);
             pd.SetMessage(appContext.Resources.GetText(Resource.String.Main_GeneratingElevationProfile));
             pd.SetCancelable(false);
             pd.SetProgressStyle(ProgressDialogStyle.Horizontal);
             pd.Max = 100;
-            pd.Show();
+            pd.Show();*/
 
             ec.OnFinishedAction = (result) =>
             {
                 //#Progress#
-                pd.Dismiss();
-                
+                //pd.Dismiss();
+                progressReceiver.OnProgressFinish();
+
+
                 if (!string.IsNullOrEmpty(result.ErrorMessage))
                 {
                     PopupHelper.ErrorDialog(appContext, result.ErrorMessage);
@@ -131,7 +141,11 @@ namespace Peaks360App.Providers
                 if (tickCount - lastProgressUpdate > 100)
                 {
                     //#Progress#
-                    MainThread.BeginInvokeOnMainThread(() => { pd.Progress = progress; });
+                    MainThread.BeginInvokeOnMainThread(() => 
+                    {
+                        progressReceiver.OnProgressChange(progress);
+                        //pd.Progress = progress; 
+                    });
                     Thread.Sleep(50);
                     lastProgressUpdate = tickCount;
                 }
@@ -140,11 +154,11 @@ namespace Peaks360App.Providers
             ec.Execute();
         }
 
-        private void StartDownloadAndCalculateAsync(Context appContext, ElevationCalculation ec)
+        private void StartDownloadAndCalculateAsync(Context appContext, ElevationCalculation ec, IProgressReceiver progressReceiver)
         {
             try
             {
-                StartDownloadAndCalculate(appContext, ec);
+                StartDownloadAndCalculate(appContext, ec, progressReceiver);
             }
             catch (Exception ex)
             {

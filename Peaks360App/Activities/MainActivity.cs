@@ -103,7 +103,7 @@ namespace Peaks360App
 
             Context.Resume();
             Context.ReloadData();
-            ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
+            ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context, this);
             
             _advertismentView?.Resume();
             
@@ -212,7 +212,7 @@ namespace Peaks360App
                             var answer = alert.Show();
                         }
 
-                        ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
+                        ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context, this);
                     });
             }
         }
@@ -372,7 +372,7 @@ namespace Peaks360App
                 if (!TutorialDialog.IsInProgress)
                 {
                     //TODO: check is the following call is really needed
-                    ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
+                    ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context, this);
                 }
             }
             catch (Exception)

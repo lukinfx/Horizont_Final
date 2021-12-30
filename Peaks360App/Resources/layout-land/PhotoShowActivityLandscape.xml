@@ -48,21 +48,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-          <LinearLayout
+           <LinearLayout
             android:id="@+id/photoShowActivityControlArea"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="bottom"
             android:background="@color/BackgroundTransparentLight">
               <include
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                layout="@layout/PhotoShowActivityControlBar"
-                android:gravity="bottom" />
-              <include
-                layout="@layout/MainActivitySeekBars" 
+                layout="@layout/MainActivityProgressBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+              <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                  <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    layout="@layout/PhotoShowActivityControlBar"
+                    android:gravity="bottom" />
+                  <include
+                    layout="@layout/MainActivitySeekBars" 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+              </LinearLayout>
           </LinearLayout>
 
         </LinearLayout>

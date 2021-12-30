@@ -91,36 +91,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-            <LinearLayout
-              android:id="@+id/mainActivityControlArea"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:gravity="bottom"
-              android:background="@color/BackgroundTransparentLight">
-
-                <include
+          <LinearLayout
+            android:id="@+id/mainActivityControlArea"
+                    android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:background="@color/BackgroundTransparentLight">
+              <include
+                 layout="@layout/MainActivityProgressBarLayout"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
+              <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                  <include
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     layout="@layout/MainActivityControlBar"
                     android:gravity="bottom" />
-                <include
+                  <include
                     layout="@layout/MainActivitySeekBars" 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="100"
                     android:gravity="bottom"/>
-                <include
+                  <include
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     layout="@layout/MainActivityControlBar2"
                     android:layout_weight="1"
                     android:gravity="bottom" />
-
-
+                </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
     </AbsoluteLayout>
 

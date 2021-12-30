@@ -243,7 +243,7 @@ namespace Peaks360App.Activities
                         if (Context.ElevationProfileData != null)
                         {
                             MainThread.BeginInvokeOnMainThread(() => 
-                                { ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context); });
+                                { ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context, this); });
                         }
                     }
                 }
@@ -299,7 +299,7 @@ namespace Peaks360App.Activities
                 _compassView.SetPoiViewItemList(e.PoiData ?? new PoiViewItemList());
 
                 //TODO: check is the following call is really needed
-                ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
+                ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context, this);
             }
             catch (Exception)
             {

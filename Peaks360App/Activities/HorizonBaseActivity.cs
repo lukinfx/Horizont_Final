@@ -19,7 +19,7 @@ using Peaks360Lib.Domain.Models;
 
 namespace Peaks360App.Activities
 {
-    public abstract class HorizonBaseActivity : Activity, IOnClickListener, GestureDetector.IOnGestureListener, GestureDetector.IOnDoubleTapListener
+    public abstract class HorizonBaseActivity : Activity, IOnClickListener, GestureDetector.IOnGestureListener, GestureDetector.IOnDoubleTapListener, IProgressReceiver
     {
         private static string TAG = "Horizon-BaseActivity";
 
@@ -38,6 +38,7 @@ namespace Peaks360App.Activities
 
         private DistanceSeekBar _distanceSeekBar;
         protected LinearLayout _activityControlArea;
+        protected ProgressBar _progressBar;
 
         //for gesture detection
         private int m_PreviousMoveX;
@@ -118,6 +119,9 @@ namespace Peaks360App.Activities
             FindViewById<ImageView>(Resource.Id.buttonFavourite).SetOnClickListener(this); 
             _compassView = FindViewById<CompassView>(Resource.Id.compassView1);
             _compassView.LayoutChange += OnLayoutChanged;
+
+            _progressBar = FindViewById<ProgressBar>(Resource.Id.MainActivityProgressBar);
+            _progressBar.Visibility = ViewStates.Gone;
         }
 
         private string _maxDistanceMinAltitudeTemplate;
@@ -483,7 +487,7 @@ namespace Peaks360App.Activities
 
             _displayTerrainButton.SetImageResource(_compassView.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
 
-            ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context);
+            ElevationProfileProvider.Instance().CheckAndReloadElevationProfile(this, MaxDistance, Context, this);
         }
 
         protected bool IsControlsVisible()
@@ -540,6 +544,22 @@ namespace Peaks360App.Activities
                 FindViewById<ImageView>(Resource.Id.buttonFavourite).SetImageResource(favouriteResId);
             }
 
+        }
+
+        public void OnProgressStart()
+        {
+            _progressBar.Visibility = ViewStates.Visible;
+            _progressBar.Progress = 0;
+        }
+
+        public void OnProgressFinish()
+        {
+            _progressBar.Visibility = ViewStates.Gone;
+        }
+
+        public void OnProgressChange(int percent)
+        {
+            _progressBar.Progress = percent;
         }
 
         #region Required abstract methods

@@ -59,6 +59,11 @@
                 android:background="@color/BackgroundTransparentLight">
 
               <include
+                layout="@layout/MainActivityProgressBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+              <include
                 layout="@layout/MainActivitySeekBars"
                 android:gravity="bottom"
                 android:layout_width="match_parent"
