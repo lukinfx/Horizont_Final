@@ -24,10 +24,10 @@
             <LinearLayout android:orientation="vertical"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:background="@drawable/bg_activity_lightgray"
+                          android:padding="10dp"
+                          android:background="@drawable/bg_gradient"
                           android:id="@+id/linearLayoutSelectedPoint">
                 <EditText android:textAppearance="?android:attr/textAppearanceSmall"
-                          android:background="@drawable/bg_activity_lightgray"
                           android:layout_width="match_parent"
                           android:layout_height="60dp"
                           android:inputType="textMultiLine"
@@ -50,7 +50,7 @@
                                   android:padding="10dp">
                         <ImageView
                             android:src="@drawable/i_compass"
-                            android:layout_width="wrap_content"
+                            android:layout_width="40dp"
                             android:layout_height="match_parent"/>
                         <TextView android:text="@string/PhotoParameters_ViewDirection"
                                   android:textAppearance="?android:attr/textAppearanceMedium"
@@ -129,7 +129,7 @@
                                   android:padding="10dp">
                         <ImageView
                             android:src="@drawable/i_location"
-                            android:layout_width="wrap_content"
+                            android:layout_width="40dp"
                             android:layout_height="match_parent"/>
                         <TextView android:text="@string/PhotoParameters_CameraLocation"
                                   android:textAppearance="?android:attr/textAppearanceMedium"
@@ -248,7 +248,7 @@
                                   android:padding="10dp">
                         <ImageView
                             android:src="@drawable/ic_viewangle"
-                            android:layout_width="wrap_content"
+                            android:layout_width="40dp"
                             android:layout_height="match_parent"/>
                         <TextView android:text="@string/PhotoParameters_CameraViewAngles"
                                   android:textAppearance="?android:attr/textAppearanceMedium"

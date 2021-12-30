@@ -2,8 +2,6 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:id="@android:id/tabhost">
 
       <LinearLayout
@@ -34,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:background="@drawable/bg_activity_lightgray">
+                    android:background="@drawable/bg_gradient">
 
                     <Spinner
                       android:textAppearance="?android:attr/textAppearanceMedium"
@@ -43,6 +41,14 @@
                       android:spinnerMode="dropdown"
                       android:padding="5dp"
                       android:id="@+id/DownloadCountrySpinner" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
                     <ListView
                       android:minWidth="25px"
                       android:minHeight="25px"
@@ -55,26 +61,33 @@
 
               <LinearLayout
                 android:orientation="vertical"
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/downloadTabEleData" >
-               
-                <Button
-                  android:text="@string/DownloadED_AddNewElevationDataArea"
-                  android:drawableLeft="@android:drawable/ic_menu_add"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:drawablePadding="5dp"
-                  android:padding="10dp"
-                  android:id="@+id/buttonAddNew" />
+                <LinearLayout
+                   android:orientation="vertical"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:padding="10dp"
+                   android:background="@drawable/bg_gradient">
+                    <Button
+                      android:text="@string/DownloadED_AddNewElevationDataArea"
+                      android:drawableLeft="@android:drawable/ic_menu_add"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:background="@android:color/transparent"
+                      android:drawablePadding="5dp"
+                      android:padding="10dp"
+                      android:id="@+id/buttonAddNew" />
+                </LinearLayout>
+                
                 <Space
                   android:layout_width="match_parent"
                   android:layout_height="10dp"/>
                 <ListView
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
-                  android:padding="5dp"
+                  android:padding="10dp"
                   android:id="@+id/listViewDownloadedElevationData" />
                 
               </LinearLayout>

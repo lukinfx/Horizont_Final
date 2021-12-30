@@ -91,8 +91,9 @@ namespace Peaks360App.Utilities
             view.FindViewById<TextView>(Resource.Id.Country).Text = item.Poi.Country != null ? 
                 PoiCountryHelper.GetCountryName(item.Poi.Country.Value) : "Unknown";
 
-            view.FindViewById<TextView>(Resource.Id.Description).Text = 
-                $"{item.Poi.Altitude:F0} m | {item.GpsLocation.Distance.Value/1000f:F2} km | {item.GpsLocation.Bearing.Value:F2}°";
+            view.FindViewById<TextView>(Resource.Id.textViewAltitude).Text = $"{item.Poi.Altitude:F0} m";
+            view.FindViewById<TextView>(Resource.Id.textViewDirection).Text = $"{item.GpsLocation.Bearing.Value:F2}°";
+            view.FindViewById<TextView>(Resource.Id.textViewDistance).Text = $"{item.GpsLocation.Distance.Value / 1000f:F2} km";
 
             _thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
             //_thumbnail.SetColorFilter(ColorFilterPoiItem.GetColorFilter(item));

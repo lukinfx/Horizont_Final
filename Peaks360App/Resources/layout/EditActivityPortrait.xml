@@ -9,9 +9,10 @@
 
             <LinearLayout
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="120dp"
               android:orientation="vertical"
-              android:gravity="left"
+              android:gravity="bottom"
+              android:background="@drawable/bg_gradient"
               android:padding="10dp">
 
                     <TextView
@@ -19,7 +20,7 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:id="@+id/NameTitle" />
-                    
+
                     <LinearLayout
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
@@ -45,6 +46,21 @@
                           android:id="@+id/buttonFavourite"/>
                     </LinearLayout>
 
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#808080"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="left"
+                    android:paddingHorizontal="10dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
                     <GridLayout
                       android:paddingTop="10dp"
                       android:orientation="horizontal"

@@ -32,7 +32,7 @@
                 <ListView
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
-                  android:background="@color/ActivitySelectionArea"
+                  android:background="@drawable/bg_gradient"
                   android:id="@+id/DownloadCountryListView"
                   android:layout_weight="8"/>
                 <Space
@@ -51,7 +51,6 @@
 
             <LinearLayout
               android:orientation="horizontal"
-              android:padding="10dp"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:id="@+id/downloadTabEleData" >
@@ -60,7 +59,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:layout_weight="100"
-                  android:padding="5dp"
+                  android:padding="10dp"
                   android:id="@+id/listViewDownloadedElevationData" />
                 <Space
                   android:layout_width="10dp"
@@ -71,6 +70,7 @@
                   android:layout_width="wrap_content"
                   android:layout_height="match_parent"
                   android:layout_weight="0"
+                  android:background="@drawable/bg_gradient"
                   android:gravity="bottom">
 
                     <Button
