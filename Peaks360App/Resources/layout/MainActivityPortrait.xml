@@ -61,17 +61,51 @@
           android:layout_gravity="bottom"
           android:gravity="bottom">
 
-            <ImageButton
-              android:src="@drawable/ic_photo1"
-              android:layout_width="48dp"
-              android:layout_height="48dp"
-              android:layout_gravity="center_horizontal"
-              android:adjustViewBounds="true"
-              android:background="#00000000"
-              android:scaleType="fitCenter"
-              android:layout_marginBottom="20dp"
-              android:padding="0dp"
-              android:id="@+id/buttonRecord" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="bottom">
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <ImageButton
+                    android:src="@drawable/ic_photo1"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:layout_marginBottom="20dp"
+                    android:padding="0dp"
+                    android:id="@+id/buttonRecord" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp">
+                    <FrameLayout
+                        android:id="@+id/ThumbnailFrame"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:padding="3dp"
+                        android:background="@color/PeaksLightBlue">
+                        <ImageButton
+                            android:id="@+id/Thumbnail"
+                            android:src="@drawable/tutorial_compass_calibration"
+                            android:background="@android:color/transparent"
+                            android:scaleType="fitCenter"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:layout_weight="1"
+                            android:layout_gravity="right"/>
+                    </FrameLayout>
+                </FrameLayout>
+            </LinearLayout>
 
             <com.google.android.gms.ads.AdView
               android:id="@+id/adView"

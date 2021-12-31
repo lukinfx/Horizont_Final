@@ -21,6 +21,8 @@ using ImageButton = Android.Widget.ImageButton;
 using View = Android.Views.View;
 using AndroidX.DrawerLayout.Widget;
 using Peaks360App.Views;
+using Peaks360App.Models;
+using Android.Graphics;
 
 namespace Peaks360App
 {
@@ -33,7 +35,10 @@ namespace Peaks360App
         private ImageButton _pauseButton;
         private ImageButton _recordButton;
         private ImageButton _resetCorrectionButton;
+        private ImageButton _thumbnailButton;
+        private FrameLayout _thumbnailFrame;
         private SlidingMenuControl _slidingMenu;
+        
         //private TextView _textViewStatusLine;
 
         private View _mainLayout;
@@ -76,6 +81,8 @@ namespace Peaks360App
             InitializeUIElements();
             InitializeCameraFragment();
 
+            Context.PhotosModel.PhotoAdded += OnPhotoAdded;
+
             Context.Start();
             Start();
 
@@ -88,6 +95,22 @@ namespace Peaks360App
                     null, TimeSpan.FromSeconds(1), TimeSpan.FromMilliseconds(-1));
             }
 
+        }
+
+        private void OnPhotoAdded(object sender, PhotoDataEventArgs args)
+        {
+            if (args?.data?.Thumbnail != null)
+            {
+                var bitmap = BitmapFactory.DecodeByteArray(args.data.Thumbnail, 0, args.data.Thumbnail.Length);
+                _thumbnailButton.SetImageBitmap(bitmap);
+                _thumbnailButton.Tag = args.data.Id;
+                _thumbnailFrame.Visibility = ViewStates.Visible;
+
+                var delayedAction = new System.Threading.Timer(o =>
+                {
+                    MainThread.BeginInvokeOnMainThread(() => { _thumbnailFrame.Visibility = ViewStates.Gone; });
+                }, null, TimeSpan.FromSeconds(5), TimeSpan.FromMilliseconds(-1));
+            }
         }
 
         protected override void OnPause()
@@ -171,6 +194,12 @@ namespace Peaks360App
             _resetCorrectionButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
             _resetCorrectionButton.SetOnClickListener(this);
 
+            _thumbnailFrame = FindViewById<FrameLayout>(Resource.Id.ThumbnailFrame);
+            _thumbnailFrame.Visibility = ViewStates.Gone;
+            _thumbnailButton = FindViewById<ImageButton>(Resource.Id.Thumbnail);
+            _thumbnailButton.SetOnClickListener(this);
+            
+
             _compassView.Initialize(Context, true, Context.Settings.CameraPictureSize);
 
             _mainLayout = FindViewById(Resource.Id.sample_main_layout);
@@ -252,6 +281,13 @@ namespace Peaks360App
                         Context.LeftTiltCorrector = 0;
                         Context.RightTiltCorrector = 0;
                             Context.Settings.SetAutoLocation();
+                        break;
+                    }
+                    case Resource.Id.Thumbnail:
+                    {
+                        Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
+                        showIntent.PutExtra("ID", (long)_thumbnailButton.Tag);
+                        StartActivity(showIntent);
                         break;
                     }
 

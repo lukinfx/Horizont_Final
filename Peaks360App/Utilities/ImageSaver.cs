@@ -100,8 +100,7 @@ namespace Peaks360App.Utilities
                     {
                         photodata.JsonElevationProfileData = _context.ElevationProfileData.Serialize();
                     }
-                    poiDatabase.InsertItem(photodata);
-
+                    _context.PhotosModel.InsertItem(photodata);
                 }
                 catch (Java.IO.IOException e)
                 {
