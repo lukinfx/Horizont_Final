@@ -1044,6 +1044,11 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_more_horizontal.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PhotoShowActivityControlBar2.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

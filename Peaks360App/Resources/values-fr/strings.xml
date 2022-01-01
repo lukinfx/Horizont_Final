@@ -7,6 +7,7 @@
 
   <string name="Common_Cancel">Annuler</string>
   <string name="Common_Save">Sauvegarder</string>
+  <string name="Common_Share">Partager</string>
   <string name="Common_Download">Télécharger</string>
   <string name="Common_Discard">Annuler</string>
   <string name="Common_Reset">Réinitialiser</string>
@@ -143,6 +144,7 @@
   <string name="PhotoShow_OverwriteQuestion">Cette photo existe déjà. Écraser?</string>
   <string name="PhotoShow_PhotoSaved">Photo enregistrée.</string>
   <string name="PhotoShow_ImageTooSmall">L\'image recadrée est trop petite.</string>
+  <string name="PhotoShow_Crop">Rogner l\'image</string>
 
   <!--PhotoParametersActivity-->
   <string name="PhotoParameters_CameraLocation">Emplacement de la caméra</string>

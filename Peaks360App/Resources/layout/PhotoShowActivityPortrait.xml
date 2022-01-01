@@ -69,11 +69,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-              <include
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                layout="@layout/PhotoShowActivityControlBar"
-                android:gravity="bottom" />
+               <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <include
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        layout="@layout/PhotoShowActivityControlBar"/>
+                    <include
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        layout="@layout/PhotoShowActivityControlBar2"/>
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>

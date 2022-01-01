@@ -11,6 +11,7 @@
 
   <string name="Common_Cancel">Cancel</string>
   <string name="Common_Save">Save</string>
+  <string name="Common_Share">Share</string>
   <string name="Common_Download">Download</string>
   <string name="Common_Discard">Discard</string>
   <string name="Common_Reset">Reset</string>
@@ -147,8 +148,6 @@
   <string name="PhotoShow_OverwriteQuestion">This photo already exists. Overwrite?</string>
   <string name="PhotoShow_PhotoSaved">Photo saved.</string>
   <string name="PhotoShow_ImageTooSmall">Cropped image is too small.</string>
-  <string name="PhotoShow_Download">Download photo</string>
-  <string name="PhotoShow_Share">Share photo</string>
   <string name="PhotoShow_Crop">Crop</string>
 
   <!--PhotoParametersActivity-->

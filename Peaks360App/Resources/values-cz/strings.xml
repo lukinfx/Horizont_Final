@@ -7,6 +7,7 @@
 
   <string name="Common_Cancel">Zrušit</string>
   <string name="Common_Save">Uložit</string>
+  <string name="Common_Share">Sdílet</string>
   <string name="Common_Download">Stáhnout</string>
   <string name="Common_Discard">Zahodit</string>
   <string name="Common_Reset">Resetovat</string>
@@ -143,6 +144,7 @@
   <string name="PhotoShow_OverwriteQuestion">Fotografie již existuje. Chcete ji přepsat?</string>
   <string name="PhotoShow_PhotoSaved">Fotografile uložena.</string>
   <string name="PhotoShow_ImageTooSmall">Oříznutá fotografie je příliš malá.</string>
+  <string name="PhotoShow_Crop">Oříznout</string>
 
   <!--PhotoParametersActivity-->
   <string name="PhotoParameters_CameraLocation">Umístění kamery</string>

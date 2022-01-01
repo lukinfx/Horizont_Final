@@ -66,12 +66,18 @@
                   <include
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    layout="@layout/PhotoShowActivityControlBar"
-                    android:gravity="bottom" />
+                    android:layout_weight="1"
+                    layout="@layout/PhotoShowActivityControlBar"/>
                   <include
                     layout="@layout/MainActivitySeekBars" 
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="100"/>
+                  <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    layout="@layout/PhotoShowActivityControlBar2"/>
               </LinearLayout>
           </LinearLayout>
 

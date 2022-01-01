@@ -40,10 +40,7 @@ namespace Peaks360App.Activities
         private ScaleImageView photoView;
 
         private ImageButton _tiltCorrectorButton;
-        private ImageButton _cropButton;
         private ImageButton _displayOverlappedButton;
-        private ImageButton _saveToDeviceButton;
-        private ImageButton _shareButton;
         private ImageButton _moreOptionsButton;
         private LinearLayout _confirmCloseButtons;
 
@@ -139,15 +136,6 @@ namespace Peaks360App.Activities
 
             _tiltCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonTiltCorrector);
             _tiltCorrectorButton.SetOnClickListener(this);
-
-            /*_saveToDeviceButton = FindViewById<ImageButton>(Resource.Id.buttonSaveToDevice);
-            _saveToDeviceButton.SetOnClickListener(this);
-             
-            _shareButton = FindViewById<ImageButton>(Resource.Id.buttonShare);
-            _shareButton.SetOnClickListener(this);
-
-            _cropButton = FindViewById<ImageButton>(Resource.Id.buttonCropImage);
-            _cropButton.SetOnClickListener(this);*/
 
             _moreOptionsButton = FindViewById<ImageButton>(Resource.Id.buttonMoreOptions);
             _moreOptionsButton.SetOnClickListener(this);
@@ -449,26 +437,15 @@ namespace Peaks360App.Activities
                 case Resource.Id.buttonDisplayOverlapped:
                     HandleDisplayOverlappedButtonClicked();
                     break;
-                    /*case Resource.Id.buttonCropImage:
-                        HandleCropButtonClicked();
-                        break;
-                    case Resource.Id.buttonSaveToDevice:
-                        HandleButtonSaveClicked();
-                        break;
-                    case Resource.Id.buttonShare:
-                        HandleButtonShareClicked();
-                        //###Service
-                        //_elevationProfileServiceConnection.AddElevationProfile(0, 10, 1);
-                        break;*/
-                    case Resource.Id.buttonMoreOptions:
-                        MenuBuilder menuBuilder = new MenuBuilder(this);
-                        MenuInflater inflater = new MenuInflater(this);
-                        inflater.Inflate(Resource.Menu.PhotoShowActivityMenu, menuBuilder);
-                        MenuPopupHelper menu = new MenuPopupHelper(this, menuBuilder, _moreOptionsButton);
-                        menuBuilder.SetCallback(this);
-                        menu.SetForceShowIcon(true);
-                        menu.Show();
-                    break;
+                case Resource.Id.buttonMoreOptions:
+                    MenuBuilder menuBuilder = new MenuBuilder(this);
+                    MenuInflater inflater = new MenuInflater(this);
+                    inflater.Inflate(Resource.Menu.PhotoShowActivityMenu, menuBuilder);
+                    MenuPopupHelper menu = new MenuPopupHelper(this, menuBuilder, _moreOptionsButton);
+                    menuBuilder.SetCallback(this);
+                    menu.SetForceShowIcon(true);
+                    menu.Show();
+                break;
             }
         }
 

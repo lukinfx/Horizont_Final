@@ -7,6 +7,7 @@
 
   <string name="Common_Cancel">Stornieren</string>
   <string name="Common_Save">Speichern</string>
+  <string name="Common_Share">Teilen</string>
   <string name="Common_Download">Herunterladen</string>
   <string name="Common_Discard">Verwerfen</string>
   <string name="Common_Reset">Zurücksetzen</string>
@@ -143,6 +144,7 @@
   <string name="PhotoShow_OverwriteQuestion">Dieses Foto existiert bereits. Überschreiben?</string>
   <string name="PhotoShow_PhotoSaved">Foto gespeichert.</string>
   <string name="PhotoShow_ImageTooSmall">Das zugeschnittene Bild ist zu klein.</string>
+  <string name="PhotoShow_Crop">Ernte</string>
 
   <!--PhotoParametersActivity-->
   <string name="PhotoParameters_CameraLocation">Kamerastandort</string>
