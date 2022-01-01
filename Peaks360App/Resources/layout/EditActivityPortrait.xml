@@ -162,7 +162,7 @@
                               android:background="@android:color/transparent"
                               android:layout_alignParentLeft="true"
                               android:layout_alignParentBottom="true"
-                              android:drawableTop="@android:drawable/ic_menu_mylocation" />
+                              android:drawableTop="@drawable/ic_teleport" />
 
                             <Button
                               android:id="@+id/buttonWiki"
@@ -174,7 +174,7 @@
                               android:background="@android:color/transparent"
                               android:layout_alignParentLeft="true"
                               android:layout_alignParentBottom="true"
-                              android:drawableTop="@android:drawable/ic_menu_info_details" />
+                              android:drawableTop="@drawable/ic_info" />
 
                             <Button
                               android:id="@+id/buttonMap"
@@ -186,7 +186,7 @@
                               android:background="@android:color/transparent"
                               android:layout_alignParentLeft="true"
                               android:layout_alignParentBottom="true"
-                              android:drawableTop="@android:drawable/ic_menu_mapmode" />
+                              android:drawableTop="@drawable/ic_map" />
 
                         </LinearLayout>
                     </LinearLayout>

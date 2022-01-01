@@ -70,7 +70,7 @@ namespace Peaks360App.Views.Compass
                 float iconOffset = yTextAreaStart + bounds.Width() + dyTextSpace;
                 if (item.IsImportant() && iconOffset + dyImportantIcon <= yTextAreaEnd)
                 {
-                    canvas.DrawBitmap(item.Selected ? infoBitmapBlack : infoBitmapYellow, iconOffset, -startX - ToPixels(30), null);
+                    canvas.DrawBitmap(infoBitmapBlack/*item.Selected ? infoBitmapBlack : infoBitmapYellow*/, iconOffset, -startX - ToPixels(30), null);
                     iconOffset += dyImportantIcon + dyIconSpace;
                 }
 

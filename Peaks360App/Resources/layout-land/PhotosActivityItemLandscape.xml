@@ -47,26 +47,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/bg_gradient"
-        android:paddingLeft="20dp"
+        android:paddingLeft="10dp"
         android:paddingVertical="8dp">
 
         <ImageView
-          android:src="@drawable/i_photo"
-          android:layout_width="25dp"
-          android:layout_height="20dp"
-          android:paddingRight="5dp" />
+            android:src="@drawable/i_photo"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
         <TextView
-          android:id="@+id/textViewTag"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_toRightOf="@id/Thumbnail"
-          android:textColor="#000000"
-          android:textSize="14dp"
-          android:textStyle="bold"
-          android:typeface="sans"
-          android:singleLine="true"
-          android:ellipsize="end"
-          android:text="Lysa hora -> Radhost"/>
+            android:id="@+id/textViewTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="3dp"
+            android:paddingHorizontal="5dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:typeface="sans"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="Lysa hora -> Radhost"/>
+        <ImageButton
+            android:src="@android:drawable/btn_star_big_off"
+            android:scaleType="fitCenter"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/favouriteButton"
+            android:background="#00000000"/>
       </LinearLayout>
 
       <View
@@ -212,25 +218,18 @@
           android:paddingTop="0dp">
 
           <ImageButton
-            android:src="@android:drawable/ic_menu_preferences"
+            android:src="@drawable/ic_photo_params"
             android:scaleType="fitCenter"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/editButton"
             android:background="#00000000"/>
           <ImageButton
-            android:src="@android:drawable/ic_menu_delete"
+            android:src="@drawable/ic_delete"
             android:scaleType="fitCenter"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/photoDeleteButton"
-            android:background="#00000000"/>
-          <ImageButton
-            android:src="@android:drawable/btn_star_big_off"
-            android:scaleType="fitCenter"
-            android:layout_width="35dp"
-            android:layout_height="40dp"
-            android:id="@+id/favouriteButton"
             android:background="#00000000"/>
 
         </LinearLayout>
