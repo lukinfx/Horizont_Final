@@ -113,6 +113,7 @@ namespace Peaks360App.Activities
             Log.WriteLine(LogPriority.Debug, TAG, "OnCreate - Enter");
             base.OnCreate(savedInstanceState);
             AppContextLiveData.Instance.SetLocale(this);
+            ActivityHelper.ChangeSystemUiVisibility(this);
 
             if (AppContextLiveData.Instance.IsPortrait)
             {
@@ -200,19 +201,7 @@ namespace Peaks360App.Activities
         public override void OnWindowFocusChanged(bool hasFocus)
         {
             base.OnWindowFocusChanged(hasFocus);
-
-            if (hasFocus)
-            {
-                var uiOptions =
-                    SystemUiFlags.HideNavigation |
-                    SystemUiFlags.LayoutHideNavigation |
-                    SystemUiFlags.LayoutFullscreen |
-                    SystemUiFlags.Fullscreen |
-                    SystemUiFlags.LayoutStable |
-                    SystemUiFlags.ImmersiveSticky;
-
-                Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
-            }
+            ActivityHelper.ChangeSystemUiVisibility(this, hasFocus);
         }
 
         void DoBindService()

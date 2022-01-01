@@ -10,6 +10,7 @@ using Peaks360Lib.Domain.Enums;
 using Peaks360App.AppContext;
 using Peaks360App.Utilities;
 using static Android.Views.View;
+using Android.Views;
 
 namespace Peaks360App.Activities
 {
@@ -28,6 +29,8 @@ namespace Peaks360App.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            ActivityHelper.ChangeSystemUiVisibility(this);
 
             SetContentView(Resource.Layout.MainActivityPoiFilter);
             InitializeCategoryFilterButtons();
@@ -161,6 +164,12 @@ namespace Peaks360App.Activities
             _context.Settings.Categories.Clear();
 
             _context.Settings.NotifySettingsChanged(ChangedData.PoiFilterSettings);
+        }
+
+        public override void OnWindowFocusChanged(bool hasFocus)
+        {
+            base.OnWindowFocusChanged(hasFocus);
+            ActivityHelper.ChangeSystemUiVisibility(this, hasFocus);
         }
     }
 }

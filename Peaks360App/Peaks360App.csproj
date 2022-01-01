@@ -123,6 +123,7 @@
     <Compile Include="Tasks\ElevationDataDownload.cs" />
     <Compile Include="Tasks\FileDownload.cs" />
     <Compile Include="Tasks\PoiFileImport.cs" />
+    <Compile Include="Utilities\ActivityHelper.cs" />
     <Compile Include="Utilities\CameraUtilities.cs" />
     <Compile Include="Utilities\CategoryAdapter.cs" />
     <Compile Include="Utilities\ColorMatrixBuilder.cs" />

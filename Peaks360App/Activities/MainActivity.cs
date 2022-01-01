@@ -64,7 +64,8 @@ namespace Peaks360App
         {
             base.OnCreate(bundle);
             AppContextLiveData.Instance.SetLocale(BaseContext);
-            
+            ActivityHelper.ChangeSystemUiVisibility(this);
+
             Xamarin.Essentials.Platform.Init(this, bundle);
             MobileAds.Initialize(this);
 
@@ -155,19 +156,7 @@ namespace Peaks360App
         public override void OnWindowFocusChanged(bool hasFocus)
         {
             base.OnWindowFocusChanged(hasFocus);
-
-            if (hasFocus)
-            {
-                var uiOptions =
-                    SystemUiFlags.HideNavigation |
-                    SystemUiFlags.LayoutHideNavigation |
-                    SystemUiFlags.LayoutFullscreen |
-                    SystemUiFlags.Fullscreen |
-                    SystemUiFlags.LayoutStable |
-                    SystemUiFlags.ImmersiveSticky;
-
-                Window.DecorView.SystemUiVisibility = (StatusBarVisibility)uiOptions;
-            }
+            ActivityHelper.ChangeSystemUiVisibility(this, hasFocus);
         }
 
         private void InitializeUIElements()
