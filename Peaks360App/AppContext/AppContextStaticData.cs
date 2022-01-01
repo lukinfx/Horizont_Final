@@ -4,6 +4,15 @@ namespace Peaks360App.AppContext
 {
     public class AppContextStaticData : AppContextBase
     {
+        private static AppContextStaticData _instance;
+        public static IAppContext Instance { get { return _instance; } }
+
+        public static AppContextStaticData GetInstance(GpsLocation myLocation, PlaceInfo myLocationPlaceInfo, double? heading)
+        {
+            _instance = new AppContextStaticData(myLocation, myLocationPlaceInfo, heading);
+            return _instance;
+        }
+
         public override float ViewAngleHorizontal
         {
             get
@@ -20,7 +29,7 @@ namespace Peaks360App.AppContext
             }
         }
 
-        public AppContextStaticData(GpsLocation myLocation, PlaceInfo myLocationPlaceInfo, double? heading) : base()
+        private AppContextStaticData(GpsLocation myLocation, PlaceInfo myLocationPlaceInfo, double? heading) : base()
         {
             this.myLocation = myLocation;
             this.myLocationPlaceInfo = new PlaceInfo(myLocationPlaceInfo.PlaceName, myLocationPlaceInfo.Country);

@@ -58,6 +58,7 @@ namespace Peaks360App
         protected override bool HeadingCorrectionEnabled => true;
         protected override bool ViewAngleCorrectionEnabled => false;
         protected override bool ImageCroppingEnabled => false;
+        protected override PoiListActivity.ContextType ContextType => PoiListActivity.ContextType.Live;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -299,7 +300,7 @@ namespace Peaks360App
                         break;
                     case Resource.Id.listOfPoisLinearLayout:
                         _slidingMenu.CloseMenu();
-                        StartPoisListActivity();
+                        StartPoisListActivity(PoiListActivity.ContextType.None);
                         break;
                     case Resource.Id.settingsLinearLayout:
                         _slidingMenu.CloseMenu();

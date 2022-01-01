@@ -16,6 +16,7 @@ using Peaks360Lib.Utilities;
 using Peaks360App.Activities;
 using Peaks360App.AppContext;
 using Peaks360App.Utilities;
+using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.Activities
 {
@@ -23,6 +24,7 @@ namespace Peaks360App.Activities
     public class PoiListActivity : Activity, IPoiActionListener, View.IOnClickListener, SearchView.IOnQueryTextListener
     {
         public static int REQUEST_SHOW_POI_LIST = Definitions.BaseResultCode.POILIST_ACTIVITY;
+        public enum ContextType { None = 0, Live = 1, Static = 2}
 
         public static Result RESULT_CANCELED { get { return Result.Canceled; } }
         public static Result RESULT_OK { get { return Result.Ok; } }
@@ -40,13 +42,29 @@ namespace Peaks360App.Activities
         private GpsLocation _location = new GpsLocation();
         private Timer _searchTimer = new Timer();
         private IGpsUtilities _iGpsUtilities = new GpsUtilities();
+        private ContextType _contextType;
 
-        private IAppContext Context { get { return AppContextLiveData.Instance; } }
+        private IAppContext Context { 
+            get 
+            {
+                switch (_contextType)
+                {
+                    case ContextType.None:
+                    case ContextType.Live:
+                        return AppContextLiveData.Instance;
+                    case ContextType.Static:
+                        return AppContextStaticData.Instance;
+                    default: throw new SystemException("Unsupported context type");
+                }
+            } 
+        }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             AppContextLiveData.Instance.SetLocale(this);
+
+            _contextType = (ContextType)Intent.GetShortExtra("contextType", (short)PoiListActivity.ContextType.None);
 
             _location.Latitude = Intent.GetDoubleExtra("latitude", 0);
             _location.Longitude = Intent.GetDoubleExtra("longitude", 0);
@@ -101,9 +119,14 @@ namespace Peaks360App.Activities
 
             _spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
 
-            var selectionAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, GetFilterOptions());
+            var filterOptions = GetFilterOptions();
+            var selectionAdapter = new ArrayAdapter(this, 
+                Android.Resource.Layout.SimpleSpinnerDropDownItem,
+                filterOptions.Select(x => x.Description).ToList());
             _spinnerSelection.Adapter = selectionAdapter;
-            _spinnerSelection.SetSelection((int)Context.SelectedPoiFilter);
+            var filterSelection = _contextType == ContextType.None ? PoiFilter.ByName : Context.SelectedPoiFilter;
+            var filterSelectionIdx = filterOptions.FindIndex(x => x.PoiFilter == filterSelection);
+            _spinnerSelection.SetSelection(filterSelectionIdx);
             _spinnerSelection.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterSelectionChanged);
 
             _spinnerCountry = FindViewById<Spinner>(Resource.Id.spinnerCountry);
@@ -122,15 +145,18 @@ namespace Peaks360App.Activities
             }
         }
 
-        private List<string> GetFilterOptions()
+        private List<PoiFilterItem> GetFilterOptions()
         {
-            var list = new string[]
+            var list = new List<PoiFilterItem>();
+            if (_contextType != ContextType.None)
             {
-                Resources.GetText(Resource.String.PoiListFilter_Visible),
-                Resources.GetText(Resource.String.PoiListFilter_My),
-                Resources.GetText(Resource.String.PoiListFilter_ByName),
-            };
-            return list.ToList();
+                list.Add(new PoiFilterItem(PoiFilter.VisiblePoints, Resources.GetText(Resource.String.PoiListFilter_Visible)));
+            }
+
+            list.Add(new PoiFilterItem(PoiFilter.MyPoints, Resources.GetText(Resource.String.PoiListFilter_My)));
+            list.Add(new PoiFilterItem(PoiFilter.ByName, Resources.GetText(Resource.String.PoiListFilter_ByName)));
+
+            return list;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -211,24 +237,21 @@ namespace Peaks360App.Activities
 
         private void OnFilterSelectionChanged(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            int selection = e.Position;
-            if (selection == 0)
+            var selection = GetFilterSelection(e.Position);
+            if (_contextType != ContextType.None)
             {
-                Context.SelectedPoiFilter = PoiFilter.VisiblePoints;
-                FindViewById<LinearLayout>(Resource.Id.linearLayoutSearching).Visibility = ViewStates.Gone;
-            }
-            else if (selection == 1)
-            {
-                Context.SelectedPoiFilter = PoiFilter.MyPoints;
-                FindViewById<LinearLayout>(Resource.Id.linearLayoutSearching).Visibility = ViewStates.Gone;
-            }
-            else if (selection == 2)
-            {
-                Context.SelectedPoiFilter = PoiFilter.ByName;
-                FindViewById<LinearLayout>(Resource.Id.linearLayoutSearching).Visibility = ViewStates.Visible;
+                Context.SelectedPoiFilter = selection;
             }
 
+            var advancedSearchVisibility = (selection == PoiFilter.ByName ? ViewStates.Visible : ViewStates.Gone);
+            FindViewById<LinearLayout>(Resource.Id.linearLayoutSearching).Visibility = advancedSearchVisibility;
+
             ShowData();
+        }
+
+        private PoiFilter GetFilterSelection(int index)
+        {
+            return GetFilterOptions().ElementAt(index).PoiFilter;
         }
 
         private IEnumerable<PoiViewItem> GetVisiblePois()
@@ -271,8 +294,9 @@ namespace Peaks360App.Activities
 
         private void ShowData()
         {
-            IEnumerable<PoiViewItem> items;
-            switch (Context.SelectedPoiFilter)
+            var poiFilterSelection = GetFilterSelection(_spinnerSelection.SelectedItemPosition);
+            IEnumerable <PoiViewItem> items;
+            switch (poiFilterSelection)
             {
                 case PoiFilter.VisiblePoints:
                     items = GetVisiblePois();

@@ -30,6 +30,7 @@ namespace Peaks360App.Activities
 
         protected ImageButton _favouriteButton;
         protected ImageButton _displayTerrainButton;
+        protected ImageButton _showPoiListButton;
 
         protected LinearLayout _seekBars;
         protected LinearLayout _poiInfo;
@@ -57,6 +58,7 @@ namespace Peaks360App.Activities
         protected abstract bool HeadingCorrectionEnabled { get; }
         protected abstract bool ViewAngleCorrectionEnabled { get; }
         protected abstract bool ImageCroppingEnabled { get; }
+        protected abstract PoiListActivity.ContextType ContextType { get; }
 
         private PoiDatabase _database;
         protected PoiDatabase Database
@@ -110,6 +112,9 @@ namespace Peaks360App.Activities
             _displayTerrainButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayTerrain);
             _displayTerrainButton.SetOnClickListener(this);
             _displayTerrainButton.SetImageResource(Context.Settings.ShowElevationProfile ? Resource.Drawable.ic_terrain : Resource.Drawable.ic_terrain_off);
+
+            _showPoiListButton = FindViewById<ImageButton>(Resource.Id.buttonPoiList);
+            _showPoiListButton.SetOnClickListener(this);
 
             var _selectCategoryButton = FindViewById<ImageButton>(Resource.Id.buttonCategorySelect);
             _selectCategoryButton.SetOnClickListener(this);
@@ -395,6 +400,9 @@ namespace Peaks360App.Activities
                 case Resource.Id.buttonCategorySelect:
                     OnCategoryButtonClicked();
                     break;
+                case Resource.Id.buttonPoiList:
+                    StartPoisListActivity(ContextType);
+                    break;
                 case Resource.Id.mainActivityPoiInfo:
                 {
                     if (Context.SelectedPoi != null)
@@ -417,9 +425,10 @@ namespace Peaks360App.Activities
             }
         }
 
-        protected void StartPoisListActivity()
+        protected void StartPoisListActivity(PoiListActivity.ContextType contextType)
         {
             Intent listActivityIntent = new Intent(this, typeof(PoiListActivity));
+            listActivityIntent.PutExtra("contextType", (short)contextType);
             listActivityIntent.PutExtra("latitude", Context.MyLocation.Latitude);
             listActivityIntent.PutExtra("longitude", Context.MyLocation.Longitude);
             listActivityIntent.PutExtra("altitude", Context.MyLocation.Altitude);

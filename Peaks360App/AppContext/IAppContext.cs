@@ -6,6 +6,7 @@ using Peaks360App.DataAccess;
 using Peaks360Lib.Domain.ViewModel;
 using Peaks360Lib.Domain.Models;
 using Peaks360App.Models;
+using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.AppContext
 {

@@ -65,8 +65,8 @@ namespace Peaks360App.Activities
         protected override bool OnePointTiltCorrectionEnabled => false;
         protected override bool HeadingCorrectionEnabled => EditingOn;
         protected override bool ViewAngleCorrectionEnabled => EditingOn;
-
         protected override bool ImageCroppingEnabled => CroppingOn;
+        protected override PoiListActivity.ContextType ContextType => PoiListActivity.ContextType.Static;
 
         void InitializeAppContext(PhotoData photodata)
         {
@@ -85,7 +85,7 @@ namespace Peaks360App.Activities
                 }
             }*/
 
-            _context = new AppContextStaticData(loc, new PlaceInfo(), photodata.Heading);
+            _context = AppContextStaticData.GetInstance(loc, new PlaceInfo(), photodata.Heading);
             _context.LeftTiltCorrector = photodata.LeftTiltCorrector ?? 0;
             _context.RightTiltCorrector = photodata.RightTiltCorrector ?? 0;
             //### This can be removed later

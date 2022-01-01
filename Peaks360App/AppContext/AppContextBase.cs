@@ -9,6 +9,7 @@ using Peaks360Lib.Domain.Models;
 using Peaks360App.Models;
 using Peaks360Lib.Utilities;
 using GpsUtils = Peaks360App.Utilities.GpsUtils;
+using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.AppContext
 {
