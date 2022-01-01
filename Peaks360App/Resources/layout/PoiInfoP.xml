@@ -11,6 +11,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_activity_light"
     android:paddingHorizontal="10dp"
+    android:paddingBottom="10dp"
     android:gravity="bottom">
     <LinearLayout
       android:orientation="horizontal"
@@ -69,64 +70,57 @@
       android:layout_height="1dp"
       android:background="#606060" />
 
-      <LinearLayout
-        android:orientation="vertical"
+    <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0"
+    android:id="@+id/linearLayout1">
+    <TextView
+        android:text="Description"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:id="@+id/linearLayout1">
-        <TextView
-          android:text="Description"
-          android:textAppearance="?android:attr/textAppearanceSmall"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="@android:color/black"
-          android:id="@+id/textViewPoiDescription" />
-        <TextView
-          android:text="GPS location"
-          android:textAppearance="?android:attr/textAppearanceSmall"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="@android:color/black"
-          android:id="@+id/textViewPoiGpsLocation" />
-        <TextView
-          android:text="Poi data"
-          android:textAppearance="?android:attr/textAppearanceSmall"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textColor="@android:color/black"
-          android:id="@+id/textViewPoiData" />
-      </LinearLayout>
+        android:textColor="@android:color/black"
+        android:id="@+id/textViewPoiDescription" />
+    <TextView
+        android:text="GPS location"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="6dp"
+        android:textColor="@android:color/black"
+        android:id="@+id/textViewPoiGpsLocation" />
+    </LinearLayout>
 
     <LinearLayout 
       android:orientation="horizontal"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_weight="0"
       android:gravity="right">
 
-      <ImageButton
+      <Button
         android:id="@+id/buttonWiki"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:text="@string/Common_Details"
-        android:drawablePadding="5dp"
-        android:paddingLeft="20dp"
         android:background="@android:color/transparent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:drawableLeft="@android:drawable/ic_menu_info_details" />
+        android:drawableLeft="@drawable/ic_info" />
 
-      <ImageButton
+      <Button
         android:id="@+id/buttonMap"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:text="@string/Common_Map"
         android:drawablePadding="5dp"
         android:paddingLeft="20dp"
         android:background="@android:color/transparent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:drawableLeft="@android:drawable/ic_menu_mapmode" />
+        android:drawableLeft="@drawable/ic_map" />
 
     </LinearLayout>
   </LinearLayout>
