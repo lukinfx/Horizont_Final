@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:id="@+id/menu_download"
+    android:icon="@drawable/ic_download"
+    android:showAsAction="never"
+    android:title="@string/PhotoShow_Download" />
+  <item
+    android:id="@+id/menu_share"
+    android:icon="@drawable/ic_share"
+    android:showAsAction="never"
+    android:title="@string/PhotoShow_Share" />
+  <item
+    android:id="@+id/menu_crop"
+    android:icon="@drawable/ic_crop"
+    android:showAsAction="never"
+    android:title="@string/PhotoShow_Crop" />
+</menu>

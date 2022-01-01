@@ -147,6 +147,9 @@
   <string name="PhotoShow_OverwriteQuestion">This photo already exists. Overwrite?</string>
   <string name="PhotoShow_PhotoSaved">Photo saved.</string>
   <string name="PhotoShow_ImageTooSmall">Cropped image is too small.</string>
+  <string name="PhotoShow_Download">Download photo</string>
+  <string name="PhotoShow_Share">Share photo</string>
+  <string name="PhotoShow_Crop">Crop</string>
 
   <!--PhotoParametersActivity-->
   <string name="PhotoParameters_CameraLocation">Camera location</string>

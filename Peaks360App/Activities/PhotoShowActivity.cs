@@ -24,11 +24,12 @@ using GpsUtils = Peaks360App.Utilities.GpsUtils;
 using ImageButton = Android.Widget.ImageButton;
 using Rect = Android.Graphics.Rect;
 using View = Android.Views.View;
+using AndroidX.AppCompat.View.Menu;
 
 namespace Peaks360App.Activities
 {
     [Activity(Label = "@string/PhotosActivity")]
-    public class PhotoShowActivity : HorizonBaseActivity
+    public class PhotoShowActivity : HorizonBaseActivity, MenuBuilder.ICallback
     {
         public static int REQUEST_SHOW_PHOTO = Definitions.BaseResultCode.PHOTO_SHOW_ACTIVITY;
 
@@ -43,6 +44,7 @@ namespace Peaks360App.Activities
         private ImageButton _displayOverlappedButton;
         private ImageButton _saveToDeviceButton;
         private ImageButton _shareButton;
+        private ImageButton _moreOptionsButton;
         private LinearLayout _confirmCloseButtons;
 
         private PhotoData _photodata;
@@ -135,17 +137,20 @@ namespace Peaks360App.Activities
             _displayOverlappedButton = FindViewById<ImageButton>(Resource.Id.buttonDisplayOverlapped);
             _displayOverlappedButton.SetOnClickListener(this);
 
-            _saveToDeviceButton = FindViewById<ImageButton>(Resource.Id.buttonSaveToDevice);
-            _saveToDeviceButton.SetOnClickListener(this);
-
-            _shareButton = FindViewById<ImageButton>(Resource.Id.buttonShare);
-            _shareButton.SetOnClickListener(this);
-
             _tiltCorrectorButton = FindViewById<ImageButton>(Resource.Id.buttonTiltCorrector);
             _tiltCorrectorButton.SetOnClickListener(this);
 
+            /*_saveToDeviceButton = FindViewById<ImageButton>(Resource.Id.buttonSaveToDevice);
+            _saveToDeviceButton.SetOnClickListener(this);
+             
+            _shareButton = FindViewById<ImageButton>(Resource.Id.buttonShare);
+            _shareButton.SetOnClickListener(this);
+
             _cropButton = FindViewById<ImageButton>(Resource.Id.buttonCropImage);
-            _cropButton.SetOnClickListener(this);
+            _cropButton.SetOnClickListener(this);*/
+
+            _moreOptionsButton = FindViewById<ImageButton>(Resource.Id.buttonMoreOptions);
+            _moreOptionsButton.SetOnClickListener(this);
 
             _confirmCloseButtons = FindViewById<LinearLayout>(Resource.Id.confirmCloseButtons);
             _confirmCloseButtons.Visibility = ViewStates.Gone;
@@ -435,9 +440,6 @@ namespace Peaks360App.Activities
                 case Resource.Id.buttonTiltCorrector:
                     HandleEditAndSaveButtonClicked();
                     break;
-                case Resource.Id.buttonCropImage:
-                    HandleCropButtonClicked();
-                    break;
                 case Resource.Id.confirmButton:
                     HandleCropAcceptedButtonClicked();
                     break;
@@ -447,13 +449,25 @@ namespace Peaks360App.Activities
                 case Resource.Id.buttonDisplayOverlapped:
                     HandleDisplayOverlappedButtonClicked();
                     break;
-                case Resource.Id.buttonSaveToDevice:
-                    HandleButtonSaveClicked();
-                    break;
-                case Resource.Id.buttonShare:
-                    HandleButtonShareClicked();
-                    //###Service
-                    //_elevationProfileServiceConnection.AddElevationProfile(0, 10, 1);
+                    /*case Resource.Id.buttonCropImage:
+                        HandleCropButtonClicked();
+                        break;
+                    case Resource.Id.buttonSaveToDevice:
+                        HandleButtonSaveClicked();
+                        break;
+                    case Resource.Id.buttonShare:
+                        HandleButtonShareClicked();
+                        //###Service
+                        //_elevationProfileServiceConnection.AddElevationProfile(0, 10, 1);
+                        break;*/
+                    case Resource.Id.buttonMoreOptions:
+                        MenuBuilder menuBuilder = new MenuBuilder(this);
+                        MenuInflater inflater = new MenuInflater(this);
+                        inflater.Inflate(Resource.Menu.PhotoShowActivityMenu, menuBuilder);
+                        MenuPopupHelper menu = new MenuPopupHelper(this, menuBuilder, _moreOptionsButton);
+                        menuBuilder.SetCallback(this);
+                        menu.SetForceShowIcon(true);
+                        menu.Show();
                     break;
             }
         }
@@ -720,6 +734,27 @@ namespace Peaks360App.Activities
                         new TutorialPage() { imageResourceId = Resource.Drawable.tutorial_viewangle_correction, textResourceId = Resource.String.Tutorial_PhotoEdit_ViewAngleCorrection },
                     });
             }
+        }
+
+        public bool OnMenuItemSelected(MenuBuilder builder, IMenuItem item)
+        {
+            switch(item.ItemId)
+            {
+                case Resource.Id.menu_download:
+                    HandleButtonSaveClicked();
+                    return true;
+                case Resource.Id.menu_share:
+                    HandleButtonShareClicked();
+                    return true;
+                case Resource.Id.menu_crop:
+                    HandleCropButtonClicked();
+                    return true;
+            }
+            return false;
+        }
+
+        public void OnMenuModeChange(MenuBuilder p0)
+        {
         }
 
         #region Required abstract methods
