@@ -226,15 +226,23 @@ namespace Peaks360App.Activities
             _gestureDetector.OnTouchEvent(e);
 
             var touchCount = e.PointerCount;
+            int curX = (int)e.GetX();
+            int curY = (int)e.GetY();
+
+            /*int curX1 = (int)e.GetX(0);
+            int curY1 = (int)e.GetY(0);
+            int curX2 = touchCount > 1 ? (int)e.GetX(1) : -1;
+            int curY2 = touchCount > 1 ? (int)e.GetY(1) : -1;
+            Log.WriteLine(LogPriority.Debug, TAG, $"Event: {e.Action} (X={curX}/{curX1}/{curX2}, Y={curY}/{curY1}/{curY2}, PrevX={m_PreviousMoveX}, PrevY={m_PreviousMoveY}, FirstX={m_FirstMoveX}, FirstY={m_FirstMoveY}, TC={touchCount})");*/
+
             switch (e.Action)
             {
                 case MotionEventActions.Down:
                 case MotionEventActions.Pointer1Down:
                 case MotionEventActions.Pointer2Down:
                     {
-
-                        m_FirstMoveX = m_PreviousMoveX = (int)e.GetX();
-                        m_FirstMoveY = m_PreviousMoveY = (int)e.GetY();
+                        m_FirstMoveX = m_PreviousMoveX = curX;
+                        m_FirstMoveY = m_PreviousMoveY = curY;
 
                         if (touchCount >= 2)
                         {
@@ -253,14 +261,13 @@ namespace Peaks360App.Activities
                     break;
                 case MotionEventActions.Move:
                     {
-                        
                         if (touchCount == 1)
                         {
                             //image moving + heading and tilt correction 
-                            var distanceX = m_PreviousMoveX - (int)e.GetX();
-                            var distanceY = m_PreviousMoveY - (int)e.GetY();
-                            m_PreviousMoveX = (int)e.GetX();
-                            m_PreviousMoveY = (int)e.GetY();
+                            var distanceX = m_PreviousMoveX - curX;
+                            var distanceY = m_PreviousMoveY - curY;
+                            m_PreviousMoveX = curX;
+                            m_PreviousMoveY = curY;
 
                             if (ImageCroppingEnabled && m_croppingHandle != null)
                             {
@@ -275,7 +282,7 @@ namespace Peaks360App.Activities
                                     handled = true;
                                 }
                             }
-                            else if (HeadingCorrectionEnabled && Math.Abs(m_FirstMoveX - e.GetX()) > Math.Abs(m_FirstMoveY - e.GetY()))
+                            else if (HeadingCorrectionEnabled && Math.Abs(m_FirstMoveX - curX) > Math.Abs(m_FirstMoveY - curY))
                             {
                                 if (m_FirstMoveX > 100)
                                 {
@@ -283,7 +290,7 @@ namespace Peaks360App.Activities
                                     handled = true;
                                 }
                             }
-                            else if (OnePointTiltCorrectionEnabled && Math.Abs(m_FirstMoveY - e.GetY()) > Math.Abs(m_FirstMoveX - e.GetX()))
+                            else if (OnePointTiltCorrectionEnabled && Math.Abs(m_FirstMoveY - curY) > Math.Abs(m_FirstMoveX - curX))
                             {
                                 _compassView.OnTiltCorrection(distanceY, TiltCorrectionType.Both);
                                 OnTiltChanged();
@@ -349,6 +356,12 @@ namespace Peaks360App.Activities
                             {
                                 m_IsScaling = false;
                             }
+                        }
+                        if (touchCount >= 2)
+                        {
+                            var remainingTouchIdx = (e.Action == MotionEventActions.Pointer1Up ? 1 : 0);
+                            m_FirstMoveX = m_PreviousMoveX = (int)e.GetX(remainingTouchIdx);
+                            m_FirstMoveY = m_PreviousMoveY = (int)e.GetY(remainingTouchIdx);
                         }
                         break;
                     }
