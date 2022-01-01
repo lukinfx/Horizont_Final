@@ -84,7 +84,7 @@
           android:orientation="horizontal"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:paddingLeft="20dp"
+          android:paddingLeft="10dp"
           android:paddingRight="10dp"
           android:gravity="bottom">
 
@@ -224,6 +224,9 @@
             android:layout_height="40dp"
             android:id="@+id/editButton"
             android:background="#00000000"/>
+          <Space
+            android:layout_width="8dp"
+            android:layout_height="1dp"/>
           <ImageButton
             android:src="@drawable/ic_delete"
             android:scaleType="fitCenter"
