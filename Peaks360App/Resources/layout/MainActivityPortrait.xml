@@ -44,20 +44,6 @@
           android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:gravity="bottom">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="60dp"
-                android:src="@drawable/menu_handle_gray"/>
-            <Space
-                android:layout_width="20dp"
-                android:layout_height="120dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
           android:layout_gravity="bottom"
           android:gravity="bottom">
 
