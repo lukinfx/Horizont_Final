@@ -43,20 +43,12 @@
                       android:id="@+id/DownloadCountrySpinner" />
                   </LinearLayout>
 
-                  <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp">
-
                     <ListView
                       android:minWidth="25px"
                       android:minHeight="25px"
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"
-                      android:padding="5dp"
                       android:id="@+id/DownloadItemListView" />
-                  </LinearLayout>
               </LinearLayout>
 
               <LinearLayout
