@@ -17,7 +17,7 @@
                           android:gravity="center">
                 <ImageView android:id="@+id/Thumbnail"
                            android:layout_width="match_parent"
-                           android:layout_height="230dp"
+                           android:layout_height="160dp"
                            android:scaleType="centerCrop"
                            android:src="@drawable/tutorial_compass_calibration"/>
             </LinearLayout>
