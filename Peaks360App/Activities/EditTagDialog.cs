@@ -42,9 +42,9 @@ namespace Peaks360App.Activities
             _editTagEditText = FindViewById<EditText>(Resource.Id.editTextName);
             _editTagEditText.Text = _photodata.Tag;
 
-            var buttonSave = FindViewById<ImageButton>(Resource.Id.buttonSave);
+            var buttonSave = FindViewById<Button>(Resource.Id.buttonSave);
             buttonSave.SetOnClickListener(this);
-            var buttonClose = FindViewById<ImageButton>(Resource.Id.buttonClose);
+            var buttonClose = FindViewById<Button>(Resource.Id.buttonClose);
             buttonClose.SetOnClickListener(this);
         }
 

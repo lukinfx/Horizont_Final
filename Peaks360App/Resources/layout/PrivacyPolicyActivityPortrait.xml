@@ -3,44 +3,36 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-      <include
-        android:id="@+id/privacyPolicyToolbar"
-        layout="@layout/TitleToolbar" />
-      <LinearLayout
+    <include
+    android:id="@+id/privacyPolicyToolbar"
+    layout="@layout/TitleToolbar" />
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+        <LinearLayout
         android:orientation="vertical"
-        android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background_portrait">
-          <ScrollView
+        android:layout_height="wrap_content">
+            <TextView
+            android:text="Privacy Policy for Peaks360 App"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewPrivacyPolicy"/>
+            <Button
+            android:text="@string/PrivacyPolicyAcknowledgement"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:background="@drawable/bg_activity">
-              <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                  <TextView
-                    android:text="Privacy Policy for Peaks360 App"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textViewPrivacyPolicy"
-                    android:textColor="#E0E0E0" />
-                  <Button
-                    android:text="@string/PrivacyPolicyAcknowledgement"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/buttonPrivacyPolicyAgreement" />
-                  <Button
-                    android:text="@string/PrivacyPolicyRejection"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:id="@+id/buttonPrivacyPolicyRejection" />
-              </LinearLayout>
-          </ScrollView>
-      </LinearLayout>
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/buttonPrivacyPolicyAgreement" />
+            <Button
+            android:text="@string/PrivacyPolicyRejection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/buttonPrivacyPolicyRejection" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

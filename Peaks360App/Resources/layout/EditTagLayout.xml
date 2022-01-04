@@ -12,44 +12,48 @@
         android:gravity="center_horizontal">
 
       <TextView
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingVertical="15dp"
+        android:paddingHorizontal="5dp"
         android:text="@string/Photos_EditName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF"
-        android:background="#E0404040"
+        android:background="@drawable/bg_activity_lightgray"
         />
 
-      <GridLayout
+      <FrameLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:rowCount="2"
-          android:columnCount="4"
-          android:background="#E0808080"
-          android:orientation="horizontal">
-      
+          android:padding="5dp">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="test"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/editTextName"/>
                 
-        </GridLayout>
+        </FrameLayout>
         <LinearLayout android:orientation="horizontal"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:gravity="center_horizontal"
-                  android:background="#E0404040">
-            <ImageButton 
-                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                  android:background="@drawable/bg_activity_lightgray">
+            <Button 
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" 
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
+                    android:text="@android:string/cancel"
+                    android:background="@android:color/transparent"
                     android:id="@+id/buttonClose" />
-            <ImageButton 
-                    android:src="@android:drawable/ic_menu_save"
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="0dp"/>
+            <Button 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" 
+                    android:drawableLeft="@android:drawable/ic_menu_save"
+                    android:text="@android:string/ok"
+                android:background="@android:color/transparent"
                     android:id="@+id/buttonSave" />
         </LinearLayout>
     </LinearLayout>
