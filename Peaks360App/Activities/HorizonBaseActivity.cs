@@ -521,12 +521,14 @@ namespace Peaks360App.Activities
         {
             //_seekBars.Visibility = ViewStates.Gone;
             _activityControlArea.Visibility = ViewStates.Gone;
+            ActivityHelper.ChangeSystemUiVisibility(this);
         }
 
         protected void ShowControls()
         {
             //_seekBars.Visibility = ViewStates.Visible;
             _activityControlArea.Visibility = ViewStates.Visible;
+            ActivityHelper.ChangeSystemUiVisibility(this);
         }
 
         public void OnElevationProfileChanged(object sender, ElevationProfileChangedEventArgs e)
