@@ -20,7 +20,7 @@ using Android.Transitions;
 namespace Peaks360App.Activities
 {
     [Activity(Label = "@string/SettingsActivity")]
-    public class SettingsActivity : Activity, IOnClickListener
+    public class SettingsActivity : CardBaseActivity, IOnClickListener
     {
         public static int REQUEST_SHOW_SETTINGS = Definitions.BaseResultCode.SETTINGS_ACTIVITY + 0;
 
@@ -49,29 +49,6 @@ namespace Peaks360App.Activities
         private bool _isDirty = false;
         private List<Size> _listOfCameraResolutions;
 
-        private class CardItem
-        {
-            public CardItem(int CardId, int ButtonId, int LayoutId, int ContentId)
-            {
-                this.CardId = CardId;
-                this.ButtonId = ButtonId;
-                this.LayoutId = LayoutId;
-                this.ContentId = ContentId;
-            }
-            public int CardId;
-            public int ButtonId;
-            public int LayoutId;
-            public int ContentId;
-        }
-        private List<CardItem> _cardItems = new List<CardItem>() {
-            new CardItem(Resource.Id.cardLanguage, Resource.Id.cardLanguageButton,Resource.Id.cardLanguageLayout, Resource.Id.cardLanguageContent),
-            new CardItem(Resource.Id.cardViewAngle, Resource.Id.cardViewAngleButton,Resource.Id.cardViewAngleLayout, Resource.Id.cardViewAngleContent),
-            new CardItem(Resource.Id.cardElevationProfile, Resource.Id.cardElevationProfileButton,Resource.Id.cardElevationProfileLayout, Resource.Id.cardElevationProfileContent),
-            new CardItem(Resource.Id.cardAltitude, Resource.Id.cardAltitudeButton,Resource.Id.cardAltitudeLayout, Resource.Id.cardAltitudeContent),
-            new CardItem(Resource.Id.cardPhotoResolution, Resource.Id.cardPhotoResolutionButton,Resource.Id.cardPhotoResolutionLayout, Resource.Id.cardPhotoResolutionContent),
-            new CardItem(Resource.Id.cardElevationData, Resource.Id.cardElevationDataButton,Resource.Id.cardElevationDataLayout, Resource.Id.cardElevationDataContent),
-        };
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -86,6 +63,13 @@ namespace Peaks360App.Activities
             {
                 SetContentView(Resource.Layout.SettingsActivityLandscape);
             }
+
+            AddCard(Resource.Id.cardLanguage, Resource.Id.cardLanguageButton, Resource.Id.cardLanguageLayout, Resource.Id.cardLanguageContent);
+            AddCard(Resource.Id.cardViewAngle, Resource.Id.cardViewAngleButton, Resource.Id.cardViewAngleLayout, Resource.Id.cardViewAngleContent);
+            AddCard(Resource.Id.cardElevationProfile, Resource.Id.cardElevationProfileButton, Resource.Id.cardElevationProfileLayout, Resource.Id.cardElevationProfileContent);
+            AddCard(Resource.Id.cardAltitude, Resource.Id.cardAltitudeButton, Resource.Id.cardAltitudeLayout, Resource.Id.cardAltitudeContent);
+            AddCard(Resource.Id.cardPhotoResolution, Resource.Id.cardPhotoResolutionButton, Resource.Id.cardPhotoResolutionLayout, Resource.Id.cardPhotoResolutionContent);
+            AddCard(Resource.Id.cardElevationData, Resource.Id.cardElevationDataButton, Resource.Id.cardElevationDataLayout, Resource.Id.cardElevationDataContent);
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
@@ -144,10 +128,6 @@ namespace Peaks360App.Activities
 
             _textViewElevationDataSize = FindViewById<TextView>(Resource.Id.textViewElevationDataSize);
 
-            foreach (var cardItem in _cardItems)
-            {
-                FindViewById<LinearLayout>(cardItem.LayoutId).SetOnClickListener(this);
-            }
             UpdateElevationDataSize();
         }
 
@@ -292,42 +272,6 @@ namespace Peaks360App.Activities
                 + ": " + GetViewAngleText(_switchManualViewAngle.Checked, verticalCorrection, _settings.AutomaticViewAngleVertical);
         }
 
-        private void OnSelectViewCard(int layoutResId)
-        {
-            foreach (var cardItem in _cardItems)
-            {
-                var button = FindViewById<ImageView>(cardItem.ButtonId);
-                var cardView = FindViewById<CardView>(cardItem.CardId);
-                var hiddenView = FindViewById<LinearLayout>(cardItem.ContentId);
-
-                if (layoutResId != cardItem.LayoutId && hiddenView.Visibility == ViewStates.Visible)
-                {
-                    hiddenView.Visibility = ViewStates.Gone;
-                    button.SetImageResource(Resource.Drawable.baseline_expand_more_black_24dp);
-                }
-            }
-
-            {
-                var selectedCardItem = _cardItems.Single(x => x.LayoutId == layoutResId);
-                var button = FindViewById<ImageView>(selectedCardItem.ButtonId);
-                var cardView = FindViewById<CardView>(selectedCardItem.CardId);
-                var hiddenView = FindViewById<LinearLayout>(selectedCardItem.ContentId);
-
-                if (hiddenView.Visibility == ViewStates.Visible)
-                {
-                    TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
-                    hiddenView.Visibility = ViewStates.Gone;
-                    button.SetImageResource(Resource.Drawable.baseline_expand_more_black_24dp);
-                }
-                else
-                {
-                    TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
-                    hiddenView.Visibility = ViewStates.Visible;
-                    button.SetImageResource(Resource.Drawable.baseline_expand_less_black_24dp);
-                }
-            }
-        }
-
         public void OnClick(View v)
         {
             switch (v.Id)
@@ -337,7 +281,6 @@ namespace Peaks360App.Activities
                     _seekBarCorrectionViewAngleHorizontal.Progress = 0;
                     _seekBarCorrectionViewAngleVertical.Progress = 0;
                     break;
-
                 case Resource.Id.switchManualViewAngle:
                     SetDirty();
                     UpdateViewAngleText(_seekBarCorrectionViewAngleHorizontal.Progress / (float)10.0, _seekBarCorrectionViewAngleVertical.Progress / (float)10.0);
@@ -354,13 +297,8 @@ namespace Peaks360App.Activities
                     ClearElevationData();
                     break;
 
-                case Resource.Id.cardLanguageLayout:
-                case Resource.Id.cardViewAngleLayout:
-                case Resource.Id.cardElevationProfileLayout:
-                case Resource.Id.cardAltitudeLayout:
-                case Resource.Id.cardPhotoResolutionLayout:
-                case Resource.Id.cardElevationDataLayout:
-                    OnSelectViewCard(v.Id);
+                default:
+                    base.OnClick(v);
                     break;
             }
         }

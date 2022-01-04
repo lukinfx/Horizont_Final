@@ -17,12 +17,13 @@ using Peaks360Lib.Domain.Enums;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Utilities;
 using Xamarin.Essentials;
+using static Android.Views.View;
 using GpsUtils = Peaks360Lib.Utilities.GpsUtils;
 
 namespace Peaks360App.Activities
 {
     [Activity(Label = "PhotoParametersActivity")]
-    public class PhotoParametersActivity : Activity, View.IOnClickListener
+    public class PhotoParametersActivity : CardBaseActivity, IOnClickListener
     {
         public static int REQUEST_IMPORT_IMAGE = Definitions.BaseResultCode.PHOTO_IMPORT_ACTIVITY + 0;
 
@@ -48,6 +49,10 @@ namespace Peaks360App.Activities
 
             SetContentView(Resource.Layout.PhotoParametersActivityPortrait);
 
+            AddCard(Resource.Id.cardDirection, Resource.Id.cardDirectionButton, Resource.Id.cardDirectionLayout, Resource.Id.cardDirectionContent);
+            AddCard(Resource.Id.cardLocation, Resource.Id.cardLocationButton, Resource.Id.cardLocationLayout, Resource.Id.cardLocationContent);
+            AddCard(Resource.Id.cardViewAngles, Resource.Id.cardViewAnglesButton, Resource.Id.cardViewAnglesLayout, Resource.Id.cardViewAnglesContent);
+
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
 
@@ -68,9 +73,9 @@ namespace Peaks360App.Activities
             FindViewById<Button>(Resource.Id.buttonBearing).SetOnClickListener(this);
             FindViewById<Button>(Resource.Id.buttonLocation).SetOnClickListener(this);
             FindViewById<Button>(Resource.Id.buttonMap).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.buttonCameraLocationInfo).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.buttonViewDirectionInfo).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.buttonViewAnglesInfo).SetOnClickListener(this);
+            FindViewById<Button>(Resource.Id.buttonCameraLocationInfo).SetOnClickListener(this);
+            FindViewById<Button>(Resource.Id.buttonViewDirectionInfo).SetOnClickListener(this);
+            FindViewById<Button>(Resource.Id.buttonViewAnglesInfo).SetOnClickListener(this);
 
             _editTextLatitude.TextChanged += OnTextChanged;
             _editTextLongitude.TextChanged += OnTextChanged;
@@ -90,43 +95,60 @@ namespace Peaks360App.Activities
             UpdateCameraAltitude(_photoData.GetPhotoGpsLocation());
             UpdateViewAngles(_photoData.ViewAngleVertical, _photoData.ViewAngleHorizontal);
             UpdateHeading(_photoData.Heading);
-            FindViewById<ImageButton>(Resource.Id.cardViewAnglesButton).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.cardLocationButton).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.cardDirectionButton).SetOnClickListener(this);
-
-        }
-
-        private void OnToggleView(int buttonResId, int cardResId, int contentResId)
-        {
-            var button = FindViewById<ImageButton>(buttonResId);
-            var cardView = FindViewById<CardView>(cardResId);
-            var hiddenView = FindViewById<LinearLayout>(contentResId);
-            
-            if (hiddenView.Visibility == ViewStates.Visible)
-            {
-                TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
-                hiddenView.Visibility = ViewStates.Gone;
-                button.SetImageResource(Resource.Drawable.baseline_expand_more_black_24dp);
-            }
-            else
-            {
-                TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
-                hiddenView.Visibility = ViewStates.Visible;
-                button.SetImageResource(Resource.Drawable.baseline_expand_less_black_24dp);
-            }
         }
 
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {
             EditText et = sender as EditText;
-            if (string.IsNullOrEmpty(e.Text.ToString()))
+
+            ImageView alertItem;
+            ImageView alertCard;
+            switch (et?.Id)
             {
-                et.SetBackgroundColor(this.Resources.GetColor(Resource.Color.EditTextWarning));
+                case Resource.Id.editTextLatitude:
+                    alertItem = FindViewById<ImageView>(Resource.Id.editTextLatitudeAlert);
+                    break;
+                case Resource.Id.editTextLongitude:
+                    alertItem = FindViewById<ImageView>(Resource.Id.editTextLongitudeAlert);
+                    break;
+                case Resource.Id.editTextAltitude:
+                    alertItem = FindViewById<ImageView>(Resource.Id.editTextAltitudeAlert);
+                    break;
+                case Resource.Id.editTextHeading:
+                    alertItem = FindViewById<ImageView>(Resource.Id.editTextHeadingAlert);
+                    break;
+                case Resource.Id.editTextViewAngleVertical:
+                    alertItem = FindViewById<ImageView>(Resource.Id.editTextViewAngleVerticalAlert);
+                    break;
+                case Resource.Id.editTextViewAngleHorizontal:
+                    alertItem = FindViewById<ImageView>(Resource.Id.editTextViewAngleHorizontalAlert);
+                    break;
+                default:
+                    return;
             }
-            else
+
+            switch (et?.Id)
             {
-                et.SetBackgroundColor(Color.Transparent);
+                case Resource.Id.editTextLatitude:
+                case Resource.Id.editTextLongitude:
+                case Resource.Id.editTextAltitude:
+                    alertCard = FindViewById<ImageView>(Resource.Id.cardLocationAlert);
+                    break;
+                case Resource.Id.editTextHeading:
+                    alertCard = FindViewById<ImageView>(Resource.Id.cardDirectionAlert);
+                    break;
+                case Resource.Id.editTextViewAngleHorizontal:
+                case Resource.Id.editTextViewAngleVertical:
+                    alertCard = FindViewById<ImageView>(Resource.Id.cardViewAnglesAlert);
+                    break;
+                default:
+                    return;
             }
+
+            var showAlert = string.IsNullOrEmpty(e.Text.ToString());
+            
+            alertCard.Visibility = showAlert ? ViewStates.Visible : ViewStates.Gone;
+            alertItem.Visibility = showAlert ? ViewStates.Visible : ViewStates.Gone;
         }
 
         private void UpdateCameraLocation(GpsLocation location)
@@ -411,14 +433,8 @@ namespace Peaks360App.Activities
                 case Resource.Id.buttonBearing:
                     OnCameraDirectionClicked();
                     break;
-                case Resource.Id.cardViewAnglesButton:
-                    OnToggleView(Resource.Id.cardViewAnglesButton, Resource.Id.cardViewAngles, Resource.Id.cardViewAnglesContent);
-                    break;
-                case Resource.Id.cardLocationButton:
-                    OnToggleView(Resource.Id.cardLocationButton, Resource.Id.cardLocation, Resource.Id.cardLocationContent);
-                    break;
-                case Resource.Id.cardDirectionButton:
-                    OnToggleView(Resource.Id.cardDirectionButton, Resource.Id.cardDirection, Resource.Id.cardDirectionContent);
+                default:
+                    base.OnClick(v);
                     break;
             }
         }
