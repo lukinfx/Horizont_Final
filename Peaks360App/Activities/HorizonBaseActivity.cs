@@ -22,6 +22,7 @@ namespace Peaks360App.Activities
     public abstract class HorizonBaseActivity : Activity, IOnClickListener, GestureDetector.IOnGestureListener, GestureDetector.IOnDoubleTapListener, IProgressReceiver
     {
         private static string TAG = "Horizon-BaseActivity";
+        private static float MENU_SLIDE_LIMIT = 0.1f;
 
         protected abstract IAppContext Context { get; }
 
@@ -284,7 +285,7 @@ namespace Peaks360App.Activities
                             }
                             else if (HeadingCorrectionEnabled && Math.Abs(m_FirstMoveX - curX) > Math.Abs(m_FirstMoveY - curY))
                             {
-                                if (m_FirstMoveX > 100)
+                                if (m_FirstMoveX > _compassView.Width * MENU_SLIDE_LIMIT)
                                 {
                                     _compassView.OnHeadingCorrection(distanceX);
                                     handled = true;

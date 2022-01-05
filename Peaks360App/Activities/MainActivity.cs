@@ -32,6 +32,7 @@ namespace Peaks360App
         //private static readonly int ReqCode_SelectCategoryActivity = 1000;
 
         //UI elements
+        private ImageButton _menuButton;
         private ImageButton _pauseButton;
         private ImageButton _recordButton;
         private ImageButton _resetCorrectionButton;
@@ -174,6 +175,9 @@ namespace Peaks360App
             _slidingMenu = FindViewById<SlidingMenuControl>(Resource.Id.drawer_layout);
             _slidingMenu.SetOnTouchListener(this);
 
+            _menuButton = FindViewById<ImageButton>(Resource.Id.buttonMenu);
+            _menuButton.SetOnClickListener(this);
+
             _pauseButton = FindViewById<ImageButton>(Resource.Id.buttonPause);
             _pauseButton.SetOnClickListener(this);
             UpdatePauseButton();
@@ -250,6 +254,11 @@ namespace Peaks360App
             {
                 switch (v.Id)
                 {
+                    case Resource.Id.buttonMenu:
+                        {
+                            _slidingMenu.OpenMenu();
+                            break;
+                        }
                     case Resource.Id.buttonPause:
                         {
                             HandleButtonPauseClicked();
