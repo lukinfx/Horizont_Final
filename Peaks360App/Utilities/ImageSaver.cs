@@ -24,41 +24,73 @@ namespace Peaks360App.Utilities
         // The JPEG image
         private Image _Image;
         private IAppContext _context;
+        private bool _isPortrait;
 
         // The file we save the image into.
-        public ImageSaver(Image image, IAppContext context)
+        public ImageSaver(Image image, IAppContext context, bool isPortrait)
         {
             if (image == null)
                 throw new System.ArgumentNullException("image");
             _Image = image;
             _context = context;
+            _isPortrait = isPortrait;
         }
 
         public void Run()
         {
+            /*var isPortrait = true;// _context.IsPortrait;
+            var imgWidth = isPortrait ? _Image.Height : _Image.Width;
+            var imgHeight = isPortrait ? _Image.Width : _Image.Height;
 
-            var imgWidth = _context.IsPortrait ? _Image.Height : _Image.Width;
-            var imgHeight = _context.IsPortrait ? _Image.Width : _Image.Height;
-
-            var thumbWidth = _context.IsPortrait ? THUMBNAIL_HEIGHT : THUMBNAIL_WIDTH;
-            var thumbHeight = _context.IsPortrait ? THUMBNAIL_WIDTH : THUMBNAIL_HEIGHT;
+            var thumbWidth = isPortrait ? THUMBNAIL_HEIGHT : THUMBNAIL_WIDTH;
+            var thumbHeight = isPortrait ? THUMBNAIL_WIDTH : THUMBNAIL_HEIGHT;
 
             ByteBuffer buffer = _Image.GetPlanes()[0].Buffer;
-            byte[] bytes = new byte[buffer.Remaining()];
-            buffer.Get(bytes);
+            _Image.Close();*/
 
-            var filename = ImageSaverUtils.GetPhotoFileName();
-            var filepath = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), filename);
 
-            var file = new Java.IO.File(filepath);
-            byte[] thumbnail = ImageResizer.ResizeImageAndroid(bytes, thumbWidth, thumbHeight, THUMBNAIL_QUALITY);
+            int imgWidth, imgHeight;
+            Java.IO.File file;
+            byte[] bytes, thumbnail;
+            string filename, filepath;
+
+            try
+            {
+                imgWidth = _isPortrait ? _Image.Height : _Image.Width;
+                imgHeight = _isPortrait ? _Image.Width : _Image.Height;
+
+                var thumbWidth = _isPortrait ? THUMBNAIL_HEIGHT : THUMBNAIL_WIDTH;
+                var thumbHeight = _isPortrait ? THUMBNAIL_WIDTH : THUMBNAIL_HEIGHT;
+
+                ByteBuffer buffer = _Image.GetPlanes()[0].Buffer;
+                bytes = new byte[buffer.Remaining()];
+                buffer.Get(bytes);
+
+                filename = ImageSaverUtils.GetPhotoFileName();
+                filepath = System.IO.Path.Combine(ImageSaverUtils.GetPhotosFileFolder(), filename);
+
+                file = new Java.IO.File(filepath);
+                thumbnail = ImageResizer.ResizeImageAndroid(bytes, thumbWidth, thumbHeight, THUMBNAIL_QUALITY);
+            }
+            catch (Java.Lang.Exception e)
+            {
+                e.PrintStackTrace();
+                _Image.Close();
+                return;
+            }
+            catch (System.Exception e)
+            {
+                //e.Message
+                _Image.Close();
+                return;
+            }
 
             using (var output = new Java.IO.FileOutputStream(file))
             {
                 try
                 {
                     output.Write(bytes);
-                    
+
                     PoiDatabase poiDatabase = new PoiDatabase();
                     string jsonCategories = JsonConvert.SerializeObject(_context.Settings.Categories);
 
@@ -105,6 +137,14 @@ namespace Peaks360App.Utilities
                 catch (Java.IO.IOException e)
                 {
                     e.PrintStackTrace();
+                }
+                catch (Java.Lang.Exception e)
+                {
+                    e.PrintStackTrace();
+                }
+                catch (System.Exception e)
+                {
+                    //e.Message
                 }
                 finally
                 {

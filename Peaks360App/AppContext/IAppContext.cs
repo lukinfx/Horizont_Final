@@ -12,6 +12,8 @@ namespace Peaks360App.AppContext
 {
     public class DataChangedEventArgs : EventArgs { public PoiViewItemList PoiData; }
     public delegate void DataChangedEventHandler(object sender, DataChangedEventArgs e);
+    public delegate void GpsFixAcquiredEventHandler(object sender, EventArgs e);
+    public delegate void GpsFixLostEventHandler(object sender, EventArgs e);
 
     public class HeadingChangedEventArgs : EventArgs { public double Heading; public double HeadingCorrection; }
     public delegate void HeadingChangedEventHandler(object sender, HeadingChangedEventArgs e);
@@ -26,6 +28,8 @@ namespace Peaks360App.AppContext
 
         event DataChangedEventHandler DataChanged;
         event HeadingChangedEventHandler HeadingChanged;
+        event GpsFixAcquiredEventHandler GpsFixAcquired;
+        event GpsFixLostEventHandler GpsFixLost;
 
         Settings Settings { get; }
         PhotosModel PhotosModel { get; }

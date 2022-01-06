@@ -103,6 +103,7 @@ namespace Peaks360App.Views.Camera
 
         // Orientation of the camera sensor
         private int mSensorOrientation;
+        private bool mSwappedDimensions;
 
         // A {@link CameraCaptureSession.CaptureCallback} that handles events related to JPEG capture.
         public CameraCaptureListener mCaptureCallback;
@@ -191,21 +192,21 @@ namespace Peaks360App.Views.Camera
                 var displayRotation = activity.WindowManager.DefaultDisplay.Rotation;
                 //noinspection ConstantConditions
                 mSensorOrientation = (int)characteristics.Get(CameraCharacteristics.SensorOrientation);
-                bool swappedDimensions = false;
+                mSwappedDimensions = false;
                 switch (displayRotation)
                 {
                     case SurfaceOrientation.Rotation0:
                     case SurfaceOrientation.Rotation180:
                         if (mSensorOrientation == 90 || mSensorOrientation == 270)
                         {
-                            swappedDimensions = true;
+                            mSwappedDimensions = true;
                         }
                         break;
                     case SurfaceOrientation.Rotation90:
                     case SurfaceOrientation.Rotation270:
                         if (mSensorOrientation == 0 || mSensorOrientation == 180)
                         {
-                            swappedDimensions = true;
+                            mSwappedDimensions = true;
                         }
                         break;
                     default:
@@ -220,7 +221,7 @@ namespace Peaks360App.Views.Camera
                 var maxPreviewWidth = displaySize.X;
                 var maxPreviewHeight = displaySize.Y;
 
-                if (swappedDimensions)
+                if (mSwappedDimensions)
                 {
                     rotatedPreviewWidth = height;
                     rotatedPreviewHeight = width;
@@ -355,10 +356,10 @@ namespace Peaks360App.Views.Camera
         // Stops the background thread and its {@link Handler}.
         private void StopBackgroundThread()
         {
-            mBackgroundThread.QuitSafely();
+            mBackgroundThread?.QuitSafely();
             try
             {
-                mBackgroundThread.Join();
+                mBackgroundThread?.Join();
                 mBackgroundThread = null;
                 mBackgroundHandler = null;
             }
@@ -452,7 +453,7 @@ namespace Peaks360App.Views.Camera
         // Initiate a still image capture.
         public void TakePicture(IAppContext context)
         {
-            mOnImageAvailableListener.SetContext(context);
+            mOnImageAvailableListener.SetContext(context, mSwappedDimensions);
             LockFocus();
         }
 

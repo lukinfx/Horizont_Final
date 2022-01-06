@@ -25,6 +25,7 @@ namespace Peaks360App.Views.Camera
 
 
         private IAppContext _context;
+        private bool _isPortrait;
         private readonly Java.IO.File file;
         private readonly CameraFragment owner;
 
@@ -33,15 +34,16 @@ namespace Peaks360App.Views.Camera
 
         public void OnImageAvailable(ImageReader reader)
         {
-            ImageSaver imageSaver = new ImageSaver(reader.AcquireNextImage(), _context);
+            ImageSaver imageSaver = new ImageSaver(reader.AcquireNextImage(), _context, _isPortrait);
             owner.mBackgroundHandler.Post(imageSaver);
         }
 
         // Saves a JPEG {@link Image} into the specified {@link File}.
         
-        public void SetContext(IAppContext context)
+        public void SetContext(IAppContext context, bool isPortrait)
         {
             _context = context;
+            _isPortrait = isPortrait;
         }
     }
 }

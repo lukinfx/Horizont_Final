@@ -19,7 +19,6 @@ using Exception = System.Exception;
 using AlertDialog = Android.Support.V7.App.AlertDialog;
 using ImageButton = Android.Widget.ImageButton;
 using View = Android.Views.View;
-using AndroidX.DrawerLayout.Widget;
 using Peaks360App.Views;
 using Peaks360App.Models;
 using Android.Graphics;
@@ -39,7 +38,8 @@ namespace Peaks360App
         private ImageButton _thumbnailButton;
         private FrameLayout _thumbnailFrame;
         private SlidingMenuControl _slidingMenu;
-        
+        private System.Threading.Timer _showPhotoThumbnailTimer;
+
         //private TextView _textViewStatusLine;
 
         private View _mainLayout;
@@ -109,10 +109,15 @@ namespace Peaks360App
                 _thumbnailButton.Tag = args.data.Id;
                 _thumbnailFrame.Visibility = ViewStates.Visible;
 
-                var delayedAction = new System.Threading.Timer(o =>
+                if (_showPhotoThumbnailTimer == null)
                 {
-                    MainThread.BeginInvokeOnMainThread(() => { _thumbnailFrame.Visibility = ViewStates.Gone; });
-                }, null, TimeSpan.FromSeconds(5), TimeSpan.FromMilliseconds(-1));
+                    _showPhotoThumbnailTimer = new System.Threading.Timer(o =>
+                    {
+                        MainThread.BeginInvokeOnMainThread(() => { _thumbnailFrame.Visibility = ViewStates.Gone; });
+                    });
+                }
+
+                _showPhotoThumbnailTimer.Change(TimeSpan.FromSeconds(5), TimeSpan.FromMilliseconds(-1));
             }
         }
 
@@ -183,6 +188,8 @@ namespace Peaks360App
             UpdatePauseButton();
 
             _recordButton = FindViewById<ImageButton>(Resource.Id.buttonRecord);
+             EnableRecordButton(GpsUtils.HasLocation(Context.MyLocation));
+
             _recordButton.SetOnClickListener(this);
 
             _resetCorrectionButton = FindViewById<ImageButton>(Resource.Id.buttonResetCorrector);
@@ -246,6 +253,15 @@ namespace Peaks360App
             FragmentManager.BeginTransaction().Replace(Resource.Id.container, _cameraFragment).Commit();
         }
 
+        private void EnableRecordButton(bool enable)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                _recordButton.SetImageResource(enable ? Resource.Drawable.ic_photo1 : Resource.Drawable.ic_photo2);
+                _recordButton.Enabled = enable;
+            });
+        }
+
         public override void OnClick(View v)
         {
             base.OnClick(v);
@@ -266,8 +282,7 @@ namespace Peaks360App
                         }
                     case Resource.Id.buttonRecord:
                         {
-                            _recordButton.SetImageResource(Resource.Drawable.ic_photo2);
-                            _recordButton.Enabled = false;
+                            EnableRecordButton(false); 
                             _cameraFragment.TakePicture(Context);
                             Timer timer = new Timer(500);
                             timer.Elapsed += OnTakePictureTimerElapsed;
@@ -275,13 +290,13 @@ namespace Peaks360App
                             break;
                         }
                     case Resource.Id.buttonResetCorrector:
-                    {
-                        Context.HeadingCorrector = 0;
-                        Context.LeftTiltCorrector = 0;
-                        Context.RightTiltCorrector = 0;
+                        {
+                            Context.HeadingCorrector = 0;
+                            Context.LeftTiltCorrector = 0;
+                            Context.RightTiltCorrector = 0;
                             Context.Settings.SetAutoLocation();
-                        break;
-                    }
+                            break;
+                        }
                     case Resource.Id.Thumbnail:
                     {
                         Intent showIntent = new Intent(this, typeof(PhotoShowActivity));
@@ -354,11 +369,10 @@ namespace Peaks360App
 
         private void OnTakePictureTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            MainThread.BeginInvokeOnMainThread(() =>
+            MainThread.BeginInvokeOnMainThread((Action)(() =>
             {
-                _recordButton.SetImageResource(Resource.Drawable.ic_photo1);
-                _recordButton.Enabled = true;
-            });
+                this.EnableRecordButton(true);
+            }));
         }
 
         private void RefreshHeading()
@@ -413,6 +427,22 @@ namespace Peaks360App
             catch (Exception)
             {
                 //TODO: Possibly log the failure
+            }
+        }
+
+        public override void OnGpsFixAcquired(object sender)
+        {
+            if (!_recordButton.Enabled)
+            {
+                EnableRecordButton(true);
+            }
+        }
+
+        public override void OnGpsFixLost(object sender)
+        {
+            if (_recordButton.Enabled)
+            {
+                EnableRecordButton(false);
             }
         }
 

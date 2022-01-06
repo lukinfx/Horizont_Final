@@ -23,7 +23,7 @@ namespace Peaks360App.Views.Camera
 
             // If something goes wrong with the save (or the handler isn't even 
             // registered, this code will toast a success message regardless...)
-            PopupHelper.Toast(Peaks360Application.Context, Resource.String.PhotoShow_PhotoSaved);
+            //PopupHelper.Toast(Peaks360Application.Context, Resource.String.PhotoShow_PhotoSaved);
         }
     }
 }

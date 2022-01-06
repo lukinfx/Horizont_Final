@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Peaks360App.AppContext;
+using Peaks360App.Services;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Utilities;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Peaks360App.Providers
 {
@@ -34,6 +36,11 @@ namespace Peaks360App.Providers
                 }
 
                 if (waitingForResponse)
+                {
+                    return null;
+                }
+
+                if (!DependencyService.Get<IGpsService>().IsGpsAvailable())
                 {
                     return null;
                 }

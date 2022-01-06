@@ -17,6 +17,7 @@ namespace Peaks360App.AppContext
     {
         protected Context context;
         protected IGpsUtilities iGpsUtilities = new GpsUtilities();
+        private bool _hasGpsFix = false;
 
         public virtual void Initialize(Context context)
         {
@@ -27,6 +28,8 @@ namespace Peaks360App.AppContext
 
         public event DataChangedEventHandler DataChanged;
         public event HeadingChangedEventHandler HeadingChanged;
+        public event GpsFixAcquiredEventHandler GpsFixAcquired;
+        public event GpsFixLostEventHandler GpsFixLost;
 
         public Settings Settings { get; private set; }
 
@@ -170,6 +173,12 @@ namespace Peaks360App.AppContext
         {
             if (GpsUtils.HasLocation(MyLocation))
             {
+                if (!_hasGpsFix)
+                {
+                    _hasGpsFix = true;
+                    GpsFixAcquired.Invoke(this, new EventArgs());
+                }
+
                 if (poiData is null)
                 {
                     var poiList = Database.GetItems(MyLocation, Settings.MaxDistance);
@@ -200,6 +209,12 @@ namespace Peaks360App.AppContext
             }
             else
             {
+                if (_hasGpsFix)
+                {
+                    _hasGpsFix = false;
+                    GpsFixLost.Invoke(this, new EventArgs());
+                }
+
                 var args = new DataChangedEventArgs() { PoiData = null };
                 DataChanged?.Invoke(this, args);
             }

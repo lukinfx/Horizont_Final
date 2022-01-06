@@ -144,6 +144,8 @@ namespace Peaks360App.Activities
             base.OnPause();
             Context.DataChanged -= DataChanged;
             Context.HeadingChanged -= HeadingChanged;
+            Context.GpsFixAcquired -= GpsFixAcquired;
+            Context.GpsFixLost -= GpsFixLost;
             ElevationProfileProvider.Instance().ElevationProfileChanged -= OnElevationProfileChanged;
         }
 
@@ -153,6 +155,8 @@ namespace Peaks360App.Activities
             
             Context.DataChanged += DataChanged;
             Context.HeadingChanged += HeadingChanged;
+            Context.GpsFixAcquired += GpsFixAcquired;
+            Context.GpsFixLost += GpsFixLost;
             ElevationProfileProvider.Instance().ElevationProfileChanged += OnElevationProfileChanged;
         }
 
@@ -188,6 +192,15 @@ namespace Peaks360App.Activities
             OnHeadingChanged(sender, e);
         }
 
+        public void GpsFixAcquired(object sender, EventArgs e)
+        {
+            OnGpsFixAcquired(sender);
+        }
+
+        public void GpsFixLost(object sender, EventArgs e)
+        {
+            OnGpsFixLost(sender);
+        }
         public virtual void OnDataChanged(object sender, DataChangedEventArgs e)
         {
             _textViewNotification.Visibility = ViewStates.Invisible;
@@ -195,6 +208,14 @@ namespace Peaks360App.Activities
         }
 
         public virtual void OnHeadingChanged(object sender, HeadingChangedEventArgs e)
+        {
+        }
+
+        public virtual void OnGpsFixAcquired(object sender)
+        {
+        }
+
+        public virtual void OnGpsFixLost(object sender)
         {
         }
 
