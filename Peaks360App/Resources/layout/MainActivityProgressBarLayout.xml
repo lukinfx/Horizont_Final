@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/MainActivityProgressBarLayout"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:padding="0dp"
-    android:layout_height="1dp">
+    android:paddingTop="3dp"
+    android:layout_height="1dp"
+    android:background="@color/BackgroundTransparentLight">
 
     <ProgressBar
         android:id="@+id/MainActivityProgressBar"

@@ -41,6 +41,7 @@ namespace Peaks360App.Activities
         private DistanceSeekBar _distanceSeekBar;
         protected LinearLayout _activityControlArea;
         protected ProgressBar _progressBar;
+        protected LinearLayout _progressBarLayout;
 
         //for gesture detection
         private int m_PreviousMoveX;
@@ -127,7 +128,8 @@ namespace Peaks360App.Activities
             _compassView.LayoutChange += OnLayoutChanged;
 
             _progressBar = FindViewById<ProgressBar>(Resource.Id.MainActivityProgressBar);
-            _progressBar.Visibility = ViewStates.Invisible;
+            _progressBarLayout = FindViewById<LinearLayout>(Resource.Id.MainActivityProgressBarLayout);
+            _progressBarLayout.Visibility = ViewStates.Invisible;
         }
 
         private string _maxDistanceMinAltitudeTemplate;
@@ -594,13 +596,13 @@ namespace Peaks360App.Activities
 
         public void OnProgressStart()
         {
-            _progressBar.Visibility = ViewStates.Visible;
+            _progressBarLayout.Visibility = ViewStates.Visible;
             _progressBar.Progress = 0;
         }
 
         public void OnProgressFinish()
         {
-            _progressBar.Visibility = ViewStates.Invisible;
+            _progressBarLayout.Visibility = ViewStates.Invisible;
         }
 
         public void OnProgressChange(int percent)

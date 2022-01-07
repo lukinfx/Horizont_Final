@@ -114,8 +114,7 @@
               android:id="@+id/mainActivityControlArea"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:background="@color/BackgroundTransparentLight">
+              android:orientation="vertical">
                 <include
                     layout="@layout/MainActivityProgressBarLayout"
                     android:layout_width="match_parent"
@@ -123,7 +122,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingVertical="5dp"
+                    android:background="@color/BackgroundTransparentLight">
                     <include
                         layout="@layout/MainActivitySeekBars" 
                         android:layout_width="match_parent"
