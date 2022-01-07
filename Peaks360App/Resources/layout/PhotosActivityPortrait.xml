@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,19 +10,19 @@
     android:id="@+id/toolbar"
     layout="@layout/TitleToolbar" />
 
-    <LinearLayout
-        android:orientation="vertical"
-
+    <androidx.cardview.widget.CardView 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        card_view:cardElevation="6dp"
+        card_view:cardCornerRadius="10dp"
+        android:id="@+id/cardSearching">
 
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/bg_activity_lightgray"
-        android:id="@+id/searchViewLayout">
+        android:background="@drawable/bg_activity_lightgray">
         <SearchView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -29,12 +31,12 @@
           android:layout_width="match_parent"
           android:layout_height="10dp"/>
       </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    
+    <ListView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:divider="@android:color/transparent"
+      android:id="@+id/listViewPhotos" />
 
-      <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@android:color/transparent"
-        android:id="@+id/listViewPhotos" />
-
-    </LinearLayout>>
 </LinearLayout>

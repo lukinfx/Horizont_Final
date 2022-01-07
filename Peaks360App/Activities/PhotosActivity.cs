@@ -15,6 +15,7 @@ using Peaks360App.Utilities;
 using Peaks360App.Models;
 using Peaks360Lib.Utilities;
 using GpsUtils = Peaks360Lib.Utilities.GpsUtils;
+using AndroidX.CardView.Widget;
 
 namespace Peaks360App.Activities
 {
@@ -25,7 +26,7 @@ namespace Peaks360App.Activities
         
         private ListView _photosListView;
         private SearchView _searchViewText;
-        private LinearLayout _searchViewLayout;
+        private CardView _searchCard;
         private PhotosItemAdapter _adapter;
         private IAppContext Context { get { return AppContextLiveData.Instance; } }
 
@@ -56,8 +57,8 @@ namespace Peaks360App.Activities
             _photosListView.Adapter = _adapter;
             Context.PhotosItemAdapter = _adapter;
 
-            _searchViewLayout = FindViewById<LinearLayout>(Resource.Id.searchViewLayout);
-            _searchViewLayout.Visibility = ViewStates.Gone;
+            _searchCard = FindViewById<CardView>(Resource.Id.cardSearching);
+            _searchCard.Visibility = ViewStates.Gone;
 
             _searchViewText = FindViewById<SearchView>(Resource.Id.searchViewPhotoName);
             _searchViewText.Iconified = false;
@@ -143,7 +144,7 @@ namespace Peaks360App.Activities
 
         private void ToogleSearch()
         {
-            _searchViewLayout.Visibility = _searchViewLayout.Visibility == ViewStates.Visible ? ViewStates.Gone : ViewStates.Visible;
+            _searchCard.Visibility = _searchCard.Visibility == ViewStates.Visible ? ViewStates.Gone : ViewStates.Visible;
             ShowPhotos(Context.ShowFavoritePicturesOnly, GetSearchText());
         }
 
@@ -298,7 +299,7 @@ namespace Peaks360App.Activities
 
         private string GetSearchText()
         {
-            return _searchViewLayout.Visibility == ViewStates.Visible ? _searchViewText.Query : null;
+            return _searchCard.Visibility == ViewStates.Visible ? _searchViewText.Query : null;
         }
 
     }

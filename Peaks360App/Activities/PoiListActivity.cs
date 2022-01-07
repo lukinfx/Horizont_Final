@@ -13,15 +13,15 @@ using Xamarin.Essentials;
 using Peaks360Lib.Domain.ViewModel;
 using Peaks360Lib.Domain.Models;
 using Peaks360Lib.Utilities;
-using Peaks360App.Activities;
 using Peaks360App.AppContext;
 using Peaks360App.Utilities;
 using Peaks360Lib.Domain.Enums;
+using AndroidX.CardView.Widget;
 
 namespace Peaks360App.Activities
 {
     [Activity(Label = "PoiListActivity")]
-    public class PoiListActivity : Activity, IPoiActionListener, View.IOnClickListener, SearchView.IOnQueryTextListener
+    public class PoiListActivity : CardBaseActivity, IPoiActionListener, View.IOnClickListener, SearchView.IOnQueryTextListener
     {
         public static int REQUEST_SHOW_POI_LIST = Definitions.BaseResultCode.POILIST_ACTIVITY;
         public enum ContextType { None = 0, Live = 1, Static = 2}
@@ -36,7 +36,6 @@ namespace Peaks360App.Activities
         private Spinner _spinnerCountry;
         private Spinner _spinnerCategory;
         private SearchView _editTextSearch;
-        private LinearLayout _expandableLayout;
 
         private PoiListItemAdapter _adapter;
         private GpsLocation _location = new GpsLocation();
@@ -110,6 +109,10 @@ namespace Peaks360App.Activities
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetDisplayShowTitleEnabled(false);
 
+            if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
+            {
+                AddCard(Resource.Id.cardSearching, Resource.Id.cardSearchingButton, Resource.Id.cardSearchingLayout, Resource.Id.cardSearchingContent);
+            }
 
             _editTextSearch = FindViewById<SearchView>(Resource.Id.editTextSearch);
             _editTextSearch.Iconified = false;
@@ -136,13 +139,6 @@ namespace Peaks360App.Activities
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
             _spinnerCategory.Adapter = new CategoryAdapter(this, true);
             _spinnerCategory.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterCategoryChanged);
-
-            var expandButton = FindViewById<ImageButton>(Resource.Id.expandButton);
-            if (expandButton != null)
-            {
-                expandButton.SetOnClickListener(this);
-                _expandableLayout = FindViewById<LinearLayout>(Resource.Id.expandableLayout);
-            }
         }
 
         private List<PoiFilterItem> GetFilterOptions()
@@ -244,7 +240,7 @@ namespace Peaks360App.Activities
             }
 
             var advancedSearchVisibility = (selection == PoiFilter.ByName ? ViewStates.Visible : ViewStates.Gone);
-            FindViewById<LinearLayout>(Resource.Id.linearLayoutSearching).Visibility = advancedSearchVisibility;
+            FindViewById<CardView>(Resource.Id.cardSearching).Visibility = advancedSearchVisibility;
 
             ShowData();
         }
@@ -412,20 +408,7 @@ namespace Peaks360App.Activities
 
         public void OnClick(View v)
         {
-            if (v.Id == Resource.Id.expandButton)
-            {
-                if (_expandableLayout != null)
-                {
-                    if (_expandableLayout.Visibility == ViewStates.Visible)
-                    {
-                        _expandableLayout.Visibility = ViewStates.Gone;
-                    }
-                    else
-                    {
-                        _expandableLayout.Visibility = ViewStates.Visible;
-                    }
-                }
-            }
+            base.OnClick(v);
         }
 
         public bool OnQueryTextChange(string newText)

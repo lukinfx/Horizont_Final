@@ -1,5 +1,6 @@
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,68 +9,80 @@
       android:id="@+id/toolbar"
       layout="@layout/PoiListActivityToolbar" />
 
-      <LinearLayout
-        android:orientation="vertical"
+    <androidx.cardview.widget.CardView 
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_activity_lightgray"
-        android:id="@+id/linearLayoutSearching">
+        android:layout_margin="10dp"
+        card_view:cardElevation="6dp"
+        card_view:cardCornerRadius="10dp"
+        android:id="@+id/cardSearching">
 
         <LinearLayout
-            android:paddingLeft="15dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <SearchView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:hint="@string/Common_Search"
-              android:layout_weight="1"
-              android:singleLine="true"
-              android:id="@+id/editTextSearch" />
-
-            <ImageButton
-              android:src="@android:drawable/arrow_down_float"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:layout_weight="10"
-              android:background="#00000000"
-              android:id="@+id/expandButton" />
-          </LinearLayout>
-          <LinearLayout
             android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+            android:minWidth="25px"
+            android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:id="@+id/expandableLayout">
-              <!--<TextView
-                android:paddingTop="5dp"
-                android:text="@string/Common_Category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>-->
-              <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@id/spinnerCategory" />
-              <!--<TextView
-                android:paddingTop="5dp"
-                android:text="@string/Common_Country"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>-->
-              <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@id/spinnerCountry" />
+            android:background="@drawable/bg_activity_lightgray"
+            android:id="@+id/linearLayoutSearching">
 
+            <LinearLayout
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardSearchingLayout">
+
+                <SearchView
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="@string/Common_Search"
+                  android:layout_weight="1"
+                  android:singleLine="true"
+                  android:id="@+id/editTextSearch" />
+
+                <ImageView android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:src="@drawable/baseline_expand_more_black_24dp"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/cardSearchingButton"/>
+
+              </LinearLayout>
+              <LinearLayout
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/cardSearchingContent">
+                  <!--<TextView
+                    android:paddingTop="5dp"
+                    android:text="@string/Common_Category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>-->
+                  <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@id/spinnerCategory" />
+                  <!--<TextView
+                    android:paddingTop="5dp"
+                    android:text="@string/Common_Country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>-->
+                  <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@id/spinnerCountry" />
+
+              </LinearLayout>
           </LinearLayout>
-      </LinearLayout>
+     </androidx.cardview.widget.CardView>
 
       <ListView
           android:layout_width="match_parent"
