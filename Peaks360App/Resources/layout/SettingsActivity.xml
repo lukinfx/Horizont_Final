@@ -1,5 +1,6 @@
 <ScrollView
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:card_view="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="wrap_content">
     <LinearLayout
@@ -12,15 +13,14 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        card_view:cardElevation="6dp"
+        card_view:cardCornerRadius="10dp"
         android:id="@+id/cardLanguage">
             <LinearLayout 
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-                <View 
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#606060"/>
                 <LinearLayout
                 android:id="@+id/cardLanguageLayout"
                 android:layout_width="match_parent"
@@ -65,15 +65,14 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        card_view:cardElevation="6dp"
+        card_view:cardCornerRadius="10dp"
         android:id="@+id/cardViewAngle">
             <LinearLayout 
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-                <View 
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#606060"/>
                 <LinearLayout
                     android:id="@+id/cardViewAngleLayout"
                     android:layout_width="match_parent"
@@ -157,15 +156,14 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        card_view:cardElevation="6dp"
+        card_view:cardCornerRadius="10dp"
         android:id="@+id/cardElevationProfile">
             <LinearLayout 
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-                <View 
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#606060"/>
                 <LinearLayout
                 android:id="@+id/cardElevationProfileLayout"
                 android:layout_width="match_parent"
@@ -217,15 +215,14 @@
                 android:minHeight="25px"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                card_view:cardElevation="6dp"
+                card_view:cardCornerRadius="10dp"
                 android:id="@+id/cardAltitude">
                     <LinearLayout 
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                        <View 
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#606060"/>
                         <LinearLayout
                         android:id="@+id/cardAltitudeLayout"
                         android:orientation="horizontal"
@@ -278,15 +275,14 @@
                 android:minHeight="25px"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                card_view:cardElevation="6dp"
+                card_view:cardCornerRadius="10dp"
                 android:id="@+id/cardPhotoResolution">
                     <LinearLayout 
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                        <View 
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#606060"/>
                         <LinearLayout
                         android:id="@+id/cardPhotoResolutionLayout"
                         android:orientation="horizontal"
@@ -331,15 +327,14 @@
                 android:minHeight="25px"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                card_view:cardElevation="6dp"
+                card_view:cardCornerRadius="10dp"
                 android:id="@+id/cardElevationData">
                     <LinearLayout 
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                        <View 
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#606060"/>
                         <LinearLayout
                         android:id="@+id/cardElevationDataLayout"
                         android:orientation="horizontal"
