@@ -176,7 +176,7 @@ namespace Peaks360App.AppContext
                 if (!_hasGpsFix)
                 {
                     _hasGpsFix = true;
-                    GpsFixAcquired.Invoke(this, new EventArgs());
+                    GpsFixAcquired?.Invoke(this, new EventArgs());
                 }
 
                 if (poiData is null)
@@ -212,7 +212,7 @@ namespace Peaks360App.AppContext
                 if (_hasGpsFix)
                 {
                     _hasGpsFix = false;
-                    GpsFixLost.Invoke(this, new EventArgs());
+                    GpsFixLost?.Invoke(this, new EventArgs());
                 }
 
                 var args = new DataChangedEventArgs() { PoiData = null };
