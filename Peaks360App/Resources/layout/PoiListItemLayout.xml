@@ -1,16 +1,25 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="3dp"
     android:id="@+id/linearLayoutItem">
-  <LinearLayout 
-      android:orientation="horizontal"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+  
+  <androidx.cardview.widget.CardView 
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="5dp"
+    card_view:cardElevation="6dp"
+    card_view:cardCornerRadius="10dp">
+
     <LinearLayout 
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:layout_weight="1"
       android:orientation="vertical">
 
@@ -23,37 +32,57 @@
         android:orientation="horizontal">
         <ImageView
           android:id="@+id/Thumbnail"
-          android:layout_width="30dp"
-          android:layout_height="30dp"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
           android:layout_weight="0"
           android:layout_alignParentLeft="true"
           android:layout_centerVertical="true"
           android:src="@drawable/c_castle" />
-        <TextView
-          android:id="@+id/Title"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:paddingLeft="5dp"
-          android:paddingTop="5dp"
-          android:textColor="#000000"
-          android:textStyle="bold"
-          android:typeface="sans"
-          android:singleLine="true"
-          android:ellipsize="end"
-          android:text="gukjgsdfsdfdfsdffd"/>
-        <ImageView
-          android:id="@+id/InfoAvailable"
-          android:layout_width="20dp"
-          android:layout_height="20dp"
-          android:paddingTop="5dp"
-          android:paddingLeft="5dp"
-          android:baselineAlignBottom="true"
-          android:scaleType="fitStart"
-          android:src="@drawable/i_info_black"/>
-        <Space
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="10"/>
+            <LinearLayout
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="10">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                      android:id="@+id/Title"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:paddingLeft="5dp"
+                      android:paddingTop="3dp"
+                      android:textColor="@android:color/black"
+                      android:textStyle="bold"
+                      android:typeface="sans"
+                      android:singleLine="true"
+                      android:ellipsize="end"
+                      android:text="gukjgsdfsdfdfsdffd"/>
+                    <ImageView 
+                      android:id="@+id/InfoAvailable"
+                      android:layout_width="15dp"
+                      android:layout_height="15dp"
+                      android:layout_gravity="top"
+                      android:paddingTop="5dp"
+                      android:paddingLeft="5dp"
+                      android:scaleType="fitStart"
+                      android:src="@drawable/i_info_black"/>
+                </LinearLayout>
+
+                <TextView
+                  android:id="@+id/Country"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/Title"
+                  android:paddingLeft="5dp"
+                  android:paddingTop="1dp"
+                  android:paddingBottom="2dp"
+                  android:singleLine="true"
+                  android:ellipsize="end"
+                  android:textSize="11sp" 
+                  android:text="item country"/>
+              </LinearLayout>
         <ImageButton
           android:src="@android:drawable/btn_star_big_off"
           android:layout_width="30dp"
@@ -65,42 +94,45 @@
           android:background="#00000000"/>
       </LinearLayout>
 
-     <View
+      <View
        android:layout_width="match_parent"
        android:layout_height="1dp"
        android:background="#e0e0e0" />
 
       <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingHorizontal="10dp"
         android:orientation="horizontal">
 
         <LinearLayout 
-          android:layout_width="wrap_content"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:paddingTop="5dp"
-          android:paddingRight="10dp"
           android:orientation="vertical">
-        
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingRight="50dp">
+                android:layout_height="wrap_content">
+
                 <LinearLayout 
-                  android:layout_width="wrap_content"
+                  android:layout_width="80dp"
                   android:layout_height="wrap_content"
-                  android:orientation="horizontal"
-                  android:gravity="left"
-                  android:paddingTop="5dp"
-                  android:paddingRight="10dp">
-                  <ImageView
-                    android:src="@drawable/i_elevation"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"/>
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:gravity="center">
+                  <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:background="#f0f0f0">
+                      <ImageView
+                        android:src="@drawable/i_elevation"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center"/>
+                  </FrameLayout>
                   <TextView
                     android:id="@+id/textViewAltitude"
                     android:layout_width="wrap_content"
@@ -108,45 +140,70 @@
                     android:textColor="#000000"
                     android:singleLine="true"
                     android:textSize="11sp" 
+                    android:paddingVertical="5dp"
                     android:paddingLeft="3dp"
-                    android:paddingTop="1dp"
                     android:paddingRight="5dp"
                     android:text="123 m"/>
                 </LinearLayout>
 
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#d0d0d0"/>
+
                 <LinearLayout 
-                  android:layout_width="wrap_content"
+                  android:layout_width="80dp"
                   android:layout_height="wrap_content"
-                  android:orientation="horizontal"
-                  android:gravity="left"
-                  android:paddingTop="5dp"
-                  android:paddingRight="10dp">
-                  <ImageView
-                    android:src="@drawable/i_compass"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"/>
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:gravity="center">
+                  <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:background="#f0f0f0">
+                      <ImageView
+                        android:src="@drawable/i_compass"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center"/>
+                    </FrameLayout>
                   <TextView
+
                     android:id="@+id/textViewDirection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:singleLine="true"
                     android:textSize="11sp" 
+                    android:paddingVertical="5dp"
                     android:paddingLeft="3dp"
-                    android:paddingTop="1dp"
+                    android:paddingRight="5dp"
                     android:text="123"/>
                 </LinearLayout>
 
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#d0d0d0"/>
+
                 <LinearLayout 
-                  android:layout_width="wrap_content"
+                  android:layout_width="80dp"
                   android:layout_height="wrap_content"
-                  android:orientation="horizontal"
-                  android:gravity="left"
-                  android:paddingTop="5dp">
-                  <ImageView
-                    android:src="@drawable/i_location"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"/>
+                  android:layout_weight="1"
+                  android:orientation="vertical"
+                  android:gravity="center">
+                  <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:background="#f0f0f0">
+                      <ImageView
+                        android:src="@drawable/i_location"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center"/>
+                    </FrameLayout>
                   <TextView
                     android:id="@+id/textViewDistance"
                     android:layout_width="wrap_content"
@@ -154,34 +211,46 @@
                     android:textColor="#000000"
                     android:singleLine="true"
                     android:textSize="11sp" 
+                    android:paddingVertical="5dp"
                     android:paddingLeft="3dp"
-                    android:paddingTop="1dp"
+                    android:paddingRight="5dp"
                     android:text="123.4 km"/>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#d0d0d0"/>
+
+                <LinearLayout 
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_weight="100"
+                  android:orientation="horizontal"
+                  android:gravity="right">
+                  
+                  <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="5dp"
+                    android:baselineAlignBottom="true"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/ic_edit_outline"/>
+                  <ImageButton
+                    android:src="@drawable/ic_delete_outline"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom"
+                    android:scaleType="fitCenter"
+                    android:id="@+id/PoiDeleteButton" 
+                    android:layout_weight="0"
+                    android:background="#00000000"/>
+                </LinearLayout>
             </LinearLayout>
-
-            <TextView
-            android:id="@+id/Country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Title"
-            android:paddingVertical="8dp"
-            android:textColor="#000000"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textSize="11sp" 
-            android:text="item country"/>
         </LinearLayout>
-
-        <ImageButton
-            android:src="@drawable/ic_delete"
-            android:layout_width="40dp"
-            android:scaleType="fitCenter"
-            android:layout_height="match_parent"
-            android:id="@+id/PoiDeleteButton" 
-            android:layout_weight="0"
-            android:background="#00000000"/>
       </LinearLayout>
     </LinearLayout>
-  </LinearLayout>
+  </androidx.cardview.widget.CardView>
 </LinearLayout>

@@ -121,7 +121,24 @@ namespace Peaks360App.Utilities
             PhotoData item = this[position];
             var gpsLocation = item.GetPhotoGpsLocation();
 
-            view.FindViewById<TextView>(Resource.Id.textViewTag).Text = item.Tag;
+            {
+                var idx = item.Tag.IndexOf("->");
+                string from;
+                string towards;
+                if (idx >= 0)
+                {
+                    from = item.Tag.Substring(0, idx);
+                    towards = item.Tag.Substring(idx);
+                }
+                else
+                {
+                    from = item.Tag;
+                    towards = "";
+                }
+
+                view.FindViewById<TextView>(Resource.Id.textViewTag1).Text = from;
+                view.FindViewById<TextView>(Resource.Id.textViewTag2).Text = towards;
+            }
             view.FindViewById<TextView>(Resource.Id.textViewDate).Text = item.GetPhotoTakenDateTime().ToShortDateString();
             view.FindViewById<TextView>(Resource.Id.textViewTime).Text = item.GetPhotoTakenDateTime().ToLongTimeString();
             view.FindViewById<TextView>(Resource.Id.textViewAltitude).Text = $"{Math.Round(item.Altitude)}m ";

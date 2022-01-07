@@ -33,8 +33,7 @@
       <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="#ff606060"
-        android:dividerHeight="3px"
+        android:divider="@android:color/transparent"
         android:id="@+id/listViewPhotos" />
 
     </LinearLayout>>
