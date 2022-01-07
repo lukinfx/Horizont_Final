@@ -2,34 +2,160 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="100"
-        android:orientation="vertical"
-        android:background="#ffffff">
-        
+        android:layout_height="match_parent">
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_weight="0"
-            android:background="@drawable/bg_gradient_gray">
-            <ImageView
-                android:src="@drawable/logo_horizon5"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:orientation="vertical">
+        
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:id="@+id/imageView1" />
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#808080"/>
+                android:layout_height="100dp"
+                android:layout_weight="0"
+                android:background="@drawable/bg_gradient_gray">
+                <ImageView
+                    android:src="@drawable/logo_horizon5"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:id="@+id/imageView1" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#808080"/>
   
-        <include
-            layout="@layout/MenuButtons"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"/>
-    </LinearLayout>
+            <LinearLayout
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:paddingVertical="10dp"
+              android:paddingLeft="10dp">
+
+                <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:paddingVertical="5dp"
+                  android:gravity="center_vertical"
+                  android:id="@+id/listOfPoisLinearLayout">
+                    <ImageButton
+                      android:src="@drawable/ic_poi_list"
+                      android:layout_columnWeight="1"
+                      android:layout_width="35dp"
+                      android:layout_height="35dp"
+                      android:scaleType="fitCenter"
+                      android:background="@android:color/transparent"
+                      android:id="@+id/buttonList" />
+                    <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/PoiListActivity"
+                      android:textAppearance="?android:attr/textAppearanceLargePopupMenu"
+                      android:paddingLeft="10dp"/>
+                </LinearLayout>
+    
+                <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:paddingVertical="5dp"
+                  android:gravity="center_vertical"
+                  android:id="@+id/photoGalleryLinearLayout">
+                    <ImageButton
+                      android:src="@drawable/ic_gallery"
+                      android:layout_width="35dp"
+                      android:layout_height="35dp"
+                      android:scaleType="fitCenter"
+                      android:background="@android:color/transparent"
+                      android:id="@+id/buttonPhotos" />
+                    <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/PhotosActivity"
+                      android:textAppearance="?android:attr/textAppearanceLargePopupMenu"
+                      android:paddingLeft="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:paddingVertical="5dp"
+                  android:gravity="center_vertical"
+                  android:id="@+id/downloadDataLinearLayout">
+                    <ImageButton
+                      android:src="@drawable/ic_download"
+                      android:layout_width="35dp"
+                      android:layout_height="35dp"
+                      android:scaleType="fitCenter"
+                      android:background="@android:color/transparent"
+                      android:id="@+id/buttonDownload" />
+                    <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/DownloadActivity"
+                      android:textAppearance="?android:attr/textAppearanceLargePopupMenu"
+                      android:paddingLeft="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:paddingVertical="5dp"
+                  android:gravity="center_vertical"
+                  android:id="@+id/settingsLinearLayout">
+                    <ImageButton
+                      android:src="@drawable/ic_settingsalt2"
+                      android:layout_width="35dp"
+                      android:layout_height="35dp"
+                      android:scaleType="fitCenter"
+                      android:background="@android:color/transparent"
+                      android:id="@+id/buttonSettings" />
+                    <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/SettingsActivity"
+                      android:textAppearance="?android:attr/textAppearanceLargePopupMenu"
+                      android:paddingLeft="10dp"/>
+                </LinearLayout>
+    
+                <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:paddingVertical="5dp"
+                  android:gravity="center_vertical"
+                  android:id="@+id/aboutLinearLayout">
+                    <ImageButton
+                      android:src="@drawable/ic_systeminfo"
+                      android:layout_columnWeight="1"
+                      android:layout_width="35dp"
+                      android:layout_height="35dp"
+                      android:scaleType="fitCenter"
+                      android:background="@android:color/transparent"
+                      android:id="@+id/buttonAbout" />
+                    <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/AboutActivity"
+                      android:textAppearance="?android:attr/textAppearanceLargePopupMenu"
+                      android:paddingLeft="10dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
