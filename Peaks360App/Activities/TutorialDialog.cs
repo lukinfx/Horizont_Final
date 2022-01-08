@@ -62,7 +62,6 @@ namespace Peaks360App.Activities
             _imageAnimation.Duration = 1000;
 
             _imageSwitcher = (ImageSwitcher)FindViewById(Resource.Id.tutorialImageSwitcher);
-            _imageSwitcher.SetOnClickListener(this);
             _imageSwitcher.SetFactory(this);
 
             _checkBoxDontShowAgain = (CheckBox)FindViewById(Resource.Id.checkBoxDontShowAgain);
@@ -70,6 +69,7 @@ namespace Peaks360App.Activities
 
             _hintTextView = (TextView)FindViewById(Resource.Id.tutorialHintText);
 
+            FindViewById<Button>(Resource.Id.nextButton).SetOnClickListener(this);
             DisplayPage(_index);
         }
 
@@ -89,7 +89,7 @@ namespace Peaks360App.Activities
         {
             switch (v.Id)
             {
-                case Resource.Id.tutorialImageSwitcher:
+                case Resource.Id.nextButton:
                     ShowNext();
                     break;
                 case Resource.Id.checkBoxDontShowAgain:
