@@ -12,6 +12,8 @@ using Peaks360App.AppContext;
 using Android.Content;
 using Peaks360App.Providers;
 using Peaks360Lib.Utilities;
+using System.Linq;
+using Peaks360Lib.Domain.ViewModel;
 
 namespace Peaks360App.Utilities
 {
@@ -101,8 +103,23 @@ namespace Peaks360App.Utilities
                     }
                     else
                     {
-                        tag += Android.App.Application.Context.Resources.GetText(Resource.String.Common_Heading);
-                        tag += _context.HeadingX.HasValue ? $" {GpsUtils.Normalize360((_context.HeadingX.Value)):F0}°" : "?°";
+                        PoiViewItem highestPointIn15DgFromHeading = null;
+                        if (_context.HeadingX.HasValue)
+                        {
+                            highestPointIn15DgFromHeading = _context.PoiData
+                                .Where(x => x.IsFullyVisible() && GpsUtils.AngleDifference(x.GpsLocation.Bearing.Value, _context.HeadingX.Value) < 15)
+                                .OrderByDescending(x => x.VerticalViewAngle)
+                                .FirstOrDefault();
+                        }
+                        if (highestPointIn15DgFromHeading != null)
+                        {
+                            tag += highestPointIn15DgFromHeading.Poi.Name;
+                        }
+                        else
+                        {
+                            tag += Android.App.Application.Context.Resources.GetText(Resource.String.Common_Heading);
+                            tag += _context.HeadingX.HasValue ? $" {GpsUtils.Normalize360((_context.HeadingX.Value)):F0}°" : "?°";
+                        }
                     }
 
                     PhotoData photodata = new PhotoData

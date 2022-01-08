@@ -248,5 +248,12 @@ namespace Peaks360Lib.Utilities
         {
             return $"{latitude:F3}{(latitude >= 0 ? 'N' : 'S')}, {longitude:F3}{(longitude >= 0 ? 'E' : 'W')}";
         }
+
+        public static double AngleDifference(double a1, double a2)
+        {
+            var dif = Math.Acos(Math.Cos(Dg2Rad(a1) - Dg2Rad(a2)));
+            return Rad2Dg(dif);
+        }
+
     }
 }
