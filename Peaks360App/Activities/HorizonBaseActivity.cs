@@ -545,6 +545,7 @@ namespace Peaks360App.Activities
         {
             //_seekBars.Visibility = ViewStates.Gone;
             _activityControlArea.Visibility = ViewStates.Gone;
+            _progressBarLayout.Visibility = ViewStates.Gone;
             ActivityHelper.ChangeSystemUiVisibility(this);
         }
 
@@ -552,6 +553,10 @@ namespace Peaks360App.Activities
         {
             //_seekBars.Visibility = ViewStates.Visible;
             _activityControlArea.Visibility = ViewStates.Visible;
+            if ((string)_progressBarLayout.Tag == "Active")
+            {
+                _progressBarLayout.Visibility = ViewStates.Visible;
+            }
             ActivityHelper.ChangeSystemUiVisibility(this);
         }
 
@@ -596,13 +601,19 @@ namespace Peaks360App.Activities
 
         public void OnProgressStart()
         {
-            _progressBarLayout.Visibility = ViewStates.Visible;
             _progressBar.Progress = 0;
+            if (IsControlsVisible())
+            {
+                _progressBarLayout.Visibility = ViewStates.Visible;
+                _progressBarLayout.Tag = "Active";
+            }
         }
 
         public void OnProgressFinish()
         {
+            _progressBar.Progress = 0;
             _progressBarLayout.Visibility = ViewStates.Invisible;
+            _progressBarLayout.Tag = null;
         }
 
         public void OnProgressChange(int percent)
