@@ -119,6 +119,7 @@ namespace Peaks360App.Activities
             _editTextSearch.SetQueryHint(Resources.GetText(Resource.String.Common_Search));
             _editTextSearch.SetOnQueryTextListener(this);
             _editTextSearch.FocusableViewAvailable(_listViewPoi);
+            _editTextSearch.ClearFocus();
 
             _spinnerSelection = FindViewById<Spinner>(Resource.Id.spinnerSelection);
 
