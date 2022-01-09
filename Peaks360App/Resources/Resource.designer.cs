@@ -20409,7 +20409,10 @@ namespace Peaks360App
 			public const int Toolbar = 2131493061;
 			
 			// aapt resource value: 0x7F0C00C6
-			public const int Tutorial = 2131493062;
+			public const int TutorialLandscape = 2131493062;
+			
+			// aapt resource value: 0x7F0C00C7
+			public const int TutorialPortrait = 2131493063;
 			
 			static Layout()
 			{

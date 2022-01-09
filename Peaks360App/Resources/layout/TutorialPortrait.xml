@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:card_view="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:padding="3dp">
+
+    <ImageSwitcher
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:minWidth="310dp"
+        android:minHeight="200dp"
+        android:id="@+id/tutorialImageSwitcher"/>
+
+    <TextView
+        android:paddingTop="5dp"
+        android:paddingLeft="3dp"
+        android:text="Move you finger on to of the screen to adjust compass heading. But the text can be possibly much much much much much much much much much much much much much much much much much much much much much much much much much much much longer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:id="@+id/tutorialHintText"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:text="@string/Tutorial_DontShowAgain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0"
+            android:id="@+id/checkBoxDontShowAgain" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="100"/>
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_weight="0"
+            android:layout_gravity="center_vertical"
+            android:paddingVertical="10dp"
+            android:drawableRight="@drawable/material_ic_keyboard_arrow_next_black_24dp"
+            android:background="@android:color/transparent"
+            android:text="Next" />
+
+    </LinearLayout>
+</LinearLayout>

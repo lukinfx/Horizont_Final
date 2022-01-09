@@ -56,7 +56,14 @@ namespace Peaks360App.Activities
             base.OnCreate(savedInstanceState);
             
             SetCancelable(false);
-            SetContentView(Resource.Layout.Tutorial);
+            if (AppContextLiveData.Instance.IsPortrait)
+            {
+                SetContentView(Resource.Layout.TutorialPortrait);
+            }
+            else
+            {
+                SetContentView(Resource.Layout.TutorialLandscape);
+            }
 
             _imageAnimation = AnimationUtils.LoadAnimation(Context, Android.Resource.Animation.FadeIn); // load an animation
             _imageAnimation.Duration = 1000;
