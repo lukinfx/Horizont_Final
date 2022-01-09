@@ -602,18 +602,18 @@ namespace Peaks360App.Activities
         public void OnProgressStart()
         {
             _progressBar.Progress = 0;
+            _progressBarLayout.Tag = "Active";
             if (IsControlsVisible())
             {
                 _progressBarLayout.Visibility = ViewStates.Visible;
-                _progressBarLayout.Tag = "Active";
             }
         }
 
         public void OnProgressFinish()
         {
             _progressBar.Progress = 0;
-            _progressBarLayout.Visibility = ViewStates.Invisible;
             _progressBarLayout.Tag = null;
+            _progressBarLayout.Visibility = ViewStates.Invisible;
         }
 
         public void OnProgressChange(int percent)
