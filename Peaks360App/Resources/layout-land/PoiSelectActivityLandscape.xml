@@ -1,7 +1,9 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
   <include
     android:id="@+id/toolbar"
@@ -12,60 +14,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_weight="15"
-      android:padding="10dp"
-      android:background="@drawable/bg_activity_lightgray"
-      android:id="@+id/linearLayoutSearching">
-
-      <!--<TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Common_Name" />-->
-      <SearchView
+    <androidx.cardview.widget.CardView 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/Common_Search"
-        android:singleLine="true"
-        android:id="@+id/editTextSearch" />
+        android:layout_height="match_parent"
+        android:layout_weight="15"
+        android:layout_margin="10dp"
+        card_view:cardElevation="6dp"
+        card_view:cardCornerRadius="10dp"
+        android:id="@+id/cardSearching">
 
-      <!--<TextView
-        android:paddingTop="5dp"
-        android:text="@string/Common_Category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>-->
-      <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@id/spinnerCategory" />
+        <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@drawable/bg_activity_lightgray"
+          android:id="@+id/linearLayoutSearching">
 
-      <!--<TextView
-        android:paddingTop="5dp"
-        android:text="@string/Common_Country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>-->
-      <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@id/spinnerCountry" />
+          <!--<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Common_Name" />-->
+          <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Common_Search"
+            android:singleLine="true"
+            android:id="@+id/editTextSearch" />
 
-      <Space
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+          <!--<TextView
+            android:paddingTop="5dp"
+            android:text="@string/Common_Category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>-->
+          <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@id/spinnerCategory" />
 
-    </LinearLayout>
+          <!--<TextView
+            android:paddingTop="5dp"
+            android:text="@string/Common_Country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>-->
+          <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@id/spinnerCountry" />
 
-    <Space
-      android:layout_width="5dp"
-      android:layout_height="match_parent"/>
+          <Space
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <ListView
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
+      android:layout_margin="3dp"
       android:layout_weight="10"
+      android:divider="@android:color/transparent"
       android:id="@+id/listViewPoi"/>
 
   </LinearLayout>

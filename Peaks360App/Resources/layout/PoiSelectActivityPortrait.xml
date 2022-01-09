@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,22 +10,39 @@
     android:id="@+id/toolbar"
     layout="@layout/TitleToolbar" />
 
+    <androidx.cardview.widget.CardView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        card_view:cardElevation="6dp"
+        card_view:cardCornerRadius="10dp"
+        android:id="@+id/cardSearching">
+
       <LinearLayout
         android:orientation="vertical"
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_activity_lightgray"
         android:id="@+id/linearLayoutSearching">
 
-          <SearchView
+        <LinearLayout
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/Common_Search"
-            android:layout_weight="1"
-            android:singleLine="true"
-            android:id="@+id/editTextSearch" />
+            android:id="@+id/cardSearchingLayout">
+
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Common_Search"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:id="@+id/editTextSearch" />
+
+          </LinearLayout>
 
           <LinearLayout
             android:orientation="vertical"
@@ -55,14 +74,7 @@
           </LinearLayout>
       </LinearLayout>
 
-      <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#606060" />
-
-      <Space
-          android:layout_width="match_parent"
-          android:layout_height="10dp"/>
+     </androidx.cardview.widget.CardView>
 
       <ListView
         android:layout_width="match_parent"
