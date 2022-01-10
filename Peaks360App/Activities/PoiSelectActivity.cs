@@ -99,16 +99,10 @@ namespace Peaks360App.Activities
 
             var poiViewItems = new PoiViewItemList(null, AppContext.MyLocation, _iGpsUtilities);
             
-            if (Intent.Action == REQUEST_SELECT_DOWNLOADELEVATIONDATAAREA.ToString())
-            {
-                if (Peaks360Lib.Utilities.GpsUtils.HasLocation(AppContext.MyLocation))
-                {
-                    AddMyLocation(poiViewItems);
-                }
-            }
-
             _adapter = new PoiListItemAdapter(this, poiViewItems, this, false);
             _listViewPoi.Adapter = _adapter;
+
+            FilterPlaces();
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -137,7 +131,7 @@ namespace Peaks360App.Activities
             Finish();
         }
 
-        public void FilterPlaces(string name, PoiCountry? country, PoiCategory? category)
+        public void FilterPlaces(string name = null, PoiCountry? country = null, PoiCategory? category = null)
         {
             Task.Run(() =>
             {
@@ -148,23 +142,21 @@ namespace Peaks360App.Activities
                 }
                 else
                 {
-                    poiList = new List<Poi>();
+                    var poiListTmp = new List<Poi>();
+                    if (Intent.Action == REQUEST_SELECT_DOWNLOADELEVATIONDATAAREA.ToString())
+                    {
+                        if (Peaks360Lib.Utilities.GpsUtils.HasLocation(AppContext.MyLocation))
+                        {
+                            poiListTmp.Add(GetMyLocationPoi(AppContext));
+                        }
+                    }
+                    poiList = poiListTmp;
                 }
                 
                 IEnumerable<PoiViewItem> items = new PoiViewItemList(poiList, _centerGpsLocation ?? AppContext.MyLocation, _iGpsUtilities);
                 items = (_sortBy == SortBy.Name) ? items.OrderBy(x => x.Poi.Name) : items.OrderBy(x => x.GpsLocation.Distance);
                 MainThread.BeginInvokeOnMainThread(() => _adapter.SetItems(items));
             });
-        }
-
-        private void AddMyLocation(PoiViewItemList poiViewItems)
-        {
-            var myLocation = new PoiViewItem(GetMyLocationPoi(AppContext));
-            myLocation.GpsLocation.Distance = 0;
-            myLocation.GpsLocation.Bearing = 0;
-            myLocation.GpsLocation.VerticalViewAngle = 0;
-
-            poiViewItems.Insert(0, myLocation);
         }
 
         public static Poi GetMyLocationPoi(IAppContext context)

@@ -100,12 +100,16 @@ namespace Peaks360App.Utilities
             _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(item.Poi.Category));
 
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.PoiDeleteButton);
+            var editButton = view.FindViewById<ImageButton>(Resource.Id.PoiEditButton);
             var likeButton = view.FindViewById<ImageButton>(Resource.Id.PoiLikeButton);
 
             if (_showOptions)
             {
                 deleteButton.SetOnClickListener(this);
                 deleteButton.Tag = position;
+
+                editButton.SetOnClickListener(this);
+                editButton.Tag = position;
 
                 likeButton.SetOnClickListener(this);
                 likeButton.Tag = position;
@@ -116,6 +120,7 @@ namespace Peaks360App.Utilities
             {
                 deleteButton.Visibility = ViewStates.Gone;
                 likeButton.Visibility = ViewStates.Gone;
+                editButton.Visibility = ViewStates.Gone;
             }
 
             view.SetBackgroundResource(Resource.Drawable.bg_activity);
@@ -134,6 +139,9 @@ namespace Peaks360App.Utilities
             {
                 case Resource.Id.PoiDeleteButton:
                     _poiActionListener.OnPoiDelete(position);
+                    break;
+                case Resource.Id.PoiEditButton:
+                    _poiActionListener.OnPoiEdit(position);
                     break;
                 case Resource.Id.PoiLikeButton:
                     _poiActionListener.OnPoiLike(position);

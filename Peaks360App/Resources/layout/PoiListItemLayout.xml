@@ -229,22 +229,23 @@
                   android:orientation="horizontal"
                   android:gravity="right">
                   
-                  <ImageView
+                  <ImageButton
+                    android:id="@+id/PoiEditButton" 
+                    android:src="@drawable/ic_edit_outline"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="bottom"
-                    android:paddingTop="5dp"
                     android:paddingLeft="5dp"
-                    android:baselineAlignBottom="true"
-                    android:scaleType="fitStart"
-                    android:src="@drawable/ic_edit_outline"/>
+                    android:scaleType="fitCenter"
+                    android:layout_weight="0"
+                    android:background="#00000000"/>
                   <ImageButton
+                    android:id="@+id/PoiDeleteButton" 
                     android:src="@drawable/ic_delete_outline"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="bottom"
                     android:scaleType="fitCenter"
-                    android:id="@+id/PoiDeleteButton" 
                     android:layout_weight="0"
                     android:background="#00000000"/>
                 </LinearLayout>
