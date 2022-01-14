@@ -14,8 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        card_view:cardElevation="6dp"
-        card_view:cardCornerRadius="10dp"
+        style="@style/CardViewCustomStyle"
         android:id="@+id/cardLanguage">
             <LinearLayout 
             android:orientation="vertical"
@@ -66,8 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        card_view:cardElevation="6dp"
-        card_view:cardCornerRadius="10dp"
+        style="@style/CardViewCustomStyle"
         android:id="@+id/cardViewAngle">
             <LinearLayout 
             android:orientation="vertical"
@@ -157,8 +155,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        card_view:cardElevation="6dp"
-        card_view:cardCornerRadius="10dp"
+        style="@style/CardViewCustomStyle"
         android:id="@+id/cardElevationProfile">
             <LinearLayout 
             android:orientation="vertical"
@@ -216,8 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                card_view:cardElevation="6dp"
-                card_view:cardCornerRadius="10dp"
+                style="@style/CardViewCustomStyle"
                 android:id="@+id/cardAltitude">
                     <LinearLayout 
                     android:orientation="vertical"
@@ -276,8 +272,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                card_view:cardElevation="6dp"
-                card_view:cardCornerRadius="10dp"
+                style="@style/CardViewCustomStyle"
                 android:id="@+id/cardPhotoResolution">
                     <LinearLayout 
                     android:orientation="vertical"
@@ -328,8 +323,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                card_view:cardElevation="6dp"
-                card_view:cardCornerRadius="10dp"
+                style="@style/CardViewCustomStyle"
                 android:id="@+id/cardElevationData">
                     <LinearLayout 
                     android:orientation="vertical"

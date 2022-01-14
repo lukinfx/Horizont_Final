@@ -1,4 +1,6 @@
-<resources>
+<resources
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -16,4 +18,9 @@
       <item name="android:windowFullscreen">true</item>
     </style>
 
+  <style name="CardViewCustomStyle">
+    <item name="card_view:cardElevation">6dp</item>
+    <item name="card_view:cardCornerRadius">6dp</item>
+  </style>
+  
 </resources>

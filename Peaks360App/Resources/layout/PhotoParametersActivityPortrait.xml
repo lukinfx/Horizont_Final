@@ -46,8 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                card_view:cardElevation="6dp"
-                card_view:cardCornerRadius="10dp"
+                style="@style/CardViewCustomStyle"
                 android:id="@+id/cardDirection">
                 <LinearLayout
                     android:orientation="vertical"
@@ -155,8 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                card_view:cardElevation="6dp"
-                card_view:cardCornerRadius="10dp"
+                style="@style/CardViewCustomStyle"
                 android:id="@+id/cardLocation">
                 <LinearLayout
                     android:orientation="vertical"
@@ -316,7 +314,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                card_view:cardElevation="6dp"
+                style="@style/CardViewCustomStyle"
                 card_view:cardCornerRadius="10dp"
                 android:id="@+id/cardViewAngles">
                 <LinearLayout
