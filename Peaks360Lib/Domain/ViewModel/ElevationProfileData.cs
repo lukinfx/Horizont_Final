@@ -10,6 +10,14 @@ namespace Peaks360Lib.Domain.ViewModel
 {
     public class ElevationProfileData
     {
+        //distance/altitude limit where elevation profile is NOT recalculated (in meters)
+        public const int VALIDITY_DISTANCE_MAX1 = 100; 
+        public const int VALIDITY_ALTITUDE_MAX1 = 100;
+
+        //distance/altitude limit where elevation profile is NOT hidden (in meters)
+        public const int VALIDITY_DISTANCE_MAX2 = 200;
+        public const int VALIDITY_ALTITUDE_MAX2 = 200;
+
         public GpsLocation MyLocation { get; set; }
         public double MaxDistance { get; set; }
 
@@ -69,13 +77,24 @@ namespace Peaks360Lib.Domain.ViewModel
             return elevationData.SingleOrDefault(i => i.Angle == GpsUtils.Normalize360(angle));
         }
 
+        public bool IsLocationNearBy(GpsLocation newLocation)
+        {
+            if (GpsUtils.QuickDistance(newLocation, MyLocation) > VALIDITY_DISTANCE_MAX2)
+                return false;
+
+            if (Math.Abs(newLocation.Altitude - MyLocation.Altitude) > VALIDITY_ALTITUDE_MAX2)
+                return false; 
+            
+            return true;
+        }
+
         public bool IsValid(GpsLocation newLocation, double newMaxDistance)
         {
             //If me move more than 100m
-            if (GpsUtils.QuickDistance(newLocation, MyLocation) > 0.1)
+            if (GpsUtils.QuickDistance(newLocation, MyLocation) > VALIDITY_DISTANCE_MAX1)
                 return false;
             
-            if (Math.Abs(newLocation.Altitude - MyLocation.Altitude) > 100)
+            if (Math.Abs(newLocation.Altitude - MyLocation.Altitude) > VALIDITY_ALTITUDE_MAX1)
                 return false;
 
             if (newMaxDistance > MaxDistance)
@@ -83,5 +102,58 @@ namespace Peaks360Lib.Domain.ViewModel
 
             return true;
         }
+
+        /*public void ResetPointConnection()
+        {
+            for (ushort i = 0; i < 360; i++)
+            {
+                var thisAngle = GetData(i);
+                foreach (var p in thisAngle.GetPoints())
+                {
+                    p.AlreadyConnected = false;
+                }
+            }
+        }*/
+
+        public List<ProfileLine> GetProfileLines()
+        {
+            //ResetPointConnection();
+
+            List<ProfileLine> listOfLines = new List<ProfileLine>();
+            for (ushort i = 0; i < 360; i++)
+            {
+                var thisAngle = GetData(i);
+                var prevAngle = GetData(i - 1);
+
+                if (thisAngle != null && prevAngle != null)
+                {
+                    foreach (var point in thisAngle.GetPoints())
+                    {
+                        var otherPoint = prevAngle.GetPoints()
+                            .Where(x => 
+                                Math.Abs(point.Distance.Value - x.Distance.Value) <= point.Distance.Value / 12 
+                                /*&& !x.AlreadyConnected*/
+                            )
+                            .OrderBy(x => Math.Abs(point.Distance.Value - x.Distance.Value))
+                            .FirstOrDefault();
+
+                        if (otherPoint != null)
+                        {
+                            var y1 = point.VerticalViewAngle.Value;
+                            var x1 = (float)point.Bearing.Value;
+
+                            var y2 = otherPoint.VerticalViewAngle.Value;
+                            var x2 = (float)otherPoint.Bearing.Value;
+
+                            listOfLines.Add(new ProfileLine { Bearing1 = x1, Bearing2 = x2, VerticalViewAngle1 = (float)y1, VerticalViewAngle2 = (float)y2, distance = point.Distance.Value });
+
+                            //otherPoint.AlreadyConnected = true;
+                        }
+                    }
+                }
+            }
+            return listOfLines;
+        }
+
     }
 }

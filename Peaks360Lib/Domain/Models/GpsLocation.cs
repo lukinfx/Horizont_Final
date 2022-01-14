@@ -12,6 +12,7 @@ namespace Peaks360Lib.Domain.Models
         public double? Distance = null;
         public double? Bearing = null;
         public double? VerticalViewAngle = null;
+        //public bool AlreadyConnected = false;
 
         public GpsLocation()
         { }

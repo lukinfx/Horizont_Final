@@ -91,7 +91,7 @@
             this.textBoxLat.Name = "textBoxLat";
             this.textBoxLat.Size = new System.Drawing.Size(100, 20);
             this.textBoxLat.TabIndex = 4;
-            this.textBoxLat.Text = "49.4894558";
+            this.textBoxLat.Text = "46.3617055";
             // 
             // textBoxLon
             // 
@@ -99,7 +99,7 @@
             this.textBoxLon.Name = "textBoxLon";
             this.textBoxLon.Size = new System.Drawing.Size(100, 20);
             this.textBoxLon.TabIndex = 5;
-            this.textBoxLon.Text = "18.4914856";
+            this.textBoxLon.Text = "13.4751664";
             // 
             // textBoxAlt
             // 
@@ -107,7 +107,7 @@
             this.textBoxAlt.Name = "textBoxAlt";
             this.textBoxAlt.Size = new System.Drawing.Size(100, 20);
             this.textBoxAlt.TabIndex = 6;
-            this.textBoxAlt.Text = "830";
+            this.textBoxAlt.Text = "2387";
             // 
             // textBoxVisibility
             // 
@@ -115,7 +115,7 @@
             this.textBoxVisibility.Name = "textBoxVisibility";
             this.textBoxVisibility.Size = new System.Drawing.Size(100, 20);
             this.textBoxVisibility.TabIndex = 7;
-            this.textBoxVisibility.Text = "12";
+            this.textBoxVisibility.Text = "25";
             // 
             // label1
             // 

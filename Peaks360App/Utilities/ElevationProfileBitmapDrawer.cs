@@ -48,33 +48,11 @@ namespace Peaks360App.Utilities
             }*/
 
             List<ProfileLine> listOfLines = new List<ProfileLine>();
-            for (ushort i = 0; i < 360; i++)
+            if (epd != null)
             {
-                var thisAngle = epd.GetData(i);
-                var prevAngle = epd.GetData(i - 1);
-
-                if (thisAngle != null && prevAngle != null)
-                {
-                    foreach (var point in thisAngle.GetPoints())
-                    {
-                        var otherPoint = prevAngle.GetPoints()
-                            .Where(x => Math.Abs(point.Distance.Value - x.Distance.Value) <= point.Distance.Value / 12)
-                            .OrderBy(x => Math.Abs(point.Distance.Value - x.Distance.Value))
-                            .FirstOrDefault();
-
-                        if (otherPoint != null)
-                        {
-                            var y1 = point.VerticalViewAngle.Value;
-                            var x1 = (float) point.Bearing.Value;
-
-                            var y2 = otherPoint.VerticalViewAngle.Value;
-                            var x2 = (float) otherPoint.Bearing.Value;
-                            listOfLines.Add(new ProfileLine {Bearing1 = x1, Bearing2 = x2, VerticalViewAngle1 = (float) y1, VerticalViewAngle2 = (float) y2, distance = point.Distance.Value});
-                        }
-                    }
-                }
+                _context.ListOfProfileLines = epd.GetProfileLines();
             }
-            _context.ListOfProfileLines = listOfLines;
+            _context.ListOfProfileLines = null;
         }
 
         public void PaintElevationProfileLines(Canvas canvas, double heading, double leftTiltCorrector, double rightTiltCorrector, float offsetX, float offsetY)

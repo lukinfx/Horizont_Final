@@ -54,6 +54,10 @@ namespace Peaks360App.Providers
                     {
                         if (context.ElevationProfileData == null || !context.ElevationProfileData.IsValid(context.MyLocation, context.Settings.MaxDistance))
                         {
+                            if (context.ElevationProfileData != null && !context.ElevationProfileData.IsLocationNearBy(context.MyLocation))
+                            {
+                                ResetElevationProfile();
+                            }
                             GenerateElevationProfile(appContext, maxDistance, context.MyLocation, progressReceiver);
                         }
                         else
@@ -168,10 +172,12 @@ namespace Peaks360App.Providers
 
         private void RefreshElevationProfile(ElevationProfileData elevationProfileData)
         {
-            if (elevationProfileData != null)
-            {
-                ElevationProfileChanged?.Invoke(this, new ElevationProfileChangedEventArgs() {ElevationProfileData = elevationProfileData});
-            }
+            ElevationProfileChanged?.Invoke(this, new ElevationProfileChangedEventArgs() {ElevationProfileData = elevationProfileData});
+        }
+
+        private void ResetElevationProfile()
+        {
+            RefreshElevationProfile(null);
         }
     }
 }

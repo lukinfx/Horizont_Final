@@ -7,6 +7,9 @@ namespace Peaks360Lib.Utilities
 {
     public class ElevationDataGenerator
     {
+        public const int MIN_PROFILE_DISTANCE = 500;//500 meters
+        public const int MIN_PROFILE_DISTANCE_STEP = 100;//100 meters
+
         private ElevationProfileData _elevationProfileData;
 
         public ElevationDataGenerator()
@@ -61,7 +64,7 @@ namespace Peaks360Lib.Utilities
         {
             var ed = new ElevationData(angle);
 
-            for (double d = 500; d < maxDistance; d += Math.Min(100,d/100))
+            for (double d = MIN_PROFILE_DISTANCE; d < maxDistance; d += Math.Min(MIN_PROFILE_DISTANCE_STEP, d/100))
             {
                 var x = GpsUtils.QuickGetGeoLocation(myLocation, d, angle);
                 //int size = d < 5000 ? 1 : 3;

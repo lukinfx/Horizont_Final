@@ -20,7 +20,7 @@ namespace PaintSkyLine
 {
     public class SkyLine : Control
     {
-        private static readonly int DG_WIDTH = 50;
+        private static readonly int OFFSET_Y = 100;
         private static readonly int MIN_DISTANCE = 1000;
 
         private List<GpsLocation> _data;
@@ -30,10 +30,11 @@ namespace PaintSkyLine
 
         ElevationDataGenerator profileGenerator;
 
-        private int _heading = 0;
+        private int _heading = 80;
         private int _visibilityKm = 10;
         private int _minDist = 10;
-        private GpsLocation _myLocation = new GpsLocation(49.4894558, 18.4914856, 830);
+        //private GpsLocation _myLocation = new GpsLocation(49.4894558, 18.4914856, 830); //Lysa hora
+        private GpsLocation _myLocation = new GpsLocation(46.3617055, 13.4751664, 2387);
 
         private SKData profileImageData;
 
@@ -88,7 +89,7 @@ namespace PaintSkyLine
             var d = elevationTileCollection.GetSizeToDownload();
             elevationTileCollection.Download(progress => { });
             elevationTileCollection.Read(progress => { });
-            profileGenerator.Generate(_myLocation, 12, elevationTileCollection, progress => { });
+            profileGenerator.Generate(_myLocation, _visibilityKm, elevationTileCollection, progress => { });
 
             /*ProfileGeneratorOld ep2 = new ProfileGeneratorOld();
             //ep2.GenerateElevationProfile3(_myLocation, _visibility, _data, progress => { });
@@ -120,6 +121,16 @@ namespace PaintSkyLine
             Invalidate();
         }
 
+        int GetZoomLevelX()
+        {
+            return (int)(_minDist*1.5);
+        }
+
+        int GetZoomLevelY()
+        {
+            return _minDist;
+        }
+
         void PaintTerrain(PaintEventArgs e)
         {
             var pen = new Pen(Brushes.Black, 20);
@@ -135,8 +146,8 @@ namespace PaintSkyLine
                 var b = GpsUtils.Normalize360(point.Bearing.Value - _heading);
                 var c = (point.Distance / (_visibilityKm * 1000)) * 200;
                 pen.Color = Color.FromArgb(100, (int)c, (int)c, (int)c);
-                var x = GpsUtils.Normalize360(b + 35) * DG_WIDTH;
-                var y = 250 - point.VerticalViewAngle * 40;
+                var x = GpsUtils.Normalize360(b + 35) * GetZoomLevelX();
+                var y = 250 - point.VerticalViewAngle * GetZoomLevelY();
                 e.Graphics.DrawLine(pen, (float)x, (float)500, (float)x, (float)y);
             }
             var z = _data
@@ -205,16 +216,48 @@ namespace PaintSkyLine
 
         void PaintProfile2(PaintEventArgs e)
         {
+            /*
+            List<ProfileLine> listOfLines = new List<ProfileLine>();
+            for (ushort i = 0; i < 360; i++)
+            {
+                var thisAngle = epd.GetData(i);
+                var prevAngle = epd.GetData(i - 1);
+
+                if (thisAngle != null && prevAngle != null)
+                {
+                    foreach (var point in thisAngle.GetPoints())
+                    {
+                        var otherPoint = prevAngle.GetPoints()
+                            .Where(x => Math.Abs(point.Distance.Value - x.Distance.Value) <= point.Distance.Value / 12)
+                            .OrderBy(x => Math.Abs(point.Distance.Value - x.Distance.Value))
+                            .FirstOrDefault();
+
+                        if (otherPoint != null)
+                        {
+                            var y1 = point.VerticalViewAngle.Value;
+                            var x1 = (float) point.Bearing.Value;
+
+                            var y2 = otherPoint.VerticalViewAngle.Value;
+                            var x2 = (float) otherPoint.Bearing.Value;
+                            listOfLines.Add(new ProfileLine {Bearing1 = x1, Bearing2 = x2, VerticalViewAngle1 = (float) y1, VerticalViewAngle2 = (float) y2, distance = point.Distance.Value});
+                        }
+                    }
+                }
+            }
+            _context.ListOfProfileLines = listOfLines;
+        }
+        */
+
             List<GpsLocation> lst;
             if (elevationProfileNew == null)
             {
                 return;
             }
 
-            var pen = new Pen(Brushes.Black, 3);
+            var pen = new Pen(Brushes.Black, 2);
 
-            var data = elevationProfileNew.GetData();
-            for(ushort i = 0; i < 360; i++)
+            /*var data = elevationProfileNew.GetData();
+            for (ushort i = 0; i < 360; i++)
             {
                 var thisAngle = elevationProfileNew.GetData(i);
                 var prevAngle = elevationProfileNew.GetData(i - 1);
@@ -223,24 +266,102 @@ namespace PaintSkyLine
                 {
                     foreach (var point in thisAngle.GetPoints())
                     {
-                        foreach (var otherPoint in prevAngle.GetPoints())
-                        {
-                            if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value) < point.Distance / _minDist)
-                            {
-                                var b1 = GpsUtils.Normalize360(point.Bearing.Value - _heading);
-                                var x1 = GpsUtils.Normalize360(b1 + 35) * DG_WIDTH;
-                                var y1 = 250 - point.VerticalViewAngle.Value * 40;
-
-                                var b2 = GpsUtils.Normalize360(otherPoint.Bearing.Value - _heading);
-                                var x2 = GpsUtils.Normalize360(b2 + 35) * DG_WIDTH;
-                                var y2 = 250 - otherPoint.VerticalViewAngle.Value * 40;
-                                if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) < 100)
-                                    e.Graphics.DrawLine(pen, (float) x1, (float) y1, (float) x2, (float) y2);
-                            }
-                        }
+                        var otherPoints = prevAngle.GetPoints();
+                        //PaintFrom2PointsOld(e, pen, point, otherPoints);
+                        PaintFrom2PointsNew(e, pen, point, otherPoints);
                     }
                 }
+            }*/
+
+            var listOfLines = elevationProfileNew.GetProfileLines();
+            PaintFrom2PointsCurrent(e, pen, listOfLines);
+        }
+
+        private void PaintFrom2PointsOld(PaintEventArgs e, Pen pen, GpsLocation point, List<GpsLocation> otherPointsParam)
+        {
+            foreach (var otherPoint in otherPointsParam)
+            {
+                if (Math.Abs(point.Distance.Value - otherPoint.Distance.Value) < point.Distance / 12)
+                {
+                    var b1 = GpsUtils.Normalize360(point.Bearing.Value - _heading);
+                    var x1 = GpsUtils.Normalize360(b1 + 35) * GetZoomLevelX();
+                    var y1 = OFFSET_Y - point.VerticalViewAngle.Value * GetZoomLevelY();
+
+                    var b2 = GpsUtils.Normalize360(otherPoint.Bearing.Value - _heading);
+                    var x2 = GpsUtils.Normalize360(b2 + 35) * GetZoomLevelX();
+                    var y2 = OFFSET_Y - otherPoint.VerticalViewAngle.Value * GetZoomLevelY();
+                    if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) < 100)
+                        e.Graphics.DrawLine(pen, (float)x1, (float)y1, (float)x2, (float)y2);
+                }
             }
+        }
+
+        private void PaintFrom2PointsCurrent(PaintEventArgs e, Pen pen, List<ProfileLine> listOfLines)
+        {
+            foreach (var line in listOfLines)
+            {
+                /*if (line.distance / 1000 > _context.Settings.MaxDistance)
+                {
+                    continue;
+                }*/
+
+                var b1 = GpsUtils.Normalize360(line.Bearing1 - _heading);
+                var x1 = GpsUtils.Normalize360(b1 + 35) * GetZoomLevelX();
+                var y1 = OFFSET_Y - line.VerticalViewAngle1 * GetZoomLevelY();
+
+                var b2 = GpsUtils.Normalize360(line.Bearing2 - _heading);
+                var x2 = GpsUtils.Normalize360(b2 + 35) * GetZoomLevelX();
+                var y2 = OFFSET_Y - line.VerticalViewAngle2 * GetZoomLevelY();
+                if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) < 100)
+                {
+                    var a = (int)(255 - (line.distance / (_visibilityKm * 1000f)  * 250));
+                    pen.Color = Color.FromArgb(a, pen.Color.R, pen.Color.G, pen.Color.B);
+
+                    e.Graphics.DrawLine(pen, (float)x1, (float)y1, (float)x2, (float)y2);
+                }
+
+                /*var x1 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.Bearing1, canvas.Width, _adjustedViewAngleHorizontal, offsetX);
+                var x2 = CompassViewUtils.GetXLocationOnScreen((float)heading, line.Bearing2, canvas.Width, _adjustedViewAngleHorizontal, offsetX);
+                if (x1.HasValue && x2.HasValue)
+                {
+                    double verticalAngleCorrection1 = CompassViewUtils.GetTiltCorrection(line.Bearing1, heading, _viewAngleHorizontal, leftTiltCorrector, rightTiltCorrector);
+                    double verticalAngleCorrection2 = CompassViewUtils.GetTiltCorrection(line.Bearing2, heading, _viewAngleHorizontal, leftTiltCorrector, rightTiltCorrector);
+
+                    var y1 = CompassViewUtils.GetYLocationOnScreen(line.VerticalViewAngle1 + verticalAngleCorrection1, canvas.Height, _adjustedViewAngleVertical);
+                    var y2 = CompassViewUtils.GetYLocationOnScreen(line.VerticalViewAngle2 + verticalAngleCorrection2, canvas.Height, _adjustedViewAngleVertical);
+
+                    double alpha = 255 - ((line.distance / 1000) / _context.Settings.MaxDistance) / 2 * 400;
+
+                    _linePaint.SetARGB((int)alpha, 0x30, 0x30, 0x30);
+                    _linePaint.AntiAlias = true;
+                    _lineBackPaint.SetARGB((int)alpha, 0xE0, 0xE0, 0xE0);
+                    _lineBackPaint.AntiAlias = true;
+
+                    canvas.DrawLine(x1.Value, y1 + offsetY, x2.Value, y2 + offsetY, _lineBackPaint);
+                    canvas.DrawLine(x1.Value, y1 + offsetY, x2.Value, y2 + offsetY, _linePaint);
+                }*/
+            }
+        }
+        private void PaintFrom2PointsNew(PaintEventArgs e, Pen pen, GpsLocation point, List<GpsLocation> otherPointsParam)
+        {
+            var otherPoints = otherPointsParam.
+                Where(x => Math.Abs(point.Distance.Value - x.Distance.Value) < point.Distance / 12)
+                .OrderByDescending(x => x.VerticalViewAngle);
+
+            var otherPoint = otherPoints.FirstOrDefault();
+            if (otherPoint != null)
+            {
+                var b1 = GpsUtils.Normalize360(point.Bearing.Value - _heading);
+                var x1 = GpsUtils.Normalize360(b1 + 35) * GetZoomLevelX();
+                var y1 = OFFSET_Y - point.VerticalViewAngle.Value * GetZoomLevelY();
+
+                var b2 = GpsUtils.Normalize360(otherPoint.Bearing.Value - _heading);
+                var x2 = GpsUtils.Normalize360(b2 + 35) * GetZoomLevelX();
+                var y2 = OFFSET_Y - otherPoint.VerticalViewAngle.Value * GetZoomLevelY();
+                if (Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)) < 100)
+                    e.Graphics.DrawLine(pen, (float)x1, (float)y1, (float)x2, (float)y2);
+            }
+
         }
 
         void PaintProfileScale(PaintEventArgs e)
@@ -248,7 +369,7 @@ namespace PaintSkyLine
             for (int i = _heading - 35; i < _heading + 35; i++)
             {
                 var dg = (i + 360) % 360;
-                double x = (i - _heading + 35) * DG_WIDTH;
+                double x = (i - _heading + 35) * GetZoomLevelX();
 
                 //e.Graphics.DrawLine(new Pen(Brushes.Blue), (float)x, 250, (float)x, (float)(250-y));
                 if (i % 10 == 0)
@@ -268,8 +389,8 @@ namespace PaintSkyLine
             //PaintTerrain(e);
             //PaintProfile2(e);
             
-            //PaintProfile2(e); last
-            PaintTerrain2(e);
+            PaintProfile2(e); //last
+            //PaintTerrain2(e);
         }
 
         private void PaintTerrain2(PaintEventArgs e)
@@ -349,7 +470,7 @@ namespace PaintSkyLine
             float xLast = 0;
             for (int a = 1; a < 700-1; a++)
             {
-                float xr = (a+aStep) * DG_WIDTH*aStep;
+                float xr = (a+aStep) * GetZoomLevelX() * aStep;
                 float xl = xLast;
                 xLast = xr;
 
