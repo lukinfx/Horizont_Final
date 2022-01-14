@@ -142,8 +142,8 @@ namespace Peaks360App.Activities
 
             _confirmCloseButtons = FindViewById<LinearLayout>(Resource.Id.confirmCloseButtons);
             _confirmCloseButtons.Visibility = ViewStates.Gone;
-            FindViewById<ImageButton>(Resource.Id.confirmButton).SetOnClickListener(this);
-            FindViewById<ImageButton>(Resource.Id.closeButton).SetOnClickListener(this);
+            FindViewById<Button>(Resource.Id.confirmButton).SetOnClickListener(this);
+            FindViewById<Button>(Resource.Id.closeButton).SetOnClickListener(this);
 
             _activityControlArea = FindViewById<LinearLayout>(Resource.Id.photoShowActivityControlArea);
             photoView = FindViewById<ScaleImageView>(Resource.Id.photoView);

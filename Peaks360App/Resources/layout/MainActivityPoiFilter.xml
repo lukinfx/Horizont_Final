@@ -154,16 +154,25 @@
         <LinearLayout android:orientation="horizontal"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:gravity="center_horizontal">
-            <Button android:text="@string/Common_All"
-                    android:layout_width="match_parent"
+                  android:gravity="center_horizontal"
+                  android:background="@drawable/bg_activity_lightgray">
+            <Button 
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content" 
-                    android:layout_weight="1"
+
+                    android:drawableLeft="@drawable/ic_menu_mark"
+                    android:text="@string/Common_All"
+                    android:background="@android:color/transparent"
                     android:id="@+id/buttonSelectAll" />
-            <Button android:text="@string/Common_None"
-                    android:layout_width="match_parent"
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="0dp"/>
+            <Button 
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_menu_block"
+                    android:text="@string/Common_None"
+                    android:background="@android:color/transparent"
                     android:id="@+id/buttonSelectNone" />
         </LinearLayout>
     </LinearLayout>

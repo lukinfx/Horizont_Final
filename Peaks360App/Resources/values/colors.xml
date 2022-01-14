@@ -4,11 +4,15 @@
     <color name="colorPrimaryDark">#1B3147</color>
     <color name="colorAccent">#3498db</color>
 
+    <color name="PeaksExtraDarkBlue2">#000a19</color>
+    <color name="PeaksExtraDarkBlue1">#011432</color>
     <color name="PeaksDarkBlue">#012865</color>
+    <color name="PeaksMediumBlue">#3890E3</color>
     <color name="PeaksLightBlue">#3890E3</color>
     <color name="PeaksExtraLightBlue1">#A6CDF2</color>
     <color name="PeaksExtraLightBlue2">#E9F3FC</color>
   
+
 
   <color name="SelectionEnabled">#80ff00</color>
     <color name="SelectionDisabled">#d0d0d0</color>

@@ -26,7 +26,7 @@
         android:background="@android:color/transparent"
         android:id="@+id/buttonTiltCorrector"/>
     <ImageButton
-        android:src="@drawable/ic_more_horizontal"
+        android:src="@drawable/ic_more_vertical"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="bottom"
