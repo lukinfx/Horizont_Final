@@ -10,6 +10,12 @@
     android:id="@+id/toolbar"
     layout="@layout/TitleToolbar" />
 
+  <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_activity">
+
     <androidx.cardview.widget.CardView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,4 +44,5 @@
       android:divider="@android:color/transparent"
       android:id="@+id/listViewPhotos" />
 
+  </LinearLayout>
 </LinearLayout>

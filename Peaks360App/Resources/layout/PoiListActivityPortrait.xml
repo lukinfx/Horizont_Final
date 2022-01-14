@@ -9,6 +9,11 @@
       android:id="@+id/toolbar"
       layout="@layout/PoiListActivityToolbar" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_activity">
     <androidx.cardview.widget.CardView 
         android:minWidth="25px"
         android:minHeight="25px"
@@ -88,5 +93,5 @@
           android:layout_height="match_parent"
           android:divider="@android:color/transparent"
           android:id="@+id/listViewPoi" />
-
+    </LinearLayout>
 </LinearLayout>
