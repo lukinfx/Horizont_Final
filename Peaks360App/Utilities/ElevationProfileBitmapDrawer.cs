@@ -36,7 +36,7 @@ namespace Peaks360App.Utilities
             _lineBackPaint.StrokeWidth = LINE_BACK_WIDTH * multiplier;
         }
 
-        public void GenerateElevationProfileLines(ElevationProfileData epd, double displayWidth, double displayHeight)
+        public void GenerateElevationProfileLines(ElevationProfileData epd)
         {
             /*foreach(var ed in epd.GetData())
             {
@@ -47,12 +47,7 @@ namespace Peaks360App.Utilities
                 }
             }*/
 
-            List<ProfileLine> listOfLines = new List<ProfileLine>();
-            if (epd != null)
-            {
-                _context.ListOfProfileLines = epd.GetProfileLines();
-            }
-            _context.ListOfProfileLines = null;
+            _context.ListOfProfileLines = epd?.GetProfileLines();
         }
 
         public void PaintElevationProfileLines(Canvas canvas, double heading, double leftTiltCorrector, double rightTiltCorrector, float offsetX, float offsetY)

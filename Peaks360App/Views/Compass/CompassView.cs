@@ -371,7 +371,7 @@ namespace Peaks360App.Views
 
         private void GenerateElevationProfileLines()
         {
-            elevationProfileBitmapDrawer.GenerateElevationProfileLines(_elevationProfile, Width, Height);
+            elevationProfileBitmapDrawer.GenerateElevationProfileLines(_elevationProfile);
         }
 
         private void PaintElevationProfileLines(Canvas canvas, double heading)
