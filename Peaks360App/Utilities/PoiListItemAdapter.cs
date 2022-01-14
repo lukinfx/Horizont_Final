@@ -96,7 +96,6 @@ namespace Peaks360App.Utilities
             view.FindViewById<TextView>(Resource.Id.textViewDistance).Text = $"{item.GpsLocation.Distance.Value / 1000f:F2} km";
 
             _thumbnail = view.FindViewById<ImageView>(Resource.Id.Thumbnail);
-            //_thumbnail.SetColorFilter(ColorFilterPoiItem.GetColorFilter(item));
             _thumbnail.SetImageResource(PoiCategoryHelper.GetImage(item.Poi.Category));
 
             var deleteButton = view.FindViewById<ImageButton>(Resource.Id.PoiDeleteButton);
@@ -123,8 +122,6 @@ namespace Peaks360App.Utilities
                 editButton.Visibility = ViewStates.Gone;
             }
 
-            view.SetBackgroundResource(Resource.Drawable.bg_activity);
-            view.Background.Alpha = item.Selected ? 100 : 0;
             return view;
         }
 
