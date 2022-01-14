@@ -35,6 +35,7 @@ namespace Peaks360App.Activities
 
         private void OnSelectViewCard(int layoutResId)
         {
+            //hide currently exanded items
             foreach (var cardItem in _cardItems)
             {
                 var icon = FindViewById<ImageView>(cardItem.IconId);
@@ -48,6 +49,7 @@ namespace Peaks360App.Activities
                 }
             }
 
+            //hide or show selected items
             {
                 var selectedCardItem = _cardItems.Single(x => x.LayoutId == layoutResId);
                 var icon = FindViewById<ImageView>(selectedCardItem.IconId);
@@ -56,7 +58,6 @@ namespace Peaks360App.Activities
 
                 if (hiddenView.Visibility == ViewStates.Visible)
                 {
-                    TransitionManager.BeginDelayedTransition(cardView, new AutoTransition());
                     hiddenView.Visibility = ViewStates.Gone;
                     icon.SetImageResource(Resource.Drawable.baseline_expand_more_black_24dp);
                 }
