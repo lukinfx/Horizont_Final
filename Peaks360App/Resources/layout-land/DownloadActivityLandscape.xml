@@ -23,7 +23,7 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent">
 
-            <LinearLayout
+                        <LinearLayout
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -99,29 +99,22 @@
                 <ListView
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
-                  android:layout_weight="100"
+                  android:layout_weight="1"
                   android:padding="10dp"
                   android:id="@+id/listViewDownloadedElevationData" />
-                <Space
-                  android:layout_width="10dp"
-                  android:layout_height="match_parent"/>
                 <LinearLayout
                   android:orientation="vertical"
                   android:padding="10dp"
+                  android:layout_marginLeft="5dp"
                   android:layout_width="wrap_content"
                   android:layout_height="match_parent"
-                  android:layout_weight="0"
-                  android:background="@drawable/bg_gradient"
-                  android:gravity="bottom">
-
-                    <Button
-                      android:text="@string/DownloadED_AddNewElevationDataArea"
-                      android:drawableTop="@android:drawable/ic_menu_add"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:drawablePadding="5dp"
-                      android:background="@android:color/transparent"
-                      android:id="@+id/buttonAddNew" />
+                  android:layout_weight="2"
+                  android:background="@drawable/bg_activity_lightgray">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/DownloadED_Information"/>
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>

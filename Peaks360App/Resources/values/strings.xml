@@ -129,6 +129,7 @@
   <string name="DownloadED_ChangeLocation">Change location</string>
   <string name="DownloadED_PleaseChooseLocation">Please choose location</string>
   <string name="DownloadED_DeleteQuestion">Are you sure you want to delete this area?</string>
+  <string name="DownloadED_Information">The application is downloading elevation data for the area automatically. However, if you plan to visit an area without Internet access, you can download the data in advance and use the application offline.</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Use correct format. Example: 12.34567890.</string>
@@ -161,6 +162,7 @@
   <string name="PhotoParameters_SetCameraLocationFirst">Set camera location first.</string>
 
   <!--SettingsActivity-->
+  <string name="Settings_Language">Language</string>
   <string name="Settings_ChooseLanguage">Choose a language</string>
   <string name="Settings_CameraViewAngle">Camera view angle</string>
   <string name="Settings_SetViewAngleManually">Set view angle manually</string>

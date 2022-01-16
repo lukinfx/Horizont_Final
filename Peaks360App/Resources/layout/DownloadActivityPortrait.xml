@@ -98,16 +98,12 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:padding="10dp"
-                   android:background="@drawable/bg_gradient">
-                    <Button
-                      android:text="@string/DownloadED_AddNewElevationDataArea"
-                      android:drawableLeft="@android:drawable/ic_menu_add"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:background="@android:color/transparent"
-                      android:drawablePadding="5dp"
-                      android:padding="10dp"
-                      android:id="@+id/buttonAddNew" />
+                   android:background="@drawable/bg_activity_lightgray">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/DownloadED_Information"/>
                 </LinearLayout>
                 
                 <Space

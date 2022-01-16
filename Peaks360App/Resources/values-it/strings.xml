@@ -134,6 +134,7 @@
   <string name="EditPoi_PasteLocationFromClipboard">Incolla la posizione GPS dagli appunti</string>
   <string name="EditPoi_FetchAltitudeFromElevationMap">Recupera l\'altitudine dalla mappa di elevazione</string>
   <string name="DownloadED_DeleteQuestion">Sei sicuro di voler eliminare quest\'area?</string>
+  <string name="DownloadED_Information">L\'applicazione sta scaricando automaticamente i dati di elevazione per l\'area. Tuttavia, se prevedi di visitare un\'area senza accesso a Internet, puoi scaricare i dati in anticipo e utilizzare l\'applicazione offline.</string>
 
   <!--PhotosActivity -->
   <string name="Photos_DeletePhotoQuestion">Sei sicuro di voler eliminare questa foto?</string>
@@ -157,6 +158,7 @@
   <string name="PhotoParameters_SetCameraLocationFirst">Imposta prima la posizione della fotocamera.</string>
 
   <!--SettingsActivity-->
+  <string name="Settings_Language">Lingua</string>
   <string name="Settings_ChooseLanguage">Scegli la lingua</string>
   <string name="Settings_CameraViewAngle">Angolo di visualizzazione della telecamera</string>
   <string name="Settings_SetViewAngleManually">Imposta manualmente l\'angolo di visualizzazione</string>

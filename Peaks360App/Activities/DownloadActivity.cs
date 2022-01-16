@@ -23,7 +23,7 @@ using Peaks360Lib.Domain.ViewModel;
 namespace Peaks360App.Activities
 {
     [Activity(Label = "@string/DownloadActivity")]
-    public class DownloadActivity : TabActivity, View.IOnClickListener, IDownloadedElevationDataActionListener, IDownloadItemActionListener
+    public class DownloadActivity : TabActivity, View.IOnClickListener, IDownloadedElevationDataActionListener, IDownloadItemActionListener, TabHost.IOnTabChangeListener
     {
         private ListView _downloadItemListView;
         private ListView _downloadedElevationDataListView;
@@ -101,6 +101,7 @@ namespace Peaks360App.Activities
             page1.SetIndicator(Resources.GetText(Resource.String.Common_POIs));
             page1.SetContent(Resource.Id.downloadTabPois);
             TabHost.AddTab(page1);
+            TabHost.SetOnTabChangedListener(this);
 
 
             var page2 = TabHost.NewTabSpec("tab_test2");
@@ -125,9 +126,6 @@ namespace Peaks360App.Activities
             _downloadedElevationDataListView = FindViewById<ListView>(Resource.Id.listViewDownloadedElevationData);
             _downloadedElevationDataAdapter = new DownloadedElevationDataAdapter(this, this);
             _downloadedElevationDataListView.Adapter = _downloadedElevationDataAdapter;
-
-            var _downloadedElevationDataAddButton = FindViewById<Button>(Resource.Id.buttonAddNew);
-            _downloadedElevationDataAddButton.SetOnClickListener(this);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -136,12 +134,25 @@ namespace Peaks360App.Activities
             return base.OnCreateOptionsMenu(menu);
         }
 
+        public override bool OnPrepareOptionsMenu(IMenu menu)
+        {
+            var menu_addNew = menu.FindItem(Resource.Id.menu_addNew);
+
+            menu_addNew.SetVisible(TabHost.CurrentTab == 1);
+            return base.OnPrepareOptionsMenu(menu);
+        }
+
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
                 case Android.Resource.Id.Home:
                     Finish();
+                    break;
+
+                case Resource.Id.menu_addNew:
+                    Intent editActivityIntent = new Intent(this, typeof(AddElevationDataActivity));
+                    StartActivity(editActivityIntent);
                     break;
             }
             return base.OnOptionsItemSelected(item);
@@ -468,11 +479,6 @@ namespace Peaks360App.Activities
                     var dialog = new CountryDropDownDialog(this, _countries);
                     dialog.Show( (result, country) => SelectCountry(country) );
                     break;
-
-                case Resource.Id.buttonAddNew:
-                    Intent editActivityIntent = new Intent(this, typeof(AddElevationDataActivity));
-                    StartActivity(editActivityIntent);
-                    break;
             }
         }
 
@@ -557,5 +563,9 @@ namespace Peaks360App.Activities
             }
         }
 
+        public void OnTabChanged(string tabId)
+        {
+            InvalidateOptionsMenu();
+        }
     }
 }

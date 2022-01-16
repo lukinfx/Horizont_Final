@@ -125,6 +125,7 @@
   <string name="DownloadED_ChangeLocation">Změnit umístění</string>
   <string name="DownloadED_PleaseChooseLocation">Prosím, vyberte umístění</string>
   <string name="DownloadED_DeleteQuestion">Opravdu chcete smazat tuto oblast?</string>
+  <string name="DownloadED_Information">Aplikace si stahuje výšková data pro danou oblast automaticky. Pokud se však chystáte navštívit oblast bez přístupu k internetu, můžete si data stáhnout předem a používat tak aplikaci v offline režimu.</string>
 
   <!--EditActivity-->
   <string name="EditPoi_WrongFormat">Použijte správný formát. Například: 12.34567890.</string>
@@ -157,7 +158,8 @@
   <string name="PhotoParameters_SetCameraLocationFirst">Nejprve nastavte umístění kamery.</string>
 
   <!--SettingsActivity-->
-  <string name="Settings_ChooseLanguage">Vyber jazyk</string>
+  <string name="Settings_Language">Jazyk</string>
+  <string name="Settings_ChooseLanguage">Vyberte jazyk</string>
   <string name="Settings_CameraViewAngle">Zorný úhel fotoaparátu</string>
   <string name="Settings_SetViewAngleManually">Nastavit zorný úhel manuálně</string>
   <string name="Settings_DefaultViewAngleHorizontal">Zorný úhel je 40° (nastaveno manuálně)</string>
