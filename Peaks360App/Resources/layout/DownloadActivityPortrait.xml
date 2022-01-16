@@ -26,29 +26,66 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="5dp"
                 android:id="@+id/downloadTabPois">
-                  <LinearLayout
-                    android:orientation="vertical"
+
+                <androidx.cardview.widget.CardView 
+                    android:minWidth="25px"
+                    android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:background="@drawable/bg_gradient">
+                    android:layout_margin="10dp"
+                    style="@style/CardViewCustomStyle"
+                    android:id="@+id/cardSearching">
 
-                    <Spinner
-                      android:textAppearance="?android:attr/textAppearanceMedium"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:spinnerMode="dropdown"
-                      android:padding="5dp"
-                      android:id="@+id/DownloadCountrySpinner" />
-                  </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_activity_lightgray">
 
-                    <ListView
-                      android:minWidth="25px"
-                      android:minHeight="25px"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:id="@+id/DownloadItemListView" />
+                        <LinearLayout
+                            android:id="@+id/DownloadCountryLayout"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/DownloadCountryIcon"
+                                android:padding="5dp"
+                                android:layout_width="75dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="0"
+                                android:src="@drawable/flag_of_macedonia"/>
+
+                            <TextView
+                                android:id="@+id/DownloadCountryTextView"
+                                android:text="Selected country"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:padding="10dp"/>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0"
+                                android:layout_gravity="center"
+                                android:src="@drawable/baseline_expand_more_black_24dp"
+                                android:background="@android:color/transparent"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                 </androidx.cardview.widget.CardView>
+
+                <ListView
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/DownloadItemListView" />
               </LinearLayout>
 
               <LinearLayout

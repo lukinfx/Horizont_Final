@@ -78,6 +78,7 @@
     <Compile Include="Activities\AboutActivity.cs" />
     <Compile Include="Activities\AddElevationDataActivity.cs" />
     <Compile Include="Activities\CardBaseActivity.cs" />
+    <Compile Include="Activities\CountryDropDownDialog.cs" />
     <Compile Include="Activities\EditTagDialog.cs" />
     <Compile Include="Activities\HorizonBaseActivity.cs">
       <SubType>Code</SubType>
@@ -1096,6 +1097,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_more_vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\CountryDropDown.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

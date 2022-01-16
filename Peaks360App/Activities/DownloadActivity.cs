@@ -26,14 +26,12 @@ namespace Peaks360App.Activities
     public class DownloadActivity : TabActivity, View.IOnClickListener, IDownloadedElevationDataActionListener, IDownloadItemActionListener
     {
         private ListView _downloadItemListView;
-        private ListView _downloadCountryListView;
         private ListView _downloadedElevationDataListView;
-        private Spinner _downloadCountrySpinner;
-        private DownloadCountryAdapter _countryAdapter;
         private DownloadItemAdapter _downloadItemAdapter;
         private DownloadedElevationDataAdapter _downloadedElevationDataAdapter;
 
         private List<DownloadViewItem> _downloadViewItems;
+        private List<PoiCountry> _countries;
 
         private IAppContext AppContext { get { return AppContextLiveData.Instance; } }
 
@@ -91,23 +89,13 @@ namespace Peaks360App.Activities
             if (DeviceDisplay.MainDisplayInfo.Orientation == DisplayOrientation.Portrait)
             {
                 SetContentView(Resource.Layout.DownloadActivityPortrait);
-
-                _countryAdapter = new DownloadCountryAdapter(this, false);
-                _downloadCountrySpinner = FindViewById<Spinner>(Resource.Id.DownloadCountrySpinner);
-                _downloadCountrySpinner.Adapter = _countryAdapter;
-                _downloadCountrySpinner.ItemSelected += OnCountrySpinnerItemSelected;
-
             }
             else
             {
                 SetContentView(Resource.Layout.DownloadActivityLandscape);
-
-                _countryAdapter = new DownloadCountryAdapter(this, true);
-                _downloadCountryListView = FindViewById<ListView>(Resource.Id.DownloadCountryListView);
-                _downloadCountryListView.Adapter = _countryAdapter;
-                _downloadCountryListView.ItemClick += OnCountryListItemClicked;
             }
 
+            FindViewById<LinearLayout>(Resource.Id.DownloadCountryLayout).SetOnClickListener(this);
 
             var page1 = TabHost.NewTabSpec("tab_test1");
             page1.SetIndicator(Resources.GetText(Resource.String.Common_POIs));
@@ -159,29 +147,19 @@ namespace Peaks360App.Activities
             return base.OnOptionsItemSelected(item);
         }
 
-        private void OnCountryListItemClicked(object sender, AdapterView.ItemClickEventArgs e)
+        private void OnCountrySelected(PoiCountry country)
         {
-            OnCountrySelected(e.Position);
-        }
-        
-        private void OnCountrySpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            OnCountrySelected(e.Position);
-        }
-
-        private void OnCountrySelected(int position)
-        {
-            PoiCountry country = _countryAdapter[position];
-            _countryAdapter.Selection = country;
-            
-            var items = _downloadViewItems
-                .Where(x => x.fromDatabase.Country == country)
-                .OrderBy(x => x.fromDatabase.Category);
-
-            MainThread.BeginInvokeOnMainThread(() =>
+            if (_downloadViewItems != null)
             {
-                _downloadItemAdapter.SetItems(items);
-            }); 
+                var items = _downloadViewItems
+                    .Where(x => x.fromDatabase.Country == country)
+                    .OrderBy(x => x.fromDatabase.Category);
+
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    _downloadItemAdapter.SetItems(items);
+                });
+            }
         }
 
         private void OnIndexDownloaded(string json)
@@ -233,7 +211,7 @@ namespace Peaks360App.Activities
                 return;
             }
 
-            var countries = _downloadViewItems.Select(x => x.fromDatabase.Country)
+            _countries = _downloadViewItems.Select(x => x.fromDatabase.Country)
                 .Distinct()
                 .OrderBy(x => PoiCountryHelper.GetCountryName(x))
                 .ToList();
@@ -243,7 +221,6 @@ namespace Peaks360App.Activities
                 var defaultCountry = await PoiCountryHelper.GetDefaultCountryByPhoneLocation();
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
-                    _countryAdapter.SetItems(countries);
                     SelectCountry(defaultCountry);
                 });
             });
@@ -251,15 +228,12 @@ namespace Peaks360App.Activities
 
         private void SelectCountry(PoiCountry? country)
         {
+            FindViewById<TextView>(Resource.Id.DownloadCountryTextView).Text = PoiCountryHelper.GetCountryName(country);
+            FindViewById<ImageView>(Resource.Id.DownloadCountryIcon).SetImageResource(PoiCountryHelper.GetCountryIcon(country));
+            
             if (country.HasValue)
             {
-                var pos = _countryAdapter.GetPosition(country.Value);
-                if (pos >= 0)
-                {
-                    _downloadCountrySpinner?.SetSelection(pos);
-                    _downloadCountryListView?.SetSelection(pos);
-                    OnCountrySelected(pos);
-                }
+                OnCountrySelected(country.Value);
             }
         }
 
@@ -490,6 +464,11 @@ namespace Peaks360App.Activities
         {
             switch (v.Id)
             {
+                case Resource.Id.DownloadCountryLayout:
+                    var dialog = new CountryDropDownDialog(this, _countries);
+                    dialog.Show( (result, country) => SelectCountry(country) );
+                    break;
+
                 case Resource.Id.buttonAddNew:
                     Intent editActivityIntent = new Intent(this, typeof(AddElevationDataActivity));
                     StartActivity(editActivityIntent);

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:id="@+id/linearLayoutSelectCategory">
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+      <TextView
+        android:padding="20dp"
+        android:text="Select item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textFontWeight="600"
+        android:layout_weight="0"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+      <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:paddingVertical="10dp"
+        android:hint="@string/Common_Search"
+        android:singleLine="true"
+        android:iconifiedByDefault="false"
+        android:id="@+id/editTextSearch"/>
+
+      <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="10dp"
+        android:divider="#d0d0d0"
+        android:dividerHeight="1dp"
+        android:layout_weight="10"
+        android:id="@+id/DownloadCountryListView"/>
+
+      <Button
+        android:id="@+id/buttonClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_gravity="right"
+        android:textColor="?android:attr/colorAccent"
+        android:background="@android:color/transparent"
+        android:text="@string/Common_Close"/>
+    </LinearLayout>
+</LinearLayout>

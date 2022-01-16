@@ -297,7 +297,7 @@ namespace Peaks360App.Utilities
             //context.Resources.DisplayMetrics.SetTo(context.Resources.DisplayMetrics);
         }
 
-        public static int GetCountryIcon(PoiCountry country)
+        public static int GetCountryIcon(PoiCountry? country)
         {
             //Icons from https://www.countryflags.com/en/icons-overview/
             switch (country)

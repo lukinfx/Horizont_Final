@@ -10,7 +10,7 @@ namespace Peaks360App.Utilities
 {
     public class DownloadCountryAdapter : BaseAdapter<PoiCountry>
     {
-        private Activity context;
+        private LayoutInflater _layoutInflater;
         private List<PoiCountry> list;
         private bool _highlightSelection;
         private Android.Graphics.Color highlightedColor = new Android.Graphics.Color(0, 0, 0, 32);
@@ -25,10 +25,10 @@ namespace Peaks360App.Utilities
          
         //public PoiCountry? Selection { set; private get; }
 
-        public DownloadCountryAdapter(Activity _context, bool highlightSelection)
+        public DownloadCountryAdapter(LayoutInflater layoutInflater, bool highlightSelection)
             : base()
         {
-            this.context = _context;
+            this._layoutInflater = layoutInflater;
             list = new List<PoiCountry>();
             _highlightSelection = highlightSelection;
         }
@@ -64,7 +64,7 @@ namespace Peaks360App.Utilities
             View view = convertView;
 
             if (view == null)
-                view = context.LayoutInflater.Inflate(Resource.Layout.DownloadCountryListLayout, parent, false);
+                view = _layoutInflater.Inflate(Resource.Layout.DownloadCountryListLayout, parent, false);
 
             PoiCountry item = this[position];
             view.FindViewById<TextView>(Resource.Id.PoiItemCountryAsText).Text = PoiCountryHelper.GetCountryName(item);
