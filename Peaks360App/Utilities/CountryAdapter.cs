@@ -3,6 +3,7 @@ using System.Linq;
 using Android.App;
 using Android.Views;
 using Android.Widget;
+using Peaks360App.AppContext;
 using Peaks360Lib.Domain.Enums;
 
 namespace Peaks360App.Utilities
@@ -12,12 +13,24 @@ namespace Peaks360App.Utilities
         Activity context;
         List<PoiCountry?> list;
 
-        public CountryAdapter(Activity _context, bool includeAll = false)
+        public enum AvailableItems
+        { 
+            All,
+            Used
+        }
+
+        public CountryAdapter(Activity _context, AvailableItems availableItems, bool includeAll = false)
             : base()
         {
             this.context = _context;
-            list = PoiCountryHelper.GetAllCountries().Select(x => (PoiCountry?)x)
-                .OrderBy(x => PoiCountryHelper.GetCountryName(x)).ToList();
+            if (availableItems == AvailableItems.All)
+            {
+                list = PoiCountryHelper.GetAllCountries().Select(x => (PoiCountry?)x).OrderBy(x => PoiCountryHelper.GetCountryName(x)).ToList();
+            }
+            else if (availableItems == AvailableItems.Used)
+            {
+                list = AppContextLiveData.Instance.Database.GetItemCoutries().Select(x => (PoiCountry?)x).OrderBy(x => PoiCountryHelper.GetCountryName(x)).ToList();
+            }
             
             if (includeAll)
             {

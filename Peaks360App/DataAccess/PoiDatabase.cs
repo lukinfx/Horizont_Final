@@ -185,6 +185,19 @@ namespace Peaks360App.DataAccess
             return await Database.QueryAsync<Poi>("SELECT * FROM [Poi] WHERE [Favorite] = true");
         }
 
+        public List<PoiCountry?> GetItemCoutries()
+        {
+            try
+            {
+                var result = Database.QueryAsync<Poi>("SELECT DISTINCT [Country] FROM [Poi]").Result;
+                return result.Select(x => x.Country).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public IEnumerable<Poi> FindItems(string name, PoiCategory? category, PoiCountry? country, bool favourites)
         {
             var query = $"SELECT * FROM [Poi] WHERE 1=1";

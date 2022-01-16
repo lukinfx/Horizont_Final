@@ -88,7 +88,7 @@ namespace Peaks360App.Activities
             _searchViewText.FocusableViewAvailable(_listViewPoi);
 
             _spinnerCountry = FindViewById<Spinner>(Resource.Id.spinnerCountry);
-            _spinnerCountry.Adapter = new CountryAdapter(this, true);
+            _spinnerCountry.Adapter = new CountryAdapter(this, CountryAdapter.AvailableItems.Used, true);
             _spinnerCountry.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(OnFilterCountryChanged);
 
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);

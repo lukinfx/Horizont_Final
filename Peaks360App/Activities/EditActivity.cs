@@ -83,7 +83,7 @@ namespace Peaks360App.Activities
             _spinnerCategory = FindViewById<Spinner>(Resource.Id.spinnerCategory);
             _spinnerCountry = FindViewById<Spinner>(Resource.Id.spinnerCountry);
 
-            _spinnerCountry.Adapter = new CountryAdapter(this);
+            _spinnerCountry.Adapter = new CountryAdapter(this, CountryAdapter.AvailableItems.All);
 
             _spinnerCategory.Adapter = new CategoryAdapter(this);
 
